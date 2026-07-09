@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Claude / skills
+.claude/
+skills-main/
+
+# Context / architecture docs (kept local)
+context/
