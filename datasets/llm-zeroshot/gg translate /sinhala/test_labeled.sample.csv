@@ -1,0 +1,21 @@
+id,text,category,sentiment,priority
+0,මම මගේ කාඩ්පත සොයා ගන්නේ කෙසේද?,card_arrival,Neutral,Low
+40,මගේ කාඩ්පත යෙදුමේ නොපෙන්වන්නේ ඇයි?,card_linking,Neutral,Low
+80,මට ඔබේ විනිමය අනුපාත දැන ගැනීමට අවශ්‍යයි.,exchange_rate,Neutral,Low
+120,මම විදේශ මුදලකින් යමක් මිල දී ගත් නමුත් අදාළ ගාස්තුව වැරදියි,card_payment_wrong_exchange_rate,Negative,Medium
+160,මගේ ප්‍රකාශයේ රුපියල් 10ක් තියෙනවා ඒක පෙන්නලා මගෙන් අයකරලා තියෙනවා.,extra_charge_on_statement,Neutral,Medium
+200,මගේ මුදල් ආපසු ගැනීම තවමත් සිදුවෙමින් පවතී.  ඇයි?,pending_cash_withdrawal,Neutral,Low
+240,"මගේ අරමුදල් රඳවා තබා ගන්නා ලෙස මා ඉල්ලා සිටින්නේ නම්, ඔබ භාවිතා කරන්නේ කුමන මුදල් වර්ගද?",fiat_currency_support,Neutral,Low
+280,මට දැන් මගේ කාඩ්පත අවශ්‍යයි!,card_delivery_estimate,Neutral,Low
+320,"ගමන් කරන විට, මට නිශ්චිත වේලාවක මගේ කාඩ්පත ස්වයංක්‍රීයව ටොප්-අප් කළ හැකිද?",automatic_top_up,Positive,Low
+360,මම මගේ කාඩ්පත කිහිප වතාවක් උත්සාහ කර ඇති අතර එය කිසි විටෙකත් ක්‍රියා කළේ නැත.,card_not_working,Neutral,Medium
+400,මට මෙය සමඟ මුදල් හුවමාරු කළ හැකිද?,exchange_via_app,Neutral,Low
+440,මගේ මුදල් පසුම්බිය ඇතුළුව මගේ සම්පූර්ණ ජිම් බෑගයම අද මගේ ලොකරයෙන් සොරකම් කර ඇත. මගේ මුදල් පසුම්බියේ ඇති සියල්ල නැති වී ඇත - කාඩ්පත භාවිතා කළ නොහැකි ලෙස අවහිර කරන්නේ කෙසේද?,lost_or_stolen_card,Neutral,High
+480,මා වෙනුවෙන් ගිණුමක් ලබා ගැනීමට මගේ වයස කොපමණ විය යුතුද?,age_limit,Neutral,Low
+520,මම මගේ PIN අගුළු හැර ගන්නේ කෙසේද?,pin_blocked,Neutral,High
+560,මගේ නව කාඩ්පතෙහි සම්බන්ධතා රහිත ගෙවීම් සබල කර තිබේද?,contactless_not_working,Neutral,Medium
+600,මාරුවීම් භාර ගැනීමට ඔබ කොපමණ මුදලක් අය කරන්නේද යන්න,top_up_by_bank_transfer_charge,Neutral,Medium
+640,"අද නව පාරිභෝගිකයා සහ ගෑස් පිරවීම, එය ක්‍රියා නොකරයි, පැය භාගයක් බලා සිටින බව පෙන්වයි!",pending_top_up,Neutral,Low
+680,මම අද උදෑසන ගනුදෙනුවක් කළ අතර එය ආපසු හැරවීමට කැමතියි.,cancel_transfer,Neutral,Medium
+720,ඔබට මගේ ඉහළට සීමා කළ හැකිද?,top_up_limits,Positive,Low
+760,"මේක ATM එකේ ප්‍රශ්නයක්ද මගේ ගිණුමේ ප්‍රශ්නයක්ද කියලා මම දන්නේ නැහැ, නමුත් මම දැන් ඉන්න ATM එකෙන් රුපියල් 30,000ක් ගන්න බැලුවා, ඒකෙන් මට දුන්නේ රුපියල් 10,000යි. මෙය දෝෂයක්ද නැතහොත් හරියටම සිදුවන්නේ කුමක්ද?",wrong_amount_of_cash_received,Neutral,Medium
