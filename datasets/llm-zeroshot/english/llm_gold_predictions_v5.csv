@@ -1,0 +1,501 @@
+row_id,text,category,gold_sentiment,pred_sentiment,gold_priority,pred_priority
+5976,I had a card payment that was declined.  Why?,declined_card_payment,Neutral,Neutral,Medium,Medium
+9713,Am I able to Top Up with Apply Pay?,apple_pay_or_google_pay,Neutral,Neutral,Low,Low
+7536,Why has my payment not transferred?,failed_transfer,Neutral,Neutral,Medium,Medium
+596,There is a €1 extra fee in my statement,extra_charge_on_statement,Neutral,Neutral,Low,Medium
+2148,I need to reverse a transaction,cancel_transfer,Neutral,Neutral,Medium,Medium
+1802,How do I troubleshoot my contactless?,contactless_not_working,Neutral,Neutral,Low,Medium
+8178,Is there a reason why my virtual card won't work?,virtual_card_not_working,Neutral,Neutral,Medium,Medium
+9187,I was unable to activate my card.,activate_my_card,Neutral,Neutral,Low,Low
+4523,What do I do if I think someone has used my card without permission? I can see a few transactions I don't recognize.,compromised_card,Neutral,Neutral,High,High
+4970,"This morning I wanted to make a withdrawal before work, but my card was declined! Please double check it for me as this is the first time it was declined.",declined_cash_withdrawal,Negative,Neutral,Medium,Medium
+8039,How would I top up with a cheque?,top_up_by_cash_or_cheque,Neutral,Neutral,Low,Low
+5345,My phone was left at a hotel and I can't access the app.,lost_or_stolen_phone,Neutral,Neutral,Low,High
+365,Will I know which exchange rate I will get?,exchange_rate,Neutral,Neutral,Low,Low
+9583,want a new card what are the fees,card_about_to_expire,Neutral,Neutral,Low,Low
+8183,I can't use my virtual disposable card,virtual_card_not_working,Neutral,Neutral,Medium,Medium
+5653,"please help me with this transfer, for some reason i can't transfer to a cryptocurency account",declined_transfer,Neutral,Neutral,Medium,Medium
+2008,Why is the top-up I made still pending.,pending_top_up,Negative,Neutral,Medium,Low
+254,"I found my card that I thought I had lost, I need to reactive it, please help.",card_linking,Neutral,Neutral,Low,Low
+5878,"I was just shopping and my payment was declined in a store!  It was very embarrassing, what is going on and when will it be fixed?",declined_card_payment,Negative,Negative,High,Medium
+1502,Are you able to guide me to my card's location?,lost_or_stolen_card,Neutral,Neutral,Low,High
+8318,The applied exchange rate is wrong for the cash I got abroad.,wrong_exchange_rate_for_cash_withdrawal,Negative,Neutral,Medium,Low
+502,Please check the exchange rate for my payment last Saturday. I believe I have been overcharged.,card_payment_wrong_exchange_rate,Neutral,Neutral,Medium,Medium
+3785,which identity details are required,why_verify_identity,Neutral,Neutral,Low,Low
+7803,why do i need to verify the top up?,verify_top_up,Negative,Neutral,Medium,Low
+8851,I hope you can help me. Someone has stolen my wallet and now I have noticed that they have been taking money from my account.,cash_withdrawal_not_recognised,Neutral,Negative,High,High
+1735,What should I do if I exceed my PIN tries?,pin_blocked,Neutral,Neutral,Low,Low
+1057,How long will it take my card to get here?,card_delivery_estimate,Neutral,Neutral,Low,Low
+4109,I prefer mastercard.,visa_or_mastercard,Neutral,Neutral,Low,Low
+8225,Foreign currency rates were put in wrong at an ATM i used.,wrong_exchange_rate_for_cash_withdrawal,Negative,Neutral,Medium,Low
+6173,I want to stop my account,terminate_account,Neutral,Neutral,High,High
+817,How long will it take for my cash withdrawal to stop pending,pending_cash_withdrawal,Neutral,Neutral,Low,Low
+9425,"I received a fee for obtaining cash, is this correct?",cash_withdrawal_charge,Neutral,Neutral,Low,Medium
+392,How can I tell what foreign exchange rate I will get?,exchange_rate,Neutral,Neutral,Low,Low
+6007,How long do I have to wait for the transfer to be finalized?,pending_transfer,Neutral,Neutral,Low,Low
+5152,My purchases from this morning are showing up as payment pending. Can you tell me why?,pending_card_payment,Neutral,Neutral,Low,Low
+9952,How many countries do you work in?,country_support,Neutral,Neutral,Low,Low
+4564,Where can money withdrawals be made?,atm_support,Neutral,Neutral,Low,Low
+8454,How do I know if i need a disposable card?,get_disposable_virtual_card,Neutral,Neutral,Low,Low
+7975,How do you top up with a cheque?,top_up_by_cash_or_cheque,Neutral,Neutral,Low,Low
+7349,How can I receive my salary with a different currency?,receiving_money,Neutral,Neutral,Low,Low
+8367,I withdrew cash abroad and the exchange rate applied is wrong.,wrong_exchange_rate_for_cash_withdrawal,Negative,Neutral,Medium,Medium
+1129,How do I access the option to top up?,automatic_top_up,Neutral,Neutral,Low,Low
+1499,I think my card is stolen!,lost_or_stolen_card,Neutral,Neutral,High,High
+6369,I was charged several times for something,transaction_charged_twice,Negative,Neutral,High,Medium
+1340,I am having problems with my physical card.,card_not_working,Negative,Neutral,Medium,Medium
+9127,Is it free for top ups?,top_up_by_card_charge,Neutral,Neutral,Low,Low
+4580,Where is the nearest Mastercard ATM?,atm_support,Neutral,Neutral,Low,Low
+2442,The ATM shows a withdraw of the amount of money I requested but I didn't revieve that amount in cash.,wrong_amount_of_cash_received,Negative,Neutral,High,Medium
+3332,What happens if I deposit a cheque accidentally?,balance_not_updated_after_cheque_or_cash_deposit,Neutral,Neutral,Low,Low
+523,"I have been charged to much for the object I bought when abroad, the exchange rate seems to be wrong.",card_payment_wrong_exchange_rate,Negative,Neutral,High,Medium
+7463,please help my transfer go through,failed_transfer,Neutral,Neutral,Medium,Medium
+939,What currencies can I exchange?,fiat_currency_support,Neutral,Neutral,Low,Low
+5972,My card payment wasn't declined,declined_card_payment,Neutral,Neutral,Medium,Medium
+1560,Can my children open an account?,age_limit,Neutral,Neutral,Low,Low
+8784,I looked on the app and it says I withdrew cash.  I didn't!,cash_withdrawal_not_recognised,Negative,Negative,High,High
+844,Is there any reason my cash withdrawal still shows as pending?,pending_cash_withdrawal,Negative,Neutral,Medium,Low
+8701,"How long do transfers from a local bank account usually take for you? I just made a transfer and I'm not seeing anything, wondering if it worked",balance_not_updated_after_bank_transfer,Neutral,Neutral,Low,Medium
+1078,How long does it take for cards to be delivered after ordering them?,card_delivery_estimate,Neutral,Neutral,Low,Low
+4418,How many disposable cards can you own?,disposable_card_limits,Neutral,Neutral,Low,Low
+7785,Where is the top-up verification code sent?,verify_top_up,Neutral,Neutral,Low,Low
+5598,"Hello. My credit keeps being declined, last night and again today, as I try to buy something. What is the status of my card?",declined_transfer,Negative,Neutral,High,Medium
+736,An extra fee of €1 was in my statement,extra_charge_on_statement,Neutral,Neutral,Low,Medium
+5021,"Hi, I am unable to use my card in ATM. I had tried my card in two ATMs but both ATMs declined it. Could you please check my account?",declined_cash_withdrawal,Neutral,Neutral,Medium,Medium
+5122,How is my card payment still pending?,pending_card_payment,Neutral,Neutral,Low,Low
+7491,Why do my transfers keep failing?,failed_transfer,Neutral,Neutral,High,Medium
+3886,Is verifying my identify important?,why_verify_identity,Neutral,Neutral,Low,Low
+7743,Where is the top-up verification code?,verify_top_up,Neutral,Neutral,Low,Low
+4588,Can I get money out of any machine?,atm_support,Neutral,Neutral,Low,Low
+395,How does the exchange rate work on this app?,exchange_rate,Neutral,Neutral,Low,Low
+3056,I want one of the virtual cards!,getting_virtual_card,Neutral,Neutral,Low,Low
+7668,How can I transfer money to this account from another bank?,transfer_into_account,Neutral,Neutral,Low,Low
+5484,"I need to refund my item, can you please help?",request_refund,Neutral,Neutral,Medium,Medium
+2506,"So I just went to the ATM to get some cash.  I input that I needed Rs 100,000 but I only got Rs 80,000.  I have the receipt  and I am in need of the extra money.  How do I go about obtaining the missing amount?",wrong_amount_of_cash_received,Neutral,Neutral,Medium,Medium
+8971,Is there a pay structure for currency exchanges?,exchange_charge,Neutral,Neutral,Low,Medium
+4973,My ATM card isn't working for a withdrawl,declined_cash_withdrawal,Neutral,Neutral,Medium,Medium
+2903,I want to use a payment card to top up my account. How can I do this?,supported_cards_and_currencies,Neutral,Neutral,Low,Low
+4005,My pin isn't here yet,get_physical_card,Neutral,Neutral,Medium,Low
+7152,is a transfer to a beneficiary allowed?,beneficiary_not_allowed,Neutral,Neutral,Low,Low
+6106,"How long does EU transfer take? I bought something online a couple days ago , sent the money immediately online but the seller says it is still not there yet",pending_transfer,Neutral,Neutral,Medium,Medium
+5074,I think I am having an issue with withdraws on my card. It was declined on the way to work this morning. This hasn't happened in the past.,declined_cash_withdrawal,Neutral,Neutral,High,Medium
+4620,How far is the closest ATM from me?,atm_support,Neutral,Neutral,Low,Low
+3111,Do you know which businesses will accept my card?,card_acceptance,Neutral,Neutral,Low,Low
+9558,How do I order a new card? The current one is about to expire.,card_about_to_expire,Neutral,Neutral,Low,Low
+1926,Do you process SWIFT transfers?,top_up_by_bank_transfer_charge,Neutral,Neutral,Low,Low
+3442,Why is the check I deposited this morning not showing up?,balance_not_updated_after_cheque_or_cash_deposit,Neutral,Neutral,Medium,Medium
+3993,What do I need to bring for identification?,unable_to_verify_identity,Neutral,Neutral,Low,Low
+7846,What is the procedure for me to get more cards on my account?,getting_spare_card,Neutral,Neutral,Low,Low
+2783,Why hasn't my friend received the transaction?,transfer_not_received_by_recipient,Neutral,Neutral,Medium,Medium
+657,I am being charged Rs 10 out of nowhere. What is this?,extra_charge_on_statement,Negative,Neutral,High,Medium
+2468,"I wanted to take out Rs 100,000 but I only got Rs 20,000.",wrong_amount_of_cash_received,Neutral,Neutral,Low,Medium
+6332,I have a duplicate charge,transaction_charged_twice,Neutral,Neutral,Medium,Medium
+7938,How do I top up with a cheque?,top_up_by_cash_or_cheque,Neutral,Neutral,Low,Low
+1628,What is your age limit?,age_limit,Neutral,Neutral,Low,Low
+9888,Which countries do you operate in,country_support,Neutral,Neutral,Low,Low
+8440,Can you tell me what the disposable cards are used for?,get_disposable_virtual_card,Neutral,Neutral,Low,Low
+7200,Why are you charging me a transfer fee?,transfer_fee_charged,Negative,Neutral,Low,Medium
+2613,I was charged a hidden fee when I paid with card.,card_payment_fee_charged,Neutral,Neutral,Low,Medium
+3052,How long will it take to receive a virtual card?,getting_virtual_card,Neutral,Neutral,Low,Low
+4637,There is a strange charge on my debit statement,direct_debit_payment_not_recognised,Neutral,Neutral,Medium,High
+3397,"After I deposited my cash, I still don't see it in my account.",balance_not_updated_after_cheque_or_cash_deposit,Neutral,Neutral,Medium,Medium
+9201,Can I call to get my card activated?,activate_my_card,Neutral,Neutral,Low,Low
+747,My account shows up as pending after I received cash from the ATM earlier.  How can this be still pending? I've got the cash already.,pending_cash_withdrawal,Negative,Neutral,Medium,Low
+4336,Why is my 'top up' not showing up in my wallet?,topping_up_by_card,Neutral,Neutral,Low,Medium
+8581,I don't know why my credit card was declined while I was trying to top-up. Was it something on my end or was there something wrong with the top-up function?,top_up_failed,Negative,Neutral,Medium,Medium
+6603,How long will this transfer from overseas take?,transfer_timing,Neutral,Neutral,Low,Low
+1815,"I am having issues using contactless payments, could my card be damaged?",contactless_not_working,Neutral,Neutral,Low,Medium
+3950,What should I do if I can't prove my identity.,unable_to_verify_identity,Neutral,Neutral,Low,Low
+3715,"Since I got married, I need to change my name.",edit_personal_details,Neutral,Neutral,Low,Low
+1793,Can I make a contactless payments?,contactless_not_working,Neutral,Neutral,Low,Low
+7016,My transfer to an account failed.,beneficiary_not_allowed,Neutral,Neutral,Medium,Medium
+1240,"My funds are low, can I auto top up?",automatic_top_up,Neutral,Neutral,Low,Low
+9568,I need to order a new card as my old one will expire soon. Can you tell me how to order a new one?,card_about_to_expire,Neutral,Neutral,Low,Low
+5680,I need my refund,Refund_not_showing_up,Neutral,Neutral,Medium,Medium
+8960,How much will I be charged for a cross-currency exchange?,exchange_charge,Neutral,Neutral,Low,Low
+889,Are EUR exchanges allowed?,fiat_currency_support,Neutral,Neutral,Low,Low
+6489,who can put money in my account?,verify_source_of_funds,Neutral,Neutral,Low,Low
+1097,I would like to make sure it is delivered on a certain date.,card_delivery_estimate,Neutral,Neutral,Low,Low
+2029,"How long is a top up supposed to be pending, because an hour is too long! Can you fix this to go through?",pending_top_up,Negative,Negative,Medium,Medium
+1850,Is there a fee to make a transfer?,top_up_by_bank_transfer_charge,Neutral,Neutral,Low,Low
+1621,Is there a limit for age?,age_limit,Neutral,Neutral,Low,Low
+8204,What do I do if my disposable virtual card doesn't work?,virtual_card_not_working,Neutral,Neutral,Low,Medium
+7265,"I made a transfer and according to the receiver ""they haven't received the right amount"" Its lesser than it should be.Now I have to transfer more money to make up for the missing amount . Can you please help me about this,what should be done",transfer_fee_charged,Neutral,Neutral,Low,Medium
+6252,"I can't get my card out of the ATM, what should I do now?",card_swallowed,Neutral,Neutral,High,Medium
+5700,When will my returned transaction show up on my account?,Refund_not_showing_up,Neutral,Neutral,Low,Medium
+7476,Why can I not make a transfer?,failed_transfer,Neutral,Neutral,Medium,Medium
+5709,"I requested a refund from a merchant several days ago, but don't see anything showing up in my account yet.  Can you check on your end to see if the money has reached you guys?",Refund_not_showing_up,Neutral,Neutral,Medium,Medium
+2998,"I would like to order a virtual card, where can I get one?",getting_virtual_card,Neutral,Neutral,Low,Low
+5466,It has been forever ago that I made an order online. The product simply is not coming. Just give me back my money because I'm not paying these people.,request_refund,Negative,Negative,Medium,Medium
+1546,I think my wallet fell out on the Tube today! I realized as soon as I got to my desk. How do I cut off the card?,lost_or_stolen_card,Neutral,Neutral,High,High
+2248,What is the greatest number of times that I can top-up?,top_up_limits,Neutral,Neutral,Low,Low
+2896,why don't you accept american express for adding money to my account,supported_cards_and_currencies,Neutral,Neutral,Low,Low
+7319,Why did I get charged a fee for my transfer?,transfer_fee_charged,Neutral,Neutral,Low,Medium
+8377,Why use a disposable card?,get_disposable_virtual_card,Neutral,Neutral,Low,Low
+5325,What should I do if my phone is lost or stolen?,lost_or_stolen_phone,Neutral,Neutral,Low,Low
+6650,I need to transfer something to China. It is urgent. How many days will it take to get there?,transfer_timing,Neutral,Neutral,High,High
+4879,Help! I've forgot my app passcode!,passcode_forgotten,Neutral,Neutral,Medium,Medium
+9605,"I have a card that expires in the coming month, do I have to specifically ask for the updated card?",card_about_to_expire,Neutral,Neutral,Medium,Low
+6300,How do I get my card back after the ATM swallowed it.,card_swallowed,Neutral,Neutral,Medium,Medium
+5957,"I keep trying to make a payment, but it doesn't work.",declined_card_payment,Neutral,Negative,Low,Medium
+4346,Is there a limit on the number of times I can use a disposable card?,disposable_card_limits,Neutral,Neutral,Low,Low
+2235,Are top-ups unlimited?,top_up_limits,Neutral,Neutral,Low,Low
+2936,What are my payment options?,supported_cards_and_currencies,Neutral,Neutral,Low,Low
+2738,How long do transfers typically take? Is there a way of speeding the process up? My friend needs the money I sent her desperately.,transfer_not_received_by_recipient,Neutral,Neutral,High,Medium
+9097,Will I see fees from adding money with an international card?,top_up_by_card_charge,Neutral,Neutral,Low,Medium
+8824,The app says I made a cash withdrawal even though I didn't.,cash_withdrawal_not_recognised,Negative,Negative,High,High
+3106,Will this card work all over the world?,card_acceptance,Neutral,Neutral,Low,Low
+3438,"I deposited cash this morning, but it is not yet available.",balance_not_updated_after_cheque_or_cash_deposit,Neutral,Neutral,Medium,Medium
+4545,I can use this card at which ATMs?,atm_support,Neutral,Neutral,Low,Low
+7022,I got a message that I cannot name X as a beneficiary.,beneficiary_not_allowed,Neutral,Neutral,Low,Low
+6516,where can I see who sent me funds,verify_source_of_funds,Neutral,Neutral,Low,Low
+6863,"Around one or two weeks ago I purchased something but there's seems to be an issue. I have already received one of the items, but today the money was placed back into my account. What is happening?",reverted_card_payment?,Neutral,Neutral,Medium,Low
+3659,I moved to a new city and need to change my address,edit_personal_details,Neutral,Neutral,Low,Low
+2546,Is there a fee for paying by card?,card_payment_fee_charged,Neutral,Neutral,Low,Medium
+5027,Why can I not get cash from the ATM?,declined_cash_withdrawal,Neutral,Neutral,Low,Medium
+6691,How long will it take to transfer from overseas?,transfer_timing,Neutral,Neutral,Low,Low
+6480,Hello. I just noticed I was charged two times for a restaurant I visited this week. Can you reverse the additional charge?,transaction_charged_twice,Neutral,Neutral,High,Medium
+4180,What type of card can I get?,visa_or_mastercard,Neutral,Neutral,Low,Low
+6180,I hate this company! Can you delete my account?,terminate_account,Negative,Negative,High,High
+6245,What do I do if the ATM took my card?,card_swallowed,Neutral,Neutral,Medium,Medium
+6228,"This is terrible, i want to delete my account",terminate_account,Negative,Negative,High,High
+1785,My contactless payments don't work.,contactless_not_working,Neutral,Neutral,Medium,Medium
+584,I have been charged Rs 10 for something that appears on my statement,extra_charge_on_statement,Neutral,Neutral,Low,Medium
+8900,There's a cash withdrawal I am certain I did not make,cash_withdrawal_not_recognised,Neutral,Neutral,High,High
+7927,I need two cards. Is this possible?,getting_spare_card,Neutral,Neutral,Low,Low
+4281,i need to top up by card.,topping_up_by_card,Neutral,Neutral,Low,Low
+220,"I've obtained the card, how do I enable it on the app?",card_linking,Neutral,Neutral,Low,Low
+7097,Why is this beneficiary being rejected?,beneficiary_not_allowed,Neutral,Neutral,Medium,Low
+4240,How can my friends top up my account?,topping_up_by_card,Neutral,Neutral,Low,Low
+7667,How can I go about transferring money to my account?,transfer_into_account,Neutral,Neutral,Low,Low
+5731,I was supposed to get a refund but I do not see it on my statement. When is it going to be updated?,Refund_not_showing_up,Neutral,Neutral,Low,Medium
+8609,Was there a problem with topping up?,top_up_failed,Negative,Neutral,Medium,Medium
+9935,Can I get a card if I don't reside in Sri Lanka?,country_support,Neutral,Neutral,Low,Low
+1995,Why hasn't my top up gone through?,pending_top_up,Negative,Neutral,Medium,Low
+3510,What is this strange payment in my account?,card_payment_not_recognised,Neutral,Neutral,High,High
+9894,What countries do your accounts send and receive to?,country_support,Neutral,Neutral,Low,Low
+5868,"My payment has been declined!! What's going on, I thought everything was alright and working well?",declined_card_payment,Negative,Negative,Medium,Medium
+8108,Where do you export the cards to?,order_physical_card,Neutral,Neutral,Low,Low
+188,"I want to reactivate my card, I thought I had lost it but found it again this morning.",card_linking,Neutral,Neutral,Medium,Low
+7542,"Hi, can you tell me why my transfer keeps being rejected? I've been trying to send money to my friends this morning but failed every time and I have no idea why?",failed_transfer,Neutral,Negative,Medium,Medium
+9735,Can an apple watch be used to tup-up?,apple_pay_or_google_pay,Neutral,Neutral,Low,Low
+8730,Why hasn't the money I transferred into my account shown up yet?,balance_not_updated_after_bank_transfer,Neutral,Neutral,Medium,Medium
+1904,Does it cost me to add cash?,top_up_by_bank_transfer_charge,Neutral,Neutral,Low,Low
+3192,"Did you lose my money? I had added funds through top-up not long ago and I know they were in my account, but they seem to have disappeared. What happened?",top_up_reverted,Negative,Negative,Medium,Medium
+1725,I managed to drunken block my card :(( Help!,pin_blocked,Neutral,Negative,Medium,Medium
+6878,My payment was stopped,reverted_card_payment?,Neutral,Neutral,Medium,Low
+7968,What apps can I use to top up my account?,top_up_by_cash_or_cheque,Neutral,Neutral,Low,Low
+6065,I am still waiting for a transfer to show,pending_transfer,Negative,Neutral,Medium,Low
+8164,What fees are charged for a physical card?,order_physical_card,Neutral,Neutral,Low,Low
+1402,"I need to exchange my LKR to USD, how would I do this?",exchange_via_app,Neutral,Neutral,Low,Low
+2174,"I made a mistake when making my last transfer, please cancel before it goes thru.",cancel_transfer,Neutral,Neutral,High,Medium
+2243,How much is ok for me to top up with?,top_up_limits,Neutral,Neutral,Low,Low
+3164,I believe my top up was reverted.,top_up_reverted,Neutral,Neutral,Low,Medium
+9173,Is there a fee for adding funds with a credit card?,top_up_by_card_charge,Neutral,Neutral,Low,Low
+8680,Why hasn't my money transfer shown up yet?,balance_not_updated_after_bank_transfer,Neutral,Neutral,Medium,Medium
+8383,How can I create a disposable virtual card?,get_disposable_virtual_card,Neutral,Neutral,Low,Low
+7819,Can I have more physical cards?,getting_spare_card,Neutral,Neutral,Low,Low
+9318,What steps do I have to go through in order to activate my new card?,activate_my_card,Neutral,Neutral,Low,Low
+3931,The app does not recognize who I am.,unable_to_verify_identity,Neutral,Neutral,Low,Low
+1046,When will my card come? I need it as soon as possible!,card_delivery_estimate,Neutral,Neutral,High,High
+6798,Card payment has be declined.,reverted_card_payment?,Neutral,Neutral,Medium,Medium
+6994,Can I change my card PIN?,change_pin,Neutral,Neutral,Low,Low
+6645,How long does it take overseas to do a transfer?,transfer_timing,Neutral,Neutral,Low,Low
+5511,Are purchases returnable for full refund?,request_refund,Neutral,Neutral,Low,Medium
+991,Is my fiat currency supported for both hold and exchange?,fiat_currency_support,Neutral,Neutral,Low,Low
+7341,How can my friend send money to me?,receiving_money,Neutral,Neutral,Low,Low
+7568,I have an account that is empty of funds. Can I transfer some from another bank?,transfer_into_account,Neutral,Neutral,Low,Low
+9609,Do I need to re-apply to order a new card when my old one's about to expire?,card_about_to_expire,Neutral,Neutral,Low,Low
+9727,Am I able to do top-ups with Google Pay?,apple_pay_or_google_pay,Neutral,Neutral,Low,Low
+3920,I'm not able to verify my identity.,unable_to_verify_identity,Neutral,Neutral,Low,Low
+3120,Where can my card be used?,card_acceptance,Neutral,Neutral,Low,Low
+8501,What reasons would a topup fail?,top_up_failed,Neutral,Neutral,Low,Medium
+3844,Am I able to use my account if the identity verification is not complete?,why_verify_identity,Neutral,Neutral,Low,Low
+8979,How much do I have to pay to accept an international transfer?,exchange_charge,Neutral,Neutral,Low,Medium
+4347,How many disposable cards am I allowed to have?,disposable_card_limits,Neutral,Neutral,Low,Low
+9146,What are the top-up fees for my card?,top_up_by_card_charge,Neutral,Neutral,Low,Medium
+3505,I don't recognize a purchase that was made with my card.,card_payment_not_recognised,Neutral,Neutral,High,High
+3642,I have a charge I did not make.,card_payment_not_recognised,Neutral,Negative,High,High
+5673,Please explain why my transfer attempt was declined. Thank you.,declined_transfer,Neutral,Neutral,Medium,Medium
+6291,how can the money machine keep my card what do i need to do?,card_swallowed,Neutral,Neutral,Medium,Medium
+3803,Why do you guys need to verify my identity?,why_verify_identity,Negative,Neutral,Low,Low
+6963,How can I alteration my PIN?,change_pin,Neutral,Neutral,Low,Low
+8111,How to order my card?,order_physical_card,Neutral,Neutral,Low,Low
+4479,I want to cancel my card. I think someone else is using it.,compromised_card,Neutral,Neutral,High,High
+8054,Can you tell me exactly what fees I will expect to see in regards to your cards?,order_physical_card,Neutral,Neutral,Low,Low
+5903,Why won't you accept my payment? I keep trying with this card and it's not working.,declined_card_payment,Negative,Negative,Medium,Medium
+8767,My account isn't showing a transfer I made.,balance_not_updated_after_bank_transfer,Neutral,Neutral,Medium,Medium
+5109,"My card payment is just showing up as pending since forever, what's going on with that, it should be going through at some point?",pending_card_payment,Negative,Neutral,High,Low
+2898,Which foreign currencies do you accept for adding money?,supported_cards_and_currencies,Neutral,Neutral,Low,Low
+9891,Who gets support?,country_support,Neutral,Neutral,Low,Low
+2641,Let me know when you charge for payments. I just checked the app and saw a fee that I wasn't warned about.,card_payment_fee_charged,Neutral,Neutral,Medium,Medium
+9821,What do I need for the verification check?,verify_my_identity,Neutral,Neutral,Low,Low
+1881,Will I be charged for adding money by transfer?,top_up_by_bank_transfer_charge,Neutral,Neutral,Low,Low
+7987,Where do I look for cash top up?,top_up_by_cash_or_cheque,Neutral,Neutral,Low,Low
+1040,If I order a card when does it arrive?,card_delivery_estimate,Neutral,Neutral,Low,Low
+1319,"Can you help me with my card, I think it's broke.",card_not_working,Neutral,Neutral,Medium,Medium
+9701,what can I do if I got my American Express in Apple Bay but top up is not working?,apple_pay_or_google_pay,Neutral,Neutral,Low,Medium
+7202,"I made a transfer and the receiver did not get the right amount its lesser than what it should be,Now I have to transfer more money to make up for the missing amount . Can you please help me about this, what should be done",transfer_fee_charged,Neutral,Neutral,Medium,Medium
+4338,Do the disposable cards have any restrictions on them?,disposable_card_limits,Neutral,Neutral,Low,Low
+7729,Why are top-ups being verified?,verify_top_up,Neutral,Neutral,Low,Low
+2253,Is there a limit to how much I can top-up?,top_up_limits,Neutral,Neutral,Low,Low
+4251,Could you tell me why my top up isn't showing in my wallet?,topping_up_by_card,Neutral,Neutral,Low,Medium
+14,It's been a week since I ordered my card and it's not here. Please help?,card_arrival,Negative,Neutral,High,Low
+4506,I see some transactions that I don't recognize.  I think someone stole my details.,compromised_card,Neutral,Neutral,High,High
+1494,I believe that my card has been stolen!,lost_or_stolen_card,Neutral,Neutral,High,High
+1634,How old do my kids need to be to open an account?,age_limit,Neutral,Neutral,Low,Low
+1033,When shipped to the US how long is delivery time?,card_delivery_estimate,Neutral,Neutral,Low,Low
+7377,can my husband open an account and transfer money,receiving_money,Neutral,Neutral,Low,Low
+3265,"Hello. I tried doing a topup and I thought it worked, but now the money is no longer in my account. Can you explain?",top_up_reverted,Negative,Negative,Medium,Medium
+6288,What do I do if the ATM swallowed my card?,card_swallowed,Neutral,Neutral,Medium,Medium
+58,I know I'm getting a new card but would like know when I can expect to receive it.,card_arrival,Neutral,Neutral,Low,Low
+1989,How long does it take for my top up to clear?,pending_top_up,Neutral,Neutral,Low,Low
+5571,Why would I get a decline message in a transfer?,declined_transfer,Neutral,Neutral,Low,Medium
+9366,Why have I been charged for pulling cash out of my own account?,cash_withdrawal_charge,Neutral,Neutral,Low,Medium
+598,I checked my account today and saw that I was charged an extra Rs 10 that I did not spend.,extra_charge_on_statement,Neutral,Neutral,Low,Medium
+9854,What documents do you need to verify my identity?,verify_my_identity,Neutral,Neutral,Low,Low
+7063,Will a beneficiary not accept a transfer?,beneficiary_not_allowed,Neutral,Neutral,Low,Low
+8174,Why was my virtual card rejected?,virtual_card_not_working,Neutral,Neutral,Medium,Medium
+3321,I can't see my cash deposit in my account.,balance_not_updated_after_cheque_or_cash_deposit,Neutral,Neutral,Medium,Medium
+7617,"I need to transfer money into my account, and I don't know how to do that.",transfer_into_account,Neutral,Neutral,Low,Low
+1161,How can I Use thereto-top option?,automatic_top_up,Neutral,Neutral,Low,Low
+7677,I need money put into this account from another one.,transfer_into_account,Neutral,Neutral,Low,Low
+4648,I do not understand what this particular direct debit is ?,direct_debit_payment_not_recognised,Neutral,Neutral,Low,High
+5057,"I tried to withdraw cash, but got declined!",declined_cash_withdrawal,Neutral,Neutral,Medium,Medium
+6163,if im not using my account should i close it or just let it sit,terminate_account,Neutral,Neutral,Low,Low
+4834,I happened to forget my password,passcode_forgotten,Neutral,Neutral,Medium,Medium
+3461,where is my money from this morning,balance_not_updated_after_cheque_or_cash_deposit,Negative,Neutral,Medium,Medium
+6990,What ATMs will allow me to change my PIN?,change_pin,Neutral,Neutral,Low,Low
+3113,You accepts my card?,card_acceptance,Neutral,Neutral,Low,Low
+4024,Where should I look for my PIN number at?,get_physical_card,Neutral,Neutral,Low,Low
+56,How long does it take for me to get my new card?,card_arrival,Neutral,Neutral,Low,Low
+5971,Why would my card payment not work?,declined_card_payment,Negative,Neutral,Medium,Medium
+539,I don't think the charges made when I had currency exchanged are right.,card_payment_wrong_exchange_rate,Negative,Neutral,Medium,Medium
+4211,Can I use a Visa or Mastercard?,visa_or_mastercard,Neutral,Neutral,Low,Low
+1299,"Out of the blue, my card stopped working.",card_not_working,Neutral,Neutral,Medium,Medium
+7054,Why did my transfer to a beneficiary fail?,beneficiary_not_allowed,Neutral,Neutral,Medium,Low
+9773,How do I verify my identity?,verify_my_identity,Neutral,Neutral,Low,Low
+2136,Who do I call to cancel a transfer?,cancel_transfer,Neutral,Neutral,Low,Medium
+4127,would a visa or mastercard be more suited to me?,visa_or_mastercard,Neutral,Neutral,Low,Low
+5412,I would like to cancel my order.,request_refund,Neutral,Neutral,Medium,Medium
+6714,When can I expect a transfer from overseas to go through?,transfer_timing,Neutral,Neutral,Low,Low
+189,"I need a card reactivation, I had reported my card lost but I ran across it in my jacket.",card_linking,Neutral,Neutral,Low,Low
+1843,To receive money are there charges?,top_up_by_bank_transfer_charge,Neutral,Neutral,Low,Low
+1586,What are the requirements to open an account for a minor?,age_limit,Neutral,Neutral,Low,Low
+1582,What is the age limit for an account?,age_limit,Neutral,Neutral,Low,Low
+1145,Is it possible to do auto top up?,automatic_top_up,Neutral,Neutral,Low,Low
+2603,I was spending cash with my card and got a fee.,card_payment_fee_charged,Neutral,Neutral,Low,Medium
+9895,How do I get a card in the EU?,country_support,Neutral,Neutral,Low,Low
+9672,Can I use the apple watch to make a top-up?,apple_pay_or_google_pay,Neutral,Neutral,Low,Low
+6724,"Hi, I had an issue with my card payment and It shows on my account that my payment went through. Then I got contacted from the seller saying ""they did not receive my payment"" then the payment was returned to my account. so I would like to see why it did that please.",reverted_card_payment?,Neutral,Neutral,Medium,Low
+9330,Is my new card activated?,activate_my_card,Neutral,Neutral,Low,Low
+1412,How do I exchange USD for LKR?,exchange_via_app,Neutral,Neutral,Low,Low
+6857,"My card payment reverted back, I think.",reverted_card_payment?,Neutral,Neutral,Low,Low
+501,The exchange rate you are using is really bad.This can't be the official interbank exchange rate.,card_payment_wrong_exchange_rate,Negative,Neutral,Medium,Medium
+1676,Can someone help me unblock my pin?,pin_blocked,Neutral,Neutral,Medium,Medium
+9502,Why did you charge a fee when I withdrew from an ATM?,cash_withdrawal_charge,Neutral,Neutral,Low,Medium
+5291,"phone is gone, dont want others to access account information",lost_or_stolen_phone,Neutral,Neutral,High,High
+5237,Why is the payment from my card still pending?,pending_card_payment,Neutral,Neutral,Medium,Low
+5346,"Hi, I lost my phone yesterday, what can I do to stop someone using my account on it?",lost_or_stolen_phone,Neutral,Neutral,High,High
+352,How's the exchange rate looking right now?,exchange_rate,Neutral,Neutral,Low,Low
+1313,What can I do to make my physical card work?,card_not_working,Neutral,Neutral,Low,Medium
+2342,I didn't get the correct amount of money from the ATM machine,wrong_amount_of_cash_received,Neutral,Neutral,High,Medium
+3936,I'm having problems with ID verification,unable_to_verify_identity,Neutral,Neutral,Low,Low
+6280,An ATM machine didn't return my card.,card_swallowed,Neutral,Neutral,Medium,Medium
+8577,I need information explaining why my top-up failed to go through,top_up_failed,Neutral,Neutral,Low,Medium
+1014,How long until my card will get here?,card_delivery_estimate,Neutral,Neutral,Low,Low
+344,"When exchanging, how much are the rates?",exchange_rate,Neutral,Neutral,Low,Low
+2170,I inadvertently completed a transaction on a wrong account.,cancel_transfer,Neutral,Neutral,High,Medium
+3760,I need to change my data.,edit_personal_details,Neutral,Neutral,Low,Low
+8637,My transfer into my account isn't showing up.,balance_not_updated_after_bank_transfer,Neutral,Neutral,Low,Medium
+3921,The app is not able to realize that it is me.,unable_to_verify_identity,Neutral,Neutral,Low,Low
+3034,How can I receive a virtual card?,getting_virtual_card,Neutral,Neutral,Low,Low
+8053,what steps do i do to get a real card,order_physical_card,Neutral,Neutral,Low,Low
+5604,I am unable to transfer money. I believe it is not working because it states it was declined.,declined_transfer,Neutral,Neutral,Low,Medium
+9202,How can I activate my new card? I didn't recieve any information with it about how to do so.,activate_my_card,Neutral,Neutral,Low,Low
+4090,I've been waiting ages and my PIN hasn't gotten here.,get_physical_card,Negative,Negative,Medium,Low
+3820,Do you think you're asking for too much information about me?,why_verify_identity,Negative,Neutral,Low,Low
+1441,Will it be possible to change from USD to LKR with this App?,exchange_via_app,Neutral,Neutral,Low,Low
+142,My new card isn't here and it was issued a week ago.,card_arrival,Negative,Neutral,Medium,Low
+8168,Can I use my virtual card to complete transactions for memberships?,virtual_card_not_working,Neutral,Neutral,Low,Low
+1816,"What is the reason when I tried to pay contactless at the bus, it didnt work?",contactless_not_working,Neutral,Neutral,Low,Medium
+6022,What is going on? I have checked over and over and the details of my account are right. Why is my transfer still pending? It's 2018 not 1818. Transfering money to another country can't be that hard.,pending_transfer,Negative,Negative,High,Low
+1584,What is the appropriate age for my child to be able to open an account?,age_limit,Neutral,Neutral,Low,Low
+6214,"how to delete account, not happy",terminate_account,Negative,Negative,High,High
+3680,How do I change the details in my account?,edit_personal_details,Neutral,Neutral,Low,Low
+2895,Can I use a credit card from the US to top up?,supported_cards_and_currencies,Neutral,Neutral,Low,Low
+1980,"I already paid to top-up but the funds aren't available yet, where are they?",pending_top_up,Negative,Neutral,Medium,Low
+674,Can you tell me about why the account I have was charged an extra Rs 10,extra_charge_on_statement,Neutral,Neutral,Low,Medium
+6563,How do I see my source of funds?,verify_source_of_funds,Neutral,Neutral,Low,Low
+4881,I don't remember my passcode?,passcode_forgotten,Neutral,Neutral,Medium,Medium
+7858,Can I have a second card issued to another family member?,getting_spare_card,Neutral,Neutral,Low,Low
+4015,When do I get my PIN?,get_physical_card,Neutral,Neutral,Low,Low
+4345,Can you give me the restrictions of the disposable cards?,disposable_card_limits,Neutral,Neutral,Low,Low
+7933,"Help me please, I need to top up cash.",top_up_by_cash_or_cheque,Neutral,Neutral,Medium,Low
+8829,I see cash in my app but I did not get it.,cash_withdrawal_not_recognised,Neutral,Neutral,Medium,High
+9998,You provide support in what countries?,country_support,Neutral,Neutral,Low,Low
+5736,My account isn't showing the refund,Refund_not_showing_up,Neutral,Neutral,Medium,Medium
+1416,Can I exchange from USD to LKR?,exchange_via_app,Neutral,Neutral,Low,Low
+4188,I want to get a Visa card,visa_or_mastercard,Neutral,Neutral,Low,Low
+2766,Why hasn't a transaction I did to my friend arrived yet?,transfer_not_received_by_recipient,Neutral,Neutral,Medium,Medium
+9287,My card activation attempt failed.,activate_my_card,Neutral,Neutral,Medium,Low
+5320,I lost my phone and need help so someone doesn't access my account.,lost_or_stolen_phone,Neutral,Neutral,High,High
+5656,I have been trying to make a transfer and it won't go through. I have checked all the receipts and its all correct but still won't let me do it.,declined_transfer,Neutral,Neutral,Medium,Medium
+4230,I would like to know if you use Visa or Mastercard.,visa_or_mastercard,Neutral,Neutral,Low,Low
+1276,Today I was out eating and my card was declined. Why's that?,card_not_working,Neutral,Neutral,Medium,Medium
+4565,Do I have to use bank approved ATM's,atm_support,Neutral,Neutral,Low,Low
+5434,I am interested in cancelling a purchase,request_refund,Neutral,Neutral,Medium,Medium
+6591,Where do my funds originate from?,verify_source_of_funds,Neutral,Neutral,Low,Low
+4056,How do I find the PIN?,get_physical_card,Neutral,Neutral,Low,Low
+1782,Should i uninstall the app before i try it again?,contactless_not_working,Neutral,Neutral,Low,Medium
+4690,How can I dispute a debit transaction?,direct_debit_payment_not_recognised,Neutral,Neutral,Low,High
+6396,Can you help me? I have a duplicate transaction on my account and I don't understand why.,transaction_charged_twice,Neutral,Neutral,High,Medium
+4599,What's the closest place to withdraw money?,atm_support,Neutral,Neutral,Low,Low
+9794,Can you tell me what I need for identity validation?,verify_my_identity,Neutral,Neutral,Low,Low
+3142,What places accept my card?,card_acceptance,Neutral,Neutral,Low,Low
+4280,How do I transfer funds directly from my credit card?,topping_up_by_card,Neutral,Neutral,Low,Low
+2637,When do i get charged a fee for using the card?,card_payment_fee_charged,Neutral,Neutral,Low,Medium
+3130,Can I use my card while on vacation overseas?,card_acceptance,Neutral,Neutral,Low,Low
+9556,Can I wait for you to send me a new card when mine's about to expire?,card_about_to_expire,Neutral,Neutral,Low,Low
+1166,Where can I located the auto-top up option?,automatic_top_up,Neutral,Neutral,Low,Low
+4046,wheres my pin,get_physical_card,Negative,Neutral,Medium,Low
+4484,Someone must have found my card details as I don't recognize these transactions.,compromised_card,Neutral,Neutral,High,High
+6621,How long will a transfer from the US take?,transfer_timing,Neutral,Neutral,Low,Low
+6302,atm ate my card,card_swallowed,Neutral,Neutral,Medium,Medium
+2803,Why is my transaction taking so long to complete?,transfer_not_received_by_recipient,Negative,Neutral,Medium,Medium
+7764,How do i secure a top-up card?,verify_top_up,Neutral,Neutral,Low,Low
+1131,How low does the balance have to be before the system updates?,automatic_top_up,Neutral,Neutral,Low,Low
+9029,How much is the charge for a foreign currency exchange?,exchange_charge,Neutral,Neutral,Low,Low
+9475,Why is there a fee for cash withdrawal?,cash_withdrawal_charge,Neutral,Neutral,Medium,Low
+3521,There is  a charge I don't recognize.,card_payment_not_recognised,Neutral,Neutral,High,High
+800,"Hello. I have a transaction in my account listed as pending. I tried to use an ATM at the city centre, but the machine declined my card, and I did not receive the money. Why is the transaction still pending if I did not receive the money.",pending_cash_withdrawal,Neutral,Neutral,Medium,Medium
+586,Where did this extra €1 fee on my statement come from?,extra_charge_on_statement,Neutral,Neutral,Low,Medium
+8441,Is there a way to use this app with a disposable virtual card?,get_disposable_virtual_card,Neutral,Neutral,Low,Low
+9406,I was charged a fee for withdrawing cash.,cash_withdrawal_charge,Neutral,Neutral,Low,Medium
+1994,I believe my top up is still pending,pending_top_up,Neutral,Neutral,Low,Low
+556,A foreign purchase I made has the incorrect rate applied to it.,card_payment_wrong_exchange_rate,Neutral,Neutral,Medium,Medium
+468,"I purchased something while traveling, and the exchange rate applied was wrong.",card_payment_wrong_exchange_rate,Neutral,Neutral,Medium,Medium
+9036,Do I get any sort of discount on volume for a lot fo currency exchanges?,exchange_charge,Neutral,Neutral,Low,Low
+7746,Do I have to verify the top-up?,verify_top_up,Neutral,Neutral,Low,Low
+3125,Is there a list of where I can use my card?,card_acceptance,Neutral,Neutral,Low,Low
+9013,Do you offer a discount for those who perform frequent currency exchanges?,exchange_charge,Neutral,Neutral,Low,Low
+8188,My virtual car is not working.,virtual_card_not_working,Neutral,Neutral,Medium,Medium
+3654,I would like to change my adress,edit_personal_details,Neutral,Neutral,Low,Low
+7474,Why didn't my transfer work?,failed_transfer,Neutral,Neutral,Medium,Medium
+8301,I had the wrong exchange rate applied to some cash I got abroad.,wrong_exchange_rate_for_cash_withdrawal,Neutral,Neutral,High,Medium
+4837,I do not understand why my pass-code is not working.,passcode_forgotten,Negative,Neutral,Medium,Medium
+9812,What do you require to verify someone's identity?,verify_my_identity,Neutral,Neutral,Low,Low
+4536,What should I do if I think that someone might be using me card?,compromised_card,Neutral,Neutral,High,High
+8121,How do I order a card?,order_physical_card,Neutral,Neutral,Low,Low
+3031,How can I obtain a virtual card?,getting_virtual_card,Neutral,Neutral,Low,Low
+8372,How do I get a disposable virtual card as well?,get_disposable_virtual_card,Neutral,Neutral,Low,Low
+2331,Why did I only receive a partial amount of what I tried to withdraw?,wrong_amount_of_cash_received,Neutral,Neutral,Medium,Medium
+3294,Why did my top up get pulled back out?,top_up_reverted,Neutral,Neutral,Low,Low
+2193,I would like to cancel a transfer,cancel_transfer,Neutral,Neutral,Medium,Medium
+7304,"After a transfer, I see an extra fee.  Why?",transfer_fee_charged,Neutral,Neutral,Low,Medium
+7079,My funds are not transferring to my bank. Why is this not working?,beneficiary_not_allowed,Negative,Neutral,Medium,Low
+420,This exchange rate you use is awful! Please tell me this is a mistake and not the official interbank exchange rate!,card_payment_wrong_exchange_rate,Negative,Negative,High,Medium
+3047,Do I get to have one of those virtual cards I've heard about?,getting_virtual_card,Neutral,Neutral,Low,Low
+9697,My Google pay top up isn't working.,apple_pay_or_google_pay,Neutral,Neutral,Medium,Low
+316,What is the basis of your exchange rates?,exchange_rate,Neutral,Neutral,Low,Low
+936,Can you make exchanges with the EUR?,fiat_currency_support,Neutral,Neutral,Low,Low
+6359,I have a payment that shows twice,transaction_charged_twice,Neutral,Neutral,Medium,Medium
+80,Is there a reason my new card hasn't arrived yet?,card_arrival,Neutral,Neutral,Low,Low
+2660,Is it normal to get charged extra when i use my card?,card_payment_fee_charged,Neutral,Neutral,Low,Medium
+3765,Where do I go to update details?,edit_personal_details,Neutral,Neutral,Low,Low
+2305,Can someone please tell me how much I can top-up?,top_up_limits,Neutral,Neutral,Low,Low
+3376,My cash deposit from a week ago is still not in my account. Can you help me please?,balance_not_updated_after_cheque_or_cash_deposit,Neutral,Neutral,Medium,Medium
+8509,How can correct Top up with the app to work correctly?,top_up_failed,Neutral,Neutral,Low,Medium
+2761,Still waiting for transfer to be completed.,transfer_not_received_by_recipient,Negative,Neutral,Medium,Medium
+5744,"I'm expecting a large refund from a store I returned merchandise to recently.  They say they have sent the money but I don't see it in my account, can you help.",Refund_not_showing_up,Neutral,Neutral,Medium,Medium
+5444,Give me a refund,request_refund,Negative,Neutral,Medium,Medium
+8258,Is there a fee associated with using foreign exchange ATMs?,wrong_exchange_rate_for_cash_withdrawal,Neutral,Neutral,Low,Medium
+7587,"I want to transfer money into my account, what do I do?",transfer_into_account,Neutral,Neutral,Low,Low
+3522,I'm noticing a payment/purchase at a company that I don't recognise.,card_payment_not_recognised,Neutral,Neutral,High,High
+4718,"Hi, i was checking my old statements and found a discrepancy with a large amount transaction. I am sure it was not done by me. Please let me know if i could raise a dispute as its very late.",direct_debit_payment_not_recognised,Neutral,Negative,High,High
+7477,"My transfer failed, why did that happen?",failed_transfer,Negative,Neutral,Medium,Medium
+5636,Is there a reason my transfer would have been declined?,declined_transfer,Neutral,Neutral,Low,Medium
+3795,what I need to verify my account,why_verify_identity,Neutral,Neutral,Low,Low
+2908,What currencies and methods can i use to top up my account?,supported_cards_and_currencies,Neutral,Neutral,Low,Low
+280,"I found my card, how can I use it again?",card_linking,Neutral,Neutral,Low,Low
+1512,I lost track of my card,lost_or_stolen_card,Neutral,Neutral,High,High
+757,Why is the app showing a still pending message on a withdraw that has already been done?,pending_cash_withdrawal,Neutral,Neutral,Medium,Low
+4428,"i am not a premium customer but i want a virtual card, how do i get it",disposable_card_limits,Neutral,Neutral,Low,Low
+323,How do you decide what the exchange rates are?,exchange_rate,Neutral,Neutral,Low,Low
+1215,Can I get an auto Top-up?,automatic_top_up,Neutral,Neutral,Low,Low
+8535,My credit card got declined for top up! What's going on? Can you check on why it didn't go through?,top_up_failed,Negative,Neutral,Medium,Medium
+4824,I am unaware of what my password is.,passcode_forgotten,Neutral,Neutral,Low,Medium
+1409,"I am trying to exchange USD for LKR, how do I do that?",exchange_via_app,Neutral,Neutral,Low,Low
+3590,"One of my card payments, I don't recognise the name of the merchant.",card_payment_not_recognised,Neutral,Neutral,High,High
+9733,How can I top up with my apple watch?,apple_pay_or_google_pay,Neutral,Neutral,Low,Low
+9186,My card needs to be activated.,activate_my_card,Neutral,Neutral,Low,Low
+9533,What happens if my card expires?,card_about_to_expire,Neutral,Neutral,Low,Low
+270,Can you tell me how to get my card on the app?,card_linking,Neutral,Neutral,Low,Low
+4274,"My wallet isn't showing my top-up, did I do something wrong?",topping_up_by_card,Neutral,Neutral,Medium,Medium
+2567,Why was I charged for payments? You didn't warn me about additional fees.,card_payment_fee_charged,Negative,Negative,Medium,Medium
+2464,"Hey I am standing in front of an ATM here, it only gave me Rs 10,000 even though I wanted to withdraw Rs 30,000! Seems like the app has Rs 30,000, what do I do??",wrong_amount_of_cash_received,Neutral,Negative,High,Medium
+7360,Can I transfer my payroll to the bank?,receiving_money,Neutral,Neutral,Low,Low
+3494,I have an unusual payment in my statement,card_payment_not_recognised,Neutral,Neutral,High,High
+9076,What are the charges for topping up US card?,top_up_by_card_charge,Neutral,Neutral,Low,Low
+6476,A duplicated payment was made for something.,transaction_charged_twice,Neutral,Neutral,Medium,Medium
+8624,"Hi, I am unable to see transaction in my account which i made couples of hours ago from my local bank account. Please help me in this.",balance_not_updated_after_bank_transfer,Neutral,Neutral,Medium,Medium
+1813,Are my contactless settings correct? I tried to use it today but it wasn't working.,contactless_not_working,Neutral,Neutral,Medium,Medium
+5195,Why is the payment I made still pending?,pending_card_payment,Neutral,Neutral,Low,Low
+870,"I tempted to get some money out of the machine earlier and it did not work.Looking now, the transaction actually shows to still be in progress. I would certainly appreciate someone look into this and let me know what's going on. I definitely do not want to be charged for money I never received.",pending_cash_withdrawal,Neutral,Neutral,Medium,Medium
+8292,My rate is not right when I used my card in a different country's money.,wrong_exchange_rate_for_cash_withdrawal,Negative,Neutral,Medium,Medium
+998,Can I exchange my money for EUR?,fiat_currency_support,Neutral,Neutral,Low,Low
+9413,Can you tell me why I was charged to withdraw cash?,cash_withdrawal_charge,Neutral,Neutral,Low,Medium
+8704,"Although I transferred some money, it has not as of yet, arrived.",balance_not_updated_after_bank_transfer,Negative,Neutral,Medium,Medium
+5991,"Transfers can take up to one day to process before departing for the beneficiary accounts. Please confirm that you've entered your account details correctly. SEPA transfers can take up to two working days, while SWIFT transfers can take up to five working days.",pending_transfer,Neutral,Neutral,Low,Low
+83,Can I track the card that was just sent to me?,card_arrival,Neutral,Neutral,Low,Low
+1898,Is there a fee for topping off by transfer?,top_up_by_bank_transfer_charge,Neutral,Neutral,Low,Medium
+3296,"Hello,  I have recharged topup but account is not credited. Please help me in this, i guess there is some defect in system.",top_up_reverted,Neutral,Neutral,Medium,Medium
+3249,I topped up but the app declined it,top_up_reverted,Neutral,Neutral,Medium,Medium
+1411,Is there a way to make my money usable in another country?,exchange_via_app,Neutral,Neutral,Low,Low
+911,Can you tell me how many currencies I can hold?,fiat_currency_support,Neutral,Neutral,Low,Low
+1278,Currently my card is broken.,card_not_working,Neutral,Neutral,Medium,Medium
+7397,Can I transfer my paycheck to the account?,receiving_money,Neutral,Neutral,Low,Low
+9805,What works for identity verification?,verify_my_identity,Neutral,Neutral,Low,Low
+9006,"If I exchange foreign currency, are there any other charges?",exchange_charge,Neutral,Neutral,Low,Medium
+1369,Can I possibly change my currency to another?,exchange_via_app,Neutral,Neutral,Low,Low
+4478,What can I do if my card details where stolen from my car? I think they used my card to buy gas.,compromised_card,Neutral,Neutral,High,High
+6069,I have a transfer that is pending.,pending_transfer,Neutral,Neutral,Low,Low
+4821,I forgot my passcode. Now what?,passcode_forgotten,Neutral,Neutral,Medium,Medium
+5258,"My bag was stolen from me yesterday, so I can't use any apps or anything. I need some help.",lost_or_stolen_phone,Neutral,Neutral,High,High
+2322,What is the top-up limit on my cards?,top_up_limits,Neutral,Neutral,Low,Low
+3692,should i contact customer support if i can't edit details,edit_personal_details,Neutral,Neutral,Low,Low
+1316,Can you tell me whats going on with my card it seems to be not working?,card_not_working,Neutral,Neutral,Medium,Medium
+9449,There was an unexpected fee for my cash withdrawal!,cash_withdrawal_charge,Neutral,Neutral,Medium,Medium
+6896,Do I need to speak to a representative to change my pin?,change_pin,Neutral,Neutral,Low,Low
+5702,"My refund has not arrived, and I am unsure why. Who do I contact?",Refund_not_showing_up,Neutral,Neutral,Medium,Medium
+7221,"I thought transfers were free, why was I charged?",transfer_fee_charged,Negative,Neutral,Low,Medium
+7906,Is there a fee for sending out more cards?,getting_spare_card,Neutral,Neutral,Low,Low
+4773,A debit came through that I need to dispute.,direct_debit_payment_not_recognised,Neutral,Neutral,Low,High
+6999,What is the process to change my PIN?,change_pin,Neutral,Neutral,Low,Low
+1537,I cant find my card.,lost_or_stolen_card,Neutral,Neutral,High,High
+5244,When will my pending payment finish?,pending_card_payment,Neutral,Neutral,Low,Low
+8,Does the package with my card have tracking?,card_arrival,Neutral,Neutral,Low,Low
+6525,where are the transfers originating,verify_source_of_funds,Neutral,Neutral,Low,Low
+9071,how much does it cost to add money to my card,top_up_by_card_charge,Neutral,Neutral,Low,Medium
+7366,What are the steps for my friend to send me money?,receiving_money,Neutral,Neutral,Low,Low
+4998,Why can't I withdraw funds from my account?,declined_cash_withdrawal,Neutral,Neutral,Medium,Medium
+1739,I forgot what my pin number is and now am blocked can you help me get in?,pin_blocked,Neutral,Neutral,Medium,Medium
+4367,I need to make several disposable cards per day.,disposable_card_limits,Neutral,Neutral,Medium,Low
+207,I received my card. How do I link it to the app?,card_linking,Neutral,Neutral,Low,Low
+2102,I did a transaction this morning and now I want to cancel it.,cancel_transfer,Neutral,Neutral,Medium,Medium
+7901,I'm looking to get an additional card.,getting_spare_card,Neutral,Neutral,Low,Low
+8912,Help! I think someone has made a cash withdrawal with my card!,cash_withdrawal_not_recognised,Neutral,Negative,High,High
+6799,Why is a payment I made reverted back to my account?,reverted_card_payment?,Neutral,Neutral,Medium,Low
+4782,Can I dispute a debit payment that I am seeing that I didn't make from a couple of months ago?,direct_debit_payment_not_recognised,Neutral,Neutral,High,High
+4528,How do I report fraud on my card?,compromised_card,Neutral,Neutral,High,High
+4688,I found a charge on my debit that I did not make.,direct_debit_payment_not_recognised,Neutral,Neutral,High,High
+1679,Can someone assist me with explaining how I can unblock my pin?,pin_blocked,Neutral,Neutral,Medium,Medium
+6921,I have been travelling overseas and I need to change my PIN. Can you tell me how this is done?,change_pin,Neutral,Neutral,Low,Low
+915,"I need to hold money, what currencies can I use?",fiat_currency_support,Neutral,Neutral,Low,Low
+8913,What do I do when a charge has been made that I did not make?,cash_withdrawal_not_recognised,Neutral,Neutral,High,High
+6579,Where did my deposit for my source of funds come from?,verify_source_of_funds,Neutral,Neutral,Low,Low
+6171,"I don't like the services, please close my account",terminate_account,Negative,Neutral,High,High
+2097,How do I cancel a transaction?,cancel_transfer,Neutral,Neutral,Low,Medium
+2743,"How much time do transfers take? I sent money to a friend who needs it fast. It's been hours, and the money has not gone through.",transfer_not_received_by_recipient,Negative,Neutral,High,Medium
+1746,"I have used all my PIN tries, what now?",pin_blocked,Neutral,Neutral,Medium,Medium
+6964,I want to create a new pin.,change_pin,Neutral,Neutral,Low,Low
