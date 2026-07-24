@@ -17,6 +17,13 @@ fixed at two papers.
 | `Adapter_Based_Fine-Tuning_of_Pre-Trained_Multiling.pdf` | Rathnayake, H., Sumanapala, J., Rukshani, R., Ranathunga, S. (2022). *Adapter Based Fine-Tuning of Pre-Trained Multilingual Language Models for Code-Mixed and Code-Switched Text Classification.* Research Square preprint, DOI 10.21203/rs.3.rs-1564359/v2. University of Moratuwa. | `model-research.md` → **Finalized Decision** (Sentiment/Priority LoRA-expert architecture), direct empirical precedent |
 | `Bank Customer Complaint Classification Using Machine Learning and Deep Learning Models.pdf` | Arya, S. (2026). *Bank Customer Complaint Classification Using Machine Learning and Deep Learning Models.* IJRTI, Vol. 11, Issue 2. | `model-research.md` → Dataset Strategy (category classification, class-balancing method, data-scale calibration) |
 | `prioritybased.pdf` | Deshmukh, K. V., Shiravale, S. S. *Priority Based Sentiment Analysis for Quick Response to Citizen Complaints.* IEEE conference paper (Marathwada Mitra Mandal's College of Engineering, Pune). | `model-research.md` → Priority derivation rules (starvation-prevention addition) |
+| `romanized sinhala/2019MCS084.pdf` | Sumanathilaka, T.G.D.K. (2022). *Romanized Sinhala to Sinhala Reverse Transliteration using a Hybrid Approach.* MSc thesis, University of Colombo School of Computing. Supervisor: Dr. Ruvan Weerasinghe. | `model-research.md` → Romanized Input, Strategy A |
+| `romanized sinhala/IndoNLP 2025 Shared Task- Romanized Sinhala to Sinhala Reverse Transliteration Using BERT.pdf` | Perera, S., Jayakodi, L. P., Sumanathilaka, T.G.D.K., Anuradha, I. (2025). *IndoNLP 2025 Shared Task: Romanized Sinhala to Sinhala Reverse Transliteration Using BERT.* Proc. First Workshop on NLP for Indo-Aryan and Dravidian Languages (IndoNLP 2025), pp. 135–140. | `model-research.md` → Romanized Input, Strategy A |
+| `romanized sinhala/Swa-bhasha Resource Hub- Romanized Sinhala to Sinhala Transliteration Systems and Data Resources.pdf` | Sumanathilaka, D., Perera, S., Dharmasiri, S., Athukorala, M., Herath, A. D., Dias, R., Gamage, P., Weerasinghe, R., Priyadarshana, Y.H.P.P. (2026). *Swa-bhasha Resource Hub: Romanized Sinhala to Sinhala Transliteration Systems and Data Resources.* arXiv:2507.09245. | `model-research.md` → Romanized Input, Strategy A |
+| `Script Sensitivity - Benchmarking Language Models on Unicode, Romanized and Mixed-Script Sinhala.pdf` | Rajapakse, M., Weerasinghe, R. (2026). *Script Sensitivity: Benchmarking Language Models on Unicode, Romanized and Mixed-Script Sinhala.* arXiv:2601.14958. | `model-research.md` → Cross-Lingual Interference Research; Romanized Input, Strategy A |
+| `Enhancing Multilingual Sentiment Analysis with Explainability for Sinhala, English, and Code-Mixed Content.pdf` | Senevirathna, W.P.U., Rizvi, F.A., Adhikari, A.M.N.H., Kasthurirathna, D., Navojith, T., Abeywardhana, L. (2025). *Enhancing Multilingual Sentiment Analysis with Explainability for Sinhala, English, and Code-Mixed Content.* arXiv:2504.13545. SLIIT. | `model-research.md` → Sentiment model candidates; Division of Labour (ML vs LLM) |
+| `SinLlama - A Large Language Model for Sinhala.pdf` | Aravinda, H.W.K., Sirajudeen, R., Karunathilake, S., de Silva, N., Kaur, R., Bhankhar, A.S., Ranathunga, S. (2025). *SinLlama - A Large Language Model for Sinhala.* arXiv:2508.09115. University of Moratuwa. | `model-research.md` → Generation LLM candidates; Sentiment model candidates |
+| `Sentiment Analysis of Sinhala News Comments Using Transformers.pdf` | Bandaranayake, I., Usoof, H. (2025). *Sentiment Analysis of Sinhala News Comments Using Transformers.* Proc. IndoNLP 2025, pp. 74–82. University of Peradeniya. | `model-research.md` → Sentiment model candidates (primary source of the XLM-R-large 75.9% figure cited elsewhere) |
 
 Full content summaries below — read these instead of re-opening the PDFs for anything covered here.
 
@@ -152,6 +159,111 @@ IEEE conference paper, Marathwada Mitra Mandal's College of Engineering, Pune, I
 
 ---
 
+## `romanized sinhala/` — the Swa-Bhasha lineage (reverse-transliteration: Singlish → Sinhala)
+
+Three papers, same research group (Sumanathilaka, Weerasinghe et al., UCSC/IIT/Swansea), tracking one lineage of work from 2022 MSc thesis → 2025 shared task win → 2026 resource-hub survey. Directly reopens `model-research.md`'s Romanized Input **Strategy A** (reverse-transliterate first, then run native-script models) — previously down-weighted there as "ambiguous, errors compound" and kept only as an optional RAG pre-step. This trio shows that dismissal is now out of date: a benchmarked, reusable, low-error transliterator exists.
+
+**`2019MCS084.pdf` — Sumanathilaka (2022 MSc thesis), the origin work.** Hybrid pipeline: N-gram tagger (Uni/Bi/Trigram, backoff) → rule-based fallback for tokens the N-gram model can't tag → Trie-based knowledge-base suggestion layer for final word selection. Trained on 12,447 sentences / 7M+ words (Liwera dataset + Dakshina + self-scraped YouTube comments). **84% word-level accuracy** on held-out test data — establishes the baseline the later BERT-based work beats.
+
+**`IndoNLP 2025 Shared Task...pdf` — Perera, Jayakodi, Sumanathilaka, Anuradha (2025), IndoNLP 2025 workshop (ACL).** State-of-the-art result in this lineage. Five-step pipeline: word separation → dictionary-based word-level mapping (ad-hoc Singlish→Sinhala dictionary, multiple candidates per ambiguous word) → rule-based fallback for OOV words → **mask ambiguous words and disambiguate via a Sinhala BERT masked-language-model** (score every candidate sentence by the product of each masked word's contextual probability, pick the highest-scoring completion) → output. Two chunking/filtering optimizations keep BERT-call count manageable on long, highly-ambiguous sentences. Evaluated on the IndoNLP 2025 shared-task sets (10,000 general-typing-pattern rows + 5,000 ad-hoc/vowel-omitted rows): **WER 0.085–0.09, CER ~0.02, BLEU-4 ~0.79–0.80** for the fine-tuned-BERT variant, beating a from-scratch Sinhala-BERT baseline by a small margin. On the separate Transliteration Disambiguation dataset (lexical-ambiguity resolution specifically), this system scored **F1 0.94–0.96**, far ahead of every rule-based/statistical competitor cited (all clustered 0.33–0.38 F1). Codebase: `github.com/Sameera2001Perera/Singlish-Transliterator`.
+
+**`Swa-bhasha Resource Hub...pdf` — Sumanathilaka et al. (2026), arXiv:2507.09245.** Survey + benchmark rollup of the whole lineage (2022–2026: the thesis above, Swa-Bhasha 2.0's NMT+rule hybrid, the IndoNLP BERT system above, and a new **code-mixed** Singlish→Sinhala translator). Two results matter most for Swift:
+- **Table 4 (code-mixed transliteration, golden SinMix2Mono dataset)** benchmarks 9 systems including zero-shot LLMs (Qwen-3 Max, Gemini 2.5 Flash-Lite), few-shot LLMs, and fine-tuned models (XLM-R, M2M100, Swa-Bhasha-mBART). **Fine-tuned Swa-Bhasha-mBART wins decisively — BLEU 49.70 / chrF 78.47 / BERTScore 81.19** vs. Gemini few-shot's 33.43 BLEU / 71.00 BERTScore. Same pattern as `model-research.md`'s classifier bake-off: a small fine-tuned model beats LLM prompting on this task.
+- **Table 5 (pure Sinhala, non-code-mixed)**: Swa-Bhasha-mBART fine-tuned scores **BLEU 77.64, chrF 92.85, BERTScore 92.37** — high enough that reverse-transliteration error propagation (Strategy A's original objection) is a much smaller risk than assumed when that line was written into `model-research.md`.
+- Also documents the **Swa-Bhasha datasets** (7.13M romanized-Sinhala word pairs from 440k unique Sinhala roots; a 7.24M-pair augmented sentence corpus) and a purpose-built **Transliteration Disambiguation dataset** (660 sentence pairs, single-sense + dual-sense splits) for evaluating exactly the lexical-ambiguity problem ("adaraya" → ආදරය "love" or ආධාරය "aid"?) that most affects backward transliteration. All public on Hugging Face under `deshanksuman/*`.
+
+**Direct implication for Swift:** `model-research.md`'s "Lead with Strategy B+C, keep A optional" recommendation was written without this evidence and without connecting it to the **Script Sensitivity** finding also in this library (full summary below) — given that finding and a benchmarked, reusable, ~9% WER / ~0.8 BLEU transliterator that already exists (no need to build one), Strategy A deserves equal weight in the classification bake-off, not automatic demotion to an RAG-only pre-step — see the updated Recommendation in `model-research.md`.
+
+---
+
+## `Script Sensitivity - Benchmarking Language Models on Unicode, Romanized and Mixed-Script Sinhala.pdf` — Rajapakse & Weerasinghe (2026)
+
+arXiv:2601.14958, IIT Colombo. The paper `model-research.md`'s Cross-Lingual Interference Research section already cited (as a >300x web-search summary) before this PDF was pulled into the library — now confirmed and precise.
+
+**What it measures:** intrinsic language-modeling quality (perplexity, not any downstream task) of **24 open-source decoder-only LLMs (350M–14B params** — Pythia, OPT, Bloom, Llama 3.1/3.2, Mistral, Qwen, Phi-4, etc., no Sinhala-specific models among them) across three conditions: pure Unicode Sinhala, pure Romanized Sinhala, and authentic mixed-script Sinhala (real code-switched social-media text, not synthetically transliterated). 500 sentences per condition, K-means-selected for topical diversity from YouTube/Facebook/blogs/forums, native-speaker reviewed.
+
+**Headline numbers:**
+- **Median perplexity ratio Unicode→Romanized: 312.3× (range 149.1×–769.7×).** Some models' Romanized perplexity exceeds 3,000–5,000 where their Unicode perplexity is under 10 — e.g. Bloom-560M: 12.64 (Unicode) vs. 4915.05 (Romanized).
+- **Mixed-script degrades far less: median ratio only 2.0× (range 1.6×–3.1×)** vs. Unicode — the presence of *some* Unicode tokens in a sentence anchors the model's predictions even when Romanized segments are interspersed.
+- **Unicode performance only moderately predicts Romanized performance** (Spearman ρ = 0.519) but **strongly predicts mixed-script performance** (ρ = 0.957) — a model that's good at Unicode Sinhala is not reliably good at pure Romanized Sinhala, but is reliably good at realistic mixed-script text.
+- **Model scale doesn't predict script-handling competence at all** (ρ ≈ 0.08, not significant) — Pythia-410M frequently beats 8–14B models on Unicode and mixed-script Sinhala. Reinforces `model-research.md`'s existing "don't assume bigger wins" stance, now with a Sinhala-specific data point.
+- **Root cause, not just symptom:** the paper traces the gap to tokenizer fragmentation, not just unfamiliarity — genuinely Sinhala Romanized words (`uyanawa` → `[uy, an, awa]`) shatter into meaningless subword pieces, while Romanized words that happen to overlap with English spelling (`bath`, `api`) tokenize cleanly and don't show the same blowup. **Directly validates the loanword-preserving choice already made in the Singlish dataset work** (`datasets/translation/singlish_overrides.py` spells කාඩ්→`card` not `kad`) — keeping English-loanword spelling isn't just more readable, it measurably avoids the worst of this fragmentation.
+
+**The line that matters most for the Strategy A/B decision — straight from the authors' own conclusion:** *"evaluating whether transliterating Romanized Sinhala to Unicode prior to inference can reduce the perplexity gap would offer a practical and immediately deployable solution for improving model performance on Romanized input without requiring retraining."* That is Strategy A, proposed by this paper's own authors as the most promising fix for exactly the problem they measured.
+
+**Important honest caveat (the paper's own stated limitation):** this is intrinsic LM perplexity on generative decoder-only models, not a downstream classification/encoder-model result, and not yet tested on Swift's actual model family (XLM-R-style encoders). The paper explicitly flags this gap itself: *"perplexity...does not directly measure downstream task performance...future evaluation should complement these findings with downstream task assessments."* Treat the 312× figure as strong motivating evidence to test Strategy A seriously in Swift's own bake-off — not as proof it will win on classification accuracy specifically.
+
+---
+
+## `Enhancing Multilingual Sentiment Analysis with Explainability for Sinhala, English, and Code-Mixed Content.pdf` — Senevirathna et al. (2025)
+
+arXiv:2504.13545, SLIIT. **The single most directly-applicable paper in the library** — this is banking-domain sentiment analysis on Sinhala/Singlish/code-mixed text, the same task, same domain, same script-mix problem Swift has. Found while chasing a different (inaccessible — see Gaps) SinLlama sentiment paper; turned out to be a better match.
+
+**Dataset:** 10,000 English + 5,000 Sinhala/Singlish/code-mixed (≈1,667 each) banking customer reviews, scraped from review sites/social media/Kaggle, 3-class sentiment (Positive/Neutral/Negative), plus 5 banking aspects (**Customer Support, Loan and Credit Services, Digital Banking Experience, Transactions and Payments, Trust and Security**) — a coarse taxonomy worth comparing against Swift's own category work once the clustering pass (per Dataset Strategy) runs, since it's a real precedent for what a banking-aspect taxonomy looks like in practice.
+
+**Methodology (directly reusable pattern):** two separate pipelines — plain fine-tuned BERT-base-uncased for English, and a **hybrid** for Sinhala/Singlish/code-mixed: XLM-RoBERTa (fine-tuned) + a **custom domain-specific sentiment lexicon** applied as a **post-processing correction step**, combined via softmax-weighted aggregation. The lexicon specifically catches banking-Singlish sentiment terms the pretrained model misses on its own — e.g. `"app eka lag wenawa"` (app lags) and `"godak slow"` correctly flipped to negative only after lexicon correction. This is functionally the same idea as Swift's own `SINHALA_STYLE.md` glossary, extended to carry sentiment polarity, not just vocabulary — worth building as an explicit next layer once the classifier is trained. They also ran a **language-aware tokenization** step (SentencePiece/BPE for Sinhala/Singlish/code-mixed, WordPiece for English) and applied light transliteration/normalization pre-processing before tokenizing Singlish input — i.e. their "direct-processing" pipeline still leans on some Strategy-A-flavored normalization, not a pure Strategy B in isolation.
+
+**Results — Table IV, Sinhala/Singlish/code-mixed sentiment (the head-to-head comparison table this project needed):**
+
+| Model | Accuracy | F1 |
+|---|---|---|
+| SVM | 62.4% | 0.58 |
+| Naive Bayes | 58.7% | 0.55 |
+| XLM-RoBERTa (base, fine-tuned) | 78.2% | 0.74 |
+| **GPT-4o (zero-shot)** | **81.5%** | **0.77** |
+| **XLM-RoBERTa + lexicon correction (final)** | **88.4%** | **0.84** |
+
+**Direct implication for the ML-vs-LLM question in `model-research.md`'s Division of Labour section (now reopened, not a hard rule):** this is a real banking-domain data point, not a hypothetical. Zero-shot GPT-4o (81.5%) genuinely beats an undertuned base XLM-R (78.2%) — zero-shot LLM is a legitimately strong classifier on this task, not a strawman. But a **properly fine-tuned + lexicon-corrected XLM-R still wins outright** (88.4%, +6.9pp over GPT-4o). The paper's own stated reason for not shipping GPT-4o despite its respectable accuracy: *"its high computational cost, hallucinations, and processing time make it impractical for real-time applications"* — the same cost/latency argument already in `model-research.md`, now with a concrete accuracy gap attached to it rather than just a cost argument alone.
+
+**Second actionable finding:** the lexicon-correction layer alone was worth **+10.2pp accuracy / +0.10 F1** over base XLM-R — a cheap, concrete technique to test in Swift's own bake-off ablations (per the Evaluation Plan's "augmentation on/off" pattern), independent of which base classifier architecture wins.
+
+**Limitations the authors flag themselves** (relevant to Swift, not just noted for completeness): negation/slang/code-mixed expressions remain hard; multi-sentiment-within-one-aspect reviews need better aggregation; no large-scale annotated Sinhala/Singlish/code-mixed banking dataset existed for them to train on (they built their own 5k from scratch) — the same gap Swift's own dataset work is filling, at larger scale (10k Sinhala + 10k Singlish rows vs. their 5k combined).
+
+---
+
+## `SinLlama - A Large Language Model for Sinhala.pdf` — Aravinda, Sirajudeen, Karunathilake, de Silva, Kaur, Bhankhar, Ranathunga (2025)
+
+arXiv:2508.09115, University of Moratuwa (Ranathunga co-authors several other papers already in this library). Fetched while chasing the inaccessible Abeynayake SinLlama-sentiment paper (see Gaps) — this is the base **SinLlama** model that paper fine-tunes, so it's the right fallback: same model family, native-script Sinhala only (no romanized/code-mixed evaluation in this paper specifically).
+
+**What it is:** continues pretraining Llama-3-8B on Sinhala — the first decoder-only open LLM with explicit Sinhala support (MaLA-500 and Aya-101 exist but reportedly don't outperform plain Llama on Sinhala, and are larger/heavier). Two-stage build: (1) merge Sinhala-specific subword tokens into the Llama-3 tokenizer to fix subword fragmentation (the same problem the Script Sensitivity paper diagnoses generically — this is a concrete fix for it, at least for one model), (2) continual pretraining on a cleaned 10.7M-sentence / 304M-token Sinhala corpus (MADLAD-400 + CulturaX, heuristically filtered), LoRA fine-tuned per downstream task. Public: `huggingface.co/polyglots/SinLlama_v01`.
+
+**Sentiment results (Table III, native Sinhala, 10,010 training rows):**
+
+| Model | Precision | Recall | F1 |
+|---|---|---|---|
+| Llama-3-8B base | 41.9 | 38.0 | 36.3 |
+| Llama-3-8B base, fine-tuned | 61.1 | 61.2 | 59.4 |
+| Llama-3-8B instruct | 48.5 | 36.8 | 31.3 |
+| Llama-3-8B instruct, fine-tuned | 68.9 | 68.7 | 68.8 |
+| SinLlama (unfine-tuned) | 47.2 | 25.9 | 22.7 |
+| **SinLlama, fine-tuned** | **75.2** | **70.1** | **72.5** |
+
+**Direct implication for Swift:** confirms the same shape of result as the Senevirathna banking paper above, from the opposite direction — an **LLM-family model only becomes competitive after task-specific fine-tuning** (SinLlama unfine-tuned F1 22.7 vs. fine-tuned 72.5, a 3.2x jump); zero-shot/un-tuned LLM use is the weak end of every comparison in this library so far, fine-tuned-anything is the strong end. No SinBERT/XLM-R baseline is reported in this paper for direct comparison (a gap the authors don't fill) — that comparison exists instead in the Senevirathna banking paper above (XLM-R+lexicon 88.4% acc beats everything tested there). **Caveat:** this paper never touches romanized or code-mixed Sinhala — all three of its benchmark tasks are native-script only, so it can't speak to the Strategy A/B question directly, only to the broader "fine-tune beats zero-shot" pattern.
+
+---
+
+## `Sentiment Analysis of Sinhala News Comments Using Transformers.pdf` — Bandaranayake & Usoof (2025)
+
+IndoNLP 2025 (ACL Anthology), University of Peradeniya. **This is the primary source** behind the "XLM-R-large: 75.9% accuracy, best in multiple studies" line already cited secondhand (via `NLP.pdf` and the Senevirathna banking paper above) elsewhere in `model-research.md` — now on file directly rather than cited through two layers of secondary reference.
+
+**Task:** native-script Sinhala sentiment analysis (news comments, not romanized/code-mixed — complements rather than overlaps the Senevirathna/SinLlama papers above). Extended the existing Senevirathne et al. (2020) 15,059-comment dataset (Positive/Negative/Neutral/Conflict) with 5,037 newly annotated comments (Cohen's κ = 0.794) → 19,875 unique comments total, tested both as 4-class (with Conflict) and 3-class (Conflict folded into Positive/Negative by dominant sentiment).
+
+**Results (Table 3):**
+
+| Model | F1 (4-class) | Acc (4-class) | F1 (3-class) | Acc (3-class) |
+|---|---|---|---|---|
+| RoBERTa (pretrained from scratch) | 37.50% | 37.36% | 53.17% | 56.48% |
+| BERT (pretrained from scratch) | 46.34% | 47.07% | 59.19% | 63.32% |
+| DistilBERT (pretrained from scratch) | 49.49% | 51.72% | 60.63% | 65.13% |
+| XLM-R-base | 59.16% | 62.84% | 69.52% | 73.56% |
+| **XLM-R-large** | **62.04%** | **65.84%** | **72.31%** | **75.90%** |
+
+**Important caveat the paper itself surfaces, worth carrying forward carefully:** the BERT/DistilBERT/RoBERTa monolingual models were **pretrained from scratch on only a 2GB OSCAR-Sinhala corpus for a single epoch** (compute-constrained), while XLM-R-base/large arrive already pretrained on a much larger multilingual corpus for many epochs and only needed fine-tuning. The authors are explicit that this makes "XLM-R beats monolingual models" a confounded comparison, not a clean architecture-vs-architecture result — *"the performance of these monolingual models can be further improved by pre-training the models on a larger Sinhala corpus for a higher number of epochs."* **Don't cite this paper as "XLM-R beats SinBERT-style monolingual models" without that caveat** — it's really "a heavily-pretrained multilingual model beats a lightly-pretrained monolingual one," a different and much less surprising claim. A fairer monolingual comparison exists via `NLP.pdf`'s §3.11 pointer to Dhananjaya et al.'s BERTify-Sinhala study, which evaluates SinBERT/SinBERTo/SinhalaBERTo (already properly pretrained) alongside XLM-R.
+
+**Also useful:** confusion-matrix analysis shows the Conflict class is the weak point (frequently misclassified as Negative, likely driven by Negative being the majority class ~10k/19.9k rows) — a concrete class-imbalance caveat if Swift ever adds a "conflict/mixed" sentiment label (per the open Label Scheme question in `model-research.md`'s Sentiment section, 3-class vs. Russell valence-arousal).
+
+---
+
 ## Gaps — candidates to source next
 
 These are currently cited in `model-research.md` only as external links (web search, not a local PDF). Pull them in here when doing the next research pass so the bibliography is self-contained:
@@ -160,8 +272,9 @@ These are currently cited in `model-research.md` only as external links (web sea
 - **Conneau et al., XLM-R** (`arXiv:1911.02116`) — the "curse of multilinguality" primary source, currently only cited via a secondary overview.
 - **Role of Language Relatedness in Multilingual Fine-tuning of LMs** (`arXiv:2109.10534`) — Indo-Aryan case study behind the Sinhala-vs-Tamil transfer asymmetry claim.
 - **IndicMMLU-Pro** (`arXiv:2501.15747`) — source of the quantified Dravidian-vs-Indo-Aryan "family gap" figure (up to 13.2pp).
-- **Script Sensitivity: Benchmarking LMs on Unicode, Romanized and Mixed-Script Sinhala** (`arXiv:2601.14958`) — source of the ~300x Unicode-vs-Romanized degradation figure.
 - **DravidianCodeMix** dataset paper (`doi:10.1007/s10579-022-09583-7`) — referenced for Tamil-English code-mix data/features but not yet on file.
+- **Abeynayake, V., Lorensuhewa, S.A.S., Kalyani, M.A.L. (2026). "Fine-Tuning SinLlama for Sentiment Analysis in Romanized Sinhala-English Code-Mixed Social Media Text."** 2026 6th International Conference (IEEE Xplore). Not sourced — no arXiv preprint or accessible abstract found as of this pass (checked web search, ResearchGate, arXiv); likely IEEE Xplore-paywalled with no open copy yet. Would directly answer the Strategy A/B question for *fine-tuned* LLM-on-romanized-text specifically (the Senevirathna banking paper below only tests GPT-4o *zero-shot*, and the SinLlama base paper below only tests *native-script* Sinhala) — worth another pass once it's indexed with a preprint, or if the user can supply the PDF directly. Note: Lorensuhewa & Kalyani are also 2 of 3 authors on Chathuranga, Lorensuhewa & Kalyani (2019) *"Sinhala Sentiment Analysis using Corpus based Sentiment Lexicon"* (ICTer) — that earlier lexicon-based work by the same pair is easier to source if useful as a proxy for their general approach, though it predates and isn't a substitute for the actual target paper.
+- **Udawatta, P., Udayangana, I., Gamage, C., Shekhar, R., Ranathunga, S. (2024). "Use of Prompt-Based Learning for Code-Mixed and Code-Switched Text Classification."** *World Wide Web*, 27(5), Springer, DOI 10.1007/s11280-024-01302-2. Not sourced — Springer requires institutional auth, ResearchGate blocked the fetch (403 Forbidden), no open PDF found. Abstract-level summary only (via a Crossref-indexed mirror, not verified against the primary source): covers **Sinhala-English, Kannada-English, Hindi-English** CMCS text, three tasks (sentiment/hate-speech/humor) — very likely the same underlying corpus as the Rathnayake et al. Adapter paper already in this library (same group, same language pairs, same tasks), just testing prompting instead of adapter fine-tuning. Claims a method (**Dynamic+AdapterPrompt**) beating both fine-tuning and basic prompting baselines, and that "performance...is significantly influenced by the inclusion of multiple scripts and the intensity of code-mixing" (a second, independent-method echo of the Script Sensitivity paper's finding). **High priority if sourced**: every other result in this library so far shows fine-tuning beating prompting/zero-shot — if the real numbers confirm prompting winning here, it would be the one genuine counter-example worth understanding rather than dismissing. Do not cite any specific figure from this paper until the full text is obtained — only the abstract-level claims above are known.
 
 ## Conventions
 
