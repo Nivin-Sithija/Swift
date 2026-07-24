@@ -1,501 +1,501 @@
-"annotation_id","annotator","category","created_at","id","lead_time","priority","row_id","sentiment","text","updated_at"
-70,"1","declined_card_payment","2026-07-23T02:43:07.471923Z",1,13.714,"Medium",5976,"Neutral","I had a card payment that was declined.  Why?","2026-07-23T02:43:07.471934Z"
-71,"1","apple_pay_or_google_pay","2026-07-23T02:43:13.322916Z",2,5.719,"Low",9713,"Neutral","Am I able to Top Up with Apply Pay?","2026-07-23T02:43:13.322928Z"
-72,"1","failed_transfer","2026-07-23T02:43:22.893773Z",3,9.448,"Medium",7536,"Neutral","Why has my payment not transferred?","2026-07-23T02:43:22.893787Z"
-73,"1","extra_charge_on_statement","2026-07-23T02:43:42.170088Z",4,19.157,"Low",596,"Neutral","There is a €1 extra fee in my statement","2026-07-23T02:43:42.170103Z"
-74,"1","cancel_transfer","2026-07-23T02:43:54.034779Z",5,11.738,"Medium",2148,"Neutral","I need to reverse a transaction","2026-07-23T02:43:54.034794Z"
-75,"1","contactless_not_working","2026-07-23T02:44:00.395071Z",6,6.232,"Low",1802,"Neutral","How do I troubleshoot my contactless?","2026-07-23T02:44:00.395088Z"
-76,"1","virtual_card_not_working","2026-07-23T02:44:10.447452Z",7,9.936,"Medium",8178,"Neutral","Is there a reason why my virtual card won't work?","2026-07-23T02:44:10.447465Z"
-77,"1","activate_my_card","2026-07-23T02:44:16.281718Z",8,5.701,"Low",9187,"Neutral","I was unable to activate my card.","2026-07-23T02:44:16.281732Z"
-78,"1","compromised_card","2026-07-23T02:44:25.122816Z",9,8.707,"High",4523,"Neutral","What do I do if I think someone has used my card without permission? I can see a few transactions I don't recognize.","2026-07-23T02:44:25.122838Z"
-79,"1","declined_cash_withdrawal","2026-07-23T02:44:33.604053Z",10,8.355,"Medium",4970,"Negative","This morning I wanted to make a withdrawal before work, but my card was declined! Please double check it for me as this is the first time it was declined.","2026-07-23T02:44:33.604064Z"
-80,"1","top_up_by_cash_or_cheque","2026-07-23T02:44:38.249766Z",11,4.52,"Low",8039,"Neutral","How would I top up with a cheque?","2026-07-23T02:44:38.249783Z"
-81,"1","lost_or_stolen_phone","2026-07-23T02:44:44.356940Z",12,5.976,"Low",5345,"Neutral","My phone was left at a hotel and I can't access the app.","2026-07-23T02:44:44.356956Z"
-82,"1","exchange_rate","2026-07-23T02:44:48.458151Z",13,3.978,"Low",365,"Neutral","Will I know which exchange rate I will get?","2026-07-23T02:44:48.458162Z"
-83,"1","card_about_to_expire","2026-07-23T02:44:54.877353Z",14,6.301,"Low",9583,"Neutral","want a new card what are the fees","2026-07-23T02:44:54.877371Z"
-84,"1","virtual_card_not_working","2026-07-23T02:45:03.526465Z",15,8.517,"Medium",8183,"Neutral","I can't use my virtual disposable card","2026-07-23T02:45:03.526483Z"
-85,"1","declined_transfer","2026-07-23T02:45:16.475241Z",16,12.831,"Medium",5653,"Neutral","please help me with this transfer, for some reason i can't transfer to a cryptocurency account","2026-07-23T02:45:16.475255Z"
-86,"1","pending_top_up","2026-07-23T02:45:24.026431Z",17,7.429,"Medium",2008,"Negative","Why is the top-up I made still pending.","2026-07-23T02:45:24.026445Z"
-87,"1","card_linking","2026-07-23T02:45:34.865092Z",18,10.719,"Low",254,"Neutral","I found my card that I thought I had lost, I need to reactive it, please help.","2026-07-23T02:45:34.865103Z"
-88,"1","declined_card_payment","2026-07-23T02:45:40.541558Z",19,5.542,"High",5878,"Negative","I was just shopping and my payment was declined in a store!  It was very embarrassing, what is going on and when will it be fixed?","2026-07-23T02:45:40.541573Z"
-89,"1","lost_or_stolen_card","2026-07-23T02:45:47.499443Z",20,6.835,"Low",1502,"Neutral","Are you able to guide me to my card's location?","2026-07-23T02:45:47.499458Z"
-90,"1","wrong_exchange_rate_for_cash_withdrawal","2026-07-23T02:45:53.673778Z",21,6.044,"Medium",8318,"Negative","The applied exchange rate is wrong for the cash I got abroad.","2026-07-23T02:45:53.673792Z"
-91,"1","card_payment_wrong_exchange_rate","2026-07-23T02:46:00.712157Z",22,6.918,"Medium",502,"Neutral","Please check the exchange rate for my payment last Saturday. I believe I have been overcharged.","2026-07-23T02:46:00.712169Z"
-92,"1","why_verify_identity","2026-07-23T02:46:07.122855Z",23,6.292,"Low",3785,"Neutral","which identity details are required","2026-07-23T02:46:07.122867Z"
-93,"1","verify_top_up","2026-07-23T02:46:18.026400Z",24,10.779,"Medium",7803,"Negative","why do i need to verify the top up?","2026-07-23T02:46:18.026415Z"
-94,"1","cash_withdrawal_not_recognised","2026-07-23T02:46:25.155762Z",25,7.008,"High",8851,"Neutral","I hope you can help me. Someone has stolen my wallet and now I have noticed that they have been taking money from my account.","2026-07-23T02:46:25.155776Z"
-95,"1","pin_blocked","2026-07-23T02:46:33.827458Z",26,8.552,"Low",1735,"Neutral","What should I do if I exceed my PIN tries?","2026-07-23T02:46:33.827467Z"
-96,"1","card_delivery_estimate","2026-07-23T02:46:40.861063Z",27,6.913,"Low",1057,"Neutral","How long will it take my card to get here?","2026-07-23T02:46:40.861077Z"
-97,"1","visa_or_mastercard","2026-07-23T02:46:44.880120Z",28,3.902,"Low",4109,"Neutral","I prefer mastercard.","2026-07-23T02:46:44.880131Z"
-98,"1","wrong_exchange_rate_for_cash_withdrawal","2026-07-23T02:46:57.048640Z",29,12.054,"Medium",8225,"Negative","Foreign currency rates were put in wrong at an ATM i used.","2026-07-23T02:46:57.048652Z"
-99,"1","terminate_account","2026-07-23T02:47:10.115649Z",30,12.933,"High",6173,"Neutral","I want to stop my account","2026-07-23T02:47:10.115661Z"
-100,"1","pending_cash_withdrawal","2026-07-23T02:47:23.225601Z",31,12.98,"Low",817,"Neutral","How long will it take for my cash withdrawal to stop pending","2026-07-23T02:47:23.225616Z"
-101,"1","cash_withdrawal_charge","2026-07-23T02:47:30.338101Z",32,6.992,"Low",9425,"Neutral","I received a fee for obtaining cash, is this correct?","2026-07-23T02:47:30.338113Z"
-102,"1","exchange_rate","2026-07-23T02:47:34.730757Z",33,4.268,"Low",392,"Neutral","How can I tell what foreign exchange rate I will get?","2026-07-23T02:47:34.730771Z"
-103,"1","pending_transfer","2026-07-23T02:47:40.395121Z",34,5.555,"Low",6007,"Neutral","How long do I have to wait for the transfer to be finalized?","2026-07-23T02:47:40.395141Z"
-104,"1","pending_card_payment","2026-07-23T02:47:46.361490Z",35,5.849,"Low",5152,"Neutral","My purchases from this morning are showing up as payment pending. Can you tell me why?","2026-07-23T02:47:46.361503Z"
-105,"1","country_support","2026-07-23T02:47:50.798700Z",36,4.322,"Low",9952,"Neutral","How many countries do you work in?","2026-07-23T02:47:50.798712Z"
-106,"1","atm_support","2026-07-23T02:47:59.859488Z",37,8.951,"Low",4564,"Neutral","Where can money withdrawals be made?","2026-07-23T02:47:59.859504Z"
-107,"1","get_disposable_virtual_card","2026-07-23T02:48:04.249460Z",38,4.27,"Low",8454,"Neutral","How do I know if i need a disposable card?","2026-07-23T02:48:04.249497Z"
-108,"1","top_up_by_cash_or_cheque","2026-07-23T02:48:10.017589Z",39,5.638,"Low",7975,"Neutral","How do you top up with a cheque?","2026-07-23T02:48:10.017603Z"
-109,"1","receiving_money","2026-07-23T02:48:14.149022Z",40,4.008,"Low",7349,"Neutral","How can I receive my salary with a different currency?","2026-07-23T02:48:14.149036Z"
-110,"1","wrong_exchange_rate_for_cash_withdrawal","2026-07-23T02:48:19.266028Z",41,5.003,"Medium",8367,"Negative","I withdrew cash abroad and the exchange rate applied is wrong.","2026-07-23T02:48:19.266049Z"
-111,"1","automatic_top_up","2026-07-23T02:48:30.737715Z",42,11.341,"Low",1129,"Neutral","How do I access the option to top up?","2026-07-23T02:48:30.737727Z"
-112,"1","lost_or_stolen_card","2026-07-23T02:48:36.931253Z",43,6.068,"High",1499,"Neutral","I think my card is stolen!","2026-07-23T02:48:36.931265Z"
-113,"1","transaction_charged_twice","2026-07-23T02:48:41.355389Z",44,4.293,"High",6369,"Negative","I was charged several times for something","2026-07-23T02:48:41.355405Z"
-114,"1","card_not_working","2026-07-23T02:48:51.622509Z",45,10.144,"Medium",1340,"Negative","I am having problems with my physical card.","2026-07-23T02:48:51.622527Z"
-115,"1","top_up_by_card_charge","2026-07-23T02:48:55.592612Z",46,3.846,"Low",9127,"Neutral","Is it free for top ups?","2026-07-23T02:48:55.592625Z"
-116,"1","atm_support","2026-07-23T02:48:58.616070Z",47,2.904,"Low",4580,"Neutral","Where is the nearest Mastercard ATM?","2026-07-23T02:48:58.616081Z"
-117,"1","wrong_amount_of_cash_received","2026-07-23T02:49:07.612622Z",48,8.879,"High",2442,"Negative","The ATM shows a withdraw of the amount of money I requested but I didn't revieve that amount in cash.","2026-07-23T02:49:07.612637Z"
-118,"1","balance_not_updated_after_cheque_or_cash_deposit","2026-07-23T02:49:12.011117Z",49,4.264,"Low",3332,"Neutral","What happens if I deposit a cheque accidentally?","2026-07-23T02:49:12.011135Z"
-119,"1","card_payment_wrong_exchange_rate","2026-07-23T02:49:17.140283Z",50,5.007,"High",523,"Negative","I have been charged to much for the object I bought when abroad, the exchange rate seems to be wrong.","2026-07-23T02:49:17.140296Z"
-120,"1","failed_transfer","2026-07-23T02:49:23.178203Z",51,5.913,"Medium",7463,"Neutral","please help my transfer go through","2026-07-23T02:49:23.178218Z"
-121,"1","fiat_currency_support","2026-07-23T02:49:27.739340Z",52,4.436,"Low",939,"Neutral","What currencies can I exchange?","2026-07-23T02:49:27.739355Z"
-122,"1","declined_card_payment","2026-07-23T02:49:35.723382Z",53,7.859,"Medium",5972,"Neutral","My card payment wasn't declined","2026-07-23T02:49:35.723394Z"
-123,"1","age_limit","2026-07-23T02:49:40.540372Z",54,4.677,"Low",1560,"Neutral","Can my children open an account?","2026-07-23T02:49:40.540387Z"
-124,"1","cash_withdrawal_not_recognised","2026-07-23T02:49:47.157598Z",55,6.491,"High",8784,"Negative","I looked on the app and it says I withdrew cash.  I didn't!","2026-07-23T02:49:47.157612Z"
-125,"1","pending_cash_withdrawal","2026-07-23T02:49:58.755974Z",56,11.475,"Medium",844,"Negative","Is there any reason my cash withdrawal still shows as pending?","2026-07-23T02:49:58.755986Z"
-126,"1","balance_not_updated_after_bank_transfer","2026-07-23T02:50:10.838516Z",57,11.961,"Low",8701,"Neutral","How long do transfers from a local bank account usually take for you? I just made a transfer and I'm not seeing anything, wondering if it worked","2026-07-23T02:50:10.838532Z"
-127,"1","card_delivery_estimate","2026-07-23T02:50:15.777503Z",58,4.813,"Low",1078,"Neutral","How long does it take for cards to be delivered after ordering them?","2026-07-23T02:50:15.777518Z"
-128,"1","disposable_card_limits","2026-07-23T02:50:20.178679Z",59,4.281,"Low",4418,"Neutral","How many disposable cards can you own?","2026-07-23T02:50:20.178697Z"
-129,"1","verify_top_up","2026-07-23T02:50:26.567009Z",60,6.275,"Low",7785,"Neutral","Where is the top-up verification code sent?","2026-07-23T02:50:26.567027Z"
-130,"1","declined_transfer","2026-07-23T02:50:34.117742Z",61,7.417,"High",5598,"Negative","Hello. My credit keeps being declined, last night and again today, as I try to buy something. What is the status of my card?","2026-07-23T02:50:34.117756Z"
-131,"1","extra_charge_on_statement","2026-07-23T02:50:37.915180Z",62,3.669,"Low",736,"Neutral","An extra fee of €1 was in my statement","2026-07-23T02:50:37.915194Z"
-132,"1","declined_cash_withdrawal","2026-07-23T02:50:45.363580Z",63,7.316,"Medium",5021,"Neutral","Hi, I am unable to use my card in ATM. I had tried my card in two ATMs but both ATMs declined it. Could you please check my account?","2026-07-23T02:50:45.363595Z"
-133,"1","pending_card_payment","2026-07-23T02:50:50.432148Z",64,4.937,"Low",5122,"Neutral","How is my card payment still pending?","2026-07-23T02:50:50.432159Z"
-134,"1","failed_transfer","2026-07-23T02:50:56.649096Z",65,6.085,"High",7491,"Neutral","Why do my transfers keep failing?","2026-07-23T02:50:56.649113Z"
-135,"1","why_verify_identity","2026-07-23T02:51:00.224476Z",66,3.444,"Low",3886,"Neutral","Is verifying my identify important?","2026-07-23T02:51:00.224487Z"
-136,"1","verify_top_up","2026-07-23T02:51:04.234527Z",67,3.887,"Low",7743,"Neutral","Where is the top-up verification code?","2026-07-23T02:51:04.234541Z"
-137,"1","atm_support","2026-07-23T02:51:08.541369Z",68,4.166,"Low",4588,"Neutral","Can I get money out of any machine?","2026-07-23T02:51:08.541384Z"
-138,"1","exchange_rate","2026-07-23T02:51:16.573262Z",69,7.908,"Low",395,"Neutral","How does the exchange rate work on this app?","2026-07-23T02:51:16.573277Z"
-139,"1","getting_virtual_card","2026-07-23T02:51:24.111213Z",70,7.411,"Low",3056,"Neutral","I want one of the virtual cards!","2026-07-23T02:51:24.111228Z"
-140,"1","transfer_into_account","2026-07-23T02:51:35.498237Z",71,11.267,"Low",7668,"Neutral","How can I transfer money to this account from another bank?","2026-07-23T02:51:35.498254Z"
-141,"1","request_refund","2026-07-23T02:51:43.225741Z",72,7.594,"Medium",5484,"Neutral","I need to refund my item, can you please help?","2026-07-23T02:51:43.225753Z"
-142,"1","wrong_amount_of_cash_received","2026-07-23T02:52:01.434293Z",73,18.072,"Medium",2506,"Neutral","So I just went to the ATM to get some cash.  I input that I needed Rs 100,000 but I only got Rs 80,000.  I have the receipt  and I am in need of the extra money.  How do I go about obtaining the missing amount?","2026-07-23T02:52:01.434311Z"
-143,"1","exchange_charge","2026-07-23T02:52:06.170855Z",74,4.607,"Low",8971,"Neutral","Is there a pay structure for currency exchanges?","2026-07-23T02:52:06.170868Z"
-144,"1","declined_cash_withdrawal","2026-07-23T02:52:17.695789Z",75,11.394,"Medium",4973,"Neutral","My ATM card isn't working for a withdrawl","2026-07-23T02:52:17.695802Z"
-145,"1","supported_cards_and_currencies","2026-07-23T02:52:21.756499Z",76,3.925,"Low",2903,"Neutral","I want to use a payment card to top up my account. How can I do this?","2026-07-23T02:52:21.756510Z"
-146,"1","get_physical_card","2026-07-23T02:52:26.416207Z",77,4.535,"Medium",4005,"Neutral","My pin isn't here yet","2026-07-23T02:52:26.416224Z"
-147,"1","beneficiary_not_allowed","2026-07-23T02:52:32.254742Z",78,5.711,"Low",7152,"Neutral","is a transfer to a beneficiary allowed?","2026-07-23T02:52:32.254758Z"
-148,"1","pending_transfer","2026-07-23T02:52:39.882538Z",79,7.503,"Medium",6106,"Neutral","How long does EU transfer take? I bought something online a couple days ago , sent the money immediately online but the seller says it is still not there yet","2026-07-23T02:52:39.882550Z"
-149,"1","declined_cash_withdrawal","2026-07-23T02:52:49.481093Z",80,9.466,"High",5074,"Neutral","I think I am having an issue with withdraws on my card. It was declined on the way to work this morning. This hasn't happened in the past.","2026-07-23T02:52:49.481105Z"
-150,"1","atm_support","2026-07-23T02:52:54.023731Z",81,4.41,"Low",4620,"Neutral","How far is the closest ATM from me?","2026-07-23T02:52:54.023742Z"
-151,"1","card_acceptance","2026-07-23T02:53:04.041388Z",82,9.895,"Low",3111,"Neutral","Do you know which businesses will accept my card?","2026-07-23T02:53:04.041402Z"
-152,"1","card_about_to_expire","2026-07-23T02:53:10.999974Z",83,6.836,"Low",9558,"Neutral","How do I order a new card? The current one is about to expire.","2026-07-23T02:53:10.999992Z"
-154,"1","top_up_by_bank_transfer_charge","2026-07-23T02:53:32.618988Z",84,13.527000000000001,"Low",1926,"Neutral","Do you process SWIFT transfers?","2026-07-23T02:53:32.619003Z"
-155,"1","balance_not_updated_after_cheque_or_cash_deposit","2026-07-23T02:53:44.908111Z",85,12.162,"Medium",3442,"Neutral","Why is the check I deposited this morning not showing up?","2026-07-23T02:53:44.908126Z"
-156,"1","unable_to_verify_identity","2026-07-23T02:53:49.491981Z",86,4.445,"Low",3993,"Neutral","What do I need to bring for identification?","2026-07-23T02:53:49.491995Z"
-157,"1","getting_spare_card","2026-07-23T02:53:54.115031Z",87,4.499,"Low",7846,"Neutral","What is the procedure for me to get more cards on my account?","2026-07-23T02:53:54.115045Z"
-158,"1","transfer_not_received_by_recipient","2026-07-23T02:53:58.798276Z",88,4.552,"Medium",2783,"Neutral","Why hasn't my friend received the transaction?","2026-07-23T02:53:58.798288Z"
-159,"1","extra_charge_on_statement","2026-07-23T02:54:04.009705Z",89,5.076,"High",657,"Negative","I am being charged Rs 10 out of nowhere. What is this?","2026-07-23T02:54:04.009717Z"
-160,"1","wrong_amount_of_cash_received","2026-07-23T02:54:10.600529Z",90,6.464,"Low",2468,"Neutral","I wanted to take out Rs 100,000 but I only got Rs 20,000.","2026-07-23T02:54:10.600543Z"
-161,"1","transaction_charged_twice","2026-07-23T02:54:15.424482Z",91,4.712,"Medium",6332,"Neutral","I have a duplicate charge","2026-07-23T02:54:15.424499Z"
-162,"1","top_up_by_cash_or_cheque","2026-07-23T02:54:19.399540Z",92,3.854,"Low",7938,"Neutral","How do I top up with a cheque?","2026-07-23T02:54:19.399559Z"
-163,"1","age_limit","2026-07-23T02:54:23.357495Z",93,3.822,"Low",1628,"Neutral","What is your age limit?","2026-07-23T02:54:23.357509Z"
-164,"1","country_support","2026-07-23T02:54:26.815049Z",94,3.334,"Low",9888,"Neutral","Which countries do you operate in","2026-07-23T02:54:26.815063Z"
-165,"1","get_disposable_virtual_card","2026-07-23T02:54:31.527722Z",95,4.583,"Low",8440,"Neutral","Can you tell me what the disposable cards are used for?","2026-07-23T02:54:31.527736Z"
-166,"1","transfer_fee_charged","2026-07-23T02:54:38.378035Z",96,6.714,"Low",7200,"Negative","Why are you charging me a transfer fee?","2026-07-23T02:54:38.378049Z"
-167,"1","card_payment_fee_charged","2026-07-23T02:54:45.091378Z",97,6.594,"Low",2613,"Neutral","I was charged a hidden fee when I paid with card.","2026-07-23T02:54:45.091395Z"
-168,"1","getting_virtual_card","2026-07-23T02:54:48.995316Z",98,3.781,"Low",3052,"Neutral","How long will it take to receive a virtual card?","2026-07-23T02:54:48.995327Z"
-169,"1","direct_debit_payment_not_recognised","2026-07-23T02:54:57.148391Z",99,8.032,"Medium",4637,"Neutral","There is a strange charge on my debit statement","2026-07-23T02:54:57.148405Z"
-170,"1","balance_not_updated_after_cheque_or_cash_deposit","2026-07-23T02:55:01.812255Z",100,4.527,"Medium",3397,"Neutral","After I deposited my cash, I still don't see it in my account.","2026-07-23T02:55:01.812269Z"
-171,"1","activate_my_card","2026-07-23T02:55:06.441299Z",101,4.512,"Low",9201,"Neutral","Can I call to get my card activated?","2026-07-23T02:55:06.441313Z"
-172,"1","pending_cash_withdrawal","2026-07-23T02:55:16.031253Z",102,9.468,"Medium",747,"Negative","My account shows up as pending after I received cash from the ATM earlier.  How can this be still pending? I've got the cash already.","2026-07-23T02:55:16.031271Z"
-173,"1","topping_up_by_card","2026-07-23T02:55:23.595291Z",103,7.43,"Low",4336,"Neutral","Why is my 'top up' not showing up in my wallet?","2026-07-23T02:55:23.595306Z"
-174,"1","top_up_failed","2026-07-23T02:55:29.732266Z",104,6.015,"Medium",8581,"Negative","I don't know why my credit card was declined while I was trying to top-up. Was it something on my end or was there something wrong with the top-up function?","2026-07-23T02:55:29.732281Z"
-175,"1","transfer_timing","2026-07-23T02:55:36.678223Z",105,6.796,"Low",6603,"Neutral","How long will this transfer from overseas take?","2026-07-23T02:55:36.678238Z"
-176,"1","contactless_not_working","2026-07-23T02:55:43.824731Z",106,6.996,"Low",1815,"Neutral","I am having issues using contactless payments, could my card be damaged?","2026-07-23T02:55:43.824744Z"
-177,"1","unable_to_verify_identity","2026-07-23T02:55:47.897714Z",107,3.949,"Low",3950,"Neutral","What should I do if I can't prove my identity.","2026-07-23T02:55:47.897725Z"
-178,"1","edit_personal_details","2026-07-23T02:55:50.993816Z",108,2.979,"Low",3715,"Neutral","Since I got married, I need to change my name.","2026-07-23T02:55:50.993830Z"
-179,"1","contactless_not_working","2026-07-23T02:55:55.869654Z",109,4.753,"Low",1793,"Neutral","Can I make a contactless payments?","2026-07-23T02:55:55.869719Z"
-180,"1","beneficiary_not_allowed","2026-07-23T02:56:07.924684Z",110,11.912,"Medium",7016,"Neutral","My transfer to an account failed.","2026-07-23T02:56:07.924700Z"
-181,"1","automatic_top_up","2026-07-23T02:56:11.521912Z",111,3.476,"Low",1240,"Neutral","My funds are low, can I auto top up?","2026-07-23T02:56:11.521927Z"
-182,"1","card_about_to_expire","2026-07-23T02:56:15.780939Z",112,4.129,"Low",9568,"Neutral","I need to order a new card as my old one will expire soon. Can you tell me how to order a new one?","2026-07-23T02:56:15.780954Z"
-183,"1","Refund_not_showing_up","2026-07-23T02:56:21.384003Z",113,5.489,"Medium",5680,"Neutral","I need my refund","2026-07-23T02:56:21.384019Z"
-184,"1","exchange_charge","2026-07-23T02:56:25.370518Z",114,3.855,"Low",8960,"Neutral","How much will I be charged for a cross-currency exchange?","2026-07-23T02:56:25.370531Z"
-185,"1","fiat_currency_support","2026-07-23T02:56:28.910820Z",115,3.41,"Low",889,"Neutral","Are EUR exchanges allowed?","2026-07-23T02:56:28.910834Z"
-186,"1","verify_source_of_funds","2026-07-23T02:56:33.755262Z",116,4.723,"Low",6489,"Neutral","who can put money in my account?","2026-07-23T02:56:33.755278Z"
-187,"1","card_delivery_estimate","2026-07-23T02:56:39.060598Z",117,5.159,"Low",1097,"Neutral","I would like to make sure it is delivered on a certain date.","2026-07-23T02:56:39.060612Z"
-188,"1","pending_top_up","2026-07-23T02:56:45.286737Z",118,6.092,"Medium",2029,"Negative","How long is a top up supposed to be pending, because an hour is too long! Can you fix this to go through?","2026-07-23T02:56:45.286749Z"
-189,"1","top_up_by_bank_transfer_charge","2026-07-23T02:56:49.509852Z",119,4.101,"Low",1850,"Neutral","Is there a fee to make a transfer?","2026-07-23T02:56:49.509864Z"
-190,"1","age_limit","2026-07-23T02:56:53.175296Z",120,3.547,"Low",1621,"Neutral","Is there a limit for age?","2026-07-23T02:56:53.175311Z"
-191,"1","virtual_card_not_working","2026-07-23T02:57:03.470526Z",121,10.167,"Low",8204,"Neutral","What do I do if my disposable virtual card doesn't work?","2026-07-23T02:57:03.470542Z"
-192,"1","transfer_fee_charged","2026-07-23T02:57:59.432561Z",122,55.834,"Low",7265,"Neutral","I made a transfer and according to the receiver ""they haven't received the right amount"" Its lesser than it should be.Now I have to transfer more money to make up for the missing amount . Can you please help me about this,what should be done","2026-07-23T02:57:59.432577Z"
-193,"1","card_swallowed","2026-07-23T02:58:10.250533Z",123,10.703,"High",6252,"Neutral","I can't get my card out of the ATM, what should I do now?","2026-07-23T02:58:10.250551Z"
-194,"1","Refund_not_showing_up","2026-07-23T02:58:15.831346Z",124,5.451,"Low",5700,"Neutral","When will my returned transaction show up on my account?","2026-07-23T02:58:15.831362Z"
-195,"1","failed_transfer","2026-07-23T02:58:22.372376Z",125,6.405,"Medium",7476,"Neutral","Why can I not make a transfer?","2026-07-23T02:58:22.372391Z"
-196,"1","Refund_not_showing_up","2026-07-23T02:58:33.892612Z",126,11.392,"Medium",5709,"Neutral","I requested a refund from a merchant several days ago, but don't see anything showing up in my account yet.  Can you check on your end to see if the money has reached you guys?","2026-07-23T02:58:33.892626Z"
-197,"1","getting_virtual_card","2026-07-23T02:58:37.897259Z",127,3.849,"Low",2998,"Neutral","I would like to order a virtual card, where can I get one?","2026-07-23T02:58:37.897272Z"
-198,"1","request_refund","2026-07-23T02:58:46.023664Z",128,7.993,"Medium",5466,"Negative","It has been forever ago that I made an order online. The product simply is not coming. Just give me back my money because I'm not paying these people.","2026-07-23T02:58:46.023679Z"
-199,"1","lost_or_stolen_card","2026-07-23T02:58:56.480879Z",129,10.332,"High",1546,"Neutral","I think my wallet fell out on the Tube today! I realized as soon as I got to my desk. How do I cut off the card?","2026-07-23T02:58:56.480896Z"
-200,"1","top_up_limits","2026-07-23T02:59:01.708719Z",130,5.092,"Low",2248,"Neutral","What is the greatest number of times that I can top-up?","2026-07-23T02:59:01.708736Z"
-201,"1","supported_cards_and_currencies","2026-07-23T02:59:08.776571Z",131,6.944,"Low",2896,"Neutral","why don't you accept american express for adding money to my account","2026-07-23T02:59:08.776586Z"
-202,"1","transfer_fee_charged","2026-07-23T02:59:14.351971Z",132,5.454,"Low",7319,"Neutral","Why did I get charged a fee for my transfer?","2026-07-23T02:59:14.351984Z"
-203,"1","get_disposable_virtual_card","2026-07-23T02:59:17.194807Z",133,2.71,"Low",8377,"Neutral","Why use a disposable card?","2026-07-23T02:59:17.194822Z"
-204,"1","lost_or_stolen_phone","2026-07-23T02:59:21.984570Z",134,4.64,"Low",5325,"Neutral","What should I do if my phone is lost or stolen?","2026-07-23T02:59:21.984585Z"
-205,"1","transfer_timing","2026-07-23T02:59:28.737744Z",135,6.621,"High",6650,"Neutral","I need to transfer something to China. It is urgent. How many days will it take to get there?","2026-07-23T02:59:28.737759Z"
-206,"1","passcode_forgotten","2026-07-23T02:59:34.058076Z",136,5.192,"Medium",4879,"Neutral","Help! I've forgot my app passcode!","2026-07-23T02:59:34.058090Z"
-207,"1","card_about_to_expire","2026-07-23T02:59:42.450618Z",137,8.266,"Medium",9605,"Neutral","I have a card that expires in the coming month, do I have to specifically ask for the updated card?","2026-07-23T02:59:42.450633Z"
-208,"1","card_swallowed","2026-07-23T02:59:50.885762Z",138,8.307,"Medium",6300,"Neutral","How do I get my card back after the ATM swallowed it.","2026-07-23T02:59:50.885775Z"
-209,"1","declined_card_payment","2026-07-23T02:59:55.770662Z",139,4.753,"Low",5957,"Neutral","I keep trying to make a payment, but it doesn't work.","2026-07-23T02:59:55.770681Z"
-210,"1","disposable_card_limits","2026-07-23T03:00:00.913048Z",140,5.014,"Low",4346,"Neutral","Is there a limit on the number of times I can use a disposable card?","2026-07-23T03:00:00.913059Z"
-211,"1","top_up_limits","2026-07-23T03:00:03.690595Z",141,2.659,"Low",2235,"Neutral","Are top-ups unlimited?","2026-07-23T03:00:03.690610Z"
-212,"1","supported_cards_and_currencies","2026-07-23T03:00:06.833280Z",142,3.019,"Low",2936,"Neutral","What are my payment options?","2026-07-23T03:00:06.833298Z"
-213,"1","transfer_not_received_by_recipient","2026-07-23T03:00:16.314480Z",143,9.345,"High",2738,"Neutral","How long do transfers typically take? Is there a way of speeding the process up? My friend needs the money I sent her desperately.","2026-07-23T03:00:16.314497Z"
-214,"1","top_up_by_card_charge","2026-07-23T03:00:22.055504Z",144,5.608,"Low",9097,"Neutral","Will I see fees from adding money with an international card?","2026-07-23T03:00:22.055519Z"
-215,"1","cash_withdrawal_not_recognised","2026-07-23T03:00:27.532014Z",145,5.347,"High",8824,"Negative","The app says I made a cash withdrawal even though I didn't.","2026-07-23T03:00:27.532029Z"
-216,"1","card_acceptance","2026-07-23T03:00:31.507612Z",146,3.84,"Low",3106,"Neutral","Will this card work all over the world?","2026-07-23T03:00:31.507627Z"
-217,"1","balance_not_updated_after_cheque_or_cash_deposit","2026-07-23T03:00:35.721284Z",147,4.074,"Medium",3438,"Neutral","I deposited cash this morning, but it is not yet available.","2026-07-23T03:00:35.721294Z"
-218,"1","atm_support","2026-07-23T03:00:39.631679Z",148,3.784,"Low",4545,"Neutral","I can use this card at which ATMs?","2026-07-23T03:00:39.631696Z"
-219,"1","beneficiary_not_allowed","2026-07-23T03:00:47.756952Z",149,7.986,"Low",7022,"Neutral","I got a message that I cannot name X as a beneficiary.","2026-07-23T03:00:47.756967Z"
-220,"1","verify_source_of_funds","2026-07-23T03:00:52.108472Z",150,4.229,"Low",6516,"Neutral","where can I see who sent me funds","2026-07-23T03:00:52.108491Z"
-221,"1","reverted_card_payment?","2026-07-23T03:01:15.759537Z",151,23.527,"Medium",6863,"Neutral","Around one or two weeks ago I purchased something but there's seems to be an issue. I have already received one of the items, but today the money was placed back into my account. What is happening?","2026-07-23T03:01:15.759548Z"
-222,"1","edit_personal_details","2026-07-23T03:01:19.371984Z",152,3.457,"Low",3659,"Neutral","I moved to a new city and need to change my address","2026-07-23T03:01:19.372001Z"
-223,"1","card_payment_fee_charged","2026-07-23T03:01:22.498152Z",153,2.996,"Low",2546,"Neutral","Is there a fee for paying by card?","2026-07-23T03:01:22.498169Z"
-224,"1","declined_cash_withdrawal","2026-07-23T03:01:26.000597Z",154,3.354,"Low",5027,"Neutral","Why can I not get cash from the ATM?","2026-07-23T03:01:26.000613Z"
-225,"1","transfer_timing","2026-07-23T03:01:29.176109Z",155,3.042,"Low",6691,"Neutral","How long will it take to transfer from overseas?","2026-07-23T03:01:29.176126Z"
-226,"1","transaction_charged_twice","2026-07-23T03:01:37.884631Z",156,8.559,"High",6480,"Neutral","Hello. I just noticed I was charged two times for a restaurant I visited this week. Can you reverse the additional charge?","2026-07-23T03:01:37.884649Z"
-227,"1","visa_or_mastercard","2026-07-23T03:01:41.375655Z",157,3.359,"Low",4180,"Neutral","What type of card can I get?","2026-07-23T03:01:41.375671Z"
-228,"1","terminate_account","2026-07-23T03:01:46.925023Z",158,5.429,"High",6180,"Negative","I hate this company! Can you delete my account?","2026-07-23T03:01:46.925037Z"
-229,"1","card_swallowed","2026-07-23T03:01:53.656794Z",159,6.606,"Medium",6245,"Neutral","What do I do if the ATM took my card?","2026-07-23T03:01:53.656812Z"
-230,"1","terminate_account","2026-07-23T03:01:57.171460Z",160,3.393,"High",6228,"Negative","This is terrible, i want to delete my account","2026-07-23T03:01:57.171478Z"
-231,"1","contactless_not_working","2026-07-23T03:02:03.231829Z",161,5.931,"Medium",1785,"Neutral","My contactless payments don't work.","2026-07-23T03:02:03.231847Z"
-232,"1","extra_charge_on_statement","2026-07-23T03:02:08.570100Z",162,5.211,"Low",584,"Neutral","I have been charged Rs 10 for something that appears on my statement","2026-07-23T03:02:08.570119Z"
-233,"1","cash_withdrawal_not_recognised","2026-07-23T03:02:13.714510Z",163,5.013,"High",8900,"Neutral","There's a cash withdrawal I am certain I did not make","2026-07-23T03:02:13.714525Z"
-234,"1","getting_spare_card","2026-07-23T03:02:18.925998Z",164,5.076,"Low",7927,"Neutral","I need two cards. Is this possible?","2026-07-23T03:02:18.926012Z"
-235,"1","topping_up_by_card","2026-07-23T03:02:21.977215Z",165,2.926,"Low",4281,"Neutral","i need to top up by card.","2026-07-23T03:02:21.977230Z"
-236,"1","card_linking","2026-07-23T03:02:25.920338Z",166,3.823,"Low",220,"Neutral","I've obtained the card, how do I enable it on the app?","2026-07-23T03:02:25.920350Z"
-237,"1","beneficiary_not_allowed","2026-07-23T03:02:32.288723Z",167,6.239,"Medium",7097,"Neutral","Why is this beneficiary being rejected?","2026-07-23T03:02:32.288735Z"
-238,"1","topping_up_by_card","2026-07-23T03:02:35.486509Z",168,3.072,"Low",4240,"Neutral","How can my friends top up my account?","2026-07-23T03:02:35.486520Z"
-239,"1","transfer_into_account","2026-07-23T03:02:41.233867Z",169,5.616,"Low",7667,"Neutral","How can I go about transferring money to my account?","2026-07-23T03:02:41.233881Z"
-240,"1","Refund_not_showing_up","2026-07-23T03:02:49.295532Z",170,7.928,"Low",5731,"Neutral","I was supposed to get a refund but I do not see it on my statement. When is it going to be updated?","2026-07-23T03:02:49.295540Z"
-241,"1","top_up_failed","2026-07-23T03:02:56.007674Z",171,6.59,"Medium",8609,"Negative","Was there a problem with topping up?","2026-07-23T03:02:56.007683Z"
-242,"1","country_support","2026-07-23T03:03:00.176619Z",172,4.041,"Low",9935,"Neutral","Can I get a card if I don't reside in Sri Lanka?","2026-07-23T03:03:00.176633Z"
-243,"1","pending_top_up","2026-07-23T03:03:05.110165Z",173,4.79,"Medium",1995,"Negative","Why hasn't my top up gone through?","2026-07-23T03:03:05.110180Z"
-244,"1","card_payment_not_recognised","2026-07-23T03:03:10.471500Z",174,18.682000000000002,"High",3510,"Neutral","What is this strange payment in my account?","2026-07-23T03:03:30.122969Z"
-245,"1","country_support","2026-07-23T03:03:37.709740Z",175,9.888,"Low",9894,"Neutral","What countries do your accounts send and receive to?","2026-07-23T03:03:37.709755Z"
-246,"1","declined_card_payment","2026-07-23T03:03:47.161558Z",176,9.295,"Medium",5868,"Negative","My payment has been declined!! What's going on, I thought everything was alright and working well?","2026-07-23T03:03:47.161573Z"
-247,"1","order_physical_card","2026-07-23T03:03:51.025477Z",177,3.724,"Low",8108,"Neutral","Where do you export the cards to?","2026-07-23T03:03:51.025492Z"
-248,"1","card_linking","2026-07-23T03:03:58.815822Z",178,7.664,"Medium",188,"Neutral","I want to reactivate my card, I thought I had lost it but found it again this morning.","2026-07-23T03:03:58.815836Z"
-249,"1","failed_transfer","2026-07-23T03:04:11.911975Z",179,12.956,"Medium",7542,"Neutral","Hi, can you tell me why my transfer keeps being rejected? I've been trying to send money to my friends this morning but failed every time and I have no idea why?","2026-07-23T03:04:11.911986Z"
-250,"1","apple_pay_or_google_pay","2026-07-23T03:04:16.659206Z",180,4.61,"Low",9735,"Neutral","Can an apple watch be used to tup-up?","2026-07-23T03:04:16.659216Z"
-251,"1","balance_not_updated_after_bank_transfer","2026-07-23T03:04:21.858420Z",181,5.06,"Medium",8730,"Neutral","Why hasn't the money I transferred into my account shown up yet?","2026-07-23T03:04:21.858435Z"
-252,"1","top_up_by_bank_transfer_charge","2026-07-23T03:04:25.246070Z",182,3.263,"Low",1904,"Neutral","Does it cost me to add cash?","2026-07-23T03:04:25.246087Z"
-253,"1","top_up_reverted","2026-07-23T03:04:38.620454Z",183,13.23,"Medium",3192,"Negative","Did you lose my money? I had added funds through top-up not long ago and I know they were in my account, but they seem to have disappeared. What happened?","2026-07-23T03:04:38.620466Z"
-254,"1","pin_blocked","2026-07-23T03:04:47.416021Z",184,8.665,"Medium",1725,"Neutral","I managed to drunken block my card :(( Help!","2026-07-23T03:04:47.416037Z"
-255,"1","reverted_card_payment?","2026-07-23T03:04:51.226641Z",185,3.672,"Medium",6878,"Neutral","My payment was stopped","2026-07-23T03:04:51.226655Z"
-256,"1","top_up_by_cash_or_cheque","2026-07-23T03:04:55.030816Z",186,3.683,"Low",7968,"Neutral","What apps can I use to top up my account?","2026-07-23T03:04:55.030834Z"
-257,"1","pending_transfer","2026-07-23T03:04:59.562186Z",187,4.327,"Medium",6065,"Negative","I am still waiting for a transfer to show","2026-07-23T03:04:59.562199Z"
-258,"1","order_physical_card","2026-07-23T03:05:03.351973Z",188,3.65,"Low",8164,"Neutral","What fees are charged for a physical card?","2026-07-23T03:05:03.351985Z"
-259,"1","exchange_via_app","2026-07-23T03:05:08.170606Z",189,4.671,"Low",1402,"Neutral","I need to exchange my LKR to USD, how would I do this?","2026-07-23T03:05:08.170621Z"
-260,"1","cancel_transfer","2026-07-23T03:05:12.969324Z",190,4.665,"High",2174,"Neutral","I made a mistake when making my last transfer, please cancel before it goes thru.","2026-07-23T03:05:12.969336Z"
-261,"1","top_up_limits","2026-07-23T03:05:17.831938Z",191,4.731,"Low",2243,"Neutral","How much is ok for me to top up with?","2026-07-23T03:05:17.831956Z"
-262,"1","top_up_reverted","2026-07-23T03:05:21.791147Z",192,3.823,"Low",3164,"Neutral","I believe my top up was reverted.","2026-07-23T03:05:21.791165Z"
-263,"1","top_up_by_card_charge","2026-07-23T03:05:25.324003Z",193,3.402,"Low",9173,"Neutral","Is there a fee for adding funds with a credit card?","2026-07-23T03:05:25.324016Z"
-264,"1","balance_not_updated_after_bank_transfer","2026-07-23T03:05:30.584397Z",194,5.134,"Medium",8680,"Neutral","Why hasn't my money transfer shown up yet?","2026-07-23T03:05:30.584412Z"
-265,"1","get_disposable_virtual_card","2026-07-23T03:05:34.201706Z",195,3.479,"Low",8383,"Neutral","How can I create a disposable virtual card?","2026-07-23T03:05:34.201719Z"
-266,"1","getting_spare_card","2026-07-23T03:05:37.417656Z",196,3.082,"Low",7819,"Neutral","Can I have more physical cards?","2026-07-23T03:05:37.417671Z"
-267,"1","activate_my_card","2026-07-23T03:05:42.637794Z",197,5.072,"Low",9318,"Neutral","What steps do I have to go through in order to activate my new card?","2026-07-23T03:05:42.637812Z"
-268,"1","unable_to_verify_identity","2026-07-23T03:05:47.546588Z",198,4.779,"Low",3931,"Neutral","The app does not recognize who I am.","2026-07-23T03:05:47.546602Z"
-269,"1","card_delivery_estimate","2026-07-23T03:05:52.440723Z",199,4.773,"High",1046,"Neutral","When will my card come? I need it as soon as possible!","2026-07-23T03:05:52.440737Z"
-270,"1","reverted_card_payment?","2026-07-23T03:05:59.918037Z",200,7.354,"Medium",6798,"Neutral","Card payment has be declined.","2026-07-23T03:05:59.918049Z"
-271,"1","change_pin","2026-07-23T03:06:02.818925Z",201,2.764,"Low",6994,"Neutral","Can I change my card PIN?","2026-07-23T03:06:02.818937Z"
-272,"1","transfer_timing","2026-07-23T03:06:06.424031Z",202,3.473,"Low",6645,"Neutral","How long does it take overseas to do a transfer?","2026-07-23T03:06:06.424047Z"
-273,"1","request_refund","2026-07-23T03:06:12.323002Z",203,5.77,"Low",5511,"Neutral","Are purchases returnable for full refund?","2026-07-23T03:06:12.323018Z"
-274,"1","fiat_currency_support","2026-07-23T03:06:16.896442Z",204,4.445,"Low",991,"Neutral","Is my fiat currency supported for both hold and exchange?","2026-07-23T03:06:16.896456Z"
-275,"1","receiving_money","2026-07-23T03:06:20.224080Z",205,3.187,"Low",7341,"Neutral","How can my friend send money to me?","2026-07-23T03:06:20.224091Z"
-276,"1","transfer_into_account","2026-07-23T03:06:26.106000Z",206,5.756,"Low",7568,"Neutral","I have an account that is empty of funds. Can I transfer some from another bank?","2026-07-23T03:06:26.106016Z"
-277,"1","card_about_to_expire","2026-07-23T03:06:32.234786Z",207,5.988,"Low",9609,"Neutral","Do I need to re-apply to order a new card when my old one's about to expire?","2026-07-23T03:06:32.234835Z"
-278,"1","apple_pay_or_google_pay","2026-07-23T03:06:35.322403Z",208,2.957,"Low",9727,"Neutral","Am I able to do top-ups with Google Pay?","2026-07-23T03:06:35.322415Z"
-279,"1","unable_to_verify_identity","2026-07-23T03:06:38.465289Z",209,3.012,"Low",3920,"Neutral","I'm not able to verify my identity.","2026-07-23T03:06:38.465308Z"
-280,"1","card_acceptance","2026-07-23T03:06:41.659898Z",210,3.065,"Low",3120,"Neutral","Where can my card be used?","2026-07-23T03:06:41.659914Z"
-281,"1","top_up_failed","2026-07-23T03:06:44.263758Z",211,2.479,"Low",8501,"Neutral","What reasons would a topup fail?","2026-07-23T03:06:44.263770Z"
-282,"1","why_verify_identity","2026-07-23T03:06:48.079378Z",212,3.676,"Low",3844,"Neutral","Am I able to use my account if the identity verification is not complete?","2026-07-23T03:06:48.079390Z"
-283,"1","exchange_charge","2026-07-23T03:06:52.941066Z",213,4.738,"Low",8979,"Neutral","How much do I have to pay to accept an international transfer?","2026-07-23T03:06:52.941081Z"
-284,"1","disposable_card_limits","2026-07-23T03:06:56.656601Z",214,3.586,"Low",4347,"Neutral","How many disposable cards am I allowed to have?","2026-07-23T03:06:56.656614Z"
-285,"1","top_up_by_card_charge","2026-07-23T03:06:59.574448Z",215,2.772,"Low",9146,"Neutral","What are the top-up fees for my card?","2026-07-23T03:06:59.574460Z"
-286,"1","card_payment_not_recognised","2026-07-23T03:07:03.589499Z",216,3.885,"High",3505,"Neutral","I don't recognize a purchase that was made with my card.","2026-07-23T03:07:03.589513Z"
-287,"1","card_payment_not_recognised","2026-07-23T03:07:07.968673Z",217,4.247,"High",3642,"Neutral","I have a charge I did not make.","2026-07-23T03:07:07.968686Z"
-288,"1","declined_transfer","2026-07-23T03:07:14.840069Z",218,6.736,"Medium",5673,"Neutral","Please explain why my transfer attempt was declined. Thank you.","2026-07-23T03:07:14.840083Z"
-289,"1","card_swallowed","2026-07-23T03:07:22.347365Z",219,7.375,"Medium",6291,"Neutral","how can the money machine keep my card what do i need to do?","2026-07-23T03:07:22.347383Z"
-290,"1","why_verify_identity","2026-07-23T03:07:29.062286Z",220,6.577,"Low",3803,"Negative","Why do you guys need to verify my identity?","2026-07-23T03:07:29.062299Z"
-291,"1","change_pin","2026-07-23T03:07:32.074992Z",221,2.886,"Low",6963,"Neutral","How can I alteration my PIN?","2026-07-23T03:07:32.075007Z"
-292,"1","order_physical_card","2026-07-23T03:07:35.569463Z",222,3.364,"Low",8111,"Neutral","How to order my card?","2026-07-23T03:07:35.569474Z"
-293,"1","compromised_card","2026-07-23T03:07:40.480874Z",223,4.778,"High",4479,"Neutral","I want to cancel my card. I think someone else is using it.","2026-07-23T03:07:40.480894Z"
-294,"1","order_physical_card","2026-07-23T03:07:46.646311Z",224,6.027,"Low",8054,"Neutral","Can you tell me exactly what fees I will expect to see in regards to your cards?","2026-07-23T03:07:46.646324Z"
-295,"1","declined_card_payment","2026-07-23T03:07:52.608237Z",225,5.84,"Medium",5903,"Negative","Why won't you accept my payment? I keep trying with this card and it's not working.","2026-07-23T03:07:52.608252Z"
-296,"1","balance_not_updated_after_bank_transfer","2026-07-23T03:08:00.511999Z",226,7.774,"Medium",8767,"Neutral","My account isn't showing a transfer I made.","2026-07-23T03:08:00.512011Z"
-297,"1","pending_card_payment","2026-07-23T03:08:06.588769Z",227,5.931,"High",5109,"Negative","My card payment is just showing up as pending since forever, what's going on with that, it should be going through at some point?","2026-07-23T03:08:06.588783Z"
-298,"1","supported_cards_and_currencies","2026-07-23T03:08:11.175951Z",228,4.443,"Low",2898,"Neutral","Which foreign currencies do you accept for adding money?","2026-07-23T03:08:11.175966Z"
-299,"1","country_support","2026-07-23T03:08:14.057929Z",229,2.752,"Low",9891,"Neutral","Who gets support?","2026-07-23T03:08:14.057943Z"
-300,"1","card_payment_fee_charged","2026-07-23T03:08:26.183309Z",230,11.997,"Medium",2641,"Neutral","Let me know when you charge for payments. I just checked the app and saw a fee that I wasn't warned about.","2026-07-23T03:08:26.183327Z"
-301,"1","verify_my_identity","2026-07-23T03:08:30.401823Z",231,4.078,"Low",9821,"Neutral","What do I need for the verification check?","2026-07-23T03:08:30.401835Z"
-302,"1","top_up_by_bank_transfer_charge","2026-07-23T03:08:33.845874Z",232,3.302,"Low",1881,"Neutral","Will I be charged for adding money by transfer?","2026-07-23T03:08:33.845887Z"
-303,"1","top_up_by_cash_or_cheque","2026-07-23T03:08:37.762818Z",233,3.793,"Low",7987,"Neutral","Where do I look for cash top up?","2026-07-23T03:08:37.762829Z"
-304,"1","card_delivery_estimate","2026-07-23T03:08:42.658140Z",234,4.768,"Low",1040,"Neutral","If I order a card when does it arrive?","2026-07-23T03:08:42.658154Z"
-305,"1","card_not_working","2026-07-23T03:08:47.882133Z",235,5.093,"Medium",1319,"Neutral","Can you help me with my card, I think it's broke.","2026-07-23T03:08:47.882150Z"
-306,"1","apple_pay_or_google_pay","2026-07-23T03:08:55.290632Z",236,7.268,"Low",9701,"Neutral","what can I do if I got my American Express in Apple Bay but top up is not working?","2026-07-23T03:08:55.290649Z"
-307,"1","transfer_fee_charged","2026-07-23T03:09:02.419949Z",237,6.996,"Medium",7202,"Neutral","I made a transfer and the receiver did not get the right amount its lesser than what it should be,Now I have to transfer more money to make up for the missing amount . Can you please help me about this, what should be done","2026-07-23T03:09:02.419964Z"
-308,"1","disposable_card_limits","2026-07-23T03:09:06.047468Z",238,3.493,"Low",4338,"Neutral","Do the disposable cards have any restrictions on them?","2026-07-23T03:09:06.047485Z"
-309,"1","verify_top_up","2026-07-23T03:09:10.123853Z",239,3.935,"Low",7729,"Neutral","Why are top-ups being verified?","2026-07-23T03:09:10.123870Z"
-310,"1","top_up_limits","2026-07-23T03:09:13.544095Z",240,3.29,"Low",2253,"Neutral","Is there a limit to how much I can top-up?","2026-07-23T03:09:13.544110Z"
-311,"1","topping_up_by_card","2026-07-23T03:09:19.137848Z",241,5.475,"Low",4251,"Neutral","Could you tell me why my top up isn't showing in my wallet?","2026-07-23T03:09:19.137863Z"
-312,"1","card_arrival","2026-07-23T03:09:34.850010Z",242,15.578,"High",14,"Negative","It's been a week since I ordered my card and it's not here. Please help?","2026-07-23T03:09:34.850026Z"
-313,"1","compromised_card","2026-07-23T03:09:43.848596Z",243,8.863,"High",4506,"Neutral","I see some transactions that I don't recognize.  I think someone stole my details.","2026-07-23T03:09:43.848614Z"
-314,"1","lost_or_stolen_card","2026-07-23T03:09:47.080522Z",244,3.09,"High",1494,"Neutral","I believe that my card has been stolen!","2026-07-23T03:09:47.080539Z"
-315,"1","age_limit","2026-07-23T03:09:51.715585Z",245,4.476,"Low",1634,"Neutral","How old do my kids need to be to open an account?","2026-07-23T03:09:51.715599Z"
-316,"1","card_delivery_estimate","2026-07-23T03:09:57.741255Z",246,5.883,"Low",1033,"Neutral","When shipped to the US how long is delivery time?","2026-07-23T03:09:57.741269Z"
-317,"1","receiving_money","2026-07-23T03:10:01.293315Z",247,3.414,"Low",7377,"Neutral","can my husband open an account and transfer money","2026-07-23T03:10:01.293328Z"
-318,"1","top_up_reverted","2026-07-23T03:10:08.607974Z",248,7.184,"Medium",3265,"Negative","Hello. I tried doing a topup and I thought it worked, but now the money is no longer in my account. Can you explain?","2026-07-23T03:10:08.607989Z"
-319,"1","card_swallowed","2026-07-23T03:10:11.625331Z",249,2.889,"Medium",6288,"Neutral","What do I do if the ATM swallowed my card?","2026-07-23T03:10:11.625348Z"
-320,"1","card_arrival","2026-07-23T03:10:19.479822Z",250,7.724,"Low",58,"Neutral","I know I'm getting a new card but would like know when I can expect to receive it.","2026-07-23T03:10:19.479840Z"
-321,"1","pending_top_up","2026-07-23T03:10:22.480521Z",251,2.856,"Low",1989,"Neutral","How long does it take for my top up to clear?","2026-07-23T03:10:22.480539Z"
-322,"1","declined_transfer","2026-07-23T03:10:25.888670Z",252,3.265,"Low",5571,"Neutral","Why would I get a decline message in a transfer?","2026-07-23T03:10:25.888683Z"
-323,"1","cash_withdrawal_charge","2026-07-23T03:10:30.008996Z",253,3.983,"Low",9366,"Neutral","Why have I been charged for pulling cash out of my own account?","2026-07-23T03:10:30.009015Z"
-324,"1","extra_charge_on_statement","2026-07-23T03:10:39.354092Z",254,9.211,"Low",598,"Neutral","I checked my account today and saw that I was charged an extra Rs 10 that I did not spend.","2026-07-23T03:10:39.354112Z"
-325,"1","verify_my_identity","2026-07-23T03:10:42.616580Z",255,3.124,"Low",9854,"Neutral","What documents do you need to verify my identity?","2026-07-23T03:10:42.616594Z"
-326,"1","beneficiary_not_allowed","2026-07-23T03:10:46.272589Z",256,3.516,"Low",7063,"Neutral","Will a beneficiary not accept a transfer?","2026-07-23T03:10:46.272604Z"
-327,"1","virtual_card_not_working","2026-07-23T03:10:51.025495Z",257,4.617,"Medium",8174,"Neutral","Why was my virtual card rejected?","2026-07-23T03:10:51.025506Z"
-328,"1","balance_not_updated_after_cheque_or_cash_deposit","2026-07-23T03:10:55.879045Z",258,4.723,"Medium",3321,"Neutral","I can't see my cash deposit in my account.","2026-07-23T03:10:55.879057Z"
-329,"1","transfer_into_account","2026-07-23T03:10:59.724047Z",259,3.718,"Low",7617,"Neutral","I need to transfer money into my account, and I don't know how to do that.","2026-07-23T03:10:59.724064Z"
-330,"1","automatic_top_up","2026-07-23T03:11:04.160333Z",260,4.275,"Low",1161,"Neutral","How can I Use thereto-top option?","2026-07-23T03:11:04.160346Z"
-331,"1","transfer_into_account","2026-07-23T03:11:07.662755Z",261,3.375,"Low",7677,"Neutral","I need money put into this account from another one.","2026-07-23T03:11:07.662766Z"
-332,"1","direct_debit_payment_not_recognised","2026-07-23T03:11:11.579080Z",262,3.796,"Low",4648,"Neutral","I do not understand what this particular direct debit is ?","2026-07-23T03:11:11.579093Z"
-333,"1","declined_cash_withdrawal","2026-07-23T03:11:14.807302Z",263,3.084,"Medium",5057,"Neutral","I tried to withdraw cash, but got declined!","2026-07-23T03:11:14.807315Z"
-334,"1","terminate_account","2026-07-23T03:11:22.646466Z",264,7.709,"Low",6163,"Neutral","if im not using my account should i close it or just let it sit","2026-07-23T03:11:22.646484Z"
-335,"1","passcode_forgotten","2026-07-23T03:11:26.532749Z",265,3.745,"Medium",4834,"Neutral","I happened to forget my password","2026-07-23T03:11:26.532767Z"
-336,"1","balance_not_updated_after_cheque_or_cash_deposit","2026-07-23T03:11:32.712861Z",266,6.038,"Medium",3461,"Negative","where is my money from this morning","2026-07-23T03:11:32.712879Z"
-337,"1","change_pin","2026-07-23T03:11:37.971287Z",267,5.112,"Low",6990,"Neutral","What ATMs will allow me to change my PIN?","2026-07-23T03:11:37.971300Z"
-338,"1","card_acceptance","2026-07-23T03:11:41.752000Z",268,3.644,"Low",3113,"Neutral","You accepts my card?","2026-07-23T03:11:41.752015Z"
-339,"1","get_physical_card","2026-07-23T03:11:45.370624Z",269,3.479,"Low",4024,"Neutral","Where should I look for my PIN number at?","2026-07-23T03:11:45.370640Z"
-340,"1","card_arrival","2026-07-23T03:11:48.959965Z",270,3.454,"Low",56,"Neutral","How long does it take for me to get my new card?","2026-07-23T03:11:48.959978Z"
-341,"1","declined_card_payment","2026-07-23T03:11:55.307293Z",271,6.198,"Medium",5971,"Negative","Why would my card payment not work?","2026-07-23T03:11:55.307307Z"
-342,"1","card_payment_wrong_exchange_rate","2026-07-23T03:12:03.392913Z",272,7.944,"Medium",539,"Negative","I don't think the charges made when I had currency exchanged are right.","2026-07-23T03:12:03.392929Z"
-343,"1","visa_or_mastercard","2026-07-23T03:12:07.762282Z",273,4.236,"Low",4211,"Neutral","Can I use a Visa or Mastercard?","2026-07-23T03:12:07.762299Z"
-344,"1","card_not_working","2026-07-23T03:12:16.559179Z",274,8.669,"Medium",1299,"Neutral","Out of the blue, my card stopped working.","2026-07-23T03:12:16.559193Z"
-345,"1","beneficiary_not_allowed","2026-07-23T03:12:20.600695Z",275,3.89,"Medium",7054,"Neutral","Why did my transfer to a beneficiary fail?","2026-07-23T03:12:20.600711Z"
-346,"1","verify_my_identity","2026-07-23T03:12:23.808758Z",276,3.067,"Low",9773,"Neutral","How do I verify my identity?","2026-07-23T03:12:23.808771Z"
-347,"1","cancel_transfer","2026-07-23T03:12:29.927327Z",277,5.988,"Low",2136,"Neutral","Who do I call to cancel a transfer?","2026-07-23T03:12:29.927338Z"
-348,"1","visa_or_mastercard","2026-07-23T03:12:33.576055Z",278,3.518,"Low",4127,"Neutral","would a visa or mastercard be more suited to me?","2026-07-23T03:12:33.576067Z"
-349,"1","request_refund","2026-07-23T03:12:40.005216Z",279,6.294,"Medium",5412,"Neutral","I would like to cancel my order.","2026-07-23T03:12:40.005231Z"
-350,"1","transfer_timing","2026-07-23T03:12:43.841034Z",280,3.698,"Low",6714,"Neutral","When can I expect a transfer from overseas to go through?","2026-07-23T03:12:43.841047Z"
-351,"1","card_linking","2026-07-23T03:12:51.570465Z",281,7.59,"Low",189,"Neutral","I need a card reactivation, I had reported my card lost but I ran across it in my jacket.","2026-07-23T03:12:51.570481Z"
-352,"1","top_up_by_bank_transfer_charge","2026-07-23T03:12:54.864602Z",282,3.154,"Low",1843,"Neutral","To receive money are there charges?","2026-07-23T03:12:54.864620Z"
-353,"1","age_limit","2026-07-23T03:12:58.075997Z",283,3.062,"Low",1586,"Neutral","What are the requirements to open an account for a minor?","2026-07-23T03:12:58.076011Z"
-354,"1","age_limit","2026-07-23T03:13:01.322845Z",284,3.114,"Low",1582,"Neutral","What is the age limit for an account?","2026-07-23T03:13:01.322862Z"
-355,"1","automatic_top_up","2026-07-23T03:13:05.172176Z",285,3.706,"Low",1145,"Neutral","Is it possible to do auto top up?","2026-07-23T03:13:05.172194Z"
-356,"1","card_payment_fee_charged","2026-07-23T03:13:11.364953Z",286,8.321,"Low",2603,"Neutral","I was spending cash with my card and got a fee.","2026-07-23T03:13:21.118543Z"
-357,"1","country_support","2026-07-23T03:13:23.928379Z",287,8.659,"Low",9895,"Neutral","How do I get a card in the EU?","2026-07-23T03:13:23.928388Z"
-358,"1","apple_pay_or_google_pay","2026-07-23T03:13:27.558749Z",288,3.483,"Low",9672,"Neutral","Can I use the apple watch to make a top-up?","2026-07-23T03:13:27.558762Z"
-359,"1","reverted_card_payment?","2026-07-23T03:13:38.193135Z",289,10.504,"Medium",6724,"Neutral","Hi, I had an issue with my card payment and It shows on my account that my payment went through. Then I got contacted from the seller saying ""they did not receive my payment"" then the payment was returned to my account. so I would like to see why it did that please.","2026-07-23T03:13:38.193150Z"
-360,"1","activate_my_card","2026-07-23T03:13:41.588827Z",290,3.268,"Low",9330,"Neutral","Is my new card activated?","2026-07-23T03:13:41.588840Z"
-361,"1","exchange_via_app","2026-07-23T03:13:48.416793Z",291,6.689,"Low",1412,"Neutral","How do I exchange USD for LKR?","2026-07-23T03:13:48.416808Z"
-362,"1","reverted_card_payment?","2026-07-23T03:13:52.464869Z",292,3.903,"Low",6857,"Neutral","My card payment reverted back, I think.","2026-07-23T03:13:52.464885Z"
-363,"1","card_payment_wrong_exchange_rate","2026-07-23T03:13:58.154264Z",293,5.528,"Medium",501,"Negative","The exchange rate you are using is really bad.This can't be the official interbank exchange rate.","2026-07-23T03:13:58.154355Z"
-364,"1","pin_blocked","2026-07-23T03:14:02.691825Z",294,4.4,"Medium",1676,"Neutral","Can someone help me unblock my pin?","2026-07-23T03:14:02.691842Z"
-365,"1","cash_withdrawal_charge","2026-07-23T03:14:08.073399Z",295,5.246,"Low",9502,"Neutral","Why did you charge a fee when I withdrew from an ATM?","2026-07-23T03:14:08.073416Z"
-366,"1","lost_or_stolen_phone","2026-07-23T03:14:12.847131Z",296,4.63,"High",5291,"Neutral","phone is gone, dont want others to access account information","2026-07-23T03:14:12.847142Z"
-367,"1","pending_card_payment","2026-07-23T03:14:17.009833Z",297,4.042,"Medium",5237,"Neutral","Why is the payment from my card still pending?","2026-07-23T03:14:17.009851Z"
-368,"1","lost_or_stolen_phone","2026-07-23T03:14:25.276194Z",298,8.096,"High",5346,"Neutral","Hi, I lost my phone yesterday, what can I do to stop someone using my account on it?","2026-07-23T03:14:25.276209Z"
-369,"1","exchange_rate","2026-07-23T03:14:29.846196Z",299,4.436,"Low",352,"Neutral","How's the exchange rate looking right now?","2026-07-23T03:14:29.846210Z"
-370,"1","card_not_working","2026-07-23T03:14:33.763670Z",300,3.783,"Low",1313,"Neutral","What can I do to make my physical card work?","2026-07-23T03:14:33.763687Z"
-371,"1","wrong_amount_of_cash_received","2026-07-23T03:14:42.227411Z",301,8.316,"High",2342,"Neutral","I didn't get the correct amount of money from the ATM machine","2026-07-23T03:14:42.227424Z"
-372,"1","unable_to_verify_identity","2026-07-23T03:14:45.803345Z",302,3.357,"Low",3936,"Neutral","I'm having problems with ID verification","2026-07-23T03:14:45.803361Z"
-373,"1","card_swallowed","2026-07-23T03:14:50.021734Z",303,4.073,"Medium",6280,"Neutral","An ATM machine didn't return my card.","2026-07-23T03:14:50.021749Z"
-374,"1","top_up_failed","2026-07-23T03:14:53.295569Z",304,3.137,"Low",8577,"Neutral","I need information explaining why my top-up failed to go through","2026-07-23T03:14:53.295580Z"
-375,"1","card_delivery_estimate","2026-07-23T03:14:57.870126Z",305,4.445,"Low",1014,"Neutral","How long until my card will get here?","2026-07-23T03:14:57.870139Z"
-376,"1","exchange_rate","2026-07-23T03:15:01.942627Z",306,3.928,"Low",344,"Neutral","When exchanging, how much are the rates?","2026-07-23T03:15:01.942642Z"
-377,"1","cancel_transfer","2026-07-23T03:15:09.914151Z",307,7.83,"High",2170,"Neutral","I inadvertently completed a transaction on a wrong account.","2026-07-23T03:15:09.914164Z"
-378,"1","edit_personal_details","2026-07-23T03:15:12.764347Z",308,2.699,"Low",3760,"Neutral","I need to change my data.","2026-07-23T03:15:12.764364Z"
-379,"1","balance_not_updated_after_bank_transfer","2026-07-23T03:15:16.667738Z",309,3.754,"Low",8637,"Neutral","My transfer into my account isn't showing up.","2026-07-23T03:15:16.667752Z"
-380,"1","unable_to_verify_identity","2026-07-23T03:15:21.143821Z",310,4.321,"Low",3921,"Neutral","The app is not able to realize that it is me.","2026-07-23T03:15:21.143831Z"
-381,"1","getting_virtual_card","2026-07-23T03:15:25.731376Z",311,4.454,"Low",3034,"Neutral","How can I receive a virtual card?","2026-07-23T03:15:25.731391Z"
-382,"1","order_physical_card","2026-07-23T03:15:30.013461Z",312,4.136,"Low",8053,"Neutral","what steps do i do to get a real card","2026-07-23T03:15:30.013475Z"
-383,"1","declined_transfer","2026-07-23T03:15:38.507043Z",313,8.342,"Low",5604,"Neutral","I am unable to transfer money. I believe it is not working because it states it was declined.","2026-07-23T03:15:38.507057Z"
-384,"1","activate_my_card","2026-07-23T03:15:51.141511Z",314,12.496,"Low",9202,"Neutral","How can I activate my new card? I didn't recieve any information with it about how to do so.","2026-07-23T03:15:51.141526Z"
-385,"1","get_physical_card","2026-07-23T03:15:56.325595Z",315,5.048,"Medium",4090,"Negative","I've been waiting ages and my PIN hasn't gotten here.","2026-07-23T03:15:56.325606Z"
-386,"1","why_verify_identity","2026-07-23T03:16:02.636724Z",316,6.173,"Low",3820,"Negative","Do you think you're asking for too much information about me?","2026-07-23T03:16:02.636739Z"
-387,"1","exchange_via_app","2026-07-23T03:16:06.931936Z",317,4.149,"Low",1441,"Neutral","Will it be possible to change from USD to LKR with this App?","2026-07-23T03:16:06.931951Z"
-388,"1","card_arrival","2026-07-23T03:16:12.227414Z",318,5.145,"Medium",142,"Negative","My new card isn't here and it was issued a week ago.","2026-07-23T03:16:12.227430Z"
-389,"1","virtual_card_not_working","2026-07-23T03:16:16.328932Z",319,3.961,"Low",8168,"Neutral","Can I use my virtual card to complete transactions for memberships?","2026-07-23T03:16:16.328945Z"
-390,"1","contactless_not_working","2026-07-23T03:16:20.363155Z",320,3.899,"Low",1816,"Neutral","What is the reason when I tried to pay contactless at the bus, it didnt work?","2026-07-23T03:16:20.363169Z"
-391,"1","pending_transfer","2026-07-23T03:16:30.308762Z",321,9.795,"High",6022,"Negative","What is going on? I have checked over and over and the details of my account are right. Why is my transfer still pending? It's 2018 not 1818. Transfering money to another country can't be that hard.","2026-07-23T03:16:30.308775Z"
-392,"1","age_limit","2026-07-23T03:16:34.683497Z",322,4.207,"Low",1584,"Neutral","What is the appropriate age for my child to be able to open an account?","2026-07-23T03:16:34.683515Z"
-393,"1","terminate_account","2026-07-23T03:16:41.602797Z",323,6.779,"High",6214,"Negative","how to delete account, not happy","2026-07-23T03:16:41.602807Z"
-394,"1","edit_personal_details","2026-07-23T03:16:50.565374Z",324,8.824,"Low",3680,"Neutral","How do I change the details in my account?","2026-07-23T03:16:50.565386Z"
-395,"1","supported_cards_and_currencies","2026-07-23T03:16:54.618248Z",325,3.904,"Low",2895,"Neutral","Can I use a credit card from the US to top up?","2026-07-23T03:16:54.618263Z"
-396,"1","pending_top_up","2026-07-23T03:17:01.252604Z",326,8.453,"Medium",1980,"Negative","I already paid to top-up but the funds aren't available yet, where are they?","2026-07-23T03:17:06.176329Z"
-397,"1","extra_charge_on_statement","2026-07-23T03:17:13.191660Z",327,4.965,"Low",674,"Neutral","Can you tell me about why the account I have was charged an extra Rs 10","2026-07-23T03:17:13.191677Z"
-398,"1","verify_source_of_funds","2026-07-23T03:17:16.346796Z",328,3.015,"Low",6563,"Neutral","How do I see my source of funds?","2026-07-23T03:17:16.346810Z"
-399,"1","passcode_forgotten","2026-07-23T03:17:19.680377Z",329,3.168,"Medium",4881,"Neutral","I don't remember my passcode?","2026-07-23T03:17:19.680395Z"
-400,"1","getting_spare_card","2026-07-23T03:17:23.408229Z",330,3.6,"Low",7858,"Neutral","Can I have a second card issued to another family member?","2026-07-23T03:17:23.408242Z"
-401,"1","get_physical_card","2026-07-23T03:17:26.764838Z",331,3.212,"Low",4015,"Neutral","When do I get my PIN?","2026-07-23T03:17:26.764853Z"
-402,"1","disposable_card_limits","2026-07-23T03:17:29.881588Z",332,2.964,"Low",4345,"Neutral","Can you give me the restrictions of the disposable cards?","2026-07-23T03:17:29.881605Z"
-403,"1","top_up_by_cash_or_cheque","2026-07-23T03:17:33.504441Z",333,3.473,"Medium",7933,"Neutral","Help me please, I need to top up cash.","2026-07-23T03:17:33.504460Z"
-404,"1","cash_withdrawal_not_recognised","2026-07-23T03:17:39.626368Z",334,5.979,"Medium",8829,"Neutral","I see cash in my app but I did not get it.","2026-07-23T03:17:39.626382Z"
-405,"1","country_support","2026-07-23T03:17:43.482869Z",335,3.715,"Low",9998,"Neutral","You provide support in what countries?","2026-07-23T03:17:43.482888Z"
-406,"1","Refund_not_showing_up","2026-07-23T03:17:49.883612Z",336,6.251,"Medium",5736,"Neutral","My account isn't showing the refund","2026-07-23T03:17:49.883628Z"
-407,"1","exchange_via_app","2026-07-23T03:17:53.020947Z",337,2.989,"Low",1416,"Neutral","Can I exchange from USD to LKR?","2026-07-23T03:17:53.020962Z"
-408,"1","visa_or_mastercard","2026-07-23T03:17:57.170433Z",338,4.001,"Low",4188,"Neutral","I want to get a Visa card","2026-07-23T03:17:57.170449Z"
-409,"1","transfer_not_received_by_recipient","2026-07-23T03:18:05.402841Z",339,8.088,"Medium",2766,"Neutral","Why hasn't a transaction I did to my friend arrived yet?","2026-07-23T03:18:05.402853Z"
-410,"1","activate_my_card","2026-07-23T03:18:09.176578Z",340,3.627,"Medium",9287,"Neutral","My card activation attempt failed.","2026-07-23T03:18:09.176589Z"
-411,"1","lost_or_stolen_phone","2026-07-23T03:18:12.363140Z",341,3.049,"High",5320,"Neutral","I lost my phone and need help so someone doesn't access my account.","2026-07-23T03:18:12.363153Z"
-412,"1","declined_transfer","2026-07-23T03:18:19.388121Z",342,12.186,"Medium",5656,"Neutral","I have been trying to make a transfer and it won't go through. I have checked all the receipts and its all correct but still won't let me do it.","2026-07-23T03:18:27.273408Z"
-413,"1","visa_or_mastercard","2026-07-23T03:18:32.915878Z",343,3.314,"Low",4230,"Neutral","I would like to know if you use Visa or Mastercard.","2026-07-23T03:18:32.915894Z"
-414,"1","card_not_working","2026-07-23T03:18:39.458650Z",344,6.391,"Medium",1276,"Neutral","Today I was out eating and my card was declined. Why's that?","2026-07-23T03:18:39.458664Z"
-415,"1","atm_support","2026-07-23T03:18:42.971552Z",345,3.368,"Low",4565,"Neutral","Do I have to use bank approved ATM's","2026-07-23T03:18:42.971568Z"
-416,"1","request_refund","2026-07-23T03:18:47.318760Z",346,4.201,"Medium",5434,"Neutral","I am interested in cancelling a purchase","2026-07-23T03:18:47.318772Z"
-417,"1","verify_source_of_funds","2026-07-23T03:18:49.986811Z",347,2.518,"Low",6591,"Neutral","Where do my funds originate from?","2026-07-23T03:18:49.986826Z"
-418,"1","get_physical_card","2026-07-23T03:18:52.709184Z",348,2.572,"Low",4056,"Neutral","How do I find the PIN?","2026-07-23T03:18:52.709198Z"
-419,"1","contactless_not_working","2026-07-23T03:18:56.511259Z",349,3.665,"Low",1782,"Neutral","Should i uninstall the app before i try it again?","2026-07-23T03:18:56.511274Z"
-420,"1","direct_debit_payment_not_recognised","2026-07-23T03:19:00.158089Z",350,3.503,"Low",4690,"Neutral","How can I dispute a debit transaction?","2026-07-23T03:19:00.158104Z"
-421,"1","transaction_charged_twice","2026-07-23T03:19:04.220620Z",351,3.918,"High",6396,"Neutral","Can you help me? I have a duplicate transaction on my account and I don't understand why.","2026-07-23T03:19:04.220633Z"
-422,"1","atm_support","2026-07-23T03:19:07.806475Z",352,3.435,"Low",4599,"Neutral","What's the closest place to withdraw money?","2026-07-23T03:19:07.806488Z"
-423,"1","verify_my_identity","2026-07-23T03:19:11.081731Z",353,3.13,"Low",9794,"Neutral","Can you tell me what I need for identity validation?","2026-07-23T03:19:11.081749Z"
-424,"1","card_acceptance","2026-07-23T03:19:14.463510Z",354,3.231,"Low",3142,"Neutral","What places accept my card?","2026-07-23T03:19:14.463523Z"
-425,"1","topping_up_by_card","2026-07-23T03:19:18.745977Z",355,4.129,"Low",4280,"Neutral","How do I transfer funds directly from my credit card?","2026-07-23T03:19:18.745989Z"
-426,"1","card_payment_fee_charged","2026-07-23T03:19:23.046896Z",356,4.138,"Low",2637,"Neutral","When do i get charged a fee for using the card?","2026-07-23T03:19:23.046913Z"
-427,"1","card_acceptance","2026-07-23T03:19:26.842103Z",357,3.639,"Low",3130,"Neutral","Can I use my card while on vacation overseas?","2026-07-23T03:19:26.842115Z"
-428,"1","card_about_to_expire","2026-07-23T03:19:33.980205Z",358,6.995,"Low",9556,"Neutral","Can I wait for you to send me a new card when mine's about to expire?","2026-07-23T03:19:33.980219Z"
-429,"1","automatic_top_up","2026-07-23T03:19:37.698635Z",359,3.554,"Low",1166,"Neutral","Where can I located the auto-top up option?","2026-07-23T03:19:37.698646Z"
-430,"1","get_physical_card","2026-07-23T03:19:43.119896Z",360,5.272,"Medium",4046,"Negative","wheres my pin","2026-07-23T03:19:43.119914Z"
-431,"1","compromised_card","2026-07-23T03:19:47.987949Z",361,4.714,"High",4484,"Neutral","Someone must have found my card details as I don't recognize these transactions.","2026-07-23T03:19:47.987965Z"
-432,"1","transfer_timing","2026-07-23T03:19:51.457164Z",362,3.325,"Low",6621,"Neutral","How long will a transfer from the US take?","2026-07-23T03:19:51.457176Z"
-433,"1","card_swallowed","2026-07-23T03:19:54.593764Z",363,2.992,"Medium",6302,"Neutral","atm ate my card","2026-07-23T03:19:54.593779Z"
-434,"1","transfer_not_received_by_recipient","2026-07-23T03:19:59.201193Z",364,4.464,"Medium",2803,"Negative","Why is my transaction taking so long to complete?","2026-07-23T03:19:59.201250Z"
-435,"1","verify_top_up","2026-07-23T03:20:02.587602Z",365,3.236,"Low",7764,"Neutral","How do i secure a top-up card?","2026-07-23T03:20:02.587614Z"
-436,"1","automatic_top_up","2026-07-23T03:20:07.875205Z",366,5.138,"Low",1131,"Neutral","How low does the balance have to be before the system updates?","2026-07-23T03:20:07.875221Z"
-437,"1","exchange_charge","2026-07-23T03:20:12.319984Z",367,4.307,"Low",9029,"Neutral","How much is the charge for a foreign currency exchange?","2026-07-23T03:20:12.320004Z"
-438,"1","cash_withdrawal_charge","2026-07-23T03:20:17.603855Z",368,5.135,"Medium",9475,"Neutral","Why is there a fee for cash withdrawal?","2026-07-23T03:20:17.603869Z"
-439,"1","card_payment_not_recognised","2026-07-23T03:20:24.283064Z",369,6.527,"High",3521,"Neutral","There is  a charge I don't recognize.","2026-07-23T03:20:24.283078Z"
-440,"1","pending_cash_withdrawal","2026-07-23T03:20:31.160919Z",370,6.723,"Medium",800,"Neutral","Hello. I have a transaction in my account listed as pending. I tried to use an ATM at the city centre, but the machine declined my card, and I did not receive the money. Why is the transaction still pending if I did not receive the money.","2026-07-23T03:20:31.160934Z"
-441,"1","extra_charge_on_statement","2026-07-23T03:20:34.059033Z",371,2.756,"Low",586,"Neutral","Where did this extra €1 fee on my statement come from?","2026-07-23T03:20:34.059047Z"
-442,"1","get_disposable_virtual_card","2026-07-23T03:20:37.541983Z",372,3.336,"Low",8441,"Neutral","Is there a way to use this app with a disposable virtual card?","2026-07-23T03:20:37.541997Z"
-443,"1","cash_withdrawal_charge","2026-07-23T03:20:41.620706Z",373,3.933,"Low",9406,"Neutral","I was charged a fee for withdrawing cash.","2026-07-23T03:20:41.620716Z"
-444,"1","pending_top_up","2026-07-23T03:20:44.542280Z",374,2.782,"Low",1994,"Neutral","I believe my top up is still pending","2026-07-23T03:20:44.542296Z"
-445,"1","card_payment_wrong_exchange_rate","2026-07-23T03:20:53.731095Z",375,9.044,"Medium",556,"Neutral","A foreign purchase I made has the incorrect rate applied to it.","2026-07-23T03:20:53.731112Z"
-446,"1","card_payment_wrong_exchange_rate","2026-07-23T03:20:58.007905Z",376,4.12,"Medium",468,"Neutral","I purchased something while traveling, and the exchange rate applied was wrong.","2026-07-23T03:20:58.007922Z"
-447,"1","exchange_charge","2026-07-23T03:21:02.763075Z",377,4.609,"Low",9036,"Neutral","Do I get any sort of discount on volume for a lot fo currency exchanges?","2026-07-23T03:21:02.763087Z"
-448,"1","verify_top_up","2026-07-23T03:21:05.797021Z",378,2.872,"Low",7746,"Neutral","Do I have to verify the top-up?","2026-07-23T03:21:05.797035Z"
-449,"1","card_acceptance","2026-07-23T03:21:10.011176Z",379,4.067,"Low",3125,"Neutral","Is there a list of where I can use my card?","2026-07-23T03:21:10.011185Z"
-450,"1","exchange_charge","2026-07-23T03:21:16.708586Z",380,6.555,"Low",9013,"Neutral","Do you offer a discount for those who perform frequent currency exchanges?","2026-07-23T03:21:16.708600Z"
-451,"1","virtual_card_not_working","2026-07-23T03:21:21.076929Z",381,6.691000000000001,"Medium",8188,"Neutral","My virtual car is not working.","2026-07-23T03:21:26.549278Z"
-452,"1","edit_personal_details","2026-07-23T03:21:32.043552Z",382,3.669,"Low",3654,"Neutral","I would like to change my adress","2026-07-23T03:21:32.043576Z"
-453,"1","failed_transfer","2026-07-23T03:21:34.942781Z",383,2.755,"Medium",7474,"Neutral","Why didn't my transfer work?","2026-07-23T03:21:34.942795Z"
-454,"1","wrong_exchange_rate_for_cash_withdrawal","2026-07-23T03:21:39.861158Z",384,4.778,"High",8301,"Neutral","I had the wrong exchange rate applied to some cash I got abroad.","2026-07-23T03:21:39.861170Z"
-455,"1","passcode_forgotten","2026-07-23T03:21:45.508419Z",385,5.504,"Medium",4837,"Negative","I do not understand why my pass-code is not working.","2026-07-23T03:21:45.508433Z"
-456,"1","verify_my_identity","2026-07-23T03:21:49.463840Z",386,3.784,"Low",9812,"Neutral","What do you require to verify someone's identity?","2026-07-23T03:21:49.463858Z"
-457,"1","compromised_card","2026-07-23T03:21:54.764863Z",387,5.142,"High",4536,"Neutral","What should I do if I think that someone might be using me card?","2026-07-23T03:21:54.764880Z"
-458,"1","order_physical_card","2026-07-23T03:21:57.250446Z",388,2.325,"Low",8121,"Neutral","How do I order a card?","2026-07-23T03:21:57.250460Z"
-459,"1","getting_virtual_card","2026-07-23T03:21:59.877097Z",389,2.467,"Low",3031,"Neutral","How can I obtain a virtual card?","2026-07-23T03:21:59.877113Z"
-460,"1","get_disposable_virtual_card","2026-07-23T03:22:03.689098Z",390,3.652,"Low",8372,"Neutral","How do I get a disposable virtual card as well?","2026-07-23T03:22:03.689110Z"
-461,"1","wrong_amount_of_cash_received","2026-07-23T03:22:07.922255Z",391,4.079,"Medium",2331,"Neutral","Why did I only receive a partial amount of what I tried to withdraw?","2026-07-23T03:22:07.922270Z"
-462,"1","top_up_reverted","2026-07-23T03:22:11.695525Z",392,3.626,"Low",3294,"Neutral","Why did my top up get pulled back out?","2026-07-23T03:22:11.695536Z"
-463,"1","cancel_transfer","2026-07-23T03:22:14.728218Z",393,2.892,"Medium",2193,"Neutral","I would like to cancel a transfer","2026-07-23T03:22:14.728231Z"
-464,"1","transfer_fee_charged","2026-07-23T03:22:18.014678Z",394,3.103,"Low",7304,"Neutral","After a transfer, I see an extra fee.  Why?","2026-07-23T03:22:18.014687Z"
-465,"1","beneficiary_not_allowed","2026-07-23T03:22:24.066869Z",395,9.454,"Medium",7079,"Negative","My funds are not transferring to my bank. Why is this not working?","2026-07-23T03:22:30.108829Z"
-466,"1","card_payment_wrong_exchange_rate","2026-07-23T03:22:40.884425Z",396,8.924,"High",420,"Negative","This exchange rate you use is awful! Please tell me this is a mistake and not the official interbank exchange rate!","2026-07-23T03:22:40.884439Z"
-467,"1","getting_virtual_card","2026-07-23T03:22:45.456115Z",397,4.416,"Low",3047,"Neutral","Do I get to have one of those virtual cards I've heard about?","2026-07-23T03:22:45.456128Z"
-468,"1","apple_pay_or_google_pay","2026-07-23T03:22:50.870489Z",398,5.269,"Medium",9697,"Neutral","My Google pay top up isn't working.","2026-07-23T03:22:50.870501Z"
-469,"1","exchange_rate","2026-07-23T03:22:57.296104Z",399,6.272,"Low",316,"Neutral","What is the basis of your exchange rates?","2026-07-23T03:22:57.296117Z"
-470,"1","fiat_currency_support","2026-07-23T03:23:01.494025Z",400,4.04,"Low",936,"Neutral","Can you make exchanges with the EUR?","2026-07-23T03:23:01.494042Z"
-471,"1","transaction_charged_twice","2026-07-23T03:23:04.679187Z",401,3.043,"Medium",6359,"Neutral","I have a payment that shows twice","2026-07-23T03:23:04.679200Z"
-472,"1","card_arrival","2026-07-23T03:23:08.391502Z",402,3.544,"Low",80,"Neutral","Is there a reason my new card hasn't arrived yet?","2026-07-23T03:23:08.391519Z"
-473,"1","card_payment_fee_charged","2026-07-23T03:23:11.836666Z",403,3.299,"Low",2660,"Neutral","Is it normal to get charged extra when i use my card?","2026-07-23T03:23:11.836683Z"
-474,"1","edit_personal_details","2026-07-23T03:23:15.792850Z",404,3.806,"Low",3765,"Neutral","Where do I go to update details?","2026-07-23T03:23:15.792860Z"
-475,"1","top_up_limits","2026-07-23T03:23:18.847753Z",405,2.908,"Low",2305,"Neutral","Can someone please tell me how much I can top-up?","2026-07-23T03:23:18.847769Z"
-476,"1","balance_not_updated_after_cheque_or_cash_deposit","2026-07-23T03:23:23.621622Z",406,4.617,"Medium",3376,"Neutral","My cash deposit from a week ago is still not in my account. Can you help me please?","2026-07-23T03:23:23.621638Z"
-477,"1","top_up_failed","2026-07-23T03:23:29.313526Z",407,5.539,"Low",8509,"Neutral","How can correct Top up with the app to work correctly?","2026-07-23T03:23:29.313543Z"
-478,"1","transfer_not_received_by_recipient","2026-07-23T03:23:37.046243Z",408,7.573,"Medium",2761,"Negative","Still waiting for transfer to be completed.","2026-07-23T03:23:37.046252Z"
-479,"1","Refund_not_showing_up","2026-07-23T03:23:45.489207Z",409,8.301,"Medium",5744,"Neutral","I'm expecting a large refund from a store I returned merchandise to recently.  They say they have sent the money but I don't see it in my account, can you help.","2026-07-23T03:23:45.489222Z"
-480,"1","request_refund","2026-07-23T03:23:49.461767Z",410,3.816,"Medium",5444,"Negative","Give me a refund","2026-07-23T03:23:49.461779Z"
-481,"1","wrong_exchange_rate_for_cash_withdrawal","2026-07-23T03:23:54.273022Z",411,4.669,"Low",8258,"Neutral","Is there a fee associated with using foreign exchange ATMs?","2026-07-23T03:23:54.273036Z"
-482,"1","transfer_into_account","2026-07-23T03:23:58.833333Z",412,4.408,"Low",7587,"Neutral","I want to transfer money into my account, what do I do?","2026-07-23T03:23:58.833353Z"
-483,"1","card_payment_not_recognised","2026-07-23T03:24:03.050031Z",413,4.059,"High",3522,"Neutral","I'm noticing a payment/purchase at a company that I don't recognise.","2026-07-23T03:24:03.050048Z"
-484,"1","direct_debit_payment_not_recognised","2026-07-23T03:24:11.073239Z",414,7.85,"High",4718,"Neutral","Hi, i was checking my old statements and found a discrepancy with a large amount transaction. I am sure it was not done by me. Please let me know if i could raise a dispute as its very late.","2026-07-23T03:24:11.073249Z"
-485,"1","failed_transfer","2026-07-23T03:24:17.964223Z",415,6.743,"Medium",7477,"Negative","My transfer failed, why did that happen?","2026-07-23T03:24:17.964241Z"
-486,"1","declined_transfer","2026-07-23T03:24:22.038861Z",416,3.914,"Low",5636,"Neutral","Is there a reason my transfer would have been declined?","2026-07-23T03:24:22.038875Z"
-487,"1","why_verify_identity","2026-07-23T03:24:25.540496Z",417,3.342,"Low",3795,"Neutral","what I need to verify my account","2026-07-23T03:24:25.540509Z"
-488,"1","supported_cards_and_currencies","2026-07-23T03:24:29.915163Z",418,4.223,"Low",2908,"Neutral","What currencies and methods can i use to top up my account?","2026-07-23T03:24:29.915181Z"
-489,"1","card_linking","2026-07-23T03:24:33.190150Z",419,3.105,"Low",280,"Neutral","I found my card, how can I use it again?","2026-07-23T03:24:33.190168Z"
-490,"1","lost_or_stolen_card","2026-07-23T03:24:36.824924Z",420,3.492,"High",1512,"Neutral","I lost track of my card","2026-07-23T03:24:36.824939Z"
-491,"1","pending_cash_withdrawal","2026-07-23T03:24:42.825690Z",421,5.851,"Medium",757,"Neutral","Why is the app showing a still pending message on a withdraw that has already been done?","2026-07-23T03:24:42.825705Z"
-492,"1","disposable_card_limits","2026-07-23T03:24:47.018200Z",422,4.044,"Low",4428,"Neutral","i am not a premium customer but i want a virtual card, how do i get it","2026-07-23T03:24:47.018211Z"
-493,"1","exchange_rate","2026-07-23T03:24:51.664004Z",423,4.488,"Low",323,"Neutral","How do you decide what the exchange rates are?","2026-07-23T03:24:51.664021Z"
-494,"1","automatic_top_up","2026-07-23T03:24:54.333743Z",424,2.498,"Low",1215,"Neutral","Can I get an auto Top-up?","2026-07-23T03:24:54.333756Z"
-495,"1","top_up_failed","2026-07-23T03:25:00.070844Z",425,5.586,"Medium",8535,"Negative","My credit card got declined for top up! What's going on? Can you check on why it didn't go through?","2026-07-23T03:25:00.070853Z"
-496,"1","passcode_forgotten","2026-07-23T03:25:03.403868Z",426,3.176,"Low",4824,"Neutral","I am unaware of what my password is.","2026-07-23T03:25:03.403883Z"
-497,"1","exchange_via_app","2026-07-23T03:25:07.291683Z",427,3.735,"Low",1409,"Neutral","I am trying to exchange USD for LKR, how do I do that?","2026-07-23T03:25:07.291697Z"
-498,"1","card_payment_not_recognised","2026-07-23T03:25:13.371114Z",428,5.929,"High",3590,"Neutral","One of my card payments, I don't recognise the name of the merchant.","2026-07-23T03:25:13.371128Z"
-499,"1","apple_pay_or_google_pay","2026-07-23T03:25:18.012652Z",429,4.477,"Low",9733,"Neutral","How can I top up with my apple watch?","2026-07-23T03:25:18.012670Z"
-500,"1","activate_my_card","2026-07-23T03:25:21.986150Z",430,3.833,"Low",9186,"Neutral","My card needs to be activated.","2026-07-23T03:25:21.986161Z"
-501,"1","card_about_to_expire","2026-07-23T03:25:25.019421Z",431,2.875,"Low",9533,"Neutral","What happens if my card expires?","2026-07-23T03:25:25.019439Z"
-502,"1","card_linking","2026-07-23T03:25:27.849476Z",432,2.674,"Low",270,"Neutral","Can you tell me how to get my card on the app?","2026-07-23T03:25:27.849494Z"
-503,"1","topping_up_by_card","2026-07-23T03:25:38.596756Z",433,10.585,"Medium",4274,"Neutral","My wallet isn't showing my top-up, did I do something wrong?","2026-07-23T03:25:38.596768Z"
-504,"1","card_payment_fee_charged","2026-07-23T03:25:43.898605Z",434,5.16,"Medium",2567,"Negative","Why was I charged for payments? You didn't warn me about additional fees.","2026-07-23T03:25:43.898623Z"
-505,"1","wrong_amount_of_cash_received","2026-07-23T03:25:51.016155Z",435,6.957,"High",2464,"Neutral","Hey I am standing in front of an ATM here, it only gave me Rs 10,000 even though I wanted to withdraw Rs 30,000! Seems like the app has Rs 30,000, what do I do??","2026-07-23T03:25:51.016167Z"
-506,"1","receiving_money","2026-07-23T03:25:54.601602Z",436,3.444,"Low",7360,"Neutral","Can I transfer my payroll to the bank?","2026-07-23T03:25:54.601613Z"
-507,"1","card_payment_not_recognised","2026-07-23T03:25:58.393236Z",437,3.612,"High",3494,"Neutral","I have an unusual payment in my statement","2026-07-23T03:25:58.393247Z"
-508,"1","top_up_by_card_charge","2026-07-23T03:26:01.595662Z",438,3.049,"Low",9076,"Neutral","What are the charges for topping up US card?","2026-07-23T03:26:01.595674Z"
-509,"1","transaction_charged_twice","2026-07-23T03:26:05.091266Z",439,3.327,"Medium",6476,"Neutral","A duplicated payment was made for something.","2026-07-23T03:26:05.091280Z"
-510,"1","balance_not_updated_after_bank_transfer","2026-07-23T03:26:12.279838Z",440,7.038,"Medium",8624,"Neutral","Hi, I am unable to see transaction in my account which i made couples of hours ago from my local bank account. Please help me in this.","2026-07-23T03:26:12.279855Z"
-511,"1","contactless_not_working","2026-07-23T03:26:17.591998Z",441,5.148,"Medium",1813,"Neutral","Are my contactless settings correct? I tried to use it today but it wasn't working.","2026-07-23T03:26:17.592013Z"
-512,"1","pending_card_payment","2026-07-23T03:26:20.821621Z",442,3.074,"Low",5195,"Neutral","Why is the payment I made still pending?","2026-07-23T03:26:20.821634Z"
-513,"1","pending_cash_withdrawal","2026-07-23T03:26:31.442742Z",443,10.439,"Medium",870,"Neutral","I tempted to get some money out of the machine earlier and it did not work.Looking now, the transaction actually shows to still be in progress. I would certainly appreciate someone look into this and let me know what's going on. I definitely do not want to be charged for money I never received.","2026-07-23T03:26:31.442760Z"
-514,"1","wrong_exchange_rate_for_cash_withdrawal","2026-07-23T03:26:37.706754Z",444,6.091,"Medium",8292,"Negative","My rate is not right when I used my card in a different country's money.","2026-07-23T03:26:37.706769Z"
-515,"1","fiat_currency_support","2026-07-23T03:26:41.357535Z",445,3.495,"Low",998,"Neutral","Can I exchange my money for EUR?","2026-07-23T03:26:41.357549Z"
-516,"1","cash_withdrawal_charge","2026-07-23T03:26:44.637743Z",446,3.119,"Low",9413,"Neutral","Can you tell me why I was charged to withdraw cash?","2026-07-23T03:26:44.637755Z"
-517,"1","balance_not_updated_after_bank_transfer","2026-07-23T03:26:48.329665Z",447,6.4990000000000006,"Medium",8704,"Negative","Although I transferred some money, it has not as of yet, arrived.","2026-07-23T03:26:54.136783Z"
-518,"1","pending_transfer","2026-07-23T03:27:06.389978Z",448,10.755,"Low",5991,"Neutral","Transfers can take up to one day to process before departing for the beneficiary accounts. Please confirm that you've entered your account details correctly. SEPA transfers can take up to two working days, while SWIFT transfers can take up to five working days.","2026-07-23T03:27:06.389993Z"
-519,"1","card_arrival","2026-07-23T03:27:10.357459Z",449,3.808,"Low",83,"Neutral","Can I track the card that was just sent to me?","2026-07-23T03:27:10.357472Z"
-520,"1","top_up_by_bank_transfer_charge","2026-07-23T03:27:12.971770Z",450,2.462,"Low",1898,"Neutral","Is there a fee for topping off by transfer?","2026-07-23T03:27:12.971784Z"
-521,"1","top_up_reverted","2026-07-23T03:27:20.163747Z",451,7.03,"Medium",3296,"Neutral","Hello,  I have recharged topup but account is not credited. Please help me in this, i guess there is some defect in system.","2026-07-23T03:27:20.163763Z"
-522,"1","top_up_reverted","2026-07-23T03:27:23.039407Z",452,2.707,"Medium",3249,"Neutral","I topped up but the app declined it","2026-07-23T03:27:23.039423Z"
-523,"1","exchange_via_app","2026-07-23T03:27:26.037716Z",453,2.84,"Low",1411,"Neutral","Is there a way to make my money usable in another country?","2026-07-23T03:27:26.037732Z"
-524,"1","fiat_currency_support","2026-07-23T03:27:29.339003Z",454,3.117,"Low",911,"Neutral","Can you tell me how many currencies I can hold?","2026-07-23T03:27:29.339017Z"
-525,"1","card_not_working","2026-07-23T03:27:40.630035Z",455,11.132,"Medium",1278,"Neutral","Currently my card is broken.","2026-07-23T03:27:40.630049Z"
-526,"1","receiving_money","2026-07-23T03:27:44.373518Z",456,3.579,"Low",7397,"Neutral","Can I transfer my paycheck to the account?","2026-07-23T03:27:44.373532Z"
-527,"1","verify_my_identity","2026-07-23T03:27:47.341747Z",457,2.81,"Low",9805,"Neutral","What works for identity verification?","2026-07-23T03:27:47.341761Z"
-528,"1","exchange_charge","2026-07-23T03:27:54.446068Z",458,6.939,"Low",9006,"Neutral","If I exchange foreign currency, are there any other charges?","2026-07-23T03:27:54.446079Z"
-529,"1","exchange_via_app","2026-07-23T03:27:57.258337Z",459,2.65,"Low",1369,"Neutral","Can I possibly change my currency to another?","2026-07-23T03:27:57.258354Z"
-530,"1","compromised_card","2026-07-23T03:28:02.825246Z",460,5.414,"High",4478,"Neutral","What can I do if my card details where stolen from my car? I think they used my card to buy gas.","2026-07-23T03:28:02.825260Z"
-531,"1","pending_transfer","2026-07-23T03:28:09.631987Z",461,6.656,"Low",6069,"Neutral","I have a transfer that is pending.","2026-07-23T03:28:09.632005Z"
-532,"1","passcode_forgotten","2026-07-23T03:28:14.523645Z",462,4.724,"Medium",4821,"Neutral","I forgot my passcode. Now what?","2026-07-23T03:28:14.523659Z"
-533,"1","lost_or_stolen_phone","2026-07-23T03:28:19.306521Z",463,4.626,"High",5258,"Neutral","My bag was stolen from me yesterday, so I can't use any apps or anything. I need some help.","2026-07-23T03:28:19.306536Z"
-534,"1","top_up_limits","2026-07-23T03:28:22.678783Z",464,3.216,"Low",2322,"Neutral","What is the top-up limit on my cards?","2026-07-23T03:28:22.678796Z"
-535,"1","edit_personal_details","2026-07-23T03:28:29.143387Z",465,6.293,"Low",3692,"Neutral","should i contact customer support if i can't edit details","2026-07-23T03:28:29.143425Z"
-536,"1","card_not_working","2026-07-23T03:28:34.759709Z",466,5.438,"Medium",1316,"Neutral","Can you tell me whats going on with my card it seems to be not working?","2026-07-23T03:28:34.759724Z"
-537,"1","cash_withdrawal_charge","2026-07-23T03:28:40.682179Z",467,5.768,"Medium",9449,"Neutral","There was an unexpected fee for my cash withdrawal!","2026-07-23T03:28:40.682191Z"
-538,"1","change_pin","2026-07-23T03:28:44.076556Z",468,3.228,"Low",6896,"Neutral","Do I need to speak to a representative to change my pin?","2026-07-23T03:28:44.076575Z"
-539,"1","Refund_not_showing_up","2026-07-23T03:28:49.805193Z",469,5.552,"Medium",5702,"Neutral","My refund has not arrived, and I am unsure why. Who do I contact?","2026-07-23T03:28:49.805204Z"
-540,"1","transfer_fee_charged","2026-07-23T03:28:54.506137Z",470,4.545,"Low",7221,"Negative","I thought transfers were free, why was I charged?","2026-07-23T03:28:54.506151Z"
-541,"1","getting_spare_card","2026-07-23T03:28:58.308078Z",471,3.617,"Low",7906,"Neutral","Is there a fee for sending out more cards?","2026-07-23T03:28:58.308092Z"
-542,"1","direct_debit_payment_not_recognised","2026-07-23T03:29:02.494300Z",472,4.026,"Low",4773,"Neutral","A debit came through that I need to dispute.","2026-07-23T03:29:02.494315Z"
-543,"1","change_pin","2026-07-23T03:29:06.187205Z",473,3.516,"Low",6999,"Neutral","What is the process to change my PIN?","2026-07-23T03:29:06.187221Z"
-544,"1","lost_or_stolen_card","2026-07-23T03:29:12.369847Z",474,6.026,"High",1537,"Neutral","I cant find my card.","2026-07-23T03:29:12.369866Z"
-545,"1","pending_card_payment","2026-07-23T03:29:19.097707Z",475,6.55,"Low",5244,"Neutral","When will my pending payment finish?","2026-07-23T03:29:19.097718Z"
-546,"1","card_arrival","2026-07-23T03:29:22.561806Z",476,3.32,"Low",8,"Neutral","Does the package with my card have tracking?","2026-07-23T03:29:22.561818Z"
-547,"1","verify_source_of_funds","2026-07-23T03:29:25.979678Z",477,3.246,"Low",6525,"Neutral","where are the transfers originating","2026-07-23T03:29:25.979696Z"
-548,"1","top_up_by_card_charge","2026-07-23T03:29:29.741248Z",478,3.586,"Low",9071,"Neutral","how much does it cost to add money to my card","2026-07-23T03:29:29.741263Z"
-549,"1","receiving_money","2026-07-23T03:29:34.242230Z",479,4.342,"Low",7366,"Neutral","What are the steps for my friend to send me money?","2026-07-23T03:29:34.242245Z"
-550,"1","declined_cash_withdrawal","2026-07-23T03:29:37.508377Z",480,3.081,"Medium",4998,"Neutral","Why can't I withdraw funds from my account?","2026-07-23T03:29:37.508391Z"
-551,"1","pin_blocked","2026-07-23T03:29:42.251424Z",481,4.58,"Medium",1739,"Neutral","I forgot what my pin number is and now am blocked can you help me get in?","2026-07-23T03:29:42.251437Z"
-552,"1","disposable_card_limits","2026-07-23T03:29:53.815161Z",482,11.393,"Medium",4367,"Neutral","I need to make several disposable cards per day.","2026-07-23T03:29:53.815176Z"
-553,"1","card_linking","2026-07-23T03:29:57.226059Z",483,3.24,"Low",207,"Neutral","I received my card. How do I link it to the app?","2026-07-23T03:29:57.226072Z"
-554,"1","cancel_transfer","2026-07-23T03:30:03.331134Z",484,5.921,"Medium",2102,"Neutral","I did a transaction this morning and now I want to cancel it.","2026-07-23T03:30:03.331145Z"
-555,"1","getting_spare_card","2026-07-23T03:30:06.648993Z",485,3.158,"Low",7901,"Neutral","I'm looking to get an additional card.","2026-07-23T03:30:06.649003Z"
-556,"1","cash_withdrawal_not_recognised","2026-07-23T03:30:09.458167Z",486,2.641,"High",8912,"Neutral","Help! I think someone has made a cash withdrawal with my card!","2026-07-23T03:30:09.458186Z"
-557,"1","reverted_card_payment?","2026-07-23T03:30:12.843687Z",487,3.212,"Medium",6799,"Neutral","Why is a payment I made reverted back to my account?","2026-07-23T03:30:12.843702Z"
-558,"1","direct_debit_payment_not_recognised","2026-07-23T03:30:17.567831Z",488,4.568,"High",4782,"Neutral","Can I dispute a debit payment that I am seeing that I didn't make from a couple of months ago?","2026-07-23T03:30:17.567845Z"
-559,"1","compromised_card","2026-07-23T03:30:21.807229Z",489,4.073,"High",4528,"Neutral","How do I report fraud on my card?","2026-07-23T03:30:21.807246Z"
-560,"1","direct_debit_payment_not_recognised","2026-07-23T03:30:27.049613Z",490,5.082,"High",4688,"Neutral","I found a charge on my debit that I did not make.","2026-07-23T03:30:27.049628Z"
-561,"1","pin_blocked","2026-07-23T03:30:34.222442Z",491,7.0,"Medium",1679,"Neutral","Can someone assist me with explaining how I can unblock my pin?","2026-07-23T03:30:34.222458Z"
-562,"1","change_pin","2026-07-23T03:30:41.548303Z",492,7.173,"Low",6921,"Neutral","I have been travelling overseas and I need to change my PIN. Can you tell me how this is done?","2026-07-23T03:30:41.548312Z"
-563,"1","fiat_currency_support","2026-07-23T03:30:46.723974Z",493,5.025,"Low",915,"Neutral","I need to hold money, what currencies can I use?","2026-07-23T03:30:46.723992Z"
-564,"1","cash_withdrawal_not_recognised","2026-07-23T03:30:51.907216Z",494,5.023,"High",8913,"Neutral","What do I do when a charge has been made that I did not make?","2026-07-23T03:30:51.907231Z"
-565,"1","verify_source_of_funds","2026-07-23T03:30:56.824893Z",495,4.759,"Low",6579,"Neutral","Where did my deposit for my source of funds come from?","2026-07-23T03:30:56.824908Z"
-566,"1","terminate_account","2026-07-23T03:31:00.340120Z",496,3.355,"High",6171,"Negative","I don't like the services, please close my account","2026-07-23T03:31:00.340134Z"
-567,"1","cancel_transfer","2026-07-23T03:31:05.423528Z",497,4.911,"Low",2097,"Neutral","How do I cancel a transaction?","2026-07-23T03:31:05.423539Z"
-568,"1","transfer_not_received_by_recipient","2026-07-23T03:31:12.181224Z",498,6.6,"High",2743,"Negative","How much time do transfers take? I sent money to a friend who needs it fast. It's been hours, and the money has not gone through.","2026-07-23T03:31:12.181238Z"
-569,"1","pin_blocked","2026-07-23T03:31:17.778762Z",499,5.427,"Medium",1746,"Neutral","I have used all my PIN tries, what now?","2026-07-23T03:31:17.778773Z"
-570,"1","change_pin","2026-07-23T03:31:20.585702Z",500,2.631,"Low",6964,"Neutral","I want to create a new pin.","2026-07-23T03:31:20.585716Z"
+annotation_id,annotator,category,created_at,id,lead_time,priority,row_id,sentiment,text,updated_at
+70,1,declined_card_payment,2026-07-23T02:43:07.471923Z,1,13.714,Medium,5976,Neutral,I had a card payment that was declined.  Why?,2026-07-23T02:43:07.471934Z
+71,1,apple_pay_or_google_pay,2026-07-23T02:43:13.322916Z,2,5.719,Low,9713,Neutral,Am I able to Top Up with Apply Pay?,2026-07-23T02:43:13.322928Z
+72,1,failed_transfer,2026-07-23T02:43:22.893773Z,3,9.448,Medium,7536,Neutral,Why has my payment not transferred?,2026-07-23T02:43:22.893787Z
+73,1,extra_charge_on_statement,2026-07-23T02:43:42.170088Z,4,19.157,Low,596,Neutral,There is a €1 extra fee in my statement,2026-07-23T02:43:42.170103Z
+74,1,cancel_transfer,2026-07-23T02:43:54.034779Z,5,11.738,Medium,2148,Neutral,I need to reverse a transaction,2026-07-23T02:43:54.034794Z
+75,1,contactless_not_working,2026-07-23T02:44:00.395071Z,6,6.232,Low,1802,Neutral,How do I troubleshoot my contactless?,2026-07-23T02:44:00.395088Z
+76,1,virtual_card_not_working,2026-07-23T02:44:10.447452Z,7,9.936,Medium,8178,Neutral,Is there a reason why my virtual card won't work?,2026-07-23T02:44:10.447465Z
+77,1,activate_my_card,2026-07-23T02:44:16.281718Z,8,5.701,Low,9187,Neutral,I was unable to activate my card.,2026-07-23T02:44:16.281732Z
+78,1,compromised_card,2026-07-23T02:44:25.122816Z,9,8.707,High,4523,Neutral,What do I do if I think someone has used my card without permission? I can see a few transactions I don't recognize.,2026-07-23T02:44:25.122838Z
+79,1,declined_cash_withdrawal,2026-07-23T02:44:33.604053Z,10,8.355,Medium,4970,Neutral,"This morning I wanted to make a withdrawal before work, but my card was declined! Please double check it for me as this is the first time it was declined.",2026-07-23T02:44:33.604064Z
+80,1,top_up_by_cash_or_cheque,2026-07-23T02:44:38.249766Z,11,4.52,Low,8039,Neutral,How would I top up with a cheque?,2026-07-23T02:44:38.249783Z
+81,1,lost_or_stolen_phone,2026-07-23T02:44:44.356940Z,12,5.976,Low,5345,Neutral,My phone was left at a hotel and I can't access the app.,2026-07-23T02:44:44.356956Z
+82,1,exchange_rate,2026-07-23T02:44:48.458151Z,13,3.978,Low,365,Neutral,Will I know which exchange rate I will get?,2026-07-23T02:44:48.458162Z
+83,1,card_about_to_expire,2026-07-23T02:44:54.877353Z,14,6.301,Low,9583,Neutral,want a new card what are the fees,2026-07-23T02:44:54.877371Z
+84,1,virtual_card_not_working,2026-07-23T02:45:03.526465Z,15,8.517,Medium,8183,Neutral,I can't use my virtual disposable card,2026-07-23T02:45:03.526483Z
+85,1,declined_transfer,2026-07-23T02:45:16.475241Z,16,12.831,Medium,5653,Neutral,"please help me with this transfer, for some reason i can't transfer to a cryptocurency account",2026-07-23T02:45:16.475255Z
+86,1,pending_top_up,2026-07-23T02:45:24.026431Z,17,7.429,Medium,2008,Neutral,Why is the top-up I made still pending.,2026-07-23T02:45:24.026445Z
+87,1,card_linking,2026-07-23T02:45:34.865092Z,18,10.719,Low,254,Neutral,"I found my card that I thought I had lost, I need to reactive it, please help.",2026-07-23T02:45:34.865103Z
+88,1,declined_card_payment,2026-07-23T02:45:40.541558Z,19,5.542,High,5878,Negative,"I was just shopping and my payment was declined in a store!  It was very embarrassing, what is going on and when will it be fixed?",2026-07-23T02:45:40.541573Z
+89,1,lost_or_stolen_card,2026-07-23T02:45:47.499443Z,20,6.835,Low,1502,Neutral,Are you able to guide me to my card's location?,2026-07-23T02:45:47.499458Z
+90,1,wrong_exchange_rate_for_cash_withdrawal,2026-07-23T02:45:53.673778Z,21,6.044,Medium,8318,Neutral,The applied exchange rate is wrong for the cash I got abroad.,2026-07-23T02:45:53.673792Z
+91,1,card_payment_wrong_exchange_rate,2026-07-23T02:46:00.712157Z,22,6.918,Medium,502,Neutral,Please check the exchange rate for my payment last Saturday. I believe I have been overcharged.,2026-07-23T02:46:00.712169Z
+92,1,why_verify_identity,2026-07-23T02:46:07.122855Z,23,6.292,Low,3785,Neutral,which identity details are required,2026-07-23T02:46:07.122867Z
+93,1,verify_top_up,2026-07-23T02:46:18.026400Z,24,10.779,Medium,7803,Neutral,why do i need to verify the top up?,2026-07-23T02:46:18.026415Z
+94,1,cash_withdrawal_not_recognised,2026-07-23T02:46:25.155762Z,25,7.008,High,8851,Neutral,I hope you can help me. Someone has stolen my wallet and now I have noticed that they have been taking money from my account.,2026-07-23T02:46:25.155776Z
+95,1,pin_blocked,2026-07-23T02:46:33.827458Z,26,8.552,Low,1735,Neutral,What should I do if I exceed my PIN tries?,2026-07-23T02:46:33.827467Z
+96,1,card_delivery_estimate,2026-07-23T02:46:40.861063Z,27,6.913,Low,1057,Neutral,How long will it take my card to get here?,2026-07-23T02:46:40.861077Z
+97,1,visa_or_mastercard,2026-07-23T02:46:44.880120Z,28,3.902,Low,4109,Neutral,I prefer mastercard.,2026-07-23T02:46:44.880131Z
+98,1,wrong_exchange_rate_for_cash_withdrawal,2026-07-23T02:46:57.048640Z,29,12.054,Medium,8225,Neutral,Foreign currency rates were put in wrong at an ATM i used.,2026-07-23T02:46:57.048652Z
+99,1,terminate_account,2026-07-23T02:47:10.115649Z,30,12.933,High,6173,Neutral,I want to stop my account,2026-07-23T02:47:10.115661Z
+100,1,pending_cash_withdrawal,2026-07-23T02:47:23.225601Z,31,12.98,Low,817,Neutral,How long will it take for my cash withdrawal to stop pending,2026-07-23T02:47:23.225616Z
+101,1,cash_withdrawal_charge,2026-07-23T02:47:30.338101Z,32,6.992,Low,9425,Neutral,"I received a fee for obtaining cash, is this correct?",2026-07-23T02:47:30.338113Z
+102,1,exchange_rate,2026-07-23T02:47:34.730757Z,33,4.268,Low,392,Neutral,How can I tell what foreign exchange rate I will get?,2026-07-23T02:47:34.730771Z
+103,1,pending_transfer,2026-07-23T02:47:40.395121Z,34,5.555,Low,6007,Neutral,How long do I have to wait for the transfer to be finalized?,2026-07-23T02:47:40.395141Z
+104,1,pending_card_payment,2026-07-23T02:47:46.361490Z,35,5.849,Low,5152,Neutral,My purchases from this morning are showing up as payment pending. Can you tell me why?,2026-07-23T02:47:46.361503Z
+105,1,country_support,2026-07-23T02:47:50.798700Z,36,4.322,Low,9952,Neutral,How many countries do you work in?,2026-07-23T02:47:50.798712Z
+106,1,atm_support,2026-07-23T02:47:59.859488Z,37,8.951,Low,4564,Neutral,Where can money withdrawals be made?,2026-07-23T02:47:59.859504Z
+107,1,get_disposable_virtual_card,2026-07-23T02:48:04.249460Z,38,4.27,Low,8454,Neutral,How do I know if i need a disposable card?,2026-07-23T02:48:04.249497Z
+108,1,top_up_by_cash_or_cheque,2026-07-23T02:48:10.017589Z,39,5.638,Low,7975,Neutral,How do you top up with a cheque?,2026-07-23T02:48:10.017603Z
+109,1,receiving_money,2026-07-23T02:48:14.149022Z,40,4.008,Low,7349,Neutral,How can I receive my salary with a different currency?,2026-07-23T02:48:14.149036Z
+110,1,wrong_exchange_rate_for_cash_withdrawal,2026-07-23T02:48:19.266028Z,41,5.003,Medium,8367,Neutral,I withdrew cash abroad and the exchange rate applied is wrong.,2026-07-23T02:48:19.266049Z
+111,1,automatic_top_up,2026-07-23T02:48:30.737715Z,42,11.341,Low,1129,Neutral,How do I access the option to top up?,2026-07-23T02:48:30.737727Z
+112,1,lost_or_stolen_card,2026-07-23T02:48:36.931253Z,43,6.068,High,1499,Neutral,I think my card is stolen!,2026-07-23T02:48:36.931265Z
+113,1,transaction_charged_twice,2026-07-23T02:48:41.355389Z,44,4.293,High,6369,Neutral,I was charged several times for something,2026-07-23T02:48:41.355405Z
+114,1,card_not_working,2026-07-23T02:48:51.622509Z,45,10.144,Medium,1340,Neutral,I am having problems with my physical card.,2026-07-23T02:48:51.622527Z
+115,1,top_up_by_card_charge,2026-07-23T02:48:55.592612Z,46,3.846,Low,9127,Neutral,Is it free for top ups?,2026-07-23T02:48:55.592625Z
+116,1,atm_support,2026-07-23T02:48:58.616070Z,47,2.904,Low,4580,Neutral,Where is the nearest Mastercard ATM?,2026-07-23T02:48:58.616081Z
+117,1,wrong_amount_of_cash_received,2026-07-23T02:49:07.612622Z,48,8.879,High,2442,Neutral,The ATM shows a withdraw of the amount of money I requested but I didn't revieve that amount in cash.,2026-07-23T02:49:07.612637Z
+118,1,balance_not_updated_after_cheque_or_cash_deposit,2026-07-23T02:49:12.011117Z,49,4.264,Low,3332,Neutral,What happens if I deposit a cheque accidentally?,2026-07-23T02:49:12.011135Z
+119,1,card_payment_wrong_exchange_rate,2026-07-23T02:49:17.140283Z,50,5.007,High,523,Neutral,"I have been charged to much for the object I bought when abroad, the exchange rate seems to be wrong.",2026-07-23T02:49:17.140296Z
+120,1,failed_transfer,2026-07-23T02:49:23.178203Z,51,5.913,Medium,7463,Neutral,please help my transfer go through,2026-07-23T02:49:23.178218Z
+121,1,fiat_currency_support,2026-07-23T02:49:27.739340Z,52,4.436,Low,939,Neutral,What currencies can I exchange?,2026-07-23T02:49:27.739355Z
+122,1,declined_card_payment,2026-07-23T02:49:35.723382Z,53,7.859,Medium,5972,Neutral,My card payment wasn't declined,2026-07-23T02:49:35.723394Z
+123,1,age_limit,2026-07-23T02:49:40.540372Z,54,4.677,Low,1560,Neutral,Can my children open an account?,2026-07-23T02:49:40.540387Z
+124,1,cash_withdrawal_not_recognised,2026-07-23T02:49:47.157598Z,55,6.491,High,8784,Negative,I looked on the app and it says I withdrew cash.  I didn't!,2026-07-23T02:49:47.157612Z
+125,1,pending_cash_withdrawal,2026-07-23T02:49:58.755974Z,56,11.475,Medium,844,Neutral,Is there any reason my cash withdrawal still shows as pending?,2026-07-23T02:49:58.755986Z
+126,1,balance_not_updated_after_bank_transfer,2026-07-23T02:50:10.838516Z,57,11.961,Low,8701,Neutral,"How long do transfers from a local bank account usually take for you? I just made a transfer and I'm not seeing anything, wondering if it worked",2026-07-23T02:50:10.838532Z
+127,1,card_delivery_estimate,2026-07-23T02:50:15.777503Z,58,4.813,Low,1078,Neutral,How long does it take for cards to be delivered after ordering them?,2026-07-23T02:50:15.777518Z
+128,1,disposable_card_limits,2026-07-23T02:50:20.178679Z,59,4.281,Low,4418,Neutral,How many disposable cards can you own?,2026-07-23T02:50:20.178697Z
+129,1,verify_top_up,2026-07-23T02:50:26.567009Z,60,6.275,Low,7785,Neutral,Where is the top-up verification code sent?,2026-07-23T02:50:26.567027Z
+130,1,declined_transfer,2026-07-23T02:50:34.117742Z,61,7.417,High,5598,Negative,"Hello. My credit keeps being declined, last night and again today, as I try to buy something. What is the status of my card?",2026-07-23T02:50:34.117756Z
+131,1,extra_charge_on_statement,2026-07-23T02:50:37.915180Z,62,3.669,Low,736,Neutral,An extra fee of €1 was in my statement,2026-07-23T02:50:37.915194Z
+132,1,declined_cash_withdrawal,2026-07-23T02:50:45.363580Z,63,7.316,Medium,5021,Neutral,"Hi, I am unable to use my card in ATM. I had tried my card in two ATMs but both ATMs declined it. Could you please check my account?",2026-07-23T02:50:45.363595Z
+133,1,pending_card_payment,2026-07-23T02:50:50.432148Z,64,4.937,Low,5122,Neutral,How is my card payment still pending?,2026-07-23T02:50:50.432159Z
+134,1,failed_transfer,2026-07-23T02:50:56.649096Z,65,6.085,High,7491,Neutral,Why do my transfers keep failing?,2026-07-23T02:50:56.649113Z
+135,1,why_verify_identity,2026-07-23T02:51:00.224476Z,66,3.444,Low,3886,Neutral,Is verifying my identify important?,2026-07-23T02:51:00.224487Z
+136,1,verify_top_up,2026-07-23T02:51:04.234527Z,67,3.887,Low,7743,Neutral,Where is the top-up verification code?,2026-07-23T02:51:04.234541Z
+137,1,atm_support,2026-07-23T02:51:08.541369Z,68,4.166,Low,4588,Neutral,Can I get money out of any machine?,2026-07-23T02:51:08.541384Z
+138,1,exchange_rate,2026-07-23T02:51:16.573262Z,69,7.908,Low,395,Neutral,How does the exchange rate work on this app?,2026-07-23T02:51:16.573277Z
+139,1,getting_virtual_card,2026-07-23T02:51:24.111213Z,70,7.411,Low,3056,Neutral,I want one of the virtual cards!,2026-07-23T02:51:24.111228Z
+140,1,transfer_into_account,2026-07-23T02:51:35.498237Z,71,11.267,Low,7668,Neutral,How can I transfer money to this account from another bank?,2026-07-23T02:51:35.498254Z
+141,1,request_refund,2026-07-23T02:51:43.225741Z,72,7.594,Medium,5484,Neutral,"I need to refund my item, can you please help?",2026-07-23T02:51:43.225753Z
+142,1,wrong_amount_of_cash_received,2026-07-23T02:52:01.434293Z,73,18.072,Medium,2506,Neutral,"So I just went to the ATM to get some cash.  I input that I needed Rs 100,000 but I only got Rs 80,000.  I have the receipt  and I am in need of the extra money.  How do I go about obtaining the missing amount?",2026-07-23T02:52:01.434311Z
+143,1,exchange_charge,2026-07-23T02:52:06.170855Z,74,4.607,Low,8971,Neutral,Is there a pay structure for currency exchanges?,2026-07-23T02:52:06.170868Z
+144,1,declined_cash_withdrawal,2026-07-23T02:52:17.695789Z,75,11.394,Medium,4973,Neutral,My ATM card isn't working for a withdrawl,2026-07-23T02:52:17.695802Z
+145,1,supported_cards_and_currencies,2026-07-23T02:52:21.756499Z,76,3.925,Low,2903,Neutral,I want to use a payment card to top up my account. How can I do this?,2026-07-23T02:52:21.756510Z
+146,1,get_physical_card,2026-07-23T02:52:26.416207Z,77,4.535,Medium,4005,Neutral,My pin isn't here yet,2026-07-23T02:52:26.416224Z
+147,1,beneficiary_not_allowed,2026-07-23T02:52:32.254742Z,78,5.711,Low,7152,Neutral,is a transfer to a beneficiary allowed?,2026-07-23T02:52:32.254758Z
+148,1,pending_transfer,2026-07-23T02:52:39.882538Z,79,7.503,Medium,6106,Neutral,"How long does EU transfer take? I bought something online a couple days ago , sent the money immediately online but the seller says it is still not there yet",2026-07-23T02:52:39.882550Z
+149,1,declined_cash_withdrawal,2026-07-23T02:52:49.481093Z,80,9.466,High,5074,Neutral,I think I am having an issue with withdraws on my card. It was declined on the way to work this morning. This hasn't happened in the past.,2026-07-23T02:52:49.481105Z
+150,1,atm_support,2026-07-23T02:52:54.023731Z,81,4.41,Low,4620,Neutral,How far is the closest ATM from me?,2026-07-23T02:52:54.023742Z
+151,1,card_acceptance,2026-07-23T02:53:04.041388Z,82,9.895,Low,3111,Neutral,Do you know which businesses will accept my card?,2026-07-23T02:53:04.041402Z
+152,1,card_about_to_expire,2026-07-23T02:53:10.999974Z,83,6.836,Low,9558,Neutral,How do I order a new card? The current one is about to expire.,2026-07-23T02:53:10.999992Z
+154,1,top_up_by_bank_transfer_charge,2026-07-23T02:53:32.618988Z,84,13.527000000000001,Low,1926,Neutral,Do you process SWIFT transfers?,2026-07-23T02:53:32.619003Z
+155,1,balance_not_updated_after_cheque_or_cash_deposit,2026-07-23T02:53:44.908111Z,85,12.162,Medium,3442,Neutral,Why is the check I deposited this morning not showing up?,2026-07-23T02:53:44.908126Z
+156,1,unable_to_verify_identity,2026-07-23T02:53:49.491981Z,86,4.445,Low,3993,Neutral,What do I need to bring for identification?,2026-07-23T02:53:49.491995Z
+157,1,getting_spare_card,2026-07-23T02:53:54.115031Z,87,4.499,Low,7846,Neutral,What is the procedure for me to get more cards on my account?,2026-07-23T02:53:54.115045Z
+158,1,transfer_not_received_by_recipient,2026-07-23T02:53:58.798276Z,88,4.552,Medium,2783,Neutral,Why hasn't my friend received the transaction?,2026-07-23T02:53:58.798288Z
+159,1,extra_charge_on_statement,2026-07-23T02:54:04.009705Z,89,5.076,High,657,Negative,I am being charged Rs 10 out of nowhere. What is this?,2026-07-23T02:54:04.009717Z
+160,1,wrong_amount_of_cash_received,2026-07-23T02:54:10.600529Z,90,6.464,Low,2468,Neutral,"I wanted to take out Rs 100,000 but I only got Rs 20,000.",2026-07-23T02:54:10.600543Z
+161,1,transaction_charged_twice,2026-07-23T02:54:15.424482Z,91,4.712,Medium,6332,Neutral,I have a duplicate charge,2026-07-23T02:54:15.424499Z
+162,1,top_up_by_cash_or_cheque,2026-07-23T02:54:19.399540Z,92,3.854,Low,7938,Neutral,How do I top up with a cheque?,2026-07-23T02:54:19.399559Z
+163,1,age_limit,2026-07-23T02:54:23.357495Z,93,3.822,Low,1628,Neutral,What is your age limit?,2026-07-23T02:54:23.357509Z
+164,1,country_support,2026-07-23T02:54:26.815049Z,94,3.334,Low,9888,Neutral,Which countries do you operate in,2026-07-23T02:54:26.815063Z
+165,1,get_disposable_virtual_card,2026-07-23T02:54:31.527722Z,95,4.583,Low,8440,Neutral,Can you tell me what the disposable cards are used for?,2026-07-23T02:54:31.527736Z
+166,1,transfer_fee_charged,2026-07-23T02:54:38.378035Z,96,6.714,Low,7200,Neutral,Why are you charging me a transfer fee?,2026-07-23T02:54:38.378049Z
+167,1,card_payment_fee_charged,2026-07-23T02:54:45.091378Z,97,6.594,Low,2613,Neutral,I was charged a hidden fee when I paid with card.,2026-07-23T02:54:45.091395Z
+168,1,getting_virtual_card,2026-07-23T02:54:48.995316Z,98,3.781,Low,3052,Neutral,How long will it take to receive a virtual card?,2026-07-23T02:54:48.995327Z
+169,1,direct_debit_payment_not_recognised,2026-07-23T02:54:57.148391Z,99,8.032,Medium,4637,Neutral,There is a strange charge on my debit statement,2026-07-23T02:54:57.148405Z
+170,1,balance_not_updated_after_cheque_or_cash_deposit,2026-07-23T02:55:01.812255Z,100,4.527,Medium,3397,Neutral,"After I deposited my cash, I still don't see it in my account.",2026-07-23T02:55:01.812269Z
+171,1,activate_my_card,2026-07-23T02:55:06.441299Z,101,4.512,Low,9201,Neutral,Can I call to get my card activated?,2026-07-23T02:55:06.441313Z
+172,1,pending_cash_withdrawal,2026-07-23T02:55:16.031253Z,102,9.468,Medium,747,Neutral,My account shows up as pending after I received cash from the ATM earlier.  How can this be still pending? I've got the cash already.,2026-07-23T02:55:16.031271Z
+173,1,topping_up_by_card,2026-07-23T02:55:23.595291Z,103,7.43,Low,4336,Neutral,Why is my 'top up' not showing up in my wallet?,2026-07-23T02:55:23.595306Z
+174,1,top_up_failed,2026-07-23T02:55:29.732266Z,104,6.015,Medium,8581,Neutral,I don't know why my credit card was declined while I was trying to top-up. Was it something on my end or was there something wrong with the top-up function?,2026-07-23T02:55:29.732281Z
+175,1,transfer_timing,2026-07-23T02:55:36.678223Z,105,6.796,Low,6603,Neutral,How long will this transfer from overseas take?,2026-07-23T02:55:36.678238Z
+176,1,contactless_not_working,2026-07-23T02:55:43.824731Z,106,6.996,Low,1815,Neutral,"I am having issues using contactless payments, could my card be damaged?",2026-07-23T02:55:43.824744Z
+177,1,unable_to_verify_identity,2026-07-23T02:55:47.897714Z,107,3.949,Low,3950,Neutral,What should I do if I can't prove my identity.,2026-07-23T02:55:47.897725Z
+178,1,edit_personal_details,2026-07-23T02:55:50.993816Z,108,2.979,Low,3715,Neutral,"Since I got married, I need to change my name.",2026-07-23T02:55:50.993830Z
+179,1,contactless_not_working,2026-07-23T02:55:55.869654Z,109,4.753,Low,1793,Neutral,Can I make a contactless payments?,2026-07-23T02:55:55.869719Z
+180,1,beneficiary_not_allowed,2026-07-23T02:56:07.924684Z,110,11.912,Medium,7016,Neutral,My transfer to an account failed.,2026-07-23T02:56:07.924700Z
+181,1,automatic_top_up,2026-07-23T02:56:11.521912Z,111,3.476,Low,1240,Neutral,"My funds are low, can I auto top up?",2026-07-23T02:56:11.521927Z
+182,1,card_about_to_expire,2026-07-23T02:56:15.780939Z,112,4.129,Low,9568,Neutral,I need to order a new card as my old one will expire soon. Can you tell me how to order a new one?,2026-07-23T02:56:15.780954Z
+183,1,Refund_not_showing_up,2026-07-23T02:56:21.384003Z,113,5.489,Medium,5680,Neutral,I need my refund,2026-07-23T02:56:21.384019Z
+184,1,exchange_charge,2026-07-23T02:56:25.370518Z,114,3.855,Low,8960,Neutral,How much will I be charged for a cross-currency exchange?,2026-07-23T02:56:25.370531Z
+185,1,fiat_currency_support,2026-07-23T02:56:28.910820Z,115,3.41,Low,889,Neutral,Are EUR exchanges allowed?,2026-07-23T02:56:28.910834Z
+186,1,verify_source_of_funds,2026-07-23T02:56:33.755262Z,116,4.723,Low,6489,Neutral,who can put money in my account?,2026-07-23T02:56:33.755278Z
+187,1,card_delivery_estimate,2026-07-23T02:56:39.060598Z,117,5.159,Low,1097,Neutral,I would like to make sure it is delivered on a certain date.,2026-07-23T02:56:39.060612Z
+188,1,pending_top_up,2026-07-23T02:56:45.286737Z,118,6.092,Medium,2029,Negative,"How long is a top up supposed to be pending, because an hour is too long! Can you fix this to go through?",2026-07-23T02:56:45.286749Z
+189,1,top_up_by_bank_transfer_charge,2026-07-23T02:56:49.509852Z,119,4.101,Low,1850,Neutral,Is there a fee to make a transfer?,2026-07-23T02:56:49.509864Z
+190,1,age_limit,2026-07-23T02:56:53.175296Z,120,3.547,Low,1621,Neutral,Is there a limit for age?,2026-07-23T02:56:53.175311Z
+191,1,virtual_card_not_working,2026-07-23T02:57:03.470526Z,121,10.167,Low,8204,Neutral,What do I do if my disposable virtual card doesn't work?,2026-07-23T02:57:03.470542Z
+192,1,transfer_fee_charged,2026-07-23T02:57:59.432561Z,122,55.834,Low,7265,Neutral,"I made a transfer and according to the receiver ""they haven't received the right amount"" Its lesser than it should be.Now I have to transfer more money to make up for the missing amount . Can you please help me about this,what should be done",2026-07-23T02:57:59.432577Z
+193,1,card_swallowed,2026-07-23T02:58:10.250533Z,123,10.703,High,6252,Neutral,"I can't get my card out of the ATM, what should I do now?",2026-07-23T02:58:10.250551Z
+194,1,Refund_not_showing_up,2026-07-23T02:58:15.831346Z,124,5.451,Low,5700,Neutral,When will my returned transaction show up on my account?,2026-07-23T02:58:15.831362Z
+195,1,failed_transfer,2026-07-23T02:58:22.372376Z,125,6.405,Medium,7476,Neutral,Why can I not make a transfer?,2026-07-23T02:58:22.372391Z
+196,1,Refund_not_showing_up,2026-07-23T02:58:33.892612Z,126,11.392,Medium,5709,Neutral,"I requested a refund from a merchant several days ago, but don't see anything showing up in my account yet.  Can you check on your end to see if the money has reached you guys?",2026-07-23T02:58:33.892626Z
+197,1,getting_virtual_card,2026-07-23T02:58:37.897259Z,127,3.849,Low,2998,Neutral,"I would like to order a virtual card, where can I get one?",2026-07-23T02:58:37.897272Z
+198,1,request_refund,2026-07-23T02:58:46.023664Z,128,7.993,Medium,5466,Negative,It has been forever ago that I made an order online. The product simply is not coming. Just give me back my money because I'm not paying these people.,2026-07-23T02:58:46.023679Z
+199,1,lost_or_stolen_card,2026-07-23T02:58:56.480879Z,129,10.332,High,1546,Neutral,I think my wallet fell out on the Tube today! I realized as soon as I got to my desk. How do I cut off the card?,2026-07-23T02:58:56.480896Z
+200,1,top_up_limits,2026-07-23T02:59:01.708719Z,130,5.092,Low,2248,Neutral,What is the greatest number of times that I can top-up?,2026-07-23T02:59:01.708736Z
+201,1,supported_cards_and_currencies,2026-07-23T02:59:08.776571Z,131,6.944,Low,2896,Neutral,why don't you accept american express for adding money to my account,2026-07-23T02:59:08.776586Z
+202,1,transfer_fee_charged,2026-07-23T02:59:14.351971Z,132,5.454,Low,7319,Neutral,Why did I get charged a fee for my transfer?,2026-07-23T02:59:14.351984Z
+203,1,get_disposable_virtual_card,2026-07-23T02:59:17.194807Z,133,2.71,Low,8377,Neutral,Why use a disposable card?,2026-07-23T02:59:17.194822Z
+204,1,lost_or_stolen_phone,2026-07-23T02:59:21.984570Z,134,4.64,Low,5325,Neutral,What should I do if my phone is lost or stolen?,2026-07-23T02:59:21.984585Z
+205,1,transfer_timing,2026-07-23T02:59:28.737744Z,135,6.621,High,6650,Neutral,I need to transfer something to China. It is urgent. How many days will it take to get there?,2026-07-23T02:59:28.737759Z
+206,1,passcode_forgotten,2026-07-23T02:59:34.058076Z,136,5.192,Medium,4879,Neutral,Help! I've forgot my app passcode!,2026-07-23T02:59:34.058090Z
+207,1,card_about_to_expire,2026-07-23T02:59:42.450618Z,137,8.266,Medium,9605,Neutral,"I have a card that expires in the coming month, do I have to specifically ask for the updated card?",2026-07-23T02:59:42.450633Z
+208,1,card_swallowed,2026-07-23T02:59:50.885762Z,138,8.307,Medium,6300,Neutral,How do I get my card back after the ATM swallowed it.,2026-07-23T02:59:50.885775Z
+209,1,declined_card_payment,2026-07-23T02:59:55.770662Z,139,4.753,Low,5957,Negative,"I keep trying to make a payment, but it doesn't work.",2026-07-23T02:59:55.770681Z
+210,1,disposable_card_limits,2026-07-23T03:00:00.913048Z,140,5.014,Low,4346,Neutral,Is there a limit on the number of times I can use a disposable card?,2026-07-23T03:00:00.913059Z
+211,1,top_up_limits,2026-07-23T03:00:03.690595Z,141,2.659,Low,2235,Neutral,Are top-ups unlimited?,2026-07-23T03:00:03.690610Z
+212,1,supported_cards_and_currencies,2026-07-23T03:00:06.833280Z,142,3.019,Low,2936,Neutral,What are my payment options?,2026-07-23T03:00:06.833298Z
+213,1,transfer_not_received_by_recipient,2026-07-23T03:00:16.314480Z,143,9.345,High,2738,Neutral,How long do transfers typically take? Is there a way of speeding the process up? My friend needs the money I sent her desperately.,2026-07-23T03:00:16.314497Z
+214,1,top_up_by_card_charge,2026-07-23T03:00:22.055504Z,144,5.608,Low,9097,Neutral,Will I see fees from adding money with an international card?,2026-07-23T03:00:22.055519Z
+215,1,cash_withdrawal_not_recognised,2026-07-23T03:00:27.532014Z,145,5.347,High,8824,Negative,The app says I made a cash withdrawal even though I didn't.,2026-07-23T03:00:27.532029Z
+216,1,card_acceptance,2026-07-23T03:00:31.507612Z,146,3.84,Low,3106,Neutral,Will this card work all over the world?,2026-07-23T03:00:31.507627Z
+217,1,balance_not_updated_after_cheque_or_cash_deposit,2026-07-23T03:00:35.721284Z,147,4.074,Medium,3438,Neutral,"I deposited cash this morning, but it is not yet available.",2026-07-23T03:00:35.721294Z
+218,1,atm_support,2026-07-23T03:00:39.631679Z,148,3.784,Low,4545,Neutral,I can use this card at which ATMs?,2026-07-23T03:00:39.631696Z
+219,1,beneficiary_not_allowed,2026-07-23T03:00:47.756952Z,149,7.986,Low,7022,Neutral,I got a message that I cannot name X as a beneficiary.,2026-07-23T03:00:47.756967Z
+220,1,verify_source_of_funds,2026-07-23T03:00:52.108472Z,150,4.229,Low,6516,Neutral,where can I see who sent me funds,2026-07-23T03:00:52.108491Z
+221,1,reverted_card_payment?,2026-07-23T03:01:15.759537Z,151,23.527,Medium,6863,Neutral,"Around one or two weeks ago I purchased something but there's seems to be an issue. I have already received one of the items, but today the money was placed back into my account. What is happening?",2026-07-23T03:01:15.759548Z
+222,1,edit_personal_details,2026-07-23T03:01:19.371984Z,152,3.457,Low,3659,Neutral,I moved to a new city and need to change my address,2026-07-23T03:01:19.372001Z
+223,1,card_payment_fee_charged,2026-07-23T03:01:22.498152Z,153,2.996,Low,2546,Neutral,Is there a fee for paying by card?,2026-07-23T03:01:22.498169Z
+224,1,declined_cash_withdrawal,2026-07-23T03:01:26.000597Z,154,3.354,Low,5027,Neutral,Why can I not get cash from the ATM?,2026-07-23T03:01:26.000613Z
+225,1,transfer_timing,2026-07-23T03:01:29.176109Z,155,3.042,Low,6691,Neutral,How long will it take to transfer from overseas?,2026-07-23T03:01:29.176126Z
+226,1,transaction_charged_twice,2026-07-23T03:01:37.884631Z,156,8.559,High,6480,Neutral,Hello. I just noticed I was charged two times for a restaurant I visited this week. Can you reverse the additional charge?,2026-07-23T03:01:37.884649Z
+227,1,visa_or_mastercard,2026-07-23T03:01:41.375655Z,157,3.359,Low,4180,Neutral,What type of card can I get?,2026-07-23T03:01:41.375671Z
+228,1,terminate_account,2026-07-23T03:01:46.925023Z,158,5.429,High,6180,Negative,I hate this company! Can you delete my account?,2026-07-23T03:01:46.925037Z
+229,1,card_swallowed,2026-07-23T03:01:53.656794Z,159,6.606,Medium,6245,Neutral,What do I do if the ATM took my card?,2026-07-23T03:01:53.656812Z
+230,1,terminate_account,2026-07-23T03:01:57.171460Z,160,3.393,High,6228,Negative,"This is terrible, i want to delete my account",2026-07-23T03:01:57.171478Z
+231,1,contactless_not_working,2026-07-23T03:02:03.231829Z,161,5.931,Medium,1785,Neutral,My contactless payments don't work.,2026-07-23T03:02:03.231847Z
+232,1,extra_charge_on_statement,2026-07-23T03:02:08.570100Z,162,5.211,Low,584,Neutral,I have been charged Rs 10 for something that appears on my statement,2026-07-23T03:02:08.570119Z
+233,1,cash_withdrawal_not_recognised,2026-07-23T03:02:13.714510Z,163,5.013,High,8900,Neutral,There's a cash withdrawal I am certain I did not make,2026-07-23T03:02:13.714525Z
+234,1,getting_spare_card,2026-07-23T03:02:18.925998Z,164,5.076,Low,7927,Neutral,I need two cards. Is this possible?,2026-07-23T03:02:18.926012Z
+235,1,topping_up_by_card,2026-07-23T03:02:21.977215Z,165,2.926,Low,4281,Neutral,i need to top up by card.,2026-07-23T03:02:21.977230Z
+236,1,card_linking,2026-07-23T03:02:25.920338Z,166,3.823,Low,220,Neutral,"I've obtained the card, how do I enable it on the app?",2026-07-23T03:02:25.920350Z
+237,1,beneficiary_not_allowed,2026-07-23T03:02:32.288723Z,167,6.239,Medium,7097,Neutral,Why is this beneficiary being rejected?,2026-07-23T03:02:32.288735Z
+238,1,topping_up_by_card,2026-07-23T03:02:35.486509Z,168,3.072,Low,4240,Neutral,How can my friends top up my account?,2026-07-23T03:02:35.486520Z
+239,1,transfer_into_account,2026-07-23T03:02:41.233867Z,169,5.616,Low,7667,Neutral,How can I go about transferring money to my account?,2026-07-23T03:02:41.233881Z
+240,1,Refund_not_showing_up,2026-07-23T03:02:49.295532Z,170,7.928,Low,5731,Neutral,I was supposed to get a refund but I do not see it on my statement. When is it going to be updated?,2026-07-23T03:02:49.295540Z
+241,1,top_up_failed,2026-07-23T03:02:56.007674Z,171,6.59,Medium,8609,Neutral,Was there a problem with topping up?,2026-07-23T03:02:56.007683Z
+242,1,country_support,2026-07-23T03:03:00.176619Z,172,4.041,Low,9935,Neutral,Can I get a card if I don't reside in Sri Lanka?,2026-07-23T03:03:00.176633Z
+243,1,pending_top_up,2026-07-23T03:03:05.110165Z,173,4.79,Medium,1995,Neutral,Why hasn't my top up gone through?,2026-07-23T03:03:05.110180Z
+244,1,card_payment_not_recognised,2026-07-23T03:03:10.471500Z,174,18.682000000000002,High,3510,Neutral,What is this strange payment in my account?,2026-07-23T03:03:30.122969Z
+245,1,country_support,2026-07-23T03:03:37.709740Z,175,9.888,Low,9894,Neutral,What countries do your accounts send and receive to?,2026-07-23T03:03:37.709755Z
+246,1,declined_card_payment,2026-07-23T03:03:47.161558Z,176,9.295,Medium,5868,Negative,"My payment has been declined!! What's going on, I thought everything was alright and working well?",2026-07-23T03:03:47.161573Z
+247,1,order_physical_card,2026-07-23T03:03:51.025477Z,177,3.724,Low,8108,Neutral,Where do you export the cards to?,2026-07-23T03:03:51.025492Z
+248,1,card_linking,2026-07-23T03:03:58.815822Z,178,7.664,Medium,188,Neutral,"I want to reactivate my card, I thought I had lost it but found it again this morning.",2026-07-23T03:03:58.815836Z
+249,1,failed_transfer,2026-07-23T03:04:11.911975Z,179,12.956,Medium,7542,Negative,"Hi, can you tell me why my transfer keeps being rejected? I've been trying to send money to my friends this morning but failed every time and I have no idea why?",2026-07-23T03:04:11.911986Z
+250,1,apple_pay_or_google_pay,2026-07-23T03:04:16.659206Z,180,4.61,Low,9735,Neutral,Can an apple watch be used to tup-up?,2026-07-23T03:04:16.659216Z
+251,1,balance_not_updated_after_bank_transfer,2026-07-23T03:04:21.858420Z,181,5.06,Medium,8730,Neutral,Why hasn't the money I transferred into my account shown up yet?,2026-07-23T03:04:21.858435Z
+252,1,top_up_by_bank_transfer_charge,2026-07-23T03:04:25.246070Z,182,3.263,Low,1904,Neutral,Does it cost me to add cash?,2026-07-23T03:04:25.246087Z
+253,1,top_up_reverted,2026-07-23T03:04:38.620454Z,183,13.23,Medium,3192,Negative,"Did you lose my money? I had added funds through top-up not long ago and I know they were in my account, but they seem to have disappeared. What happened?",2026-07-23T03:04:38.620466Z
+254,1,pin_blocked,2026-07-23T03:04:47.416021Z,184,8.665,Medium,1725,Neutral,I managed to drunken block my card :(( Help!,2026-07-23T03:04:47.416037Z
+255,1,reverted_card_payment?,2026-07-23T03:04:51.226641Z,185,3.672,Medium,6878,Neutral,My payment was stopped,2026-07-23T03:04:51.226655Z
+256,1,top_up_by_cash_or_cheque,2026-07-23T03:04:55.030816Z,186,3.683,Low,7968,Neutral,What apps can I use to top up my account?,2026-07-23T03:04:55.030834Z
+257,1,pending_transfer,2026-07-23T03:04:59.562186Z,187,4.327,Medium,6065,Negative,I am still waiting for a transfer to show,2026-07-23T03:04:59.562199Z
+258,1,order_physical_card,2026-07-23T03:05:03.351973Z,188,3.65,Low,8164,Neutral,What fees are charged for a physical card?,2026-07-23T03:05:03.351985Z
+259,1,exchange_via_app,2026-07-23T03:05:08.170606Z,189,4.671,Low,1402,Neutral,"I need to exchange my LKR to USD, how would I do this?",2026-07-23T03:05:08.170621Z
+260,1,cancel_transfer,2026-07-23T03:05:12.969324Z,190,4.665,High,2174,Neutral,"I made a mistake when making my last transfer, please cancel before it goes thru.",2026-07-23T03:05:12.969336Z
+261,1,top_up_limits,2026-07-23T03:05:17.831938Z,191,4.731,Low,2243,Neutral,How much is ok for me to top up with?,2026-07-23T03:05:17.831956Z
+262,1,top_up_reverted,2026-07-23T03:05:21.791147Z,192,3.823,Low,3164,Neutral,I believe my top up was reverted.,2026-07-23T03:05:21.791165Z
+263,1,top_up_by_card_charge,2026-07-23T03:05:25.324003Z,193,3.402,Low,9173,Neutral,Is there a fee for adding funds with a credit card?,2026-07-23T03:05:25.324016Z
+264,1,balance_not_updated_after_bank_transfer,2026-07-23T03:05:30.584397Z,194,5.134,Medium,8680,Neutral,Why hasn't my money transfer shown up yet?,2026-07-23T03:05:30.584412Z
+265,1,get_disposable_virtual_card,2026-07-23T03:05:34.201706Z,195,3.479,Low,8383,Neutral,How can I create a disposable virtual card?,2026-07-23T03:05:34.201719Z
+266,1,getting_spare_card,2026-07-23T03:05:37.417656Z,196,3.082,Low,7819,Neutral,Can I have more physical cards?,2026-07-23T03:05:37.417671Z
+267,1,activate_my_card,2026-07-23T03:05:42.637794Z,197,5.072,Low,9318,Neutral,What steps do I have to go through in order to activate my new card?,2026-07-23T03:05:42.637812Z
+268,1,unable_to_verify_identity,2026-07-23T03:05:47.546588Z,198,4.779,Low,3931,Neutral,The app does not recognize who I am.,2026-07-23T03:05:47.546602Z
+269,1,card_delivery_estimate,2026-07-23T03:05:52.440723Z,199,4.773,High,1046,Neutral,When will my card come? I need it as soon as possible!,2026-07-23T03:05:52.440737Z
+270,1,reverted_card_payment?,2026-07-23T03:05:59.918037Z,200,7.354,Medium,6798,Neutral,Card payment has be declined.,2026-07-23T03:05:59.918049Z
+271,1,change_pin,2026-07-23T03:06:02.818925Z,201,2.764,Low,6994,Neutral,Can I change my card PIN?,2026-07-23T03:06:02.818937Z
+272,1,transfer_timing,2026-07-23T03:06:06.424031Z,202,3.473,Low,6645,Neutral,How long does it take overseas to do a transfer?,2026-07-23T03:06:06.424047Z
+273,1,request_refund,2026-07-23T03:06:12.323002Z,203,5.77,Low,5511,Neutral,Are purchases returnable for full refund?,2026-07-23T03:06:12.323018Z
+274,1,fiat_currency_support,2026-07-23T03:06:16.896442Z,204,4.445,Low,991,Neutral,Is my fiat currency supported for both hold and exchange?,2026-07-23T03:06:16.896456Z
+275,1,receiving_money,2026-07-23T03:06:20.224080Z,205,3.187,Low,7341,Neutral,How can my friend send money to me?,2026-07-23T03:06:20.224091Z
+276,1,transfer_into_account,2026-07-23T03:06:26.106000Z,206,5.756,Low,7568,Neutral,I have an account that is empty of funds. Can I transfer some from another bank?,2026-07-23T03:06:26.106016Z
+277,1,card_about_to_expire,2026-07-23T03:06:32.234786Z,207,5.988,Low,9609,Neutral,Do I need to re-apply to order a new card when my old one's about to expire?,2026-07-23T03:06:32.234835Z
+278,1,apple_pay_or_google_pay,2026-07-23T03:06:35.322403Z,208,2.957,Low,9727,Neutral,Am I able to do top-ups with Google Pay?,2026-07-23T03:06:35.322415Z
+279,1,unable_to_verify_identity,2026-07-23T03:06:38.465289Z,209,3.012,Low,3920,Neutral,I'm not able to verify my identity.,2026-07-23T03:06:38.465308Z
+280,1,card_acceptance,2026-07-23T03:06:41.659898Z,210,3.065,Low,3120,Neutral,Where can my card be used?,2026-07-23T03:06:41.659914Z
+281,1,top_up_failed,2026-07-23T03:06:44.263758Z,211,2.479,Low,8501,Neutral,What reasons would a topup fail?,2026-07-23T03:06:44.263770Z
+282,1,why_verify_identity,2026-07-23T03:06:48.079378Z,212,3.676,Low,3844,Neutral,Am I able to use my account if the identity verification is not complete?,2026-07-23T03:06:48.079390Z
+283,1,exchange_charge,2026-07-23T03:06:52.941066Z,213,4.738,Low,8979,Neutral,How much do I have to pay to accept an international transfer?,2026-07-23T03:06:52.941081Z
+284,1,disposable_card_limits,2026-07-23T03:06:56.656601Z,214,3.586,Low,4347,Neutral,How many disposable cards am I allowed to have?,2026-07-23T03:06:56.656614Z
+285,1,top_up_by_card_charge,2026-07-23T03:06:59.574448Z,215,2.772,Low,9146,Neutral,What are the top-up fees for my card?,2026-07-23T03:06:59.574460Z
+286,1,card_payment_not_recognised,2026-07-23T03:07:03.589499Z,216,3.885,High,3505,Neutral,I don't recognize a purchase that was made with my card.,2026-07-23T03:07:03.589513Z
+287,1,card_payment_not_recognised,2026-07-23T03:07:07.968673Z,217,4.247,High,3642,Neutral,I have a charge I did not make.,2026-07-23T03:07:07.968686Z
+288,1,declined_transfer,2026-07-23T03:07:14.840069Z,218,6.736,Medium,5673,Neutral,Please explain why my transfer attempt was declined. Thank you.,2026-07-23T03:07:14.840083Z
+289,1,card_swallowed,2026-07-23T03:07:22.347365Z,219,7.375,Medium,6291,Neutral,how can the money machine keep my card what do i need to do?,2026-07-23T03:07:22.347383Z
+290,1,why_verify_identity,2026-07-23T03:07:29.062286Z,220,6.577,Low,3803,Negative,Why do you guys need to verify my identity?,2026-07-23T03:07:29.062299Z
+291,1,change_pin,2026-07-23T03:07:32.074992Z,221,2.886,Low,6963,Neutral,How can I alteration my PIN?,2026-07-23T03:07:32.075007Z
+292,1,order_physical_card,2026-07-23T03:07:35.569463Z,222,3.364,Low,8111,Neutral,How to order my card?,2026-07-23T03:07:35.569474Z
+293,1,compromised_card,2026-07-23T03:07:40.480874Z,223,4.778,High,4479,Neutral,I want to cancel my card. I think someone else is using it.,2026-07-23T03:07:40.480894Z
+294,1,order_physical_card,2026-07-23T03:07:46.646311Z,224,6.027,Low,8054,Neutral,Can you tell me exactly what fees I will expect to see in regards to your cards?,2026-07-23T03:07:46.646324Z
+295,1,declined_card_payment,2026-07-23T03:07:52.608237Z,225,5.84,Medium,5903,Negative,Why won't you accept my payment? I keep trying with this card and it's not working.,2026-07-23T03:07:52.608252Z
+296,1,balance_not_updated_after_bank_transfer,2026-07-23T03:08:00.511999Z,226,7.774,Medium,8767,Neutral,My account isn't showing a transfer I made.,2026-07-23T03:08:00.512011Z
+297,1,pending_card_payment,2026-07-23T03:08:06.588769Z,227,5.931,High,5109,Negative,"My card payment is just showing up as pending since forever, what's going on with that, it should be going through at some point?",2026-07-23T03:08:06.588783Z
+298,1,supported_cards_and_currencies,2026-07-23T03:08:11.175951Z,228,4.443,Low,2898,Neutral,Which foreign currencies do you accept for adding money?,2026-07-23T03:08:11.175966Z
+299,1,country_support,2026-07-23T03:08:14.057929Z,229,2.752,Low,9891,Neutral,Who gets support?,2026-07-23T03:08:14.057943Z
+300,1,card_payment_fee_charged,2026-07-23T03:08:26.183309Z,230,11.997,Medium,2641,Neutral,Let me know when you charge for payments. I just checked the app and saw a fee that I wasn't warned about.,2026-07-23T03:08:26.183327Z
+301,1,verify_my_identity,2026-07-23T03:08:30.401823Z,231,4.078,Low,9821,Neutral,What do I need for the verification check?,2026-07-23T03:08:30.401835Z
+302,1,top_up_by_bank_transfer_charge,2026-07-23T03:08:33.845874Z,232,3.302,Low,1881,Neutral,Will I be charged for adding money by transfer?,2026-07-23T03:08:33.845887Z
+303,1,top_up_by_cash_or_cheque,2026-07-23T03:08:37.762818Z,233,3.793,Low,7987,Neutral,Where do I look for cash top up?,2026-07-23T03:08:37.762829Z
+304,1,card_delivery_estimate,2026-07-23T03:08:42.658140Z,234,4.768,Low,1040,Neutral,If I order a card when does it arrive?,2026-07-23T03:08:42.658154Z
+305,1,card_not_working,2026-07-23T03:08:47.882133Z,235,5.093,Medium,1319,Neutral,"Can you help me with my card, I think it's broke.",2026-07-23T03:08:47.882150Z
+306,1,apple_pay_or_google_pay,2026-07-23T03:08:55.290632Z,236,7.268,Low,9701,Neutral,what can I do if I got my American Express in Apple Bay but top up is not working?,2026-07-23T03:08:55.290649Z
+307,1,transfer_fee_charged,2026-07-23T03:09:02.419949Z,237,6.996,Medium,7202,Neutral,"I made a transfer and the receiver did not get the right amount its lesser than what it should be,Now I have to transfer more money to make up for the missing amount . Can you please help me about this, what should be done",2026-07-23T03:09:02.419964Z
+308,1,disposable_card_limits,2026-07-23T03:09:06.047468Z,238,3.493,Low,4338,Neutral,Do the disposable cards have any restrictions on them?,2026-07-23T03:09:06.047485Z
+309,1,verify_top_up,2026-07-23T03:09:10.123853Z,239,3.935,Low,7729,Neutral,Why are top-ups being verified?,2026-07-23T03:09:10.123870Z
+310,1,top_up_limits,2026-07-23T03:09:13.544095Z,240,3.29,Low,2253,Neutral,Is there a limit to how much I can top-up?,2026-07-23T03:09:13.544110Z
+311,1,topping_up_by_card,2026-07-23T03:09:19.137848Z,241,5.475,Low,4251,Neutral,Could you tell me why my top up isn't showing in my wallet?,2026-07-23T03:09:19.137863Z
+312,1,card_arrival,2026-07-23T03:09:34.850010Z,242,15.578,High,14,Neutral,It's been a week since I ordered my card and it's not here. Please help?,2026-07-23T03:09:34.850026Z
+313,1,compromised_card,2026-07-23T03:09:43.848596Z,243,8.863,High,4506,Neutral,I see some transactions that I don't recognize.  I think someone stole my details.,2026-07-23T03:09:43.848614Z
+314,1,lost_or_stolen_card,2026-07-23T03:09:47.080522Z,244,3.09,High,1494,Neutral,I believe that my card has been stolen!,2026-07-23T03:09:47.080539Z
+315,1,age_limit,2026-07-23T03:09:51.715585Z,245,4.476,Low,1634,Neutral,How old do my kids need to be to open an account?,2026-07-23T03:09:51.715599Z
+316,1,card_delivery_estimate,2026-07-23T03:09:57.741255Z,246,5.883,Low,1033,Neutral,When shipped to the US how long is delivery time?,2026-07-23T03:09:57.741269Z
+317,1,receiving_money,2026-07-23T03:10:01.293315Z,247,3.414,Low,7377,Neutral,can my husband open an account and transfer money,2026-07-23T03:10:01.293328Z
+318,1,top_up_reverted,2026-07-23T03:10:08.607974Z,248,7.184,Medium,3265,Negative,"Hello. I tried doing a topup and I thought it worked, but now the money is no longer in my account. Can you explain?",2026-07-23T03:10:08.607989Z
+319,1,card_swallowed,2026-07-23T03:10:11.625331Z,249,2.889,Medium,6288,Neutral,What do I do if the ATM swallowed my card?,2026-07-23T03:10:11.625348Z
+320,1,card_arrival,2026-07-23T03:10:19.479822Z,250,7.724,Low,58,Neutral,I know I'm getting a new card but would like know when I can expect to receive it.,2026-07-23T03:10:19.479840Z
+321,1,pending_top_up,2026-07-23T03:10:22.480521Z,251,2.856,Low,1989,Neutral,How long does it take for my top up to clear?,2026-07-23T03:10:22.480539Z
+322,1,declined_transfer,2026-07-23T03:10:25.888670Z,252,3.265,Low,5571,Neutral,Why would I get a decline message in a transfer?,2026-07-23T03:10:25.888683Z
+323,1,cash_withdrawal_charge,2026-07-23T03:10:30.008996Z,253,3.983,Low,9366,Neutral,Why have I been charged for pulling cash out of my own account?,2026-07-23T03:10:30.009015Z
+324,1,extra_charge_on_statement,2026-07-23T03:10:39.354092Z,254,9.211,Low,598,Neutral,I checked my account today and saw that I was charged an extra Rs 10 that I did not spend.,2026-07-23T03:10:39.354112Z
+325,1,verify_my_identity,2026-07-23T03:10:42.616580Z,255,3.124,Low,9854,Neutral,What documents do you need to verify my identity?,2026-07-23T03:10:42.616594Z
+326,1,beneficiary_not_allowed,2026-07-23T03:10:46.272589Z,256,3.516,Low,7063,Neutral,Will a beneficiary not accept a transfer?,2026-07-23T03:10:46.272604Z
+327,1,virtual_card_not_working,2026-07-23T03:10:51.025495Z,257,4.617,Medium,8174,Neutral,Why was my virtual card rejected?,2026-07-23T03:10:51.025506Z
+328,1,balance_not_updated_after_cheque_or_cash_deposit,2026-07-23T03:10:55.879045Z,258,4.723,Medium,3321,Neutral,I can't see my cash deposit in my account.,2026-07-23T03:10:55.879057Z
+329,1,transfer_into_account,2026-07-23T03:10:59.724047Z,259,3.718,Low,7617,Neutral,"I need to transfer money into my account, and I don't know how to do that.",2026-07-23T03:10:59.724064Z
+330,1,automatic_top_up,2026-07-23T03:11:04.160333Z,260,4.275,Low,1161,Neutral,How can I Use thereto-top option?,2026-07-23T03:11:04.160346Z
+331,1,transfer_into_account,2026-07-23T03:11:07.662755Z,261,3.375,Low,7677,Neutral,I need money put into this account from another one.,2026-07-23T03:11:07.662766Z
+332,1,direct_debit_payment_not_recognised,2026-07-23T03:11:11.579080Z,262,3.796,Low,4648,Neutral,I do not understand what this particular direct debit is ?,2026-07-23T03:11:11.579093Z
+333,1,declined_cash_withdrawal,2026-07-23T03:11:14.807302Z,263,3.084,Medium,5057,Neutral,"I tried to withdraw cash, but got declined!",2026-07-23T03:11:14.807315Z
+334,1,terminate_account,2026-07-23T03:11:22.646466Z,264,7.709,Low,6163,Neutral,if im not using my account should i close it or just let it sit,2026-07-23T03:11:22.646484Z
+335,1,passcode_forgotten,2026-07-23T03:11:26.532749Z,265,3.745,Medium,4834,Neutral,I happened to forget my password,2026-07-23T03:11:26.532767Z
+336,1,balance_not_updated_after_cheque_or_cash_deposit,2026-07-23T03:11:32.712861Z,266,6.038,Medium,3461,Neutral,where is my money from this morning,2026-07-23T03:11:32.712879Z
+337,1,change_pin,2026-07-23T03:11:37.971287Z,267,5.112,Low,6990,Neutral,What ATMs will allow me to change my PIN?,2026-07-23T03:11:37.971300Z
+338,1,card_acceptance,2026-07-23T03:11:41.752000Z,268,3.644,Low,3113,Neutral,You accepts my card?,2026-07-23T03:11:41.752015Z
+339,1,get_physical_card,2026-07-23T03:11:45.370624Z,269,3.479,Low,4024,Neutral,Where should I look for my PIN number at?,2026-07-23T03:11:45.370640Z
+340,1,card_arrival,2026-07-23T03:11:48.959965Z,270,3.454,Low,56,Neutral,How long does it take for me to get my new card?,2026-07-23T03:11:48.959978Z
+341,1,declined_card_payment,2026-07-23T03:11:55.307293Z,271,6.198,Medium,5971,Neutral,Why would my card payment not work?,2026-07-23T03:11:55.307307Z
+342,1,card_payment_wrong_exchange_rate,2026-07-23T03:12:03.392913Z,272,7.944,Medium,539,Neutral,I don't think the charges made when I had currency exchanged are right.,2026-07-23T03:12:03.392929Z
+343,1,visa_or_mastercard,2026-07-23T03:12:07.762282Z,273,4.236,Low,4211,Neutral,Can I use a Visa or Mastercard?,2026-07-23T03:12:07.762299Z
+344,1,card_not_working,2026-07-23T03:12:16.559179Z,274,8.669,Medium,1299,Neutral,"Out of the blue, my card stopped working.",2026-07-23T03:12:16.559193Z
+345,1,beneficiary_not_allowed,2026-07-23T03:12:20.600695Z,275,3.89,Medium,7054,Neutral,Why did my transfer to a beneficiary fail?,2026-07-23T03:12:20.600711Z
+346,1,verify_my_identity,2026-07-23T03:12:23.808758Z,276,3.067,Low,9773,Neutral,How do I verify my identity?,2026-07-23T03:12:23.808771Z
+347,1,cancel_transfer,2026-07-23T03:12:29.927327Z,277,5.988,Low,2136,Neutral,Who do I call to cancel a transfer?,2026-07-23T03:12:29.927338Z
+348,1,visa_or_mastercard,2026-07-23T03:12:33.576055Z,278,3.518,Low,4127,Neutral,would a visa or mastercard be more suited to me?,2026-07-23T03:12:33.576067Z
+349,1,request_refund,2026-07-23T03:12:40.005216Z,279,6.294,Medium,5412,Neutral,I would like to cancel my order.,2026-07-23T03:12:40.005231Z
+350,1,transfer_timing,2026-07-23T03:12:43.841034Z,280,3.698,Low,6714,Neutral,When can I expect a transfer from overseas to go through?,2026-07-23T03:12:43.841047Z
+351,1,card_linking,2026-07-23T03:12:51.570465Z,281,7.59,Low,189,Neutral,"I need a card reactivation, I had reported my card lost but I ran across it in my jacket.",2026-07-23T03:12:51.570481Z
+352,1,top_up_by_bank_transfer_charge,2026-07-23T03:12:54.864602Z,282,3.154,Low,1843,Neutral,To receive money are there charges?,2026-07-23T03:12:54.864620Z
+353,1,age_limit,2026-07-23T03:12:58.075997Z,283,3.062,Low,1586,Neutral,What are the requirements to open an account for a minor?,2026-07-23T03:12:58.076011Z
+354,1,age_limit,2026-07-23T03:13:01.322845Z,284,3.114,Low,1582,Neutral,What is the age limit for an account?,2026-07-23T03:13:01.322862Z
+355,1,automatic_top_up,2026-07-23T03:13:05.172176Z,285,3.706,Low,1145,Neutral,Is it possible to do auto top up?,2026-07-23T03:13:05.172194Z
+356,1,card_payment_fee_charged,2026-07-23T03:13:11.364953Z,286,8.321,Low,2603,Neutral,I was spending cash with my card and got a fee.,2026-07-23T03:13:21.118543Z
+357,1,country_support,2026-07-23T03:13:23.928379Z,287,8.659,Low,9895,Neutral,How do I get a card in the EU?,2026-07-23T03:13:23.928388Z
+358,1,apple_pay_or_google_pay,2026-07-23T03:13:27.558749Z,288,3.483,Low,9672,Neutral,Can I use the apple watch to make a top-up?,2026-07-23T03:13:27.558762Z
+359,1,reverted_card_payment?,2026-07-23T03:13:38.193135Z,289,10.504,Medium,6724,Neutral,"Hi, I had an issue with my card payment and It shows on my account that my payment went through. Then I got contacted from the seller saying ""they did not receive my payment"" then the payment was returned to my account. so I would like to see why it did that please.",2026-07-23T03:13:38.193150Z
+360,1,activate_my_card,2026-07-23T03:13:41.588827Z,290,3.268,Low,9330,Neutral,Is my new card activated?,2026-07-23T03:13:41.588840Z
+361,1,exchange_via_app,2026-07-23T03:13:48.416793Z,291,6.689,Low,1412,Neutral,How do I exchange USD for LKR?,2026-07-23T03:13:48.416808Z
+362,1,reverted_card_payment?,2026-07-23T03:13:52.464869Z,292,3.903,Low,6857,Neutral,"My card payment reverted back, I think.",2026-07-23T03:13:52.464885Z
+363,1,card_payment_wrong_exchange_rate,2026-07-23T03:13:58.154264Z,293,5.528,Medium,501,Negative,The exchange rate you are using is really bad.This can't be the official interbank exchange rate.,2026-07-23T03:13:58.154355Z
+364,1,pin_blocked,2026-07-23T03:14:02.691825Z,294,4.4,Medium,1676,Neutral,Can someone help me unblock my pin?,2026-07-23T03:14:02.691842Z
+365,1,cash_withdrawal_charge,2026-07-23T03:14:08.073399Z,295,5.246,Low,9502,Neutral,Why did you charge a fee when I withdrew from an ATM?,2026-07-23T03:14:08.073416Z
+366,1,lost_or_stolen_phone,2026-07-23T03:14:12.847131Z,296,4.63,High,5291,Neutral,"phone is gone, dont want others to access account information",2026-07-23T03:14:12.847142Z
+367,1,pending_card_payment,2026-07-23T03:14:17.009833Z,297,4.042,Medium,5237,Neutral,Why is the payment from my card still pending?,2026-07-23T03:14:17.009851Z
+368,1,lost_or_stolen_phone,2026-07-23T03:14:25.276194Z,298,8.096,High,5346,Neutral,"Hi, I lost my phone yesterday, what can I do to stop someone using my account on it?",2026-07-23T03:14:25.276209Z
+369,1,exchange_rate,2026-07-23T03:14:29.846196Z,299,4.436,Low,352,Neutral,How's the exchange rate looking right now?,2026-07-23T03:14:29.846210Z
+370,1,card_not_working,2026-07-23T03:14:33.763670Z,300,3.783,Low,1313,Neutral,What can I do to make my physical card work?,2026-07-23T03:14:33.763687Z
+371,1,wrong_amount_of_cash_received,2026-07-23T03:14:42.227411Z,301,8.316,High,2342,Neutral,I didn't get the correct amount of money from the ATM machine,2026-07-23T03:14:42.227424Z
+372,1,unable_to_verify_identity,2026-07-23T03:14:45.803345Z,302,3.357,Low,3936,Neutral,I'm having problems with ID verification,2026-07-23T03:14:45.803361Z
+373,1,card_swallowed,2026-07-23T03:14:50.021734Z,303,4.073,Medium,6280,Neutral,An ATM machine didn't return my card.,2026-07-23T03:14:50.021749Z
+374,1,top_up_failed,2026-07-23T03:14:53.295569Z,304,3.137,Low,8577,Neutral,I need information explaining why my top-up failed to go through,2026-07-23T03:14:53.295580Z
+375,1,card_delivery_estimate,2026-07-23T03:14:57.870126Z,305,4.445,Low,1014,Neutral,How long until my card will get here?,2026-07-23T03:14:57.870139Z
+376,1,exchange_rate,2026-07-23T03:15:01.942627Z,306,3.928,Low,344,Neutral,"When exchanging, how much are the rates?",2026-07-23T03:15:01.942642Z
+377,1,cancel_transfer,2026-07-23T03:15:09.914151Z,307,7.83,High,2170,Neutral,I inadvertently completed a transaction on a wrong account.,2026-07-23T03:15:09.914164Z
+378,1,edit_personal_details,2026-07-23T03:15:12.764347Z,308,2.699,Low,3760,Neutral,I need to change my data.,2026-07-23T03:15:12.764364Z
+379,1,balance_not_updated_after_bank_transfer,2026-07-23T03:15:16.667738Z,309,3.754,Low,8637,Neutral,My transfer into my account isn't showing up.,2026-07-23T03:15:16.667752Z
+380,1,unable_to_verify_identity,2026-07-23T03:15:21.143821Z,310,4.321,Low,3921,Neutral,The app is not able to realize that it is me.,2026-07-23T03:15:21.143831Z
+381,1,getting_virtual_card,2026-07-23T03:15:25.731376Z,311,4.454,Low,3034,Neutral,How can I receive a virtual card?,2026-07-23T03:15:25.731391Z
+382,1,order_physical_card,2026-07-23T03:15:30.013461Z,312,4.136,Low,8053,Neutral,what steps do i do to get a real card,2026-07-23T03:15:30.013475Z
+383,1,declined_transfer,2026-07-23T03:15:38.507043Z,313,8.342,Low,5604,Neutral,I am unable to transfer money. I believe it is not working because it states it was declined.,2026-07-23T03:15:38.507057Z
+384,1,activate_my_card,2026-07-23T03:15:51.141511Z,314,12.496,Low,9202,Neutral,How can I activate my new card? I didn't recieve any information with it about how to do so.,2026-07-23T03:15:51.141526Z
+385,1,get_physical_card,2026-07-23T03:15:56.325595Z,315,5.048,Medium,4090,Negative,I've been waiting ages and my PIN hasn't gotten here.,2026-07-23T03:15:56.325606Z
+386,1,why_verify_identity,2026-07-23T03:16:02.636724Z,316,6.173,Low,3820,Negative,Do you think you're asking for too much information about me?,2026-07-23T03:16:02.636739Z
+387,1,exchange_via_app,2026-07-23T03:16:06.931936Z,317,4.149,Low,1441,Neutral,Will it be possible to change from USD to LKR with this App?,2026-07-23T03:16:06.931951Z
+388,1,card_arrival,2026-07-23T03:16:12.227414Z,318,5.145,Medium,142,Neutral,My new card isn't here and it was issued a week ago.,2026-07-23T03:16:12.227430Z
+389,1,virtual_card_not_working,2026-07-23T03:16:16.328932Z,319,3.961,Low,8168,Neutral,Can I use my virtual card to complete transactions for memberships?,2026-07-23T03:16:16.328945Z
+390,1,contactless_not_working,2026-07-23T03:16:20.363155Z,320,3.899,Low,1816,Neutral,"What is the reason when I tried to pay contactless at the bus, it didnt work?",2026-07-23T03:16:20.363169Z
+391,1,pending_transfer,2026-07-23T03:16:30.308762Z,321,9.795,High,6022,Negative,What is going on? I have checked over and over and the details of my account are right. Why is my transfer still pending? It's 2018 not 1818. Transfering money to another country can't be that hard.,2026-07-23T03:16:30.308775Z
+392,1,age_limit,2026-07-23T03:16:34.683497Z,322,4.207,Low,1584,Neutral,What is the appropriate age for my child to be able to open an account?,2026-07-23T03:16:34.683515Z
+393,1,terminate_account,2026-07-23T03:16:41.602797Z,323,6.779,High,6214,Negative,"how to delete account, not happy",2026-07-23T03:16:41.602807Z
+394,1,edit_personal_details,2026-07-23T03:16:50.565374Z,324,8.824,Low,3680,Neutral,How do I change the details in my account?,2026-07-23T03:16:50.565386Z
+395,1,supported_cards_and_currencies,2026-07-23T03:16:54.618248Z,325,3.904,Low,2895,Neutral,Can I use a credit card from the US to top up?,2026-07-23T03:16:54.618263Z
+396,1,pending_top_up,2026-07-23T03:17:01.252604Z,326,8.453,Medium,1980,Negative,"I already paid to top-up but the funds aren't available yet, where are they?",2026-07-23T03:17:06.176329Z
+397,1,extra_charge_on_statement,2026-07-23T03:17:13.191660Z,327,4.965,Low,674,Neutral,Can you tell me about why the account I have was charged an extra Rs 10,2026-07-23T03:17:13.191677Z
+398,1,verify_source_of_funds,2026-07-23T03:17:16.346796Z,328,3.015,Low,6563,Neutral,How do I see my source of funds?,2026-07-23T03:17:16.346810Z
+399,1,passcode_forgotten,2026-07-23T03:17:19.680377Z,329,3.168,Medium,4881,Neutral,I don't remember my passcode?,2026-07-23T03:17:19.680395Z
+400,1,getting_spare_card,2026-07-23T03:17:23.408229Z,330,3.6,Low,7858,Neutral,Can I have a second card issued to another family member?,2026-07-23T03:17:23.408242Z
+401,1,get_physical_card,2026-07-23T03:17:26.764838Z,331,3.212,Low,4015,Neutral,When do I get my PIN?,2026-07-23T03:17:26.764853Z
+402,1,disposable_card_limits,2026-07-23T03:17:29.881588Z,332,2.964,Low,4345,Neutral,Can you give me the restrictions of the disposable cards?,2026-07-23T03:17:29.881605Z
+403,1,top_up_by_cash_or_cheque,2026-07-23T03:17:33.504441Z,333,3.473,Medium,7933,Neutral,"Help me please, I need to top up cash.",2026-07-23T03:17:33.504460Z
+404,1,cash_withdrawal_not_recognised,2026-07-23T03:17:39.626368Z,334,5.979,Medium,8829,Neutral,I see cash in my app but I did not get it.,2026-07-23T03:17:39.626382Z
+405,1,country_support,2026-07-23T03:17:43.482869Z,335,3.715,Low,9998,Neutral,You provide support in what countries?,2026-07-23T03:17:43.482888Z
+406,1,Refund_not_showing_up,2026-07-23T03:17:49.883612Z,336,6.251,Medium,5736,Neutral,My account isn't showing the refund,2026-07-23T03:17:49.883628Z
+407,1,exchange_via_app,2026-07-23T03:17:53.020947Z,337,2.989,Low,1416,Neutral,Can I exchange from USD to LKR?,2026-07-23T03:17:53.020962Z
+408,1,visa_or_mastercard,2026-07-23T03:17:57.170433Z,338,4.001,Low,4188,Neutral,I want to get a Visa card,2026-07-23T03:17:57.170449Z
+409,1,transfer_not_received_by_recipient,2026-07-23T03:18:05.402841Z,339,8.088,Medium,2766,Neutral,Why hasn't a transaction I did to my friend arrived yet?,2026-07-23T03:18:05.402853Z
+410,1,activate_my_card,2026-07-23T03:18:09.176578Z,340,3.627,Medium,9287,Neutral,My card activation attempt failed.,2026-07-23T03:18:09.176589Z
+411,1,lost_or_stolen_phone,2026-07-23T03:18:12.363140Z,341,3.049,High,5320,Neutral,I lost my phone and need help so someone doesn't access my account.,2026-07-23T03:18:12.363153Z
+412,1,declined_transfer,2026-07-23T03:18:19.388121Z,342,12.186,Medium,5656,Neutral,I have been trying to make a transfer and it won't go through. I have checked all the receipts and its all correct but still won't let me do it.,2026-07-23T03:18:27.273408Z
+413,1,visa_or_mastercard,2026-07-23T03:18:32.915878Z,343,3.314,Low,4230,Neutral,I would like to know if you use Visa or Mastercard.,2026-07-23T03:18:32.915894Z
+414,1,card_not_working,2026-07-23T03:18:39.458650Z,344,6.391,Medium,1276,Neutral,Today I was out eating and my card was declined. Why's that?,2026-07-23T03:18:39.458664Z
+415,1,atm_support,2026-07-23T03:18:42.971552Z,345,3.368,Low,4565,Neutral,Do I have to use bank approved ATM's,2026-07-23T03:18:42.971568Z
+416,1,request_refund,2026-07-23T03:18:47.318760Z,346,4.201,Medium,5434,Neutral,I am interested in cancelling a purchase,2026-07-23T03:18:47.318772Z
+417,1,verify_source_of_funds,2026-07-23T03:18:49.986811Z,347,2.518,Low,6591,Neutral,Where do my funds originate from?,2026-07-23T03:18:49.986826Z
+418,1,get_physical_card,2026-07-23T03:18:52.709184Z,348,2.572,Low,4056,Neutral,How do I find the PIN?,2026-07-23T03:18:52.709198Z
+419,1,contactless_not_working,2026-07-23T03:18:56.511259Z,349,3.665,Low,1782,Neutral,Should i uninstall the app before i try it again?,2026-07-23T03:18:56.511274Z
+420,1,direct_debit_payment_not_recognised,2026-07-23T03:19:00.158089Z,350,3.503,Low,4690,Neutral,How can I dispute a debit transaction?,2026-07-23T03:19:00.158104Z
+421,1,transaction_charged_twice,2026-07-23T03:19:04.220620Z,351,3.918,High,6396,Neutral,Can you help me? I have a duplicate transaction on my account and I don't understand why.,2026-07-23T03:19:04.220633Z
+422,1,atm_support,2026-07-23T03:19:07.806475Z,352,3.435,Low,4599,Neutral,What's the closest place to withdraw money?,2026-07-23T03:19:07.806488Z
+423,1,verify_my_identity,2026-07-23T03:19:11.081731Z,353,3.13,Low,9794,Neutral,Can you tell me what I need for identity validation?,2026-07-23T03:19:11.081749Z
+424,1,card_acceptance,2026-07-23T03:19:14.463510Z,354,3.231,Low,3142,Neutral,What places accept my card?,2026-07-23T03:19:14.463523Z
+425,1,topping_up_by_card,2026-07-23T03:19:18.745977Z,355,4.129,Low,4280,Neutral,How do I transfer funds directly from my credit card?,2026-07-23T03:19:18.745989Z
+426,1,card_payment_fee_charged,2026-07-23T03:19:23.046896Z,356,4.138,Low,2637,Neutral,When do i get charged a fee for using the card?,2026-07-23T03:19:23.046913Z
+427,1,card_acceptance,2026-07-23T03:19:26.842103Z,357,3.639,Low,3130,Neutral,Can I use my card while on vacation overseas?,2026-07-23T03:19:26.842115Z
+428,1,card_about_to_expire,2026-07-23T03:19:33.980205Z,358,6.995,Low,9556,Neutral,Can I wait for you to send me a new card when mine's about to expire?,2026-07-23T03:19:33.980219Z
+429,1,automatic_top_up,2026-07-23T03:19:37.698635Z,359,3.554,Low,1166,Neutral,Where can I located the auto-top up option?,2026-07-23T03:19:37.698646Z
+430,1,get_physical_card,2026-07-23T03:19:43.119896Z,360,5.272,Medium,4046,Neutral,wheres my pin,2026-07-23T03:19:43.119914Z
+431,1,compromised_card,2026-07-23T03:19:47.987949Z,361,4.714,High,4484,Neutral,Someone must have found my card details as I don't recognize these transactions.,2026-07-23T03:19:47.987965Z
+432,1,transfer_timing,2026-07-23T03:19:51.457164Z,362,3.325,Low,6621,Neutral,How long will a transfer from the US take?,2026-07-23T03:19:51.457176Z
+433,1,card_swallowed,2026-07-23T03:19:54.593764Z,363,2.992,Medium,6302,Neutral,atm ate my card,2026-07-23T03:19:54.593779Z
+434,1,transfer_not_received_by_recipient,2026-07-23T03:19:59.201193Z,364,4.464,Medium,2803,Neutral,Why is my transaction taking so long to complete?,2026-07-23T03:19:59.201250Z
+435,1,verify_top_up,2026-07-23T03:20:02.587602Z,365,3.236,Low,7764,Neutral,How do i secure a top-up card?,2026-07-23T03:20:02.587614Z
+436,1,automatic_top_up,2026-07-23T03:20:07.875205Z,366,5.138,Low,1131,Neutral,How low does the balance have to be before the system updates?,2026-07-23T03:20:07.875221Z
+437,1,exchange_charge,2026-07-23T03:20:12.319984Z,367,4.307,Low,9029,Neutral,How much is the charge for a foreign currency exchange?,2026-07-23T03:20:12.320004Z
+438,1,cash_withdrawal_charge,2026-07-23T03:20:17.603855Z,368,5.135,Medium,9475,Neutral,Why is there a fee for cash withdrawal?,2026-07-23T03:20:17.603869Z
+439,1,card_payment_not_recognised,2026-07-23T03:20:24.283064Z,369,6.527,High,3521,Neutral,There is  a charge I don't recognize.,2026-07-23T03:20:24.283078Z
+440,1,pending_cash_withdrawal,2026-07-23T03:20:31.160919Z,370,6.723,Medium,800,Neutral,"Hello. I have a transaction in my account listed as pending. I tried to use an ATM at the city centre, but the machine declined my card, and I did not receive the money. Why is the transaction still pending if I did not receive the money.",2026-07-23T03:20:31.160934Z
+441,1,extra_charge_on_statement,2026-07-23T03:20:34.059033Z,371,2.756,Low,586,Neutral,Where did this extra €1 fee on my statement come from?,2026-07-23T03:20:34.059047Z
+442,1,get_disposable_virtual_card,2026-07-23T03:20:37.541983Z,372,3.336,Low,8441,Neutral,Is there a way to use this app with a disposable virtual card?,2026-07-23T03:20:37.541997Z
+443,1,cash_withdrawal_charge,2026-07-23T03:20:41.620706Z,373,3.933,Low,9406,Neutral,I was charged a fee for withdrawing cash.,2026-07-23T03:20:41.620716Z
+444,1,pending_top_up,2026-07-23T03:20:44.542280Z,374,2.782,Low,1994,Neutral,I believe my top up is still pending,2026-07-23T03:20:44.542296Z
+445,1,card_payment_wrong_exchange_rate,2026-07-23T03:20:53.731095Z,375,9.044,Medium,556,Neutral,A foreign purchase I made has the incorrect rate applied to it.,2026-07-23T03:20:53.731112Z
+446,1,card_payment_wrong_exchange_rate,2026-07-23T03:20:58.007905Z,376,4.12,Medium,468,Neutral,"I purchased something while traveling, and the exchange rate applied was wrong.",2026-07-23T03:20:58.007922Z
+447,1,exchange_charge,2026-07-23T03:21:02.763075Z,377,4.609,Low,9036,Neutral,Do I get any sort of discount on volume for a lot fo currency exchanges?,2026-07-23T03:21:02.763087Z
+448,1,verify_top_up,2026-07-23T03:21:05.797021Z,378,2.872,Low,7746,Neutral,Do I have to verify the top-up?,2026-07-23T03:21:05.797035Z
+449,1,card_acceptance,2026-07-23T03:21:10.011176Z,379,4.067,Low,3125,Neutral,Is there a list of where I can use my card?,2026-07-23T03:21:10.011185Z
+450,1,exchange_charge,2026-07-23T03:21:16.708586Z,380,6.555,Low,9013,Neutral,Do you offer a discount for those who perform frequent currency exchanges?,2026-07-23T03:21:16.708600Z
+451,1,virtual_card_not_working,2026-07-23T03:21:21.076929Z,381,6.691000000000001,Medium,8188,Neutral,My virtual car is not working.,2026-07-23T03:21:26.549278Z
+452,1,edit_personal_details,2026-07-23T03:21:32.043552Z,382,3.669,Low,3654,Neutral,I would like to change my adress,2026-07-23T03:21:32.043576Z
+453,1,failed_transfer,2026-07-23T03:21:34.942781Z,383,2.755,Medium,7474,Neutral,Why didn't my transfer work?,2026-07-23T03:21:34.942795Z
+454,1,wrong_exchange_rate_for_cash_withdrawal,2026-07-23T03:21:39.861158Z,384,4.778,High,8301,Neutral,I had the wrong exchange rate applied to some cash I got abroad.,2026-07-23T03:21:39.861170Z
+455,1,passcode_forgotten,2026-07-23T03:21:45.508419Z,385,5.504,Medium,4837,Neutral,I do not understand why my pass-code is not working.,2026-07-23T03:21:45.508433Z
+456,1,verify_my_identity,2026-07-23T03:21:49.463840Z,386,3.784,Low,9812,Neutral,What do you require to verify someone's identity?,2026-07-23T03:21:49.463858Z
+457,1,compromised_card,2026-07-23T03:21:54.764863Z,387,5.142,High,4536,Neutral,What should I do if I think that someone might be using me card?,2026-07-23T03:21:54.764880Z
+458,1,order_physical_card,2026-07-23T03:21:57.250446Z,388,2.325,Low,8121,Neutral,How do I order a card?,2026-07-23T03:21:57.250460Z
+459,1,getting_virtual_card,2026-07-23T03:21:59.877097Z,389,2.467,Low,3031,Neutral,How can I obtain a virtual card?,2026-07-23T03:21:59.877113Z
+460,1,get_disposable_virtual_card,2026-07-23T03:22:03.689098Z,390,3.652,Low,8372,Neutral,How do I get a disposable virtual card as well?,2026-07-23T03:22:03.689110Z
+461,1,wrong_amount_of_cash_received,2026-07-23T03:22:07.922255Z,391,4.079,Medium,2331,Neutral,Why did I only receive a partial amount of what I tried to withdraw?,2026-07-23T03:22:07.922270Z
+462,1,top_up_reverted,2026-07-23T03:22:11.695525Z,392,3.626,Low,3294,Neutral,Why did my top up get pulled back out?,2026-07-23T03:22:11.695536Z
+463,1,cancel_transfer,2026-07-23T03:22:14.728218Z,393,2.892,Medium,2193,Neutral,I would like to cancel a transfer,2026-07-23T03:22:14.728231Z
+464,1,transfer_fee_charged,2026-07-23T03:22:18.014678Z,394,3.103,Low,7304,Neutral,"After a transfer, I see an extra fee.  Why?",2026-07-23T03:22:18.014687Z
+465,1,beneficiary_not_allowed,2026-07-23T03:22:24.066869Z,395,9.454,Medium,7079,Neutral,My funds are not transferring to my bank. Why is this not working?,2026-07-23T03:22:30.108829Z
+466,1,card_payment_wrong_exchange_rate,2026-07-23T03:22:40.884425Z,396,8.924,High,420,Negative,This exchange rate you use is awful! Please tell me this is a mistake and not the official interbank exchange rate!,2026-07-23T03:22:40.884439Z
+467,1,getting_virtual_card,2026-07-23T03:22:45.456115Z,397,4.416,Low,3047,Neutral,Do I get to have one of those virtual cards I've heard about?,2026-07-23T03:22:45.456128Z
+468,1,apple_pay_or_google_pay,2026-07-23T03:22:50.870489Z,398,5.269,Medium,9697,Neutral,My Google pay top up isn't working.,2026-07-23T03:22:50.870501Z
+469,1,exchange_rate,2026-07-23T03:22:57.296104Z,399,6.272,Low,316,Neutral,What is the basis of your exchange rates?,2026-07-23T03:22:57.296117Z
+470,1,fiat_currency_support,2026-07-23T03:23:01.494025Z,400,4.04,Low,936,Neutral,Can you make exchanges with the EUR?,2026-07-23T03:23:01.494042Z
+471,1,transaction_charged_twice,2026-07-23T03:23:04.679187Z,401,3.043,Medium,6359,Neutral,I have a payment that shows twice,2026-07-23T03:23:04.679200Z
+472,1,card_arrival,2026-07-23T03:23:08.391502Z,402,3.544,Low,80,Neutral,Is there a reason my new card hasn't arrived yet?,2026-07-23T03:23:08.391519Z
+473,1,card_payment_fee_charged,2026-07-23T03:23:11.836666Z,403,3.299,Low,2660,Neutral,Is it normal to get charged extra when i use my card?,2026-07-23T03:23:11.836683Z
+474,1,edit_personal_details,2026-07-23T03:23:15.792850Z,404,3.806,Low,3765,Neutral,Where do I go to update details?,2026-07-23T03:23:15.792860Z
+475,1,top_up_limits,2026-07-23T03:23:18.847753Z,405,2.908,Low,2305,Neutral,Can someone please tell me how much I can top-up?,2026-07-23T03:23:18.847769Z
+476,1,balance_not_updated_after_cheque_or_cash_deposit,2026-07-23T03:23:23.621622Z,406,4.617,Medium,3376,Neutral,My cash deposit from a week ago is still not in my account. Can you help me please?,2026-07-23T03:23:23.621638Z
+477,1,top_up_failed,2026-07-23T03:23:29.313526Z,407,5.539,Low,8509,Neutral,How can correct Top up with the app to work correctly?,2026-07-23T03:23:29.313543Z
+478,1,transfer_not_received_by_recipient,2026-07-23T03:23:37.046243Z,408,7.573,Medium,2761,Negative,Still waiting for transfer to be completed.,2026-07-23T03:23:37.046252Z
+479,1,Refund_not_showing_up,2026-07-23T03:23:45.489207Z,409,8.301,Medium,5744,Neutral,"I'm expecting a large refund from a store I returned merchandise to recently.  They say they have sent the money but I don't see it in my account, can you help.",2026-07-23T03:23:45.489222Z
+480,1,request_refund,2026-07-23T03:23:49.461767Z,410,3.816,Medium,5444,Negative,Give me a refund,2026-07-23T03:23:49.461779Z
+481,1,wrong_exchange_rate_for_cash_withdrawal,2026-07-23T03:23:54.273022Z,411,4.669,Low,8258,Neutral,Is there a fee associated with using foreign exchange ATMs?,2026-07-23T03:23:54.273036Z
+482,1,transfer_into_account,2026-07-23T03:23:58.833333Z,412,4.408,Low,7587,Neutral,"I want to transfer money into my account, what do I do?",2026-07-23T03:23:58.833353Z
+483,1,card_payment_not_recognised,2026-07-23T03:24:03.050031Z,413,4.059,High,3522,Neutral,I'm noticing a payment/purchase at a company that I don't recognise.,2026-07-23T03:24:03.050048Z
+484,1,direct_debit_payment_not_recognised,2026-07-23T03:24:11.073239Z,414,7.85,High,4718,Neutral,"Hi, i was checking my old statements and found a discrepancy with a large amount transaction. I am sure it was not done by me. Please let me know if i could raise a dispute as its very late.",2026-07-23T03:24:11.073249Z
+485,1,failed_transfer,2026-07-23T03:24:17.964223Z,415,6.743,Medium,7477,Neutral,"My transfer failed, why did that happen?",2026-07-23T03:24:17.964241Z
+486,1,declined_transfer,2026-07-23T03:24:22.038861Z,416,3.914,Low,5636,Neutral,Is there a reason my transfer would have been declined?,2026-07-23T03:24:22.038875Z
+487,1,why_verify_identity,2026-07-23T03:24:25.540496Z,417,3.342,Low,3795,Neutral,what I need to verify my account,2026-07-23T03:24:25.540509Z
+488,1,supported_cards_and_currencies,2026-07-23T03:24:29.915163Z,418,4.223,Low,2908,Neutral,What currencies and methods can i use to top up my account?,2026-07-23T03:24:29.915181Z
+489,1,card_linking,2026-07-23T03:24:33.190150Z,419,3.105,Low,280,Neutral,"I found my card, how can I use it again?",2026-07-23T03:24:33.190168Z
+490,1,lost_or_stolen_card,2026-07-23T03:24:36.824924Z,420,3.492,High,1512,Neutral,I lost track of my card,2026-07-23T03:24:36.824939Z
+491,1,pending_cash_withdrawal,2026-07-23T03:24:42.825690Z,421,5.851,Medium,757,Neutral,Why is the app showing a still pending message on a withdraw that has already been done?,2026-07-23T03:24:42.825705Z
+492,1,disposable_card_limits,2026-07-23T03:24:47.018200Z,422,4.044,Low,4428,Neutral,"i am not a premium customer but i want a virtual card, how do i get it",2026-07-23T03:24:47.018211Z
+493,1,exchange_rate,2026-07-23T03:24:51.664004Z,423,4.488,Low,323,Neutral,How do you decide what the exchange rates are?,2026-07-23T03:24:51.664021Z
+494,1,automatic_top_up,2026-07-23T03:24:54.333743Z,424,2.498,Low,1215,Neutral,Can I get an auto Top-up?,2026-07-23T03:24:54.333756Z
+495,1,top_up_failed,2026-07-23T03:25:00.070844Z,425,5.586,Medium,8535,Neutral,My credit card got declined for top up! What's going on? Can you check on why it didn't go through?,2026-07-23T03:25:00.070853Z
+496,1,passcode_forgotten,2026-07-23T03:25:03.403868Z,426,3.176,Low,4824,Neutral,I am unaware of what my password is.,2026-07-23T03:25:03.403883Z
+497,1,exchange_via_app,2026-07-23T03:25:07.291683Z,427,3.735,Low,1409,Neutral,"I am trying to exchange USD for LKR, how do I do that?",2026-07-23T03:25:07.291697Z
+498,1,card_payment_not_recognised,2026-07-23T03:25:13.371114Z,428,5.929,High,3590,Neutral,"One of my card payments, I don't recognise the name of the merchant.",2026-07-23T03:25:13.371128Z
+499,1,apple_pay_or_google_pay,2026-07-23T03:25:18.012652Z,429,4.477,Low,9733,Neutral,How can I top up with my apple watch?,2026-07-23T03:25:18.012670Z
+500,1,activate_my_card,2026-07-23T03:25:21.986150Z,430,3.833,Low,9186,Neutral,My card needs to be activated.,2026-07-23T03:25:21.986161Z
+501,1,card_about_to_expire,2026-07-23T03:25:25.019421Z,431,2.875,Low,9533,Neutral,What happens if my card expires?,2026-07-23T03:25:25.019439Z
+502,1,card_linking,2026-07-23T03:25:27.849476Z,432,2.674,Low,270,Neutral,Can you tell me how to get my card on the app?,2026-07-23T03:25:27.849494Z
+503,1,topping_up_by_card,2026-07-23T03:25:38.596756Z,433,10.585,Medium,4274,Neutral,"My wallet isn't showing my top-up, did I do something wrong?",2026-07-23T03:25:38.596768Z
+504,1,card_payment_fee_charged,2026-07-23T03:25:43.898605Z,434,5.16,Medium,2567,Negative,Why was I charged for payments? You didn't warn me about additional fees.,2026-07-23T03:25:43.898623Z
+505,1,wrong_amount_of_cash_received,2026-07-23T03:25:51.016155Z,435,6.957,High,2464,Negative,"Hey I am standing in front of an ATM here, it only gave me Rs 10,000 even though I wanted to withdraw Rs 30,000! Seems like the app has Rs 30,000, what do I do??",2026-07-23T03:25:51.016167Z
+506,1,receiving_money,2026-07-23T03:25:54.601602Z,436,3.444,Low,7360,Neutral,Can I transfer my payroll to the bank?,2026-07-23T03:25:54.601613Z
+507,1,card_payment_not_recognised,2026-07-23T03:25:58.393236Z,437,3.612,High,3494,Neutral,I have an unusual payment in my statement,2026-07-23T03:25:58.393247Z
+508,1,top_up_by_card_charge,2026-07-23T03:26:01.595662Z,438,3.049,Low,9076,Neutral,What are the charges for topping up US card?,2026-07-23T03:26:01.595674Z
+509,1,transaction_charged_twice,2026-07-23T03:26:05.091266Z,439,3.327,Medium,6476,Neutral,A duplicated payment was made for something.,2026-07-23T03:26:05.091280Z
+510,1,balance_not_updated_after_bank_transfer,2026-07-23T03:26:12.279838Z,440,7.038,Medium,8624,Neutral,"Hi, I am unable to see transaction in my account which i made couples of hours ago from my local bank account. Please help me in this.",2026-07-23T03:26:12.279855Z
+511,1,contactless_not_working,2026-07-23T03:26:17.591998Z,441,5.148,Medium,1813,Neutral,Are my contactless settings correct? I tried to use it today but it wasn't working.,2026-07-23T03:26:17.592013Z
+512,1,pending_card_payment,2026-07-23T03:26:20.821621Z,442,3.074,Low,5195,Neutral,Why is the payment I made still pending?,2026-07-23T03:26:20.821634Z
+513,1,pending_cash_withdrawal,2026-07-23T03:26:31.442742Z,443,10.439,Medium,870,Neutral,"I tempted to get some money out of the machine earlier and it did not work.Looking now, the transaction actually shows to still be in progress. I would certainly appreciate someone look into this and let me know what's going on. I definitely do not want to be charged for money I never received.",2026-07-23T03:26:31.442760Z
+514,1,wrong_exchange_rate_for_cash_withdrawal,2026-07-23T03:26:37.706754Z,444,6.091,Medium,8292,Neutral,My rate is not right when I used my card in a different country's money.,2026-07-23T03:26:37.706769Z
+515,1,fiat_currency_support,2026-07-23T03:26:41.357535Z,445,3.495,Low,998,Neutral,Can I exchange my money for EUR?,2026-07-23T03:26:41.357549Z
+516,1,cash_withdrawal_charge,2026-07-23T03:26:44.637743Z,446,3.119,Low,9413,Neutral,Can you tell me why I was charged to withdraw cash?,2026-07-23T03:26:44.637755Z
+517,1,balance_not_updated_after_bank_transfer,2026-07-23T03:26:48.329665Z,447,6.4990000000000006,Medium,8704,Neutral,"Although I transferred some money, it has not as of yet, arrived.",2026-07-23T03:26:54.136783Z
+518,1,pending_transfer,2026-07-23T03:27:06.389978Z,448,10.755,Low,5991,Neutral,"Transfers can take up to one day to process before departing for the beneficiary accounts. Please confirm that you've entered your account details correctly. SEPA transfers can take up to two working days, while SWIFT transfers can take up to five working days.",2026-07-23T03:27:06.389993Z
+519,1,card_arrival,2026-07-23T03:27:10.357459Z,449,3.808,Low,83,Neutral,Can I track the card that was just sent to me?,2026-07-23T03:27:10.357472Z
+520,1,top_up_by_bank_transfer_charge,2026-07-23T03:27:12.971770Z,450,2.462,Low,1898,Neutral,Is there a fee for topping off by transfer?,2026-07-23T03:27:12.971784Z
+521,1,top_up_reverted,2026-07-23T03:27:20.163747Z,451,7.03,Medium,3296,Neutral,"Hello,  I have recharged topup but account is not credited. Please help me in this, i guess there is some defect in system.",2026-07-23T03:27:20.163763Z
+522,1,top_up_reverted,2026-07-23T03:27:23.039407Z,452,2.707,Medium,3249,Neutral,I topped up but the app declined it,2026-07-23T03:27:23.039423Z
+523,1,exchange_via_app,2026-07-23T03:27:26.037716Z,453,2.84,Low,1411,Neutral,Is there a way to make my money usable in another country?,2026-07-23T03:27:26.037732Z
+524,1,fiat_currency_support,2026-07-23T03:27:29.339003Z,454,3.117,Low,911,Neutral,Can you tell me how many currencies I can hold?,2026-07-23T03:27:29.339017Z
+525,1,card_not_working,2026-07-23T03:27:40.630035Z,455,11.132,Medium,1278,Neutral,Currently my card is broken.,2026-07-23T03:27:40.630049Z
+526,1,receiving_money,2026-07-23T03:27:44.373518Z,456,3.579,Low,7397,Neutral,Can I transfer my paycheck to the account?,2026-07-23T03:27:44.373532Z
+527,1,verify_my_identity,2026-07-23T03:27:47.341747Z,457,2.81,Low,9805,Neutral,What works for identity verification?,2026-07-23T03:27:47.341761Z
+528,1,exchange_charge,2026-07-23T03:27:54.446068Z,458,6.939,Low,9006,Neutral,"If I exchange foreign currency, are there any other charges?",2026-07-23T03:27:54.446079Z
+529,1,exchange_via_app,2026-07-23T03:27:57.258337Z,459,2.65,Low,1369,Neutral,Can I possibly change my currency to another?,2026-07-23T03:27:57.258354Z
+530,1,compromised_card,2026-07-23T03:28:02.825246Z,460,5.414,High,4478,Neutral,What can I do if my card details where stolen from my car? I think they used my card to buy gas.,2026-07-23T03:28:02.825260Z
+531,1,pending_transfer,2026-07-23T03:28:09.631987Z,461,6.656,Low,6069,Neutral,I have a transfer that is pending.,2026-07-23T03:28:09.632005Z
+532,1,passcode_forgotten,2026-07-23T03:28:14.523645Z,462,4.724,Medium,4821,Neutral,I forgot my passcode. Now what?,2026-07-23T03:28:14.523659Z
+533,1,lost_or_stolen_phone,2026-07-23T03:28:19.306521Z,463,4.626,High,5258,Neutral,"My bag was stolen from me yesterday, so I can't use any apps or anything. I need some help.",2026-07-23T03:28:19.306536Z
+534,1,top_up_limits,2026-07-23T03:28:22.678783Z,464,3.216,Low,2322,Neutral,What is the top-up limit on my cards?,2026-07-23T03:28:22.678796Z
+535,1,edit_personal_details,2026-07-23T03:28:29.143387Z,465,6.293,Low,3692,Neutral,should i contact customer support if i can't edit details,2026-07-23T03:28:29.143425Z
+536,1,card_not_working,2026-07-23T03:28:34.759709Z,466,5.438,Medium,1316,Neutral,Can you tell me whats going on with my card it seems to be not working?,2026-07-23T03:28:34.759724Z
+537,1,cash_withdrawal_charge,2026-07-23T03:28:40.682179Z,467,5.768,Medium,9449,Neutral,There was an unexpected fee for my cash withdrawal!,2026-07-23T03:28:40.682191Z
+538,1,change_pin,2026-07-23T03:28:44.076556Z,468,3.228,Low,6896,Neutral,Do I need to speak to a representative to change my pin?,2026-07-23T03:28:44.076575Z
+539,1,Refund_not_showing_up,2026-07-23T03:28:49.805193Z,469,5.552,Medium,5702,Neutral,"My refund has not arrived, and I am unsure why. Who do I contact?",2026-07-23T03:28:49.805204Z
+540,1,transfer_fee_charged,2026-07-23T03:28:54.506137Z,470,4.545,Low,7221,Neutral,"I thought transfers were free, why was I charged?",2026-07-23T03:28:54.506151Z
+541,1,getting_spare_card,2026-07-23T03:28:58.308078Z,471,3.617,Low,7906,Neutral,Is there a fee for sending out more cards?,2026-07-23T03:28:58.308092Z
+542,1,direct_debit_payment_not_recognised,2026-07-23T03:29:02.494300Z,472,4.026,Low,4773,Neutral,A debit came through that I need to dispute.,2026-07-23T03:29:02.494315Z
+543,1,change_pin,2026-07-23T03:29:06.187205Z,473,3.516,Low,6999,Neutral,What is the process to change my PIN?,2026-07-23T03:29:06.187221Z
+544,1,lost_or_stolen_card,2026-07-23T03:29:12.369847Z,474,6.026,High,1537,Neutral,I cant find my card.,2026-07-23T03:29:12.369866Z
+545,1,pending_card_payment,2026-07-23T03:29:19.097707Z,475,6.55,Low,5244,Neutral,When will my pending payment finish?,2026-07-23T03:29:19.097718Z
+546,1,card_arrival,2026-07-23T03:29:22.561806Z,476,3.32,Low,8,Neutral,Does the package with my card have tracking?,2026-07-23T03:29:22.561818Z
+547,1,verify_source_of_funds,2026-07-23T03:29:25.979678Z,477,3.246,Low,6525,Neutral,where are the transfers originating,2026-07-23T03:29:25.979696Z
+548,1,top_up_by_card_charge,2026-07-23T03:29:29.741248Z,478,3.586,Low,9071,Neutral,how much does it cost to add money to my card,2026-07-23T03:29:29.741263Z
+549,1,receiving_money,2026-07-23T03:29:34.242230Z,479,4.342,Low,7366,Neutral,What are the steps for my friend to send me money?,2026-07-23T03:29:34.242245Z
+550,1,declined_cash_withdrawal,2026-07-23T03:29:37.508377Z,480,3.081,Medium,4998,Neutral,Why can't I withdraw funds from my account?,2026-07-23T03:29:37.508391Z
+551,1,pin_blocked,2026-07-23T03:29:42.251424Z,481,4.58,Medium,1739,Neutral,I forgot what my pin number is and now am blocked can you help me get in?,2026-07-23T03:29:42.251437Z
+552,1,disposable_card_limits,2026-07-23T03:29:53.815161Z,482,11.393,Medium,4367,Neutral,I need to make several disposable cards per day.,2026-07-23T03:29:53.815176Z
+553,1,card_linking,2026-07-23T03:29:57.226059Z,483,3.24,Low,207,Neutral,I received my card. How do I link it to the app?,2026-07-23T03:29:57.226072Z
+554,1,cancel_transfer,2026-07-23T03:30:03.331134Z,484,5.921,Medium,2102,Neutral,I did a transaction this morning and now I want to cancel it.,2026-07-23T03:30:03.331145Z
+555,1,getting_spare_card,2026-07-23T03:30:06.648993Z,485,3.158,Low,7901,Neutral,I'm looking to get an additional card.,2026-07-23T03:30:06.649003Z
+556,1,cash_withdrawal_not_recognised,2026-07-23T03:30:09.458167Z,486,2.641,High,8912,Neutral,Help! I think someone has made a cash withdrawal with my card!,2026-07-23T03:30:09.458186Z
+557,1,reverted_card_payment?,2026-07-23T03:30:12.843687Z,487,3.212,Medium,6799,Neutral,Why is a payment I made reverted back to my account?,2026-07-23T03:30:12.843702Z
+558,1,direct_debit_payment_not_recognised,2026-07-23T03:30:17.567831Z,488,4.568,High,4782,Neutral,Can I dispute a debit payment that I am seeing that I didn't make from a couple of months ago?,2026-07-23T03:30:17.567845Z
+559,1,compromised_card,2026-07-23T03:30:21.807229Z,489,4.073,High,4528,Neutral,How do I report fraud on my card?,2026-07-23T03:30:21.807246Z
+560,1,direct_debit_payment_not_recognised,2026-07-23T03:30:27.049613Z,490,5.082,High,4688,Neutral,I found a charge on my debit that I did not make.,2026-07-23T03:30:27.049628Z
+561,1,pin_blocked,2026-07-23T03:30:34.222442Z,491,7.0,Medium,1679,Neutral,Can someone assist me with explaining how I can unblock my pin?,2026-07-23T03:30:34.222458Z
+562,1,change_pin,2026-07-23T03:30:41.548303Z,492,7.173,Low,6921,Neutral,I have been travelling overseas and I need to change my PIN. Can you tell me how this is done?,2026-07-23T03:30:41.548312Z
+563,1,fiat_currency_support,2026-07-23T03:30:46.723974Z,493,5.025,Low,915,Neutral,"I need to hold money, what currencies can I use?",2026-07-23T03:30:46.723992Z
+564,1,cash_withdrawal_not_recognised,2026-07-23T03:30:51.907216Z,494,5.023,High,8913,Neutral,What do I do when a charge has been made that I did not make?,2026-07-23T03:30:51.907231Z
+565,1,verify_source_of_funds,2026-07-23T03:30:56.824893Z,495,4.759,Low,6579,Neutral,Where did my deposit for my source of funds come from?,2026-07-23T03:30:56.824908Z
+566,1,terminate_account,2026-07-23T03:31:00.340120Z,496,3.355,High,6171,Negative,"I don't like the services, please close my account",2026-07-23T03:31:00.340134Z
+567,1,cancel_transfer,2026-07-23T03:31:05.423528Z,497,4.911,Low,2097,Neutral,How do I cancel a transaction?,2026-07-23T03:31:05.423539Z
+568,1,transfer_not_received_by_recipient,2026-07-23T03:31:12.181224Z,498,6.6,High,2743,Negative,"How much time do transfers take? I sent money to a friend who needs it fast. It's been hours, and the money has not gone through.",2026-07-23T03:31:12.181238Z
+569,1,pin_blocked,2026-07-23T03:31:17.778762Z,499,5.427,Medium,1746,Neutral,"I have used all my PIN tries, what now?",2026-07-23T03:31:17.778773Z
+570,1,change_pin,2026-07-23T03:31:20.585702Z,500,2.631,Low,6964,Neutral,I want to create a new pin.,2026-07-23T03:31:20.585716Z
