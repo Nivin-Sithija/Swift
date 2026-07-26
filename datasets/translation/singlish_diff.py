@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Find rows where the hand-edited `llm-zeroshot/singlish/train_labeled.csv`
+Find rows where the hand-edited `singlish/train_labeled.csv`
 differs from what generate_singlish.py would produce from the CURRENT
 `sinhala/train_labeled.csv` — i.e. rows the user has hand-fixed in Singlish
 that still need the matching edit applied to text_si.
@@ -22,8 +22,8 @@ from singlishify import singlishify
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATASETS = os.path.dirname(HERE)
-SINHALA = os.path.join(DATASETS, "llm-zeroshot", "sinhala", "train_labeled.csv")
-SINGLISH = os.path.join(DATASETS, "llm-zeroshot", "singlish", "train_labeled.csv")
+SINHALA = os.path.join(DATASETS, "sinhala", "train_labeled.csv")
+SINGLISH = os.path.join(DATASETS, "singlish", "train_labeled.csv")
 
 
 def main() -> None:

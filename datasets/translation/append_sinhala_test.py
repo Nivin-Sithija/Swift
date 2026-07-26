@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 Append hand-authored colloquial Sinhala translations to
-llm-zeroshot/sinhala/test_translation_progress.csv, keeping rows aligned to
-the English TEST set (llm-zeroshot/english/test_labeled.csv) and preserving
+sinhala/test_translation_progress.csv, keeping rows aligned to
+the English TEST set (english/test_labeled.csv) and preserving
 category/sentiment/priority verbatim. Mirrors append_sinhala.py (train).
 
 Input: a JSON file mapping TEST row-index (as string) -> Sinhala text, e.g.
@@ -17,8 +17,8 @@ import csv, json, os, sys, argparse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATASETS = os.path.dirname(HERE)
-TEST = os.path.join(DATASETS, "llm-zeroshot", "english", "test_labeled.csv")
-PROG = os.path.join(DATASETS, "llm-zeroshot", "sinhala", "test_translation_progress.csv")
+TEST = os.path.join(DATASETS, "english", "test_labeled.csv")
+PROG = os.path.join(DATASETS, "sinhala", "test_translation_progress.csv")
 COLS = ["text_en", "text_si", "category", "sentiment", "priority"]
 
 

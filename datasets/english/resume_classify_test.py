@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
 """
-Classify sentiment + priority for every row of test_labeled.csv using the
-final v5 prompt, via concurrent `claude -p` CLI calls. Same pipeline as
-classify_full_dataset.py (which did this for train_labeled.csv), pointed at
-the test split instead so both splits carry v5 labels in the same style.
-
-Reads text/category from the CURRENT test_labeled.csv (not "original
-dataset/test.csv") so any hand-edits already made to the English test text
-are preserved; only sentiment/priority are replaced.
+Resume classify_test_dataset.py for rows that came back empty (failed
+batches) in test_labeled_v5_full.csv. Lower concurrency than the first pass
+to avoid whatever caused the mid-run failure streak, and prints stderr on
+failure so a real cause shows up instead of just the JSON-parse symptom.
 """
-import argparse
 import concurrent.futures
 import csv
 import json
@@ -20,10 +15,9 @@ import time
 
 ROOT = "/Users/sithijaseneviratne/Documents/Github/Swift/datasets"
 PROMPT_PATH = f"{ROOT}/translation/prompts/labeling_prompt_v5.md"
-SRC_PATH = f"{ROOT}/llm-zeroshot/english/test_labeled.csv"
-OUT_PATH = f"{ROOT}/llm-zeroshot/english/test_labeled_v5_full.csv"
+FULL_PATH = f"{ROOT}/english/test_labeled_v5_full.csv"
 BATCH_SIZE = 20
-MAX_WORKERS = 10
+MAX_WORKERS = 4
 
 BASE_PROMPT = open(PROMPT_PATH, encoding="utf-8").read()
 
@@ -41,7 +35,8 @@ def build_batch_prompt(batch):
     return "\n".join(lines)
 
 
-def call_claude(prompt, retries=3):
+def call_claude(prompt, retries=4):
+    last_stderr = ""
     for attempt in range(retries):
         try:
             result = subprocess.run(
@@ -50,10 +45,13 @@ def call_claude(prompt, retries=3):
             )
             out = result.stdout.strip()
             out = re.sub(r"^```(json)?\s*|\s*```$", "", out, flags=re.MULTILINE).strip()
+            if not out:
+                last_stderr = result.stderr.strip()[:300]
+                raise ValueError(f"empty stdout; stderr={last_stderr!r}; rc={result.returncode}")
             return json.loads(out)
         except Exception as e:
             print(f"    retry {attempt+1}: {e}", file=sys.stderr)
-            time.sleep(2)
+            time.sleep(5 * (attempt + 1))
     return None
 
 
@@ -62,18 +60,11 @@ def process_batch(bi, batch):
 
 
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--limit", type=int, default=None, help="only process the first N rows (smoke test)")
-    ap.add_argument("--out", default=OUT_PATH)
-    args = ap.parse_args()
+    rows = list(csv.DictReader(open(FULL_PATH, encoding="utf-8")))
+    missing_rows = [r for r in rows if not r["sentiment"]]
+    print(f"resuming {len(missing_rows)} missing rows", file=sys.stderr)
 
-    rows = list(csv.DictReader(open(SRC_PATH, encoding="utf-8")))
-    for i, r in enumerate(rows):
-        r["row_index"] = i
-    if args.limit:
-        rows = rows[:args.limit]
-
-    batches = [rows[i:i + BATCH_SIZE] for i in range(0, len(rows), BATCH_SIZE)]
+    batches = [missing_rows[i:i + BATCH_SIZE] for i in range(0, len(missing_rows), BATCH_SIZE)]
     results = {}
     failed_batches = []
     done = 0
@@ -91,20 +82,22 @@ def main():
                 results[int(item["id"])] = {"sentiment": item["sentiment"], "priority": item["priority"]}
             print(f"[{done}/{len(batches)}] batch {bi} ok ({len(results)} labeled so far)", file=sys.stderr)
 
-    with open(args.out, "w", newline="", encoding="utf-8") as f:
+    still_missing = 0
+    for r in rows:
+        idx = int(r["row_index"])
+        if idx in results:
+            r["sentiment"] = results[idx]["sentiment"]
+            r["priority"] = results[idx]["priority"]
+        elif not r["sentiment"]:
+            still_missing += 1
+
+    with open(FULL_PATH, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=["row_index", "text", "category", "sentiment", "priority"])
         w.writeheader()
-        missing = 0
-        for i, r in enumerate(rows):
-            res = results.get(r["row_index"])
-            if res is None:
-                missing += 1
-                w.writerow({"row_index": r["row_index"], "text": r["text"], "category": r["category"],
-                            "sentiment": "", "priority": ""})
-                continue
-            w.writerow({"row_index": r["row_index"], "text": r["text"], "category": r["category"], **res})
+        for r in rows:
+            w.writerow(r)
 
-    print(f"\ndone: {len(rows) - missing}/{len(rows)} labeled -> {args.out}", file=sys.stderr)
+    print(f"\ndone: {len(rows) - still_missing}/{len(rows)} labeled -> {FULL_PATH}", file=sys.stderr)
     if failed_batches:
         print(f"FAILED batches (need re-run): {failed_batches}", file=sys.stderr)
 

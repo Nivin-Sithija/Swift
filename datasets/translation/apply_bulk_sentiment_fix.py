@@ -10,9 +10,9 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATASETS = os.path.dirname(HERE)
-EN_TRAIN = os.path.join(DATASETS, "llm-zeroshot", "english", "train_labeled.csv")
-SI_TRAIN = os.path.join(DATASETS, "llm-zeroshot", "sinhala", "train_labeled.csv")
-SG_TRAIN = os.path.join(DATASETS, "llm-zeroshot", "singlish", "train_labeled.csv")
+EN_TRAIN = os.path.join(DATASETS, "english", "train_labeled.csv")
+SI_TRAIN = os.path.join(DATASETS, "sinhala", "train_labeled.csv")
+SG_TRAIN = os.path.join(DATASETS, "singlish", "train_labeled.csv")
 BULK_FIX = os.path.join(HERE, "sentiment_bulk_fix_candidates.csv")
 
 

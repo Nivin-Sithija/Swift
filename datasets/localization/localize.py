@@ -5,10 +5,10 @@ APPLY = "--apply" in sys.argv
 
 BASE = "/Users/sithijaseneviratne/Documents/Github/Swift/datasets"
 FILES = [
-    f"{BASE}/original dataset/test.csv",
-    f"{BASE}/original dataset/train.csv",
-    f"{BASE}/llm-zeroshot/english/test_labeled.csv",
-    f"{BASE}/llm-zeroshot/english/train_labeled.csv",
+    f"{BASE}/original-dataset/test.csv",
+    f"{BASE}/original-dataset/train.csv",
+    f"{BASE}/english/test_labeled.csv",
+    f"{BASE}/english/train_labeled.csv",
 ]
 
 def sub_all(rules, text):
