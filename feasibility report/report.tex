@@ -1,0 +1,288 @@
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\IfFileExists{newtxtext.sty}
+  {\usepackage{newtxtext,newtxmath}}
+  {\usepackage{mathptmx}}
+\usepackage[a4paper,top=2.3cm,bottom=2.3cm,left=2.6cm,right=2.6cm]{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+
+\setstretch{1.06}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.35em}
+\setlist[itemize]{leftmargin=1.6em,itemsep=0.12em,topsep=0.15em}
+\renewcommand{\arraystretch}{1.12}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{0.8em}{0.25em}
+\titlespacing*{\subsection}{0pt}{0.55em}{0.18em}
+
+\renewcommand{\contentsname}{TABLE OF CONTENTS}
+\renewcommand{\cfttoctitlefont}{\Large\bfseries}
+\setlength{\cftbeforesecskip}{0.1em}
+\setlength{\cftbeforesubsecskip}{0em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\urlstyle{same}
+
+\begin{document}
+
+\pagenumbering{gobble}
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+\vspace*{3.8cm}
+
+{\LARGE\bfseries FEASIBILITY STUDY\par}
+\vspace{0.45cm}
+{\Large\bfseries TRILINGUAL MULTIMODAL FINANCIAL SUPPORT\par}
+{\Large\bfseries TICKET MANAGEMENT SYSTEM\par}
+\vspace{0.35cm}
+{\large -- Group 21 --\par}
+
+\vfill
+
+{\large\bfseries DATE\par}
+{\large 24/07/2026\par}
+
+\vfill
+
+\begin{flushleft}
+\large
+S. Ruththiragayan -- 230554G\\
+S. Sithija -- 230601B\\
+S. Shazan -- 230611F\\[0.7cm]
+\textbf{Mentor:}\\
+Senior Lecturer Aloka Fernando
+\end{flushleft}
+\end{titlepage}
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\tableofcontents
+\clearpage
+
+\section{Introduction}
+
+\subsection{Overview of the Project}
+
+The proposed system is a web-based customer support ticket management platform for financial institutions. It accepts customer complaints and enquiries written in English, Sinhala, Tamil, Singlish, Tanglish, and mixed-language forms. A customer may also attach an image such as a mobile-banking screenshot, payment receipt, transaction slip, or error message.
+
+The system analyses the available text and image evidence and predicts the ticket category, priority level, and customer sentiment. It also prepares a context-aware draft response for review by a support agent. The BANKING77 dataset is used as the main source for banking intent classification because it contains 77 detailed customer-support categories \cite{banking77}. English records are translated into Sinhala and Tamil and extended with romanized and selected mixed-language examples.
+
+The proposed platform is intended to assist support staff rather than replace them. Low-confidence, urgent, security-related, and sensitive tickets are forwarded for manual review. This approach can improve ticket routing, reduce repetitive work, and provide more consistent multilingual customer service.
+
+\subsection{Objectives of the Project}
+
+The objectives of the proposed system are to:
+
+\begin{itemize}
+    \item Design and implement a web-based multilingual support ticket platform.
+    \item Classify tickets into the 77 BANKING77 banking-support categories.
+    \item Predict ticket priority as low, medium, high, or critical.
+    \item Analyse customer sentiment as positive, neutral, or negative.
+    \item Support English, Sinhala, Tamil, Singlish, Tanglish, and mixed-language text.
+    \item Extract useful information from attached screenshots or documents.
+    \item Generate an appropriate draft response for agent verification.
+    \item Escalate uncertain, urgent, or security-sensitive tickets to human staff.
+    \item Provide dashboards for ticket handling and model-performance monitoring.
+\end{itemize}
+
+\subsection{The Need for the Project}
+
+Financial support teams receive many requests related to cards, transfers, withdrawals, deposits, verification, payment failures, account access, and suspected fraud. These tickets are normally read, categorized, prioritized, and assigned manually. This process can increase response time and create inconsistent routing.
+
+The problem is more difficult when customers use Sinhala, Tamil, romanized local languages, or several languages in the same message. Existing keyword-based systems may fail to understand these forms. Customers may also attach screenshots instead of clearly explaining the issue.
+
+The proposed system addresses these problems by using multilingual machine learning to understand the ticket and support the agent's decision. It can reduce initial handling time, identify urgent cases earlier, and improve accessibility for customers who prefer local languages.
+
+\subsection{Overview of Existing Systems and Technologies}
+
+Commercial helpdesk systems such as Zendesk and Freshdesk provide ticket assignment, workflow automation, sentiment analysis, summaries, and AI-assisted responses \cite{zendesk,freshdesk}. However, they are general-purpose platforms and may not provide transparent support for Sinhala, Tamil, Singlish, Tanglish, and banking-specific research requirements.
+
+The main planned technologies are:
+
+\begin{itemize}
+    \item \textbf{Frontend:} React for the customer and staff interfaces \cite{react}.
+    \item \textbf{Backend:} Python with FastAPI for APIs and model integration \cite{fastapi}.
+    \item \textbf{Database:} PostgreSQL for users, tickets, predictions, and feedback \cite{postgresql}.
+    \item \textbf{Machine learning:} Python, PyTorch, Hugging Face Transformers, and scikit-learn.
+    \item \textbf{Language model:} XLM-RoBERTa for multilingual ticket classification \cite{xlmr}.
+    \item \textbf{Image processing:} OCR or a pre-trained vision model for extracting supporting details.
+    \item \textbf{Deployment:} Docker and cloud or university-hosted infrastructure.
+\end{itemize}
+
+The exact tools may be adjusted during implementation after comparing model accuracy, cost, speed, and deployment requirements.
+
+\subsection{Scope of the Project}
+
+The main user roles and functions are:
+
+\begin{itemize}
+    \item \textbf{Customer:} Submit a multilingual ticket, attach an optional image, and receive an approved response.
+    \item \textbf{Support Agent:} Review assigned tickets, inspect predictions, correct results, edit draft responses, and update ticket status.
+    \item \textbf{Supervisor:} Monitor queues, review urgent cases, assign tickets, and analyse ticket trends.
+    \item \textbf{Administrator:} Manage users, roles, categories, thresholds, and audit records.
+    \item \textbf{Data Analyst:} Evaluate model performance, review corrections, and manage controlled retraining.
+\end{itemize}
+
+The system covers text classification, priority prediction, sentiment analysis, image-based supporting information, response drafting, routing, dashboards, and feedback collection. Voice input, direct transaction execution, refund approval, and automatic account changes are outside the project scope.
+
+\subsection{Deliverables}
+
+The main project outputs are:
+
+\begin{itemize}
+    \item A web-based multilingual financial support ticket system.
+    \item Customer, support-agent, supervisor, and administrator interfaces.
+    \item A multilingual BANKING77-derived dataset.
+    \item A ticket category classification model.
+    \item Priority and sentiment prediction components.
+    \item An image information extraction component.
+    \item A context-aware draft response module.
+    \item Ticket routing, escalation, feedback, and reporting functions.
+    \item Model evaluation and technical documentation.
+\end{itemize}
+
+\section{Feasibility Study}
+
+\subsection{Financial Feasibility}
+
+The prototype is financially feasible because most development tools are open source. React, FastAPI, PostgreSQL, PyTorch, Transformers, and scikit-learn can be used without software licence fees. The main possible costs are cloud GPU usage, model or vision API usage, short-term hosting, translation review, and data annotation.
+
+Existing promotional credits and university computing facilities can reduce the initial cost. A limited prototype can also use local OCR and smaller open-source models to control expenditure. Production deployment would require additional spending for security testing, monitoring, backups, integration, and continuous maintenance. Therefore, the proposed academic prototype is financially feasible, while a production version would require a separate organizational budget.
+
+\subsection{Technical Feasibility}
+
+The project is technically feasible because the required components are supported by established technologies. XLM-RoBERTa provides multilingual text representations and can be fine-tuned for the 77 ticket categories \cite{xlmr}. Priority and sentiment can be implemented as separate classifiers or additional prediction outputs. OCR can extract visible text from screenshots and receipts, while a pre-trained vision model can be tested for more complex images.
+
+A modular architecture will separate the web interface, backend API, database, text model, image processor, and response generator. This allows each component to be developed and tested independently. Conventional classifiers such as TF--IDF with logistic regression will be used as baselines before training the multilingual Transformer.
+
+The main technical difficulties are inconsistent romanized spelling, code-mixed language, translation quality, similar ticket categories, OCR errors, and incorrect generated responses. These issues can be reduced through validated data, confidence thresholds, per-language evaluation, and mandatory human review. The system is therefore technically feasible as a controlled prototype.
+
+\subsection{Resource and Time Feasibility}
+
+The project requires the following resources:
+
+\begin{itemize}
+    \item \textbf{Hardware:} Development computers and access to a GPU-enabled local, university, or cloud environment.
+    \item \textbf{Software:} Open-source web-development, database, machine-learning, OCR, testing, and version-control tools.
+    \item \textbf{Data resources:} BANKING77, translated records, romanized and mixed-language samples, and labelled priority and sentiment data.
+    \item \textbf{Human resources:} Project members, fluent Sinhala and Tamil reviewers, and supervisor guidance.
+\end{itemize}
+
+The proposed work can be completed in approximately three to four months through the following phases:
+
+\begin{itemize}
+    \item Requirements, architecture, and dataset planning.
+    \item Translation review, annotation, and preprocessing.
+    \item Baseline and multilingual model development.
+    \item Backend, database, and user-interface development.
+    \item Image processing and response-generation integration.
+    \item Testing, evaluation, deployment, and documentation.
+\end{itemize}
+
+The core classification and ticket-management functions should be developed first. Image understanding and advanced response generation can be simplified if time becomes limited. With this controlled scope, the project is feasible within the available period.
+
+\subsection{Risk Feasibility}
+
+The main project risks and mitigations are:
+
+\begin{itemize}
+    \item \textbf{Translation errors:} Validate samples with fluent speakers and maintain a banking terminology guide.
+    \item \textbf{Data leakage:} Keep every translation and romanized version of the same source ticket in one dataset split.
+    \item \textbf{Limited mixed-language data:} Create reviewed mixed examples and maintain a separate realistic test set.
+    \item \textbf{Incorrect classification:} Use confidence scores, error analysis, and human correction.
+    \item \textbf{Missed urgent tickets:} Give higher importance to critical-ticket recall and add rule-based escalation.
+    \item \textbf{OCR errors:} Display extracted text to the agent and avoid relying only on image results.
+    \item \textbf{Generated-response errors:} Use approved knowledge, restrict unsupported claims, and require agent approval.
+    \item \textbf{Privacy risk:} Mask personal and financial identifiers, encrypt stored data, and apply role-based access.
+    \item \textbf{Resource limitations:} Use smaller models, cloud credits, early stopping, and staged experiments.
+    \item \textbf{Scope expansion:} Treat classification as the main deliverable and advanced features as later stages.
+\end{itemize}
+
+These risks are manageable when the system remains human supervised and is tested separately for each supported language.
+
+\subsection{Social/Legal Feasibility}
+
+The system can improve access to financial support for customers who prefer Sinhala, Tamil, or romanized local-language communication. It may also reduce waiting time and allow staff to focus on complex cases. However, automated outputs must not discriminate against users whose language style differs from the training data.
+
+The system may process sensitive financial complaints, screenshots, transaction details, and personal information. Data collection must therefore be minimized, and identifiers should be removed or masked. Access should be role based, communications should be encrypted, and records should be retained only for an approved period.
+
+Any future use of real customer data must follow the Sri Lankan Personal Data Protection Act, No. 9 of 2022, and applicable banking policies \cite{pdpa}. Customers and staff should be informed that AI predictions are advisory. Final decisions involving fraud, transactions, refunds, legal matters, or account changes must remain with authorized personnel. Under these conditions, the project is socially and legally feasible as a prototype.
+
+\section{Considerations}
+
+The primary considerations for the proposed system are:
+
+\begin{itemize}
+    \item \textbf{Accuracy:} Category, priority, and sentiment results must be evaluated by language and ticket class.
+    \item \textbf{Security:} Authentication, access control, encryption, secure file upload, and audit logging are required.
+    \item \textbf{Privacy:} Personal and financial data must be minimized, masked, and protected.
+    \item \textbf{Usability:} Interfaces must clearly present predictions, confidence, extracted image text, and escalation reasons.
+    \item \textbf{Performance:} Text-only predictions should be fast enough for interactive ticket handling.
+    \item \textbf{Fairness:} Lower performance in Sinhala, Tamil, Singlish, Tanglish, or mixed text must not be hidden by overall accuracy.
+    \item \textbf{Human Control:} Agents must be able to correct every prediction and edit every generated response.
+    \item \textbf{Scalability:} The modular design should support future models, languages, and ticket categories.
+    \item \textbf{Maintainability:} Dataset versions, model versions, feedback, and retraining procedures must be documented.
+\end{itemize}
+
+Overall, the project is feasible as an academic prototype. Its success mainly depends on multilingual data quality, careful evaluation, restricted automation, and human review of high-risk or uncertain outputs.
+
+\section{References}
+
+\begin{thebibliography}{9}
+\small
+
+\bibitem{banking77}
+I. Casanueva, T. Temcinas, D. Gerz, M. Henderson, and I. Vulic,
+``Efficient Intent Detection with Dual Sentence Encoders,''
+in \textit{Proc. 2nd Workshop on NLP for Conversational AI}, 2020.
+
+\bibitem{xlmr}
+A. Conneau et al.,
+``Unsupervised Cross-lingual Representation Learning at Scale,''
+in \textit{Proc. 58th Annual Meeting of the ACL}, 2020.
+
+\bibitem{zendesk}
+Zendesk, ``Intelligent triage and ticket routing,'' [Online].
+Available: \url{https://www.zendesk.com/}. [Accessed: 24-Jul-2026].
+
+\bibitem{freshdesk}
+Freshworks, ``Freshdesk customer support and AI features,'' [Online].
+Available: \url{https://www.freshworks.com/freshdesk/}. [Accessed: 24-Jul-2026].
+
+\bibitem{react}
+Meta Open Source, ``React documentation,'' [Online].
+Available: \url{https://react.dev/}. [Accessed: 24-Jul-2026].
+
+\bibitem{fastapi}
+S. Ramirez, ``FastAPI documentation,'' [Online].
+Available: \url{https://fastapi.tiangolo.com/}. [Accessed: 24-Jul-2026].
+
+\bibitem{postgresql}
+PostgreSQL Global Development Group, ``PostgreSQL documentation,'' [Online].
+Available: \url{https://www.postgresql.org/docs/}. [Accessed: 24-Jul-2026].
+
+\bibitem{pdpa}
+Parliament of the Democratic Socialist Republic of Sri Lanka,
+\textit{Personal Data Protection Act, No. 9 of 2022}, 2022.
+
+\end{thebibliography}
+
+\end{document}
