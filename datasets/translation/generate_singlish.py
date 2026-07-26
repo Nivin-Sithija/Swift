@@ -4,10 +4,10 @@ Generate the Singlish (romanized Sinhala) dataset from
 `sinhala/train_labeled.csv`, row-aligned.
 
 Output: `singlish/train_labeled.csv`, columns
-    row_index,text_en,text_singlish,category,sentiment,priority
-`row_index` is the 0-based data-row index in sinhala/train_labeled.csv — the
+    id,text_en,text,category,sentiment,priority
+`id` is the 0-based data-row index in sinhala/train_labeled.csv — the
 key used by singlish_diff.py / update_sinhala.py to keep the two files
-aligned once the user starts hand-editing text_singlish.
+aligned once the user starts hand-editing text.
 
 Usage:
     python generate_singlish.py
@@ -21,7 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATASETS = os.path.dirname(HERE)
 SINHALA = os.path.join(DATASETS, "sinhala", "train_labeled.csv")
 OUT = os.path.join(DATASETS, "singlish", "train_labeled.csv")
-OUT_COLS = ["row_index", "text_en", "text_singlish", "category", "sentiment", "priority"]
+OUT_COLS = ["id", "text_en", "text", "category", "sentiment", "priority"]
 
 
 def main() -> None:
@@ -32,9 +32,9 @@ def main() -> None:
         w.writeheader()
         for i, r in enumerate(rows):
             w.writerow({
-                "row_index": i,
+                "id": i,
                 "text_en": r["text_en"],
-                "text_singlish": singlishify(r["text_si"]),
+                "text": singlishify(r["text"]),
                 "category": r["category"],
                 "sentiment": r["sentiment"],
                 "priority": r["priority"],

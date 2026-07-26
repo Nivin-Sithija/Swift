@@ -22,17 +22,21 @@ Findings that shaped the build:
 
 ## Data Science
 
-The dataset-engineering work (`datasets/`) turns [BANKING77](https://huggingface.co/datasets/PolyAI/banking77) (13,083 English support queries, 77 intents) into a labeled, trilingual, multi-script benchmark for the classifier bake-off.
+The dataset-engineering work (`datasets/`) turns [BANKING77](https://huggingface.co/datasets/PolyAI/banking77) (13,083 English support queries, 77 intents) into a labeled, trilingual, multi-script benchmark for the classifier bake-off — five language/script folders: `english/`, `sinhala/`, `singlish/` (romanized Sinhala), `tamil/`, `tamilish/` (romanized Tamil).
+
+**Every `train_labeled.csv`/`test_labeled.csv` shares one schema**: `id, text_en, text, category, sentiment, priority`. `id` is the 0-based row index into `original-dataset/train.csv`/`test.csv` (the alignment key across all five folders); `text_en` is always the original English ticket text; `text` is that folder's own-language text. sentiment/priority are identical across all five for the same row — they're translations of the same ticket, labeled once in English and carried over, never re-labeled per language.
 
 **Pipeline:**
 1. **Source** — BANKING77 `train.csv` / `test.csv` (`datasets/original-dataset/`), English text + intent only — no category/sentiment/priority ground truth exists upstream.
-2. **Labeling** — sentiment, priority, and (planned) category are LLM-derived, not scraped. `datasets/translation/prompts/` holds iterative prompt versions (v1 → v5); each version was validated against a hand-annotated gold benchmark subset before being trusted to label the full set (per-language folders directly under `datasets/`, e.g. `datasets/english/`, incl. mismatch-analysis CSVs and a Label Studio config for manual review). v5 is the current production prompt.
-3. **Translation** — English rows are machine-translated to Sinhala, then **hand-corrected by category** into colloquial, code-mixed Sinhala (not literal MT output) — tracked in a progress CSV, style rules documented in `datasets/translation/SINHALA_STYLE.md`.
-4. **Romanization (Singlish)** — a rule-based transliterator (`romanize.py`, `singlishify.py`, `singlish_overrides.py`) generates romanized Sinhala from the corrected native-script text, preserving English loanword spelling per the Script Sensitivity finding above. Edits happen in the romanized (Singlish) CSV, since that's what's human-readable, and get **backported into the Sinhala source** via diff/update scripts (`singlish_diff.py`, `update_sinhala.py`) rather than maintained in two places by hand.
+2. **Labeling** — sentiment and priority are LLM-derived (category comes from BANKING77's own intent field), not scraped. `datasets/translation/prompts/` holds iterative prompt versions (v1 → v5); each version was validated against a hand-annotated gold benchmark subset before being trusted to label the full set (`datasets/english/`, incl. mismatch-analysis CSVs and a Label Studio config for manual review). v5 is the current production prompt, and its labels are the only source of truth — including for Tamil, whose translation arrived with its own (older, non-v5) sentiment/priority pass that was overwritten to stay in sync with the rest.
+3. **Translation** — English rows are machine-translated to Sinhala, then **hand-corrected by category** into colloquial, code-mixed Sinhala (not literal MT output) — tracked in a progress CSV, style rules documented in `datasets/translation/SINHALA_STYLE.md`. Tamil is machine-translated (Gemini) without a hand-correction pass yet.
+4. **Romanization** — Singlish is a rule-based transliterator (`romanize.py`, `singlishify.py`, `singlish_overrides.py`) generating romanized Sinhala from the corrected native-script text, preserving English loanword spelling per the Script Sensitivity finding above. Edits happen in the romanized (Singlish) CSV, since that's what's human-readable, and get **backported into the Sinhala source** via diff/update scripts (`singlish_diff.py`, `update_sinhala.py`) rather than maintained in two places by hand. Tamilish (romanized Tamil) was generated directly by the same translation pass as Tamil, not a separate rule-based step.
 5. **Auditing** — `audit_sentiment.py` / `apply_bulk_sentiment_fix.py` catch and bulk-correct systematic labeling errors after review; `datasets/localization/` runs a similar review pass over category localization.
 6. **Analysis** — `notebooks/dataset_characteristics_english.ipynb` (class balance, text length, vocabulary) and `notebooks/prompt_benchmark_findings.ipynb` (prompt-version accuracy comparison against gold labels) document the dataset and prompt-selection evidence.
 
 Working rule for this pipeline: a dataset's own heuristic labels are never trusted as ground truth for tuning a labeling prompt — every prompt version is checked against a freshly hand-annotated gold set first.
+
+**Status**: English/Sinhala/Singlish have both train and test sets fully v5-labeled. Tamil/Tamilish have the train set done but no test set yet (only a small preview sample) — generating their full test set is the next open item.
 
 ---
 

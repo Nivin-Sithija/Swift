@@ -1,4 +1,4 @@
-row_index,text_en,text_singlish,category,sentiment,priority
+id,text_en,text,category,sentiment,priority
 0,I am still waiting on my card?,mage card eka thama hambunnaa?,card_arrival,Neutral,Low
 1,What can I do if my card still hasn't arrived after 2 weeks?,"sati 2k giyat mage card eka thama ave naa, mama mokada karanna one?",card_arrival,Neutral,Low
 2,I have been waiting over a week. Is the card still coming?,"satiyakatat vada innava balagena, card eka thama enavada?",card_arrival,Neutral,Low

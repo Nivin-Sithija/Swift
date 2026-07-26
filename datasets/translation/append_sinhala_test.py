@@ -5,7 +5,7 @@ sinhala/test_translation_progress.csv, keeping rows aligned to
 the English TEST set (english/test_labeled.csv) and preserving
 category/sentiment/priority verbatim. Mirrors append_sinhala.py (train).
 
-Input: a JSON file mapping TEST row-index (as string) -> Sinhala text, e.g.
+Input: a JSON file mapping TEST id (as string) -> Sinhala text, e.g.
     {"0": "...", "1": "...", ...}
 
 Guarantees:
@@ -19,7 +19,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATASETS = os.path.dirname(HERE)
 TEST = os.path.join(DATASETS, "english", "test_labeled.csv")
 PROG = os.path.join(DATASETS, "sinhala", "test_translation_progress.csv")
-COLS = ["text_en", "text_si", "category", "sentiment", "priority"]
+COLS = ["id", "text_en", "text", "category", "sentiment", "priority"]
 
 
 def main():
@@ -46,7 +46,7 @@ def main():
             bad.append(i); continue
         if r["text"] in existing_en and not args.force:
             skipped += 1; continue
-        new_rows.append({"text_en": r["text"], "text_si": si,
+        new_rows.append({"id": r["id"], "text_en": r["text"], "text": si,
                          "category": r["category"], "sentiment": r["sentiment"],
                          "priority": r["priority"]})
 
