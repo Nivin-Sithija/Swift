@@ -21,17 +21,22 @@ No paid LLM API is used.
 
 Usage:
     # small curated sample (default 20 diverse rows of the test split)
-    python translate.py --split test --sample 20 --suffix .sample
+    python gg_translate_generate.py --split test --sample 20 --suffix .sample
 
     # specific rows
-    python translate.py --split test --ids 0,131,405,763 --suffix .demo
+    python gg_translate_generate.py --split test --ids 0,131,405,763 --suffix .demo
 
     # a full split (slow; free endpoint is rate-limited -> use --sleep, --resume)
-    python translate.py --split test --sleep 0.6 --resume
-    python translate.py --split train --sleep 0.6 --resume
+    python gg_translate_generate.py --split test --sleep 0.6 --resume
+    python gg_translate_generate.py --split train --sleep 0.6 --resume
 
     # only some languages
-    python translate.py --split test --sample 20 --langs sinhala,singlish
+    python gg_translate_generate.py --split test --sample 20 --langs sinhala,singlish
+
+Output layout: each language gets its own top-level folder directly under
+datasets/ (e.g. datasets/sinhala/), with this script's output kept isolated
+in a gg-translate-sample/ subfolder so it never collides with the real
+hand-authored train_labeled.csv/test_labeled.csv in that folder.
 """
 from __future__ import annotations
 import argparse
@@ -47,8 +52,8 @@ from romanize import romanize  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATASETS = os.path.dirname(HERE)
-ENGLISH_DIR = os.path.join(DATASETS, "llm-zeroshot", "english")
-OUT_ROOT = os.path.join(DATASETS, "llm-zeroshot")
+ENGLISH_DIR = os.path.join(DATASETS, "english")
+OUT_ROOT = DATASETS
 
 # our language label -> Google Translate target code
 GT_CODE = {"sinhala": "si", "tamil": "ta"}
@@ -66,7 +71,7 @@ def read_english(split: str) -> list[dict]:
 
 
 def out_path(lang: str, split: str, suffix: str) -> str:
-    return os.path.join(OUT_ROOT, lang, f"{split}_labeled{suffix}.csv")
+    return os.path.join(OUT_ROOT, lang, "gg-translate-sample", f"{split}_labeled{suffix}.csv")
 
 
 def rows_done(path: str) -> int:

@@ -13,17 +13,17 @@ fixed at two papers.
 | File | Citation | Used in |
 | --- | --- | --- |
 | `NLP.pdf` | de Silva, N. *Survey on Publicly Available Sinhala NLP Tools and Research.* arXiv:1906.02358, living survey, rev. Jan 2026 (v5.7.1). | `model-research.md` throughout (§3.1–3.34, see its Key Sources list) |
-| `SINHALA – ENGLISH LANGUAGE DETECTION IN CODE-MIXED DATA.pdf` | Smith, J. R. I. (2020). *Sinhala-English Language Detection in Code-Mixed Data.* MSc dissertation, Dept. of Computer Science & Engineering, University of Moratuwa. Supervisor: Dr. Uthyasanker Thayasivam. | `model-research.md` → **Language ID — Finalized Plan**, Si-En pair model |
+| `SINHALA-ENGLISH_LANGUAGE_DETECTION_IN_CODE-MIXED_DATA.pdf` | Smith, J. R. I. (2020). *Sinhala-English Language Detection in Code-Mixed Data.* MSc dissertation, Dept. of Computer Science & Engineering, University of Moratuwa. Supervisor: Dr. Uthyasanker Thayasivam. | `model-research.md` → **Language ID — Finalized Plan**, Si-En pair model |
 | `Adapter_Based_Fine-Tuning_of_Pre-Trained_Multiling.pdf` | Rathnayake, H., Sumanapala, J., Rukshani, R., Ranathunga, S. (2022). *Adapter Based Fine-Tuning of Pre-Trained Multilingual Language Models for Code-Mixed and Code-Switched Text Classification.* Research Square preprint, DOI 10.21203/rs.3.rs-1564359/v2. University of Moratuwa. | `model-research.md` → **Finalized Decision** (Sentiment/Priority LoRA-expert architecture), direct empirical precedent |
-| `Bank Customer Complaint Classification Using Machine Learning and Deep Learning Models.pdf` | Arya, S. (2026). *Bank Customer Complaint Classification Using Machine Learning and Deep Learning Models.* IJRTI, Vol. 11, Issue 2. | `model-research.md` → Dataset Strategy (category classification, class-balancing method, data-scale calibration) |
+| `Bank_Customer_Complaint_Classification_Using_Machine_Learning_and_Deep_Learning_Models.pdf` | Arya, S. (2026). *Bank Customer Complaint Classification Using Machine Learning and Deep Learning Models.* IJRTI, Vol. 11, Issue 2. | `model-research.md` → Dataset Strategy (category classification, class-balancing method, data-scale calibration) |
 | `prioritybased.pdf` | Deshmukh, K. V., Shiravale, S. S. *Priority Based Sentiment Analysis for Quick Response to Citizen Complaints.* IEEE conference paper (Marathwada Mitra Mandal's College of Engineering, Pune). | `model-research.md` → Priority derivation rules (starvation-prevention addition) |
-| `romanized sinhala/2019MCS084.pdf` | Sumanathilaka, T.G.D.K. (2022). *Romanized Sinhala to Sinhala Reverse Transliteration using a Hybrid Approach.* MSc thesis, University of Colombo School of Computing. Supervisor: Dr. Ruvan Weerasinghe. | `model-research.md` → Romanized Input, Strategy A |
-| `romanized sinhala/IndoNLP 2025 Shared Task- Romanized Sinhala to Sinhala Reverse Transliteration Using BERT.pdf` | Perera, S., Jayakodi, L. P., Sumanathilaka, T.G.D.K., Anuradha, I. (2025). *IndoNLP 2025 Shared Task: Romanized Sinhala to Sinhala Reverse Transliteration Using BERT.* Proc. First Workshop on NLP for Indo-Aryan and Dravidian Languages (IndoNLP 2025), pp. 135–140. | `model-research.md` → Romanized Input, Strategy A |
-| `romanized sinhala/Swa-bhasha Resource Hub- Romanized Sinhala to Sinhala Transliteration Systems and Data Resources.pdf` | Sumanathilaka, D., Perera, S., Dharmasiri, S., Athukorala, M., Herath, A. D., Dias, R., Gamage, P., Weerasinghe, R., Priyadarshana, Y.H.P.P. (2026). *Swa-bhasha Resource Hub: Romanized Sinhala to Sinhala Transliteration Systems and Data Resources.* arXiv:2507.09245. | `model-research.md` → Romanized Input, Strategy A |
-| `Script Sensitivity - Benchmarking Language Models on Unicode, Romanized and Mixed-Script Sinhala.pdf` | Rajapakse, M., Weerasinghe, R. (2026). *Script Sensitivity: Benchmarking Language Models on Unicode, Romanized and Mixed-Script Sinhala.* arXiv:2601.14958. | `model-research.md` → Cross-Lingual Interference Research; Romanized Input, Strategy A |
-| `Enhancing Multilingual Sentiment Analysis with Explainability for Sinhala, English, and Code-Mixed Content.pdf` | Senevirathna, W.P.U., Rizvi, F.A., Adhikari, A.M.N.H., Kasthurirathna, D., Navojith, T., Abeywardhana, L. (2025). *Enhancing Multilingual Sentiment Analysis with Explainability for Sinhala, English, and Code-Mixed Content.* arXiv:2504.13545. SLIIT. | `model-research.md` → Sentiment model candidates; Division of Labour (ML vs LLM) |
-| `SinLlama - A Large Language Model for Sinhala.pdf` | Aravinda, H.W.K., Sirajudeen, R., Karunathilake, S., de Silva, N., Kaur, R., Bhankhar, A.S., Ranathunga, S. (2025). *SinLlama - A Large Language Model for Sinhala.* arXiv:2508.09115. University of Moratuwa. | `model-research.md` → Generation LLM candidates; Sentiment model candidates |
-| `Sentiment Analysis of Sinhala News Comments Using Transformers.pdf` | Bandaranayake, I., Usoof, H. (2025). *Sentiment Analysis of Sinhala News Comments Using Transformers.* Proc. IndoNLP 2025, pp. 74–82. University of Peradeniya. | `model-research.md` → Sentiment model candidates (primary source of the XLM-R-large 75.9% figure cited elsewhere) |
+| `romanized_sinhala/2019MCS084.pdf` | Sumanathilaka, T.G.D.K. (2022). *Romanized Sinhala to Sinhala Reverse Transliteration using a Hybrid Approach.* MSc thesis, University of Colombo School of Computing. Supervisor: Dr. Ruvan Weerasinghe. | `model-research.md` → Romanized Input, Strategy A |
+| `romanized_sinhala/IndoNLP_2025_Shared_Task-_Romanized_Sinhala_to_Sinhala_Reverse_Transliteration_Using_BERT.pdf` | Perera, S., Jayakodi, L. P., Sumanathilaka, T.G.D.K., Anuradha, I. (2025). *IndoNLP 2025 Shared Task: Romanized Sinhala to Sinhala Reverse Transliteration Using BERT.* Proc. First Workshop on NLP for Indo-Aryan and Dravidian Languages (IndoNLP 2025), pp. 135–140. | `model-research.md` → Romanized Input, Strategy A |
+| `romanized_sinhala/Swa-bhasha_Resource_Hub-_Romanized_Sinhala_to_Sinhala_Transliteration_Systems_and_Data_Resources.pdf` | Sumanathilaka, D., Perera, S., Dharmasiri, S., Athukorala, M., Herath, A. D., Dias, R., Gamage, P., Weerasinghe, R., Priyadarshana, Y.H.P.P. (2026). *Swa-bhasha Resource Hub: Romanized Sinhala to Sinhala Transliteration Systems and Data Resources.* arXiv:2507.09245. | `model-research.md` → Romanized Input, Strategy A |
+| `Script_Sensitivity_-_Benchmarking_Language_Models_on_Unicode,_Romanized_and_Mixed-Script_Sinhala.pdf` | Rajapakse, M., Weerasinghe, R. (2026). *Script Sensitivity: Benchmarking Language Models on Unicode, Romanized and Mixed-Script Sinhala.* arXiv:2601.14958. | `model-research.md` → Cross-Lingual Interference Research; Romanized Input, Strategy A |
+| `Enhancing_Multilingual_Sentiment_Analysis_with_Explainability_for_Sinhala,_English,_and_Code-Mixed_Content.pdf` | Senevirathna, W.P.U., Rizvi, F.A., Adhikari, A.M.N.H., Kasthurirathna, D., Navojith, T., Abeywardhana, L. (2025). *Enhancing Multilingual Sentiment Analysis with Explainability for Sinhala, English, and Code-Mixed Content.* arXiv:2504.13545. SLIIT. | `model-research.md` → Sentiment model candidates; Division of Labour (ML vs LLM) |
+| `SinLlama_-_A_Large_Language_Model_for_Sinhala.pdf` | Aravinda, H.W.K., Sirajudeen, R., Karunathilake, S., de Silva, N., Kaur, R., Bhankhar, A.S., Ranathunga, S. (2025). *SinLlama - A Large Language Model for Sinhala.* arXiv:2508.09115. University of Moratuwa. | `model-research.md` → Generation LLM candidates; Sentiment model candidates |
+| `Sentiment_Analysis_of_Sinhala_News_Comments_Using_Transformers.pdf` | Bandaranayake, I., Usoof, H. (2025). *Sentiment Analysis of Sinhala News Comments Using Transformers.* Proc. IndoNLP 2025, pp. 74–82. University of Peradeniya. | `model-research.md` → Sentiment model candidates (primary source of the XLM-R-large 75.9% figure cited elsewhere) |
 
 Full content summaries below — read these instead of re-opening the PDFs for anything covered here.
 
@@ -58,7 +58,7 @@ de Silva, N. (2026 living rev., v5.7.1, arXiv:1906.02358). 61 pages; pages 34–
 
 ---
 
-## `SINHALA – ENGLISH LANGUAGE DETECTION IN CODE-MIXED DATA.pdf` — Smith & Thayasivam (2020)
+## `SINHALA-ENGLISH_LANGUAGE_DETECTION_IN_CODE-MIXED_DATA.pdf` — Smith & Thayasivam (2020)
 
 Smith, J. R. I. *Sinhala-English Language Detection in Code-Mixed Data.* MSc thesis, University of Moratuwa, April 2020. Supervisor: Dr. Uthyasanker Thayasivam. 68 pages. Published as two papers: Smith & Thayasivam, *Sinhala-English Code-Mixed Data Analysis: A Review on Data Collection Process*, ICTer 2019; and *Language Detection in Sinhala-English Code-mixed Data*, IALP 2019 (Shanghai).
 
@@ -123,7 +123,7 @@ Smith, J. R. I. *Sinhala-English Language Detection in Code-Mixed Data.* MSc the
 
 ---
 
-## `Bank Customer Complaint Classification Using Machine Learning and Deep Learning Models.pdf` — Arya (2026)
+## `Bank_Customer_Complaint_Classification_Using_Machine_Learning_and_Deep_Learning_Models.pdf` — Arya (2026)
 
 IJRTI, Vol. 11 Issue 2, Feb 2026. 7 pages. Single-author, real-world Kaggle dataset (162,421 records — this is a repackaging of the CFPB Consumer Complaint Database, the same source `model-research.md`'s Dataset Strategy already names for Swift's category-gap-filling).
 
@@ -159,15 +159,15 @@ IEEE conference paper, Marathwada Mitra Mandal's College of Engineering, Pune, I
 
 ---
 
-## `romanized sinhala/` — the Swa-Bhasha lineage (reverse-transliteration: Singlish → Sinhala)
+## `romanized_sinhala/` — the Swa-Bhasha lineage (reverse-transliteration: Singlish → Sinhala)
 
 Three papers, same research group (Sumanathilaka, Weerasinghe et al., UCSC/IIT/Swansea), tracking one lineage of work from 2022 MSc thesis → 2025 shared task win → 2026 resource-hub survey. Directly reopens `model-research.md`'s Romanized Input **Strategy A** (reverse-transliterate first, then run native-script models) — previously down-weighted there as "ambiguous, errors compound" and kept only as an optional RAG pre-step. This trio shows that dismissal is now out of date: a benchmarked, reusable, low-error transliterator exists.
 
 **`2019MCS084.pdf` — Sumanathilaka (2022 MSc thesis), the origin work.** Hybrid pipeline: N-gram tagger (Uni/Bi/Trigram, backoff) → rule-based fallback for tokens the N-gram model can't tag → Trie-based knowledge-base suggestion layer for final word selection. Trained on 12,447 sentences / 7M+ words (Liwera dataset + Dakshina + self-scraped YouTube comments). **84% word-level accuracy** on held-out test data — establishes the baseline the later BERT-based work beats.
 
-**`IndoNLP 2025 Shared Task...pdf` — Perera, Jayakodi, Sumanathilaka, Anuradha (2025), IndoNLP 2025 workshop (ACL).** State-of-the-art result in this lineage. Five-step pipeline: word separation → dictionary-based word-level mapping (ad-hoc Singlish→Sinhala dictionary, multiple candidates per ambiguous word) → rule-based fallback for OOV words → **mask ambiguous words and disambiguate via a Sinhala BERT masked-language-model** (score every candidate sentence by the product of each masked word's contextual probability, pick the highest-scoring completion) → output. Two chunking/filtering optimizations keep BERT-call count manageable on long, highly-ambiguous sentences. Evaluated on the IndoNLP 2025 shared-task sets (10,000 general-typing-pattern rows + 5,000 ad-hoc/vowel-omitted rows): **WER 0.085–0.09, CER ~0.02, BLEU-4 ~0.79–0.80** for the fine-tuned-BERT variant, beating a from-scratch Sinhala-BERT baseline by a small margin. On the separate Transliteration Disambiguation dataset (lexical-ambiguity resolution specifically), this system scored **F1 0.94–0.96**, far ahead of every rule-based/statistical competitor cited (all clustered 0.33–0.38 F1). Codebase: `github.com/Sameera2001Perera/Singlish-Transliterator`.
+**`IndoNLP_2025_Shared_Task-_Romanized_Sinhala_to_Sinhala_Reverse_Transliteration_Using_BERT.pdf` — Perera, Jayakodi, Sumanathilaka, Anuradha (2025), IndoNLP 2025 workshop (ACL).** State-of-the-art result in this lineage. Five-step pipeline: word separation → dictionary-based word-level mapping (ad-hoc Singlish→Sinhala dictionary, multiple candidates per ambiguous word) → rule-based fallback for OOV words → **mask ambiguous words and disambiguate via a Sinhala BERT masked-language-model** (score every candidate sentence by the product of each masked word's contextual probability, pick the highest-scoring completion) → output. Two chunking/filtering optimizations keep BERT-call count manageable on long, highly-ambiguous sentences. Evaluated on the IndoNLP 2025 shared-task sets (10,000 general-typing-pattern rows + 5,000 ad-hoc/vowel-omitted rows): **WER 0.085–0.09, CER ~0.02, BLEU-4 ~0.79–0.80** for the fine-tuned-BERT variant, beating a from-scratch Sinhala-BERT baseline by a small margin. On the separate Transliteration Disambiguation dataset (lexical-ambiguity resolution specifically), this system scored **F1 0.94–0.96**, far ahead of every rule-based/statistical competitor cited (all clustered 0.33–0.38 F1). Codebase: `github.com/Sameera2001Perera/Singlish-Transliterator`.
 
-**`Swa-bhasha Resource Hub...pdf` — Sumanathilaka et al. (2026), arXiv:2507.09245.** Survey + benchmark rollup of the whole lineage (2022–2026: the thesis above, Swa-Bhasha 2.0's NMT+rule hybrid, the IndoNLP BERT system above, and a new **code-mixed** Singlish→Sinhala translator). Two results matter most for Swift:
+**`Swa-bhasha_Resource_Hub-_Romanized_Sinhala_to_Sinhala_Transliteration_Systems_and_Data_Resources.pdf` — Sumanathilaka et al. (2026), arXiv:2507.09245.** Survey + benchmark rollup of the whole lineage (2022–2026: the thesis above, Swa-Bhasha 2.0's NMT+rule hybrid, the IndoNLP BERT system above, and a new **code-mixed** Singlish→Sinhala translator). Two results matter most for Swift:
 - **Table 4 (code-mixed transliteration, golden SinMix2Mono dataset)** benchmarks 9 systems including zero-shot LLMs (Qwen-3 Max, Gemini 2.5 Flash-Lite), few-shot LLMs, and fine-tuned models (XLM-R, M2M100, Swa-Bhasha-mBART). **Fine-tuned Swa-Bhasha-mBART wins decisively — BLEU 49.70 / chrF 78.47 / BERTScore 81.19** vs. Gemini few-shot's 33.43 BLEU / 71.00 BERTScore. Same pattern as `model-research.md`'s classifier bake-off: a small fine-tuned model beats LLM prompting on this task.
 - **Table 5 (pure Sinhala, non-code-mixed)**: Swa-Bhasha-mBART fine-tuned scores **BLEU 77.64, chrF 92.85, BERTScore 92.37** — high enough that reverse-transliteration error propagation (Strategy A's original objection) is a much smaller risk than assumed when that line was written into `model-research.md`.
 - Also documents the **Swa-Bhasha datasets** (7.13M romanized-Sinhala word pairs from 440k unique Sinhala roots; a 7.24M-pair augmented sentence corpus) and a purpose-built **Transliteration Disambiguation dataset** (660 sentence pairs, single-sense + dual-sense splits) for evaluating exactly the lexical-ambiguity problem ("adaraya" → ආදරය "love" or ආධාරය "aid"?) that most affects backward transliteration. All public on Hugging Face under `deshanksuman/*`.
@@ -176,7 +176,7 @@ Three papers, same research group (Sumanathilaka, Weerasinghe et al., UCSC/IIT/S
 
 ---
 
-## `Script Sensitivity - Benchmarking Language Models on Unicode, Romanized and Mixed-Script Sinhala.pdf` — Rajapakse & Weerasinghe (2026)
+## `Script_Sensitivity_-_Benchmarking_Language_Models_on_Unicode,_Romanized_and_Mixed-Script_Sinhala.pdf` — Rajapakse & Weerasinghe (2026)
 
 arXiv:2601.14958, IIT Colombo. The paper `model-research.md`'s Cross-Lingual Interference Research section already cited (as a >300x web-search summary) before this PDF was pulled into the library — now confirmed and precise.
 
@@ -195,7 +195,7 @@ arXiv:2601.14958, IIT Colombo. The paper `model-research.md`'s Cross-Lingual Int
 
 ---
 
-## `Enhancing Multilingual Sentiment Analysis with Explainability for Sinhala, English, and Code-Mixed Content.pdf` — Senevirathna et al. (2025)
+## `Enhancing_Multilingual_Sentiment_Analysis_with_Explainability_for_Sinhala,_English,_and_Code-Mixed_Content.pdf` — Senevirathna et al. (2025)
 
 arXiv:2504.13545, SLIIT. **The single most directly-applicable paper in the library** — this is banking-domain sentiment analysis on Sinhala/Singlish/code-mixed text, the same task, same domain, same script-mix problem Swift has. Found while chasing a different (inaccessible — see Gaps) SinLlama sentiment paper; turned out to be a better match.
 
@@ -221,7 +221,7 @@ arXiv:2504.13545, SLIIT. **The single most directly-applicable paper in the libr
 
 ---
 
-## `SinLlama - A Large Language Model for Sinhala.pdf` — Aravinda, Sirajudeen, Karunathilake, de Silva, Kaur, Bhankhar, Ranathunga (2025)
+## `SinLlama_-_A_Large_Language_Model_for_Sinhala.pdf` — Aravinda, Sirajudeen, Karunathilake, de Silva, Kaur, Bhankhar, Ranathunga (2025)
 
 arXiv:2508.09115, University of Moratuwa (Ranathunga co-authors several other papers already in this library). Fetched while chasing the inaccessible Abeynayake SinLlama-sentiment paper (see Gaps) — this is the base **SinLlama** model that paper fine-tunes, so it's the right fallback: same model family, native-script Sinhala only (no romanized/code-mixed evaluation in this paper specifically).
 
@@ -242,7 +242,7 @@ arXiv:2508.09115, University of Moratuwa (Ranathunga co-authors several other pa
 
 ---
 
-## `Sentiment Analysis of Sinhala News Comments Using Transformers.pdf` — Bandaranayake & Usoof (2025)
+## `Sentiment_Analysis_of_Sinhala_News_Comments_Using_Transformers.pdf` — Bandaranayake & Usoof (2025)
 
 IndoNLP 2025 (ACL Anthology), University of Peradeniya. **This is the primary source** behind the "XLM-R-large: 75.9% accuracy, best in multiple studies" line already cited secondhand (via `NLP.pdf` and the Senevirathna banking paper above) elsewhere in `model-research.md` — now on file directly rather than cited through two layers of secondary reference.
 
@@ -278,7 +278,7 @@ These are currently cited in `model-research.md` only as external links (web sea
 
 ## Conventions
 
-- Keep the original filename as downloaded (even if long/awkward) so it stays traceable back to its source — don't rename to a short slug.
+- Keep the original filename as downloaded (even if long/awkward) so it stays traceable back to its source — don't rename to a short slug. Exception: spaces in filenames are replaced with underscores (Windows-clone compatibility) — this is a mechanical substitution, not a shortening, so full traceability is preserved.
 - When a paper grounds a specific decision in `model-research.md` or `architecture.md`, cite it there by filename (e.g. `research/NLP.pdf`) as well as adding/updating its entry here — this file is the bibliography (full content summary lives here); the inline citation elsewhere is just a pointer back to this file, never a duplicate of the summary.
 - `model-research.md` and `architecture.md` stay separate files (research/model rationale vs. system design) — they cross-reference each other by section name rather than merging.
 - If a gap above gets filled, move its bullet into the Quick Index table (and add a full summary section) and delete it from Gaps.

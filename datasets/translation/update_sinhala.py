@@ -19,7 +19,7 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATASETS = os.path.dirname(HERE)
-SINHALA = os.path.join(DATASETS, "llm-zeroshot", "sinhala", "train_labeled.csv")
+SINHALA = os.path.join(DATASETS, "sinhala", "train_labeled.csv")
 COLS = ["text_en", "text_si", "category", "sentiment", "priority"]
 
 

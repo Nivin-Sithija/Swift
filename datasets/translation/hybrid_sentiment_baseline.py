@@ -19,8 +19,8 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATASETS = os.path.dirname(HERE)
-EN_TRAIN = os.path.join(DATASETS, "llm-zeroshot", "english", "train_labeled.csv")
-SI_TRAIN = os.path.join(DATASETS, "llm-zeroshot", "sinhala", "train_labeled.csv")
+EN_TRAIN = os.path.join(DATASETS, "english", "train_labeled.csv")
+SI_TRAIN = os.path.join(DATASETS, "sinhala", "train_labeled.csv")
 EN_OUT = os.path.join(HERE, "baseline_sentiment_priority_english.csv")
 SI_OUT = os.path.join(HERE, "baseline_sentiment_priority_sinhala.csv")
 
