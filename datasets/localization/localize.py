@@ -176,18 +176,25 @@ for path in FILES:
     with open(path, newline='', encoding='utf-8') as f:
         rows = list(csv.reader(f))
     header = rows[0]
+    text_idx = header.index('text')
+    text_en_idx = header.index('text_en') if 'text_en' in header else None
+    category_idx = header.index('category') if 'category' in header else None
     out = [header]
     for i, row in enumerate(rows[1:], start=2):  # line numbers match file (header=line1)
         if not row:
             out.append(row); continue
-        text = row[0]
-        category = row[1] if len(row) > 1 else ''
+        text = row[text_idx]
+        category = row[category_idx] if category_idx is not None else ''
         h = HANDLERS.get(category)
         if h:
             new = h(text)
             if new != text:
                 review.append((path.split('/datasets/')[1], i, category, text, new))
-                row = [new] + row[1:]
+                row[text_idx] = new
+                # english/*_labeled.csv duplicates the same text into text_en for
+                # schema uniformity with the other languages - keep them in sync
+                if text_en_idx is not None and row[text_en_idx] == text:
+                    row[text_en_idx] = new
         out.append(row)
     if APPLY:
         with open(path, 'w', newline='', encoding='utf-8') as f:

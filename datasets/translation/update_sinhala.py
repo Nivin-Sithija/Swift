@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
 Apply hand-authored Sinhala corrections (re-worded to match a user's Singlish
-edit) back into `sinhala/train_labeled.csv`, IN PLACE by row_index — as
+edit) back into `sinhala/train_labeled.csv`, IN PLACE by id — as
 opposed to append_sinhala.py, which only appends brand-new rows.
 
-Input: a JSON file mapping row_index (as string) -> new Sinhala text, e.g.
+Input: a JSON file mapping id (as string) -> new Sinhala text, e.g.
     {"0": "තාම මගේ කාඩ් එක තැපැලෙන් ආවෙ නෑ"}
 
 Guarantees:
   * every index is in range
   * category/sentiment/priority/text_en are left untouched
-  * refuses to touch a row whose text_si didn't actually change, unless --force
+  * refuses to touch a row whose text didn't actually change, unless --force
 """
 import argparse
 import csv
@@ -20,12 +20,12 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATASETS = os.path.dirname(HERE)
 SINHALA = os.path.join(DATASETS, "sinhala", "train_labeled.csv")
-COLS = ["text_en", "text_si", "category", "sentiment", "priority"]
+COLS = ["id", "text_en", "text", "category", "sentiment", "priority"]
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("json", help="path to {row_index: new sinhala text} json")
+    ap.add_argument("json", help="path to {id: new sinhala text} json")
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
 
@@ -42,10 +42,10 @@ def main() -> None:
         if not new_si:
             bad.append(i)
             continue
-        if rows[i]["text_si"] == new_si and not args.force:
+        if rows[i]["text"] == new_si and not args.force:
             unchanged += 1
             continue
-        rows[i]["text_si"] = new_si
+        rows[i]["text"] = new_si
         updated += 1
 
     if bad:

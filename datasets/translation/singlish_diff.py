@@ -3,7 +3,7 @@
 Find rows where the hand-edited `singlish/train_labeled.csv`
 differs from what generate_singlish.py would produce from the CURRENT
 `sinhala/train_labeled.csv` — i.e. rows the user has hand-fixed in Singlish
-that still need the matching edit applied to text_si.
+that still need the matching edit applied to Sinhala's `text`.
 
 sinhala/train_labeled.csv is never touched by the user directly (no Sinhala
 keyboard), so re-deriving the "expected" Singlish on the fly and diffing
@@ -11,7 +11,7 @@ against the actual file is enough; no separate baseline snapshot is needed.
 
 Usage:
     python singlish_diff.py                 # print changed rows
-    python singlish_diff.py --json out.json # {row_index: new_text_singlish}
+    python singlish_diff.py --json out.json # {id: new_singlish_text}
 """
 import argparse
 import csv
@@ -28,7 +28,7 @@ SINGLISH = os.path.join(DATASETS, "singlish", "train_labeled.csv")
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--json", help="write {row_index: new_text_singlish} here")
+    ap.add_argument("--json", help="write {id: new_singlish_text} here")
     args = ap.parse_args()
 
     si_rows = list(csv.DictReader(open(SINHALA, encoding="utf-8")))
@@ -41,12 +41,12 @@ def main() -> None:
 
     changed = {}
     for i, (si_r, sg_r) in enumerate(zip(si_rows, sg_rows)):
-        expected = singlishify(si_r["text_si"])
-        actual = sg_r["text_singlish"]
+        expected = singlishify(si_r["text"])
+        actual = sg_r["text"]
         if actual != expected:
             changed[i] = {
                 "text_en": si_r["text_en"],
-                "current_text_si": si_r["text_si"],
+                "current_text_si": si_r["text"],
                 "old_singlish": expected,
                 "new_singlish": actual,
             }
