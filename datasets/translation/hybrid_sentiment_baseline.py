@@ -238,7 +238,7 @@ def main():
             continue
         si_out_rows.append({
             "text_en": row["text_en"],
-            "text_si": row["text_si"],
+            "text_si": row["text"],
             "category": row["category"],
             "sentiment_existing": row["sentiment"],
             "priority_existing": row["priority"],

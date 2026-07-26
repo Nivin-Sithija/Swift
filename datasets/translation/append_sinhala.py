@@ -4,7 +4,7 @@ Append hand-authored colloquial Sinhala translations to
 sinhala/sinhala_translation_progress.csv, keeping rows aligned to the
 English TRAIN set and preserving category/sentiment/priority verbatim.
 
-Input: a JSON file mapping TRAIN row-index (as string) -> Sinhala text, e.g.
+Input: a JSON file mapping TRAIN id (as string) -> Sinhala text, e.g.
     {"404": "...", "405": "...", ...}
 
 Guarantees:
@@ -18,12 +18,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATASETS = os.path.dirname(HERE)
 TRAIN = os.path.join(DATASETS, "english", "train_labeled.csv")
 PROG = os.path.join(DATASETS, "sinhala", "sinhala_translation_progress.csv")
-COLS = ["text_en", "text_si", "category", "sentiment", "priority"]
+COLS = ["id", "text_en", "text", "category", "sentiment", "priority"]
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("json", help="path to {index: sinhala} json")
+    ap.add_argument("json", help="path to {id: sinhala} json")
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
 
@@ -45,7 +45,7 @@ def main():
             bad.append(i); continue
         if r["text"] in existing_en and not args.force:
             skipped += 1; continue
-        new_rows.append({"text_en": r["text"], "text_si": si,
+        new_rows.append({"id": r["id"], "text_en": r["text"], "text": si,
                          "category": r["category"], "sentiment": r["sentiment"],
                          "priority": r["priority"]})
 
