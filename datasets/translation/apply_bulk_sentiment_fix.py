@@ -2,8 +2,8 @@
 Apply the high-confidence Positive->Neutral bulk fix (sentiment_bulk_fix_candidates.csv)
 to all three train_labeled.csv files. Sinhala/Singlish copy sentiment/priority
 verbatim from English, so the same row-level fix applies to all three,
-matched by English row_index (Singlish has its own row_index column aligned
-1:1 with English; Sinhala is matched by text_en since it has no row_index).
+matched by English row index (Singlish has its own `id` column aligned
+1:1 with English; Sinhala is matched by text_en).
 """
 import csv
 import os
@@ -60,7 +60,7 @@ def main():
     sg_fieldnames = list(sg_rows[0].keys())
     sg_changed = 0
     for row in sg_rows:
-        if int(row["row_index"]) in fix_indices:
+        if int(row["id"]) in fix_indices:
             row["sentiment"] = "Neutral"
             sg_changed += 1
     with open(SG_TRAIN, "w", newline="", encoding="utf-8") as f:
