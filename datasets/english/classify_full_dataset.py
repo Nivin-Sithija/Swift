@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Classify sentiment + priority for every row of the original unlabeled
-BANKING77 dataset (datasets/original dataset/train.csv) using the final
+BANKING77 dataset (datasets/original-dataset/train.csv) using the final
 v5 prompt, via concurrent `claude -p` CLI calls.
 
 Output keeps the 0-based row_index from train.csv, which is the same
@@ -19,8 +19,8 @@ import time
 
 ROOT = "/Users/sithijaseneviratne/Documents/Github/Swift/datasets"
 PROMPT_PATH = f"{ROOT}/translation/prompts/labeling_prompt_v5.md"
-SRC_PATH = f"{ROOT}/original dataset/train.csv"
-OUT_PATH = f"{ROOT}/llm-zeroshot/english/train_labeled_v5_full.csv"
+SRC_PATH = f"{ROOT}/original-dataset/train.csv"
+OUT_PATH = f"{ROOT}/english/train_labeled_v5_full.csv"
 BATCH_SIZE = 20
 MAX_WORKERS = 10
 

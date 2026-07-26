@@ -50,7 +50,7 @@ pos_re = re.compile("|".join(POSITIVE_CUES), re.IGNORECASE)
 urg_re = re.compile("|".join(URGENT_CUES), re.IGNORECASE)
 
 rows = []
-with open("datasets/llm-zeroshot/english/train_labeled.csv") as f:
+with open("datasets/english/train_labeled.csv") as f:
     r = csv.DictReader(f)
     for i, row in enumerate(r):
         row["row_index"] = i

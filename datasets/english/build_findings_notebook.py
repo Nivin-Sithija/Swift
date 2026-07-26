@@ -179,7 +179,7 @@ print(sent_mismatches_v5.groupby(["gold_sentiment", "pred_sentiment"]).size().to
 md("""## Full-dataset re-classification
 
 With v5 finalized, all **10,003 rows** of the original unlabeled dataset
-(`datasets/original dataset/train.csv`) were classified with it (concurrent `claude -p` batches,
+(`datasets/original-dataset/train.csv`) were classified with it (concurrent `claude -p` batches,
 0 failed batches), and the same row-aligned sentiment/priority values were written into the English,
 Sinhala, and Singlish `train_labeled.csv` files — all three are translations of the same underlying
 tickets, so the emotional/priority content should be identical across languages for the same row.

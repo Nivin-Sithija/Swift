@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 """
-Generate the Singlish (romanized Sinhala) dataset from
-`sinhala/train_labeled.csv`, row-aligned.
+Generate the Singlish (romanized Sinhala) TEST dataset from
+`sinhala/test_labeled.csv`, row-aligned. Mirrors
+generate_singlish.py (train).
 
-Output: `singlish/train_labeled.csv`, columns
+Output: `singlish/test_labeled.csv`, columns
     row_index,text_en,text_singlish,category,sentiment,priority
-`row_index` is the 0-based data-row index in sinhala/train_labeled.csv — the
-key used by singlish_diff.py / update_sinhala.py to keep the two files
-aligned once the user starts hand-editing text_singlish.
+`row_index` is the 0-based data-row index in sinhala/test_labeled.csv.
 
 Usage:
-    python generate_singlish.py
+    python generate_singlish_test.py
 """
 import csv
 import os
@@ -19,8 +18,8 @@ from singlishify import singlishify
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATASETS = os.path.dirname(HERE)
-SINHALA = os.path.join(DATASETS, "sinhala", "train_labeled.csv")
-OUT = os.path.join(DATASETS, "singlish", "train_labeled.csv")
+SINHALA = os.path.join(DATASETS, "sinhala", "test_labeled.csv")
+OUT = os.path.join(DATASETS, "singlish", "test_labeled.csv")
 OUT_COLS = ["row_index", "text_en", "text_singlish", "category", "sentiment", "priority"]
 
 

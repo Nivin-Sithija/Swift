@@ -1,6 +1,6 @@
 # Colloquial Sinhala Translation — Style Guide
 
-The Sinhala dataset (`llm-zeroshot/sinhala_translation_progress.csv`) is
+The Sinhala dataset (`sinhala/sinhala_translation_progress.csv`) is
 **colloquial, code-mixed spoken Sinhala** — the way Sri Lankans actually type
 in a banking support chat — NOT formal/literary Sinhala. English banking terms
 are kept in Sinhala script.
