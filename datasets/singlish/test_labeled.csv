@@ -1,4 +1,4 @@
-row_index,text_en,text_singlish,category,sentiment,priority
+id,text_en,text,category,sentiment,priority
 0,How do I locate my card?,mage card eka koheda kiyala danaganne kohomada?,card_arrival,Neutral,Low
 1,"I still have not received my new card, I ordered over a week ago.","mama order karala satiyakatat vada venava, thama mage alut card eka hambune naa.",card_arrival,Neutral,Low
 2,I ordered a card but it has not arrived. Help please!,mama card ekak order kala et thama ave naa. plis udav karannako!,card_arrival,Neutral,Low
