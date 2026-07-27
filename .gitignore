@@ -22,3 +22,7 @@ skills-main/
 
 # Context / architecture docs (kept local)
 context/
+
+# Agent working notes (local only)
+AGENTS.md
+MEMORY.md
