@@ -29,7 +29,7 @@ id,text_en,text,category,sentiment,priority
 27,"I'm still waiting for delivery of my new card, why is it taking so long?","mama thama mage alut card eke delivery eka balagena innava, ayi me taram vela yanne?",card_arrival,Neutral,Low
 28,"I ordered a card a week ago, and it's still not here. What do I do?","mama card ekak order karala satiyak vuna, thama eke naa. mama mokada karanna one?",card_arrival,Neutral,Low
 29,i want to track the card you sent,oyala evapu card eka track karanna mata one,card_arrival,Neutral,Low
-30,My card hasn't arrived yet.,mage card eka thama ave naa.,card_arrival,Neutral,Low
+30,My card hasn't arrived yet.,mage card eka thama labila naa.,card_arrival,Neutral,Low
 31,I was expecting my new card and am wondering why I haven't received it yet?,"mama mage alut card eka balagena hitiya, thama labune natte ayi kiyala hitenava?",card_arrival,Neutral,Low
 32,How do I know when my card will arrive?,mage card eka enne kavadada kiyala danaganne kohomada?,card_arrival,Neutral,Low
 33,I'm still waiting on my card to be delivered.,mama thama mage card eka dilivar venakan balagena innava.,card_arrival,Neutral,Low
@@ -112,7 +112,7 @@ id,text_en,text,category,sentiment,priority
 110,Where did your guys exchange rates come from?,oyalage exchange rate ave kohenda?,exchange_rate,Neutral,Low
 111,How are you determining your exchange rates?,oyala exchange rate tiranaya karanne kohomada?,exchange_rate,Neutral,Low
 112,I'm trying to figure out the current exchange rate.,mama dan tiyena exchange rate eka hoyaganna hadanava.,exchange_rate,Neutral,Low
-113,From where are you getting your exchange rates?,oyalage exchange rate ganne kohenda?,exchange_rate,Neutral,Low
+113,From where are you getting your exchange rates?,oyalage exchange rate labaganne kohenda?,exchange_rate,Neutral,Low
 114,Can you tell me the foreign exchange rate?,videsha exchange rate eka mata kiyannako?,exchange_rate,Neutral,Low
 115,why do your exchange rates change,oyalage exchange rate venas venne ayi,exchange_rate,Neutral,Low
 116,What kind of foreign exchange rate will I get when I exchange my money?,mama mage salli exchange karaddi mona vage videsha exchange rate ekak labeyida?,exchange_rate,Neutral,Low
@@ -270,7 +270,7 @@ id,text_en,text,category,sentiment,priority
 268,I want to make a currency exchange to EU.,mata EU valata karansi exchange ekak karanna one.,fiat_currency_support,Neutral,Low
 269,Can I exchange and hold all fiat currencies?,mata hama fiat karansiyakma exchange karala tiyaganna puluvanda?,fiat_currency_support,Neutral,Low
 270,What kind of currency can I hold money in?,mata mona vage karansiyakin salli tiyaganna puluvanda?,fiat_currency_support,Neutral,Low
-271,Can I exchange currencies?,mata karansi exchange karanna puluvanda?,fiat_currency_support,Neutral,Low
+271,Can I exchange currencies?,mata karansi exchange karaganna puluvanda?,fiat_currency_support,Neutral,Low
 272,Do you work with all fiat currencies?,oyala hama fiat karansiyak ekkama vada karanavada?,fiat_currency_support,Neutral,Low
 273,Can I hold money in multiple currencies?,mata karansi kipayakin salli tiyaganna puluvanda?,fiat_currency_support,Neutral,Low
 274,How man currencies can I hold?,mata karansi kiyak tiyaganna puluvanda?,fiat_currency_support,Neutral,Low
@@ -288,7 +288,7 @@ id,text_en,text,category,sentiment,priority
 286,How long will it take to deliver something to US?,US ekata deyak dilivar karanna kochchara vela yanavada?,card_delivery_estimate,Neutral,Low
 287,"I live in the US, how long will it take for delivery?","mama inne US eke, delivery ekata kochchara vela yanavada?",card_delivery_estimate,Neutral,Low
 288,When can I expect my card to be delivered to the US?,mage card eka US ekata dilivar venne kavadada kiyala balaporottu vennada?,card_delivery_estimate,Neutral,Low
-289,I need my card quickly,mata card eka ikmanata one,card_delivery_estimate,Neutral,Low
+289,I need my card quickly,mata card eka ikmaninma one,card_delivery_estimate,Neutral,Low
 290,Does delivery to the US take long?,US ekata delivery ekata vela yanavada?,card_delivery_estimate,Neutral,Low
 291,How long will it take to arrive?,eka enna kochchara vela yanavada?,card_delivery_estimate,Neutral,Low
 292,Can I have my card delivered on a specific day?,mage card eka nishchita davasakata dilivar karaganna puluvanda?,card_delivery_estimate,Neutral,Low
@@ -312,7 +312,7 @@ id,text_en,text,category,sentiment,priority
 310,I need my card to come as soon as possible.,mata card eka puluvan taram ikmanata one.,card_delivery_estimate,Neutral,High
 311,When can I expect to receive my new card?,mage alut card eka labenne kavadada kiyala balaporottu vennada?,card_delivery_estimate,Neutral,Low
 312,I am waiting for my card to arrive.,mama mage card eka enakan balagena innava.,card_delivery_estimate,Neutral,Low
-313,I need my card as soon as possible.,mata card eka puluvan taram ikmanata one.,card_delivery_estimate,Neutral,High
+313,I need my card as soon as possible.,mata card eka ikmanatama one.,card_delivery_estimate,Neutral,High
 314,I need it delivered by Saturday.,mata eka senasuradata kalin one.,card_delivery_estimate,Neutral,Low
 315,What's the U.S. Delivery time?,U.S. delivery kalaya mokakda?,card_delivery_estimate,Neutral,Low
 316,When will my card arrive?,mage card eka enne kavadada?,card_delivery_estimate,Neutral,Low
@@ -351,7 +351,7 @@ id,text_en,text,category,sentiment,priority
 349,I've tried looking for the auto-top up option on your website and I can't seem to find it. Can you help me?,"mama oyalage vebsayit eke auto-top up option eka hoyanna haduva, et hoyaganna baa vage. udav karannako?",automatic_top_up,Neutral,Low
 350,how do I top up my money automatically,mage salli automatic va top up karanne kohomada,automatic_top_up,Neutral,Low
 351,Can I be topped up once I hit a certain balance?,mama nishchita balance ekakata yanakota top up venna puluvanda?,automatic_top_up,Neutral,Low
-352,Will it automatically top-up if there isn't much money left?,salli tikak ituru innakota eka automatic va top-up venavada?,automatic_top_up,Neutral,Low
+352,Will it automatically top-up if there isn't much money left?,salli tika ituru venakota eka automatic va top-up venavada?,automatic_top_up,Neutral,Low
 353,Is there any way to Auto top-up?,Auto top-up karanna vidiyak tiyenavada?,automatic_top_up,Neutral,Low
 354,Can you explain where I can find the auto-top option?,auto-top option eka hoyaganne kohenda kiyala pahadili karannako?,automatic_top_up,Neutral,Low
 355,What is the auto top up function and where can I find that at?,"auto top up function eka mokakda, eka hoyaganne kohenda?",automatic_top_up,Neutral,Low
@@ -374,10 +374,10 @@ id,text_en,text,category,sentiment,priority
 372,Help me.  My card doesn't work.,mata udav karanna. mage card eka vada karanne naa.,card_not_working,Neutral,Medium
 373,Can a card stop working?,card ekak vada kirima navattanna puluvanda?,card_not_working,Neutral,Low
 374,I think my card is broken,mage card eka kadila kiyala mata hitenava,card_not_working,Neutral,Medium
-375,Why isn't my card working?,mage card eka vada karanne natte ayi?,card_not_working,Neutral,Medium
+375,Why isn't my card working?,mage card eka ayi vada karanne natte?,card_not_working,Neutral,Medium
 376,My card isn't working anymore.,mage card eka tava vada karanne naa.,card_not_working,Neutral,Medium
 377,My card was declined today when eating and I need to know what's wrong.,"ada kanna giya velave mage card eka decline vuna, mokada varadila tiyenne kiyala danaganna one.",card_not_working,Neutral,Medium
-378,My card doesn't work.,mage card eka vada karanne naa.,card_not_working,Neutral,Medium
+378,My card doesn't work.,mage card eka vada venne naa.,card_not_working,Neutral,Medium
 379,How can I resolve a problem where my card won't go through at all?,mage card eka kisiset go through novena problam eka resolve karanne kohomada?,card_not_working,Neutral,Medium
 380,My actual card isn't working.,mage actual card eka vada karanne naa.,card_not_working,Neutral,Medium
 381,Is my card broken?,mage card eka kadilada?,card_not_working,Neutral,Medium
@@ -388,9 +388,9 @@ id,text_en,text,category,sentiment,priority
 386,My card stopped working when I use it,mama pavichchi karaddi mage card eka vada kirima navattuva,card_not_working,Neutral,Medium
 387,I can't use my card.,mata mage card eka pavichchi karanna baa.,card_not_working,Neutral,Medium
 388,Need help with my card. It's not working.,mage card ekata udav one. eka vada karanne naa.,card_not_working,Neutral,Medium
-389,I cannot use my card.,mata mage card eka pavichchi karanna baa.,card_not_working,Neutral,Medium
+389,I cannot use my card.,mata mage card eka pavichchi karaganna baa.,card_not_working,Neutral,Medium
 390,The card I've got seems to be broken.,mage langa tiyena card eka kadila vage.,card_not_working,Neutral,Medium
-391,My card isn't working,mage card eka vada karanne naa,card_not_working,Neutral,Medium
+391,My card isn't working,mage card eka vada venne naa,card_not_working,Neutral,Medium
 392,My card suddenly quit working.,mage card eka ekaparatama vada kirima navattuva.,card_not_working,Neutral,Medium
 393,I have tried to use my card several times and it does not work.,"mama mage card eka kipa vatavakma pavichchi karanna haduva, vada karanne naa.",card_not_working,Neutral,Medium
 394,The card I have doesn't work.,mage langa tiyena card eka vada karanne naa.,card_not_working,Neutral,Medium
@@ -425,7 +425,7 @@ id,text_en,text,category,sentiment,priority
 423,"I might need USD instead of LKR, how to change?","mata LKR venuvata USD one veyi, eka maru karanne kohomada?",exchange_via_app,Neutral,Low
 424,How do I go through the process of currency exchange?,karansi exchange kriyavaliya haraha yanne kohomada?,exchange_via_app,Neutral,Low
 425,Change currency,karansiya maru karanna,exchange_via_app,Neutral,Low
-426,Can am I able to exchange currencies?,mata karansi exchange karaganna puluvanda?,exchange_via_app,Neutral,Low
+426,Can am I able to exchange currencies?,mata karansi exchange karagannath puluvanda?,exchange_via_app,Neutral,Low
 427,Where do I go to change LKR?,LKR maru karanna koheta yanna oneda?,exchange_via_app,Neutral,Low
 428,What currency's can i exchange for?,mata mona karansi valata exchange karanna puluvanda?,exchange_via_app,Neutral,Low
 429,What currencies will this app exchange?,me app eka mona karansi exchange karayida?,exchange_via_app,Neutral,Low
@@ -435,7 +435,7 @@ id,text_en,text,category,sentiment,priority
 433,Is there currency exchange on this app?,me app eke karansi exchange ekak tiyenavada?,exchange_via_app,Neutral,Low
 434,Can I change my currency from USD to EUR?,mage karansiya USD eken EUR ekata maru karanna puluvanda?,exchange_via_app,Neutral,Low
 435,"I think I want USD and not LKR, can you help?","mata one USD kiyala hitenava, LKR neveyi, udav karannako?",exchange_via_app,Neutral,Low
-436,How do I exchange currency?,karansi exchange karanne kohomada?,exchange_via_app,Neutral,Low
+436,How do I exchange currency?,karansi exchange karaganne kohomada?,exchange_via_app,Neutral,Low
 437,Can I use this app to change USD into euros?,mata me app eka pavichchi karala USD eka euros valata maru karaganna puluvanda?,exchange_via_app,Neutral,Low
 438,Can I exchange currencies with my account?,mage account eken karansi exchange karaganna puluvanda?,exchange_via_app,Neutral,Low
 439,I would like to exchange currencies,mata karansi exchange karaganna one,exchange_via_app,Neutral,Low
@@ -487,7 +487,7 @@ id,text_en,text,category,sentiment,priority
 485,How do I go about setting up an account for my daughter?,mage duvata account ekak set karanne kohomada?,age_limit,Neutral,Low
 486,Is there an age minimum?,aduma vayasa limit ekak tiyenavada?,age_limit,Neutral,Low
 487,What is the youngest age in order to have an account?,account ekak tiyaganna puluvan aduma vayasa mokakda?,age_limit,Neutral,Low
-488,What age do I have to be?,mata kochchara vayasak inna oneda?,age_limit,Neutral,Low
+488,What age do I have to be?,mage vayasa kiyak inna oneda?,age_limit,Neutral,Low
 489,Can my daughter open an account?,mage duvata account ekak open karanna puluvanda?,age_limit,Neutral,Low
 490,What is the minimum age to open an account?,account ekak open karanna aduma vayasa mokakda?,age_limit,Neutral,Low
 491,What is the minimum age?,aduma vayasa mokakda?,age_limit,Neutral,Low
@@ -501,21 +501,21 @@ id,text_en,text,category,sentiment,priority
 499,If my kids wanted to use your service how old would they have to be?,mage lamayinta oyalage service eka pavichchi karanna one nam egollanta kochchara vayasak inna oneda?,age_limit,Neutral,Low
 500,Can my 19 year old daughter open a savings account at the bank?,mage vayasa 19 duvata bankuve savings account ekak open karanna puluvanda?,age_limit,Neutral,Low
 501,How old do you have to be to get an account?,account ekak ganna kochchara vayasak inna oneda?,age_limit,Neutral,Low
-502,What's the minimum age for opening an account?,account ekak open karanna aduma vayasa mokakda?,age_limit,Neutral,Low
+502,What's the minimum age for opening an account?,account ekak open karanna ona aduma vayasa kiyada?,age_limit,Neutral,Low
 503,"I would like an account for my children, how do I go about doing this?","mage lamayinta account ekak one, eka karanne kohomada?",age_limit,Neutral,Low
 504,Can my children have their own account?,mage lamayinta tamangema account ekak tiyaganna puluvanda?,age_limit,Neutral,Low
-505,Is it possible to open an account for my children?,mage lamayinta account ekak open karanna puluvanda?,age_limit,Neutral,Low
+505,Is it possible to open an account for my children?,mage lamayinta account ekak open karaganna puluvanda?,age_limit,Neutral,Low
 506,Do my kids have to be a certain age to use this service?,me service eka pavichchi karanna mage lamayinta nishchita vayasak inna oneda?,age_limit,Neutral,Low
 507,How old do you have to be to be able to open an account?,account ekak open karanna puluvan venna kochchara vayasak inna oneda?,age_limit,Neutral,Low
 508,Is there an age limit?,vayasa limit ekak tiyenavada?,age_limit,Neutral,Low
 509,What are the age requirements for opening an account?,account ekak open karanna vayasa requirements monavada?,age_limit,Neutral,Low
 510,will i be able to open an account for my daughter,mata mage duvata account ekak open karanna puluvanda,age_limit,Neutral,Low
-511,How old do I need to be to open an account?,account ekak open karanna mata kochchara vayasak inna oneda?,age_limit,Neutral,Low
+511,How old do I need to be to open an account?,account ekak open karanna mata inna ona vayasa kiyada?,age_limit,Neutral,Low
 512,What age can sign up for services?,services valata sign up karanna puluvan vayasa mokakda?,age_limit,Neutral,Low
 513,How old do my kids have to be to use your service?,oyalage service eka pavichchi karanna mage lamayinta kochchara vayasak inna oneda?,age_limit,Neutral,Low
 514,What age do my kids need to be to use your service?,oyalage service eka pavichchi karanna mage lamayinta one vayasa mokakda?,age_limit,Neutral,Low
 515,How old do my children need to be to open an account?,account ekak open karanna mage lamayinta kochchara vayasak inna oneda?,age_limit,Neutral,Low
-516,How old does my kids need to be to open an account?,account ekak open karanna mage lamayinta kochchara vayasak inna oneda?,age_limit,Neutral,Low
+516,How old does my kids need to be to open an account?,account ekak open karanna mage lamayinta inna ona vayasa kiyada?,age_limit,Neutral,Low
 517,How young can someone be in order to open an account?,account ekak open karanna puluvan aduma vayasa kiyada?,age_limit,Neutral,Low
 518,What is the youngest someone can be to open an account?,account ekak open karanna puluvan aduma vayasa mokakda?,age_limit,Neutral,Low
 519,How old does one have to be to have an account with the bank?,bankuve account ekak tiyaganna kochchara vayasak inna oneda?,age_limit,Neutral,Low
@@ -739,10 +739,10 @@ Where can I get my PIN unblocked?",mage PIN eka unblock karaganne kohenda?,pin_b
 736,Tell me if there are any top-up limits?,top-up limits tiyenavada kiyala kiyannako?,top_up_limits,Neutral,Low
 737,How can I top-up my limit?,mage limit eka top-up karanne kohomada?,top_up_limits,Neutral,Low
 738,Is there a limit to top-ups?,top-ups valata limit ekak tiyenavada?,top_up_limits,Neutral,Low
-739,Can I top-up as much as I want?,mata one taram top-up karanna puluvanda?,top_up_limits,Neutral,Low
+739,Can I top-up as much as I want?,mata ona ganakata top-up karanna puluvanda?,top_up_limits,Neutral,Low
 740,Can you tell me the limits for top ups?,top ups valata limits monavada kiyala kiyannako?,top_up_limits,Neutral,Low
 741,When I top up what are the amoutn limits.,mama top up karaddi amount limits monavada.,top_up_limits,Neutral,Low
-742,Is there a limit on top-ups?,top-ups valata limit ekak tiyenavada?,top_up_limits,Neutral,Low
+742,Is there a limit on top-ups?,top-ups karanna limit ekak tiyenavada?,top_up_limits,Neutral,Low
 743,What is the top-ups limit?,top-ups limit eka mokakda?,top_up_limits,Neutral,Low
 744,Are there limits to top-ups?,top-ups valata limits tiyenavada?,top_up_limits,Neutral,Low
 745,Is there a maximum amount of top-ups?,top-ups valata maximum amount ekak tiyenavada?,top_up_limits,Neutral,Low
@@ -750,11 +750,11 @@ Where can I get my PIN unblocked?",mage PIN eka unblock karaganne kohenda?,pin_b
 747,What's the top up limit?,top up limit eka mokakda?,top_up_limits,Neutral,Low
 748,What is the limit to top-up?,top-up ekata limit eka mokakda?,top_up_limits,Neutral,Low
 749,How much can I top-up to my card at a time?,ekaparakata mage card ekata kiyak top-up karanna puluvanda?,top_up_limits,Neutral,Low
-750,how much can i top up?,mata kiyak top up karanna puluvanda?,top_up_limits,Neutral,Low
+750,how much can i top up?,mata top up karanna puluvan uparima gana kiyada?,top_up_limits,Neutral,Low
 751,what is the most i can top up?,mata top up karanna puluvan vadima gana kiyada?,top_up_limits,Neutral,Low
 752,Is there a limit to how high I can top-up?,mata top-up karanna puluvan lokuma amount ekata limit ekak tiyenavada?,top_up_limits,Neutral,Low
 753,Is there an amount limit to my top-up?,mage top-up ekata amount limit ekak tiyenavada?,top_up_limits,Neutral,Low
-754,Is there a limit for top-ups?,top-ups valata limit ekak tiyenavada?,top_up_limits,Neutral,Low
+754,Is there a limit for top-ups?,top-ups valata limit ekak tiyenavada kiyala danaganna one,top_up_limits,Neutral,Low
 755,Is there a maximum i can top up?,mata top up karanna puluvan maximum ekak tiyenavada?,top_up_limits,Neutral,Low
 756,How can I tell if there is a top-up limit?,top-up limit ekak tiyenavada kiyala danaganne kohomada?,top_up_limits,Neutral,Low
 757,Do you have any restrictions to my top-up?,mage top-up ekata restrictions tiyenavada?,top_up_limits,Neutral,Low
@@ -917,9 +917,9 @@ Where can I get my PIN unblocked?",mage PIN eka unblock karaganne kohenda?,pin_b
 914,Is my currency okay to add money with?,mage karansiya salli add karanna harida?,supported_cards_and_currencies,Neutral,Low
 915,What cards and currencies will suffice?,mona cards saha currencies pramanavatda?,supported_cards_and_currencies,Neutral,Low
 916,How can I use American Express to add funds to my account?,account ekata funds add karanna American Express pavichchi karanne kohomada?,supported_cards_and_currencies,Neutral,Low
-917,What cards and currencies are supported?,support vena cards saha currencies monavada?,supported_cards_and_currencies,Neutral,Low
+917,What cards and currencies are supported?,support vena cards saha currencies layistuva mokakda?,supported_cards_and_currencies,Neutral,Low
 918,What currencies or cards do you support for topping up?,top up karanna oyala support karana currencies ho cards monavada?,supported_cards_and_currencies,Neutral,Low
-919,Which cards and currencies do you support?,oyala support karana cards saha currencies monavada?,supported_cards_and_currencies,Neutral,Low
+919,Which cards and currencies do you support?,oyala support karana cards saha currencies monavada kiyala danaganna one,supported_cards_and_currencies,Neutral,Low
 920,Where can I obtain my virtual card?,mage virtual card eka labaganne kohenda?,getting_virtual_card,Neutral,Low
 921,How do you get a virtual card?,virtual card ekak labaganne kohomada?,getting_virtual_card,Neutral,Low
 922,Where can I find a virtual card?,virtual card ekak hoyaganne koheda?,getting_virtual_card,Neutral,Low
@@ -929,7 +929,7 @@ Where can I get my PIN unblocked?",mage PIN eka unblock karaganne kohenda?,pin_b
 926,Can you tell me how to order a virtual card?,virtual card ekak order karanne kohomada kiyala kiyannako?,getting_virtual_card,Neutral,Low
 927,Where is the virtual card?,virtual card eka koheda?,getting_virtual_card,Neutral,Low
 928,what is the virtual card,virtual card eka kiyanne mokakda,getting_virtual_card,Neutral,Low
-929,how do i get a virtual card?,virtual card ekak labaganne kohomada?,getting_virtual_card,Neutral,Low
+929,how do i get a virtual card?,virtual card ekak ganne kohomada?,getting_virtual_card,Neutral,Low
 930,Where do I order a virtual card from?,virtual card ekak order karanne kohenda?,getting_virtual_card,Neutral,Low
 931,Why did I not get a virtual card yet?,mata thama virtual card ekak labune natte ayi?,getting_virtual_card,Neutral,Low
 932,How can I order virtual cards?,virtual cards order karanne kohomada?,getting_virtual_card,Neutral,Low
@@ -940,7 +940,7 @@ Where can I get my PIN unblocked?",mage PIN eka unblock karaganne kohenda?,pin_b
 937,help me obtain a virtual card,virtual card ekak labaganna mata udav karanna,getting_virtual_card,Neutral,Low
 938,Where is the virtual card located?,virtual card eka tiyenne koheda?,getting_virtual_card,Neutral,Low
 939,Where can I order a virtual card?,virtual card ekak order karanne koheda?,getting_virtual_card,Neutral,Low
-940,Where do I obtain my virtual card?,mage virtual card eka labaganne kohenda?,getting_virtual_card,Neutral,Low
+940,Where do I obtain my virtual card?,mage virtual card eka ganne kohenda?,getting_virtual_card,Neutral,Low
 941,I want a virtual card!,mata virtual card ekak one!,getting_virtual_card,Neutral,Low
 942,I want one of those virtual cards!,mata e virtual cards valin ekak one!,getting_virtual_card,Neutral,Low
 943,Are virtual cards available to get?,virtual cards labaganna available da?,getting_virtual_card,Neutral,Low
@@ -985,7 +985,7 @@ What businesses accept this card?",me card eka accept karana businesses monavada
 980,What stores will take my credit card as payment?,payment vidiyata mage credit card eka ganna stores monavada?,card_acceptance,Neutral,Low
 981,Is there any place I cannot use my card?,mata mage card eka pavichchi karanna bari tanak tiyenavada?,card_acceptance,Neutral,Low
 982,Will I be able to use my card anywhere?,mata onama tanaka mage card eka pavichchi karanna puluvanda?,card_acceptance,Neutral,Low
-983,Is my card usable anywhere?,mage card eka onama tanaka pavichchi karanna puluvanda?,card_acceptance,Neutral,Low
+983,Is my card usable anywhere?,mage card eka ona tanaka pavichchi karanna puluvanda?,card_acceptance,Neutral,Low
 984,Is it acceptable to use my card anywhere?,onama tanaka mage card eka pavichchi karanna harida?,card_acceptance,Neutral,Low
 985,Can I use my card everywhere?,mata hama tanakama mage card eka pavichchi karanna puluvanda?,card_acceptance,Neutral,Low
 986,Where is my card accepted?,mage card eka accept venne koheda?,card_acceptance,Neutral,Low
@@ -996,7 +996,7 @@ What businesses accept this card?",me card eka accept karana businesses monavada
 991,Can I make online purchases with my card?,mata mage card eken online purchases karanna puluvanda?,card_acceptance,Neutral,Low
 992,Does every place of business accept this card?,hama business tanakama me card eka accept karanavada?,card_acceptance,Neutral,Low
 993,What places will accept my card?,mage card eka accept karana tan monavada?,card_acceptance,Neutral,Low
-994,Can I use my card anywere?,mata onama tanaka mage card eka pavichchi karanna puluvanda?,card_acceptance,Neutral,Low
+994,Can I use my card anywere?,mage card eka onama tanaka pavichchi karanna puluvanda?,card_acceptance,Neutral,Low
 995,Will any business take this card?,onama business ekak me card eka gannavada?,card_acceptance,Neutral,Low
 996,Will filling stations accept my card?,filling stations mage card eka accept karanavada?,card_acceptance,Neutral,Low
 997,Where am I able to use the card?,mata card eka pavichchi karanna puluvan koheda?,card_acceptance,Neutral,Low
@@ -1191,7 +1191,7 @@ What businesses accept this card?",me card eka accept karana businesses monavada
 1186,"Since my id hasn't been verified, when can I use my account?","mage id verify vela nati nisa, mata account eka pavichchi karanna puluvan kavadada?",why_verify_identity,Neutral,Low
 1187,I won't verify my identity.,mama identity eka verify karanne naa.,why_verify_identity,Neutral,Low
 1188,I want to skip verification of my identity.,mata identity verification eka skip karanna one.,why_verify_identity,Neutral,Low
-1189,I do not wish to verify my identity.,mata identity eka verify karanna one naa.,why_verify_identity,Neutral,Low
+1189,I do not wish to verify my identity.,mata identity eka verify karanna ona karanne naa.,why_verify_identity,Neutral,Low
 1190,Why do I have to verify my identity?,mata identity eka verify karanna one ayi?,why_verify_identity,Neutral,Low
 1191,what is the identity check?,identity check eka kiyanne mokakda?,why_verify_identity,Neutral,Low
 1192,What other methods are there to verify my identity?,mage identity eka verify karanna venat methods monavada?,why_verify_identity,Neutral,Low
@@ -1199,7 +1199,7 @@ What businesses accept this card?",me card eka accept karana businesses monavada
 1194,Do I need to verify my identity each time I wish to use my account?,mata account eka pavichchi karanna one hama vatavakama identity eka verify karanna oneda?,why_verify_identity,Neutral,Low
 1195,Can I use my account if the identity verification is not complete?,identity verification eka complete novunot mata account eka pavichchi karanna puluvanda?,why_verify_identity,Neutral,Low
 1196,Why is it asking me to verify my identity,magen identity eka verify karanna ahanne ayi,why_verify_identity,Neutral,Low
-1197,Do I have to verify my identity?,mata identity eka verify karanna oneda?,why_verify_identity,Neutral,Low
+1197,Do I have to verify my identity?,mata identity eka verify karanna ona karanavada?,why_verify_identity,Neutral,Low
 1198,Why do you need to know so much about me,ma gana oyalata me taram danaganna one ayi,why_verify_identity,Neutral,Low
 1199,Why did I need to verfiy my identity?,mata identity eka verify karanna one vune ayi?,why_verify_identity,Neutral,Low
 1200,I cannot verify my identity,mata mage identity eka verify karanna baa,unable_to_verify_identity,Neutral,Low
@@ -1223,7 +1223,7 @@ What businesses accept this card?",me card eka accept karana businesses monavada
 1218,My ID won't be verified!,mage ID eka verify venne naa!,unable_to_verify_identity,Neutral,Low
 1219,I can not get the app to know it is me.,mava mama kiyala app ekata danaganna karanna baa.,unable_to_verify_identity,Neutral,Low
 1220,I can't verify my identity.,mage identity eka verify karanna baa.,unable_to_verify_identity,Neutral,Low
-1221,The app doesn't recognize me.,app ekata mava handunaganna baa.,unable_to_verify_identity,Neutral,Low
+1221,The app doesn't recognize me.,app ekata mava handunaganne naa.,unable_to_verify_identity,Neutral,Low
 1222,I am having difficulties to verify my identity.,mage identity eka verify karanna mata apahasuta tiyenava.,unable_to_verify_identity,Neutral,Low
 1223,The app doesn't believe that I am me,app ekata mama mama kiyala vishvasa venne naa,unable_to_verify_identity,Neutral,Low
 1224,What's with not verifying my Id?,mage Id eka verify novena eke problam eka mokakda?,unable_to_verify_identity,Neutral,Low
@@ -1275,7 +1275,7 @@ What businesses accept this card?",me card eka accept karana businesses monavada
 1270,Where can I find my PIN?,mage PIN eka hoyaganne koheda?,get_physical_card,Neutral,Low
 1271,When do I receive my PIN,mage PIN eka labenne kavadada,get_physical_card,Neutral,Low
 1272,Help me find my card pin!,mage card pin eka hoyanna udav karanna!,get_physical_card,Neutral,Low
-1273,Is PIN delivered separately?,PIN eka venama dilivar venavada?,get_physical_card,Neutral,Low
+1273,Is PIN delivered separately?,PIN eka venama evanavada?,get_physical_card,Neutral,Low
 1274,I can not find my card pin.,mata mage card pin eka hoyaganna baa.,get_physical_card,Neutral,Low
 1275,What do I need to do for a PIN?,PIN ekakata mama mokada karanna one?,get_physical_card,Neutral,Low
 1276,Why can't I find my PIN?,mage PIN eka hoyaganna bari ayi?,get_physical_card,Neutral,Low
@@ -1314,7 +1314,7 @@ What businesses accept this card?",me card eka accept karana businesses monavada
 1309,Is it possible to have both a Visa and a Mastercard from you?,oyalagen Visa ekakut Mastercard ekakut dekama labaganna puluvanda?,visa_or_mastercard,Neutral,Low
 1310,I like Mastercard better.,mata Mastercard ekayi vada asa.,visa_or_mastercard,Neutral,Low
 1311,Do you offer Visa or Mastercard?,oyala Visa ho Mastercard offer karanavada?,visa_or_mastercard,Neutral,Low
-1312,I would rather the Mastercard.,mata Mastercard ekayi vada asa.,visa_or_mastercard,Neutral,Low
+1312,I would rather the Mastercard.,mata Mastercard ekama vada kamati.,visa_or_mastercard,Neutral,Low
 1313,Please give me both a visa and a master card.,plis mata visa ekakut master card ekakut dekama dennako.,visa_or_mastercard,Neutral,Low
 1314,Is it possible to receive a Visa and a MasterCard?,Visa ekakut MasterCard ekakut labaganna puluvanda?,visa_or_mastercard,Neutral,Low
 1315,What major card payments are accepted?,accept vena pradhana card payments monavada?,visa_or_mastercard,Neutral,Low
@@ -1392,7 +1392,7 @@ What businesses accept this card?",me card eka accept karana businesses monavada
 1387,How many disposable virtual cards can I have?,mata disposable virtual cards kiyak tiyaganna puluvanda?,disposable_card_limits,Neutral,Low
 1388,I need to create several disposable cards per day.,mata davasakata disposable cards kipayak hadanna one.,disposable_card_limits,Neutral,Low
 1389,Are there any hindrances to using a disposable virtual card?,disposable virtual card ekak pavichchi karanna hindrances tiyenavada?,disposable_card_limits,Neutral,Low
-1390,How many disposable cards can I own?,mata disposable cards kiyak tiyaganna puluvanda?,disposable_card_limits,Neutral,Low
+1390,How many disposable cards can I own?,mata disposable cards kiyak labaganna puluvanda?,disposable_card_limits,Neutral,Low
 1391,How many virtual cards do I get?,mata virtual cards kiyak labenavada?,disposable_card_limits,Neutral,Low
 1392,What is the limit to disposable cards you can have?,tiyaganna puluvan disposable cards ganata limit eka mokakda?,disposable_card_limits,Neutral,Low
 1393,How many times can I use a disposable card?,disposable card ekak kipa vatavak pavichchi karanna puluvanda?,disposable_card_limits,Neutral,Low
@@ -1439,8 +1439,8 @@ What businesses accept this card?",me card eka accept karana businesses monavada
 1434,I think my child used my card while I wasn't home.,mama gedara nati velavaka mage lamaya mage card eka pavichchi kala ati kiyala mama hitanava.,compromised_card,Neutral,Low
 1435,What do I do if I think someone managed to get my card information?,kavuru hari mage card information labagena ati kiyala hitunot mama mokada karanne?,compromised_card,Neutral,Low
 1436,I think someone copied the numbers on my card and is using them.,kavuru hari mage card eke numbers copy karala pavichchi karanava kiyala mama hitanava.,compromised_card,Neutral,High
-1437,What should I do if I think someone is using my card.,kavuru hari mage card eka pavichchi karanava kiyala hitunot mama mokada karanne.,compromised_card,Neutral,Low
-1438,Can I use app to freeze my card and dispute fraud?,account eka freeze karala fraud ekata dispute karanna app eka pavichchi karanna puluvanda?,compromised_card,Neutral,High
+1437,What should I do if I think someone is using my card.,kavuru hari mage card eka pavichchi karanava vage hitunot mokada karanna one.,compromised_card,Neutral,Low
+1438,Can I use app to freeze my card and dispute fraud?,mage card eka freeze karala fraud ekata dispute karanna app eka pavichchi karanna puluvanda?,compromised_card,Neutral,High
 1439,"Someone else is using my card, freeze it.","kavuru hari mage card eka pavichchi karanava, eka freeze karanna.",compromised_card,Neutral,High
 1440,Do all ATMs take this card?,hama ATM ekakama me card eka gannavada?,atm_support,Neutral,Low
 1441,Which ATMs accept this card?,mona ATMs da me card eka accept karanne?,atm_support,Neutral,Low
@@ -1459,12 +1459,10 @@ What businesses accept this card?",me card eka accept karana businesses monavada
 1454,How can I withdraw money?,salli withdraw karanne kohomada?,atm_support,Neutral,Low
 1455,How many miles away is the ATM?,ATM eka kochchara durada?,atm_support,Neutral,Low
 1456,From where can I withdraw?,mata kohen withdraw karanna puluvanda?,atm_support,Neutral,Low
-1457,Which ATM's will accept my card?,mona ATM's da mage card eka accept karanne?,atm_support,Neutral,Low
+1457,Which ATM's will accept my card?,mona ATM's da mage card eka accept karanna puluvan?,atm_support,Neutral,Low
 1458,At what ATMS am I able to use the card?,mona ATMS valada mata card eka pavichchi karanna puluvan?,atm_support,Neutral,Low
 1459,Can I use my card at any ATMs?,mata onama ATM ekakadi mage card eka pavichchi karanna puluvanda?,atm_support,Neutral,Low
 1460,Can I get cash with this card anywhere?,me card eken onama tanaka cash ganna puluvanda?,atm_support,Neutral,Low
-1461,"
-Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_support,Neutral,Low
 1462,Can someone please assist me with finding my nearest ATM?,langama ATM eka hoyaganna kavuru hari udav karannada?,atm_support,Neutral,Low
 1463,Are there any ATM machines near me?,mage langin ATM machines tiyenavada?,atm_support,Neutral,Low
 1464,Where is the nearest bank machine?,langama bank machine eka koheda?,atm_support,Neutral,Low
@@ -1599,7 +1597,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 1593,I couldn't get cash at the atm,ATM ekedi cash ganna bari vuna,declined_cash_withdrawal,Neutral,Medium
 1594,"Oh my goodness, my card has been declined twice at ATM! I tried two different ATM, but each one declined my card! Can you tell me what's going on with my account?","ane, mage card eka ATM ekedi deparak decline vuna! ATMs 2k try kala, et hama ekakama decline vuna! mage account ekata mokada venne kiyala kiyannada?",declined_cash_withdrawal,Negative,Medium
 1595,Why could I not choose cash at the ATM?,ATM ekedi cash eka toraganna bari vune ayi?,declined_cash_withdrawal,Neutral,Medium
-1596,My cash withdrawl was declined why?,mage cash withdrawal eka decline vune ayi?,declined_cash_withdrawal,Neutral,Medium
+1596,My cash withdrawl was declined why?,mage cash withdrawal eka ayi decline vune?,declined_cash_withdrawal,Neutral,Medium
 1597,Is there a reason that the ATM declined my transaction?,ATM eka mage transakshan eka decline karanna hetuvak tiyenavada?,declined_cash_withdrawal,Neutral,Medium
 1598,The cash I tried to draw from the ATM was not approved.,mama ATM eken ganna try karapu cash eka approve vune naa.,declined_cash_withdrawal,Neutral,Medium
 1599,atm would not give me cash,atm eken mata cash dunne naa,declined_cash_withdrawal,Neutral,Medium
@@ -1619,7 +1617,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 1613,I bought some stuff this morning but the payment shows as pending,ada ude mama mokak hari gatta et payment eka pending vidiyata penava,pending_card_payment,Neutral,Low
 1614,I am waiting for a payment to go through.,mama payment ekak go through venakan balagena innava.,pending_card_payment,Neutral,Low
 1615,How long does an item I bought show as pending?,mama gatta item ekak pending vidiyata penne kochchara velavakda?,pending_card_payment,Neutral,Low
-1616,What is a pending payment?,pending payment ekak kiyanne mokakda?,pending_card_payment,Neutral,Low
+1616,What is a pending payment?,pending payment ekak kiyanne mokakda kiyala danaganna one,pending_card_payment,Neutral,Low
 1617,I would like to know why my purchases from this morning are still pending.,ada ude mage purchases thama pending ayi kiyala danaganna one.,pending_card_payment,Neutral,Low
 1618,Why is there a pending transaction on my card?,mage card eke pending transakshan ekak tiyenne ayi?,pending_card_payment,Neutral,Low
 1619,My card payment is pending.,mage card payment eka pending.,pending_card_payment,Neutral,Low
@@ -1732,11 +1730,11 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 1726,"How can I fix my card, it got declined twice.","mage card eka fix karanne kohomada, eka deparak decline vuna.",declined_transfer,Neutral,Medium
 1727,Why did a transfer get declined?,transfer ekak decline vune ayi?,declined_transfer,Neutral,Medium
 1728,My transfers are being declined. IT has always worked for me but now it's declining my card. I've tried several times.,mage transfers decline venava. kalin hamavelema vada kala et dan mage card eka decline karanava. kipa vatavakma try kala.,declined_transfer,Neutral,Medium
-1729,Why did my transfer decline,mage transfer eka decline vune ayi,declined_transfer,Neutral,Medium
+1729,Why did my transfer decline,mage transfer eka ayi decline vune,declined_transfer,Neutral,Medium
 1730,The card got declined twice when I tried to use it to buy something online yesterday.,iye online deyak ganna try karaddi card eka deparak decline vuna.,declined_transfer,Neutral,Medium
 1731,"If the transfer details have already but reviewed and confirmed that they are correct, what other reason would cause my transfer to be declined?","transfer details okkoma review karala confirm karala tiyenavanam, mage transfer eka decline venna vena mona hetuvakda tiyenne?",declined_transfer,Neutral,Medium
 1732,Why did I get a transfer declined?,mage transfer eka decline vune ayi?,declined_transfer,Neutral,Medium
-1733,Why did my my transfer get declined?,mage transfer eka decline vune ayi?,declined_transfer,Neutral,Medium
+1733,Why did my my transfer get declined?,mage transfer eka ayi decline vune?,declined_transfer,Neutral,Medium
 1734,How do I contact customer support about a transfer?,transfer ekak gana customer support ekata contact karanne kohomada?,declined_transfer,Neutral,Low
 1735,"You keep declining my transfers? It's always been working really well so far, but when I tried to buy something just now the card got declined. I tried couple times already but same thing.","oyala ayi mage transfers decline karanne? meka danata hondata vada kala, et dan mokak hari ganna try karaddi card eka decline vuna. kipa vatavakma try kala.",declined_transfer,Negative,Medium
 1736,Why was I unable to do a transfer?,mata transfer ekak karanna bari vune ayi?,declined_transfer,Neutral,Medium
@@ -1758,7 +1756,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 1752,I can't transfer money from my account.,mata mage account eken salli transfer karanna baa.,declined_transfer,Neutral,Medium
 1753,"Why would my transfer be declined? I've checked that I've put in all the right details, but it is still declined.","mage transfer eka decline venne ayi? mama hari details okkoma dala tiyenava check kala, et thama decline.",declined_transfer,Neutral,Medium
 1754,I tried to buy something online yesterday but it kept saying declined. Tried again today but same thing happened. What's broken?,iye online deyak ganna try kala et decline kiyala penuna. ada ayet try kala ekama de vuna. mokada kadila tiyenne?,declined_transfer,Negative,Medium
-1755,I tried to buy something online yesterday but it wouldn't stop saying declined. Tried again today but same thing happened. What's Broken?,iye online deyak ganna try kala et decline kiyala penuna. ada ayet try kala ekama de vuna. mokada kadila tiyenne?,declined_transfer,Negative,Medium
+1755,I tried to buy something online yesterday but it wouldn't stop saying declined. Tried again today but same thing happened. What's Broken?,iye online deyak ganna try karama decline kiyala penuna. ada ayet try kalat ekama de vuna. mokada me kadila tiyenne?,declined_transfer,Negative,Medium
 1756,My card is being declined online. Could you tell me what might be broken or wrong with the account?,mage card eka online decline venava. account eke mokada kadila/varadila tiyenne kiyala kiyannada?,declined_transfer,Neutral,Medium
 1757,Are there any restrictions causing my transfer to be declined?,mage transfer eka decline venna restrictions tiyenavada?,declined_transfer,Neutral,Medium
 1758,"I was attempting to purchase a golf club off eBay yesterday, but my credit card was declined. I tried multiple times, and again this morning. Can you check into my card please?","iye mama eBay eken golf club ekak ganna try kala, et credit card eka decline vuna. kipa vatavakma try kala, ada udet ayet. mage card eka check karannada?",declined_transfer,Negative,Medium
@@ -1835,7 +1833,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 1829,Do you know why my card payment is declined?,mage card payment eka decline vune ayi kiyala oyala dannavada?,declined_card_payment,Neutral,Medium
 1830,Why was my Payment declined,mage Payment eka decline vune ayi,declined_card_payment,Neutral,Medium
 1831,They declined my card payment.,egollo mage card payment eka decline kala.,declined_card_payment,Neutral,Medium
-1832,Why has my card payment been declined?,mage card payment eka decline vune ayi?,declined_card_payment,Neutral,Medium
+1832,Why has my card payment been declined?,mage card payment eka ayi decline vune?,declined_card_payment,Neutral,Medium
 1833,"I finally got my new card and was very excited to use it today. However, my payment kept declining. What is happening?","antimata mata alut card eka labuna, ada eka pavichchi karanna godak excited vuna. et payment eka decline vuna. mokada venne?",declined_card_payment,Neutral,Medium
 1834,My card payment did not complete.,mage card payment eka complete vune naa.,declined_card_payment,Neutral,Medium
 1835,My card didn't work in one of the shops.,shop ekakadi mage card eka vada kale naa.,declined_card_payment,Neutral,Medium
@@ -1915,7 +1913,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 1909,I want my account deleted!,mata mage account eka delete karaganna one!,terminate_account,Neutral,High
 1910,I am extremely unhappy with this app and want to get rid of my account?,"mama me app eka gana godak unhappy, mage account eken yanna one?",terminate_account,Negative,High
 1911,How do I delete my account?,mage account eka delete karanne kohomada?,terminate_account,Neutral,High
-1912,This company sucks! Can you delete my account?,me company eka narakayi! mage account eka delete karanna puluvanda?,terminate_account,Negative,High
+1912,This company sucks! Can you delete my account?,me company eka narakama narakayi! mage account eka delete karaganna puluvanda?,terminate_account,Negative,High
 1913,I wish to close my account. I do not like the service you provide.,mata mage account eka close karaganna one. oyala dena service eka mata asa naa.,terminate_account,Neutral,High
 1914,Can you help me get rid of my account?,mage account eken yanna mata udav karannada?,terminate_account,Neutral,High
 1915,"I don't find your services useful anymore, how do I delete my account?","oyalage services mata prayojanavat naa, mage account eka delete karanne kohomada?",terminate_account,Neutral,High
@@ -2075,7 +2073,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2069,How long does a funds transfer take from one back to another?,eka bank ekakin tava bank ekakata funds transfer ekakata kochchara vela yanavada?,transfer_timing,Neutral,Low
 2070,What would the approximate delivery date be if I transferred something urgently to China?,mama urgent va China ekata deyak transfer kalot approximate delivery date eka mokakda?,transfer_timing,Neutral,High
 2071,I have to transfer something to China as fast as I can. How long will it take to arrive in China?,mata China ekata deyak puluvan taram ikmanata transfer karanna one. China ekata enna kochchara vela yanavada?,transfer_timing,Neutral,High
-2072,How long to I have to wait for a transfer to reach my account?,transfer ekak account ekata labenna mama kochchara vela balagena inna oneda?,transfer_timing,Neutral,Low
+2072,How long to I have to wait for a transfer to reach my account?,transfer ekak account ekata labenna kochchara vela balagena inna ona veyida?,transfer_timing,Neutral,Low
 2073,How long is it going to take for my funds to show in my account?,mage funds account eke penna kochchara vela yanavada?,transfer_timing,Neutral,Low
 2074,"How long does a transfer take from the point it's sent, to the point it arrives in my account?",transfer ekak yavapu velave indan mage account ekata labenakan kochchara vela yanavada?,transfer_timing,Neutral,Low
 2075,How long will it take for the transfer to reach my account?,transfer eka mage account ekata labenna kochchara vela yanavada?,transfer_timing,Neutral,Low
@@ -2106,7 +2104,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2100,I was contacted by a seller with a message that they never received my money. I am 100% sure it was taken from my account so I definitely need this sorted out soon.,"seller kenek contact vuna mage salli labune naa kiyala message ekak ekka. mama 100% sthirayi eka mage account eken gatta kiyala, e nisa mata meka ikmanata sort karanna one.",reverted_card_payment?,Neutral,Medium
 2101,what happens to the funds if a merchant refuses the payment,merchant kenek payment eka refuse kalot funds valata mokada venne,reverted_card_payment?,Neutral,Low
 2102,"I am attempting to make a purchase online, but my card is not working.  I know there are funds available, is this an issue on the banks end?","mama online purchase ekak karanna try karanava, et mage card eka vada karanne naa. available funds tiyenava kiyala dannava, meka bank end eke issue ekakda?",reverted_card_payment?,Neutral,Medium
-2103,Why was my card payment cancelled?,mage card payment eka cancel vune ayi?,reverted_card_payment?,Neutral,Low
+2103,Why was my card payment cancelled?,mage card payment eka ayi cancel vune?,reverted_card_payment?,Neutral,Low
 2104,Why has my card payment been reverted?,mage card payment eka revert vune ayi?,reverted_card_payment?,Neutral,Low
 2105,"There must be an issue, why has my card been cancelled?","issue ekak tiyenna one, mage card eka cancel vune ayi?",reverted_card_payment?,Neutral,Low
 2106,I bought something and the money appeared back into my account? Why?,"mama mokak hari gatta, salli apahu account ekata ava? ayi?",reverted_card_payment?,Neutral,Low
@@ -2114,7 +2112,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2108,"I'm not sure why my card payment was cancelled, can you find out why?","mage card payment eka cancel vune ayi kiyala danne naa, eka hoyagannada?",reverted_card_payment?,Neutral,Low
 2109,What is the reason that my card payment was cancelled?,mage card payment eka cancel venna hetuva mokakda?,reverted_card_payment?,Neutral,Low
 2110,"Hi, I would like to file a claim for an inquiry. I am a frequent customer of the company in question and have never had any issue with my purchases, payments, or otherwise. However, the price deducted for an item I purchased a couple of weeks ago has been returned to my checking account. Was there an issue with my payment? The item has already been delivered to me.","halo, inquiry ekakata claim ekak file karaganna one. mama me company eke nitara customer kenek, purchases, payments, kisi ekakavat problamayak vune naa. et sati kipayakata kalin gatta item ekakata deduct karapu gana mage checking account ekata apahu ava. mage payment ekata issue ekak tibunada? item eka danatamat labila tiyenava.",reverted_card_payment?,Neutral,Low
-2111,Why was my card payment reverted?,mage card payment eka revert vune ayi?,reverted_card_payment?,Neutral,Low
+2111,Why was my card payment reverted?,mage card payment eka ayi revert vune?,reverted_card_payment?,Neutral,Low
 2112,Why does the app revert a payment?,app eka payment ekak revert karanne ayi?,reverted_card_payment?,Neutral,Low
 2113,I did a payment but the app reverted it,mama payment ekak kala et app eka eka revert kala,reverted_card_payment?,Neutral,Low
 2114,What happens if a merchant doesn't accept a payment?,merchant kenek payment ekak accept nokalot mokada venne?,reverted_card_payment?,Neutral,Low
@@ -2254,7 +2252,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2248,Is it possible for me to get money out in a different currency?,mata venas karansiyakin salli ganna puluvanda?,receiving_money,Neutral,Low
 2249,Can I use this to receive my salary?,mage salary eka labaganna meka pavichchi karanna puluvanda?,receiving_money,Neutral,Low
 2250,My salary is received in the form of LKR. Do I need to do anything specific to configure this?,mage salary eka LKR vidiyata labenava. meka configure karanna mokak hari specific ekak karanna oneda?,receiving_money,Neutral,Low
-2251,How do people send me money?,kavuru hari mata salli evanne kohomada?,receiving_money,Neutral,Low
+2251,How do people send me money?,anit aya mata salli evanne kohomada?,receiving_money,Neutral,Low
 2252,Is LKR a supported currency?,LKR eka support vena karansiyakda?,receiving_money,Neutral,Low
 2253,Do I need to establish I am paid in LKR before a transfer?,transfer ekakata kalin mata LKR valin pay karanava kiyala establish karanna oneda?,receiving_money,Neutral,Low
 2254,"Salary in LKR has been received, does it need to be configured elsewhere?","LKR valin salary ekak labila, eka vena tanaka configure karanna oneda?",receiving_money,Neutral,Low
@@ -2264,7 +2262,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2258,What do I need to do to transfer my paycheck to my account?,mage paycheck eka account ekata transfer karanna mama mokada karanna one?,receiving_money,Neutral,Low
 2259,How can my friend send me money?,mage yaluvata mata salli evanne kohomada?,receiving_money,Neutral,Low
 2260,Can I directly transfer my salary onto here?,mage salary eka kelinma metanata transfer karanna puluvanda?,receiving_money,Neutral,Low
-2261,Can this be used to receive my salary?,mage salary eka labaganna meka pavichchi karanna puluvanda?,receiving_money,Neutral,Low
+2261,Can this be used to receive my salary?,mage salary eka labaganna meken puluvanda?,receiving_money,Neutral,Low
 2262,Is it possible to deposit money in LKR?,LKR valin salli deposit karanna puluvanda?,receiving_money,Neutral,Low
 2263,I received my salary in LKR. How do I change this to my currency?,mata LKR valin salary eka labuna. meka mage karansiyata venas karanne kohomada?,receiving_money,Neutral,Low
 2264,How can my friend transfer money to me?,mage yaluvata mata salli transfer karanne kohomada?,receiving_money,Neutral,Low
@@ -2281,7 +2279,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2275,Can I get paid in a different currency?,mata venas karansiyakin pay karaganna puluvanda?,receiving_money,Neutral,Low
 2276,Is my salary eligible for this?,mage salary ekata meka eligible da?,receiving_money,Neutral,Low
 2277,My salary is in LKR; how can I note this in the app?,mage salary eka LKR valin; app eke meka note karanne kohomada?,receiving_money,Neutral,Low
-2278,Can I get paid in another currency?,mata venas karansiyakin pay karaganna puluvanda?,receiving_money,Neutral,Low
+2278,Can I get paid in another currency?,mata vena karansiyakin pay karaganna puluvanda?,receiving_money,Neutral,Low
 2279,Can I get my paycheck through here?,mage paycheck eka metanin labaganna puluvanda?,receiving_money,Neutral,Low
 2280,dont understand why transfer failed,transfer eka fail vune ayi kiyala terenne naa,failed_transfer,Neutral,Medium
 2281,Please help me make a transfer. I keep receiving an error and I'm trying to make the initial mortgage payment for a flat I'm buying. What is the deal here?,"plis transfer ekak karanna mata udav karannako. mata error ekak hamavelema enava, mama ganna flat ekakata initial mortgage payment eka karanna try karanne. metana deal eka mokakda?",failed_transfer,Neutral,Medium
@@ -2292,12 +2290,12 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2286,Why was I not able to complete a transfer?,transfer ekak complete karanna mata bari vune ayi?,failed_transfer,Neutral,Medium
 2287,Can you help me figure out what's happening? I'm trying to transfer money to a friend but it keeps getting returned. I'm not sure what i'm doing wrong.,mokada venne kiyala hoyaganna mata udav karannada? mama yaluvekta salli transfer karanna try karanava et apahu enava. mama mokada varadiyata karanne kiyala danne naa.,failed_transfer,Neutral,Medium
 2288,Why did my transfer not go through?,mage transfer eka go through novune ayi?,failed_transfer,Neutral,Medium
-2289,My transfer didn't go through.,mage transfer eka go through vune naa.,failed_transfer,Neutral,Medium
+2289,My transfer didn't go through.,mage transfer eka go through vune naha.,failed_transfer,Neutral,Medium
 2290,I could not get my transfer to happen correctly and was wondering why?,"mage transfer eka hariyata venna bari vuna, ayi kiyala hituva?",failed_transfer,Neutral,Medium
 2291,how come my transfer didn't work,mage transfer eka vada nokale ayi,failed_transfer,Neutral,Medium
 2292,"I transferred my funds, why did it not go through?","mama funds transfer kala, eka go through novune ayi?",failed_transfer,Neutral,Medium
 2293,Why has my transfer failed?,mage transfer eka fail vune ayi?,failed_transfer,Neutral,Medium
-2294,Why did my transfer fail?,mage transfer eka fail vune ayi?,failed_transfer,Neutral,Medium
+2294,Why did my transfer fail?,mage transfer eka ayi fail vune?,failed_transfer,Neutral,Medium
 2295,Why hasn't my transfer been made?,mage transfer eka ayi karala natte?,failed_transfer,Neutral,Medium
 2296,My transfer will not go through.,mage transfer eka go through venne naa.,failed_transfer,Neutral,Medium
 2297,My transfer keeps failing and I just want to transfer the money can you please make it work?,"mage transfer eka fail venava, mata salli transfer karanna vitarayi one, plis eka vada karavannada?",failed_transfer,Neutral,Medium
@@ -2306,7 +2304,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2300,What are your policies for card transfers?,card transfers sandaha oyalage policies monavada?,failed_transfer,Neutral,Low
 2301,Is the system down? I've been trying to do a transfer and have failed?,system eka down da? mama transfer ekak karanna try karamin fail venava?,failed_transfer,Neutral,Medium
 2302,I tried to make a transfer but it failed,mama transfer ekak karanna try kala et fail vuna,failed_transfer,Neutral,Medium
-2303,Why couldn't I complete a transfer?,transfer ekak complete karanna mata bari vune ayi?,failed_transfer,Neutral,Medium
+2303,Why couldn't I complete a transfer?,transfer ekak complete karaganna mata bari vune ayi?,failed_transfer,Neutral,Medium
 2304,My transfer appeared not to work.,mage transfer eka vada kale naa vage.,failed_transfer,Neutral,Medium
 2305,What is stopping my money from transferring?,mage salli transfer vima navattanne mokakda?,failed_transfer,Neutral,Medium
 2306,"Hi, I'm buying a flat and I'm trying to get my mortgage to go though. Every time I check I simply get an error message. Is there any way you can help me get this money transferred over. Thanks!","halo, mama flat ekak gannava, mage mortgage eka go through karanna try karanava. hama vatavakma check karaddi error message ekak vitarayi labenne. me salli transfer karaganna mata udav karanna puluvanda? stutiyi!",failed_transfer,Neutral,Medium
@@ -2349,7 +2347,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2343,How can I perform a dual money transferring from one account to another?,eka account ekakin tava account ekakata dual money transfer ekak karanne kohomada?,transfer_into_account,Neutral,Low
 2344,CAN YOU EXPLAIN HOW TO TRANSFER MONEY INTO MY  ACCOUNT FOR ME?,MY ACCOUNT ekata salli TRANSFER karanne kohomada kiyala pahadili karannada?,transfer_into_account,Neutral,Low
 2345,"I need to bank account transfer from another account into this one, what is the easiest way that can be done, and what information do i need?","venat account ekakin mekata bank account transfer ekak karanna one, lesima vidiya mokakda, mata one information mokakda?",transfer_into_account,Neutral,Low
-2346,How do I transfer money to my account?,mage account ekata salli transfer karanne kohomada?,transfer_into_account,Neutral,Low
+2346,How do I transfer money to my account?,mage account ekata salli transfer karaganne kohomada?,transfer_into_account,Neutral,Low
 2347,How do I send my account money through transfer?,mage account ekata transfer haraha salli yavanne kohomada?,transfer_into_account,Neutral,Low
 2348,How do I do an international transfer?,international transfer ekak karanne kohomada?,transfer_into_account,Neutral,Low
 2349,Are there ways to transfer money into my account?,mage account ekata salli transfer karanna vidi tiyenavada?,transfer_into_account,Neutral,Low
@@ -2358,10 +2356,10 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2352,"I would like use the bank transfer, but I don't understand the process, can you please explain, topping up?","mata bank transfer eka pavichchi karanna one, et process eka terenne naa, plis pahadili karannada, topping up?",transfer_into_account,Neutral,Low
 2353,I want to use bank transfer for topping up my account. How is it handled?,mage account eka top up karanna bank transfer ekak pavichchi karaganna one. eka handle karanne kohomada?,transfer_into_account,Neutral,Low
 2354,I checked my account today and it said I was out of money. How do I transfer money into my account?,"ada mama account eka check kala, salli ivara kiyala tibuna. account ekata salli transfer karanne kohomada?",transfer_into_account,Neutral,Low
-2355,How can I transfer money to my account?,mage account ekata salli transfer karanne kohomada?,transfer_into_account,Neutral,Low
+2355,How can I transfer money to my account?,mage account ekata salli transfer karanna puluvan kohomada?,transfer_into_account,Neutral,Low
 2356,I would like to transfer funds from one account to another.,eka account ekakin tava account ekakata funds transfer karaganna one.,transfer_into_account,Neutral,Low
 2357,I'm trying to transfer money into my account.,mama account ekata salli transfer karanna try karanava.,transfer_into_account,Neutral,Low
-2358,I would like to transfer money from my other bank account into this one.,mata venat bank account ekakin salli mekata transfer karaganna one.,transfer_into_account,Neutral,Low
+2358,I would like to transfer money from my other bank account into this one.,venat bank account ekakin salli mekata transfer karaganna one.,transfer_into_account,Neutral,Low
 2359,Can I use a bank transfer to refill my account?,account eka refill karanna bank transfer ekak pavichchi karanna puluvanda?,transfer_into_account,Neutral,Low
 2360,What all is needed to verify the top-up card?,top-up card eka verify karanna one okkoma mokakda?,verify_top_up,Neutral,Low
 2361,It wants me to verify the top up. Why?,top up eka verify karanna one kiyala kiyanava. ayi?,verify_top_up,Neutral,Low
@@ -2375,7 +2373,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2369,Why do you need code verification for my top up?,mage top up ekata code verification ekak oyalata one ayi?,verify_top_up,Neutral,Low
 2370,Where can I find the verification code on a top-up card?,top-up card eke verification code eka hoyaganne koheda?,verify_top_up,Neutral,Low
 2371,How do I get my top-up verification code?,mage top-up verification code eka labaganne kohomada?,verify_top_up,Neutral,Low
-2372,Is it possible to verify a top up?,top up ekak verify karanna puluvanda?,verify_top_up,Neutral,Low
+2372,Is it possible to verify a top up?,top up ekak verify karaganna puluvanda?,verify_top_up,Neutral,Low
 2373,Is it normal to have to verify my top-up or is something wrong?,mage top-up eka verify karanna one eka normal da nattam mokak hari varadilada?,verify_top_up,Neutral,Low
 2374,Why does the top-up need verification?,top-up ekata verification one ayi?,verify_top_up,Neutral,Low
 2375,Why does top-up need verifying?,top-up ekata verifying one ayi?,verify_top_up,Neutral,Low
@@ -2388,7 +2386,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2382,What is the verification code on a top-up?,top-up ekaka verification code eka mokakda?,verify_top_up,Neutral,Low
 2383,I can't find the top-up verification code.,mata top-up verification code eka hoyaganna baa.,verify_top_up,Neutral,Low
 2384,How do I go forth verifying my top-up card?,mage top-up card eka verify karanne kohomada?,verify_top_up,Neutral,Low
-2385,Where do I find the top-up verification code?,top-up verification code eka hoyaganne koheda?,verify_top_up,Neutral,Low
+2385,Where do I find the top-up verification code?,top-up verification code eka hoyaganne kohenda?,verify_top_up,Neutral,Low
 2386,How is the top-up card verified?,top-up card eka verify karanne kohomada?,verify_top_up,Neutral,Low
 2387,Is there a verification code for the top-up card?,top-up card ekata verification code ekak tiyenavada?,verify_top_up,Neutral,Low
 2388,What is the importance of verifying the top-up?,top-up eka verify kirime vadagatkama mokakda?,verify_top_up,Neutral,Low
@@ -2416,7 +2414,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2410,"If I need more cards, are there any fees?","mata tavat cards one nam, fees tiyenavada?",getting_spare_card,Neutral,Low
 2411,Do you offer multiple cards for the same account?,ekama account ekakata cards kipayak oyala offer karanavada?,getting_spare_card,Neutral,Low
 2412,Can I get a spare card for someone else to use?,vena kenekta pavichchi karanna spare card ekak labaganna puluvanda?,getting_spare_card,Neutral,Low
-2413,I need to get some more physical cards.,mata tavat physical cards tikak labaganna one.,getting_spare_card,Neutral,Low
+2413,I need to get some more physical cards.,mata tavat physical cards tikak ganna one.,getting_spare_card,Neutral,Low
 2414,"Would I be able to get another card for my account, so I could give one to my daughter?","mage account ekata tava card ekak labaganna puluvanda, mage duvata ekak denna?",getting_spare_card,Neutral,Low
 2415,What is the procedure for getting another card?,tava card ekak labaganna procedure eka mokakda?,getting_spare_card,Neutral,Low
 2416,Can I have a second card?,mata deveni card ekak tiyaganna puluvanda?,getting_spare_card,Neutral,Low
@@ -2431,12 +2429,12 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2425,Can i have a second physical card for this account?,me account ekata deveni physical card ekak labaganna puluvanda?,getting_spare_card,Neutral,Low
 2426,Can I purchase extra non-virtual cards?,amatara non-virtual cards purchase karanna puluvanda?,getting_spare_card,Neutral,Low
 2427,Am I allowed to give my daughter one of my cards to use?,mage duvata mage cards valin ekak pavichchi karanna denna ida tiyenavada?,getting_spare_card,Neutral,Low
-2428,May I have a second card?,mata deveni card ekak tiyaganna puluvanda?,getting_spare_card,Neutral,Low
+2428,May I have a second card?,mata deveni card ekak labaganna puluvanda?,getting_spare_card,Neutral,Low
 2429,Can i have a card to my daughter?,mage duvata card ekak tiyaganna puluvanda?,getting_spare_card,Neutral,Low
 2430,Are there restrictions for ordering extra cards?,amatara cards order karanna restrictions tiyenavada?,getting_spare_card,Neutral,Low
 2431,How can I get a second card for my daughter?,mage duvata deveni card ekak labaganne kohomada?,getting_spare_card,Neutral,Low
 2432,Where do I request another card?,tava card ekak request karanne koheda?,getting_spare_card,Neutral,Low
-2433,Am I able to get a second card?,mata deveni card ekak labaganna puluvanda?,getting_spare_card,Neutral,Low
+2433,Am I able to get a second card?,mata deveni card ekak labaganna puluvan veyida?,getting_spare_card,Neutral,Low
 2434,"If you send me more cards, are there any charges?","oyala mata tava cards evvot, charges tiyenavada?",getting_spare_card,Neutral,Low
 2435,When trying to get more than one card is there a extra amount that needs to be paid?,"ekakata vada card ekak labaganna try karaddi, gevanna one amatara amount ekak tiyenavada?",getting_spare_card,Neutral,Low
 2436,Is it possible to give a second card for this account to my daughter?,me account ekata deveni card ekak mage duvata denna puluvanda?,getting_spare_card,Neutral,Low
@@ -2445,7 +2443,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2439,"my daughter needs a card, how do i add her?","mage duvata card ekak one, egollanva add karanne kohomada?",getting_spare_card,Neutral,Low
 2440,Can I top up by cheque?,cheque ekakin top up karanna puluvanda?,top_up_by_cash_or_cheque,Neutral,Low
 2441,How do I top-up using cash?,cash ekakin top-up karanne kohomada?,top_up_by_cash_or_cheque,Neutral,Low
-2442,Can I top up with a cheque?,cheque ekakin top up karanna puluvanda?,top_up_by_cash_or_cheque,Neutral,Low
+2442,Can I top up with a cheque?,cheque ekakin top up karaganna puluvanda?,top_up_by_cash_or_cheque,Neutral,Low
 2443,Is it possible to top up with cash? If so how do I do it?,cash ekakin top up karanna puluvanda? ehenam eka karanne kohomada?,top_up_by_cash_or_cheque,Neutral,Low
 2444,Can you help me find top up by cash deposit?,cash deposit ekakin top up karana eka hoyaganna mata udav karannada?,top_up_by_cash_or_cheque,Neutral,Low
 2445,Is there an option to top up a with cheque?,cheque ekakin top up karanna option ekak tiyenavada?,top_up_by_cash_or_cheque,Neutral,Low
@@ -2457,7 +2455,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2451,How do I pay by check?,check ekakin pay karanne kohomada?,top_up_by_cash_or_cheque,Neutral,Low
 2452,Can I add to my account balance with a cheque?,cheque ekakin mage account balance ekata add karanna puluvanda?,top_up_by_cash_or_cheque,Neutral,Low
 2453,What type of deposits do you accept into my account?,mage account ekata oyala accept karana deposit types monavada?,top_up_by_cash_or_cheque,Neutral,Low
-2454,Can I top up using a cheque?,cheque ekakin top up karanna puluvanda?,top_up_by_cash_or_cheque,Neutral,Low
+2454,Can I top up using a cheque?,cheque ekak pavichchi karala top up karanna puluvanda?,top_up_by_cash_or_cheque,Neutral,Low
 2455,Can you top-up a card with a cheque?,cheque ekakin card ekak top-up karanna puluvanda?,top_up_by_cash_or_cheque,Neutral,Low
 2456,"I need to top up cash, How do I do it?","cash top up karanna one, eka karanne kohomada?",top_up_by_cash_or_cheque,Neutral,Low
 2457,I'm looking for the option to top up by cheque.,cheque ekakin top up karana option eka hoyanava.,top_up_by_cash_or_cheque,Neutral,Low
@@ -2520,7 +2518,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2514,"If I want a physical card, do I have to pay anything?","mata physical card ekak one nam, mokak hari gevanna oneda?",order_physical_card,Neutral,Low
 2515,Where can cards be delivered?,cards dilivar karanna puluvan koheda?,order_physical_card,Neutral,Low
 2516,I need a physical card.,mata physical card ekak one.,order_physical_card,Neutral,Low
-2517,What are the fees for a physical card?,physical card ekakata fees monavada?,order_physical_card,Neutral,Low
+2517,What are the fees for a physical card?,physical card ekakata tiyena fees monavada?,order_physical_card,Neutral,Low
 2518,How do I get an actual card?,actual card ekak labaganne kohomada?,order_physical_card,Neutral,Low
 2519,Can I get a real card?,mata real card ekak labaganna puluvanda?,order_physical_card,Neutral,Low
 2520,Why is my disposable virtual card being denied?,mage disposable virtual card eka denied venne ayi?,virtual_card_not_working,Neutral,Medium
@@ -2552,7 +2550,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2546,My payments from my virtual card keep getting rejected.,mage virtual card eken payments continuous va reject venava.,virtual_card_not_working,Neutral,Medium
 2547,My disposable virtual card is not working when I try to use it at a point of sale transaction. What do I do now?,point of sale transaction ekakata mage disposable virtual card eka pavichchi karanna try karaddi vada karanne naa. dan mama mokada karanne?,virtual_card_not_working,Neutral,Medium
 2548,My transaction was just declined when I was using my disposable virtual card. What can I do?,mage disposable virtual card eka pavichchi karaddi transakshan eka decline vuna. mama mokada karanne?,virtual_card_not_working,Neutral,Medium
-2549,My disposable virtual card is not working,mage disposable virtual card eka vada karanne naa,virtual_card_not_working,Neutral,Medium
+2549,My disposable virtual card is not working,mage disposable virtual card eka vada venne naa,virtual_card_not_working,Neutral,Medium
 2550,How do I get my disposable virtual card to work?,mage disposable virtual card eka vada karavaganne kohomada?,virtual_card_not_working,Neutral,Medium
 2551,How come my disposable virtual card used to pay for a gym subscription got rejected?,gym subscription ekakata pay karanna pavichchi karapu mage disposable virtual card eka reject vune ayi?,virtual_card_not_working,Neutral,Medium
 2552,Payments from my disposable virtual card don't work,mage disposable virtual card eken payments vada karanne naa,virtual_card_not_working,Neutral,Medium
@@ -2629,14 +2627,14 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2623,What is the process of obtaining a disposable virtual card,disposable virtual card ekak labaganna process eka mokakda,get_disposable_virtual_card,Neutral,Low
 2624,What does a disposable virtual card do?,disposable virtual card ekakin venne mokakda?,get_disposable_virtual_card,Neutral,Low
 2625,When can I order a disposable virtual card?,disposable virtual card ekak order karanne kavadada?,get_disposable_virtual_card,Neutral,Low
-2626,Is it possible to also get a disposable virtual card?,matat disposable virtual card ekak labaganna puluvanda?,get_disposable_virtual_card,Neutral,Low
+2626,Is it possible to also get a disposable virtual card?,matat disposable virtual card ekak ganna puluvanda?,get_disposable_virtual_card,Neutral,Low
 2627,How do I obtain a disposable virtual card?,disposable virtual card ekak labaganne kohomada?,get_disposable_virtual_card,Neutral,Low
 2628,How would you use a disposable card?,disposable card ekak pavichchi karanne kohomada?,get_disposable_virtual_card,Neutral,Low
 2629,"I need a disposable virtual card, how do I get one?","mata disposable virtual card ekak one, labaganne kohomada?",get_disposable_virtual_card,Neutral,Low
-2630,How do disposable cards work?,disposable cards vada karanne kohomada?,get_disposable_virtual_card,Neutral,Low
+2630,How do disposable cards work?,disposable cards vada venne kohomada?,get_disposable_virtual_card,Neutral,Low
 2631,Is there a disposable virtual card I can order?,order karaganna puluvan disposable virtual card ekak tiyenavada?,get_disposable_virtual_card,Neutral,Low
 2632,Where can I get a disposable virtual card?,disposable virtual card ekak labaganne kohenda?,get_disposable_virtual_card,Neutral,Low
-2633,Will I be able to get a disposable virtual card as well?,matat disposable virtual card ekak labaganna puluvanda?,get_disposable_virtual_card,Neutral,Low
+2633,Will I be able to get a disposable virtual card as well?,matat disposable virtual card ekak labaganna puluvan veyida?,get_disposable_virtual_card,Neutral,Low
 2634,Hello! I need to order a disposable virtual card. Where can I do that at?,halo! disposable virtual card ekak order karaganna one. eka kohedi karannada?,get_disposable_virtual_card,Neutral,Low
 2635,where do I request a disposable virtual card?,disposable virtual card ekak request karanne koheda?,get_disposable_virtual_card,Neutral,Low
 2636,Can i get a throw away card,throw away card ekak labaganna puluvanda,get_disposable_virtual_card,Neutral,Low
@@ -2834,7 +2832,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 2828,"I need to use a foreign card for a top up, what will the charge be?","top up ekakata videsha card ekak pavichchi karanna one, charge eka mokakda?",top_up_by_card_charge,Neutral,Medium
 2829,Is it okay to use a bank card to top up,top up karanna bank card ekak pavichchi karana eka harida,top_up_by_card_charge,Neutral,Medium
 2830,Any fee for topping up?,top up karanna fee ekak tiyenavada?,top_up_by_card_charge,Neutral,Medium
-2831,Are there any fees for top ups?,top ups valata fees tiyenavada?,top_up_by_card_charge,Neutral,Medium
+2831,Are there any fees for top ups?,top ups valata kisi fees ekak tiyenavada?,top_up_by_card_charge,Neutral,Low
 2832,What are the fees of using an international card to add money?,international card ekakin salli add karanna fees monavada?,top_up_by_card_charge,Neutral,Medium
 2833,Is there a charge or discount if I use a foreign bank in a top up?,top up ekakata videsha bank ekak pavichchi kalot charge ekak ho discount ekak tiyenavada?,top_up_by_card_charge,Neutral,Medium
 2834,Is their a fee for top ups?,top ups valata fee ekak tiyenavada?,top_up_by_card_charge,Neutral,Medium
@@ -3032,7 +3030,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 3026,"When getting my ID checked, what are the steps involved?","mage ID eka check karaddi, involved steps monavada?",verify_my_identity,Neutral,Low
 3027,do I need anything for the identity check?,identity check ekata mata mokak hari oneda?,verify_my_identity,Neutral,Low
 3028,which kind of documentation do I need for identity check?,identity check ekata mona documentation oneda?,verify_my_identity,Neutral,Low
-3029,How do I go forth on verifying my identity?,mage identity eka verify karanne kohomada?,verify_my_identity,Neutral,Low
+3029,How do I go forth on verifying my identity?,mage identity eka verify karaganne kohomada?,verify_my_identity,Neutral,Low
 3030,What can I do to verify my identity?,mage identity eka verify karanna mata mokada karanna puluvan?,verify_my_identity,Neutral,Low
 3031,What do you need so I can verify my identity?,mage identity eka verify karaganna oyalata one mokakda?,verify_my_identity,Neutral,Low
 3032,What do I need to show who I am?,mama kavuda kiyala pennanna mata mokada one?,verify_my_identity,Neutral,Low
@@ -3042,7 +3040,7 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 3036,Is there any documentation needed for the identity check?,identity check ekata documentation oneda?,verify_my_identity,Neutral,Low
 3037,What all am I required to show for the identity check?,identity check ekata mata pennanna one okkoma mokakda?,verify_my_identity,Neutral,Low
 3038,What do I do for the identity check?,identity check ekata mama mokada karanne?,verify_my_identity,Neutral,Low
-3039,What do I need to do to verify my identity?,mage identity eka verify karanna mama mokada karanna one?,verify_my_identity,Neutral,Low
+3039,What do I need to do to verify my identity?,mage identity eka verify karanna mokada karanna ona karanne?,verify_my_identity,Neutral,Low
 3040,I live in the US but want to get a card,mama inne US eke et card ekak ganna one,country_support,Neutral,Low
 3041,Are your cards available in Sri Lanka?,oyalage cards Sri Lanka eke available da?,country_support,Neutral,Low
 3042,Can I use your app if I am from the EU?,mama EU eken nam oyalage app eka pavichchi karanna puluvanda?,country_support,Neutral,Low
@@ -3080,6 +3078,6 @@ Which ATMs accept this card?",mona ATMs da me card eka accept karanne?,atm_suppo
 3074,"I'm not in Sri Lanka, can I get a card?","mama Sri Lanka eke naa, card ekak labaganna puluvanda?",country_support,Neutral,Low
 3075,"If i'm not in Sri Lanka, can I still get a card?","mama Sri Lanka eke nattam, thama card ekak labaganna puluvanda?",country_support,Neutral,Low
 3076,How many countries do you support?,oyala support karana countries kiyakda?,country_support,Neutral,Low
-3077,What countries do you do business in?,mona countries valada oyala business karanne?,country_support,Neutral,Low
+3077,What countries do you do business in?,oyala business karana countries monavada?,country_support,Neutral,Low
 3078,What are the countries you operate in.,oyala operate karana countries monavada.,country_support,Neutral,Low
 3079,Can the card be mailed and used in Sri Lanka?,card eka mail karala Sri Lanka eke pavichchi karanna puluvanda?,country_support,Neutral,Low

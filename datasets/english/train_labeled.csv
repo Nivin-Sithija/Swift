@@ -626,7 +626,6 @@ id,text_en,text,category,sentiment,priority
 624,"I looked at my statement, and there is a charge for Rs 10 that I don't recognize.  Why is it on there?","I looked at my statement, and there is a charge for Rs 10 that I don't recognize.  Why is it on there?",extra_charge_on_statement,Neutral,Medium
 625,I got a €1 extra fee in my statement,I got a €1 extra fee in my statement,extra_charge_on_statement,Neutral,Medium
 626,What is the extra fee on my statement?,What is the extra fee on my statement?,extra_charge_on_statement,Neutral,Medium
-627,Why have I been charged an extra Rs 10?,Why have I been charged an extra Rs 10?,extra_charge_on_statement,Neutral,Medium
 628,"In my statement, I got a €1 extra fee.","In my statement, I got a €1 extra fee.",extra_charge_on_statement,Neutral,Medium
 629,Why is there a charge for Rs 10 on my account?,Why is there a charge for Rs 10 on my account?,extra_charge_on_statement,Neutral,Medium
 630,"On my statement, there is a strange Rs 10 charge that appears as pending. What's causing that? I haven't purchased anything that's just Rs 10.","On my statement, there is a strange Rs 10 charge that appears as pending. What's causing that? I haven't purchased anything that's just Rs 10.",extra_charge_on_statement,Neutral,Medium
@@ -788,7 +787,7 @@ id,text_en,text,category,sentiment,priority
 786,How long does it take for cash withdrawals to hit my account?,How long does it take for cash withdrawals to hit my account?,pending_cash_withdrawal,Neutral,Low
 787,Can you explain to me why a cash withdrawal shows up as pending?,Can you explain to me why a cash withdrawal shows up as pending?,pending_cash_withdrawal,Neutral,Low
 788,The machine didn't work earlier when I went to get money out and now my account says transaction in progress.Why?,The machine didn't work earlier when I went to get money out and now my account says transaction in progress.Why?,pending_cash_withdrawal,Neutral,Medium
-789,"I got cash from an ATM earlier but it shows up as pending in the app. How can this still be pending, I already received the cash?","I got cash from an ATM earlier but it shows up as pending in the app. How can this still be pending, I already received the cash?",pending_cash_withdrawal,Neutral,Low
+789,"I got cash from an ATM earlier but it shows up as pending in the app. How can this still be pending, I already received the cash?","I got cash from an ATM earlier but it shows up as pending in the app. How can this still be pending, I already received the cash?",pending_cash_withdrawal,Neutral,Medium
 790,I made a deposit in the ATM and it has not cleared,I made a deposit in the ATM and it has not cleared,pending_cash_withdrawal,Neutral,Low
 791,withdrawal pending meaning?,withdrawal pending meaning?,pending_cash_withdrawal,Neutral,Low
 792,What does it mean to have a pending cash withdrawal?,What does it mean to have a pending cash withdrawal?,pending_cash_withdrawal,Neutral,Low
@@ -841,7 +840,7 @@ id,text_en,text,category,sentiment,priority
 839,"my cash withdrawal is pending, why?","my cash withdrawal is pending, why?",pending_cash_withdrawal,Neutral,Low
 840,"Hae there, I have a transaction that is in progress despite the fact that the ATM was not working, what do I do to avoid being charged?","Hae there, I have a transaction that is in progress despite the fact that the ATM was not working, what do I do to avoid being charged?",pending_cash_withdrawal,Neutral,Medium
 841,"I've been waiting for 3 days, why is my withdrawal still pending?","I've been waiting for 3 days, why is my withdrawal still pending?",pending_cash_withdrawal,Neutral,Low
-842,"I removed cash from an ATM earlier but it shows up as pending in the app. How can this still be pending, I already received the cash?","I removed cash from an ATM earlier but it shows up as pending in the app. How can this still be pending, I already received the cash?",pending_cash_withdrawal,Neutral,Low
+842,"I removed cash from an ATM earlier but it shows up as pending in the app. How can this still be pending, I already received the cash?","I removed cash from an ATM earlier but it shows up as pending in the app. How can this still be pending, I already received the cash?",pending_cash_withdrawal,Neutral,Medium
 843,How long will my ATM withdrawal be pending?,How long will my ATM withdrawal be pending?,pending_cash_withdrawal,Neutral,Low
 844,Is there any reason my cash withdrawal still shows as pending?,Is there any reason my cash withdrawal still shows as pending?,pending_cash_withdrawal,Neutral,Low
 845,Its been several days and my cash withdrawal is still pending. Why?,Its been several days and my cash withdrawal is still pending. Why?,pending_cash_withdrawal,Neutral,Low
@@ -861,7 +860,7 @@ id,text_en,text,category,sentiment,priority
 859,The cash I deposited using the ATM is still pending,The cash I deposited using the ATM is still pending,pending_cash_withdrawal,Neutral,Low
 860,"I tried to withdraw money, but was unable to. Still says that the transaction is pending? Will this money disappear??","I tried to withdraw money, but was unable to. Still says that the transaction is pending? Will this money disappear??",pending_cash_withdrawal,Negative,Medium
 861,There is a withdrawal waiting.,There is a withdrawal waiting.,pending_cash_withdrawal,Neutral,Medium
-862,Can you please tell me why my cash withdrawal is still pending?,Can you please tell me why my cash withdrawal is still pending?,pending_cash_withdrawal,Neutral,Medium
+862,Can you please tell me why my cash withdrawal is still pending?,Can you please tell me why my cash withdrawal is still pending?,pending_cash_withdrawal,Neutral,Low
 863,My atm withdraw is stillpending,My atm withdraw is stillpending,pending_cash_withdrawal,Neutral,Medium
 864,"I Withdrew cash from an ATM earlier but it shows up as pending in the app. How can this still be pending, I received the cash already?","I Withdrew cash from an ATM earlier but it shows up as pending in the app. How can this still be pending, I received the cash already?",pending_cash_withdrawal,Neutral,Medium
 865,"Hello, I tried to take some cash out of the ATM but I looked at my statement and it still shows that it's pending. Is the machine broken? Will I receive my money back or will I be charged for this?","Hello, I tried to take some cash out of the ATM but I looked at my statement and it still shows that it's pending. Is the machine broken? Will I receive my money back or will I be charged for this?",pending_cash_withdrawal,Neutral,Medium
@@ -1289,7 +1288,6 @@ id,text_en,text,category,sentiment,priority
 1287,"Suddenly, my card won't work.","Suddenly, my card won't work.",card_not_working,Neutral,Medium
 1288,My card hasn't been working when I try to use it.,My card hasn't been working when I try to use it.,card_not_working,Neutral,Medium
 1289,My physical card is not working,My physical card is not working,card_not_working,Neutral,Medium
-1290,I can't seem to be able to use my card,I can't seem to be able to use my card,card_not_working,Neutral,Medium
 1291,Why is my physical card not working?,Why is my physical card not working?,card_not_working,Neutral,Medium
 1292,Help.  My card is broken.,Help.  My card is broken.,card_not_working,Neutral,Medium
 1293,I am unable to use my card.,I am unable to use my card.,card_not_working,Neutral,Medium
@@ -1328,7 +1326,7 @@ id,text_en,text,category,sentiment,priority
 1326,Why won't my card work anymore?,Why won't my card work anymore?,card_not_working,Neutral,Medium
 1327,Why won't the machine accept my card anymore?,Why won't the machine accept my card anymore?,card_not_working,Neutral,Medium
 1328,When I was in a restaurant today my card was declined and payment wouldn't go through and I need help. Can you fix this?,When I was in a restaurant today my card was declined and payment wouldn't go through and I need help. Can you fix this?,card_not_working,Neutral,Medium
-1329,What to do if my physical card is not working?,What to do if my physical card is not working?,card_not_working,Neutral,Low
+1329,What to do if my physical card is not working?,What to do if my physical card is not working?,card_not_working,Neutral,Medium
 1330,My card stopped working after multiple transactions. Why?,My card stopped working after multiple transactions. Why?,card_not_working,Neutral,Medium
 1331,Why won't my card accept any transactions?,Why won't my card accept any transactions?,card_not_working,Neutral,Medium
 1332,"I think my card is broken or something. I tried using it and it wouldn't go through, please help.","I think my card is broken or something. I tried using it and it wouldn't go through, please help.",card_not_working,Neutral,Medium
@@ -1509,7 +1507,7 @@ id,text_en,text,category,sentiment,priority
 1507,"i need help, i lost my card","i need help, i lost my card",lost_or_stolen_card,Neutral,High
 1508,What can I do if I lost my card?,What can I do if I lost my card?,lost_or_stolen_card,Neutral,Low
 1509,I think that the card is stolen.  What are my next steps?,I think that the card is stolen.  What are my next steps?,lost_or_stolen_card,Neutral,High
-1510,What do I do if my card is stolen?,What do I do if my card is stolen?,lost_or_stolen_card,Neutral,Low
+1510,What do I do if my card is stolen?,What do I do if my card is stolen?,lost_or_stolen_card,Neutral,High
 1511,My card is stolen.  Help!,My card is stolen.  Help!,lost_or_stolen_card,Negative,High
 1512,I lost track of my card,I lost track of my card,lost_or_stolen_card,Neutral,High
 1513,Report stolen card,Report stolen card,lost_or_stolen_card,Neutral,High
@@ -1727,7 +1725,6 @@ I put the wrong pin too many times and now it is blocked. Can you help me unbloc
 How do I unblock my PIN?","
 How do I unblock my PIN?",pin_blocked,Neutral,Medium
 1723,What happens if I forget my PIN?,What happens if I forget my PIN?,pin_blocked,Neutral,Low
-1724,I put the wrong pin too many times and now it is blocked. Can you help me unblock it?,I put the wrong pin too many times and now it is blocked. Can you help me unblock it?,pin_blocked,Neutral,Medium
 1725,I managed to drunken block my card :(( Help!,I managed to drunken block my card :(( Help!,pin_blocked,Negative,Medium
 1726,Why is my PIN blocked?,Why is my PIN blocked?,pin_blocked,Neutral,Medium
 1727,I used my pin too many times.,I used my pin too many times.,pin_blocked,Neutral,Medium
@@ -1828,7 +1825,7 @@ How do I unblock my PIN?",pin_blocked,Neutral,Medium
 1822,What is the fee to top-up my account,What is the fee to top-up my account,top_up_by_bank_transfer_charge,Neutral,Medium
 1823,Will you guys charge me for topping up by transfer?,Will you guys charge me for topping up by transfer?,top_up_by_bank_transfer_charge,Neutral,Medium
 1824,Can you tell me the cost of a transfer?,Can you tell me the cost of a transfer?,top_up_by_bank_transfer_charge,Neutral,Medium
-1825,Do you receive SWIFT transfers?,Do you receive SWIFT transfers?,top_up_by_bank_transfer_charge,Neutral,Medium
+1825,Do you receive SWIFT transfers?,Do you receive SWIFT transfers?,top_up_by_bank_transfer_charge,Neutral,Low
 1826,What is the charge for receiving a SEPA transfer?,What is the charge for receiving a SEPA transfer?,top_up_by_bank_transfer_charge,Neutral,Medium
 1827,Will I receive all the money sent to my account by SEPA transfer?,Will I receive all the money sent to my account by SEPA transfer?,top_up_by_bank_transfer_charge,Neutral,Medium
 1828,Am I going to see a charge for a SEPA transfer?,Am I going to see a charge for a SEPA transfer?,top_up_by_bank_transfer_charge,Neutral,Medium
@@ -1837,9 +1834,9 @@ How do I unblock my PIN?",pin_blocked,Neutral,Medium
 1831,How much is it to receive money?,How much is it to receive money?,top_up_by_bank_transfer_charge,Neutral,Medium
 1832,Is there a charge for using transfers for top ups?,Is there a charge for using transfers for top ups?,top_up_by_bank_transfer_charge,Neutral,Medium
 1833,"If someone sends me money, will I be charged?","If someone sends me money, will I be charged?",top_up_by_bank_transfer_charge,Neutral,Medium
-1834,Do you accept SWIFT transfers?,Do you accept SWIFT transfers?,top_up_by_bank_transfer_charge,Neutral,Medium
-1835,Am I charged for receiving money?,Am I charged for receiving money?,top_up_by_bank_transfer_charge,Neutral,Medium
-1836,Will I be charged for topping up by transfer?,Will I be charged for topping up by transfer?,top_up_by_bank_transfer_charge,Neutral,Medium
+1834,Do you accept SWIFT transfers?,Do you accept SWIFT transfers?,top_up_by_bank_transfer_charge,Neutral,Low
+1835,Am I charged for receiving money?,Am I charged for receiving money?,top_up_by_bank_transfer_charge,Neutral,Low
+1836,Will I be charged for topping up by transfer?,Will I be charged for topping up by transfer?,top_up_by_bank_transfer_charge,Neutral,Low
 1837,Will I be charged any fee for receiving money?,Will I be charged any fee for receiving money?,top_up_by_bank_transfer_charge,Neutral,Medium
 1838,Are there fees for receiving a SEPA transfer?,Are there fees for receiving a SEPA transfer?,top_up_by_bank_transfer_charge,Neutral,Medium
 1839,Is there a fee to top up by bank transfers?,Is there a fee to top up by bank transfers?,top_up_by_bank_transfer_charge,Neutral,Medium
@@ -2100,14 +2097,14 @@ How do I unblock my PIN?",pin_blocked,Neutral,Medium
 2094,I made a mistake and performed a transaction on the wrong account!,I made a mistake and performed a transaction on the wrong account!,cancel_transfer,Neutral,Medium
 2095,I want to revert a transaction I did this morning,I want to revert a transaction I did this morning,cancel_transfer,Neutral,Medium
 2096,I need to change a transfer.,I need to change a transfer.,cancel_transfer,Neutral,Medium
-2097,How do I cancel a transaction?,How do I cancel a transaction?,cancel_transfer,Neutral,Medium
+2097,How do I cancel a transaction?,How do I cancel a transaction?,cancel_transfer,Neutral,Low
 2098,I need to cancel a transaction please!,I need to cancel a transaction please!,cancel_transfer,Neutral,Medium
 2099,I want to revert a transaction I did,I want to revert a transaction I did,cancel_transfer,Neutral,Medium
 2100,"Could I please cancel my transfer, I paid it into the wrong account. I need to pay it into the right account by tomorrow.","Could I please cancel my transfer, I paid it into the wrong account. I need to pay it into the right account by tomorrow.",cancel_transfer,Neutral,Medium
 2101,I need a transfer cancelled.,I need a transfer cancelled.,cancel_transfer,Neutral,Medium
 2102,I did a transaction this morning and now I want to cancel it.,I did a transaction this morning and now I want to cancel it.,cancel_transfer,Neutral,Medium
 2103,A transfer has to be cancelled.,A transfer has to be cancelled.,cancel_transfer,Neutral,Medium
-2104,Is it possible to cancel a transaction?,Is it possible to cancel a transaction?,cancel_transfer,Neutral,Low
+2104,Is it possible to cancel a transaction?,Is it possible to cancel a transaction?,cancel_transfer,Neutral,Medium
 2105,I messed up and made a transaction using the wrong account.,I messed up and made a transaction using the wrong account.,cancel_transfer,Neutral,Medium
 2106,One of my transactions needs to be canceled.,One of my transactions needs to be canceled.,cancel_transfer,Neutral,Medium
 2107,I need to stop a transaction that I made.,I need to stop a transaction that I made.,cancel_transfer,Neutral,Medium
@@ -2647,7 +2644,7 @@ How do I unblock my PIN?",pin_blocked,Neutral,Medium
 2641,Let me know when you charge for payments. I just checked the app and saw a fee that I wasn't warned about.,Let me know when you charge for payments. I just checked the app and saw a fee that I wasn't warned about.,card_payment_fee_charged,Neutral,Medium
 2642,What is the charge for paying with my card?,What is the charge for paying with my card?,card_payment_fee_charged,Neutral,Low
 2643,I paid with my card and ended up being charged a fee.,I paid with my card and ended up being charged a fee.,card_payment_fee_charged,Neutral,Medium
-2644,Why is there a fee on a card payment?,Why is there a fee on a card payment?,card_payment_fee_charged,Neutral,Low
+2644,Why is there a fee on a card payment?,Why is there a fee on a card payment?,card_payment_fee_charged,Neutral,Medium
 2645,I was unaware of the additional charge that was added onto my previous payment. A notification of extra charges would be appreciated in the future.,I was unaware of the additional charge that was added onto my previous payment. A notification of extra charges would be appreciated in the future.,card_payment_fee_charged,Neutral,Medium
 2646,I don't think I should have been charged a fee to use my card.,I don't think I should have been charged a fee to use my card.,card_payment_fee_charged,Neutral,Medium
 2647,A fee that shouldn't be there is there after using my card!,A fee that shouldn't be there is there after using my card!,card_payment_fee_charged,Neutral,Medium
@@ -2733,9 +2730,9 @@ How do I unblock my PIN?",pin_blocked,Neutral,Medium
 2727,"how long does it take to transfer money, my retailer is waiting","how long does it take to transfer money, my retailer is waiting",transfer_not_received_by_recipient,Neutral,High
 2728,"I sent money to someone but they haven't gotten it, what's going on?","I sent money to someone but they haven't gotten it, what's going on?",transfer_not_received_by_recipient,Neutral,High
 2729,"How long does it take for transfers to process?  I sent funds to a friend, and she says that she has not yet received anything.","How long does it take for transfers to process?  I sent funds to a friend, and she says that she has not yet received anything.",transfer_not_received_by_recipient,Neutral,High
-2730,Why hasn't the transaction I did to my friend arrive yet?,Why hasn't the transaction I did to my friend arrive yet?,transfer_not_received_by_recipient,Neutral,High
+2730,Why hasn't the transaction I did to my friend arrive yet?,Why hasn't the transaction I did to my friend arrive yet?,transfer_not_received_by_recipient,Neutral,Medium
 2731,I sent money about 5 days ago and the recipient has not received the money yet.,I sent money about 5 days ago and the recipient has not received the money yet.,transfer_not_received_by_recipient,Neutral,High
-2732,I am just waiting on the completion of the transaction.,I am just waiting on the completion of the transaction.,transfer_not_received_by_recipient,Neutral,High
+2732,I am just waiting on the completion of the transaction.,I am just waiting on the completion of the transaction.,transfer_not_received_by_recipient,Neutral,Medium
 2733,My cash transaction isn't showing on my account,My cash transaction isn't showing on my account,transfer_not_received_by_recipient,Neutral,Medium
 2734,Why hasn't my transaction arrived?,Why hasn't my transaction arrived?,transfer_not_received_by_recipient,Neutral,High
 2735,When are you going to transfer the money?,When are you going to transfer the money?,transfer_not_received_by_recipient,Neutral,High
@@ -3183,7 +3180,7 @@ Where can I use my card?",card_acceptance,Neutral,Low
 3175,My money is nowhere to be found? I talked up earlier and seen it. Now it has vanished. What is going on?,My money is nowhere to be found? I talked up earlier and seen it. Now it has vanished. What is going on?,top_up_reverted,Negative,Medium
 3176,My top-up was cancelled and I am writing to ask if I need to complete the 3D Secure authentication section before I submit it.,My top-up was cancelled and I am writing to ask if I need to complete the 3D Secure authentication section before I submit it.,top_up_reverted,Neutral,Medium
 3177,How come I can't put money in my top up account?,How come I can't put money in my top up account?,top_up_reverted,Neutral,Medium
-3178,Why has my top-up been reverted?,Why has my top-up been reverted?,top_up_reverted,Neutral,Medium
+3178,Why has my top-up been reverted?,Why has my top-up been reverted?,top_up_reverted,Neutral,Low
 3179,My top up was reverted. Can you help?,My top up was reverted. Can you help?,top_up_reverted,Neutral,Medium
 3180,"My top-up was supposed to be done, but now the money is gone! Is there a glitch in your system?","My top-up was supposed to be done, but now the money is gone! Is there a glitch in your system?",top_up_reverted,Negative,Medium
 3181,Why would my top up be reverted?,Why would my top up be reverted?,top_up_reverted,Neutral,Medium
@@ -3199,11 +3196,11 @@ Where can I use my card?",card_acceptance,Neutral,Low
 3191,How does my top-up got cancelled?,How does my top-up got cancelled?,top_up_reverted,Neutral,Medium
 3192,"Did you lose my money? I had added funds through top-up not long ago and I know they were in my account, but they seem to have disappeared. What happened?","Did you lose my money? I had added funds through top-up not long ago and I know they were in my account, but they seem to have disappeared. What happened?",top_up_reverted,Negative,Medium
 3193,What happened to my top-up? I think it was cancelled.,What happened to my top-up? I think it was cancelled.,top_up_reverted,Neutral,Medium
-3194,Why did my top-up get reverted?,Why did my top-up get reverted?,top_up_reverted,Neutral,Medium
+3194,Why did my top-up get reverted?,Why did my top-up get reverted?,top_up_reverted,Neutral,Low
 3195,Why won't my top up go through?,Why won't my top up go through?,top_up_reverted,Neutral,Medium
 3196,Please explain why the funds I added were returned to my account.,Please explain why the funds I added were returned to my account.,top_up_reverted,Neutral,Medium
 3197,Why isn't top-up working? My top-up money disappeared after I saw that it was successfully transferred. Is it gone? Where did it go?,Why isn't top-up working? My top-up money disappeared after I saw that it was successfully transferred. Is it gone? Where did it go?,top_up_reverted,Negative,Medium
-3198,"My money is gone. I had topped up recently and saw it was there and went through, but now it's disappeared, what is happening?","My money is gone. I had topped up recently and saw it was there and went through, but now it's disappeared, what is happening?",top_up_reverted,Negative,Medium
+3198,"My money is gone. I had topped up recently and saw it was there and went through, but now it's disappeared, what is happening?","My money is gone. I had topped up recently and saw it was there and went through, but now it's disappeared, what is happening?",top_up_reverted,Neutral,High
 3199,I did a topup successfully but its not showing in balance. I think there is some problem in system.,I did a topup successfully but its not showing in balance. I think there is some problem in system.,top_up_reverted,Neutral,Medium
 3200,I put some money in my account the other day but now its gone? Why is this?,I put some money in my account the other day but now its gone? Why is this?,top_up_reverted,Neutral,Medium
 3201,My thoughts were that you offered crypto top up which does not seem to be working. The money has now been taken from my account. What is the problem here?,My thoughts were that you offered crypto top up which does not seem to be working. The money has now been taken from my account. What is the problem here?,top_up_reverted,Neutral,Medium
@@ -3218,7 +3215,7 @@ Where can I use my card?",card_acceptance,Neutral,Low
 3210,Why does my top-up get cancelled?,Why does my top-up get cancelled?,top_up_reverted,Neutral,Medium
 3211,What I topped up was reverted by the app.,What I topped up was reverted by the app.,top_up_reverted,Neutral,Medium
 3212,I was checking my statement and my top-up has been reverted,I was checking my statement and my top-up has been reverted,top_up_reverted,Neutral,Medium
-3213,"My money is gone. I had topped up recently and saw it was there, but now it's disappeared, what's going on?","My money is gone. I had topped up recently and saw it was there, but now it's disappeared, what's going on?",top_up_reverted,Neutral,Medium
+3213,"My money is gone. I had topped up recently and saw it was there, but now it's disappeared, what's going on?","My money is gone. I had topped up recently and saw it was there, but now it's disappeared, what's going on?",top_up_reverted,Neutral,High
 3214,My top up was rejected. Why?,My top up was rejected. Why?,top_up_reverted,Neutral,Medium
 3215,I wanted to know why a top-up I made has been reverted.,I wanted to know why a top-up I made has been reverted.,top_up_reverted,Neutral,Medium
 3216,What should I do?  I topped off but the app reversed  it.,What should I do?  I topped off but the app reversed  it.,top_up_reverted,Neutral,Medium
@@ -3522,7 +3519,7 @@ Where can I use my card?",card_acceptance,Neutral,Low
 3514,"I don't recognize this payment on my app, I am sure I didn't spend any money there.","I don't recognize this payment on my app, I am sure I didn't spend any money there.",card_payment_not_recognised,Neutral,High
 3515,There are a couple of payments with my card shown in the app that in reality I didn't make. Maybe someone has access to my card?Can you check whats the issue ?,There are a couple of payments with my card shown in the app that in reality I didn't make. Maybe someone has access to my card?Can you check whats the issue ?,card_payment_not_recognised,Neutral,High
 3516,There is payment showing that I didn't do.,There is payment showing that I didn't do.,card_payment_not_recognised,Neutral,High
-3517,Payment I didn't do.,Payment I didn't do.,card_payment_not_recognised,Neutral,High
+3517,Payment I didn't do.,Payment I didn't do.,card_payment_not_recognised,Negative,High
 3518,Why is there a random payment in my statement?,Why is there a random payment in my statement?,card_payment_not_recognised,Neutral,High
 3519,"Hi, there is a suspicious payment from my card. I definitely do not know who this is or who could have made this payment.","Hi, there is a suspicious payment from my card. I definitely do not know who this is or who could have made this payment.",card_payment_not_recognised,Neutral,High
 3520,A payment I didn't do shows in my app,A payment I didn't do shows in my app,card_payment_not_recognised,Negative,High
@@ -3586,14 +3583,14 @@ Where can I use my card?",card_acceptance,Neutral,Low
 3578,I swear that there are 2 payments on the app that I didn't make.  Could my card me stolen?  Please advise what I should do.,I swear that there are 2 payments on the app that I didn't make.  Could my card me stolen?  Please advise what I should do.,card_payment_not_recognised,Neutral,High
 3579,Is there any way to know how the transaction got on my account?,Is there any way to know how the transaction got on my account?,card_payment_not_recognised,Neutral,High
 3580,I did not make this payment that I see in the App.,I did not make this payment that I see in the App.,card_payment_not_recognised,Negative,High
-3581,I have a card payment I didn't make,I have a card payment I didn't make,card_payment_not_recognised,Negative,High
+3581,I have a card payment I didn't make,I have a card payment I didn't make,card_payment_not_recognised,Neutral,High
 3582,i disagree with a charge,i disagree with a charge,card_payment_not_recognised,Neutral,High
 3583,I didn't make this payment!,I didn't make this payment!,card_payment_not_recognised,Negative,High
 3584,There is a payment in the app I did not make,There is a payment in the app I did not make,card_payment_not_recognised,Negative,High
 3585,There is a vendor name I don't recognize on a payment from my account. I don't think I made this payment.,There is a vendor name I don't recognize on a payment from my account. I don't think I made this payment.,card_payment_not_recognised,Neutral,High
 3586,I don't think I made this payment that is showing up,I don't think I made this payment that is showing up,card_payment_not_recognised,Neutral,High
 3587,I think there's a purchase at a store that I didn't go to.,I think there's a purchase at a store that I didn't go to.,card_payment_not_recognised,Neutral,High
-3588,Have a payment that I haven't done.,Have a payment that I haven't done.,card_payment_not_recognised,Negative,High
+3588,Have a payment that I haven't done.,Have a payment that I haven't done.,card_payment_not_recognised,Neutral,High
 3589,There was a purchase on my card recently to a name that I don't recognize at all. What can be done about this? I need my money back.,There was a purchase on my card recently to a name that I don't recognize at all. What can be done about this? I need my money back.,card_payment_not_recognised,Neutral,High
 3590,"One of my card payments, I don't recognise the name of the merchant.","One of my card payments, I don't recognise the name of the merchant.",card_payment_not_recognised,Neutral,High
 3591,"Hello, I noticed there is a payment from my card to a business that I am not familiar with. I definitely did not make this payment.","Hello, I noticed there is a payment from my card to a business that I am not familiar with. I definitely did not make this payment.",card_payment_not_recognised,Negative,High
@@ -4604,9 +4601,6 @@ At which ATMs can I use this card?",atm_support,Neutral,Low
 4592,Where is a ATM that accepts Mastercard?,Where is a ATM that accepts Mastercard?,atm_support,Neutral,Low
 4593,Where are the Mastercard ATMs?,Where are the Mastercard ATMs?,atm_support,Neutral,Low
 4594,Where can I withdraw money from?,Where can I withdraw money from?,atm_support,Neutral,Low
-4595,"
-Where can I withdraw money from?","
-Where can I withdraw money from?",atm_support,Neutral,Low
 4596,Can I use a different bank ATM than my own?,Can I use a different bank ATM than my own?,atm_support,Neutral,Low
 4597,need to know places i can withdraw money,need to know places i can withdraw money,atm_support,Neutral,Low
 4598,The card can be used at which ATMs?,The card can be used at which ATMs?,atm_support,Neutral,Low
@@ -4711,7 +4705,7 @@ Where can I withdraw money from?",atm_support,Neutral,Low
 4697,My account statements show a debit payment that I didn't make it's from some time ago I need to know if it is disputable.,My account statements show a debit payment that I didn't make it's from some time ago I need to know if it is disputable.,direct_debit_payment_not_recognised,Neutral,High
 4698,There is a debit transaction on my statement that I did not make,There is a debit transaction on my statement that I did not make,direct_debit_payment_not_recognised,Neutral,High
 4699,There is a direct debit payment on my account that I didn't authorize.,There is a direct debit payment on my account that I didn't authorize.,direct_debit_payment_not_recognised,Neutral,High
-4700,I didn't set up the direct debit I have,I didn't set up the direct debit I have,direct_debit_payment_not_recognised,Negative,High
+4700,I didn't set up the direct debit I have,I didn't set up the direct debit I have,direct_debit_payment_not_recognised,Neutral,High
 4701,What do I do if I find a debit charge that I know I didn't do in my billing statement?,What do I do if I find a debit charge that I know I didn't do in my billing statement?,direct_debit_payment_not_recognised,Neutral,Low
 4702,i do not know what this charge is for,i do not know what this charge is for,direct_debit_payment_not_recognised,Neutral,High
 4703,What do I do if there is a direct debit on my account that shouldn't be there?,What do I do if there is a direct debit on my account that shouldn't be there?,direct_debit_payment_not_recognised,Neutral,Low
@@ -5420,7 +5414,7 @@ Where can I withdraw money from?",atm_support,Neutral,Low
 5406,"If I bought something I didn't like, can I get a refund?","If I bought something I didn't like, can I get a refund?",request_refund,Neutral,Low
 5407,I bought something that I need a refund for.,I bought something that I need a refund for.,request_refund,Neutral,Medium
 5408,I want to cancel a purchase,I want to cancel a purchase,request_refund,Neutral,Medium
-5409,Am I able to get a refund for something I bought?,Am I able to get a refund for something I bought?,request_refund,Neutral,Medium
+5409,Am I able to get a refund for something I bought?,Am I able to get a refund for something I bought?,request_refund,Neutral,Low
 5410,"My order hasn't shown up yet, what can I do?","My order hasn't shown up yet, what can I do?",request_refund,Neutral,Medium
 5411,My package is taking too long to arrive and I don't want it anymore. Can I get a refund?,My package is taking too long to arrive and I don't want it anymore. Can I get a refund?,request_refund,Neutral,Medium
 5412,I would like to cancel my order.,I would like to cancel my order.,request_refund,Neutral,Medium
@@ -5432,7 +5426,7 @@ Where can I withdraw money from?",atm_support,Neutral,Low
 5418,Is it possible to get a refund?,Is it possible to get a refund?,request_refund,Neutral,Low
 5419,What's your refund policy if I bought an item from you?,What's your refund policy if I bought an item from you?,request_refund,Neutral,Low
 5420,I want to cancel my purchase,I want to cancel my purchase,request_refund,Neutral,Medium
-5421,Can I get an item refunded?,Can I get an item refunded?,request_refund,Neutral,Medium
+5421,Can I get an item refunded?,Can I get an item refunded?,request_refund,Neutral,Low
 5422,Please help! I need a refund on a transaction on something I bought and I need the refund right away!,Please help! I need a refund on a transaction on something I bought and I need the refund right away!,request_refund,Neutral,High
 5423,I purchased this item and would like a refund,I purchased this item and would like a refund,request_refund,Neutral,Medium
 5424,Hello I changed my mind and really need a refund on one of things I bought recently. Can you please cancel the transaction and get me my money back. Pls it's urgent,Hello I changed my mind and really need a refund on one of things I bought recently. Can you please cancel the transaction and get me my money back. Pls it's urgent,request_refund,Neutral,High
@@ -5481,7 +5475,7 @@ Where can I withdraw money from?",atm_support,Neutral,Low
 5467,"I want a refund, but I haven't received the item yet. Can I cancel it and get my funds back? How do I do that.","I want a refund, but I haven't received the item yet. Can I cancel it and get my funds back? How do I do that.",request_refund,Neutral,Medium
 5468,I'm going to cancel a purchase.,I'm going to cancel a purchase.,request_refund,Neutral,Medium
 5469,Am I able to return an item for a refund?,Am I able to return an item for a refund?,request_refund,Neutral,Low
-5470,How do I go about getting a refund?,How do I go about getting a refund?,request_refund,Neutral,Low
+5470,How do I go about getting a refund?,How do I go about getting a refund?,request_refund,Neutral,Medium
 5471,How can i get a refund for something i just bought?,How can i get a refund for something i just bought?,request_refund,Neutral,Low
 5472,Do you give refunds?,Do you give refunds?,request_refund,Neutral,Low
 5473,tell me how to get a refund for something I bought.,tell me how to get a refund for something I bought.,request_refund,Neutral,Low
@@ -5492,7 +5486,7 @@ Where can I withdraw money from?",atm_support,Neutral,Low
 5478,I want to get a refund.,I want to get a refund.,request_refund,Neutral,Medium
 5479,How do I request a refund?,How do I request a refund?,request_refund,Neutral,Low
 5480,How do I get my refund back?,How do I get my refund back?,request_refund,Neutral,Medium
-5481,Would I be able to refund an item?,Would I be able to refund an item?,request_refund,Neutral,Medium
+5481,Would I be able to refund an item?,Would I be able to refund an item?,request_refund,Neutral,Low
 5482,I want my purchases cancelled.,I want my purchases cancelled.,request_refund,Neutral,Medium
 5483,How can I get a refund for a purchase?,How can I get a refund for a purchase?,request_refund,Neutral,Medium
 5484,"I need to refund my item, can you please help?","I need to refund my item, can you please help?",request_refund,Neutral,Medium
@@ -5532,7 +5526,7 @@ Where can I withdraw money from?",atm_support,Neutral,Low
 5518,How do I return something for a full refund?,How do I return something for a full refund?,request_refund,Neutral,Low
 5519,"I did not receive my purchase, how do I cancel it?","I did not receive my purchase, how do I cancel it?",request_refund,Neutral,Medium
 5520,How does on apply fora refund on an item he ordered? I ordere an item and have not received it yet so i want to cancel it and get a refund,How does on apply fora refund on an item he ordered? I ordere an item and have not received it yet so i want to cancel it and get a refund,request_refund,Neutral,Medium
-5521,Is it possible to get a refund for the item?,Is it possible to get a refund for the item?,request_refund,Neutral,Medium
+5521,Is it possible to get a refund for the item?,Is it possible to get a refund for the item?,request_refund,Neutral,Low
 5522,Can you help me process a refund?,Can you help me process a refund?,request_refund,Neutral,Medium
 5523,Is it possible to refund an item?,Is it possible to refund an item?,request_refund,Neutral,Medium
 5524,I just bought an item and would like to stop payment can you tell me if the item has been sent yet?,I just bought an item and would like to stop payment can you tell me if the item has been sent yet?,request_refund,Neutral,Medium
@@ -5681,7 +5675,7 @@ Where can I withdraw money from?",atm_support,Neutral,Low
 5667,"Why are all my transfers failing?  I have the details right and they won't complete.  I've been trying all day and they still won't go through, this is URGENT, please help.","Why are all my transfers failing?  I have the details right and they won't complete.  I've been trying all day and they still won't go through, this is URGENT, please help.",declined_transfer,Negative,High
 5668,"Declined, transfer not completed.","Declined, transfer not completed.",declined_transfer,Neutral,Medium
 5669,I saw that my transfer was declined.,I saw that my transfer was declined.,declined_transfer,Neutral,Medium
-5670,"Why do you keep declining my transfers? it's always been working really well so far but when I tried to buy something just now the card got declined, I tried couple of times already  but same thing is happening.","Why do you keep declining my transfers? it's always been working really well so far but when I tried to buy something just now the card got declined, I tried couple of times already  but same thing is happening.",declined_transfer,Neutral,Medium
+5670,"Why do you keep declining my transfers? it's always been working really well so far but when I tried to buy something just now the card got declined, I tried couple of times already  but same thing is happening.","Why do you keep declining my transfers? it's always been working really well so far but when I tried to buy something just now the card got declined, I tried couple of times already  but same thing is happening.",declined_transfer,Negative,Medium
 5671,How can I find a way to transfer money without it being rejected?,How can I find a way to transfer money without it being rejected?,declined_transfer,Neutral,Medium
 5672,I have a problem with my account. I tried to transfer some funds and the message came back declined. Can you help me?,I have a problem with my account. I tried to transfer some funds and the message came back declined. Can you help me?,declined_transfer,Neutral,Medium
 5673,Please explain why my transfer attempt was declined. Thank you.,Please explain why my transfer attempt was declined. Thank you.,declined_transfer,Neutral,Medium
@@ -6022,7 +6016,7 @@ Where can I withdraw money from?",atm_support,Neutral,Low
 6008,My payment shows that it is pending will I be charged more money?,My payment shows that it is pending will I be charged more money?,pending_transfer,Neutral,Medium
 6009,Why is my transfer still pending?,Why is my transfer still pending?,pending_transfer,Neutral,Medium
 6010,Tell me why my transfer is pending.,Tell me why my transfer is pending.,pending_transfer,Neutral,Medium
-6011,How long will my transfer be pending for?,How long will my transfer be pending for?,pending_transfer,Neutral,Medium
+6011,How long will my transfer be pending for?,How long will my transfer be pending for?,pending_transfer,Neutral,Low
 6012,"I'm hoping you can answer my question about a pending transfer that I've had for a while now.  I know that all of the account details are correct, so why is it taking so long to go through?","I'm hoping you can answer my question about a pending transfer that I've had for a while now.  I know that all of the account details are correct, so why is it taking so long to go through?",pending_transfer,Neutral,Medium
 6013,How long is a transfer in the pending status?,How long is a transfer in the pending status?,pending_transfer,Neutral,Medium
 6014,Why is it taking so long for my pending transaction to post as cleared?,Why is it taking so long for my pending transaction to post as cleared?,pending_transfer,Neutral,Medium
@@ -6229,7 +6223,7 @@ Where can I withdraw money from?",atm_support,Neutral,Low
 6215,"How do I close my account, since I'm dissatisfied?","How do I close my account, since I'm dissatisfied?",terminate_account,Negative,High
 6216,make my account go away,make my account go away,terminate_account,Neutral,High
 6217,Please help me delete this account.,Please help me delete this account.,terminate_account,Neutral,High
-6218,I would like to delete my account. I'm not happy with the service you're providing,I would like to delete my account. I'm not happy with the service you're providing,terminate_account,Negative,High
+6218,I would like to delete my account. I'm not happy with the service you're providing,I would like to delete my account. I'm not happy with the service you're providing,terminate_account,Negative,Low
 6219,terminate my account please,terminate my account please,terminate_account,Neutral,High
 6220,Your service is bad.  Close my account.,Your service is bad.  Close my account.,terminate_account,Neutral,High
 6221,I'm dissatisfied with the service and would like to terminate the account.,I'm dissatisfied with the service and would like to terminate the account.,terminate_account,Neutral,High
@@ -6240,7 +6234,7 @@ Where can I withdraw money from?",atm_support,Neutral,Low
 6226,I need you to delete my account right now.,I need you to delete my account right now.,terminate_account,Neutral,High
 6227,I want to deactivate my account.,I want to deactivate my account.,terminate_account,Neutral,High
 6228,"This is terrible, i want to delete my account","This is terrible, i want to delete my account",terminate_account,Negative,High
-6229,I'd like my account to be deleted. I'm not satisfied with the service you provide.,I'd like my account to be deleted. I'm not satisfied with the service you provide.,terminate_account,Neutral,High
+6229,I'd like my account to be deleted. I'm not satisfied with the service you provide.,I'd like my account to be deleted. I'm not satisfied with the service you provide.,terminate_account,Negative,Low
 6230,Is it possible to delete the account?,Is it possible to delete the account?,terminate_account,Neutral,High
 6231,I need to close my account.  Your company is terrible!,I need to close my account.  Your company is terrible!,terminate_account,Negative,High
 6232,Tell me how to delete my account.,Tell me how to delete my account.,terminate_account,Neutral,High
@@ -6294,7 +6288,7 @@ Where can I withdraw money from?",atm_support,Neutral,Low
 6280,An ATM machine didn't return my card.,An ATM machine didn't return my card.,card_swallowed,Neutral,Medium
 6281,My card is stuck inside the ATM.,My card is stuck inside the ATM.,card_swallowed,Neutral,Medium
 6282,The bank machine didn't give my card back how do I get a new one fast?,The bank machine didn't give my card back how do I get a new one fast?,card_swallowed,Neutral,Medium
-6283,What should I do if the atm eats my card?,What should I do if the atm eats my card?,card_swallowed,Neutral,Low
+6283,What should I do if the atm eats my card?,What should I do if the atm eats my card?,card_swallowed,Neutral,Medium
 6284,What do I do?  The ATM took my card!,What do I do?  The ATM took my card!,card_swallowed,Neutral,Medium
 6285,The ATM kept my card?,The ATM kept my card?,card_swallowed,Neutral,Medium
 6286,Who do I talk to about the ATM swallowing my card?,Who do I talk to about the ATM swallowing my card?,card_swallowed,Neutral,Medium
@@ -6976,9 +6970,6 @@ Where can I withdraw money from?",atm_support,Neutral,Low
 6962,"I'm in Austria right now, but I really need to change my PIN right now. Can I do this even though I'm in another country?","I'm in Austria right now, but I really need to change my PIN right now. Can I do this even though I'm in another country?",change_pin,Neutral,Low
 6963,How can I alteration my PIN?,How can I alteration my PIN?,change_pin,Neutral,Low
 6964,I want to create a new pin.,I want to create a new pin.,change_pin,Neutral,Low
-6965,"
-Do I need to go to a physical bank to change my PIN?","
-Do I need to go to a physical bank to change my PIN?",change_pin,Neutral,Low
 6966,May I change my PIN?,May I change my PIN?,change_pin,Neutral,Low
 6967,Please help me change my PIN.,Please help me change my PIN.,change_pin,Neutral,Low
 6968,Set a new PIN please.,Set a new PIN please.,change_pin,Neutral,Low
@@ -7068,7 +7059,7 @@ Which cash machines will allow me to change my PIN?",change_pin,Neutral,Low
 7050,"I am getting an error stating my transfer is not possible while transferring money. Let me know the issue as its the first time i am getting error, earlier it used to work.","I am getting an error stating my transfer is not possible while transferring money. Let me know the issue as its the first time i am getting error, earlier it used to work.",beneficiary_not_allowed,Neutral,Medium
 7051,I wasn't able to do a transfer to an account,I wasn't able to do a transfer to an account,beneficiary_not_allowed,Neutral,Medium
 7052,Why would a transfer to an account not be allowed?,Why would a transfer to an account not be allowed?,beneficiary_not_allowed,Neutral,Medium
-7053,why is a transfer to beneficiary not possible?,why is a transfer to beneficiary not possible?,beneficiary_not_allowed,Neutral,Medium
+7053,why is a transfer to beneficiary not possible?,why is a transfer to beneficiary not possible?,beneficiary_not_allowed,Neutral,Low
 7054,Why did my transfer to a beneficiary fail?,Why did my transfer to a beneficiary fail?,beneficiary_not_allowed,Neutral,Medium
 7055,Explain why I can't do a transfer to an account.,Explain why I can't do a transfer to an account.,beneficiary_not_allowed,Neutral,Medium
 7056,Why can't my beneficiary get access?,Why can't my beneficiary get access?,beneficiary_not_allowed,Neutral,Medium
@@ -7140,7 +7131,7 @@ Which cash machines will allow me to change my PIN?",change_pin,Neutral,Low
 7122,Why can't I transfer to an account?,Why can't I transfer to an account?,beneficiary_not_allowed,Neutral,Medium
 7123,I could not transfer funds to a beneficiary; is there a problem with your software?,I could not transfer funds to a beneficiary; is there a problem with your software?,beneficiary_not_allowed,Neutral,Medium
 7124,Why is my beneficiary not working?,Why is my beneficiary not working?,beneficiary_not_allowed,Neutral,Medium
-7125,Why can't you allow my beneficiary?,Why can't you allow my beneficiary?,beneficiary_not_allowed,Neutral,Medium
+7125,Why can't you allow my beneficiary?,Why can't you allow my beneficiary?,beneficiary_not_allowed,Neutral,Low
 7126,My transfer to another account was not allowed. Why is that?,My transfer to another account was not allowed. Why is that?,beneficiary_not_allowed,Neutral,Medium
 7127,Why couldn't I transfer to a beneficiairy?,Why couldn't I transfer to a beneficiairy?,beneficiary_not_allowed,Neutral,Medium
 7128,I couldn't transfer to an account.,I couldn't transfer to an account.,beneficiary_not_allowed,Neutral,Medium
@@ -7266,7 +7257,7 @@ Which cash machines will allow me to change my PIN?",change_pin,Neutral,Low
 7248,Why have I been charged a fee for transferring money?,Why have I been charged a fee for transferring money?,transfer_fee_charged,Neutral,Medium
 7249,Are transfers not free? I didn't know I would be charged for transfers.,Are transfers not free? I didn't know I would be charged for transfers.,transfer_fee_charged,Neutral,Medium
 7250,Why was I charged a fee for transferring money,Why was I charged a fee for transferring money,transfer_fee_charged,Neutral,Medium
-7251,Am I charged a fee to transfer funds?,Am I charged a fee to transfer funds?,transfer_fee_charged,Neutral,Medium
+7251,Am I charged a fee to transfer funds?,Am I charged a fee to transfer funds?,transfer_fee_charged,Neutral,Low
 7252,Can you please explain why I was charged an extra fee for my transfer?,Can you please explain why I was charged an extra fee for my transfer?,transfer_fee_charged,Neutral,Medium
 7253,Someone made a mistake on my money transfer because I was charged extra fees.,Someone made a mistake on my money transfer because I was charged extra fees.,transfer_fee_charged,Neutral,Medium
 7254,"I've use my accounts all the time to manage my payments for my place abroad that I just got. I now see that I suddenly have new fees.I'm a frequent customer, so why are you charging me new fees instead of rewarding me?","I've use my accounts all the time to manage my payments for my place abroad that I just got. I now see that I suddenly have new fees.I'm a frequent customer, so why are you charging me new fees instead of rewarding me?",transfer_fee_charged,Negative,Medium
@@ -8873,7 +8864,7 @@ Which cash machines will allow me to change my PIN?",change_pin,Neutral,Low
 8853,I was the victim of someone stealing my wallet.  My card is being used and it isn't me.  What should I do?,I was the victim of someone stealing my wallet.  My card is being used and it isn't me.  What should I do?,cash_withdrawal_not_recognised,Negative,High
 8854,I think there's been an unauthorized cash withdrawal from my account.,I think there's been an unauthorized cash withdrawal from my account.,cash_withdrawal_not_recognised,Negative,High
 8855,What do I do if I see a cash withdrawal on my account that I don't remember making?,What do I do if I see a cash withdrawal on my account that I don't remember making?,cash_withdrawal_not_recognised,Neutral,Low
-8856,I am seeing inside the App a some cash withdrawal that is not mine,I am seeing inside the App a some cash withdrawal that is not mine,cash_withdrawal_not_recognised,Negative,High
+8856,I am seeing inside the App a some cash withdrawal that is not mine,I am seeing inside the App a some cash withdrawal that is not mine,cash_withdrawal_not_recognised,Neutral,High
 8857,My app shows a money withdrawal that I did not do.,My app shows a money withdrawal that I did not do.,cash_withdrawal_not_recognised,Negative,High
 8858,"I was trying to use my card and it was declined, when I tried to find out what happened I found cash withdraw for Rs 500,000 that I didn't do.  Can you please help figure this out?","I was trying to use my card and it was declined, when I tried to find out what happened I found cash withdraw for Rs 500,000 that I didn't do.  Can you please help figure this out?",cash_withdrawal_not_recognised,Negative,High
 8859,I believe my card has been compromised because of a strange withdrawal,I believe my card has been compromised because of a strange withdrawal,cash_withdrawal_not_recognised,Neutral,High
@@ -8938,7 +8929,7 @@ Which cash machines will allow me to change my PIN?",change_pin,Neutral,Low
 8918,"Someone has access to my card info.  I still have the card, but someone just withdrew cash.  How do I get this corrected/stopped?!","Someone has access to my card info.  I still have the card, but someone just withdrew cash.  How do I get this corrected/stopped?!",cash_withdrawal_not_recognised,Negative,High
 8919,Why is my app showing me taking money that I did not take out?,Why is my app showing me taking money that I did not take out?,cash_withdrawal_not_recognised,Neutral,High
 8920,"I see in the app some cash was withdrawn, but it's not mine.","I see in the app some cash was withdrawn, but it's not mine.",cash_withdrawal_not_recognised,Neutral,High
-8921,There is a withdrawal in my account I didn't make.,There is a withdrawal in my account I didn't make.,cash_withdrawal_not_recognised,Neutral,High
+8921,There is a withdrawal in my account I didn't make.,There is a withdrawal in my account I didn't make.,cash_withdrawal_not_recognised,Negative,High
 8922,What is the strange cash withdrawal on my statement?,What is the strange cash withdrawal on my statement?,cash_withdrawal_not_recognised,Neutral,High
 8923,Why would the app show a withdrawal that I did not make?,Why would the app show a withdrawal that I did not make?,cash_withdrawal_not_recognised,Neutral,High
 8924,I have a cash withdrawal in my statement. Why is that?,I have a cash withdrawal in my statement. Why is that?,cash_withdrawal_not_recognised,Neutral,High
@@ -9103,11 +9094,11 @@ Which cash machines will allow me to change my PIN?",change_pin,Neutral,Low
 9083,Is there a fee to add money to an international card?,Is there a fee to add money to an international card?,top_up_by_card_charge,Neutral,Medium
 9084,Does it cost to add money to my card?,Does it cost to add money to my card?,top_up_by_card_charge,Neutral,Medium
 9085,Do I get charged for a top up from a foreign bank?,Do I get charged for a top up from a foreign bank?,top_up_by_card_charge,Neutral,Medium
-9086,Are their fee's for top ups?,Are their fee's for top ups?,top_up_by_card_charge,Neutral,Medium
+9086,Are their fee's for top ups?,Are their fee's for top ups?,top_up_by_card_charge,Neutral,Low
 9087,Does it cost to top up my card?,Does it cost to top up my card?,top_up_by_card_charge,Neutral,Medium
 9088,how much is the fee for topping by card,how much is the fee for topping by card,top_up_by_card_charge,Neutral,Medium
 9089,What is the fee if I use a foreign bank for a top up?,What is the fee if I use a foreign bank for a top up?,top_up_by_card_charge,Neutral,Medium
-9090,Are there any charges for using a bank card to top up,Are there any charges for using a bank card to top up,top_up_by_card_charge,Neutral,Medium
+9090,Are there any charges for using a bank card to top up,Are there any charges for using a bank card to top up,top_up_by_card_charge,Neutral,Low
 9091,I was wondering if you will take any fees in exchange for top ups?,I was wondering if you will take any fees in exchange for top ups?,top_up_by_card_charge,Neutral,Medium
 9092,Are there any charges for foreign bank card for top up?,Are there any charges for foreign bank card for top up?,top_up_by_card_charge,Neutral,Medium
 9093,Are there still fees for foreign top-ups?,Are there still fees for foreign top-ups?,top_up_by_card_charge,Neutral,Medium
@@ -9290,7 +9281,7 @@ Which cash machines will allow me to change my PIN?",change_pin,Neutral,Low
 9270,I have a new card and need to activate it,I have a new card and need to activate it,activate_my_card,Neutral,Low
 9271,I would like to get help from someone in your customer service department with assisting me with activating my card.,I would like to get help from someone in your customer service department with assisting me with activating my card.,activate_my_card,Neutral,Low
 9272,What are the steps that I need to take to activate a new card?,What are the steps that I need to take to activate a new card?,activate_my_card,Neutral,Low
-9273,I tried activating my card and it didn't work,I tried activating my card and it didn't work,activate_my_card,Neutral,Medium
+9273,I tried activating my card and it didn't work,I tried activating my card and it didn't work,activate_my_card,Neutral,Low
 9274,I need my card to be activated right now.,I need my card to be activated right now.,activate_my_card,Neutral,High
 9275,What information do I need to gather in order to activate my card?,What information do I need to gather in order to activate my card?,activate_my_card,Neutral,Low
 9276,what do i need to have with me to activate card,what do i need to have with me to activate card,activate_my_card,Neutral,Low
@@ -9440,7 +9431,7 @@ Which cash machines will allow me to change my PIN?",change_pin,Neutral,Low
 9420,The bank charged me fees for withdrawing cash!,The bank charged me fees for withdrawing cash!,cash_withdrawal_charge,Neutral,Medium
 9421,Why am I charged a fee for getting cash?,Why am I charged a fee for getting cash?,cash_withdrawal_charge,Neutral,Medium
 9422,I used an ATM and wanted to know why I was charged an extra fee.,I used an ATM and wanted to know why I was charged an extra fee.,cash_withdrawal_charge,Neutral,Medium
-9423,Is there a fee for a cash withdrawal?,Is there a fee for a cash withdrawal?,cash_withdrawal_charge,Neutral,Medium
+9423,Is there a fee for a cash withdrawal?,Is there a fee for a cash withdrawal?,cash_withdrawal_charge,Neutral,Low
 9424,"I was charged a fee when withdrawing cash, can you explain why?","I was charged a fee when withdrawing cash, can you explain why?",cash_withdrawal_charge,Neutral,Medium
 9425,"I received a fee for obtaining cash, is this correct?","I received a fee for obtaining cash, is this correct?",cash_withdrawal_charge,Neutral,Medium
 9426,Today I noticed a charge for an ATM withdrawal on my account. Can you please fix this? It's supposed to be no charge.,Today I noticed a charge for an ATM withdrawal on my account. Can you please fix this? It's supposed to be no charge.,cash_withdrawal_charge,Neutral,Medium
@@ -9696,7 +9687,7 @@ Which cash machines will allow me to change my PIN?",change_pin,Neutral,Low
 9676,Can I top up using my apple watch?,Can I top up using my apple watch?,apple_pay_or_google_pay,Neutral,Low
 9677,Why is top up not working for my apple pay app,Why is top up not working for my apple pay app,apple_pay_or_google_pay,Neutral,Low
 9678,Can I use Apple Pay to top-up?,Can I use Apple Pay to top-up?,apple_pay_or_google_pay,Neutral,Low
-9679,Why doesn't my Google pay top up work?,Why doesn't my Google pay top up work?,apple_pay_or_google_pay,Neutral,Low
+9679,Why doesn't my Google pay top up work?,Why doesn't my Google pay top up work?,apple_pay_or_google_pay,Neutral,Medium
 9680,How can I set up Google Pay on my device?,How can I set up Google Pay on my device?,apple_pay_or_google_pay,Neutral,Low
 9681,Can you show me how to top up with Google play?,Can you show me how to top up with Google play?,apple_pay_or_google_pay,Neutral,Low
 9682,I seem to be having trouble with my Google Pay Top. Can you please help?,I seem to be having trouble with my Google Pay Top. Can you please help?,apple_pay_or_google_pay,Neutral,Medium

@@ -1466,9 +1466,6 @@ What businesses accept this card?",card_acceptance,Neutral,Low
 1458,At what ATMS am I able to use the card?,At what ATMS am I able to use the card?,atm_support,Neutral,Low
 1459,Can I use my card at any ATMs?,Can I use my card at any ATMs?,atm_support,Neutral,Low
 1460,Can I get cash with this card anywhere?,Can I get cash with this card anywhere?,atm_support,Neutral,Low
-1461,"
-Which ATMs accept this card?","
-Which ATMs accept this card?",atm_support,Neutral,Low
 1462,Can someone please assist me with finding my nearest ATM?,Can someone please assist me with finding my nearest ATM?,atm_support,Neutral,Low
 1463,Are there any ATM machines near me?,Are there any ATM machines near me?,atm_support,Neutral,Low
 1464,Where is the nearest bank machine?,Where is the nearest bank machine?,atm_support,Neutral,Low
@@ -2838,7 +2835,7 @@ Which ATMs accept this card?",atm_support,Neutral,Low
 2828,"I need to use a foreign card for a top up, what will the charge be?","I need to use a foreign card for a top up, what will the charge be?",top_up_by_card_charge,Neutral,Medium
 2829,Is it okay to use a bank card to top up,Is it okay to use a bank card to top up,top_up_by_card_charge,Neutral,Medium
 2830,Any fee for topping up?,Any fee for topping up?,top_up_by_card_charge,Neutral,Medium
-2831,Are there any fees for top ups?,Are there any fees for top ups?,top_up_by_card_charge,Neutral,Medium
+2831,Are there any fees for top ups?,Are there any fees for top ups?,top_up_by_card_charge,Neutral,Low
 2832,What are the fees of using an international card to add money?,What are the fees of using an international card to add money?,top_up_by_card_charge,Neutral,Medium
 2833,Is there a charge or discount if I use a foreign bank in a top up?,Is there a charge or discount if I use a foreign bank in a top up?,top_up_by_card_charge,Neutral,Medium
 2834,Is their a fee for top ups?,Is their a fee for top ups?,top_up_by_card_charge,Neutral,Medium

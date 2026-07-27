@@ -29,7 +29,7 @@ id,text_en,text,category,sentiment,priority
 27,"I'm still waiting for delivery of my new card, why is it taking so long?","මම තාම මගේ අලුත් කාඩ් එකේ ඩිලිවරි එක බලාගෙන ඉන්නවා, ඇයි මේ තරම් වෙලා යන්නේ?",card_arrival,Neutral,Low
 28,"I ordered a card a week ago, and it's still not here. What do I do?","මම කාඩ් එකක් ඕඩර් කරලා සතියක් වුනා, තාම එකේ නෑ. මම මොකද කරන්න ඕනේ?",card_arrival,Neutral,Low
 29,i want to track the card you sent,ඔයාලා එවපු කාඩ් එක ට්‍රැක් කරන්න මට ඕනේ,card_arrival,Neutral,Low
-30,My card hasn't arrived yet.,මගේ කාඩ් එක තාම ආවේ නෑ.,card_arrival,Neutral,Low
+30,My card hasn't arrived yet.,මගේ කාඩ් එක තාම ලැබිලා නෑ.,card_arrival,Neutral,Low
 31,I was expecting my new card and am wondering why I haven't received it yet?,"මම මගේ අලුත් කාඩ් එක බලාගෙන හිටියා, තාම ලැබුනේ නැත්තේ ඇයි කියලා හිතෙනවා?",card_arrival,Neutral,Low
 32,How do I know when my card will arrive?,මගේ කාඩ් එක එන්නේ කවදද කියලා දැනගන්නේ කොහොමද?,card_arrival,Neutral,Low
 33,I'm still waiting on my card to be delivered.,මම තාම මගේ කාඩ් එක ඩිලිවර් වෙනකන් බලාගෙන ඉන්නවා.,card_arrival,Neutral,Low
@@ -112,7 +112,7 @@ id,text_en,text,category,sentiment,priority
 110,Where did your guys exchange rates come from?,ඔයාලගේ එක්ස්චේන්ජ් රේට් ආවේ කොහෙන්ද?,exchange_rate,Neutral,Low
 111,How are you determining your exchange rates?,ඔයාලා එක්ස්චේන්ජ් රේට් තීරණය කරන්නේ කොහොමද?,exchange_rate,Neutral,Low
 112,I'm trying to figure out the current exchange rate.,මම දැන් තියෙන එක්ස්චේන්ජ් රේට් එක හොයාගන්න හදනවා.,exchange_rate,Neutral,Low
-113,From where are you getting your exchange rates?,ඔයාලගේ එක්ස්චේන්ජ් රේට් ගන්නේ කොහෙන්ද?,exchange_rate,Neutral,Low
+113,From where are you getting your exchange rates?,ඔයාලගේ එක්ස්චේන්ජ් රේට් ලබාගන්නේ කොහෙන්ද?,exchange_rate,Neutral,Low
 114,Can you tell me the foreign exchange rate?,විදේශ එක්ස්චේන්ජ් රේට් එක මට කියන්නකෝ?,exchange_rate,Neutral,Low
 115,why do your exchange rates change,ඔයාලගේ එක්ස්චේන්ජ් රේට් වෙනස් වෙන්නේ ඇයි,exchange_rate,Neutral,Low
 116,What kind of foreign exchange rate will I get when I exchange my money?,මම මගේ සල්ලි එක්ස්චේන්ජ් කරද්දි මොන වගේ විදේශ එක්ස්චේන්ජ් රේට් එකක් ලැබෙයිද?,exchange_rate,Neutral,Low
@@ -270,7 +270,7 @@ id,text_en,text,category,sentiment,priority
 268,I want to make a currency exchange to EU.,මට EU වලට කරන්සි exchange එකක් කරන්න ඕනේ.,fiat_currency_support,Neutral,Low
 269,Can I exchange and hold all fiat currencies?,මට හැම fiat කරන්සියක්ම exchange කරලා තියාගන්න පුළුවන්ද?,fiat_currency_support,Neutral,Low
 270,What kind of currency can I hold money in?,මට මොන වගේ කරන්සියකින් සල්ලි තියාගන්න පුළුවන්ද?,fiat_currency_support,Neutral,Low
-271,Can I exchange currencies?,මට කරන්සි exchange කරන්න පුළුවන්ද?,fiat_currency_support,Neutral,Low
+271,Can I exchange currencies?,මට කරන්සි exchange කරගන්න පුළුවන්ද?,fiat_currency_support,Neutral,Low
 272,Do you work with all fiat currencies?,ඔයාලා හැම fiat කරන්සියක් එක්කම වැඩ කරනවද?,fiat_currency_support,Neutral,Low
 273,Can I hold money in multiple currencies?,මට කරන්සි කීපයකින් සල්ලි තියාගන්න පුළුවන්ද?,fiat_currency_support,Neutral,Low
 274,How man currencies can I hold?,මට කරන්සි කීයක් තියාගන්න පුළුවන්ද?,fiat_currency_support,Neutral,Low
@@ -288,7 +288,7 @@ id,text_en,text,category,sentiment,priority
 286,How long will it take to deliver something to US?,US එකට දෙයක් ඩිලිවර් කරන්න කොච්චර වෙලා යනවද?,card_delivery_estimate,Neutral,Low
 287,"I live in the US, how long will it take for delivery?","මම ඉන්නේ US එකේ, ඩිලිවරි එකට කොච්චර වෙලා යනවද?",card_delivery_estimate,Neutral,Low
 288,When can I expect my card to be delivered to the US?,මගේ කාඩ් එක US එකට ඩිලිවර් වෙන්නේ කවදද කියලා බලාපොරොත්තු වෙන්නද?,card_delivery_estimate,Neutral,Low
-289,I need my card quickly,මට කාඩ් එක ඉක්මනට ඕනේ,card_delivery_estimate,Neutral,Low
+289,I need my card quickly,මට කාඩ් එක ඉක්මනින්ම ඕනේ,card_delivery_estimate,Neutral,Low
 290,Does delivery to the US take long?,US එකට ඩිලිවරි එකට වෙලා යනවද?,card_delivery_estimate,Neutral,Low
 291,How long will it take to arrive?,ඒක එන්න කොච්චර වෙලා යනවද?,card_delivery_estimate,Neutral,Low
 292,Can I have my card delivered on a specific day?,මගේ කාඩ් එක නිශ්චිත දවසකට ඩිලිවර් කරගන්න පුළුවන්ද?,card_delivery_estimate,Neutral,Low
@@ -312,7 +312,7 @@ id,text_en,text,category,sentiment,priority
 310,I need my card to come as soon as possible.,මට කාඩ් එක පුළුවන් තරම් ඉක්මනට ඕනේ.,card_delivery_estimate,Neutral,High
 311,When can I expect to receive my new card?,මගේ අලුත් කාඩ් එක ලැබෙන්නේ කවදද කියලා බලාපොරොත්තු වෙන්නද?,card_delivery_estimate,Neutral,Low
 312,I am waiting for my card to arrive.,මම මගේ කාඩ් එක එනකන් බලාගෙන ඉන්නවා.,card_delivery_estimate,Neutral,Low
-313,I need my card as soon as possible.,මට කාඩ් එක පුළුවන් තරම් ඉක්මනට ඕනේ.,card_delivery_estimate,Neutral,High
+313,I need my card as soon as possible.,මට කාඩ් එක ඉක්මනටම ඕනේ.,card_delivery_estimate,Neutral,High
 314,I need it delivered by Saturday.,මට ඒක සෙනසුරාදට කලින් ඕනේ.,card_delivery_estimate,Neutral,Low
 315,What's the U.S. Delivery time?,U.S. ඩිලිවරි කාලය මොකක්ද?,card_delivery_estimate,Neutral,Low
 316,When will my card arrive?,මගේ කාඩ් එක එන්නේ කවදද?,card_delivery_estimate,Neutral,Low
@@ -351,7 +351,7 @@ id,text_en,text,category,sentiment,priority
 349,I've tried looking for the auto-top up option on your website and I can't seem to find it. Can you help me?,"මම ඔයාලගේ වෙබ්සයිට් එකේ auto-top up option එක හොයන්න හැදුවා, ඒත් හොයාගන්න බෑ වගේ. උදව් කරන්නකෝ?",automatic_top_up,Neutral,Low
 350,how do I top up my money automatically,මගේ සල්ලි automatic ව top up කරන්නේ කොහොමද,automatic_top_up,Neutral,Low
 351,Can I be topped up once I hit a certain balance?,මම නිශ්චිත balance එකකට යනකොට top up වෙන්න පුළුවන්ද?,automatic_top_up,Neutral,Low
-352,Will it automatically top-up if there isn't much money left?,සල්ලි ටිකක් ඉතුරු ඉන්නකොට ඒක automatic ව top-up වෙනවද?,automatic_top_up,Neutral,Low
+352,Will it automatically top-up if there isn't much money left?,සල්ලි ටික ඉතුරු වෙනකොට ඒක automatic ව top-up වෙනවද?,automatic_top_up,Neutral,Low
 353,Is there any way to Auto top-up?,Auto top-up කරන්න විදියක් තියෙනවද?,automatic_top_up,Neutral,Low
 354,Can you explain where I can find the auto-top option?,auto-top option එක හොයාගන්නේ කොහෙන්ද කියලා පැහැදිලි කරන්නකෝ?,automatic_top_up,Neutral,Low
 355,What is the auto top up function and where can I find that at?,"auto top up function එක මොකක්ද, ඒක හොයාගන්නේ කොහෙන්ද?",automatic_top_up,Neutral,Low
@@ -374,10 +374,10 @@ id,text_en,text,category,sentiment,priority
 372,Help me.  My card doesn't work.,මට උදව් කරන්න. මගේ කාඩ් එක වැඩ කරන්නේ නෑ.,card_not_working,Neutral,Medium
 373,Can a card stop working?,කාඩ් එකක් වැඩ කිරීම නවත්තන්න පුළුවන්ද?,card_not_working,Neutral,Low
 374,I think my card is broken,මගේ කාඩ් එක කැඩිලා කියලා මට හිතෙනවා,card_not_working,Neutral,Medium
-375,Why isn't my card working?,මගේ කාඩ් එක වැඩ කරන්නේ නැත්තේ ඇයි?,card_not_working,Neutral,Medium
+375,Why isn't my card working?,මගේ කාඩ් එක ඇයි වැඩ කරන්නේ නැත්තේ?,card_not_working,Neutral,Medium
 376,My card isn't working anymore.,මගේ කාඩ් එක තව වැඩ කරන්නේ නෑ.,card_not_working,Neutral,Medium
 377,My card was declined today when eating and I need to know what's wrong.,"අද කන්න ගිය වෙලාවේ මගේ කාඩ් එක decline වුනා, මොකද වැරදිලා තියෙන්නේ කියලා දැනගන්න ඕනේ.",card_not_working,Neutral,Medium
-378,My card doesn't work.,මගේ කාඩ් එක වැඩ කරන්නේ නෑ.,card_not_working,Neutral,Medium
+378,My card doesn't work.,මගේ කාඩ් එක වැඩ වෙන්නේ නෑ.,card_not_working,Neutral,Medium
 379,How can I resolve a problem where my card won't go through at all?,මගේ කාඩ් එක කිසිසේත් go through නොවෙන ප්‍රොබ්ලම් එක resolve කරන්නේ කොහොමද?,card_not_working,Neutral,Medium
 380,My actual card isn't working.,මගේ actual කාඩ් එක වැඩ කරන්නේ නෑ.,card_not_working,Neutral,Medium
 381,Is my card broken?,මගේ කාඩ් එක කැඩිලාද?,card_not_working,Neutral,Medium
@@ -388,9 +388,9 @@ id,text_en,text,category,sentiment,priority
 386,My card stopped working when I use it,මම පාවිච්චි කරද්දි මගේ කාඩ් එක වැඩ කිරීම නැවැත්තුවා,card_not_working,Neutral,Medium
 387,I can't use my card.,මට මගේ කාඩ් එක පාවිච්චි කරන්න බෑ.,card_not_working,Neutral,Medium
 388,Need help with my card. It's not working.,මගේ කාඩ් එකට උදව් ඕනේ. ඒක වැඩ කරන්නේ නෑ.,card_not_working,Neutral,Medium
-389,I cannot use my card.,මට මගේ කාඩ් එක පාවිච්චි කරන්න බෑ.,card_not_working,Neutral,Medium
+389,I cannot use my card.,මට මගේ කාඩ් එක පාවිච්චි කරගන්න බෑ.,card_not_working,Neutral,Medium
 390,The card I've got seems to be broken.,මගේ ළඟ තියෙන කාඩ් එක කැඩිලා වගේ.,card_not_working,Neutral,Medium
-391,My card isn't working,මගේ කාඩ් එක වැඩ කරන්නේ නෑ,card_not_working,Neutral,Medium
+391,My card isn't working,මගේ කාඩ් එක වැඩ වෙන්නේ නෑ,card_not_working,Neutral,Medium
 392,My card suddenly quit working.,මගේ කාඩ් එක එකපාරටම වැඩ කිරීම නැවැත්තුවා.,card_not_working,Neutral,Medium
 393,I have tried to use my card several times and it does not work.,"මම මගේ කාඩ් එක කීප වතාවක්ම පාවිච්චි කරන්න හැදුවා, වැඩ කරන්නේ නෑ.",card_not_working,Neutral,Medium
 394,The card I have doesn't work.,මගේ ළඟ තියෙන කාඩ් එක වැඩ කරන්නේ නෑ.,card_not_working,Neutral,Medium
@@ -435,7 +435,7 @@ id,text_en,text,category,sentiment,priority
 433,Is there currency exchange on this app?,මේ ඇප් එකේ කරන්සි එක්ස්චේන්ජ් එකක් තියෙනවද?,exchange_via_app,Neutral,Low
 434,Can I change my currency from USD to EUR?,මගේ කරන්සිය USD එකෙන් EUR එකට මාරු කරන්න පුළුවන්ද?,exchange_via_app,Neutral,Low
 435,"I think I want USD and not LKR, can you help?","මට ඕනේ USD කියලා හිතෙනවා, LKR නෙවෙයි, උදව් කරන්නකෝ?",exchange_via_app,Neutral,Low
-436,How do I exchange currency?,කරන්සි එක්ස්චේන්ජ් කරන්නේ කොහොමද?,exchange_via_app,Neutral,Low
+436,How do I exchange currency?,කරන්සි එක්ස්චේන්ජ් කරගන්නේ කොහොමද?,exchange_via_app,Neutral,Low
 437,Can I use this app to change USD into euros?,මට මේ ඇප් එක පාවිච්චි කරලා USD එක euros වලට මාරු කරගන්න පුළුවන්ද?,exchange_via_app,Neutral,Low
 438,Can I exchange currencies with my account?,මගේ account එකෙන් කරන්සි එක්ස්චේන්ජ් කරගන්න පුළුවන්ද?,exchange_via_app,Neutral,Low
 439,I would like to exchange currencies,මට කරන්සි එක්ස්චේන්ජ් කරගන්න ඕනේ,exchange_via_app,Neutral,Low
@@ -487,7 +487,7 @@ id,text_en,text,category,sentiment,priority
 485,How do I go about setting up an account for my daughter?,මගේ දුවට account එකක් set කරන්නේ කොහොමද?,age_limit,Neutral,Low
 486,Is there an age minimum?,අඩුම වයස ලිමිට් එකක් තියෙනවද?,age_limit,Neutral,Low
 487,What is the youngest age in order to have an account?,account එකක් තියාගන්න පුළුවන් අඩුම වයස මොකක්ද?,age_limit,Neutral,Low
-488,What age do I have to be?,මට කොච්චර වයසක් ඉන්න ඕනේද?,age_limit,Neutral,Low
+488,What age do I have to be?,මගේ වයස කීයක් ඉන්න ඕනේද?,age_limit,Neutral,Low
 489,Can my daughter open an account?,මගේ දුවට account එකක් open කරන්න පුළුවන්ද?,age_limit,Neutral,Low
 490,What is the minimum age to open an account?,account එකක් open කරන්න අඩුම වයස මොකක්ද?,age_limit,Neutral,Low
 491,What is the minimum age?,අඩුම වයස මොකක්ද?,age_limit,Neutral,Low
@@ -501,21 +501,21 @@ id,text_en,text,category,sentiment,priority
 499,If my kids wanted to use your service how old would they have to be?,මගේ ළමයින්ට ඔයාලගේ service එක පාවිච්චි කරන්න ඕනේ නම් ඒගොල්ලන්ට කොච්චර වයසක් ඉන්න ඕනේද?,age_limit,Neutral,Low
 500,Can my 19 year old daughter open a savings account at the bank?,මගේ වයස 19 දුවට බැංකුවේ savings account එකක් open කරන්න පුළුවන්ද?,age_limit,Neutral,Low
 501,How old do you have to be to get an account?,account එකක් ගන්න කොච්චර වයසක් ඉන්න ඕනේද?,age_limit,Neutral,Low
-502,What's the minimum age for opening an account?,account එකක් open කරන්න අඩුම වයස මොකක්ද?,age_limit,Neutral,Low
+502,What's the minimum age for opening an account?,account එකක් open කරන්න ඕන අඩුම වයස කීයද?,age_limit,Neutral,Low
 503,"I would like an account for my children, how do I go about doing this?","මගේ ළමයින්ට account එකක් ඕනේ, ඒක කරන්නේ කොහොමද?",age_limit,Neutral,Low
 504,Can my children have their own account?,මගේ ළමයින්ට තමන්ගේම account එකක් තියාගන්න පුළුවන්ද?,age_limit,Neutral,Low
-505,Is it possible to open an account for my children?,මගේ ළමයින්ට account එකක් open කරන්න පුළුවන්ද?,age_limit,Neutral,Low
+505,Is it possible to open an account for my children?,මගේ ළමයින්ට account එකක් open කරගන්න පුළුවන්ද?,age_limit,Neutral,Low
 506,Do my kids have to be a certain age to use this service?,මේ service එක පාවිච්චි කරන්න මගේ ළමයින්ට නිශ්චිත වයසක් ඉන්න ඕනේද?,age_limit,Neutral,Low
 507,How old do you have to be to be able to open an account?,account එකක් open කරන්න පුළුවන් වෙන්න කොච්චර වයසක් ඉන්න ඕනේද?,age_limit,Neutral,Low
 508,Is there an age limit?,වයස ලිමිට් එකක් තියෙනවද?,age_limit,Neutral,Low
 509,What are the age requirements for opening an account?,account එකක් open කරන්න වයස requirements මොනවද?,age_limit,Neutral,Low
 510,will i be able to open an account for my daughter,මට මගේ දුවට account එකක් open කරන්න පුළුවන්ද,age_limit,Neutral,Low
-511,How old do I need to be to open an account?,account එකක් open කරන්න මට කොච්චර වයසක් ඉන්න ඕනේද?,age_limit,Neutral,Low
+511,How old do I need to be to open an account?,account එකක් open කරන්න මට ඉන්න ඕන වයස කීයද?,age_limit,Neutral,Low
 512,What age can sign up for services?,services වලට sign up කරන්න පුළුවන් වයස මොකක්ද?,age_limit,Neutral,Low
 513,How old do my kids have to be to use your service?,ඔයාලගේ service එක පාවිච්චි කරන්න මගේ ළමයින්ට කොච්චර වයසක් ඉන්න ඕනේද?,age_limit,Neutral,Low
 514,What age do my kids need to be to use your service?,ඔයාලගේ service එක පාවිච්චි කරන්න මගේ ළමයින්ට ඕනේ වයස මොකක්ද?,age_limit,Neutral,Low
 515,How old do my children need to be to open an account?,account එකක් open කරන්න මගේ ළමයින්ට කොච්චර වයසක් ඉන්න ඕනේද?,age_limit,Neutral,Low
-516,How old does my kids need to be to open an account?,account එකක් open කරන්න මගේ ළමයින්ට කොච්චර වයසක් ඉන්න ඕනේද?,age_limit,Neutral,Low
+516,How old does my kids need to be to open an account?,account එකක් open කරන්න මගේ ළමයින්ට ඉන්න ඕන වයස කීයද?,age_limit,Neutral,Low
 517,How young can someone be in order to open an account?,account එකක් open කරන්න පුළුවන් අඩුම වයස කීයද?,age_limit,Neutral,Low
 518,What is the youngest someone can be to open an account?,account එකක් open කරන්න පුළුවන් අඩුම වයස මොකක්ද?,age_limit,Neutral,Low
 519,How old does one have to be to have an account with the bank?,බැංකුවේ account එකක් තියාගන්න කොච්චර වයසක් ඉන්න ඕනේද?,age_limit,Neutral,Low
@@ -739,10 +739,10 @@ Where can I get my PIN unblocked?",මගේ PIN එක unblock කරගන්�
 736,Tell me if there are any top-up limits?,top-up limits තියෙනවද කියලා කියන්නකෝ?,top_up_limits,Neutral,Low
 737,How can I top-up my limit?,මගේ limit එක top-up කරන්නේ කොහොමද?,top_up_limits,Neutral,Low
 738,Is there a limit to top-ups?,top-ups වලට limit එකක් තියෙනවද?,top_up_limits,Neutral,Low
-739,Can I top-up as much as I want?,මට ඕනේ තරම් top-up කරන්න පුළුවන්ද?,top_up_limits,Neutral,Low
+739,Can I top-up as much as I want?,මට ඕන ගාණකට top-up කරන්න පුළුවන්ද?,top_up_limits,Neutral,Low
 740,Can you tell me the limits for top ups?,top ups වලට limits මොනවද කියලා කියන්නකෝ?,top_up_limits,Neutral,Low
 741,When I top up what are the amoutn limits.,මම top up කරද්දි amount limits මොනවද.,top_up_limits,Neutral,Low
-742,Is there a limit on top-ups?,top-ups වලට limit එකක් තියෙනවද?,top_up_limits,Neutral,Low
+742,Is there a limit on top-ups?,top-ups කරන්න limit එකක් තියෙනවද?,top_up_limits,Neutral,Low
 743,What is the top-ups limit?,top-ups limit එක මොකක්ද?,top_up_limits,Neutral,Low
 744,Are there limits to top-ups?,top-ups වලට limits තියෙනවද?,top_up_limits,Neutral,Low
 745,Is there a maximum amount of top-ups?,top-ups වලට maximum amount එකක් තියෙනවද?,top_up_limits,Neutral,Low
@@ -750,11 +750,11 @@ Where can I get my PIN unblocked?",මගේ PIN එක unblock කරගන්�
 747,What's the top up limit?,top up limit එක මොකක්ද?,top_up_limits,Neutral,Low
 748,What is the limit to top-up?,top-up එකට limit එක මොකක්ද?,top_up_limits,Neutral,Low
 749,How much can I top-up to my card at a time?,එකපාරකට මගේ කාඩ් එකට කීයක් top-up කරන්න පුළුවන්ද?,top_up_limits,Neutral,Low
-750,how much can i top up?,මට කීයක් top up කරන්න පුළුවන්ද?,top_up_limits,Neutral,Low
+750,how much can i top up?,මට top up කරන්න පුළුවන් උපරිම ගාණ කීයද?,top_up_limits,Neutral,Low
 751,what is the most i can top up?,මට top up කරන්න පුළුවන් වැඩිම ගාන කීයද?,top_up_limits,Neutral,Low
 752,Is there a limit to how high I can top-up?,මට top-up කරන්න පුළුවන් ලොකුම amount එකට limit එකක් තියෙනවද?,top_up_limits,Neutral,Low
 753,Is there an amount limit to my top-up?,මගේ top-up එකට amount limit එකක් තියෙනවද?,top_up_limits,Neutral,Low
-754,Is there a limit for top-ups?,top-ups වලට limit එකක් තියෙනවද?,top_up_limits,Neutral,Low
+754,Is there a limit for top-ups?,top-ups වලට limit එකක් තියෙනවද කියලා දැනගන්න ඕනේ,top_up_limits,Neutral,Low
 755,Is there a maximum i can top up?,මට top up කරන්න පුළුවන් maximum එකක් තියෙනවද?,top_up_limits,Neutral,Low
 756,How can I tell if there is a top-up limit?,top-up limit එකක් තියෙනවද කියලා දැනගන්නේ කොහොමද?,top_up_limits,Neutral,Low
 757,Do you have any restrictions to my top-up?,මගේ top-up එකට restrictions තියෙනවද?,top_up_limits,Neutral,Low
@@ -917,9 +917,9 @@ Where can I get my PIN unblocked?",මගේ PIN එක unblock කරගන්�
 914,Is my currency okay to add money with?,මගේ කරන්සිය සල්ලි add කරන්න හරිද?,supported_cards_and_currencies,Neutral,Low
 915,What cards and currencies will suffice?,මොන cards සහ currencies ප්‍රමාණවත්ද?,supported_cards_and_currencies,Neutral,Low
 916,How can I use American Express to add funds to my account?,account එකට funds add කරන්න American Express පාවිච්චි කරන්නේ කොහොමද?,supported_cards_and_currencies,Neutral,Low
-917,What cards and currencies are supported?,support වෙන cards සහ currencies මොනවද?,supported_cards_and_currencies,Neutral,Low
+917,What cards and currencies are supported?,support වෙන cards සහ currencies ලැයිස්තුව මොකක්ද?,supported_cards_and_currencies,Neutral,Low
 918,What currencies or cards do you support for topping up?,top up කරන්න ඔයාලා support කරන currencies හෝ cards මොනවද?,supported_cards_and_currencies,Neutral,Low
-919,Which cards and currencies do you support?,ඔයාලා support කරන cards සහ currencies මොනවද?,supported_cards_and_currencies,Neutral,Low
+919,Which cards and currencies do you support?,ඔයාලා support කරන cards සහ currencies මොනවද කියලා දැනගන්න ඕනේ,supported_cards_and_currencies,Neutral,Low
 920,Where can I obtain my virtual card?,මගේ virtual card එක ලබාගන්නේ කොහෙන්ද?,getting_virtual_card,Neutral,Low
 921,How do you get a virtual card?,virtual card එකක් ලබාගන්නේ කොහොමද?,getting_virtual_card,Neutral,Low
 922,Where can I find a virtual card?,virtual card එකක් හොයාගන්නේ කොහෙද?,getting_virtual_card,Neutral,Low
@@ -929,7 +929,7 @@ Where can I get my PIN unblocked?",මගේ PIN එක unblock කරගන්�
 926,Can you tell me how to order a virtual card?,virtual card එකක් ඕඩර් කරන්නේ කොහොමද කියලා කියන්නකෝ?,getting_virtual_card,Neutral,Low
 927,Where is the virtual card?,virtual card එක කොහෙද?,getting_virtual_card,Neutral,Low
 928,what is the virtual card,virtual card එක කියන්නේ මොකක්ද,getting_virtual_card,Neutral,Low
-929,how do i get a virtual card?,virtual card එකක් ලබාගන්නේ කොහොමද?,getting_virtual_card,Neutral,Low
+929,how do i get a virtual card?,virtual card එකක් ගන්නේ කොහොමද?,getting_virtual_card,Neutral,Low
 930,Where do I order a virtual card from?,virtual card එකක් ඕඩර් කරන්නේ කොහෙන්ද?,getting_virtual_card,Neutral,Low
 931,Why did I not get a virtual card yet?,මට තාම virtual card එකක් ලැබුනේ නැත්තේ ඇයි?,getting_virtual_card,Neutral,Low
 932,How can I order virtual cards?,virtual cards ඕඩර් කරන්නේ කොහොමද?,getting_virtual_card,Neutral,Low
@@ -940,7 +940,7 @@ Where can I get my PIN unblocked?",මගේ PIN එක unblock කරගන්�
 937,help me obtain a virtual card,virtual card එකක් ලබාගන්න මට උදව් කරන්න,getting_virtual_card,Neutral,Low
 938,Where is the virtual card located?,virtual card එක තියෙන්නේ කොහෙද?,getting_virtual_card,Neutral,Low
 939,Where can I order a virtual card?,virtual card එකක් ඕඩර් කරන්නේ කොහෙද?,getting_virtual_card,Neutral,Low
-940,Where do I obtain my virtual card?,මගේ virtual card එක ලබාගන්නේ කොහෙන්ද?,getting_virtual_card,Neutral,Low
+940,Where do I obtain my virtual card?,මගේ virtual card එක ගන්නේ කොහෙන්ද?,getting_virtual_card,Neutral,Low
 941,I want a virtual card!,මට virtual card එකක් ඕනේ!,getting_virtual_card,Neutral,Low
 942,I want one of those virtual cards!,මට ඒ virtual cards වලින් එකක් ඕනේ!,getting_virtual_card,Neutral,Low
 943,Are virtual cards available to get?,virtual cards ලබාගන්න available ද?,getting_virtual_card,Neutral,Low
@@ -985,7 +985,7 @@ What businesses accept this card?",මේ කාඩ් එක accept කරන b
 980,What stores will take my credit card as payment?,payment විදියට මගේ credit card එක ගන්න stores මොනවද?,card_acceptance,Neutral,Low
 981,Is there any place I cannot use my card?,මට මගේ කාඩ් එක පාවිච්චි කරන්න බැරි තැනක් තියෙනවද?,card_acceptance,Neutral,Low
 982,Will I be able to use my card anywhere?,මට ඕනම තැනක මගේ කාඩ් එක පාවිච්චි කරන්න පුළුවන්ද?,card_acceptance,Neutral,Low
-983,Is my card usable anywhere?,මගේ කාඩ් එක ඕනම තැනක පාවිච්චි කරන්න පුළුවන්ද?,card_acceptance,Neutral,Low
+983,Is my card usable anywhere?,මගේ කාඩ් එක ඕන තැනක පාවිච්චි කරන්න පුළුවන්ද?,card_acceptance,Neutral,Low
 984,Is it acceptable to use my card anywhere?,ඕනම තැනක මගේ කාඩ් එක පාවිච්චි කරන්න හරිද?,card_acceptance,Neutral,Low
 985,Can I use my card everywhere?,මට හැම තැනකම මගේ කාඩ් එක පාවිච්චි කරන්න පුළුවන්ද?,card_acceptance,Neutral,Low
 986,Where is my card accepted?,මගේ කාඩ් එක accept වෙන්නේ කොහෙද?,card_acceptance,Neutral,Low
@@ -996,7 +996,7 @@ What businesses accept this card?",මේ කාඩ් එක accept කරන b
 991,Can I make online purchases with my card?,මට මගේ කාඩ් එකෙන් online purchases කරන්න පුළුවන්ද?,card_acceptance,Neutral,Low
 992,Does every place of business accept this card?,හැම business තැනකම මේ කාඩ් එක accept කරනවද?,card_acceptance,Neutral,Low
 993,What places will accept my card?,මගේ කාඩ් එක accept කරන තැන් මොනවද?,card_acceptance,Neutral,Low
-994,Can I use my card anywere?,මට ඕනම තැනක මගේ කාඩ් එක පාවිච්චි කරන්න පුළුවන්ද?,card_acceptance,Neutral,Low
+994,Can I use my card anywere?,මගේ කාඩ් එක ඕනම තැනක පාවිච්චි කරන්න පුළුවන්ද?,card_acceptance,Neutral,Low
 995,Will any business take this card?,ඕනම business එකක් මේ කාඩ් එක ගන්නවද?,card_acceptance,Neutral,Low
 996,Will filling stations accept my card?,filling stations මගේ කාඩ් එක accept කරනවද?,card_acceptance,Neutral,Low
 997,Where am I able to use the card?,මට කාඩ් එක පාවිච්චි කරන්න පුළුවන් කොහෙද?,card_acceptance,Neutral,Low
@@ -1191,7 +1191,7 @@ What businesses accept this card?",මේ කාඩ් එක accept කරන b
 1186,"Since my id hasn't been verified, when can I use my account?","මගේ id verify වෙලා නැති නිසා, මට account එක පාවිච්චි කරන්න පුළුවන් කවදද?",why_verify_identity,Neutral,Low
 1187,I won't verify my identity.,මම identity එක verify කරන්නේ නෑ.,why_verify_identity,Neutral,Low
 1188,I want to skip verification of my identity.,මට identity verification එක skip කරන්න ඕනේ.,why_verify_identity,Neutral,Low
-1189,I do not wish to verify my identity.,මට identity එක verify කරන්න ඕනේ නෑ.,why_verify_identity,Neutral,Low
+1189,I do not wish to verify my identity.,මට identity එක verify කරන්න ඕන කරන්නේ නෑ.,why_verify_identity,Neutral,Low
 1190,Why do I have to verify my identity?,මට identity එක verify කරන්න ඕනේ ඇයි?,why_verify_identity,Neutral,Low
 1191,what is the identity check?,identity check එක කියන්නේ මොකක්ද?,why_verify_identity,Neutral,Low
 1192,What other methods are there to verify my identity?,මගේ identity එක verify කරන්න වෙනත් methods මොනවද?,why_verify_identity,Neutral,Low
@@ -1199,7 +1199,7 @@ What businesses accept this card?",මේ කාඩ් එක accept කරන b
 1194,Do I need to verify my identity each time I wish to use my account?,මට account එක පාවිච්චි කරන්න ඕනේ හැම වතාවකම identity එක verify කරන්න ඕනේද?,why_verify_identity,Neutral,Low
 1195,Can I use my account if the identity verification is not complete?,identity verification එක complete නොවුනොත් මට account එක පාවිච්චි කරන්න පුළුවන්ද?,why_verify_identity,Neutral,Low
 1196,Why is it asking me to verify my identity,මගෙන් identity එක verify කරන්න අහන්නේ ඇයි,why_verify_identity,Neutral,Low
-1197,Do I have to verify my identity?,මට identity එක verify කරන්න ඕනේද?,why_verify_identity,Neutral,Low
+1197,Do I have to verify my identity?,මට identity එක verify කරන්න ඕන කරනවද?,why_verify_identity,Neutral,Low
 1198,Why do you need to know so much about me,මා ගැන ඔයාලට මේ තරම් දැනගන්න ඕනේ ඇයි,why_verify_identity,Neutral,Low
 1199,Why did I need to verfiy my identity?,මට identity එක verify කරන්න ඕනේ වුනේ ඇයි?,why_verify_identity,Neutral,Low
 1200,I cannot verify my identity,මට මගේ identity එක verify කරන්න බෑ,unable_to_verify_identity,Neutral,Low
@@ -1223,7 +1223,7 @@ What businesses accept this card?",මේ කාඩ් එක accept කරන b
 1218,My ID won't be verified!,මගේ ID එක verify වෙන්නේ නෑ!,unable_to_verify_identity,Neutral,Low
 1219,I can not get the app to know it is me.,මාව මම කියලා ඇප් එකට දැනගන්න කරන්න බෑ.,unable_to_verify_identity,Neutral,Low
 1220,I can't verify my identity.,මගේ identity එක verify කරන්න බෑ.,unable_to_verify_identity,Neutral,Low
-1221,The app doesn't recognize me.,ඇප් එකට මාව හඳුනගන්න බෑ.,unable_to_verify_identity,Neutral,Low
+1221,The app doesn't recognize me.,ඇප් එකට මාව හඳුනගන්නේ නෑ.,unable_to_verify_identity,Neutral,Low
 1222,I am having difficulties to verify my identity.,මගේ identity එක verify කරන්න මට අපහසුතා තියෙනවා.,unable_to_verify_identity,Neutral,Low
 1223,The app doesn't believe that I am me,ඇප් එකට මම මම කියලා විශ්වාස වෙන්නේ නෑ,unable_to_verify_identity,Neutral,Low
 1224,What's with not verifying my Id?,මගේ Id එක verify නොවෙන එකේ ප්‍රොබ්ලම් එක මොකක්ද?,unable_to_verify_identity,Neutral,Low
@@ -1275,7 +1275,7 @@ What businesses accept this card?",මේ කාඩ් එක accept කරන b
 1270,Where can I find my PIN?,මගේ PIN එක හොයාගන්නේ කොහෙද?,get_physical_card,Neutral,Low
 1271,When do I receive my PIN,මගේ PIN එක ලැබෙන්නේ කවදද,get_physical_card,Neutral,Low
 1272,Help me find my card pin!,මගේ කාඩ් pin එක හොයන්න උදව් කරන්න!,get_physical_card,Neutral,Low
-1273,Is PIN delivered separately?,PIN එක වෙනම ඩිලිවර් වෙනවද?,get_physical_card,Neutral,Low
+1273,Is PIN delivered separately?,PIN එක වෙනම එවනවද?,get_physical_card,Neutral,Low
 1274,I can not find my card pin.,මට මගේ කාඩ් pin එක හොයාගන්න බෑ.,get_physical_card,Neutral,Low
 1275,What do I need to do for a PIN?,PIN එකකට මම මොකද කරන්න ඕනේ?,get_physical_card,Neutral,Low
 1276,Why can't I find my PIN?,මගේ PIN එක හොයාගන්න බැරි ඇයි?,get_physical_card,Neutral,Low
@@ -1314,7 +1314,7 @@ What businesses accept this card?",මේ කාඩ් එක accept කරන b
 1309,Is it possible to have both a Visa and a Mastercard from you?,ඔයාලගෙන් Visa එකකුත් Mastercard එකකුත් දෙකම ලබාගන්න පුළුවන්ද?,visa_or_mastercard,Neutral,Low
 1310,I like Mastercard better.,මට Mastercard එකයි වඩා ආසා.,visa_or_mastercard,Neutral,Low
 1311,Do you offer Visa or Mastercard?,ඔයාලා Visa හෝ Mastercard offer කරනවද?,visa_or_mastercard,Neutral,Low
-1312,I would rather the Mastercard.,මට Mastercard එකයි වඩා ආසා.,visa_or_mastercard,Neutral,Low
+1312,I would rather the Mastercard.,මට Mastercard එකම වඩා කැමති.,visa_or_mastercard,Neutral,Low
 1313,Please give me both a visa and a master card.,ප්ලීස් මට visa එකකුත් master card එකකුත් දෙකම දෙන්නකෝ.,visa_or_mastercard,Neutral,Low
 1314,Is it possible to receive a Visa and a MasterCard?,Visa එකකුත් MasterCard එකකුත් ලබාගන්න පුළුවන්ද?,visa_or_mastercard,Neutral,Low
 1315,What major card payments are accepted?,accept වෙන ප්‍රධාන card payments මොනවද?,visa_or_mastercard,Neutral,Low
@@ -1392,7 +1392,7 @@ What businesses accept this card?",මේ කාඩ් එක accept කරන b
 1387,How many disposable virtual cards can I have?,මට disposable virtual cards කීයක් තියාගන්න පුළුවන්ද?,disposable_card_limits,Neutral,Low
 1388,I need to create several disposable cards per day.,මට දවසකට disposable cards කීපයක් හදන්න ඕනේ.,disposable_card_limits,Neutral,Low
 1389,Are there any hindrances to using a disposable virtual card?,disposable virtual card එකක් පාවිච්චි කරන්න hindrances තියෙනවද?,disposable_card_limits,Neutral,Low
-1390,How many disposable cards can I own?,මට disposable cards කීයක් තියාගන්න පුළුවන්ද?,disposable_card_limits,Neutral,Low
+1390,How many disposable cards can I own?,මට disposable cards කීයක් ලබාගන්න පුළුවන්ද?,disposable_card_limits,Neutral,Low
 1391,How many virtual cards do I get?,මට virtual cards කීයක් ලැබෙනවද?,disposable_card_limits,Neutral,Low
 1392,What is the limit to disposable cards you can have?,තියාගන්න පුළුවන් disposable cards ගාණට limit එක මොකක්ද?,disposable_card_limits,Neutral,Low
 1393,How many times can I use a disposable card?,disposable card එකක් කීප වතාවක් පාවිච්චි කරන්න පුළුවන්ද?,disposable_card_limits,Neutral,Low
@@ -1439,8 +1439,8 @@ What businesses accept this card?",මේ කාඩ් එක accept කරන b
 1434,I think my child used my card while I wasn't home.,මම ගෙදර නැති වෙලාවක මගේ ළමයා මගේ කාඩ් එක පාවිච්චි කළා ඇති කියලා මම හිතනවා.,compromised_card,Neutral,Low
 1435,What do I do if I think someone managed to get my card information?,කවුරු හරි මගේ කාඩ් information ලබාගෙන ඇති කියලා හිතුනොත් මම මොකද කරන්නේ?,compromised_card,Neutral,Low
 1436,I think someone copied the numbers on my card and is using them.,කවුරු හරි මගේ කාඩ් එකේ numbers copy කරලා පාවිච්චි කරනවා කියලා මම හිතනවා.,compromised_card,Neutral,High
-1437,What should I do if I think someone is using my card.,කවුරු හරි මගේ කාඩ් එක පාවිච්චි කරනවා කියලා හිතුනොත් මම මොකද කරන්නේ.,compromised_card,Neutral,Low
-1438,Can I use app to freeze my card and dispute fraud?,account එක freeze කරලා fraud එකට dispute කරන්න ඇප් එක පාවිච්චි කරන්න පුළුවන්ද?,compromised_card,Neutral,High
+1437,What should I do if I think someone is using my card.,කවුරු හරි මගේ කාඩ් එක පාවිච්චි කරනවා වගේ හිතුනොත් මොකද කරන්න ඕනේ.,compromised_card,Neutral,Low
+1438,Can I use app to freeze my card and dispute fraud?,මගේ කාඩ් එක freeze කරලා fraud එකට dispute කරන්න ඇප් එක පාවිච්චි කරන්න පුළුවන්ද?,compromised_card,Neutral,High
 1439,"Someone else is using my card, freeze it.","කවුරු හරි මගේ කාඩ් එක පාවිච්චි කරනවා, ඒක freeze කරන්න.",compromised_card,Neutral,High
 1440,Do all ATMs take this card?,හැම ATM එකකම මේ කාඩ් එක ගන්නවද?,atm_support,Neutral,Low
 1441,Which ATMs accept this card?,මොන ATMs ද මේ කාඩ් එක accept කරන්නේ?,atm_support,Neutral,Low
@@ -1459,12 +1459,10 @@ What businesses accept this card?",මේ කාඩ් එක accept කරන b
 1454,How can I withdraw money?,සල්ලි withdraw කරන්නේ කොහොමද?,atm_support,Neutral,Low
 1455,How many miles away is the ATM?,ATM එක කොච්චර දුරද?,atm_support,Neutral,Low
 1456,From where can I withdraw?,මට කොහෙන් withdraw කරන්න පුළුවන්ද?,atm_support,Neutral,Low
-1457,Which ATM's will accept my card?,මොන ATM's ද මගේ කාඩ් එක accept කරන්නේ?,atm_support,Neutral,Low
+1457,Which ATM's will accept my card?,මොන ATM's ද මගේ කාඩ් එක accept කරන්න පුළුවන්?,atm_support,Neutral,Low
 1458,At what ATMS am I able to use the card?,මොන ATMS වලද මට කාඩ් එක පාවිච්චි කරන්න පුළුවන්?,atm_support,Neutral,Low
 1459,Can I use my card at any ATMs?,මට ඕනම ATM එකකදි මගේ කාඩ් එක පාවිච්චි කරන්න පුළුවන්ද?,atm_support,Neutral,Low
 1460,Can I get cash with this card anywhere?,මේ කාඩ් එකෙන් ඕනම තැනක cash ගන්න පුළුවන්ද?,atm_support,Neutral,Low
-1461,"
-Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක accept කරන්නේ?,atm_support,Neutral,Low
 1462,Can someone please assist me with finding my nearest ATM?,ළඟම ATM එක හොයාගන්න කවුරු හරි උදව් කරන්නද?,atm_support,Neutral,Low
 1463,Are there any ATM machines near me?,මගේ ළඟින් ATM machines තියෙනවද?,atm_support,Neutral,Low
 1464,Where is the nearest bank machine?,ළඟම bank machine එක කොහෙද?,atm_support,Neutral,Low
@@ -1599,7 +1597,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 1593,I couldn't get cash at the atm,ATM එකේදි cash ගන්න බැරි වුනා,declined_cash_withdrawal,Neutral,Medium
 1594,"Oh my goodness, my card has been declined twice at ATM! I tried two different ATM, but each one declined my card! Can you tell me what's going on with my account?","අනේ, මගේ කාඩ් එක ATM එකේදි දෙපාරක් decline වුනා! ATMs 2ක් try කළා, ඒත් හැම එකකම decline වුනා! මගේ account එකට මොකද වෙන්නේ කියලා කියන්නද?",declined_cash_withdrawal,Negative,Medium
 1595,Why could I not choose cash at the ATM?,ATM එකේදි cash එක තෝරගන්න බැරි වුනේ ඇයි?,declined_cash_withdrawal,Neutral,Medium
-1596,My cash withdrawl was declined why?,මගේ cash withdrawal එක decline වුනේ ඇයි?,declined_cash_withdrawal,Neutral,Medium
+1596,My cash withdrawl was declined why?,මගේ cash withdrawal එක ඇයි decline වුනේ?,declined_cash_withdrawal,Neutral,Medium
 1597,Is there a reason that the ATM declined my transaction?,ATM එක මගේ ට්‍රැන්සැක්ෂන් එක decline කරන්න හේතුවක් තියෙනවද?,declined_cash_withdrawal,Neutral,Medium
 1598,The cash I tried to draw from the ATM was not approved.,මම ATM එකෙන් ගන්න try කරපු cash එක approve වුනේ නෑ.,declined_cash_withdrawal,Neutral,Medium
 1599,atm would not give me cash,atm එකෙන් මට cash දුන්නේ නෑ,declined_cash_withdrawal,Neutral,Medium
@@ -1619,7 +1617,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 1613,I bought some stuff this morning but the payment shows as pending,අද උදේ මම මොකක් හරි ගත්තා ඒත් payment එක pending විදියට පේනවා,pending_card_payment,Neutral,Low
 1614,I am waiting for a payment to go through.,මම payment එකක් go through වෙනකන් බලාගෙන ඉන්නවා.,pending_card_payment,Neutral,Low
 1615,How long does an item I bought show as pending?,මම ගත්ත item එකක් pending විදියට පේන්නේ කොච්චර වෙලාවක්ද?,pending_card_payment,Neutral,Low
-1616,What is a pending payment?,pending payment එකක් කියන්නේ මොකක්ද?,pending_card_payment,Neutral,Low
+1616,What is a pending payment?,pending payment එකක් කියන්නෙ මොකක්ද කියලා දැනගන්න ඕනේ,pending_card_payment,Neutral,Low
 1617,I would like to know why my purchases from this morning are still pending.,අද උදේ මගේ purchases තාම pending ඇයි කියලා දැනගන්න ඕනේ.,pending_card_payment,Neutral,Low
 1618,Why is there a pending transaction on my card?,මගේ කාඩ් එකේ pending ට්‍රැන්සැක්ෂන් එකක් තියෙන්නේ ඇයි?,pending_card_payment,Neutral,Low
 1619,My card payment is pending.,මගේ කාඩ් payment එක pending.,pending_card_payment,Neutral,Low
@@ -1732,11 +1730,11 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 1726,"How can I fix my card, it got declined twice.","මගේ කාඩ් එක fix කරන්නේ කොහොමද, ඒක දෙපාරක් decline වුනා.",declined_transfer,Neutral,Medium
 1727,Why did a transfer get declined?,transfer එකක් decline වුනේ ඇයි?,declined_transfer,Neutral,Medium
 1728,My transfers are being declined. IT has always worked for me but now it's declining my card. I've tried several times.,මගේ transfers decline වෙනවා. කලින් හැමවෙලේම වැඩ කළා ඒත් දැන් මගේ කාඩ් එක decline කරනවා. කීප වතාවක්ම try කළා.,declined_transfer,Neutral,Medium
-1729,Why did my transfer decline,මගේ transfer එක decline වුනේ ඇයි,declined_transfer,Neutral,Medium
+1729,Why did my transfer decline,මගේ transfer එක ඇයි decline වුනේ,declined_transfer,Neutral,Medium
 1730,The card got declined twice when I tried to use it to buy something online yesterday.,ඊයේ online දෙයක් ගන්න try කරද්දි කාඩ් එක දෙපාරක් decline වුනා.,declined_transfer,Neutral,Medium
 1731,"If the transfer details have already but reviewed and confirmed that they are correct, what other reason would cause my transfer to be declined?","transfer details ඔක්කොම review කරලා confirm කරලා තියෙනවනම්, මගේ transfer එක decline වෙන්න වෙන මොන හේතුවක්ද තියෙන්නේ?",declined_transfer,Neutral,Medium
 1732,Why did I get a transfer declined?,මගේ transfer එක decline වුනේ ඇයි?,declined_transfer,Neutral,Medium
-1733,Why did my my transfer get declined?,මගේ transfer එක decline වුනේ ඇයි?,declined_transfer,Neutral,Medium
+1733,Why did my my transfer get declined?,මගේ transfer එක ඇයි decline වුනේ?,declined_transfer,Neutral,Medium
 1734,How do I contact customer support about a transfer?,transfer එකක් ගැන customer support එකට contact කරන්නේ කොහොමද?,declined_transfer,Neutral,Low
 1735,"You keep declining my transfers? It's always been working really well so far, but when I tried to buy something just now the card got declined. I tried couple times already but same thing.","ඔයාලා ඇයි මගේ transfers decline කරන්නේ? මේක දැනට හොඳට වැඩ කළා, ඒත් දැන් මොකක් හරි ගන්න try කරද්දි කාඩ් එක decline වුනා. කීප වතාවක්ම try කළා.",declined_transfer,Negative,Medium
 1736,Why was I unable to do a transfer?,මට transfer එකක් කරන්න බැරි වුනේ ඇයි?,declined_transfer,Neutral,Medium
@@ -1758,7 +1756,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 1752,I can't transfer money from my account.,මට මගේ account එකෙන් සල්ලි transfer කරන්න බෑ.,declined_transfer,Neutral,Medium
 1753,"Why would my transfer be declined? I've checked that I've put in all the right details, but it is still declined.","මගේ transfer එක decline වෙන්නේ ඇයි? මම හරි details ඔක්කොම දාලා තියෙනවා check කළා, ඒත් තාම decline.",declined_transfer,Neutral,Medium
 1754,I tried to buy something online yesterday but it kept saying declined. Tried again today but same thing happened. What's broken?,ඊයේ online දෙයක් ගන්න try කළා ඒත් decline කියලා පේනුනා. අද ආයෙත් try කළා එකම දේ වුනා. මොකද කැඩිලා තියෙන්නේ?,declined_transfer,Negative,Medium
-1755,I tried to buy something online yesterday but it wouldn't stop saying declined. Tried again today but same thing happened. What's Broken?,ඊයේ online දෙයක් ගන්න try කළා ඒත් decline කියලා පේනුනා. අද ආයෙත් try කළා එකම දේ වුනා. මොකද කැඩිලා තියෙන්නේ?,declined_transfer,Negative,Medium
+1755,I tried to buy something online yesterday but it wouldn't stop saying declined. Tried again today but same thing happened. What's Broken?,ඊයේ online දෙයක් ගන්න try කරාම decline කියලා පේනුනා. අද ආයෙත් try කළත් එකම දේ වුනා. මොකද මේ කැඩිලා තියෙන්නේ?,declined_transfer,Negative,Medium
 1756,My card is being declined online. Could you tell me what might be broken or wrong with the account?,මගේ කාඩ් එක online decline වෙනවා. account එකේ මොකද කැඩිලා/වැරදිලා තියෙන්නේ කියලා කියන්නද?,declined_transfer,Neutral,Medium
 1757,Are there any restrictions causing my transfer to be declined?,මගේ transfer එක decline වෙන්න restrictions තියෙනවද?,declined_transfer,Neutral,Medium
 1758,"I was attempting to purchase a golf club off eBay yesterday, but my credit card was declined. I tried multiple times, and again this morning. Can you check into my card please?","ඊයේ මම eBay එකෙන් golf club එකක් ගන්න try කළා, ඒත් credit card එක decline වුනා. කීප වතාවක්ම try කළා, අද උදේත් ආයෙත්. මගේ කාඩ් එක check කරන්නද?",declined_transfer,Negative,Medium
@@ -1835,7 +1833,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 1829,Do you know why my card payment is declined?,මගේ කාඩ් payment එක decline වුනේ ඇයි කියලා ඔයාලා දන්නවද?,declined_card_payment,Neutral,Medium
 1830,Why was my Payment declined,මගේ Payment එක decline වුනේ ඇයි,declined_card_payment,Neutral,Medium
 1831,They declined my card payment.,ඒගොල්ලෝ මගේ කාඩ් payment එක decline කළා.,declined_card_payment,Neutral,Medium
-1832,Why has my card payment been declined?,මගේ කාඩ් payment එක decline වුනේ ඇයි?,declined_card_payment,Neutral,Medium
+1832,Why has my card payment been declined?,මගේ කාඩ් payment එක ඇයි decline වුනේ?,declined_card_payment,Neutral,Medium
 1833,"I finally got my new card and was very excited to use it today. However, my payment kept declining. What is happening?","අන්තිමට මට අලුත් කාඩ් එක ලැබුනා, අද ඒක පාවිච්චි කරන්න ගොඩක් excited වුනා. ඒත් payment එක decline වුනා. මොකද වෙන්නේ?",declined_card_payment,Neutral,Medium
 1834,My card payment did not complete.,මගේ කාඩ් payment එක complete වුනේ නෑ.,declined_card_payment,Neutral,Medium
 1835,My card didn't work in one of the shops.,shop එකකදි මගේ කාඩ් එක වැඩ කළේ නෑ.,declined_card_payment,Neutral,Medium
@@ -1915,7 +1913,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 1909,I want my account deleted!,මට මගේ account එක delete කරගන්න ඕනේ!,terminate_account,Neutral,High
 1910,I am extremely unhappy with this app and want to get rid of my account?,"මම මේ ඇප් එක ගැන ගොඩක් unhappy, මගේ account එකෙන් යන්න ඕනේ?",terminate_account,Negative,High
 1911,How do I delete my account?,මගේ account එක delete කරන්නේ කොහොමද?,terminate_account,Neutral,High
-1912,This company sucks! Can you delete my account?,මේ company එක නරකයි! මගේ account එක delete කරන්න පුළුවන්ද?,terminate_account,Negative,High
+1912,This company sucks! Can you delete my account?,මේ company එක නරකම නරකයි! මගේ account එක delete කරගන්න පුළුවන්ද?,terminate_account,Negative,High
 1913,I wish to close my account. I do not like the service you provide.,මට මගේ account එක close කරගන්න ඕනේ. ඔයාලා දෙන service එක මට ආසා නෑ.,terminate_account,Neutral,High
 1914,Can you help me get rid of my account?,මගේ account එකෙන් යන්න මට උදව් කරන්නද?,terminate_account,Neutral,High
 1915,"I don't find your services useful anymore, how do I delete my account?","ඔයාලගේ services මට ප්‍රයෝජනවත් නෑ, මගේ account එක delete කරන්නේ කොහොමද?",terminate_account,Neutral,High
@@ -2075,7 +2073,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2069,How long does a funds transfer take from one back to another?,එක bank එකකින් තව bank එකකට funds transfer එකකට කොච්චර වෙලා යනවද?,transfer_timing,Neutral,Low
 2070,What would the approximate delivery date be if I transferred something urgently to China?,මම urgent ව China එකට දෙයක් transfer කළොත් approximate delivery date එක මොකක්ද?,transfer_timing,Neutral,High
 2071,I have to transfer something to China as fast as I can. How long will it take to arrive in China?,මට China එකට දෙයක් පුළුවන් තරම් ඉක්මනට transfer කරන්න ඕනේ. China එකට එන්න කොච්චර වෙලා යනවද?,transfer_timing,Neutral,High
-2072,How long to I have to wait for a transfer to reach my account?,transfer එකක් account එකට ලැබෙන්න මම කොච්චර වෙලා බලාගෙන ඉන්න ඕනේද?,transfer_timing,Neutral,Low
+2072,How long to I have to wait for a transfer to reach my account?,transfer එකක් account එකට ලැබෙන්න කොච්චර වෙලා බලාගෙන ඉන්න ඕන වෙයිද?,transfer_timing,Neutral,Low
 2073,How long is it going to take for my funds to show in my account?,මගේ funds account එකේ පේන්න කොච්චර වෙලා යනවද?,transfer_timing,Neutral,Low
 2074,"How long does a transfer take from the point it's sent, to the point it arrives in my account?",transfer එකක් යවපු වෙලාවේ ඉඳන් මගේ account එකට ලැබෙනකන් කොච්චර වෙලා යනවද?,transfer_timing,Neutral,Low
 2075,How long will it take for the transfer to reach my account?,transfer එක මගේ account එකට ලැබෙන්න කොච්චර වෙලා යනවද?,transfer_timing,Neutral,Low
@@ -2106,7 +2104,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2100,I was contacted by a seller with a message that they never received my money. I am 100% sure it was taken from my account so I definitely need this sorted out soon.,"seller කෙනෙක් contact වුනා මගේ සල්ලි ලැබුනේ නෑ කියලා message එකක් එක්ක. මම 100% ස්ථිරයි ඒක මගේ account එකෙන් ගත්තා කියලා, ඒ නිසා මට මේක ඉක්මනට sort කරන්න ඕනේ.",reverted_card_payment?,Neutral,Medium
 2101,what happens to the funds if a merchant refuses the payment,merchant කෙනෙක් payment එක refuse කළොත් funds වලට මොකද වෙන්නේ,reverted_card_payment?,Neutral,Low
 2102,"I am attempting to make a purchase online, but my card is not working.  I know there are funds available, is this an issue on the banks end?","මම online purchase එකක් කරන්න try කරනවා, ඒත් මගේ කාඩ් එක වැඩ කරන්නේ නෑ. available funds තියෙනවා කියලා දන්නවා, මේක bank end එකේ issue එකක්ද?",reverted_card_payment?,Neutral,Medium
-2103,Why was my card payment cancelled?,මගේ කාඩ් payment එක cancel වුනේ ඇයි?,reverted_card_payment?,Neutral,Low
+2103,Why was my card payment cancelled?,මගේ කාඩ් payment එක ඇයි cancel වුනේ?,reverted_card_payment?,Neutral,Low
 2104,Why has my card payment been reverted?,මගේ කාඩ් payment එක revert වුනේ ඇයි?,reverted_card_payment?,Neutral,Low
 2105,"There must be an issue, why has my card been cancelled?","issue එකක් තියෙන්න ඕනේ, මගේ කාඩ් එක cancel වුනේ ඇයි?",reverted_card_payment?,Neutral,Low
 2106,I bought something and the money appeared back into my account? Why?,"මම මොකක් හරි ගත්තා, සල්ලි ආපහු account එකට ආවා? ඇයි?",reverted_card_payment?,Neutral,Low
@@ -2114,7 +2112,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2108,"I'm not sure why my card payment was cancelled, can you find out why?","මගේ කාඩ් payment එක cancel වුනේ ඇයි කියලා දන්නේ නෑ, ඒක හොයාගන්නද?",reverted_card_payment?,Neutral,Low
 2109,What is the reason that my card payment was cancelled?,මගේ කාඩ් payment එක cancel වෙන්න හේතුව මොකක්ද?,reverted_card_payment?,Neutral,Low
 2110,"Hi, I would like to file a claim for an inquiry. I am a frequent customer of the company in question and have never had any issue with my purchases, payments, or otherwise. However, the price deducted for an item I purchased a couple of weeks ago has been returned to my checking account. Was there an issue with my payment? The item has already been delivered to me.","හලෝ, inquiry එකකට claim එකක් file කරගන්න ඕනේ. මම මේ company එකේ නිතර customer කෙනෙක්, purchases, payments, කිසි එකකවත් ප්‍රොබ්ලමයක් වුනේ නෑ. ඒත් සති කීපයකට කලින් ගත්ත item එකකට deduct කරපු ගාන මගේ checking account එකට ආපහු ආවා. මගේ payment එකට issue එකක් තිබුනාද? item එක දැනටමත් ලැබිලා තියෙනවා.",reverted_card_payment?,Neutral,Low
-2111,Why was my card payment reverted?,මගේ කාඩ් payment එක revert වුනේ ඇයි?,reverted_card_payment?,Neutral,Low
+2111,Why was my card payment reverted?,මගේ කාඩ් payment එක ඇයි revert වුනේ?,reverted_card_payment?,Neutral,Low
 2112,Why does the app revert a payment?,ඇප් එක payment එකක් revert කරන්නේ ඇයි?,reverted_card_payment?,Neutral,Low
 2113,I did a payment but the app reverted it,මම payment එකක් කළා ඒත් ඇප් එක ඒක revert කළා,reverted_card_payment?,Neutral,Low
 2114,What happens if a merchant doesn't accept a payment?,merchant කෙනෙක් payment එකක් accept නොකළොත් මොකද වෙන්නේ?,reverted_card_payment?,Neutral,Low
@@ -2254,7 +2252,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2248,Is it possible for me to get money out in a different currency?,මට වෙනස් කරන්සියකින් සල්ලි ගන්න පුළුවන්ද?,receiving_money,Neutral,Low
 2249,Can I use this to receive my salary?,මගේ salary එක ලබාගන්න මේක පාවිච්චි කරන්න පුළුවන්ද?,receiving_money,Neutral,Low
 2250,My salary is received in the form of LKR. Do I need to do anything specific to configure this?,මගේ salary එක LKR විදියට ලැබෙනවා. මේක configure කරන්න මොකක් හරි specific එකක් කරන්න ඕනේද?,receiving_money,Neutral,Low
-2251,How do people send me money?,කවුරු හරි මට සල්ලි එවන්නේ කොහොමද?,receiving_money,Neutral,Low
+2251,How do people send me money?,අනිත් අය මට සල්ලි එවන්නේ කොහොමද?,receiving_money,Neutral,Low
 2252,Is LKR a supported currency?,LKR එක support වෙන කරන්සියක්ද?,receiving_money,Neutral,Low
 2253,Do I need to establish I am paid in LKR before a transfer?,transfer එකකට කලින් මට LKR වලින් pay කරනවා කියලා establish කරන්න ඕනේද?,receiving_money,Neutral,Low
 2254,"Salary in LKR has been received, does it need to be configured elsewhere?","LKR වලින් salary එකක් ලැබිලා, ඒක වෙන තැනක configure කරන්න ඕනේද?",receiving_money,Neutral,Low
@@ -2264,7 +2262,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2258,What do I need to do to transfer my paycheck to my account?,මගේ paycheck එක account එකට transfer කරන්න මම මොකද කරන්න ඕනේ?,receiving_money,Neutral,Low
 2259,How can my friend send me money?,මගේ යාළුවට මට සල්ලි එවන්නේ කොහොමද?,receiving_money,Neutral,Low
 2260,Can I directly transfer my salary onto here?,මගේ salary එක කෙලින්ම මෙතනට transfer කරන්න පුළුවන්ද?,receiving_money,Neutral,Low
-2261,Can this be used to receive my salary?,මගේ salary එක ලබාගන්න මේක පාවිච්චි කරන්න පුළුවන්ද?,receiving_money,Neutral,Low
+2261,Can this be used to receive my salary?,මගේ salary එක ලබාගන්න මේකෙන් පුළුවන්ද?,receiving_money,Neutral,Low
 2262,Is it possible to deposit money in LKR?,LKR වලින් සල්ලි deposit කරන්න පුළුවන්ද?,receiving_money,Neutral,Low
 2263,I received my salary in LKR. How do I change this to my currency?,මට LKR වලින් salary එක ලැබුනා. මේක මගේ කරන්සියට වෙනස් කරන්නේ කොහොමද?,receiving_money,Neutral,Low
 2264,How can my friend transfer money to me?,මගේ යාළුවට මට සල්ලි transfer කරන්නේ කොහොමද?,receiving_money,Neutral,Low
@@ -2281,7 +2279,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2275,Can I get paid in a different currency?,මට වෙනස් කරන්සියකින් pay කරගන්න පුළුවන්ද?,receiving_money,Neutral,Low
 2276,Is my salary eligible for this?,මගේ salary එකට මේක eligible ද?,receiving_money,Neutral,Low
 2277,My salary is in LKR; how can I note this in the app?,මගේ salary එක LKR වලින්; ඇප් එකේ මේක note කරන්නේ කොහොමද?,receiving_money,Neutral,Low
-2278,Can I get paid in another currency?,මට වෙනස් කරන්සියකින් pay කරගන්න පුළුවන්ද?,receiving_money,Neutral,Low
+2278,Can I get paid in another currency?,මට වෙන කරන්සියකින් pay කරගන්න පුළුවන්ද?,receiving_money,Neutral,Low
 2279,Can I get my paycheck through here?,මගේ paycheck එක මෙතනින් ලබාගන්න පුළුවන්ද?,receiving_money,Neutral,Low
 2280,dont understand why transfer failed,transfer එක fail වුනේ ඇයි කියලා තේරෙන්නේ නෑ,failed_transfer,Neutral,Medium
 2281,Please help me make a transfer. I keep receiving an error and I'm trying to make the initial mortgage payment for a flat I'm buying. What is the deal here?,"ප්ලීස් transfer එකක් කරන්න මට උදව් කරන්නකෝ. මට error එකක් හැමවෙලේම එනවා, මම ගන්න flat එකකට initial mortgage payment එක කරන්න try කරන්නේ. මෙතන deal එක මොකක්ද?",failed_transfer,Neutral,Medium
@@ -2292,12 +2290,12 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2286,Why was I not able to complete a transfer?,transfer එකක් complete කරන්න මට බැරි වුනේ ඇයි?,failed_transfer,Neutral,Medium
 2287,Can you help me figure out what's happening? I'm trying to transfer money to a friend but it keeps getting returned. I'm not sure what i'm doing wrong.,මොකද වෙන්නේ කියලා හොයාගන්න මට උදව් කරන්නද? මම යාළුවෙක්ට සල්ලි transfer කරන්න try කරනවා ඒත් ආපහු එනවා. මම මොකද වැරදියට කරන්නේ කියලා දන්නේ නෑ.,failed_transfer,Neutral,Medium
 2288,Why did my transfer not go through?,මගේ transfer එක go through නොවුනේ ඇයි?,failed_transfer,Neutral,Medium
-2289,My transfer didn't go through.,මගේ transfer එක go through වුනේ නෑ.,failed_transfer,Neutral,Medium
+2289,My transfer didn't go through.,මගේ transfer එක go through වුනේ නැහැ.,failed_transfer,Neutral,Medium
 2290,I could not get my transfer to happen correctly and was wondering why?,"මගේ transfer එක හරියට වෙන්න බැරි වුනා, ඇයි කියලා හිතුවා?",failed_transfer,Neutral,Medium
 2291,how come my transfer didn't work,මගේ transfer එක වැඩ නොකළේ ඇයි,failed_transfer,Neutral,Medium
 2292,"I transferred my funds, why did it not go through?","මම funds transfer කළා, ඒක go through නොවුනේ ඇයි?",failed_transfer,Neutral,Medium
 2293,Why has my transfer failed?,මගේ transfer එක fail වුනේ ඇයි?,failed_transfer,Neutral,Medium
-2294,Why did my transfer fail?,මගේ transfer එක fail වුනේ ඇයි?,failed_transfer,Neutral,Medium
+2294,Why did my transfer fail?,මගේ transfer එක ඇයි fail වුනේ?,failed_transfer,Neutral,Medium
 2295,Why hasn't my transfer been made?,මගේ transfer එක ඇයි කරලා නැත්තේ?,failed_transfer,Neutral,Medium
 2296,My transfer will not go through.,මගේ transfer එක go through වෙන්නේ නෑ.,failed_transfer,Neutral,Medium
 2297,My transfer keeps failing and I just want to transfer the money can you please make it work?,"මගේ transfer එක fail වෙනවා, මට සල්ලි transfer කරන්න විතරයි ඕනේ, ප්ලීස් ඒක වැඩ කරවන්නද?",failed_transfer,Neutral,Medium
@@ -2306,7 +2304,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2300,What are your policies for card transfers?,card transfers සඳහා ඔයාලගේ policies මොනවද?,failed_transfer,Neutral,Low
 2301,Is the system down? I've been trying to do a transfer and have failed?,system එක down ද? මම transfer එකක් කරන්න try කරමින් fail වෙනවා?,failed_transfer,Neutral,Medium
 2302,I tried to make a transfer but it failed,මම transfer එකක් කරන්න try කළා ඒත් fail වුනා,failed_transfer,Neutral,Medium
-2303,Why couldn't I complete a transfer?,transfer එකක් complete කරන්න මට බැරි වුනේ ඇයි?,failed_transfer,Neutral,Medium
+2303,Why couldn't I complete a transfer?,transfer එකක් complete කරගන්න මට බැරි වුනේ ඇයි?,failed_transfer,Neutral,Medium
 2304,My transfer appeared not to work.,මගේ transfer එක වැඩ කළේ නෑ වගේ.,failed_transfer,Neutral,Medium
 2305,What is stopping my money from transferring?,මගේ සල්ලි transfer වීම නවත්තන්නේ මොකක්ද?,failed_transfer,Neutral,Medium
 2306,"Hi, I'm buying a flat and I'm trying to get my mortgage to go though. Every time I check I simply get an error message. Is there any way you can help me get this money transferred over. Thanks!","හලෝ, මම flat එකක් ගන්නවා, මගේ mortgage එක go through කරන්න try කරනවා. හැම වතාවක්ම check කරද්දි error message එකක් විතරයි ලැබෙන්නේ. මේ සල්ලි transfer කරගන්න මට උදව් කරන්න පුළුවන්ද? ස්තූතියි!",failed_transfer,Neutral,Medium
@@ -2349,7 +2347,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2343,How can I perform a dual money transferring from one account to another?,එක account එකකින් තව account එකකට dual money transfer එකක් කරන්නේ කොහොමද?,transfer_into_account,Neutral,Low
 2344,CAN YOU EXPLAIN HOW TO TRANSFER MONEY INTO MY  ACCOUNT FOR ME?,MY ACCOUNT එකට සල්ලි TRANSFER කරන්නේ කොහොමද කියලා පැහැදිලි කරන්නද?,transfer_into_account,Neutral,Low
 2345,"I need to bank account transfer from another account into this one, what is the easiest way that can be done, and what information do i need?","වෙනත් account එකකින් මේකට bank account transfer එකක් කරන්න ඕනේ, ලේසිම විදිය මොකක්ද, මට ඕනේ information මොකක්ද?",transfer_into_account,Neutral,Low
-2346,How do I transfer money to my account?,මගේ account එකට සල්ලි transfer කරන්නේ කොහොමද?,transfer_into_account,Neutral,Low
+2346,How do I transfer money to my account?,මගේ account එකට සල්ලි transfer කරගන්නේ කොහොමද?,transfer_into_account,Neutral,Low
 2347,How do I send my account money through transfer?,මගේ account එකට transfer හරහා සල්ලි යවන්නේ කොහොමද?,transfer_into_account,Neutral,Low
 2348,How do I do an international transfer?,international transfer එකක් කරන්නේ කොහොමද?,transfer_into_account,Neutral,Low
 2349,Are there ways to transfer money into my account?,මගේ account එකට සල්ලි transfer කරන්න විදි තියෙනවද?,transfer_into_account,Neutral,Low
@@ -2358,10 +2356,10 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2352,"I would like use the bank transfer, but I don't understand the process, can you please explain, topping up?","මට bank transfer එක පාවිච්චි කරන්න ඕනේ, ඒත් process එක තේරෙන්නේ නෑ, ප්ලීස් පැහැදිලි කරන්නද, topping up?",transfer_into_account,Neutral,Low
 2353,I want to use bank transfer for topping up my account. How is it handled?,මගේ account එක top up කරන්න bank transfer එකක් පාවිච්චි කරගන්න ඕනේ. ඒක handle කරන්නේ කොහොමද?,transfer_into_account,Neutral,Low
 2354,I checked my account today and it said I was out of money. How do I transfer money into my account?,"අද මම account එක check කළා, සල්ලි ඉවර කියලා තිබුනා. account එකට සල්ලි transfer කරන්නේ කොහොමද?",transfer_into_account,Neutral,Low
-2355,How can I transfer money to my account?,මගේ account එකට සල්ලි transfer කරන්නේ කොහොමද?,transfer_into_account,Neutral,Low
+2355,How can I transfer money to my account?,මගේ account එකට සල්ලි transfer කරන්න පුළුවන් කොහොමද?,transfer_into_account,Neutral,Low
 2356,I would like to transfer funds from one account to another.,එක account එකකින් තව account එකකට funds transfer කරගන්න ඕනේ.,transfer_into_account,Neutral,Low
 2357,I'm trying to transfer money into my account.,මම account එකට සල්ලි transfer කරන්න try කරනවා.,transfer_into_account,Neutral,Low
-2358,I would like to transfer money from my other bank account into this one.,මට වෙනත් bank account එකකින් සල්ලි මේකට transfer කරගන්න ඕනේ.,transfer_into_account,Neutral,Low
+2358,I would like to transfer money from my other bank account into this one.,වෙනත් bank account එකකින් සල්ලි මේකට transfer කරගන්න ඕනේ.,transfer_into_account,Neutral,Low
 2359,Can I use a bank transfer to refill my account?,account එක refill කරන්න bank transfer එකක් පාවිච්චි කරන්න පුළුවන්ද?,transfer_into_account,Neutral,Low
 2360,What all is needed to verify the top-up card?,top-up card එක verify කරන්න ඕනේ ඔක්කොම මොකක්ද?,verify_top_up,Neutral,Low
 2361,It wants me to verify the top up. Why?,top up එක verify කරන්න ඕනේ කියලා කියනවා. ඇයි?,verify_top_up,Neutral,Low
@@ -2375,7 +2373,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2369,Why do you need code verification for my top up?,මගේ top up එකට code verification එකක් ඔයාලට ඕනේ ඇයි?,verify_top_up,Neutral,Low
 2370,Where can I find the verification code on a top-up card?,top-up card එකේ verification code එක හොයාගන්නේ කොහෙද?,verify_top_up,Neutral,Low
 2371,How do I get my top-up verification code?,මගේ top-up verification code එක ලබාගන්නේ කොහොමද?,verify_top_up,Neutral,Low
-2372,Is it possible to verify a top up?,top up එකක් verify කරන්න පුළුවන්ද?,verify_top_up,Neutral,Low
+2372,Is it possible to verify a top up?,top up එකක් verify කරගන්න පුළුවන්ද?,verify_top_up,Neutral,Low
 2373,Is it normal to have to verify my top-up or is something wrong?,මගේ top-up එක verify කරන්න ඕනේ එක normal ද නැත්තම් මොකක් හරි වැරදිලාද?,verify_top_up,Neutral,Low
 2374,Why does the top-up need verification?,top-up එකට verification ඕනේ ඇයි?,verify_top_up,Neutral,Low
 2375,Why does top-up need verifying?,top-up එකට verifying ඕනේ ඇයි?,verify_top_up,Neutral,Low
@@ -2388,7 +2386,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2382,What is the verification code on a top-up?,top-up එකක verification code එක මොකක්ද?,verify_top_up,Neutral,Low
 2383,I can't find the top-up verification code.,මට top-up verification code එක හොයාගන්න බෑ.,verify_top_up,Neutral,Low
 2384,How do I go forth verifying my top-up card?,මගේ top-up card එක verify කරන්නේ කොහොමද?,verify_top_up,Neutral,Low
-2385,Where do I find the top-up verification code?,top-up verification code එක හොයාගන්නේ කොහෙද?,verify_top_up,Neutral,Low
+2385,Where do I find the top-up verification code?,top-up verification code එක හොයාගන්නේ කොහෙන්ද?,verify_top_up,Neutral,Low
 2386,How is the top-up card verified?,top-up card එක verify කරන්නේ කොහොමද?,verify_top_up,Neutral,Low
 2387,Is there a verification code for the top-up card?,top-up card එකට verification code එකක් තියෙනවද?,verify_top_up,Neutral,Low
 2388,What is the importance of verifying the top-up?,top-up එක verify කිරීමේ වැදගත්කම මොකක්ද?,verify_top_up,Neutral,Low
@@ -2416,7 +2414,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2410,"If I need more cards, are there any fees?","මට තවත් cards ඕනේ නම්, fees තියෙනවද?",getting_spare_card,Neutral,Low
 2411,Do you offer multiple cards for the same account?,එකම account එකකට cards කීපයක් ඔයාලා offer කරනවද?,getting_spare_card,Neutral,Low
 2412,Can I get a spare card for someone else to use?,වෙන කෙනෙක්ට පාවිච්චි කරන්න spare card එකක් ලබාගන්න පුළුවන්ද?,getting_spare_card,Neutral,Low
-2413,I need to get some more physical cards.,මට තවත් physical cards ටිකක් ලබාගන්න ඕනේ.,getting_spare_card,Neutral,Low
+2413,I need to get some more physical cards.,මට තවත් physical cards ටිකක් ගන්න ඕනේ.,getting_spare_card,Neutral,Low
 2414,"Would I be able to get another card for my account, so I could give one to my daughter?","මගේ account එකට තව කාඩ් එකක් ලබාගන්න පුළුවන්ද, මගේ දුවට එකක් දෙන්න?",getting_spare_card,Neutral,Low
 2415,What is the procedure for getting another card?,තව කාඩ් එකක් ලබාගන්න procedure එක මොකක්ද?,getting_spare_card,Neutral,Low
 2416,Can I have a second card?,මට දෙවෙනි කාඩ් එකක් තියාගන්න පුළුවන්ද?,getting_spare_card,Neutral,Low
@@ -2431,12 +2429,12 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2425,Can i have a second physical card for this account?,මේ account එකට දෙවෙනි physical card එකක් ලබාගන්න පුළුවන්ද?,getting_spare_card,Neutral,Low
 2426,Can I purchase extra non-virtual cards?,අමතර non-virtual cards purchase කරන්න පුළුවන්ද?,getting_spare_card,Neutral,Low
 2427,Am I allowed to give my daughter one of my cards to use?,මගේ දුවට මගේ cards වලින් එකක් පාවිච්චි කරන්න දෙන්න ඉඩ තියෙනවද?,getting_spare_card,Neutral,Low
-2428,May I have a second card?,මට දෙවෙනි කාඩ් එකක් තියාගන්න පුළුවන්ද?,getting_spare_card,Neutral,Low
+2428,May I have a second card?,මට දෙවෙනි කාඩ් එකක් ලබාගන්න පුළුවන්ද?,getting_spare_card,Neutral,Low
 2429,Can i have a card to my daughter?,මගේ දුවට කාඩ් එකක් තියාගන්න පුළුවන්ද?,getting_spare_card,Neutral,Low
 2430,Are there restrictions for ordering extra cards?,අමතර cards ඕඩර් කරන්න restrictions තියෙනවද?,getting_spare_card,Neutral,Low
 2431,How can I get a second card for my daughter?,මගේ දුවට දෙවෙනි කාඩ් එකක් ලබාගන්නේ කොහොමද?,getting_spare_card,Neutral,Low
 2432,Where do I request another card?,තව කාඩ් එකක් request කරන්නේ කොහෙද?,getting_spare_card,Neutral,Low
-2433,Am I able to get a second card?,මට දෙවෙනි කාඩ් එකක් ලබාගන්න පුළුවන්ද?,getting_spare_card,Neutral,Low
+2433,Am I able to get a second card?,මට දෙවෙනි කාඩ් එකක් ලබාගන්න පුළුවන් වෙයිද?,getting_spare_card,Neutral,Low
 2434,"If you send me more cards, are there any charges?","ඔයාලා මට තව cards එව්වොත්, charges තියෙනවද?",getting_spare_card,Neutral,Low
 2435,When trying to get more than one card is there a extra amount that needs to be paid?,"එකකට වඩා card එකක් ලබාගන්න try කරද්දි, ගෙවන්න ඕනේ අමතර amount එකක් තියෙනවද?",getting_spare_card,Neutral,Low
 2436,Is it possible to give a second card for this account to my daughter?,මේ account එකට දෙවෙනි කාඩ් එකක් මගේ දුවට දෙන්න පුළුවන්ද?,getting_spare_card,Neutral,Low
@@ -2445,7 +2443,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2439,"my daughter needs a card, how do i add her?","මගේ දුවට කාඩ් එකක් ඕනේ, ඒගොල්ලන්ව add කරන්නේ කොහොමද?",getting_spare_card,Neutral,Low
 2440,Can I top up by cheque?,cheque එකකින් top up කරන්න පුළුවන්ද?,top_up_by_cash_or_cheque,Neutral,Low
 2441,How do I top-up using cash?,cash එකකින් top-up කරන්නේ කොහොමද?,top_up_by_cash_or_cheque,Neutral,Low
-2442,Can I top up with a cheque?,cheque එකකින් top up කරන්න පුළුවන්ද?,top_up_by_cash_or_cheque,Neutral,Low
+2442,Can I top up with a cheque?,cheque එකකින් top up කරගන්න පුළුවන්ද?,top_up_by_cash_or_cheque,Neutral,Low
 2443,Is it possible to top up with cash? If so how do I do it?,cash එකකින් top up කරන්න පුළුවන්ද? එහෙනම් ඒක කරන්නේ කොහොමද?,top_up_by_cash_or_cheque,Neutral,Low
 2444,Can you help me find top up by cash deposit?,cash deposit එකකින් top up කරන එක හොයාගන්න මට උදව් කරන්නද?,top_up_by_cash_or_cheque,Neutral,Low
 2445,Is there an option to top up a with cheque?,cheque එකකින් top up කරන්න option එකක් තියෙනවද?,top_up_by_cash_or_cheque,Neutral,Low
@@ -2457,7 +2455,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2451,How do I pay by check?,check එකකින් pay කරන්නේ කොහොමද?,top_up_by_cash_or_cheque,Neutral,Low
 2452,Can I add to my account balance with a cheque?,cheque එකකින් මගේ account balance එකට add කරන්න පුළුවන්ද?,top_up_by_cash_or_cheque,Neutral,Low
 2453,What type of deposits do you accept into my account?,මගේ account එකට ඔයාලා accept කරන deposit types මොනවද?,top_up_by_cash_or_cheque,Neutral,Low
-2454,Can I top up using a cheque?,cheque එකකින් top up කරන්න පුළුවන්ද?,top_up_by_cash_or_cheque,Neutral,Low
+2454,Can I top up using a cheque?,cheque එකක් පාවිච්චි කරලා top up කරන්න පුළුවන්ද?,top_up_by_cash_or_cheque,Neutral,Low
 2455,Can you top-up a card with a cheque?,cheque එකකින් කාඩ් එකක් top-up කරන්න පුළුවන්ද?,top_up_by_cash_or_cheque,Neutral,Low
 2456,"I need to top up cash, How do I do it?","cash top up කරන්න ඕනේ, ඒක කරන්නේ කොහොමද?",top_up_by_cash_or_cheque,Neutral,Low
 2457,I'm looking for the option to top up by cheque.,cheque එකකින් top up කරන option එක හොයනවා.,top_up_by_cash_or_cheque,Neutral,Low
@@ -2520,7 +2518,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2514,"If I want a physical card, do I have to pay anything?","මට physical card එකක් ඕනේ නම්, මොකක් හරි ගෙවන්න ඕනේද?",order_physical_card,Neutral,Low
 2515,Where can cards be delivered?,cards ඩිලිවර් කරන්න පුළුවන් කොහෙද?,order_physical_card,Neutral,Low
 2516,I need a physical card.,මට physical card එකක් ඕනේ.,order_physical_card,Neutral,Low
-2517,What are the fees for a physical card?,physical card එකකට fees මොනවද?,order_physical_card,Neutral,Low
+2517,What are the fees for a physical card?,physical card එකකට තියෙන fees මොනවද?,order_physical_card,Neutral,Low
 2518,How do I get an actual card?,actual card එකක් ලබාගන්නේ කොහොමද?,order_physical_card,Neutral,Low
 2519,Can I get a real card?,මට real card එකක් ලබාගන්න පුළුවන්ද?,order_physical_card,Neutral,Low
 2520,Why is my disposable virtual card being denied?,මගේ disposable virtual card එක denied වෙන්නේ ඇයි?,virtual_card_not_working,Neutral,Medium
@@ -2552,7 +2550,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2546,My payments from my virtual card keep getting rejected.,මගේ virtual card එකෙන් payments continuous ව reject වෙනවා.,virtual_card_not_working,Neutral,Medium
 2547,My disposable virtual card is not working when I try to use it at a point of sale transaction. What do I do now?,point of sale transaction එකකට මගේ disposable virtual card එක පාවිච්චි කරන්න try කරද්දි වැඩ කරන්නේ නෑ. දැන් මම මොකද කරන්නේ?,virtual_card_not_working,Neutral,Medium
 2548,My transaction was just declined when I was using my disposable virtual card. What can I do?,මගේ disposable virtual card එක පාවිච්චි කරද්දි ට්‍රැන්සැක්ෂන් එක decline වුනා. මම මොකද කරන්නේ?,virtual_card_not_working,Neutral,Medium
-2549,My disposable virtual card is not working,මගේ disposable virtual card එක වැඩ කරන්නේ නෑ,virtual_card_not_working,Neutral,Medium
+2549,My disposable virtual card is not working,මගේ disposable virtual card එක වැඩ වෙන්නේ නෑ,virtual_card_not_working,Neutral,Medium
 2550,How do I get my disposable virtual card to work?,මගේ disposable virtual card එක වැඩ කරවගන්නේ කොහොමද?,virtual_card_not_working,Neutral,Medium
 2551,How come my disposable virtual card used to pay for a gym subscription got rejected?,gym subscription එකකට pay කරන්න පාවිච්චි කරපු මගේ disposable virtual card එක reject වුනේ ඇයි?,virtual_card_not_working,Neutral,Medium
 2552,Payments from my disposable virtual card don't work,මගේ disposable virtual card එකෙන් payments වැඩ කරන්නේ නෑ,virtual_card_not_working,Neutral,Medium
@@ -2629,14 +2627,14 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2623,What is the process of obtaining a disposable virtual card,disposable virtual card එකක් ලබාගන්න process එක මොකක්ද,get_disposable_virtual_card,Neutral,Low
 2624,What does a disposable virtual card do?,disposable virtual card එකකින් වෙන්නේ මොකක්ද?,get_disposable_virtual_card,Neutral,Low
 2625,When can I order a disposable virtual card?,disposable virtual card එකක් ඕඩර් කරන්නේ කවදද?,get_disposable_virtual_card,Neutral,Low
-2626,Is it possible to also get a disposable virtual card?,මටත් disposable virtual card එකක් ලබාගන්න පුළුවන්ද?,get_disposable_virtual_card,Neutral,Low
+2626,Is it possible to also get a disposable virtual card?,මටත් disposable virtual card එකක් ගන්න පුළුවන්ද?,get_disposable_virtual_card,Neutral,Low
 2627,How do I obtain a disposable virtual card?,disposable virtual card එකක් ලබාගන්නේ කොහොමද?,get_disposable_virtual_card,Neutral,Low
 2628,How would you use a disposable card?,disposable card එකක් පාවිච්චි කරන්නේ කොහොමද?,get_disposable_virtual_card,Neutral,Low
 2629,"I need a disposable virtual card, how do I get one?","මට disposable virtual card එකක් ඕනේ, ලබාගන්නේ කොහොමද?",get_disposable_virtual_card,Neutral,Low
-2630,How do disposable cards work?,disposable cards වැඩ කරන්නේ කොහොමද?,get_disposable_virtual_card,Neutral,Low
+2630,How do disposable cards work?,disposable cards වැඩ වෙන්නේ කොහොමද?,get_disposable_virtual_card,Neutral,Low
 2631,Is there a disposable virtual card I can order?,ඕඩර් කරගන්න පුළුවන් disposable virtual card එකක් තියෙනවද?,get_disposable_virtual_card,Neutral,Low
 2632,Where can I get a disposable virtual card?,disposable virtual card එකක් ලබාගන්නේ කොහෙන්ද?,get_disposable_virtual_card,Neutral,Low
-2633,Will I be able to get a disposable virtual card as well?,මටත් disposable virtual card එකක් ලබාගන්න පුළුවන්ද?,get_disposable_virtual_card,Neutral,Low
+2633,Will I be able to get a disposable virtual card as well?,මටත් disposable virtual card එකක් ලබාගන්න පුළුවන් වෙයිද?,get_disposable_virtual_card,Neutral,Low
 2634,Hello! I need to order a disposable virtual card. Where can I do that at?,හලෝ! disposable virtual card එකක් ඕඩර් කරගන්න ඕනේ. ඒක කොහෙදි කරන්නද?,get_disposable_virtual_card,Neutral,Low
 2635,where do I request a disposable virtual card?,disposable virtual card එකක් request කරන්නේ කොහෙද?,get_disposable_virtual_card,Neutral,Low
 2636,Can i get a throw away card,throw away card එකක් ලබාගන්න පුළුවන්ද,get_disposable_virtual_card,Neutral,Low
@@ -2834,7 +2832,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 2828,"I need to use a foreign card for a top up, what will the charge be?","top up එකකට විදේශ card එකක් පාවිච්චි කරන්න ඕනේ, charge එක මොකක්ද?",top_up_by_card_charge,Neutral,Medium
 2829,Is it okay to use a bank card to top up,top up කරන්න bank card එකක් පාවිච්චි කරන එක හරිද,top_up_by_card_charge,Neutral,Medium
 2830,Any fee for topping up?,top up කරන්න fee එකක් තියෙනවද?,top_up_by_card_charge,Neutral,Medium
-2831,Are there any fees for top ups?,top ups වලට fees තියෙනවද?,top_up_by_card_charge,Neutral,Medium
+2831,Are there any fees for top ups?,top ups වලට කිසි fees එකක් තියෙනවද?,top_up_by_card_charge,Neutral,Low
 2832,What are the fees of using an international card to add money?,international card එකකින් සල්ලි add කරන්න fees මොනවද?,top_up_by_card_charge,Neutral,Medium
 2833,Is there a charge or discount if I use a foreign bank in a top up?,top up එකකට විදේශ bank එකක් පාවිච්චි කළොත් charge එකක් හෝ discount එකක් තියෙනවද?,top_up_by_card_charge,Neutral,Medium
 2834,Is their a fee for top ups?,top ups වලට fee එකක් තියෙනවද?,top_up_by_card_charge,Neutral,Medium
@@ -3032,7 +3030,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 3026,"When getting my ID checked, what are the steps involved?","මගේ ID එක check කරද්දි, involved steps මොනවද?",verify_my_identity,Neutral,Low
 3027,do I need anything for the identity check?,identity check එකට මට මොකක් හරි ඕනේද?,verify_my_identity,Neutral,Low
 3028,which kind of documentation do I need for identity check?,identity check එකට මොන documentation ඕනේද?,verify_my_identity,Neutral,Low
-3029,How do I go forth on verifying my identity?,මගේ identity එක verify කරන්නේ කොහොමද?,verify_my_identity,Neutral,Low
+3029,How do I go forth on verifying my identity?,මගේ identity එක verify කරගන්නේ කොහොමද?,verify_my_identity,Neutral,Low
 3030,What can I do to verify my identity?,මගේ identity එක verify කරන්න මට මොකද කරන්න පුළුවන්?,verify_my_identity,Neutral,Low
 3031,What do you need so I can verify my identity?,මගේ identity එක verify කරගන්න ඔයාලට ඕනේ මොකක්ද?,verify_my_identity,Neutral,Low
 3032,What do I need to show who I am?,මම කවුද කියලා පෙන්නන්න මට මොකද ඕනේ?,verify_my_identity,Neutral,Low
@@ -3042,7 +3040,7 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 3036,Is there any documentation needed for the identity check?,identity check එකට documentation ඕනේද?,verify_my_identity,Neutral,Low
 3037,What all am I required to show for the identity check?,identity check එකට මට පෙන්නන්න ඕනේ ඔක්කොම මොකක්ද?,verify_my_identity,Neutral,Low
 3038,What do I do for the identity check?,identity check එකට මම මොකද කරන්නේ?,verify_my_identity,Neutral,Low
-3039,What do I need to do to verify my identity?,මගේ identity එක verify කරන්න මම මොකද කරන්න ඕනේ?,verify_my_identity,Neutral,Low
+3039,What do I need to do to verify my identity?,මගේ identity එක verify කරන්න මොකද කරන්න ඕන කරන්නේ?,verify_my_identity,Neutral,Low
 3040,I live in the US but want to get a card,මම ඉන්නේ US එකේ ඒත් කාඩ් එකක් ගන්න ඕනේ,country_support,Neutral,Low
 3041,Are your cards available in Sri Lanka?,ඔයාලගේ cards Sri Lanka එකේ available ද?,country_support,Neutral,Low
 3042,Can I use your app if I am from the EU?,මම EU එකෙන් නම් ඔයාලගේ ඇප් එක පාවිච්චි කරන්න පුළුවන්ද?,country_support,Neutral,Low
@@ -3080,6 +3078,6 @@ Which ATMs accept this card?",මොන ATMs ද මේ කාඩ් එක acce
 3074,"I'm not in Sri Lanka, can I get a card?","මම Sri Lanka එකේ නෑ, කාඩ් එකක් ලබාගන්න පුළුවන්ද?",country_support,Neutral,Low
 3075,"If i'm not in Sri Lanka, can I still get a card?","මම Sri Lanka එකේ නැත්තම්, තාම කාඩ් එකක් ලබාගන්න පුළුවන්ද?",country_support,Neutral,Low
 3076,How many countries do you support?,ඔයාලා support කරන countries කීයක්ද?,country_support,Neutral,Low
-3077,What countries do you do business in?,මොන countries වලද ඔයාලා business කරන්නේ?,country_support,Neutral,Low
+3077,What countries do you do business in?,ඔයාලා business කරන countries මොනවද?,country_support,Neutral,Low
 3078,What are the countries you operate in.,ඔයාලා operate කරන countries මොනවද.,country_support,Neutral,Low
 3079,Can the card be mailed and used in Sri Lanka?,කාඩ් එක mail කරලා Sri Lanka එකේ පාවිච්චි කරන්න පුළුවන්ද?,country_support,Neutral,Low
