@@ -1,0 +1,2369 @@
+openapi: 3.0.3
+info:
+  title: Swift Trilingual Ticket Management API
+  version: 1.0.0
+  description: REST API for multilingual financial-support ticket submission, optional image evidence, classification, routing,
+    RAG-grounded response drafting, human review, and evaluation.
+  contact:
+    name: Group 21
+servers:
+- url: http://localhost:8000/api/v1
+  description: Local development server
+tags:
+- name: Health
+- name: Authentication
+- name: Users
+- name: Tickets
+- name: Attachments
+- name: Processing
+- name: Predictions
+- name: Routing
+- name: Responses
+- name: RAG
+- name: Configuration
+- name: Evaluation
+security:
+- bearerAuth: []
+paths:
+  /health:
+    get:
+      tags:
+      - Health
+      summary: Check API health
+      operationId: getHealth
+      security: []
+      responses:
+        '200':
+          description: API is operational
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+  /auth/login:
+    post:
+      tags:
+      - Authentication
+      summary: Authenticate a user
+      operationId: login
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /auth/refresh:
+    post:
+      tags:
+      - Authentication
+      summary: Refresh an access token
+      operationId: refreshToken
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+      responses:
+        '200':
+          description: Token refreshed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /auth/logout:
+    post:
+      tags:
+      - Authentication
+      summary: Revoke the current session
+      operationId: logout
+      responses:
+        '204':
+          description: Session revoked
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /users/me:
+    get:
+      tags:
+      - Users
+      summary: Get the authenticated user
+      operationId: getCurrentUser
+      responses:
+        '200':
+          description: Current user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /users:
+    get:
+      tags:
+      - Users
+      summary: List users
+      operationId: listUsers
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - name: role
+        in: query
+        schema:
+          $ref: '#/components/schemas/UserRole'
+      - name: is_active
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Paginated users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      tags:
+      - Users
+      summary: Create a user
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+  /users/{user_id}:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      tags:
+      - Users
+      summary: Get a user
+      operationId: getUser
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      tags:
+      - Users
+      summary: Update a user
+      operationId: updateUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+      responses:
+        '200':
+          description: User updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tickets:
+    get:
+      tags:
+      - Tickets
+      summary: Search and filter tickets
+      operationId: listTickets
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - name: query
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          $ref: '#/components/schemas/TicketStatus'
+      - name: priority
+        in: query
+        schema:
+          $ref: '#/components/schemas/TicketPriority'
+      - name: sentiment
+        in: query
+        schema:
+          $ref: '#/components/schemas/SentimentLabel'
+      - name: language_form
+        in: query
+        schema:
+          $ref: '#/components/schemas/LanguageForm'
+      - name: category_id
+        in: query
+        schema:
+          type: integer
+      - name: queue_id
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: assigned_agent_id
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: manual_review_required
+        in: query
+        schema:
+          type: boolean
+      - name: created_from
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: created_to
+        in: query
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Paginated tickets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      tags:
+      - Tickets
+      summary: Create a support ticket
+      operationId: createTicket
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketCreate'
+      responses:
+        '201':
+          description: Ticket created and processing queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /tickets/{ticket_id}:
+    parameters:
+    - $ref: '#/components/parameters/TicketId'
+    get:
+      tags:
+      - Tickets
+      summary: Get complete ticket details
+      operationId: getTicket
+      responses:
+        '200':
+          description: Ticket details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketDetail'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      tags:
+      - Tickets
+      summary: Update accepted ticket values
+      operationId: updateTicket
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketUpdate'
+      responses:
+        '200':
+          description: Ticket updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tickets/{ticket_id}/events:
+    parameters:
+    - $ref: '#/components/parameters/TicketId'
+    get:
+      tags:
+      - Tickets
+      summary: Get ticket lifecycle history
+      operationId: listTicketEvents
+      responses:
+        '200':
+          description: Ticket events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TicketEvent'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tickets/{ticket_id}/notes:
+    parameters:
+    - $ref: '#/components/parameters/TicketId'
+    get:
+      tags:
+      - Tickets
+      summary: List ticket notes
+      operationId: listTicketNotes
+      responses:
+        '200':
+          description: Ticket notes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TicketNote'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      tags:
+      - Tickets
+      summary: Add a ticket note
+      operationId: createTicketNote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketNoteCreate'
+      responses:
+        '201':
+          description: Note created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketNote'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tickets/{ticket_id}/attachments:
+    parameters:
+    - $ref: '#/components/parameters/TicketId'
+    get:
+      tags:
+      - Attachments
+      summary: List ticket attachments
+      operationId: listAttachments
+      responses:
+        '200':
+          description: Attachments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Attachment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      tags:
+      - Attachments
+      summary: Upload an image attachment
+      operationId: uploadAttachment
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: JPEG or PNG image
+      responses:
+        '201':
+          description: Attachment uploaded and validation queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attachment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '413':
+          description: File exceeds configured size limit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '415':
+          description: Unsupported media type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /attachments/{attachment_id}:
+    parameters:
+    - $ref: '#/components/parameters/AttachmentId'
+    get:
+      tags:
+      - Attachments
+      summary: Get attachment metadata and extracted evidence
+      operationId: getAttachment
+      responses:
+        '200':
+          description: Attachment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttachmentDetail'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+      - Attachments
+      summary: Soft-delete an attachment
+      operationId: deleteAttachment
+      responses:
+        '204':
+          description: Attachment deleted
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tickets/{ticket_id}/process:
+    parameters:
+    - $ref: '#/components/parameters/TicketId'
+    post:
+      tags:
+      - Processing
+      summary: Start or retry ticket analysis
+      operationId: processTicket
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessingRequest'
+      responses:
+        '202':
+          description: Processing jobs queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessingBatchResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+  /tickets/{ticket_id}/processing-jobs:
+    parameters:
+    - $ref: '#/components/parameters/TicketId'
+    get:
+      tags:
+      - Processing
+      summary: List processing jobs
+      operationId: listProcessingJobs
+      responses:
+        '200':
+          description: Processing jobs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProcessingJob'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tickets/{ticket_id}/predictions:
+    parameters:
+    - $ref: '#/components/parameters/TicketId'
+    get:
+      tags:
+      - Predictions
+      summary: List ticket predictions
+      operationId: listPredictions
+      responses:
+        '200':
+          description: Prediction results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Prediction'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /predictions/{prediction_id}/reviews:
+    parameters:
+    - $ref: '#/components/parameters/PredictionId'
+    post:
+      tags:
+      - Predictions
+      summary: Accept, correct or reject a prediction
+      operationId: reviewPrediction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PredictionReviewCreate'
+      responses:
+        '201':
+          description: Prediction review recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictionReview'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tickets/{ticket_id}/assignment:
+    parameters:
+    - $ref: '#/components/parameters/TicketId'
+    put:
+      tags:
+      - Routing
+      summary: Assign or reassign a ticket
+      operationId: assignTicket
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketAssignmentRequest'
+      responses:
+        '200':
+          description: Ticket assigned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tickets/{ticket_id}/escalate:
+    parameters:
+    - $ref: '#/components/parameters/TicketId'
+    post:
+      tags:
+      - Routing
+      summary: Escalate a ticket
+      operationId: escalateTicket
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketEscalationRequest'
+      responses:
+        '200':
+          description: Ticket escalated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tickets/{ticket_id}/status:
+    parameters:
+    - $ref: '#/components/parameters/TicketId'
+    put:
+      tags:
+      - Routing
+      summary: Change ticket status
+      operationId: updateTicketStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketStatusUpdate'
+      responses:
+        '200':
+          description: Status updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /rag/retrieve:
+    post:
+      tags:
+      - RAG
+      summary: Retrieve approved knowledge chunks
+      operationId: retrieveKnowledge
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetrievalRequest'
+      responses:
+        '200':
+          description: Ranked knowledge chunks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetrievalResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /tickets/{ticket_id}/responses:
+    parameters:
+    - $ref: '#/components/parameters/TicketId'
+    get:
+      tags:
+      - Responses
+      summary: List response versions
+      operationId: listResponses
+      responses:
+        '200':
+          description: Response versions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Response'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      tags:
+      - Responses
+      summary: Create an agent-authored response
+      operationId: createAgentResponse
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseCreate'
+      responses:
+        '201':
+          description: Response created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tickets/{ticket_id}/responses/generate:
+    parameters:
+    - $ref: '#/components/parameters/TicketId'
+    post:
+      tags:
+      - Responses
+      summary: Generate a grounded response draft
+      operationId: generateResponse
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseGenerationRequest'
+      responses:
+        '201':
+          description: Draft generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /responses/{response_id}:
+    parameters:
+    - $ref: '#/components/parameters/ResponseId'
+    get:
+      tags:
+      - Responses
+      summary: Get a response version
+      operationId: getResponse
+      responses:
+        '200':
+          description: Response details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDetail'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      tags:
+      - Responses
+      summary: Create an edited response version
+      operationId: editResponse
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseEditRequest'
+      responses:
+        '201':
+          description: Edited response version created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /responses/{response_id}/approve:
+    parameters:
+    - $ref: '#/components/parameters/ResponseId'
+    post:
+      tags:
+      - Responses
+      summary: Approve a response
+      operationId: approveResponse
+      responses:
+        '200':
+          description: Response approved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+  /responses/{response_id}/reject:
+    parameters:
+    - $ref: '#/components/parameters/ResponseId'
+    post:
+      tags:
+      - Responses
+      summary: Reject a generated response
+      operationId: rejectResponse
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResponseRejectRequest'
+      responses:
+        '200':
+          description: Response rejected
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /responses/{response_id}/send:
+    parameters:
+    - $ref: '#/components/parameters/ResponseId'
+    post:
+      tags:
+      - Responses
+      summary: Record an approved response as sent
+      operationId: sendResponse
+      responses:
+        '200':
+          description: Response sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+  /knowledge-sources:
+    get:
+      tags:
+      - RAG
+      summary: List knowledge sources
+      operationId: listKnowledgeSources
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      - name: approval_status
+        in: query
+        schema:
+          $ref: '#/components/schemas/SourceApprovalStatus'
+      - name: language
+        in: query
+        schema:
+          $ref: '#/components/schemas/LanguageForm'
+      - name: knowledge_category
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Knowledge sources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeSourceListResponse'
+    post:
+      tags:
+      - RAG
+      summary: Register a knowledge source
+      operationId: createKnowledgeSource
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KnowledgeSourceCreate'
+      responses:
+        '201':
+          description: Knowledge source registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeSource'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /settings:
+    get:
+      tags:
+      - Configuration
+      summary: List non-sensitive system settings
+      operationId: listSettings
+      responses:
+        '200':
+          description: Settings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SystemSetting'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /settings/{setting_key}:
+    parameters:
+    - name: setting_key
+      in: path
+      required: true
+      schema:
+        type: string
+    put:
+      tags:
+      - Configuration
+      summary: Create or update a system setting
+      operationId: updateSetting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SystemSettingUpdate'
+      responses:
+        '200':
+          description: Setting updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemSetting'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /evaluation-runs:
+    get:
+      tags:
+      - Evaluation
+      summary: List evaluation runs
+      operationId: listEvaluationRuns
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: Evaluation runs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluationRunListResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      tags:
+      - Evaluation
+      summary: Start an evaluation run
+      operationId: createEvaluationRun
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvaluationRunCreate'
+      responses:
+        '202':
+          description: Evaluation queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluationRun'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /evaluation-runs/{evaluation_run_id}:
+    parameters:
+    - $ref: '#/components/parameters/EvaluationRunId'
+    get:
+      tags:
+      - Evaluation
+      summary: Get evaluation results
+      operationId: getEvaluationRun
+      responses:
+        '200':
+          description: Evaluation run and metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvaluationRunDetail'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PageSize:
+      name: page_size
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    TicketId:
+      name: ticket_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    AttachmentId:
+      name: attachment_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    PredictionId:
+      name: prediction_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ResponseId:
+      name: response_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    EvaluationRunId:
+      name: evaluation_run_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or token invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: User lacks permission
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: Request conflicts with current resource state
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ServiceUnavailable:
+      description: Required model or retrieval service unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ValidationError:
+      description: Request validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationErrorResponse'
+  schemas:
+    UserRole:
+      type: string
+      enum:
+      - customer
+      - agent
+      - supervisor
+      - administrator
+      - evaluator
+    InterfaceLanguage:
+      type: string
+      enum:
+      - english
+      - sinhala
+      - tamil
+    LanguageForm:
+      type: string
+      enum:
+      - english
+      - sinhala
+      - tamil
+      - singlish
+      - tanglish
+      - code_mixed
+      - unknown
+    TicketPriority:
+      type: string
+      enum:
+      - low
+      - medium
+      - high
+      - critical
+    SentimentLabel:
+      type: string
+      enum:
+      - positive
+      - neutral
+      - negative
+    TicketStatus:
+      type: string
+      enum:
+      - new
+      - processing
+      - in_review
+      - assigned
+      - escalated
+      - response_draft
+      - responded
+      - resolved
+      - closed
+      - reopened
+    ProcessingStatus:
+      type: string
+      enum:
+      - queued
+      - running
+      - succeeded
+      - failed
+      - timed_out
+      - skipped
+    PredictionTask:
+      type: string
+      enum:
+      - category
+      - priority
+      - sentiment
+      - language
+    PredictionDecision:
+      type: string
+      enum:
+      - accepted
+      - corrected
+      - rejected
+    ResponseStatus:
+      type: string
+      enum:
+      - generated_draft
+      - agent_edited
+      - approved
+      - rejected
+      - sent
+    SourceApprovalStatus:
+      type: string
+      enum:
+      - pending
+      - approved
+      - rejected
+      - archived
+    DatasetSplit:
+      type: string
+      enum:
+      - train
+      - validation
+      - test
+    HealthResponse:
+      type: object
+      required:
+      - status
+      - timestamp
+      properties:
+        status:
+          type: string
+          example: healthy
+        timestamp:
+          type: string
+          format: date-time
+        database:
+          type: string
+          example: connected
+        services:
+          type: object
+          additionalProperties:
+            type: string
+    LoginRequest:
+      type: object
+      required:
+      - email
+      - password
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+          minLength: 8
+    RefreshTokenRequest:
+      type: object
+      required:
+      - refresh_token
+      properties:
+        refresh_token:
+          type: string
+    TokenResponse:
+      type: object
+      required:
+      - access_token
+      - refresh_token
+      - token_type
+      - expires_in
+      - user
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        token_type:
+          type: string
+          example: bearer
+        expires_in:
+          type: integer
+          example: 900
+        user:
+          $ref: '#/components/schemas/User'
+    User:
+      type: object
+      required:
+      - user_id
+      - full_name
+      - email
+      - role
+      - preferred_language
+      - is_active
+      - created_at
+      properties:
+        user_id:
+          type: string
+          format: uuid
+        full_name:
+          type: string
+        email:
+          type: string
+          format: email
+        role:
+          $ref: '#/components/schemas/UserRole'
+        preferred_language:
+          $ref: '#/components/schemas/InterfaceLanguage'
+        is_active:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    UserCreate:
+      type: object
+      required:
+      - full_name
+      - email
+      - password
+      - role
+      properties:
+        full_name:
+          type: string
+          minLength: 2
+          maxLength: 150
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+          minLength: 8
+        role:
+          $ref: '#/components/schemas/UserRole'
+        preferred_language:
+          $ref: '#/components/schemas/InterfaceLanguage'
+    UserUpdate:
+      type: object
+      properties:
+        full_name:
+          type: string
+        role:
+          $ref: '#/components/schemas/UserRole'
+        preferred_language:
+          $ref: '#/components/schemas/InterfaceLanguage'
+        is_active:
+          type: boolean
+    TicketCreate:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          minLength: 3
+          maxLength: 10000
+          example: Mage card payment eka duplicate wela.
+        requested_response_language:
+          $ref: '#/components/schemas/InterfaceLanguage'
+        metadata:
+          type: object
+          additionalProperties: true
+    TicketCreateResponse:
+      type: object
+      required:
+      - ticket_id
+      - status
+      - processing_status
+      - created_at
+      properties:
+        ticket_id:
+          type: string
+          format: uuid
+        status:
+          $ref: '#/components/schemas/TicketStatus'
+        processing_status:
+          $ref: '#/components/schemas/ProcessingStatus'
+        created_at:
+          type: string
+          format: date-time
+    TicketUpdate:
+      type: object
+      properties:
+        final_category_id:
+          type: integer
+        final_priority:
+          $ref: '#/components/schemas/TicketPriority'
+        final_sentiment:
+          $ref: '#/components/schemas/SentimentLabel'
+        requested_response_language:
+          $ref: '#/components/schemas/InterfaceLanguage'
+        manual_review_required:
+          type: boolean
+        reason:
+          type: string
+    Ticket:
+      type: object
+      required:
+      - ticket_id
+      - customer_id
+      - original_text
+      - status
+      - manual_review_required
+      - created_at
+      properties:
+        ticket_id:
+          type: string
+          format: uuid
+        customer_id:
+          type: string
+          format: uuid
+        assigned_agent_id:
+          type: string
+          format: uuid
+          nullable: true
+        queue_id:
+          type: string
+          format: uuid
+          nullable: true
+        final_category_id:
+          type: integer
+          nullable: true
+        original_text:
+          type: string
+        normalised_text:
+          type: string
+          nullable: true
+        masked_model_text:
+          type: string
+          nullable: true
+        detected_language_form:
+          $ref: '#/components/schemas/LanguageForm'
+        requested_response_language:
+          allOf:
+          - $ref: '#/components/schemas/InterfaceLanguage'
+          nullable: true
+        final_priority:
+          allOf:
+          - $ref: '#/components/schemas/TicketPriority'
+          nullable: true
+        final_sentiment:
+          allOf:
+          - $ref: '#/components/schemas/SentimentLabel'
+          nullable: true
+        status:
+          $ref: '#/components/schemas/TicketStatus'
+        manual_review_required:
+          type: boolean
+        escalation_reason:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        resolved_at:
+          type: string
+          format: date-time
+          nullable: true
+        closed_at:
+          type: string
+          format: date-time
+          nullable: true
+    TicketEvent:
+      type: object
+      required:
+      - event_id
+      - ticket_id
+      - event_type
+      - created_at
+      properties:
+        event_id:
+          type: string
+          format: uuid
+        ticket_id:
+          type: string
+          format: uuid
+        actor_id:
+          type: string
+          format: uuid
+          nullable: true
+        event_type:
+          type: string
+        old_value:
+          type: object
+          additionalProperties: true
+          nullable: true
+        new_value:
+          type: object
+          additionalProperties: true
+          nullable: true
+        reason:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+    TicketNoteCreate:
+      type: object
+      required:
+      - note_text
+      - visibility
+      properties:
+        note_text:
+          type: string
+          minLength: 1
+        visibility:
+          type: string
+          enum:
+          - internal
+          - customer_visible
+    TicketNote:
+      type: object
+      required:
+      - note_id
+      - ticket_id
+      - author_id
+      - note_text
+      - visibility
+      - created_at
+      properties:
+        note_id:
+          type: string
+          format: uuid
+        ticket_id:
+          type: string
+          format: uuid
+        author_id:
+          type: string
+          format: uuid
+        note_text:
+          type: string
+        visibility:
+          type: string
+          enum:
+          - internal
+          - customer_visible
+        created_at:
+          type: string
+          format: date-time
+    Attachment:
+      type: object
+      required:
+      - attachment_id
+      - ticket_id
+      - original_filename
+      - mime_type
+      - file_size
+      - validation_status
+      - uploaded_at
+      properties:
+        attachment_id:
+          type: string
+          format: uuid
+        ticket_id:
+          type: string
+          format: uuid
+        original_filename:
+          type: string
+        mime_type:
+          type: string
+          enum:
+          - image/jpeg
+          - image/png
+        file_size:
+          type: integer
+          format: int64
+        validation_status:
+          type: string
+          enum:
+          - pending
+          - valid
+          - rejected
+          - quarantined
+        validation_message:
+          type: string
+          nullable: true
+        uploaded_at:
+          type: string
+          format: date-time
+    ImageEvidence:
+      type: object
+      properties:
+        evidence_id:
+          type: string
+          format: uuid
+        raw_extracted_text:
+          type: string
+          nullable: true
+        masked_text:
+          type: string
+          nullable: true
+        detected_language_form:
+          $ref: '#/components/schemas/LanguageForm'
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          nullable: true
+        pii_detected:
+          type: boolean
+        pii_types:
+          type: array
+          items:
+            type: string
+        ocr_engine:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+    ProcessingRequest:
+      type: object
+      properties:
+        job_types:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+            - text_preprocessing
+            - language_detection
+            - category_prediction
+            - priority_prediction
+            - sentiment_prediction
+            - ocr
+            - pii_masking
+            - retrieval
+            - response_generation
+        force_retry:
+          type: boolean
+          default: false
+    ProcessingJob:
+      type: object
+      required:
+      - job_id
+      - ticket_id
+      - job_type
+      - status
+      - retry_count
+      - created_at
+      properties:
+        job_id:
+          type: string
+          format: uuid
+        ticket_id:
+          type: string
+          format: uuid
+        attachment_id:
+          type: string
+          format: uuid
+          nullable: true
+        job_type:
+          type: string
+        status:
+          $ref: '#/components/schemas/ProcessingStatus'
+        retry_count:
+          type: integer
+        error_code:
+          type: string
+          nullable: true
+        error_message:
+          type: string
+          nullable: true
+        started_at:
+          type: string
+          format: date-time
+          nullable: true
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+    Prediction:
+      type: object
+      required:
+      - prediction_id
+      - ticket_id
+      - model_version_id
+      - task_type
+      - predicted_label
+      - input_source
+      - inference_timestamp
+      properties:
+        prediction_id:
+          type: string
+          format: uuid
+        ticket_id:
+          type: string
+          format: uuid
+        model_version_id:
+          type: string
+          format: uuid
+        category_id:
+          type: integer
+          nullable: true
+        task_type:
+          $ref: '#/components/schemas/PredictionTask'
+        predicted_label:
+          type: string
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          nullable: true
+        input_source:
+          type: string
+          enum:
+          - ticket_text
+          - ocr_text
+          - combined
+        is_below_threshold:
+          type: boolean
+        inference_timestamp:
+          type: string
+          format: date-time
+    PredictionReviewCreate:
+      type: object
+      required:
+      - decision
+      properties:
+        decision:
+          $ref: '#/components/schemas/PredictionDecision'
+        corrected_label:
+          type: string
+          nullable: true
+        corrected_category_id:
+          type: integer
+          nullable: true
+        reason:
+          type: string
+          nullable: true
+        mark_as_training_candidate:
+          type: boolean
+          default: false
+    PredictionReview:
+      type: object
+      required:
+      - review_id
+      - prediction_id
+      - reviewer_id
+      - decision
+      - reviewed_at
+      properties:
+        review_id:
+          type: string
+          format: uuid
+        prediction_id:
+          type: string
+          format: uuid
+        reviewer_id:
+          type: string
+          format: uuid
+        decision:
+          $ref: '#/components/schemas/PredictionDecision'
+        corrected_label:
+          type: string
+          nullable: true
+        corrected_category_id:
+          type: integer
+          nullable: true
+        reason:
+          type: string
+          nullable: true
+        reviewed_at:
+          type: string
+          format: date-time
+    TicketAssignmentRequest:
+      type: object
+      required:
+      - queue_id
+      properties:
+        queue_id:
+          type: string
+          format: uuid
+        assigned_agent_id:
+          type: string
+          format: uuid
+          nullable: true
+        reason:
+          type: string
+    TicketEscalationRequest:
+      type: object
+      required:
+      - reason
+      properties:
+        reason:
+          type: string
+          minLength: 3
+        queue_id:
+          type: string
+          format: uuid
+          nullable: true
+        assigned_agent_id:
+          type: string
+          format: uuid
+          nullable: true
+    TicketStatusUpdate:
+      type: object
+      required:
+      - status
+      properties:
+        status:
+          $ref: '#/components/schemas/TicketStatus'
+        reason:
+          type: string
+    RetrievalRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          minLength: 3
+        ticket_id:
+          type: string
+          format: uuid
+          nullable: true
+        language_form:
+          $ref: '#/components/schemas/LanguageForm'
+        knowledge_categories:
+          type: array
+          items:
+            type: string
+        top_k:
+          type: integer
+          minimum: 1
+          maximum: 20
+          default: 5
+        approved_only:
+          type: boolean
+          default: true
+    RetrievalChunk:
+      type: object
+      required:
+      - chunk_id
+      - source_id
+      - source_title
+      - chunk_text
+      - language
+      - retrieval_rank
+      properties:
+        chunk_id:
+          type: string
+          format: uuid
+        source_id:
+          type: string
+          format: uuid
+        source_title:
+          type: string
+        chunk_text:
+          type: string
+        language:
+          $ref: '#/components/schemas/LanguageForm'
+        section_title:
+          type: string
+          nullable: true
+        retrieval_rank:
+          type: integer
+        similarity_score:
+          type: number
+          minimum: 0
+          maximum: 1
+          nullable: true
+    RetrievalResponse:
+      type: object
+      required:
+      - query
+      - chunks
+      properties:
+        query:
+          type: string
+        chunks:
+          type: array
+          items:
+            $ref: '#/components/schemas/RetrievalChunk'
+    ResponseCreate:
+      type: object
+      required:
+      - content
+      - language
+      properties:
+        content:
+          type: string
+          minLength: 1
+        language:
+          $ref: '#/components/schemas/InterfaceLanguage'
+    ResponseGenerationRequest:
+      type: object
+      properties:
+        language:
+          $ref: '#/components/schemas/InterfaceLanguage'
+        top_k:
+          type: integer
+          minimum: 1
+          maximum: 20
+          default: 5
+        regenerate_from_response_id:
+          type: string
+          format: uuid
+          nullable: true
+    ResponseEditRequest:
+      type: object
+      required:
+      - content
+      properties:
+        content:
+          type: string
+          minLength: 1
+        language:
+          $ref: '#/components/schemas/InterfaceLanguage'
+    ResponseRejectRequest:
+      type: object
+      required:
+      - reason
+      properties:
+        reason:
+          type: string
+          minLength: 3
+    Response:
+      type: object
+      required:
+      - response_id
+      - ticket_id
+      - version_no
+      - response_type
+      - content
+      - language
+      - status
+      - created_at
+      properties:
+        response_id:
+          type: string
+          format: uuid
+        ticket_id:
+          type: string
+          format: uuid
+        version_no:
+          type: integer
+        parent_response_id:
+          type: string
+          format: uuid
+          nullable: true
+        author_user_id:
+          type: string
+          format: uuid
+          nullable: true
+        model_version_id:
+          type: string
+          format: uuid
+          nullable: true
+        response_type:
+          type: string
+          enum:
+          - ai_draft
+          - agent_reply
+          - system_message
+        content:
+          type: string
+        language:
+          $ref: '#/components/schemas/InterfaceLanguage'
+        status:
+          $ref: '#/components/schemas/ResponseStatus'
+        grounding_confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          nullable: true
+        approved_by:
+          type: string
+          format: uuid
+          nullable: true
+        approved_at:
+          type: string
+          format: date-time
+          nullable: true
+        sent_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    ResponseCitation:
+      type: object
+      required:
+      - citation_id
+      - response_id
+      - chunk_id
+      - retrieval_rank
+      properties:
+        citation_id:
+          type: string
+          format: uuid
+        response_id:
+          type: string
+          format: uuid
+        chunk_id:
+          type: string
+          format: uuid
+        retrieval_rank:
+          type: integer
+        similarity_score:
+          type: number
+          minimum: 0
+          maximum: 1
+          nullable: true
+        cited_excerpt:
+          type: string
+          nullable: true
+    KnowledgeSourceCreate:
+      type: object
+      required:
+      - title
+      - knowledge_category
+      - language
+      - owner
+      - version
+      properties:
+        title:
+          type: string
+        knowledge_category:
+          type: string
+        language:
+          $ref: '#/components/schemas/LanguageForm'
+        source_url:
+          type: string
+          format: uri
+          nullable: true
+        storage_path:
+          type: string
+          nullable: true
+        owner:
+          type: string
+        version:
+          type: string
+    KnowledgeSource:
+      type: object
+      required:
+      - source_id
+      - title
+      - knowledge_category
+      - language
+      - owner
+      - approval_status
+      - version
+      - created_at
+      properties:
+        source_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        knowledge_category:
+          type: string
+        language:
+          $ref: '#/components/schemas/LanguageForm'
+        source_url:
+          type: string
+          format: uri
+          nullable: true
+        storage_path:
+          type: string
+          nullable: true
+        owner:
+          type: string
+        approval_status:
+          $ref: '#/components/schemas/SourceApprovalStatus'
+        version:
+          type: string
+        checksum:
+          type: string
+          nullable: true
+        approved_by:
+          type: string
+          format: uuid
+          nullable: true
+        approved_at:
+          type: string
+          format: date-time
+          nullable: true
+        last_reviewed_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+    SystemSetting:
+      type: object
+      required:
+      - setting_key
+      - setting_value
+      - value_type
+      - is_sensitive
+      - updated_at
+      properties:
+        setting_key:
+          type: string
+        setting_value: {}
+        value_type:
+          type: string
+          enum:
+          - string
+          - integer
+          - decimal
+          - boolean
+          - json
+        description:
+          type: string
+          nullable: true
+        is_sensitive:
+          type: boolean
+        updated_at:
+          type: string
+          format: date-time
+    SystemSettingUpdate:
+      type: object
+      required:
+      - setting_value
+      - value_type
+      properties:
+        setting_value: {}
+        value_type:
+          type: string
+          enum:
+          - string
+          - integer
+          - decimal
+          - boolean
+          - json
+        description:
+          type: string
+        is_sensitive:
+          type: boolean
+          default: false
+    EvaluationRunCreate:
+      type: object
+      required:
+      - model_version_id
+      - dataset_version_id
+      - split
+      properties:
+        model_version_id:
+          type: string
+          format: uuid
+        dataset_version_id:
+          type: string
+          format: uuid
+        split:
+          $ref: '#/components/schemas/DatasetSplit'
+        preprocessing_configuration:
+          type: object
+          additionalProperties: true
+        notes:
+          type: string
+    EvaluationMetric:
+      type: object
+      required:
+      - metric_id
+      - metric_name
+      - metric_value
+      properties:
+        metric_id:
+          type: string
+          format: uuid
+        language_form:
+          allOf:
+          - $ref: '#/components/schemas/LanguageForm'
+          nullable: true
+        class_label:
+          type: string
+          nullable: true
+        metric_name:
+          type: string
+          example: macro_f1
+        metric_value:
+          type: number
+          format: double
+        support_count:
+          type: integer
+          nullable: true
+    EvaluationRun:
+      type: object
+      required:
+      - evaluation_run_id
+      - model_version_id
+      - dataset_version_id
+      - split
+      - status
+      - created_at
+      properties:
+        evaluation_run_id:
+          type: string
+          format: uuid
+        model_version_id:
+          type: string
+          format: uuid
+        dataset_version_id:
+          type: string
+          format: uuid
+        split:
+          $ref: '#/components/schemas/DatasetSplit'
+        status:
+          $ref: '#/components/schemas/ProcessingStatus'
+        started_at:
+          type: string
+          format: date-time
+          nullable: true
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+    Pagination:
+      type: object
+      required:
+      - page
+      - page_size
+      - total
+      properties:
+        page:
+          type: integer
+        page_size:
+          type: integer
+        total:
+          type: integer
+    ErrorResponse:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - code
+          - message
+          properties:
+            code:
+              type: string
+              example: RESOURCE_NOT_FOUND
+            message:
+              type: string
+            request_id:
+              type: string
+              nullable: true
+            details:
+              type: object
+              nullable: true
+              additionalProperties: true
+    ValidationErrorResponse:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - code
+          - message
+          - fields
+          properties:
+            code:
+              type: string
+              example: VALIDATION_ERROR
+            message:
+              type: string
+            request_id:
+              type: string
+              nullable: true
+            fields:
+              type: array
+              items:
+                type: object
+                required:
+                - field
+                - message
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+    TicketDetail:
+      allOf:
+      - $ref: '#/components/schemas/Ticket'
+      - type: object
+        properties:
+          attachments:
+            type: array
+            items:
+              $ref: '#/components/schemas/Attachment'
+          predictions:
+            type: array
+            items:
+              $ref: '#/components/schemas/Prediction'
+          responses:
+            type: array
+            items:
+              $ref: '#/components/schemas/Response'
+          recent_events:
+            type: array
+            items:
+              $ref: '#/components/schemas/TicketEvent'
+    AttachmentDetail:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          evidence:
+            type: array
+            items:
+              $ref: '#/components/schemas/ImageEvidence'
+    ResponseDetail:
+      allOf:
+      - $ref: '#/components/schemas/Response'
+      - type: object
+        properties:
+          citations:
+            type: array
+            items:
+              $ref: '#/components/schemas/ResponseCitation'
+    EvaluationRunDetail:
+      allOf:
+      - $ref: '#/components/schemas/EvaluationRun'
+      - type: object
+        properties:
+          metrics:
+            type: array
+            items:
+              $ref: '#/components/schemas/EvaluationMetric'
+    UserListResponse:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+    TicketListResponse:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/Ticket'
+    KnowledgeSourceListResponse:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/KnowledgeSource'
+    EvaluationRunListResponse:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/EvaluationRun'
+    ProcessingBatchResponse:
+      type: object
+      required:
+      - ticket_id
+      - jobs
+      properties:
+        ticket_id:
+          type: string
+          format: uuid
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessingJob'
