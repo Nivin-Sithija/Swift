@@ -1,0 +1,47 @@
+{
+  "model": "accounts/fireworks/models/kimi-k2p6",
+  "requested_limit": 1,
+  "total_selected": 1,
+  "successful_requests": 0,
+  "failed_requests": 1,
+  "metrics": {
+    "category": {
+      "accuracy": null,
+      "correct": 0,
+      "evaluated": 0,
+      "labels": [],
+      "confusion_matrix": []
+    },
+    "priority": {
+      "accuracy": null,
+      "correct": 0,
+      "evaluated": 0,
+      "labels": [],
+      "confusion_matrix": []
+    },
+    "sentiment": {
+      "accuracy": null,
+      "correct": 0,
+      "evaluated": 0,
+      "labels": [],
+      "confusion_matrix": []
+    }
+  },
+  "incorrect_predictions": [],
+  "failure_types": {
+    "RuntimeError": 1
+  },
+  "failed_items": [
+    {
+      "image_path": "screenshots/synthetic_bank_0001.png",
+      "status": "failed",
+      "expected": {
+        "category": "Cash not received",
+        "priority": "high",
+        "sentiment": "negative"
+      },
+      "error_type": "RuntimeError",
+      "error": "RequestDeadlineError: Request exceeded 10 seconds"
+    }
+  ]
+}
