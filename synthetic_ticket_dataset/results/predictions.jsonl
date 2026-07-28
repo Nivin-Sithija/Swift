@@ -1,0 +1,1 @@
+{"image_path": "screenshots/synthetic_bank_0001.png", "status": "failed", "expected": {"category": "Cash not received", "priority": "high", "sentiment": "negative"}, "error_type": "RuntimeError", "error": "RequestDeadlineError: Request exceeded 10 seconds"}
