@@ -58,7 +58,7 @@
 \vfill
 
 {\large\bfseries DATE\par}
-{\large 24/07/2026\par}
+{\large 26/07/2026\par}
 
 \vfill
 
@@ -81,11 +81,11 @@ Senior Lecturer Aloka Fernando
 
 \subsection{Overview of the Project}
 
-The proposed system is a web-based customer support ticket management platform for financial institutions. It accepts customer complaints and enquiries written in English, Sinhala, Tamil, Singlish, Tanglish, and mixed-language forms. A customer may also attach an image such as a mobile-banking screenshot, payment receipt, transaction slip, or error message.
+The proposed system is a web-based customer support ticket management platform for financial institutions. It accepts customer complaints and enquiries written in English, Sinhala, Tamil, Singlish and Tanglish. A customer may also attach an image such as a mobile-banking screenshot, payment receipt, transaction slip, or error message.
 
 The system analyses the available text and image evidence and predicts the ticket category, priority level, and customer sentiment. It also prepares a context-aware draft response for review by a support agent. The BANKING77 dataset is used as the main source for banking intent classification because it contains 77 detailed customer-support categories \cite{banking77}. English records are translated into Sinhala and Tamil and extended with romanized and selected mixed-language examples.
 
-The proposed platform is intended to assist support staff rather than replace them. Low-confidence, urgent, security-related, and sensitive tickets are forwarded for manual review. This approach can improve ticket routing, reduce repetitive work, and provide more consistent multilingual customer service.
+The proposed platform is intended to assist support staff rather than replace them. Urgent, security-related, and sensitive tickets are forwarded for manual review. This approach can improve ticket routing, reduce repetitive work, and provide more consistent multilingual customer service.
 
 \subsection{Objectives of the Project}
 
@@ -124,7 +124,7 @@ The main planned technologies are:
     \item \textbf{Machine learning:} Python, PyTorch, Hugging Face Transformers, and scikit-learn.
     \item \textbf{Language model:} XLM-RoBERTa for multilingual ticket classification \cite{xlmr}.
     \item \textbf{Image processing:} OCR or a pre-trained vision model for extracting supporting details.
-    \item \textbf{Deployment:} Docker and cloud or university-hosted infrastructure.
+    \item \textbf{Deployment:} Docker and cloud.
 \end{itemize}
 
 The exact tools may be adjusted during implementation after comparing model accuracy, cost, speed, and deployment requirements.
@@ -138,10 +138,9 @@ The main user roles and functions are:
     \item \textbf{Support Agent:} Review assigned tickets, inspect predictions, correct results, edit draft responses, and update ticket status.
     \item \textbf{Supervisor:} Monitor queues, review urgent cases, assign tickets, and analyse ticket trends.
     \item \textbf{Administrator:} Manage users, roles, categories, thresholds, and audit records.
-    \item \textbf{Data Analyst:} Evaluate model performance, review corrections, and manage controlled retraining.
 \end{itemize}
 
-The system covers text classification, priority prediction, sentiment analysis, image-based supporting information, response drafting, routing, dashboards, and feedback collection. Voice input, direct transaction execution, refund approval, and automatic account changes are outside the project scope.
+The system covers text classification, priority prediction, sentiment analysis, image-based supporting information, response drafting, routing, dashboards, and feedback collection.
 
 \subsection{Deliverables}
 
@@ -165,7 +164,7 @@ The main project outputs are:
 
 The prototype is financially feasible because most development tools are open source. React, FastAPI, PostgreSQL, PyTorch, Transformers, and scikit-learn can be used without software licence fees. The main possible costs are cloud GPU usage, model or vision API usage, short-term hosting, translation review, and data annotation.
 
-Existing promotional credits and university computing facilities can reduce the initial cost. A limited prototype can also use local OCR and smaller open-source models to control expenditure. Production deployment would require additional spending for security testing, monitoring, backups, integration, and continuous maintenance. Therefore, the proposed academic prototype is financially feasible, while a production version would require a separate organizational budget.
+Existing promotional credits can reduce the initial cost. A limited prototype can also use local OCR and smaller open-source models to control expenditure. Production deployment would require additional spending for security testing, monitoring, backups, integration, and continuous maintenance. Therefore, the proposed academic prototype is financially feasible, while a production version would require a separate organizational budget.
 
 \subsection{Technical Feasibility}
 
@@ -173,20 +172,20 @@ The project is technically feasible because the required components are supporte
 
 A modular architecture will separate the web interface, backend API, database, text model, image processor, and response generator. This allows each component to be developed and tested independently. Conventional classifiers such as TF--IDF with logistic regression will be used as baselines before training the multilingual Transformer.
 
-The main technical difficulties are inconsistent romanized spelling, code-mixed language, translation quality, similar ticket categories, OCR errors, and incorrect generated responses. These issues can be reduced through validated data, confidence thresholds, per-language evaluation, and mandatory human review. The system is therefore technically feasible as a controlled prototype.
+The main technical difficulties are inconsistent romanized spelling, translation quality, similar ticket categories, OCR errors, and incorrect generated responses. These issues can be reduced through validated data, confidence thresholds, per-language evaluation, and mandatory human review. The system is therefore technically feasible as a controlled prototype.
 
 \subsection{Resource and Time Feasibility}
 
 The project requires the following resources:
 
 \begin{itemize}
-    \item \textbf{Hardware:} Development computers and access to a GPU-enabled local, university, or cloud environment.
+    \item \textbf{Hardware:} Development computers and access to a GPU-enabled local or cloud environment.
     \item \textbf{Software:} Open-source web-development, database, machine-learning, OCR, testing, and version-control tools.
-    \item \textbf{Data resources:} BANKING77, translated records, romanized and mixed-language samples, and labelled priority and sentiment data.
+    \item \textbf{Data resources:} BANKING77, translated records and romanized, and labelled priority and sentiment data.
     \item \textbf{Human resources:} Project members, fluent Sinhala and Tamil reviewers, and supervisor guidance.
 \end{itemize}
 
-The proposed work can be completed in approximately three to four months through the following phases:
+The proposed work can be completed in approximately five to six weeks through the following phases:
 
 \begin{itemize}
     \item Requirements, architecture, and dataset planning.
@@ -206,7 +205,6 @@ The main project risks and mitigations are:
 \begin{itemize}
     \item \textbf{Translation errors:} Validate samples with fluent speakers and maintain a banking terminology guide.
     \item \textbf{Data leakage:} Keep every translation and romanized version of the same source ticket in one dataset split.
-    \item \textbf{Limited mixed-language data:} Create reviewed mixed examples and maintain a separate realistic test set.
     \item \textbf{Incorrect classification:} Use confidence scores, error analysis, and human correction.
     \item \textbf{Missed urgent tickets:} Give higher importance to critical-ticket recall and add rule-based escalation.
     \item \textbf{OCR errors:} Display extracted text to the agent and avoid relying only on image results.
@@ -236,7 +234,7 @@ The primary considerations for the proposed system are:
     \item \textbf{Privacy:} Personal and financial data must be minimized, masked, and protected.
     \item \textbf{Usability:} Interfaces must clearly present predictions, confidence, extracted image text, and escalation reasons.
     \item \textbf{Performance:} Text-only predictions should be fast enough for interactive ticket handling.
-    \item \textbf{Fairness:} Lower performance in Sinhala, Tamil, Singlish, Tanglish, or mixed text must not be hidden by overall accuracy.
+    \item \textbf{Fairness:} Lower performance in Sinhala, Tamil, Singlish, or  Tanglish must not be hidden by overall accuracy.
     \item \textbf{Human Control:} Agents must be able to correct every prediction and edit every generated response.
     \item \textbf{Scalability:} The modular design should support future models, languages, and ticket categories.
     \item \textbf{Maintainability:} Dataset versions, model versions, feedback, and retraining procedures must be documented.
