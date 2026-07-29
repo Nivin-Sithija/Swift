@@ -6,6 +6,75 @@ Trilingual (Sinhala / English / Tamil), multimodal AI support-ticket triage syst
 
 This repository now includes a complete Vite + React frontend demonstrating the customer and support-agent workflows with local mock data. It does not connect to a bank, authentication provider, model, OCR system, or backend. All names, identifiers, transactions, predictions, and images are fictional.
 
+## Running the project
+
+The frontend uses mock data, so no backend, database, API key, or external authentication service is required.
+
+### Option 1: Run locally with npm
+
+Requirements: Node.js 20.19+ or 22.12+ and npm.
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173).
+
+Press `Ctrl+C` in the terminal to stop the development server.
+
+### Option 2: Run development with Docker
+
+Requirements: Docker Engine or Docker Desktop with Docker Compose.
+
+```bash
+cp .env.example .env
+docker compose up --build
+```
+
+Open [http://localhost:5173](http://localhost:5173). Source changes are applied through Vite hot reload.
+
+View logs or stop the development container:
+
+```bash
+docker compose logs -f frontend
+docker compose down
+```
+
+### Option 3: Run the production container
+
+```bash
+cp .env.example .env
+docker compose -f docker-compose.prod.yml up --build -d
+```
+
+Open [http://localhost:8080](http://localhost:8080).
+
+Check the application and container health:
+
+```bash
+docker compose -f docker-compose.prod.yml ps
+curl http://localhost:8080/health
+```
+
+View production logs or stop the container:
+
+```bash
+docker compose -f docker-compose.prod.yml logs -f frontend
+docker compose -f docker-compose.prod.yml down
+```
+
+If Docker reports that it cannot connect to the daemon, start Docker Desktop or the Docker Engine service and retry.
+
+### Demo login
+
+| Role | Email | Password |
+|---|---|---|
+| Customer | `customer@swift.demo` | `password123` |
+| Support agent | `agent@swift.demo` | `password123` |
+
+Select the matching role on the login page before signing in.
+
 ### Features
 
 - Customer login, validated multilingual ticket submission, optional image preview, simulated processing, confirmation, history, and customer-safe ticket detail
@@ -65,7 +134,7 @@ Fifteen realistic fictional tickets live in `src/mocks/tickets.ts`; runtime muta
 
 ### Theme behavior
 
-The first visit explicitly defaults to Dark, regardless of operating-system preference. The inline script in `index.html` applies the stored selection before React renders to prevent a theme flash. System mode listens for operating-system changes. The preference is stored under `swift-theme`.
+The first visit explicitly defaults to Dark, regardless of operating-system preference. The early `theme-init.js` bootstrap applies the stored selection before React renders to prevent a theme flash. System mode listens for operating-system changes. The preference is stored under `swift-theme`.
 
 ### Future API integration
 
