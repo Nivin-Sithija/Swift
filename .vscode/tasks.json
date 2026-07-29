@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Docker Development",
+      "type": "shell",
+      "command": "docker compose up --build",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Stop Docker Development",
+      "type": "shell",
+      "command": "docker compose down",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Production Image",
+      "type": "shell",
+      "command": "docker compose -f docker-compose.prod.yml build frontend",
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Docker Production",
+      "type": "shell",
+      "command": "docker compose -f docker-compose.prod.yml up --build -d",
+      "problemMatcher": []
+    },
+    {
+      "label": "Stop Docker Production",
+      "type": "shell",
+      "command": "docker compose -f docker-compose.prod.yml down",
+      "problemMatcher": []
+    },
+    {
+      "label": "View Frontend Logs",
+      "type": "shell",
+      "command": "docker compose logs -f frontend",
+      "problemMatcher": []
+    }
+  ]
+}

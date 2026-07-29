@@ -1,0 +1,35 @@
+name: swift-production
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: "${VITE_API_BASE_URL:-http://localhost:8000/api/v1}"
+        VITE_APP_NAME: "${VITE_APP_NAME:-Swift}"
+        VITE_DEFAULT_THEME: "${VITE_DEFAULT_THEME:-dark}"
+    ports:
+      - "${FRONTEND_PROD_PORT:-8080}:8080"
+    environment:
+      API_BASE_URL: "${API_BASE_URL:-http://backend:8000/api/v1}"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    networks:
+      - swift
+
+networks:
+  swift:
+    name: swift-production
