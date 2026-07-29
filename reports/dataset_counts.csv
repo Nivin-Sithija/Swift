@@ -1,0 +1,11 @@
+language,split,row_count,unique_labels
+english,test,3079,77
+english,train,9998,77
+singlish,test,3079,77
+singlish,train,9998,77
+sinhala,test,3079,77
+sinhala,train,9998,77
+tamil,test,3079,77
+tamil,train,9998,77
+tamilish,test,3079,77
+tamilish,train,9998,77
