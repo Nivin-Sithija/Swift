@@ -1,0 +1,16 @@
+{
+  "total_rows": 65385,
+  "unique_labels": 77,
+  "missing_text": 0,
+  "empty_text": 0,
+  "missing_labels": 0,
+  "invalid_languages": 0,
+  "invalid_splits": 0,
+  "duplicate_ids_per_lang": 15380,
+  "duplicate_texts_per_lang": 382,
+  "duplicate_text_label_pairs": 370,
+  "conflicting_duplicates": 12,
+  "all_77_labels_present": true,
+  "consistent_labels_across_languages": true,
+  "schema_valid": true
+}

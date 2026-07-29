@@ -1,0 +1,21 @@
+Model,Language,True_Label,Predicted_Label,Error_Count
+Logistic Regression,all,change_pin,get_physical_card,54
+Logistic Regression,all,unable_to_verify_identity,verify_my_identity,45
+Logistic Regression,all,why_verify_identity,verify_my_identity,45
+Linear SVM,all,unable_to_verify_identity,verify_my_identity,40
+Logistic Regression,all,virtual_card_not_working,get_disposable_virtual_card,38
+Linear SVM,all,why_verify_identity,verify_my_identity,37
+Linear SVM,all,virtual_card_not_working,get_disposable_virtual_card,36
+Linear SVM,all,change_pin,get_physical_card,35
+Logistic Regression,all,top_up_reverted,top_up_failed,34
+Logistic Regression,all,wrong_exchange_rate_for_cash_withdrawal,card_payment_wrong_exchange_rate,33
+Linear SVM,all,virtual_card_not_working,getting_virtual_card,33
+Logistic Regression,all,virtual_card_not_working,getting_virtual_card,31
+Logistic Regression,tamilish,unable_to_verify_identity,verify_my_identity,31
+Linear SVM,all,wrong_exchange_rate_for_cash_withdrawal,card_payment_wrong_exchange_rate,31
+Linear SVM,all,top_up_reverted,top_up_failed,30
+Linear SVM,all,exchange_via_app,exchange_rate,28
+Logistic Regression,all,disposable_card_limits,get_disposable_virtual_card,28
+Logistic Regression,tamilish,top_up_reverted,top_up_failed,28
+Linear SVM,all,pin_blocked,get_physical_card,28
+Logistic Regression,all,pin_blocked,get_physical_card,28
