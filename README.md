@@ -2,6 +2,114 @@
 
 Trilingual (Sinhala / English / Tamil), multimodal AI support-ticket triage system for banking and fintech. Incoming tickets — text, voice, or image (bank slips, receipts, error screenshots) — are transcribed/OCR'd, classified by category, priority, and sentiment, and routed: routine questions get a RAG-grounded drafted reply, fraud/urgent/negative-sentiment tickets escalate to a human agent.
 
+## Frontend prototype
+
+This repository now includes a complete Vite + React frontend demonstrating the customer and support-agent workflows with local mock data. It does not connect to a bank, authentication provider, model, OCR system, or backend. All names, identifiers, transactions, predictions, and images are fictional.
+
+### Features
+
+- Customer login, validated multilingual ticket submission, optional image preview, simulated processing, confirmation, history, and customer-safe ticket detail
+- Agent dashboard, sortable/filterable queues, high-priority/escalated/resolved views, prediction review and correction, OCR evidence, internal notes, assignment and lifecycle actions
+- Editable AI response drafts with prominent safety notice and mandatory confirmation before mock approval
+- English, Sinhala, Tamil, Singlish, Tanglish, and mixed-script sample messages
+- Dark theme by default plus persistent Light, Dark, and System preferences
+- Persistent English, සිංහල, and தமிழ் interface-language preference
+- Role-protected routes, responsive navigation, mobile ticket cards, accessible controls, reduced-motion support, loading/error/empty states
+- Typed mock service boundary designed for later REST replacement
+
+### Technology
+
+React 19, TypeScript strict mode, Vite, React Router, Tailwind CSS, React Hook Form, Zod, Lucide React, Vitest, React Testing Library, ESLint, and Prettier.
+
+### Setup
+
+Node.js 20.19+ or 22.12+ is recommended.
+
+```bash
+npm install
+npm run dev
+npm run lint
+npm run test
+npm run build
+```
+
+The development server prints its local URL, normally `http://localhost:5173`.
+
+### Demo credentials
+
+| Role | Email | Password |
+|---|---|---|
+| Customer | `customer@swift.demo` | `password123` |
+| Support agent | `agent@swift.demo` | `password123` |
+
+Use the role selector on the login screen. “Use demo account” fills the relevant credentials.
+
+### Routes
+
+- `/login`
+- `/customer/submit`
+- `/customer/tickets`
+- `/customer/tickets/:ticketId`
+- `/agent/dashboard`
+- `/agent/tickets`
+- `/agent/tickets/:ticketId`
+- `/agent/high-priority`
+- `/agent/escalated`
+- `/agent/resolved`
+- `/agent/reports` and `/agent/settings` (planned-feature views)
+- `/not-found`
+
+### Mock data and UI states
+
+Fifteen realistic fictional tickets live in `src/mocks/tickets.ts`; runtime mutations are held only in memory. Refreshing restores the original mock dataset. Add `?state=error` to `/customer/tickets` to demonstrate a controlled service-error state. Authentication is simulated in browser storage and must not be treated as production security.
+
+### Theme behavior
+
+The first visit explicitly defaults to Dark, regardless of operating-system preference. The inline script in `index.html` applies the stored selection before React renders to prevent a theme flash. System mode listens for operating-system changes. The preference is stored under `swift-theme`.
+
+### Future API integration
+
+Set the eventual REST origin from `.env.example`:
+
+```text
+VITE_API_BASE_URL=http://localhost:8000/api/v1
+```
+
+Replace `mockTicketService` in `src/services/ticketService.ts` with a REST implementation of the same `TicketService` interface. Pages and reusable components consume promises and typed domain objects, so no view-level mock arrays need to be rewritten.
+
+### Frontend structure
+
+```text
+src/
+  app/providers/       Theme, language and mock authentication
+  app/router/          Routes and role guards
+  components/agent/    Prediction, evidence, notes and response panels
+  components/common/   Shared controls and dialogs
+  components/layout/   Customer and agent application shells
+  components/tickets/  Tables, filters, cards, badges and timeline
+  mocks/               Central fictional ticket dataset
+  pages/               Login, customer, agent and utility pages
+  services/            Replaceable asynchronous service interface
+  test/                Behavioral Vitest/Testing Library tests
+  types/               Strict domain models
+```
+
+### Testing
+
+`npm run test` covers theme defaults and persistence, validation, access control, agent metrics, ticket filtering, confidence thresholds, image validation, processing states, and unmodified multilingual strings. `npm run lint` checks TypeScript and React rules. `npm run build` performs strict compilation and a production Vite build.
+
+### Known limitations
+
+- All operations are browser-only mock interactions and are reset on refresh.
+- OCR, model predictions, draft generation, notifications, search, and uploads are simulated.
+- Reports and Settings intentionally show planned-feature pages.
+- The compact localisation dictionary demonstrates architecture rather than translating every sentence.
+- The synthetic receipt is illustrative and contains no actual financial data.
+
+### Screenshots
+
+Screenshots can be added under `docs/screenshots/` for the login, customer submission, agent dashboard, and agent ticket review views.
+
 Full product framing (pages, user flows, features in/out of scope, success criteria) lives in [`context/project-overview.md`](context/project-overview.md). System design and stack are in [`context/architecture.md`](context/architecture.md).
 
 The project has two tracks that are both mid-flight: a **research + dataset track** (this repo's current focus) and a **planned application build** (Next.js + FastAPI, specced but not yet implemented — see `context/build-plan.md`).
