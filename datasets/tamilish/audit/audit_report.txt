@@ -1,0 +1,89 @@
+======================================================================
+TAMILISH DATASET AUDIT REPORT
+======================================================================
+
+--- TRAIN SET (9998 rows) ---
+  Register distribution:
+    COLLOQUIAL:   8275 (82.8%)
+    MIXED:        1720 (17.2%)
+    FORMAL:          3 (0.0%)
+  Needs fix:      1723 (17.2%)
+
+  Code-Mixing Index (CMI):
+    Mean:    19.3
+    Min:     0.0
+    Max:     50.0
+    CMI = 0:      1662 (16.6%) — pure single-language
+    CMI 1-10:      751 (7.5%) — light mixing
+    CMI 11-25:    4726 (47.3%) — moderate mixing
+    CMI > 25:     2859 (28.6%) — heavy mixing
+
+  Issue breakdown (rows affected):
+    formal_verbs                       11 (0.1%)
+    formal_compounds                    4 (0.0%)
+
+  Per-category register breakdown (top 15 worst):
+  Category                                 Total Formal  Mixed  AvgCMI
+  ---------------------------------------- ----- ------ ------ -------
+  verify_my_identity                         104      0     74     5.5
+  terminate_account                          108      0     70     5.7
+  change_pin                                 121      0     77     5.8
+  edit_personal_details                      121      0     74     8.8
+  passcode_forgotten                         105      0     63     7.4
+  verify_source_of_funds                     113      0     59     7.5
+  card_acceptance                             59      0     30     9.1
+  top_up_limits                               97      0     40    13.5
+  top_up_failed                              145      0     59    11.2
+  atm_support                                 86      0     33    12.7
+  wrong_amount_of_cash_received              180      0     69     8.5
+  cancel_transfer                            157      0     57    14.6
+  contactless_not_working                     35      0     12    11.7
+  automatic_top_up                           127      1     42    13.7
+  receiving_money                             95      0     32    10.3
+
+--- TEST SET (3079 rows) ---
+  Register distribution:
+    COLLOQUIAL:   1893 (61.5%)
+    MIXED:        1172 (38.1%)
+    FORMAL:         14 (0.5%)
+  Needs fix:      1186 (38.5%)
+
+  Code-Mixing Index (CMI):
+    Mean:    12.6
+    Min:     0.0
+    Max:     50.0
+    CMI = 0:      1121 (36.4%) — pure single-language
+    CMI 1-10:      311 (10.1%) — light mixing
+    CMI 11-25:    1207 (39.2%) — moderate mixing
+    CMI > 25:      440 (14.3%) — heavy mixing
+
+  Issue breakdown (rows affected):
+    formal_verbs                       38 (1.2%)
+    formal_compounds                    6 (0.2%)
+
+  Per-category register breakdown (top 15 worst):
+  Category                                 Total Formal  Mixed  AvgCMI
+  ---------------------------------------- ----- ------ ------ -------
+  top_up_limits                               40      0     39     0.4
+  verify_my_identity                          40      0     39     0.4
+  passcode_forgotten                          40      0     34     2.2
+  apple_pay_or_google_pay                     40      0     34     2.0
+  edit_personal_details                       40      5     28     2.5
+  why_verify_identity                         40      0     33     2.6
+  age_limit                                   40      0     31     2.8
+  verify_source_of_funds                      40      0     31     3.3
+  failed_transfer                             40      0     31     2.6
+  verify_top_up                               40      0     31     3.9
+  contactless_not_working                     40      0     29     3.3
+  direct_debit_payment_not_recognised         40      1     28     3.9
+  unable_to_verify_identity                   40      0     28     5.3
+  request_refund                              40      0     28     4.5
+  transfer_not_received_by_recipient          40      0     27     3.9
+
+--- TEST SET REGISTER SPLIT ANALYSIS ---
+  First FORMAL row: index 9 (id=9)
+  Last FORMAL row:  index 2109 (id=2110)
+  First COLLOQUIAL row: index 1 (id=1)
+
+  Rows 0-29: 8/30 non-colloquial (27%)
+  Rows 30+:  1178/3049 non-colloquial (38.6%)
