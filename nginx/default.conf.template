@@ -1,0 +1,42 @@
+server {
+  listen 8080;
+  server_name _;
+  root /usr/share/nginx/html;
+  index index.html;
+
+  add_header X-Content-Type-Options "nosniff" always;
+  add_header X-Frame-Options "DENY" always;
+  add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+  add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' http: https: ws: wss:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'" always;
+
+  location = /health {
+    access_log off;
+    default_type text/plain;
+    return 200 "healthy\n";
+  }
+
+  location = /runtime-config.js {
+    alias /tmp/runtime-config.js;
+    default_type application/javascript;
+    add_header Cache-Control "no-store, no-cache, must-revalidate";
+  }
+
+  location = /index.html {
+    add_header Cache-Control "no-store, no-cache, must-revalidate";
+  }
+
+  location /assets/ {
+    try_files $uri =404;
+    add_header Cache-Control "public, max-age=31536000, immutable";
+  }
+
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+
+  # A future backend can join the Compose network and enable this block.
+  # The frontend has no runtime dependency on it today.
+  # location /api/ {
+  #   proxy_pass ${BACKEND_UPSTREAM};
+  # }
+}
