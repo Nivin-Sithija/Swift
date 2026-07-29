@@ -1,28 +1,14 @@
-# macOS
-.DS_Store
-
-# Node
 node_modules/
-
-# Python
-.venv/
-venv/
-env/
-__pycache__/
-*.py[cod]
-
-# Env
+dist/
 .env
 .env.local
-.env.*.local
-
-# Claude / skills
-.claude/
-skills-main/
-
-# Context / architecture docs (kept local)
-context/
-
-# Agent working notes (local only)
-AGENTS.md
-MEMORY.md
+coverage/
+*.log
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/tasks.json
+!.vscode/extensions.json
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
