@@ -4,15 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#07111f" />
-    <script>
-      (() => {
-        const saved = localStorage.getItem("swift-theme");
-        const theme = saved || "dark";
-        const dark = theme === "dark" || (theme === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
-        document.documentElement.classList.toggle("dark", dark);
-        document.documentElement.dataset.theme = theme;
-      })();
-    </script>
+    <script src="/theme-init.js"></script>
+    <script src="/runtime-config.js"></script>
     <title>Swift · Financial Support</title>
   </head>
   <body>

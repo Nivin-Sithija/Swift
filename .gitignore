@@ -6,7 +6,9 @@ coverage/
 *.log
 .DS_Store
 .idea/
-.vscode/
+.vscode/*
+!.vscode/tasks.json
+!.vscode/extensions.json
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
