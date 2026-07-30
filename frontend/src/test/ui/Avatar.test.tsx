@@ -9,7 +9,9 @@ describe("Avatar", () => {
 
   it("renders an image instead of initials when src is given", () => {
     render(<Avatar name="Nimal Perera" src="/avatar.png" />);
-    expect(screen.getByRole("img", { name: "Nimal Perera" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Nimal Perera" }),
+    ).toBeInTheDocument();
     expect(screen.queryByText("NP")).not.toBeInTheDocument();
   });
 });

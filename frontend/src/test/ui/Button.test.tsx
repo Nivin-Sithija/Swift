@@ -7,14 +7,22 @@ describe("Button", () => {
   it("renders children and fires onClick", async () => {
     const onClick = vi.fn();
     render(<Button onClick={onClick}>Approve Reply</Button>);
-    await userEvent.click(screen.getByRole("button", { name: "Approve Reply" }));
+    await userEvent.click(
+      screen.getByRole("button", { name: "Approve Reply" }),
+    );
     expect(onClick).toHaveBeenCalledOnce();
   });
 
   it("does not fire onClick when disabled", async () => {
     const onClick = vi.fn();
-    render(<Button onClick={onClick} disabled>Approve Reply</Button>);
-    await userEvent.click(screen.getByRole("button", { name: "Approve Reply" }));
+    render(
+      <Button onClick={onClick} disabled>
+        Approve Reply
+      </Button>,
+    );
+    await userEvent.click(
+      screen.getByRole("button", { name: "Approve Reply" }),
+    );
     expect(onClick).not.toHaveBeenCalled();
   });
 
@@ -28,6 +36,8 @@ describe("Button", () => {
 describe("IconButton", () => {
   it("renders as a secondary-styled button when active", () => {
     render(<IconButton icon={Search} active aria-label="Search" />);
-    expect(screen.getByRole("button", { name: "Search" })).toHaveClass("bg-surface-card");
+    expect(screen.getByRole("button", { name: "Search" })).toHaveClass(
+      "bg-surface-card",
+    );
   });
 });

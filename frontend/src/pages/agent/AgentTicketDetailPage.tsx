@@ -18,6 +18,7 @@ import {
   ResponseEditor,
 } from "../../components/agent/AgentPanels";
 import {
+  EmptyState,
   LanguageBadge,
   LoadingSkeleton,
   PriorityBadge,
@@ -26,20 +27,56 @@ import {
   TicketTimeline,
   humanize,
 } from "../../components/tickets/TicketComponents";
-import { mockTicketService } from "../../services/ticketService";
-import type { Ticket, TicketStatus } from "../../types";
+import {
+  mockTicketService,
+  type AdjacentTickets,
+} from "../../services/ticketService";
+import type { Ticket, TicketEvent, TicketStatus } from "../../types";
 import { formatDate } from "../../lib/utils";
+import {
+  CURRENT_AGENT,
+  TICKET_CATEGORIES,
+  TICKET_PRIORITIES,
+  TICKET_SENTIMENTS,
+} from "../../lib/constants";
 export function AgentTicketDetailPage() {
   const { ticketId } = useParams();
   const navigate = useNavigate();
   const [ticket, setTicket] = useState<Ticket | null>(null);
+  const [neighbours, setNeighbours] = useState<AdjacentTickets>({});
+  const [loadError, setLoadError] = useState(false);
   const [dialog, setDialog] = useState<"escalate" | "resolve" | "close" | null>(
     null,
   );
   const [notice, setNotice] = useState("");
   useEffect(() => {
-    mockTicketService.getTicket(ticketId || "").then(setTicket);
+    let active = true;
+    setTicket(null);
+    setLoadError(false);
+    Promise.all([
+      mockTicketService.getTicket(ticketId || ""),
+      mockTicketService.getAdjacentTicketIds(ticketId || ""),
+    ])
+      .then(([next, adjacent]) => {
+        if (!active) return;
+        setTicket(next);
+        setNeighbours(adjacent);
+      })
+      .catch((error) => {
+        console.error("[AgentTicketDetailPage/load]", error);
+        if (active) setLoadError(true);
+      });
+    return () => {
+      active = false;
+    };
   }, [ticketId]);
+  if (loadError)
+    return (
+      <EmptyState
+        title="Ticket not found"
+        detail="This ticket may have been removed, or the link is incorrect."
+      />
+    );
   if (!ticket) return <LoadingSkeleton />;
   const update = async (patch: Partial<Ticket>) =>
     setTicket(await mockTicketService.updateTicket(ticket.id, patch));
@@ -47,6 +84,18 @@ export function AgentTicketDetailPage() {
     await update({ status });
     setDialog(null);
     setNotice(`Ticket marked ${humanize(status)}.`);
+  };
+  /** Corrections are the project's audit surface — record the agent's reason on the
+      ticket's own event trail so it is visible, not silently dropped. */
+  const recordCorrection = (field: string, value: string, reason: string) => {
+    const event: TicketEvent = {
+      id: crypto.randomUUID(),
+      label: `${field} corrected`,
+      detail: `${CURRENT_AGENT} changed ${field.toLowerCase()} to “${humanize(value)}” — ${reason}`,
+      at: new Date().toISOString(),
+      customerVisible: false,
+    };
+    return { events: [...ticket.events, event] };
   };
   return (
     <>
@@ -62,14 +111,16 @@ export function AgentTicketDetailPage() {
           <div className="ticket-nav">
             <button
               className="icon-btn"
-              onClick={() => navigate("/agent/tickets/SW-2026-1041")}
+              disabled={!neighbours.previous}
+              onClick={() => navigate(`/agent/tickets/${neighbours.previous}`)}
             >
               <ChevronLeft />
               <span className="sr-only">Previous ticket</span>
             </button>
             <button
               className="icon-btn"
-              onClick={() => navigate("/agent/tickets/SW-2026-1040")}
+              disabled={!neighbours.next}
+              onClick={() => navigate(`/agent/tickets/${neighbours.next}`)}
             >
               <ChevronRight />
               <span className="sr-only">Next ticket</span>
@@ -93,7 +144,7 @@ export function AgentTicketDetailPage() {
           <button
             className="btn secondary small"
             onClick={() =>
-              update({ assignedAgent: "Anika Fernando", status: "assigned" })
+              update({ assignedAgent: CURRENT_AGENT, status: "assigned" })
             }
           >
             <UserCheck />
@@ -175,21 +226,19 @@ export function AgentTicketDetailPage() {
           </section>
           <InternalNotes
             initial={ticket.notes}
-            onAdd={async (text) => {
-              await mockTicketService.addInternalNote(ticket.id, text);
-            }}
+            onAdd={(text) => mockTicketService.addInternalNote(ticket.id, text)}
           />
-        <ResponseEditor
-          ticket={ticket}
-          onApproved={(text) => {
-            update({
-              approvedResponse: {
-                text,
-                approvedBy: "Anika Fernando",
-                approvedAt: new Date().toISOString(),
-              },
-              draft: { ...ticket.draft, text, status: "approved" },
-            });
+          <ResponseEditor
+            ticket={ticket}
+            onApproved={(text) => {
+              update({
+                approvedResponse: {
+                  text,
+                  approvedBy: CURRENT_AGENT,
+                  approvedAt: new Date().toISOString(),
+                },
+                draft: { ...ticket.draft, text, status: "approved" },
+              });
               setNotice("Response approved and made customer-visible.");
             }}
           />
@@ -203,37 +252,39 @@ export function AgentTicketDetailPage() {
           <PredictionCard
             title="Category"
             prediction={ticket.category}
-            options={[
-              "card_payment_wrong_exchange_rate",
-              "cash_withdrawal",
-              "cash_withdrawal_not_received",
-              "pending_transfer",
-              "cash_transfer",
-              "cash_withdrawal",
-            ]}
-            onSave={(value) =>
-              update({ category: { ...ticket.category, value } })
+            options={[...TICKET_CATEGORIES]}
+            onSave={(value, reason) =>
+              update({
+                category: { ...ticket.category, value },
+                ...recordCorrection("Category", value, reason),
+              })
             }
           />
           <PredictionCard
             title="Priority"
             prediction={ticket.priority}
-            options={["low", "medium", "high", "critical"]}
+            options={TICKET_PRIORITIES}
             criticalReason={
               ticket.priority.value === "critical"
                 ? "Security-sensitive category and explicit unauthorised transaction signal. Sentiment was not used alone."
                 : undefined
             }
-            onSave={(value) =>
-              update({ priority: { ...ticket.priority, value } })
+            onSave={(value, reason) =>
+              update({
+                priority: { ...ticket.priority, value },
+                ...recordCorrection("Priority", value, reason),
+              })
             }
           />
           <PredictionCard
             title="Sentiment"
             prediction={ticket.sentiment}
-            options={["positive", "neutral", "negative"]}
-            onSave={(value) =>
-              update({ sentiment: { ...ticket.sentiment, value } })
+            options={TICKET_SENTIMENTS}
+            onSave={(value, reason) =>
+              update({
+                sentiment: { ...ticket.sentiment, value },
+                ...recordCorrection("Sentiment", value, reason),
+              })
             }
           />
           <section className="card compact-card">

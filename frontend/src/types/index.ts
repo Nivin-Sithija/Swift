@@ -1,13 +1,8 @@
 export type UserRole = "customer" | "agent";
 export type SupportedLanguage =
-  | "english"
-  | "sinhala"
-  | "tamil"
-  | "singlish"
-  | "tanglish"
-  | "mixed";
+  "english" | "sinhala" | "tamil" | "singlish" | "tanglish" | "mixed";
 export type TicketPriority = "low" | "medium" | "high" | "critical";
-export type TicketSentiment = "positive" | "neutral" | "negative";
+export type TicketSentiment = "neutral" | "negative";
 export type TicketStatus =
   | "new"
   | "in_review"
@@ -122,5 +117,4 @@ export interface FilterState {
   status: string;
   priority: string;
   language: string;
-  category: string;
 }

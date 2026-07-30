@@ -4,13 +4,22 @@ import { Dialog } from "../../components/ui/Dialog";
 
 describe("Dialog", () => {
   it("renders nothing when closed", () => {
-    render(<Dialog open={false} title="Reject reply" onClose={vi.fn()}>Reason</Dialog>);
+    render(
+      <Dialog open={false} title="Reject reply" onClose={vi.fn()}>
+        Reason
+      </Dialog>,
+    );
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
   it("renders title, content and footer when open", () => {
     render(
-      <Dialog open title="Reject reply" footer={<button>Confirm</button>} onClose={vi.fn()}>
+      <Dialog
+        open
+        title="Reject reply"
+        footer={<button>Confirm</button>}
+        onClose={vi.fn()}
+      >
         Are you sure?
       </Dialog>,
     );
