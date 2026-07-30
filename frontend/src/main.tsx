@@ -7,4 +7,18 @@ import { MockAuthProvider } from "./app/providers/AuthProvider";
 import { AppRoutes } from "./app/router/Routes";
 import { ErrorBoundary } from "./components/feedback/ErrorBoundary";
 import "./styles.css";
-ReactDOM.createRoot(document.getElementById("root")!).render(<React.StrictMode><ErrorBoundary><ThemeProvider><LanguageProvider><BrowserRouter><MockAuthProvider><AppRoutes/></MockAuthProvider></BrowserRouter></LanguageProvider></ThemeProvider></ErrorBoundary></React.StrictMode>);
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <LanguageProvider>
+          <BrowserRouter>
+            <MockAuthProvider>
+              <AppRoutes />
+            </MockAuthProvider>
+          </BrowserRouter>
+        </LanguageProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
+  </React.StrictMode>,
+);
