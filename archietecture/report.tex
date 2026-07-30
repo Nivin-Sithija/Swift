@@ -1,0 +1,606 @@
+% Compile with: latexmk -pdf report.tex
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[letterpaper,top=1.12in,bottom=0.90in,left=1in,right=1in,headheight=47pt,headsep=11pt,footskip=28pt]{geometry}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage{tgtermes}
+  \usepackage[scale=0.92]{tgheros}
+\else
+  \usepackage{fontspec}
+  \IfFontExistsTF{Tinos}{\setmainfont{Tinos}}{\setmainfont{TeX Gyre Termes}}
+  \IfFontExistsTF{Arimo}{\setsansfont{Arimo}}{\setsansfont{TeX Gyre Heros}}
+\fi
+\usepackage{microtype}
+\usepackage{setspace}
+\setstretch{1.03}
+\usepackage{graphicx}
+\usepackage{array,tabularx,longtable,booktabs,multirow,makecell}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{ragged2e}
+
+\hypersetup{colorlinks=false,pdfborder={0 0 0},pdftitle={Software Architecture Document},pdfauthor={Group 21}}
+\Urlmuskip=0mu plus 2mu
+\captionsetup{font=small,labelfont=bf,labelsep=period,justification=centering}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3.5pt}
+\setlist[itemize]{leftmargin=1.45em,itemsep=1.5pt,topsep=2pt}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=1.5pt,topsep=2pt}
+\renewcommand{\arraystretch}{1.15}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\titleformat{\section}{\sffamily\bfseries\fontsize{12}{14}\selectfont}{\thesection.}{0.55em}{}
+\titleformat{\subsection}{\bfseries\fontsize{10}{12}\selectfont}{\thesubsection}{0.55em}{}
+\titleformat{\subsubsection}{\itshape\fontsize{10}{12}\selectfont}{\thesubsubsection}{0.55em}{}
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+\titlespacing*{\subsubsection}{0pt}{5pt}{2pt}
+
+\renewcommand{\contentsname}{Table of Contents}
+\renewcommand{\cfttoctitlefont}{\hfill\sffamily\bfseries\fontsize{18}{20}\selectfont}
+\renewcommand{\cftaftertoctitle}{\hfill}
+\setlength{\cftbeforesecskip}{2pt}
+\setlength{\cftsecnumwidth}{2.2em}
+\setlength{\cftsubsecnumwidth}{3.2em}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+
+\newcommand{\ProjectName}{Trilingual Multimodal Customer Support Ticket Management System}
+\newcommand{\ShortProjectName}{Trilingual Multimodal Ticket Management System}
+\newcommand{\CompanyName}{Group 21}
+\newcommand{\DocVersion}{1.0}
+\newcommand{\DocDate}{30/Jul/26}
+\newcommand{\DocID}{G21-SAD-1.0}
+
+\newcommand{\headerblock}{%
+\begin{tabularx}{\textwidth}{|Y|L{1.65in}|}\hline
+\ShortProjectName & \textbf{Version:} \DocVersion \\\hline
+Software Architecture Document & \textbf{Date:} \DocDate \\\hline
+\multicolumn{2}{|l|}{\DocID}\\\hline
+\end{tabularx}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\headerblock}
+\fancyfoot[L]{Confidential}
+\fancyfoot[C]{\textcopyright\ \CompanyName, 2026}
+\fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{\pagestyle{fancy}}
+
+\newenvironment{ucase}[1]{%
+\begin{table}[H]\centering\small
+\begin{tabular}{|L{1.62in}|L{4.50in}|}\hline
+\textbf{Use case name} & \textbf{#1}\\\hline}{%
+\end{tabular}\end{table}}
+
+\begin{document}
+
+% ---------------- Title page ----------------
+\thispagestyle{empty}
+\begin{flushright}
+\vspace*{0.18in}
+\rule{0.50\textwidth}{0.4pt}\\[7pt]
+{\sffamily\bfseries\CompanyName}\\[7pt]
+\rule{0.50\textwidth}{0.4pt}\\[17pt]
+{\sffamily\bfseries\ProjectName}\\[2pt]
+{\sffamily\bfseries Software Architecture Document}\\[18pt]
+{\sffamily\bfseries Version \DocVersion}
+\end{flushright}
+\vfill
+\begin{center}
+\begin{tabular}{rl}
+\textbf{Document identifier:} & \DocID\\
+\textbf{Prepared by:} & Group 21\\
+\textbf{Submission date:} & 30 July 2026
+\end{tabular}
+\end{center}
+\vfill
+
+\clearpage
+\setcounter{page}{2}
+
+% ---------------- Revision history ----------------
+\begin{center}
+{\sffamily\bfseries\fontsize{18}{20}\selectfont Revision History}
+\end{center}
+\vspace{4pt}
+\begin{table}[H]\centering
+\begin{tabularx}{\textwidth}{|C{1.25in}|C{0.85in}|Y|C{1.25in}|}\hline
+\textbf{Date} & \textbf{Version} & \textbf{Description} & \textbf{Author}\\\hline
+30/Jul/26 & 1.0 & Initial Software Architecture Document aligned with the submitted template and current project scope. & Group 21\\\hline
+\end{tabularx}
+\end{table}
+
+\vspace{12pt}
+\textbf{Document status.} Baseline architecture for implementation, model integration, testing, deployment and evaluation. Architectural decisions marked as ``proposed'' may be refined after prototype measurements without changing the document's principal views.
+
+\textbf{Diagram convention.} All diagrams are vector diagrams produced directly in LaTeX using PGF/TikZ. Elements use black text, white backgrounds and numbered captions. Internal services are shown explicitly rather than treating the system as a black box.
+
+\textbf{Project boundary.} The system accepts textual tickets and optional supporting images. Audio input and speech transcription are outside the approved project scope.
+
+\clearpage
+\tableofcontents
+\clearpage
+
+\begin{center}
+{\sffamily\bfseries\fontsize{18}{20}\selectfont Software Architecture Document}
+\end{center}
+
+% ---------------- 1 ----------------
+\section{Introduction}
+This Software Architecture Document (SAD) specifies the structural and behavioural architecture of the \ProjectName. The system automates key stages of customer-support ticket handling for English, Sinhala, Tamil, Romanised Sinhala (Singlish), Romanised Tamil (Tanglish), and code-mixed inputs. It combines multilingual machine learning, image understanding and a grounded response-generation workflow while preserving human control for low-confidence or high-risk decisions.
+
+\subsection{Purpose}
+The document captures the significant architectural decisions, system views, interfaces, data structures, deployment topology, performance targets and quality controls required to design and implement the system. The intended audience is the project team, supervisor, evaluators, developers, data scientists, testers and future maintainers. It provides a common reference for:
+\begin{itemize}
+  \item implementing the web application, API, machine-learning services and persistence layer;
+  \item training and evaluating the multilingual and multimodal models;
+  \item validating security, privacy, reliability and maintainability constraints; and
+  \item tracing use cases to logical components, processes and deployment nodes.
+\end{itemize}
+
+\subsection{Scope}
+The architecture covers ticket submission, optional image upload, multilingual preprocessing, intent classification, urgency prediction, sentiment analysis, multimodal evidence fusion, context-aware response drafting, agent review, assignment, escalation, tracking, feedback, audit logging, knowledge-base administration and model-version management.
+
+The training baseline uses the Banking77 intent dataset and project-produced translations into Sinhala, Tamil, Singlish and Tanglish. The original English records and four translated variants form the multilingual training corpus; mixed-language examples are added through controlled augmentation and manually reviewed samples. The architecture deliberately excludes voice/audio processing, payment execution, direct access to core banking transaction systems and fully autonomous handling of critical tickets.
+
+\subsection{Definitions, Acronyms, and Abbreviations}
+\begin{longtable}{|L{1.35in}|L{5.65in}|}\hline
+\textbf{Term} & \textbf{Definition}\\\hline
+SAD & Software Architecture Document.\\\hline
+Banking77 & Intent-classification dataset containing 77 online-banking intent categories.\\\hline
+Intent & The customer issue category predicted from a ticket, such as card payment, transfer, cash withdrawal or account access.\\\hline
+Singlish / Tanglish & Romanised Sinhala / Romanised Tamil written with Latin characters.\\\hline
+Code-mixed & One ticket containing spans from more than one language or script.\\\hline
+XLM-R & XLM-RoBERTa, a multilingual Transformer encoder used as the primary text representation candidate.\\\hline
+OCR & Optical Character Recognition used to extract visible text from screenshots or photographs.\\\hline
+VLM & Vision-language model used to encode image content and align visual evidence with text.\\\hline
+RAG & Retrieval-Augmented Generation: generation conditioned on retrieved approved knowledge.\\\hline
+LLM & Large Language Model used to draft a response under policy and retrieval constraints.\\\hline
+P1--P4 & Priority levels: P1 Critical, P2 High, P3 Medium, P4 Low.\\\hline
+Human-in-the-loop & Mandatory human review for low-confidence, critical, sensitive or policy-restricted tickets.\\\hline
+PII & Personally Identifiable Information, including account numbers, identity data and contact details.\\\hline
+API & Application Programming Interface.\\\hline
+RBAC & Role-Based Access Control.\\\hline
+\end{longtable}
+
+\subsection{References}
+Primary research, standards and technology references are listed in Section 12. The diagrams were created using PGF/TikZ inside this LaTeX source; no rasterised UML tool output is required.
+
+\subsection{Overview}
+Section 2 defines the architectural representations. Section 3 records goals and constraints. Sections 4--9 describe the use-case, logical, process, deployment, implementation and data views. Sections 10 and 11 specify size, performance and quality characteristics. Section 12 provides IEEE-style references.
+
+% ---------------- 2 ----------------
+\section{Architectural Representation}
+The architecture is represented using complementary views derived from the Rational Unified Process 4+1 model:
+\begin{itemize}
+  \item \textbf{Use-Case View:} actors, architecturally significant use cases and detailed scenarios.
+  \item \textbf{Logical View:} domain classes, service responsibilities and package decomposition.
+  \item \textbf{Process View:} runtime workflows, concurrency boundaries and service interactions.
+  \item \textbf{Deployment View:} physical/container nodes, networks and external dependencies.
+  \item \textbf{Implementation View:} source-code layers, components and package dependencies.
+  \item \textbf{Data View:} persistent entities, relationships, retention and model artefacts.
+\end{itemize}
+
+The proposed implementation starts as a \textbf{modular monolith for transactional business functions} plus independently deployable ML inference workers. This minimises integration overhead for a student project while preserving clear service boundaries that can later be separated when load or team ownership requires it. Communication is synchronous REST/JSON for user-facing operations and asynchronous messaging for OCR, batch inference, notifications, retraining and analytics.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{\detokenize{images/high level archietecture.png}}
+\caption{High-level architectural representation}
+\label{fig:highlevel}
+\end{figure}
+
+Figure \ref{fig:highlevel} separates transactional ticket management from model inference and response generation. The API layer coordinates these components and writes all predictions, confidence scores, model versions and user actions to auditable storage.
+
+% ---------------- 3 ----------------
+\section{Architectural Goals and Constraints}
+\subsection*{Architectural Goals}
+\begin{itemize}
+  \item \textbf{Multilingual robustness:} preserve Sinhala, Tamil, English, Singlish, Tanglish and code-mixed text without forcing translation to English at runtime.
+  \item \textbf{Multimodal evidence:} use screenshot text and visual context when an image is supplied, but remain fully functional for text-only tickets.
+  \item \textbf{Explainable automation:} expose intent, priority, sentiment, confidence, extracted evidence and model version to agents.
+  \item \textbf{Safe response generation:} ground drafts in approved knowledge and route uncertain or sensitive cases to human review.
+  \item \textbf{Reproducible ML lifecycle:} version datasets, preprocessing, models, metrics and deployment artefacts.
+  \item \textbf{Maintainable delivery:} use layered modules, stable interfaces, containerisation, automated tests and central observability.
+\end{itemize}
+
+\subsection*{Key Constraints}
+\begin{itemize}
+  \item Banking77 provides intent labels but not project-ready urgency, sentiment, image or response labels; those require annotation rules, auxiliary datasets or controlled weak supervision.
+  \item Sinhala and Tamil are lower-resource languages than English; translated samples may contain translation artefacts and must be quality checked.
+  \item Romanised text has inconsistent spelling; normalisation must not erase intent-bearing banking terms, account identifiers or named entities.
+  \item Optional images may contain sensitive banking data. Files require type/size validation, encryption, access control, malware scanning and retention rules.
+  \item Response generation must not invent account status, balances, transaction outcomes or policy. It may draft guidance but cannot execute banking operations.
+  \item Academic-resource limits favour parameter-efficient fine-tuning, cached embeddings, mixed precision and a deployable baseline before larger-model experimentation.
+\end{itemize}
+
+\subsection*{Significant Architectural Decisions}
+\begin{table}[H]\centering\small
+\begin{tabularx}{\textwidth}{|L{0.78in}|L{1.55in}|Y|}\hline
+\textbf{ID} & \textbf{Decision} & \textbf{Rationale and consequence}\\\hline
+ADR-01 & Shared multilingual encoder & Fine-tune one XLM-R-based encoder across all text variants, with language/script metadata as auxiliary features. This supports transfer and code-mixed inputs while avoiding five isolated models.\\\hline
+ADR-02 & Multi-task prediction heads & Intent, priority and sentiment share the encoder but use separate heads and weighted losses. This reduces duplicated inference while permitting task-specific calibration.\\\hline
+ADR-03 & Optional gated fusion & OCR text and visual embeddings are fused only when a valid image is present. A modality mask prevents missing images from degrading text-only performance.\\\hline
+ADR-04 & RAG with review gates & Response drafts retrieve approved articles and include provenance. Low-confidence, P1/P2 and sensitive cases require an agent.\\\hline
+ADR-05 & Modular monolith + ML workers & Business modules remain in one deployable API initially; compute-heavy inference and OCR run behind stable interfaces and can scale independently.\\\hline
+ADR-06 & Immutable audit trail & Predictions, overrides, response edits, status changes and model versions are append-only audit events for traceability.\\\hline
+\end{tabularx}
+\end{table}
+
+% ---------------- 4 ----------------
+\section{Use-Case View}
+Architecturally significant actors are the Customer, Support Agent, Administrator, ML Engineer/Data Scientist and external Notification Provider. The use cases cover the complete lifecycle from intake to resolution and model improvement.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{\detokenize{images/use case diagram.png}}
+\caption{System use-case diagram}
+\label{fig:usecase}
+\end{figure}
+
+Figure \ref{fig:usecase} shows more than five central use cases and the internal automation they exercise. Ticket analysis and grounded response drafting are included within submission, while image evidence extends analysis only when present.
+
+\subsection{Use-Case Realizations}
+
+\begin{ucase}{UC-01 Submit Multilingual Ticket}
+\textbf{Actor} & Customer\\\hline
+\textbf{Description} & Create a support ticket using English, Sinhala, Tamil, Singlish, Tanglish or a mixed form; optionally attach an image.\\\hline
+\textbf{Preconditions} & Customer can access the submission interface; accepted privacy notice; file is within configured type and size limits.\\\hline
+\textbf{Main flow} & 1. Customer enters subject and description. 2. UI validates mandatory fields. 3. Customer optionally attaches an image. 4. API creates a pending ticket and attachment record. 5. System queues analysis. 6. Customer receives a ticket identifier.\\\hline
+\textbf{Successful end/post condition} & Ticket is persisted, analysis is queued, and its status is visible.\\\hline
+\textbf{Fail end/post condition} & No incomplete ticket is committed; the customer receives a specific validation or service error.\\\hline
+\textbf{Extensions} & Unsupported/corrupt image is rejected; duplicate-submission warning is shown; suspected PII is masked in logs.\\\hline
+\end{ucase}
+
+\begin{ucase}{UC-02 Analyse and Classify Ticket}
+\textbf{Actor} & System (triggered by Customer or Support Agent)\\\hline
+\textbf{Description} & Predict intent, urgency and sentiment from text and optional image evidence.\\\hline
+\textbf{Preconditions} & Ticket is stored; at least one valid text field exists; an active model version is available.\\\hline
+\textbf{Main flow} & 1. Normalise Unicode and mask sensitive patterns. 2. Detect script/language spans for metadata. 3. Tokenise raw/code-mixed text. 4. For an image, run validation, OCR and visual encoding. 5. Fuse available modality representations. 6. Produce intent, priority and sentiment probabilities. 7. Calibrate confidence and persist prediction with model version.\\\hline
+\textbf{Successful end/post condition} & Ticket has auditable predictions, confidence scores and extracted evidence.\\\hline
+\textbf{Fail end/post condition} & Ticket is marked ``analysis failed'' and routed for manual triage without data loss.\\\hline
+\textbf{Extensions} & Low confidence triggers manual review; P1 prediction triggers immediate escalation; absent image uses text-only pathway.\\\hline
+\end{ucase}
+
+\begin{ucase}{UC-03 Generate Context-Aware Response Draft}
+\textbf{Actor} & System, Support Agent\\\hline
+\textbf{Description} & Create a safe draft grounded in approved knowledge and ticket context.\\\hline
+\textbf{Preconditions} & Ticket analysis is available; knowledge index is online; response policy permits drafting.\\\hline
+\textbf{Main flow} & 1. Build retrieval query from ticket, intent and evidence. 2. Retrieve approved articles. 3. Construct prompt with language preference, policy and citations. 4. LLM generates a draft. 5. Guardrails check prohibited claims, PII leakage and missing grounding. 6. Persist draft and provenance.\\\hline
+\textbf{Successful end/post condition} & A reviewable response draft and source references are attached to the ticket.\\\hline
+\textbf{Fail end/post condition} & No ungrounded text is sent; the ticket is queued for manual drafting.\\\hline
+\textbf{Extensions} & For P1/P2 or low-confidence tickets, generation may occur but sending is disabled until agent approval.\\\hline
+\end{ucase}
+
+\begin{ucase}{UC-04 Review, Send and Resolve Ticket}
+\textbf{Actor} & Support Agent\\\hline
+\textbf{Description} & Inspect predictions and evidence, edit the draft, send the final response and update status.\\\hline
+\textbf{Preconditions} & Agent is authenticated and authorised; ticket is assigned or accessible to the agent.\\\hline
+\textbf{Main flow} & 1. Agent opens ticket. 2. UI displays text, image, OCR, predictions and confidence. 3. Agent accepts or corrects labels. 4. Agent edits/approves response. 5. Notification service sends it. 6. Ticket status becomes resolved or awaiting customer. 7. Actions are audited.\\\hline
+\textbf{Successful end/post condition} & Customer receives the response; ticket history and feedback are persisted.\\\hline
+\textbf{Fail end/post condition} & Status remains unchanged and the failed send is retryable.\\\hline
+\textbf{Extensions} & Agent escalates, requests more information or marks the ticket as duplicate/spam.\\\hline
+\end{ucase}
+
+\begin{ucase}{UC-05 Assign or Escalate Ticket}
+\textbf{Actor} & Support Agent, Administrator\\\hline
+\textbf{Description} & Route a ticket to an appropriate queue or specialist according to intent, priority and policy.\\\hline
+\textbf{Preconditions} & Ticket exists; actor has routing permission; target queue/user is active.\\\hline
+\textbf{Main flow} & 1. System recommends queue and SLA. 2. Actor confirms or changes recommendation. 3. Assignment is written transactionally. 4. Notification is queued. 5. SLA timer and audit event are updated.\\\hline
+\textbf{Successful end/post condition} & Exactly one current assignment exists and escalation history is retained.\\\hline
+\textbf{Fail end/post condition} & Previous assignment remains valid; no partial routing state is stored.\\\hline
+\textbf{Extensions} & Automatic P1 escalation; unavailable queue falls back to general support.\\\hline
+\end{ucase}
+
+\begin{ucase}{UC-06 Manage Knowledge and Model Versions}
+\textbf{Actor} & Administrator, ML Engineer\\\hline
+\textbf{Description} & Curate approved response knowledge and promote validated model versions.\\\hline
+\textbf{Preconditions} & Actor has elevated permission; candidate artefacts pass integrity checks.\\\hline
+\textbf{Main flow} & 1. Admin creates/updates knowledge article. 2. Article passes review and becomes active. 3. ML engineer registers model, dataset and metrics. 4. Candidate runs validation. 5. Authorised actor promotes version. 6. Services reload through versioned configuration.\\\hline
+\textbf{Successful end/post condition} & Active knowledge/model version is uniquely identifiable and rollback-ready.\\\hline
+\textbf{Fail end/post condition} & Existing production version remains active.\\\hline
+\textbf{Extensions} & Shadow deployment and A/B evaluation; emergency rollback; article expiry.\\\hline
+\end{ucase}
+
+% ---------------- 5 ----------------
+\section{Logical View}
+\subsection{Overview}
+The logical design separates presentation, application orchestration, domain rules, ML inference, external integration and persistence. Domain objects contain business invariants; application services coordinate transactions; ML adapters expose versioned prediction contracts; infrastructure modules implement databases, object storage, messaging and external APIs.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{\detokenize{images/logical decomposition.png}}
+\caption{Logical layer decomposition}
+\label{fig:logical}
+\end{figure}
+
+\subsection{Architecturally Significant Design Packages}
+\begin{table}[H]\centering\small
+\begin{tabularx}{\textwidth}{|L{1.4in}|Y|L{2.25in}|}\hline
+\textbf{Package} & \textbf{Responsibilities} & \textbf{Significant classes/components}\\\hline
+presentation & Submission form, agent dashboard, administration screens, localisation and client-side validation. & TicketForm, TicketWorkspace, QueueDashboard, ModelAdminView\\\hline
+application & Use-case orchestration, transactions, status transitions, policy checks and event publication. & TicketApplicationService, AnalysisOrchestrator, AssignmentService, ResponseWorkflow\\\hline
+domain & Business entities and invariants independent of frameworks. & Ticket, Assignment, Priority, Prediction, ResponseDraft, KnowledgeArticle\\\hline
+ml.text & Text cleaning, language/script metadata, tokenisation, encoder inference and calibration. & TextPreprocessor, LanguageProfiler, MultilingualEncoder, IntentHead\\\hline
+ml.vision & Image validation, OCR, visual embeddings and modality quality scoring. & ImageValidator, OCRService, VisualEncoder, EvidenceExtractor\\\hline
+ml.fusion & Optional multimodal fusion and multi-task output aggregation. & FusionModel, ModalityMask, ConfidenceCalibrator\\\hline
+generation & Retrieval, prompt construction, LLM gateway, safety and provenance. & Retriever, PromptBuilder, LLMGateway, ResponseGuardrail\\\hline
+persistence & Repository interfaces, database mappings, object storage and migrations. & TicketRepository, ModelRegistryRepository, AuditRepository\\\hline
+integration & Email/SMS/webhook adapters and monitoring exporters. & NotificationGateway, MalwareScanner, MetricsExporter\\\hline
+\end{tabularx}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{\detokenize{images/class.png}}
+\caption{Architecturally significant class diagram}
+\label{fig:class}
+\end{figure}
+
+Figure \ref{fig:class} emphasises persistence and traceability. A ticket may have multiple attachments, predictions and response drafts; every prediction references the model version that produced it. Assignments and audit events preserve the operational history rather than overwriting it.
+
+% ---------------- 6 ----------------
+\section{Process View}
+The runtime process model uses synchronous request-response for interactive actions and asynchronous jobs for compute-intensive or retryable work. A queue decouples ticket intake from OCR and model inference. Workers are stateless; durable state is held in PostgreSQL, object storage and the model/knowledge registries.
+
+\subsection*{Main Runtime Processes}
+\begin{itemize}
+  \item \textbf{Web/API process:} validates requests, enforces RBAC, controls transactions and exposes status.
+  \item \textbf{Analysis worker:} preprocesses text, invokes text/image models, fuses evidence and writes predictions.
+  \item \textbf{Generation worker:} retrieves approved knowledge, invokes the LLM and applies response guardrails.
+  \item \textbf{Notification worker:} sends customer/agent notifications with retry and idempotency keys.
+  \item \textbf{Training pipeline:} validates datasets, trains candidates, calculates per-language metrics and registers artefacts.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{\detokenize{images/activity.png}}
+\caption{Ticket-processing activity diagram}
+\label{fig:activity}
+\end{figure}
+
+Figure \ref{fig:activity} shows that the image path is optional and that confidence/policy checks occur before response handling. Critical or uncertain tickets converge on an agent-review path.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{\detokenize{images/sequence.png}}
+\caption{Sequence diagram for submission, analysis and response drafting}
+\label{fig:sequence}
+\end{figure}
+
+Figure \ref{fig:sequence} includes the internal controller, repositories, preprocessing, separate modality services, fusion, retrieval/generation and notification components. Database writes occur before user acknowledgement and before side-effecting notifications, which are retried asynchronously.
+
+\subsection*{Communication and Concurrency}
+REST/JSON is used between UI and API and may also be used for separately deployed inference services. Message-queue events contain identifiers rather than raw sensitive text where possible. Consumers use idempotency keys so retries do not create duplicate predictions, responses or notifications. Model instances are loaded once per worker process and shared across concurrent requests subject to GPU/CPU memory limits.
+
+% ---------------- 7 ----------------
+\section{Deployment View}
+The minimum demonstrator can run through Docker Compose on one workstation. The target deployment separates public access, application services, compute workers and data services across protected network zones. All external traffic uses TLS; databases and object storage are not directly internet-accessible.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{\detokenize{images/deployment.png}}
+\caption{Deployment diagram}
+\label{fig:deployment}
+\end{figure}
+
+Figure \ref{fig:deployment} maps the API process to an application node and compute-intensive processes to worker nodes. PostgreSQL stores transactions and metadata, object storage stores images and model artefacts, and a vector index stores retrievable knowledge embeddings. For the academic prototype, these nodes may be containers on one host; the interfaces remain identical when scaled out.
+
+\subsection*{Deployment Configuration}
+\begin{table}[H]\centering\small
+\begin{tabularx}{\textwidth}{|L{1.4in}|Y|L{1.9in}|}\hline
+\textbf{Node} & \textbf{Deployed artefacts} & \textbf{Protection / scaling}\\\hline
+Client & Responsive web application and static assets. & Browser sandbox; no model secrets.\\\hline
+Reverse proxy & TLS termination, request-size limits, rate limiting and routing. & Public subnet; horizontal replication.\\\hline
+Application & FastAPI-compatible API, RBAC, workflow and repositories. & Private subnet; stateless replicas.\\\hline
+ML worker & XLM-R encoder, task heads, calibrators and fusion model. & GPU optional; replicas by queue depth.\\\hline
+Vision worker & Malware scan, OCR and visual encoder. & Sandboxed processing; strict file limits.\\\hline
+Generation worker & Retrieval, prompt policy, LLM adapter and guardrails. & Egress allow-list; key vault for credentials.\\\hline
+Data tier & PostgreSQL, object storage, vector index, queue/cache. & Encryption, backups, least privilege.\\\hline
+Observability & Central logs, metrics, traces and alerts. & Restricted operator access; PII redaction.\\\hline
+\end{tabularx}
+\end{table}
+
+% ---------------- 8 ----------------
+\section{Implementation View}
+\subsection{Overview}
+The implementation model follows dependency inversion: presentation and infrastructure depend on application-defined interfaces, while domain classes remain independent of web, database and model frameworks. Model-specific code is hidden behind versioned adapters so an encoder, OCR engine or LLM provider can be replaced without changing ticket workflows.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{\detokenize{images/component.png}}
+\caption{Implementation component diagram}
+\label{fig:component}
+\end{figure}
+
+Figure \ref{fig:component} identifies stable component boundaries. The Analysis Orchestrator does not embed model code; it invokes Text Inference, Vision/OCR and Fusion components through typed contracts. Response Generation is isolated from direct database access except through retrieval and repository adapters.
+
+\subsection{Layers}
+\subsubsection*{Presentation Layer}
+Contains the customer submission form, ticket status view, agent queue, ticket workspace, administration screens, localisation resources and API client. It performs usability validation but does not enforce domain security by itself.
+
+\subsubsection*{API and Application Layer}
+Contains request schemas, authentication middleware, controllers, use-case services, transaction boundaries, workflow state machines, policy evaluation and event publication. This layer is the sole entry point for interactive clients.
+
+\subsubsection*{Domain Layer}
+Contains Ticket, Prediction, Assignment, ResponseDraft, KnowledgeArticle, ModelVersion and AuditEvent entities; value objects; status-transition rules; SLA calculations; and interfaces for repositories and external gateways.
+
+\subsubsection*{Machine-Learning Layer}
+Contains data schemas, preprocessing pipelines, dataset validation, tokenizer wrappers, multilingual encoder, task heads, OCR adapter, visual encoder, modality fusion, calibration, evaluation and model registry integration.
+
+\subsubsection*{Integration and Persistence Layer}
+Implements PostgreSQL repositories, object-storage access, vector retrieval, message queue, notification gateways, hosted/local LLM adapters, secrets, logging, metrics and tracing.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{\detokenize{images/package.png}}
+\caption{Package diagram and dependency direction}
+\label{fig:package}
+\end{figure}
+
+Figure \ref{fig:package} shows that domain interfaces are central. Persistence and integration implement those interfaces; tests target domain, application and ML packages. Circular dependencies between UI, application and infrastructure are prohibited.
+
+\subsection*{Proposed Repository Structure}
+\begin{verbatim}
+src/
+  ui/                 # customer and agent web interfaces
+  api/                # routes, schemas, authentication
+  application/        # use cases, workflow, orchestration
+  domain/             # entities, policies, repository ports
+  ml/
+    data/              # Banking77 translations and validation
+    preprocessing/     # native, romanised and mixed-text handling
+    text/              # multilingual encoder and task heads
+    vision/            # OCR and visual encoder
+    fusion/            # modality fusion and calibration
+    evaluation/        # per-language and cross-modal metrics
+  generation/         # retrieval, prompts, LLM and guardrails
+  persistence/        # database and object-store adapters
+  integration/        # notifications and external gateways
+  infrastructure/     # configuration, queue, logging, monitoring
+tests/                # unit, integration, model and end-to-end tests
+models/               # version metadata; large artefacts stored externally
+\end{verbatim}
+
+% ---------------- 9 ----------------
+\section{Data View (optional)}
+Persistent data is essential because the system must retain ticket history, predictions, response provenance, model versions and feedback. Transactional records are stored in PostgreSQL; uploaded images and large model artefacts are stored in object storage; approved knowledge embeddings are stored in a vector index with source-document identifiers.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{\detokenize{images/ER.png}}
+\caption{Persistent data model}
+\label{fig:data}
+\end{figure}
+
+\subsection*{Data Integrity and Lifecycle}
+\begin{itemize}
+  \item Ticket status transitions and assignment changes occur in database transactions with optimistic locking.
+  \item Raw images are private objects referenced by opaque identifiers; public URLs are never stored.
+  \item Predictions are immutable records. Corrections create feedback records rather than modifying historical model output.
+  \item Knowledge articles are versioned; a response stores the exact article versions used during generation.
+  \item Training data is stored separately from production tickets. Production reuse for training requires de-identification and explicit governance approval.
+  \item Retention periods are configurable. Deletion removes or anonymises PII while preserving non-identifying audit evidence required for evaluation.
+\end{itemize}
+
+\subsection*{Training and Feature Data}
+The base multilingual dataset is derived from 13,083 Banking77 examples across 77 intents. Assuming complete one-to-one translation coverage, English plus Sinhala, Tamil, Singlish and Tanglish yields approximately 65,415 text instances before deduplication, quality filtering and code-mixed augmentation. Dataset manifests record source row, language variant, translator/method, review state, split, checksum and label. Splits are grouped by source row so translated versions of the same English ticket cannot leak across train and test sets.
+
+% ---------------- 10 ----------------
+\section{Size and Performance}
+\subsection*{Dimensioning Assumptions}
+\begin{table}[H]\centering\small
+\begin{tabularx}{\textwidth}{|L{2.2in}|L{1.5in}|Y|}\hline
+\textbf{Characteristic} & \textbf{Initial target} & \textbf{Architectural implication}\\\hline
+Intent classes & 77 & Single classification head with calibrated probabilities and top-k output.\\\hline
+Language variants & 5 primary variants plus mixed inputs & Shared encoder; grouped data split; per-language metrics.\\\hline
+Text length & 512 subword tokens maximum & Truncation policy preserves subject and most recent/important spans.\\\hline
+Image upload & Up to 10 MB; JPEG/PNG/PDF screenshot policy configurable & Streaming upload, content sniffing, object storage and asynchronous OCR.\\\hline
+Concurrent interactive users & 50 for demonstrator & Stateless API; connection pooling; cached reference data.\\\hline
+Ticket ingestion & 20 tickets/second burst target & Queue buffering and horizontally scalable workers.\\\hline
+Data retention & Configurable, default project test data only & Partitioned audit tables and object lifecycle rules.\\\hline
+\end{tabularx}
+\end{table}
+
+\subsection*{Latency and Throughput Targets}
+\begin{itemize}
+  \item Ticket creation API: p95 below 800 ms excluding file-upload transfer time.
+  \item Text-only prediction: p95 below 3 s on the target inference environment.
+  \item Ticket with image: p95 below 8 s for OCR, visual encoding and fused prediction.
+  \item Grounded response draft: p95 below 12 s when the configured LLM is available.
+  \item Agent dashboard queries: p95 below 2 s for normal filtered queue sizes.
+  \item Asynchronous notification: first attempt within 30 s after a committed workflow event.
+\end{itemize}
+
+Performance is measured end-to-end and per component. The system records queue delay, preprocessing time, model time, retrieval time, generation time, database time and external-provider time. Batch inference, quantisation, ONNX/runtime optimisation or GPU use may be introduced only after a correct baseline and profiling evidence.
+
+\subsection*{Model Performance Targets}
+The first acceptance baseline targets macro-F1 and accuracy reported overall and separately for English, Sinhala, Tamil, Singlish, Tanglish and mixed inputs. Intent classification should exceed a simple TF--IDF/logistic-regression baseline on every reviewed language split. Priority and sentiment targets are set after label-quality analysis. Calibration is assessed using expected calibration error and reliability diagrams; low-confidence thresholds are chosen to optimise safe coverage rather than accuracy alone. Response drafts are evaluated for groundedness, policy compliance, language appropriateness, completeness and human edit distance.
+
+% ---------------- 11 ----------------
+\section{Quality}
+The architecture applies ISO/IEC 25010 quality characteristics as follows.
+
+\begin{table}[H]\centering\small
+\begin{tabularx}{\textwidth}{|L{1.35in}|Y|L{2.35in}|}\hline
+\textbf{Characteristic} & \textbf{Architectural contribution} & \textbf{Verification evidence}\\\hline
+Functional suitability & Explicit use cases, multi-task outputs, optional image path and controlled response workflow. & End-to-end acceptance tests and traceability matrix.\\\hline
+Performance efficiency & Stateless API, queued workers, model caching, batch inference and database indexes. & Load tests, p50/p95/p99 metrics and resource profiles.\\\hline
+Compatibility & Versioned REST/JSON contracts and replaceable model/notification adapters. & Contract tests and schema compatibility checks.\\\hline
+Usability & Multilingual input, clear confidence/evidence display, accessible agent workflow and actionable errors. & User testing and accessibility review.\\\hline
+Reliability & Durable queue, idempotent consumers, transaction boundaries, retries, health checks and rollback. & Failure-injection tests, backup restore and recovery drills.\\\hline
+Security & TLS, RBAC, least privilege, secret management, file scanning, encryption and audit trails. & Threat model, dependency scanning and access-control tests.\\\hline
+Maintainability & Layering, dependency inversion, model registry, configuration and automated tests. & Static analysis, coverage, architecture checks and review.\\\hline
+Portability & Containerised services, environment-based configuration and externalised storage. & Docker Compose run and deployment on a second host.\\\hline
+Safety / AI quality & Confidence gates, human review, provenance, guardrails and immutable prediction history. & Red-team cases, hallucination checks and override analysis.\\\hline
+\end{tabularx}
+\end{table}
+
+\subsection*{Security and Privacy Controls}
+\begin{itemize}
+  \item Authenticate users and enforce RBAC for customer, agent, administrator and ML-engineer operations.
+  \item Mask account/card-like sequences in logs and prompts; prohibit raw sensitive fields in analytics events.
+  \item Validate MIME type and file signature, limit size and dimensions, scan attachments and isolate OCR processing.
+  \item Encrypt data in transit and at rest; rotate secrets; use short-lived signed object access.
+  \item Record security-relevant actions and retain model/prompt/source versions needed for incident review.
+  \item Never use a generated response as evidence of a transaction outcome; request authoritative verification through approved channels.
+\end{itemize}
+
+\subsection*{Reliability and Recovery}
+The API commits ticket state before publishing asynchronous work through an outbox pattern or equivalent transactionally safe mechanism. Workers retry transient failures with bounded exponential backoff and send exhausted jobs to a dead-letter queue. Database backups, object-versioning and model artefact checksums support recovery. A production model can be rolled back without schema changes because predictions reference version identifiers rather than model-specific columns.
+
+\subsection*{Test Strategy}
+\begin{itemize}
+  \item \textbf{Unit tests:} domain transitions, normalisation rules, romanised-text handling, priority policy and prompt guardrails.
+  \item \textbf{Data tests:} schema, label validity, duplicate/leakage detection, translation coverage and class balance.
+  \item \textbf{Model tests:} reproducibility, per-language metrics, robustness to code mixing, calibration and missing-image behaviour.
+  \item \textbf{Integration tests:} API--database, queue--worker, object storage, retrieval and notification adapters.
+  \item \textbf{Security tests:} RBAC, injection, malicious uploads, PII logging, rate limits and secret exposure.
+  \item \textbf{End-to-end tests:} submission through response/assignment with traceable audit events.
+\end{itemize}
+
+\subsection*{Risks and Mitigations}
+\begin{table}[H]\centering\small
+\begin{tabularx}{\textwidth}{|L{2.0in}|Y|}\hline
+\textbf{Risk} & \textbf{Mitigation}\\\hline
+Translated data preserves English phrasing and inflates reported cross-language performance. & Group split by source row; native-speaker review; collect naturally authored test tickets; report translated and natural-test results separately.\\\hline
+Inconsistent Singlish/Tanglish spelling. & Character/subword encoder, conservative normalisation, augmentation and error analysis by pattern.\\\hline
+Mixed-language tickets absent from base data. & Controlled span mixing, real pilot samples, language-span metadata and dedicated mixed test set.\\\hline
+Image OCR is unreliable for small or blurred screenshots. & Quality score, preprocessing, OCR confidence threshold and text-only fallback; show extracted evidence to agent.\\\hline
+LLM hallucination or policy violation. & Retrieval grounding, restricted prompt, source display, deterministic guardrails and mandatory review gates.\\\hline
+Class imbalance and similar Banking77 intents. & Stratified/grouped splits, macro-F1, class weights, confusion analysis and hierarchical error review.\\\hline
+Compute limitations. & Parameter-efficient fine-tuning, mixed precision, caching, quantisation and smaller baseline models.\\\hline
+\end{tabularx}
+\end{table}
+
+% ---------------- 12 ----------------
+\section{References}
+\begin{enumerate}[label={[\arabic*]},leftmargin=2.3em,itemsep=5pt]
+\item I. Casanueva, T. Tem\v{c}inas, D. Gerz, M. Henderson, and I. Vuli\'c, ``Efficient Intent Detection with Dual Sentence Encoders,'' arXiv:2003.04807, 2020. Available: \url{https://arxiv.org/abs/2003.04807}. Accessed: 30-Jul-2026.
+\item A. Conneau et al., ``Unsupervised Cross-lingual Representation Learning at Scale,'' in \textit{Proc. 58th Annual Meeting of the Association for Computational Linguistics}, 2020, pp. 8440--8451, doi: 10.18653/v1/2020.acl-main.747.
+\item J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, ``BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding,'' in \textit{Proc. NAACL-HLT}, 2019, pp. 4171--4186.
+\item A. Radford et al., ``Learning Transferable Visual Models From Natural Language Supervision,'' in \textit{Proc. 38th International Conference on Machine Learning}, vol. 139, 2021, pp. 8748--8763.
+\item P. Lewis et al., ``Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks,'' in \textit{Advances in Neural Information Processing Systems}, vol. 33, 2020, pp. 9459--9474.
+\item ISO/IEC 25010:2023, \textit{Systems and Software Engineering---Systems and Software Quality Requirements and Evaluation (SQuaRE)---Product Quality Model}, 2nd ed., Nov. 2023.
+\item Object Management Group, \textit{Unified Modeling Language (UML), Version 2.5.1}, Dec. 2017. Available: \url{https://www.omg.org/spec/UML/2.5.1/}. Accessed: 30-Jul-2026.
+\item Tesseract OCR, ``Tesseract User Manual,'' 2026. Available: \url{https://tesseract-ocr.github.io/tessdoc/}. Accessed: 30-Jul-2026.
+\item FastAPI, ``FastAPI in Containers---Docker,'' 2026. Available: \url{https://fastapi.tiangolo.com/deployment/docker/}. Accessed: 30-Jul-2026.
+\item PostgreSQL Global Development Group, ``PostgreSQL Documentation,'' 2026. Available: \url{https://www.postgresql.org/docs/current/}. Accessed: 30-Jul-2026.
+\item T. Tantau, ``The TikZ and PGF Packages,'' 2026. Available: \url{https://ctan.org/pkg/pgf}. Accessed: 30-Jul-2026. (Diagramming tool used in this document.)
+\end{enumerate}
+
+\end{document}
