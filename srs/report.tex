@@ -1,201 +1,264 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[10pt,letterpaper]{article}
 
-\usepackage[margin=0.72in,headheight=15pt]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
+% ---------- Packages ----------
+\usepackage[letterpaper,left=1in,right=1in,top=1in,bottom=1in,
+            headheight=40pt,headsep=12pt,footskip=30pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Tinos}      % Times New Roman-compatible body font
+\setsansfont{Arimo}     % Arial-compatible heading font
 \usepackage{microtype}
-\usepackage{setspace}
 \usepackage{titlesec}
 \usepackage{tocloft}
 \usepackage{longtable}
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{enumitem}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
+\usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{float}
-\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{lastpage}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
 
-\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black}
-\setstretch{1.03}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{3pt}
-\setlist[itemize]{leftmargin=1.35em,noitemsep,topsep=2pt,parsep=0pt}
-\setlist[enumerate]{leftmargin=1.55em,noitemsep,topsep=2pt,parsep=0pt}
-\titleformat{\section}{\large\bfseries}{\thesection.}{0.45em}{}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.45em}{}
-\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{0.45em}{}
-\titlespacing*{\section}{0pt}{8pt}{3pt}
-\titlespacing*{\subsection}{0pt}{6pt}{2pt}
-\titlespacing*{\subsubsection}{0pt}{4pt}{1pt}
-\setlength{\cftbeforesecskip}{1pt}
-\setlength{\cftbeforesubsecskip}{0pt}
-
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{Software Requirements Specification}
-\fancyhead[R]{Group 21}
-\fancyfoot[C]{\thepage}
-\renewcommand{\headrulewidth}{0.4pt}
-
+% ---------- Document metadata ----------
+\newcommand{\companyname}{Group 21}
 \newcommand{\projectname}{Trilingual Customer Support Ticket Management System}
-\newcommand{\version}{1.1}
+\newcommand{\systemname}{Multilingual Banking Ticket Processing Prototype}
+\newcommand{\documenttype}{Software Requirements Specification}
+\newcommand{\documentversion}{1.0}
+\newcommand{\documentdate}{30/Jul/26}
+\newcommand{\documentid}{G21-SRS-001}
+\newcommand{\documentauthor}{Group 21}
+
+% ---------- Template typography and spacing ----------
+\AtBeginDocument{\fontsize{10}{12}\selectfont}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0pt,topsep=2pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=0pt,topsep=2pt,parsep=0pt}
+
+% Main report headings: Arial-compatible, black, numbered with a 0.5-inch hanging label.
+\titleformat{\section}[hang]
+  {\sffamily\bfseries\fontsize{12}{14}\selectfont}
+  {\makebox[0.5in][l]{\thesection.}}{0pt}{}
+\titleformat{\subsection}[hang]
+  {\sffamily\bfseries\fontsize{10}{12}\selectfont}
+  {\makebox[0.5in][l]{\thesubsection}}{0pt}{}
+\titleformat{\subsubsection}[hang]
+  {\sffamily\bfseries\fontsize{10}{12}\selectfont}
+  {\makebox[0.5in][l]{\thesubsubsection}}{0pt}{}
+\titlespacing*{\section}{-0.5in}{6pt}{3pt}
+\titlespacing*{\subsection}{-0.5in}{6pt}{3pt}
+\titlespacing*{\subsubsection}{-0.5in}{6pt}{3pt}
+
+% ---------- Table of contents styling ----------
+\renewcommand{\contentsname}{Table of Contents}
+\renewcommand{\cfttoctitlefont}{\hfill\sffamily\bfseries\fontsize{18}{20}\selectfont}
+\renewcommand{\cftaftertoctitle}{\hfill\mbox{}\par\vspace{12pt}}
+\renewcommand{\cftsecfont}{\rmfamily\mdseries}
+\renewcommand{\cftsubsecfont}{\rmfamily\mdseries}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries}
+\renewcommand{\cftsubsecpagefont}{\rmfamily\mdseries}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftnodots}}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftnodots}}
+\renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftnodots}}
+\setlength{\cftbeforesecskip}{8pt}
+\setlength{\cftbeforesubsecskip}{0pt}
+\cftsetindents{section}{0pt}{0.38in}
+\cftsetindents{subsection}{0.38in}{0.52in}
+\cftsetindents{subsubsection}{0.90in}{0.65in}
+
+% ---------- Header and footer matching the supplied Word template ----------
+\newcommand{\templateheader}{%
+  \begingroup
+  \renewcommand{\arraystretch}{0.88}%
+  \setlength{\tabcolsep}{6pt}%
+  \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|p{0.26\textwidth}|}
+    \hline
+    \projectname & Version:\hfill \documentversion \\
+    \hline
+    \documenttype & Date:\hfill \documentdate \\
+    \hline
+    \multicolumn{2}{|l|}{\documentid} \\
+    \hline
+  \end{tabularx}%
+  \endgroup
+}
+\fancypagestyle{template}{%
+  \fancyhf{}
+  \fancyhead[C]{\templateheader}
+  \fancyfoot[L]{\rmfamily\fontsize{10}{12}\selectfont Confidential}
+  \fancyfoot[C]{\rmfamily\fontsize{10}{12}\selectfont \copyright\ \companyname, 2026}
+  \fancyfoot[R]{\rmfamily\fontsize{10}{12}\selectfont Page \thepage\ of \pageref{LastPage}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[C]{\templateheader}
+  \fancyfoot[L]{\rmfamily\fontsize{10}{12}\selectfont Confidential}
+  \fancyfoot[C]{\rmfamily\fontsize{10}{12}\selectfont \copyright\ \companyname, 2026}
+  \fancyfoot[R]{\rmfamily\fontsize{10}{12}\selectfont Page \thepage\ of \pageref{LastPage}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+% ---------- Figure captions ----------
+\captionsetup[figure]{font=small,labelfont=bf,labelsep=period,justification=centering}
+
+% ---------- Requirement tables ----------
 \newcommand{\req}[1]{\textbf{#1}}
 \newcommand{\priority}[1]{\textbf{Priority:} #1}
 \newenvironment{requirements}{%
-\small\setlength{\tabcolsep}{4pt}%
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.77\textwidth}}
-\toprule\textbf{ID} & \textbf{Requirement}\\\midrule\endhead}{\bottomrule\end{longtable}}
+  \small\setlength{\tabcolsep}{4pt}%
+  \begin{longtable}{|>{\raggedright\arraybackslash}p{0.19\linewidth}|>{\raggedright\arraybackslash}p{0.75\linewidth}|}
+  \hline\textbf{ID} & \textbf{Requirement}\\\hline\endhead}{\hline\end{longtable}}
+
+% The Word template indents body material by 0.5 inch while section numbers remain at the margin.
+\newenvironment{templatebody}{%
+  \par
+  \setlength{\leftskip}{0.5in}%
+  \setlength{\rightskip}{0pt}%
+  \setlength{\linewidth}{\dimexpr\textwidth-0.5in\relax}%
+  \setlength{\hsize}{\linewidth}%
+  \setlength{\emergencystretch}{3em}%
+}{\par}
 
 \begin{document}
 
+% ---------- Cover page ----------
 \begin{titlepage}
-    \centering
-    \vspace*{1.5cm}
-    {\Large\bfseries Software Requirements Specification\par}
-    \vspace{0.35cm}
-    {\large for\par}
-    \vspace{0.35cm}
-    {\LARGE\bfseries \projectname\par}
-    \vspace{1.0cm}
-    {\large Version \version\ approved\par}
-    \vfill
-    \begin{tabular}{ll}
-        \textbf{Prepared by:} & Group 21 \\
-        \textbf{Organization:} & [University / Department] \\
-        \textbf{Date created:} & \today \\
-    \end{tabular}
-    \vfill
+  \thispagestyle{empty}
+  \vspace*{-0.45in}
+  \noindent\rule{\textwidth}{0.4pt}
+  \vspace{0.16in}
+
+  \begin{flushright}
+    {\sffamily\bfseries\fontsize{18}{20}\selectfont \companyname\par}
+  \end{flushright}
+
+  \vspace{0.10in}
+  \noindent\rule{\textwidth}{0.4pt}
+  \vspace{0.23in}
+
+  \begin{flushright}
+    {\sffamily\bfseries\fontsize{18}{20}\selectfont \projectname\par}
+    \vspace{0.04in}
+    {\sffamily\bfseries\fontsize{18}{20}\selectfont \documenttype\par}
+    \vspace{0.30in}
+    {\sffamily\bfseries\fontsize{14}{16}\selectfont Version \documentversion\par}
+  \end{flushright}
 \end{titlepage}
+\setcounter{page}{2}
 
-\pagenumbering{roman}
-\tableofcontents
-\vspace{0.5em}
+\pagestyle{template}
 
-\section*{Revision History}
-\addcontentsline{toc}{section}{Revision History}
-\begin{longtable}{p{0.16\textwidth}p{0.14\textwidth}p{0.47\textwidth}p{0.10\textwidth}}
-\toprule
-\textbf{Name} & \textbf{Date} & \textbf{Change Reason} & \textbf{Version}\\
-\midrule
-Group 21 & \today & Revised to match the agreed project scope and page limit. & 1.1\\
-\bottomrule
-\end{longtable}
+% ---------- Revision history ----------
+\begin{center}
+  {\sffamily\bfseries\fontsize{18}{20}\selectfont Revision History}
+\end{center}
+\vspace{-7pt}
+\noindent
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\dimexpr\textwidth-2pt\relax}{|p{0.20\textwidth}|p{0.12\textwidth}|X|p{0.20\textwidth}|}
+\hline
+\centering\sffamily\bfseries Date &
+\centering\sffamily\bfseries Version &
+\centering\arraybackslash\sffamily\bfseries Description &
+\centering\arraybackslash\sffamily\bfseries Author\\
+\hline
+30/Jul/26 & 1.0 & Initial version aligned with the supplied document template. & Group 21\\
+\hline
+~ & ~ & ~ & ~\\
+\hline
+\end{tabularx}
 
 \newpage
-\pagenumbering{arabic}
+\tableofcontents
+\newpage
 
+\begin{center}
+  {\sffamily\bfseries\fontsize{18}{20}\selectfont \documenttype}
+\end{center}
+\vspace{-3pt}
+
+\begin{templatebody}
 \section{Introduction}
 
 \subsection{Purpose}
-This Software Requirements Specification (SRS) defines version \version\ of the \projectname. The system automates the initial handling of banking customer-support tickets by accepting text and an optional supporting image, predicting the ticket category, urgency, and sentiment, producing a context-aware draft response, and presenting all outputs to a support agent for review.
+This Software Requirements Specification (SRS) defines the functional and nonfunctional requirements for version \documentversion\ of the \projectname. It describes the externally observable behaviour, interfaces, quality constraints, data requirements, and evaluation expectations required to design, implement, and test the prototype.
 
-The term \emph{trilingual} refers to English, Sinhala, and Tamil. The system must also handle Sinhala and Tamil written in Latin characters (Singlish and Tanglish) and messages that mix supported languages or scripts. Audio input and speech transcription are outside the approved scope.
+\subsection{Scope}
+The product is a web-based research prototype that automates the initial handling of banking customer-support tickets. It shall accept a text description and an optional supporting image; process English, Sinhala, Tamil, Singlish, Tanglish, and mixed-language messages; classify the ticket category; predict urgency and sentiment; extract useful image evidence; generate an editable response draft; and route the ticket to a support agent for review.
 
-\subsection{Document Conventions}
-The word \textbf{shall} identifies a mandatory requirement, \textbf{should} a recommended requirement, and \textbf{may} an optional capability. Functional requirements use the prefix \texttt{FR}; nonfunctional requirements use \texttt{NFR}. Each requirement has a unique identifier and must be verifiable. Priorities are High, Medium, or Low.
+The category-classification component shall use the Banking77 dataset or an approved subset. English records may be translated or transliterated into Sinhala, Tamil, Singlish, and Tanglish. Derived versions of one source record shall remain in the same data split to prevent translation leakage. Audio input, speech transcription, direct banking transactions, and fully autonomous customer responses are outside the approved scope.
 
-\subsection{Intended Audience and Reading Suggestions}
-This document is intended for the project supervisor, developers, data scientists, testers, UI/UX designers, support agents, and evaluators. Sections 1 and 2 describe scope and context; Section 3 defines external interfaces; Section 4 specifies system features; Sections 5 and 6 define quality, data, evaluation, and privacy requirements.
-
-\subsection{Product Scope}
-The product is a web-based research prototype and decision-support tool. Its objectives are to:
-\begin{itemize}
-    \item accept English, Sinhala, Tamil, Singlish, Tanglish, and code-mixed ticket text;
-    \item classify ticket intent using Banking77 categories or an approved subset;
-    \item predict urgency/priority and customer sentiment using separately evaluated models;
-    \item extract useful text or evidence from an optional image;
-    \item generate an editable response draft in an appropriate supported language;
-    \item route and track tickets while preserving human control over final decisions;
-    \item compare model performance across language forms and prevent translation leakage.
-\end{itemize}
-The system shall not execute banking transactions, modify customer accounts, or send a model-generated response without authorised human review.
+\subsection{Definitions, Acronyms, and Abbreviations}
+\begin{longtable}{p{0.24\linewidth}p{0.70\linewidth}}
+\toprule
+\textbf{Term} & \textbf{Definition}\\
+\midrule
+Banking77 & Intent-classification dataset containing 77 online-banking customer-query categories.\\
+Code-mixed text & A message containing elements from more than one supported language or script.\\
+Singlish & Sinhala represented partly or fully using Latin characters.\\
+Tanglish & Tamil represented partly or fully using Latin characters.\\
+NLP & Natural Language Processing.\\
+OCR & Optical Character Recognition.\\
+LLM & Large Language Model.\\
+SRS & Software Requirements Specification.\\
+Translation leakage & Evaluation inflation caused by placing translated or transliterated versions of one source record in different data splits.\\
+\bottomrule
+\end{longtable}
 
 \subsection{References}
-\begin{enumerate}
-    \item Karl E. Wiegers, \textit{Software Requirements Specification Template}, 1999.
-    \item IEEE 830-1998, \textit{IEEE Recommended Practice for Software Requirements Specifications}.
-    \item Banking77 dataset documentation and intent labels.
-    \item Group 21 project proposal, architecture, dataset plan, and model-evaluation plan.
+\begin{enumerate}[label={[\arabic*]}]
+    \item IEEE Computer Society, \textit{IEEE Recommended Practice for Software Requirements Specifications}, IEEE Std 830-1998, 1998.
+    \item I. Casanueva, T. Tem\v{c}inas, D. Gerz, M. Henderson, and I. Vuli\'c, ``Efficient Intent Detection with Dual Sentence Encoders,'' in \textit{Proc. 2nd Workshop on NLP for ConvAI}, 2020.
+    \item Group 21, \textit{Project Proposal: Trilingual Customer Support Ticket Management System}, 2026.
+    \item Banking77 dataset documentation, Hugging Face Datasets, accessed 30 July 2026.
 \end{enumerate}
 
+\subsection{Overview}
+Section 2 describes the product context, users, operating environment, constraints, and dependencies. Section 3 defines all specific functional, quality, interface, database, legal, and standards requirements. Section 4 provides supporting information, including the interface/data-flow diagram, data lineage rules, evaluation expectations, and unresolved decisions.
+
+% =========================================================
 \section{Overall Description}
 
-\subsection{Product Perspective}
-The product is a new academic prototype composed of a web interface, backend API, ticket database, multilingual text-processing pipeline, machine-learning inference services, optional OCR/vision processing, and an LLM-based response generator. It can operate as a standalone demonstration system; direct integration with a production bank or help-desk platform is not required for the initial release.
+\subsection*{Product Perspective}
+The system is a new academic prototype consisting of a browser-based user interface, backend API, ticket database, multilingual text-processing pipeline, machine-learning inference services, optional OCR/vision processing, and an LLM-based response generator. It may operate as a standalone demonstration system; integration with a production bank or help-desk platform is not required for the first release.
 
-The principal flow is: submission $\rightarrow$ validation $\rightarrow$ multilingual preprocessing $\rightarrow$ category, priority, and sentiment prediction $\rightarrow$ optional image analysis $\rightarrow$ ticket routing $\rightarrow$ response drafting $\rightarrow$ agent review and resolution.
+\subsection*{Product Functions}
+The system shall authenticate authorised users; capture ticket text, metadata, and an optional image; preserve original and processed text; classify category, priority, and sentiment; extract supplementary image evidence; route tickets; generate editable response drafts; record agent corrections; track ticket status; and report evaluation results by language form.
 
-\subsection{Product Functions}
-\begin{itemize}
-    \item authenticate authorised users and enforce simple roles;
-    \item capture ticket text, metadata, and an optional image;
-    \item preserve original text and create a model-ready representation;
-    \item classify category, urgency, and sentiment;
-    \item extract supplementary image evidence;
-    \item create and route a ticket using model outputs and rules;
-    \item generate, edit, approve, or reject a response draft;
-    \item search and update ticket status;
-    \item capture corrections and display evaluation results by language form.
-\end{itemize}
-
-\subsection{User Classes and Characteristics}
-\begin{longtable}{p{0.23\textwidth}p{0.70\textwidth}}
+\subsection*{User Characteristics}
+\begin{longtable}{p{0.23\linewidth}p{0.70\linewidth}}
 \toprule
 \textbf{User Class} & \textbf{Characteristics and Responsibilities}\\
 \midrule
-Customer & Submits a multilingual ticket and optional image and views the ticket status or final response.\\
-Support Agent & Reviews predictions and evidence, edits the response draft, changes priority/category when necessary, and resolves or escalates tickets.\\
-Administrator / Project Team & Manages users, category mappings, model versions, confidence thresholds, evaluation datasets, and system configuration.\\
+Customer & Submits a multilingual ticket and optional image and views its status or final response.\\
+Support Agent & Reviews predictions, edits the draft response, corrects model outputs, and resolves or escalates tickets.\\
+Administrator / Project Team & Manages users, label mappings, model versions, confidence thresholds, evaluation datasets, and configuration.\\
 Project Evaluator & Uses authorised read-only views of system behaviour, metrics, and traceability evidence.\\
 \bottomrule
 \end{longtable}
 
-\subsection{Operating Environment}
-The prototype shall support current desktop and mobile web browsers. The backend and ML services shall run on a Linux-compatible local server or cloud environment. Python-based model services, a REST API, a relational or document database, and optional Docker containers may be used. GPU resources may be used for training but shall not be mandatory for basic demonstration inference unless documented.
+\subsection*{Constraints}
+The solution shall use Unicode-safe storage and multilingual tokenisation. Category data shall originate from Banking77 and approved language variants. Urgency and sentiment labels shall use a separately documented source or annotation procedure. Image input shall remain optional. LLM output shall be treated as a draft and shall not invent banking facts. The system shall remain feasible within the team's available time, data, and computing resources.
 
-\subsection{Design and Implementation Constraints}
-\begin{itemize}
-    \item Category-classification data shall originate from Banking77 and approved English, Sinhala, Tamil, Singlish, and Tanglish variants.
-    \item All translations or transliterations derived from one Banking77 record shall remain in the same train, validation, or test split.
-    \item Banking77 does not supply project-specific urgency and sentiment labels; these labels shall be obtained, annotated, or generated through a documented method before training those models.
-    \item The system shall use Unicode-safe storage and multilingual tokenisation.
-    \item Natural code-mixed data may be limited; synthetic mixing shall be distinguished from naturally written mixed-language evaluation data.
-    \item Image input is optional and supplementary. Text processing shall continue if image analysis fails.
-    \item LLM output shall be treated as a draft and shall not invent account or transaction facts.
-    \item The solution shall remain feasible using the project team's available time, data, and computing resources.
-\end{itemize}
+\subsection*{Assumptions and Dependencies}
+The project assumes that translations preserve the original intent, category mappings are approved, users provide meaningful text, and adequate labelled data exists for each trained task. Dependencies may include a multilingual encoder, OCR/vision library, LLM service or local model, database, and object storage. Performance may decline for unseen slang, spelling variation, low-quality images, rare categories, or natural code-mixed patterns absent from training data.
 
-\subsection{User Documentation}
-The prototype shall provide a short customer submission guide, agent usage guide, administrator/model configuration guide, API or deployment notes, and a model-evaluation report.
+% =========================================================
+\section{Specific Requirements}
 
-\subsection{Assumptions and Dependencies}
-The project assumes that translations preserve Banking77 intent, category mappings are approved, sufficient labelled data exists for each trained task, and users provide meaningful text. Dependencies may include a multilingual encoder, OCR/vision library, LLM service or local model, database, and object storage. Accuracy may decline for unseen slang, spelling variation, low-quality images, rare categories, or natural code-mixed patterns absent from training data.
+\subsection{Functionality}
 
-\section{External Interface Requirements}
-
-\subsection{User Interfaces}
-The system shall provide login, ticket submission, agent queue, ticket-detail, prediction-review, response-editing, status-management, evaluation, and basic administration views. The ticket-detail view shall show the original text, optional image, predicted category, urgency, sentiment, confidence values where available, extracted evidence, draft response, and agent correction controls. Sinhala and Tamil Unicode text shall render correctly.
-
-\subsection{Hardware Interfaces}
-Users shall provide text through a keyboard or touchscreen and may upload images from common cameras or storage devices. No specialised customer hardware is required. Server inference may use CPU or a compatible GPU.
-
-\subsection{Software Interfaces}
-The web client shall communicate with a backend API. The backend shall interface with the ticket database, multilingual inference services, optional OCR/vision service, and response-generation component. Interfaces shall use documented request/response schemas and include validation, model version, processing status, and meaningful error information. Production banking-core integration is outside the initial scope.
-
-\subsection{Communications Interfaces}
-Client-server and service-to-service communication shall use HTTPS where deployed over a network. Structured messages shall use UTF-8 JSON unless otherwise documented. Requests shall use timeouts and controlled error handling so that failure of an optional component does not lose the submitted ticket.
-
-\section{System Features}
-
-\subsection{Authentication and Access Control}
-\subsubsection{Description and Priority}
-Controls access to customer, agent, administration, and evaluation functions. \priority{Medium}
-\subsubsection{Stimulus/Response Sequences}
-A user submits credentials; the system validates them and exposes the permitted functions. Invalid attempts return a generic error. An authorised administrator may create, deactivate, or change a role.
-\subsubsection{Functional Requirements}
+\subsubsection{User Authentication and Access Control}
+\priority{Medium}
 \begin{requirements}
 \req{FR-AUTH-01} & The system shall authenticate users before protected functions are available.\\
 \req{FR-AUTH-02} & The system shall enforce server-side permissions for Customer, Agent, Administrator, and Evaluator roles.\\
@@ -203,234 +266,245 @@ A user submits credentials; the system validates them and exposes the permitted 
 \req{FR-AUTH-04} & The system shall store passwords using secure salted hashes and shall not log plaintext credentials.\\
 \end{requirements}
 
-\subsection{Ticket Submission and Validation}
-\subsubsection{Description and Priority}
-Captures multilingual ticket text, basic metadata, and an optional image. \priority{High}
-\subsubsection{Stimulus/Response Sequences}
-The customer enters a description and optionally uploads an image. The system validates the input, stores the ticket, assigns an identifier, and starts analysis. Invalid content is rejected with corrective guidance.
-\subsubsection{Functional Requirements}
+\subsubsection{Ticket Submission and Validation}
+\priority{High}
 \begin{requirements}
 \req{FR-ING-01} & The system shall accept English, Sinhala, Tamil, Singlish, Tanglish, and mixed-language ticket text.\\
-\req{FR-ING-02} & The system shall preserve the original submitted text and store a separate model-ready representation.\\
+\req{FR-ING-02} & The system shall preserve the original text and store a separate model-ready representation.\\
 \req{FR-ING-03} & The system shall accept an optional JPEG or PNG image subject to configured size and security limits.\\
-\req{FR-ING-04} & The system shall reject empty, unsupported, corrupted, oversized, or unsafe input.\\
+\req{FR-ING-04} & The system shall reject empty, unsupported, corrupted, oversized, or unsafe input with corrective guidance.\\
 \req{FR-ING-05} & The system shall assign a unique ticket ID, submission time, and initial status.\\
 \req{FR-ING-06} & The system shall not require audio input or speech transcription.\\
 \end{requirements}
 
-\subsection{Multilingual Text Processing}
-\subsubsection{Description and Priority}
-Creates consistent model input while retaining the linguistic information required for native, romanised, and mixed messages. \priority{High}
-\subsubsection{Stimulus/Response Sequences}
-After validation, the system removes unsafe markup, normalises approved whitespace and Unicode variants, optionally identifies script/language spans, and tokenises the complete message using the configured multilingual pipeline.
-\subsubsection{Functional Requirements}
+\subsubsection{Multilingual Text Processing}
+\priority{High}
 \begin{requirements}
 \req{FR-NLP-01} & The system shall support Unicode English, Sinhala, and Tamil text.\\
 \req{FR-NLP-02} & The system shall normalise only documented patterns without altering the intended meaning.\\
-\req{FR-NLP-03} & The system shall process a code-mixed ticket as one message rather than requiring one sentence-level language label.\\
-\req{FR-NLP-04} & The system shall process Singlish and Tanglish directly with the trained model or a documented transliteration/normalisation component.\\
-\req{FR-NLP-05} & Language or script detection, when used, shall support preprocessing, analytics, or fallback and shall not be a mandatory gate before classification.\\
+\req{FR-NLP-03} & The system shall process a code-mixed ticket as one message rather than requiring one message-level language gate.\\
+\req{FR-NLP-04} & The system shall process Singlish and Tanglish directly with the trained model or a documented transliteration component.\\
+\req{FR-NLP-05} & Language or script detection, when used, shall support preprocessing, analytics, or fallback and shall not block classification.\\
 \req{FR-NLP-06} & The system shall flag extremely short, unreadable, or unsupported input for manual review.\\
 \end{requirements}
 
-\subsection{Ticket Category Classification}
-\subsubsection{Description and Priority}
-Predicts the Banking77 intent category or an approved mapped subset. \priority{High}
-\subsubsection{Stimulus/Response Sequences}
-The model receives the processed text and returns a category and confidence. The system stores the output and sends uncertain cases for agent confirmation.
-\subsubsection{Functional Requirements}
+\subsubsection{Ticket Category Classification}
+\priority{High}
 \begin{requirements}
-\req{FR-CLS-01} & The system shall assign one approved category to each valid ticket.\\
-\req{FR-CLS-02} & The system shall store predicted label, confidence where supported, model version, and inference timestamp.\\
+\req{FR-CLS-01} & The system shall assign one approved Banking77 category or mapped category to each valid ticket.\\
+\req{FR-CLS-02} & The system shall store the predicted label, confidence where supported, model version, and inference time.\\
 \req{FR-CLS-03} & The system shall allow an agent to accept or correct the category.\\
 \req{FR-CLS-04} & The system shall flag predictions below the configured confidence threshold for manual review.\\
 \req{FR-CLS-05} & The system shall evaluate category performance separately for English, Sinhala, Tamil, Singlish, Tanglish, and available code-mixed sets.\\
 \end{requirements}
 
-\subsection{Urgency and Sentiment Prediction}
-\subsubsection{Description and Priority}
-Predicts operational priority and customer sentiment using approved labels and separately evaluated models or a documented multitask model. \priority{High}
-\subsubsection{Stimulus/Response Sequences}
-The system analyses ticket text and available metadata, returns priority and sentiment results, and displays them to the agent. The agent may correct either result.
-\subsubsection{Functional Requirements}
+\subsubsection{Urgency and Sentiment Prediction}
+\priority{High}
 \begin{requirements}
 \req{FR-ANA-01} & The system shall assign a configured priority such as Low, Medium, High, or Critical.\\
 \req{FR-ANA-02} & The system shall assign an approved sentiment label such as Negative, Neutral, or Positive.\\
-\req{FR-ANA-03} & The system shall store task label, confidence where supported, model version, and correction history.\\
-\req{FR-ANA-04} & The system shall permit deterministic escalation rules for explicitly defined critical terms or conditions.\\
-\req{FR-ANA-05} & Sentiment alone shall not trigger a critical escalation.\\
-\req{FR-ANA-06} & The system shall not train urgency or sentiment models until their label source and annotation method are documented.\\
+\req{FR-ANA-03} & The system shall store each label, confidence where supported, model version, and correction history.\\
+\req{FR-ANA-04} & The system shall permit deterministic escalation rules for explicitly defined critical conditions.\\
+\req{FR-ANA-05} & Sentiment alone shall not trigger critical escalation.\\
+\req{FR-ANA-06} & Urgency and sentiment models shall not be trained until their label sources and annotation methods are documented.\\
 \end{requirements}
 
-\subsection{Image Evidence Processing}
-\subsubsection{Description and Priority}
-Extracts supplementary text or visual evidence from an optional image. \priority{Medium}
-\subsubsection{Stimulus/Response Sequences}
-The system validates the image, performs OCR or approved vision processing, stores extracted evidence separately, and reports success, confidence, or failure. Text-based handling continues if processing fails.
-\subsubsection{Functional Requirements}
+\subsubsection{Image Evidence Processing}
+\priority{Medium}
 \begin{requirements}
 \req{FR-IMG-01} & The system shall validate image format, size, readability, and safety before analysis.\\
 \req{FR-IMG-02} & The system shall extract visible text using OCR when useful to the ticket.\\
 \req{FR-IMG-03} & The system shall associate extracted evidence and processing status with the original image and ticket.\\
 \req{FR-IMG-04} & Image-derived evidence shall not silently override explicit customer text or agent judgement.\\
-\req{FR-IMG-05} & Failure of optional image processing shall not prevent category, priority, sentiment, or response processing from the text.\\
+\req{FR-IMG-05} & Failure of image processing shall not prevent text-based category, priority, sentiment, or response processing.\\
 \end{requirements}
 
-\subsection{Ticket Routing and Lifecycle}
-\subsubsection{Description and Priority}
-Creates an actionable ticket, assigns it to a queue, and tracks it until resolution. \priority{High}
-\subsubsection{Stimulus/Response Sequences}
-After analysis, the system selects a queue using category and priority. An agent reviews, reassigns, escalates, adds notes, responds, resolves, or reopens the ticket. Each action is recorded.
-\subsubsection{Functional Requirements}
+\subsubsection{Ticket Routing and Lifecycle}
+\priority{High}
 \begin{requirements}
 \req{FR-LIF-01} & The system shall map approved categories to configured teams or queues.\\
 \req{FR-LIF-02} & The system shall support manual assignment, reassignment, and escalation by an authorised user.\\
-\req{FR-LIF-03} & The system shall support at least New, In Review, Assigned, Escalated, Resolved, and Closed statuses.\\
+\req{FR-LIF-03} & The system shall support New, In Review, Assigned, Escalated, Resolved, and Closed statuses.\\
 \req{FR-LIF-04} & The system shall retain timestamped status, assignment, correction, note, and response history.\\
 \req{FR-LIF-05} & Higher-priority tickets shall appear before lower-priority tickets when other queue rules are equal.\\
 \end{requirements}
 
-\subsection{Context-Aware Response Generation}
-\subsubsection{Description and Priority}
-Generates an agent-editable draft from ticket text, predictions, optional image evidence, and approved knowledge. \priority{High}
-\subsubsection{Stimulus/Response Sequences}
-An agent requests or opens a draft. The system generates a response, identifies it as machine-generated, and allows editing, regeneration, approval, or rejection before it becomes the final response.
-\subsubsection{Functional Requirements}
+\subsubsection{Context-Aware Response Generation}
+\priority{High}
 \begin{requirements}
 \req{FR-RSP-01} & The system shall generate an editable response draft using available ticket context.\\
-\req{FR-RSP-02} & The system shall support output in English, Sinhala, or Tamil when supported by the selected model.\\
-\req{FR-RSP-03} & The system shall clearly mark generated content as a draft.\\
-\req{FR-RSP-04} & The system shall require authorised human approval before a generated response is sent or recorded as final.\\
-\req{FR-RSP-05} & The generator shall not invent balances, transaction status, approvals, personal data, or actions absent from authorised context.\\
-\req{FR-RSP-06} & The system shall store the final response and, where permitted, its relationship to the generated draft for evaluation.\\
+\req{FR-RSP-02} & The system shall support draft output in English, Sinhala, or Tamil when supported by the selected model.\\
+\req{FR-RSP-03} & The system shall clearly mark generated content as a machine-generated draft.\\
+\req{FR-RSP-04} & The system shall require authorised human approval before a generated response becomes final.\\
+\req{FR-RSP-05} & The generator shall not invent balances, transaction states, approvals, personal data, or actions absent from authorised context.\\
+\req{FR-RSP-06} & The system shall store the final response and its relationship to the generated draft where permitted.\\
 \end{requirements}
 
-\subsection{Agent Dashboard, Feedback, and Evaluation}
-\subsubsection{Description and Priority}
-Supports review, correction, search, project evaluation, and basic model traceability. \priority{Medium}
-\subsubsection{Stimulus/Response Sequences}
-An agent filters tickets and corrects outputs. An administrator or evaluator selects a dataset/model version and views aggregate and per-language results.
-\subsubsection{Functional Requirements}
+\subsubsection{Agent Dashboard and Evaluation}
+\priority{Medium}
 \begin{requirements}
-\req{FR-EVL-01} & The system shall support search/filter by ticket ID, text, category, priority, sentiment, language form, status, and date.\\
+\req{FR-EVL-01} & The system shall support search and filtering by ticket ID, text, category, priority, sentiment, language form, status, and date.\\
 \req{FR-EVL-02} & The system shall record authorised corrections without automatically adding them to training data.\\
 \req{FR-EVL-03} & The system shall display accuracy, macro precision, macro recall, macro F1-score, class-wise results, and confusion matrices for category classification.\\
-\req{FR-EVL-04} & The system shall report suitable task metrics for priority and sentiment and compare results across supported language forms.\\
+\req{FR-EVL-04} & The system shall report suitable metrics for priority and sentiment and compare results across supported language forms.\\
 \req{FR-EVL-05} & The system shall record dataset version, split, preprocessing configuration, model version, and evaluation date.\\
 \req{FR-EVL-06} & Only authorised users shall change model versions, thresholds, or label mappings.\\
 \end{requirements}
 
-\section{Other Nonfunctional Requirements}
+\subsection{Usability}
+\begin{requirements}
+\req{NFR-USA-01} & A trained support agent shall be able to review predictions, correct outputs, edit a response, and update ticket status without developer assistance.\\
+\req{NFR-USA-02} & The ticket-detail screen shall present original text, optional image, predictions, confidence values, extracted evidence, draft response, and correction controls in one coherent workflow.\\
+\req{NFR-USA-03} & Error messages shall identify the invalid field or failed operation and provide a corrective action.\\
+\req{NFR-USA-04} & English, Sinhala, Tamil, Singlish, Tanglish, and mixed-script text shall render correctly on supported screens.\\
+\req{NFR-USA-05} & Common agent actions shall require no more than three primary interactions after opening a ticket.\\
+\end{requirements}
 
-\subsection{Performance Requirements}
+\subsection{Reliability}
+\begin{requirements}
+\req{NFR-REL-01} & The prototype shall achieve at least 99\% availability during scheduled demonstrations, excluding planned maintenance.\\
+\req{NFR-REL-02} & A failed optional OCR, vision, or generation service shall not delete or corrupt the stored ticket.\\
+\req{NFR-REL-03} & The system shall preserve the original ticket and expose the processing state when a downstream service fails.\\
+\req{NFR-REL-04} & After an application-level failure, the service should be restorable within 30 minutes using documented recovery steps.\\
+\req{NFR-REL-05} & Repeated inference with the same deterministic model version and preprocessing configuration shall produce reproducible labels.\\
+\end{requirements}
+
+\subsection{Performance and Security}
+\subsubsection{Performance Requirements}
 \begin{requirements}
 \req{NFR-PER-01} & Under normal demonstration load, 95\% of text-only tickets shall receive category, priority, and sentiment outputs within 5 seconds.\\
 \req{NFR-PER-02} & The agent ticket list shall load within 3 seconds for project-scale data and typical filters.\\
 \req{NFR-PER-03} & Image processing and response generation shall provide timeout or progress feedback when processing exceeds 10 seconds.\\
-\req{NFR-PER-04} & A failed optional model service shall not corrupt or delete the stored ticket.\\
-\req{NFR-PER-05} & Batch evaluation shall be repeatable using recorded dataset, split, preprocessing, and model versions.\\
+\req{NFR-PER-04} & Batch evaluation shall be repeatable using recorded dataset, split, preprocessing, and model versions.\\
 \end{requirements}
 
-\subsection{Safety Requirements}
+\subsubsection{Security Requirements}
 \begin{requirements}
-\req{NFR-SAF-01} & The system shall not execute financial transactions or account changes.\\
-\req{NFR-SAF-02} & Low-confidence, ambiguous, or critical tickets shall be highlighted for human review.\\
-\req{NFR-SAF-03} & A generated response shall not state that an action was completed unless verified by authorised data.\\
-\req{NFR-SAF-04} & Original customer text and relevant model outputs shall be retained for investigation and correction.\\
-\end{requirements}
-
-\subsection{Security Requirements}
-\begin{requirements}
-\req{NFR-SEC-01} & Network communication shall use TLS where the system is deployed over a network.\\
-\req{NFR-SEC-02} & The system shall enforce least-privilege, server-side authorisation.\\
+\req{NFR-SEC-01} & Network communication shall use TLS when deployed over a network.\\
+\req{NFR-SEC-02} & The system shall enforce least-privilege server-side authorisation.\\
 \req{NFR-SEC-03} & The system shall validate and sanitise text, files, queries, and API input.\\
 \req{NFR-SEC-04} & Attachments and sensitive ticket data shall be accessible only to authorised users.\\
 \req{NFR-SEC-05} & Secrets and credentials shall not be stored in source code, logs, generated text, or client bundles.\\
-\req{NFR-SEC-06} & Security-sensitive, model-configuration, and final-response actions shall be auditable.\\
+\req{NFR-SEC-06} & Model-configuration, final-response, and security-sensitive actions shall be auditable.\\
 \end{requirements}
 
-\subsection{Software Quality Attributes}
+\subsection{Supportability}
 \begin{requirements}
-\req{NFR-QUA-01} & Usability: a trained agent shall complete ticket review and response without technical documentation.\\
-\req{NFR-QUA-02} & Maintainability: classification, priority, sentiment, image, and generation components shall use replaceable documented interfaces.\\
-\req{NFR-QUA-03} & Testability: each functional requirement shall be traceable to at least one test case.\\
-\req{NFR-QUA-04} & Reliability: partial service failure shall preserve ticket data and expose a clear processing status.\\
-\req{NFR-QUA-05} & Portability: the backend should support deployment on a standard Linux environment.\\
-\req{NFR-QUA-06} & Explainability: authorised users shall see labels, confidence where available, model version, and correction status.\\
-\req{NFR-QUA-07} & Fairness: evaluation shall report language-specific performance and identify material gaps.\\
+\req{NFR-SUP-01} & Classification, urgency, sentiment, OCR/vision, and response-generation components shall expose documented replaceable interfaces.\\
+\req{NFR-SUP-02} & Source code shall follow agreed naming, formatting, and version-control conventions.\\
+\req{NFR-SUP-03} & Each functional requirement shall be traceable to at least one test case.\\
+\req{NFR-SUP-04} & Logs shall include processing status and error identifiers without exposing passwords or unnecessary personal data.\\
+\req{NFR-SUP-05} & Deployment and model-update procedures shall be documented.\\
 \end{requirements}
 
-\subsection{Business Rules}
+\subsection{Design Constraints}
+\begin{itemize}
+    \item Category-classification data shall originate from Banking77 and approved English, Sinhala, Tamil, Singlish, and Tanglish variants.
+    \item All translations or transliterations derived from one Banking77 record shall remain in the same train, validation, or test split.
+    \item The system shall use UTF-8-compatible storage and multilingual tokenisation.
+    \item Naturally written code-mixed evaluation data shall be distinguished from translated or synthetically mixed data.
+    \item Image processing shall remain supplementary; the text pipeline shall continue when image analysis fails.
+    \item Generated responses shall require human approval and shall not execute banking actions.
+    \item The backend should support deployment on a standard Linux environment using Python-based services and documented APIs.
+\end{itemize}
+
+\subsection{On-line User Documentation and Help System Requirements}
+The prototype shall provide a customer ticket-submission guide, an agent workflow guide, administrator/model configuration notes, deployment instructions, and a model-evaluation report. Form-level help shall explain supported languages, accepted image formats, mandatory fields, and common validation errors.
+
+\subsection{Purchased Components}
+No purchased component is mandatory for the academic prototype. Open-source libraries, hosted APIs, cloud storage, or LLM services may be used only when their licences, costs, data-retention behaviour, and usage restrictions are reviewed and documented. The architecture shall permit replacement of a hosted service with a local or alternative component where feasible.
+
+\subsection{Interfaces}
+
+\subsubsection{User Interfaces}
+The system shall provide login, ticket-submission, agent-queue, ticket-detail, prediction-review, response-editing, status-management, evaluation, and basic administration views. The submission view shall contain a multilingual text area, optional image upload, submit button, validation feedback, and ticket identifier. The ticket-detail view shall show the original ticket, predictions, confidence values, extracted image evidence, draft response, and agent correction controls.
+
+\begin{figure}[H]
+\centering
+\resizebox{0.95\linewidth}{!}{%
+\begin{tikzpicture}[
+    node distance=8mm and 9mm,
+    box/.style={draw, rounded corners, align=center, minimum height=9mm, minimum width=27mm, fill=white, font=\sffamily\fontsize{10}{12}\selectfont},
+    data/.style={draw, cylinder, shape border rotate=90, aspect=0.25, align=center, minimum height=10mm, minimum width=22mm, fill=white, font=\sffamily\fontsize{10}{12}\selectfont},
+    flow/.style={-{Latex[length=2mm]}, thick}
+]
+\node[box] (customer) {Customer\\Web Interface};
+\node[box, right=of customer] (api) {Backend API\\and Validation};
+\node[box, right=of api] (text) {Multilingual\\Text Pipeline};
+\node[box, below=of text] (image) {Optional OCR /\\Vision Pipeline};
+\node[box, right=of text] (models) {Category, Priority,\\Sentiment Models};
+\node[box, right=of models] (llm) {Response\\Generator};
+\node[box, below=of models] (agent) {Agent Dashboard\\and Review};
+\node[data, below=of api] (db) {Ticket and\\Model Database};
+
+\draw[flow] (customer) -- (api);
+\draw[flow] (api) -- (text);
+\draw[flow] (api) -- (image);
+\draw[flow] (text) -- (models);
+\draw[flow] (image) -- (models);
+\draw[flow] (models) -- (llm);
+\draw[flow] (models) -- (agent);
+\draw[flow] (llm) -- (agent);
+\draw[flow] (api) -- (db);
+\draw[flow] (agent) -- (db);
+\draw[flow] (db) -- (agent);
+\end{tikzpicture}}
+\caption{Main user and software interfaces of the prototype.}
+\label{fig:interface-flow}
+\end{figure}
+
+\subsubsection{Hardware Interfaces}
+Users shall enter text through a keyboard or touchscreen and may upload images from a camera or storage device. No specialised customer hardware is required. A client device should have at least 4 GB RAM and a modern browser. The server shall have sufficient disk space for the configured datasets, models, tickets, logs, and optional attachments. GPU resources may be used for training but shall not be mandatory for basic demonstration inference unless documented.
+
+\subsubsection{Software Interfaces}
+The web client shall communicate with a backend REST API. The backend shall interface with the ticket database, multilingual inference services, optional OCR/vision service, and response-generation component. Interfaces shall use documented request/response schemas and include validation status, model version, processing state, and meaningful errors. Production banking-core integration is outside the first-release scope.
+
+\subsubsection{Communications Interfaces}
+Client-server and service-to-service communication shall use HTTPS when deployed over a network. Structured requests and responses shall use UTF-8 JSON unless otherwise documented. Requests shall use timeouts, controlled retries where safe, and error handling so that failure of an optional component does not lose the submitted ticket.
+
+\subsection{Database Requirements}
+The database shall store tickets, original and processed text, optional attachment metadata, predictions, confidence values, model versions, response drafts, final responses, assignments, statuses, corrections, evaluation results, and audit events. Dataset records shall retain source ID, language form, translation/transliteration lineage, label, and split. The database shall enforce unique ticket identifiers, required relationships, authorised access, and consistent timestamp storage. Binary files may be stored in object storage with protected references in the database.
+
+\subsection{Licensing, Legal, Copyright, and Other Notices}
+The project shall comply with the licences and attribution requirements of Banking77, pretrained models, libraries, OCR/vision components, and LLM services. Personal or financial information shall be minimised, access-controlled, and excluded from public datasets or reports. Research and training data shall be de-identified where practicable. The system shall display that generated responses are drafts and shall not imply that the prototype is an authorised production banking service.
+
+\subsection{Applicable Standards}
+The requirements document should follow the supplied institutional SRS template and the principles of IEEE 830-1998. Implementation should follow applicable secure-coding, privacy, accessibility, UTF-8 internationalisation, REST API, and version-control practices adopted by the project team. References to websites shall include an access date, and research claims shall use IEEE-style citations.
+
+% =========================================================
+\section{Supporting Information}
+
+\subsection*{Data and Model Evaluation Rules}
+\begin{itemize}
+    \item Category experiments shall use a held-out test set and report accuracy, macro precision, macro recall, macro F1-score, class-wise results, and confusion matrices.
+    \item English performance shall be compared with Sinhala, Tamil, Singlish, and Tanglish performance using the same source-record split lineage.
+    \item Translation quality and intent-label preservation shall be checked through a documented validation sample.
+    \item Naturally written code-mixed data, when available, shall be evaluated separately from translated or synthetically mixed data.
+    \item Priority and sentiment datasets, labels, baselines, metrics, and acceptance thresholds shall be documented independently of Banking77.
+    \item LLM drafts shall be evaluated for relevance, language appropriateness, factual grounding, safety, and agent usefulness.
+\end{itemize}
+
+\subsection*{Business Rules}
 \begin{enumerate}
     \item Only an authorised agent may approve a final response or mark a ticket resolved.
     \item Critical tickets and low-confidence predictions require explicit agent review.
-    \item Model corrections become candidate feedback, not automatically approved training data.
-    \item Category, priority, sentiment, and generated text shall be presented as model outputs, not guaranteed facts.
-    \item Model or threshold changes require an authorised user and a recorded version.
+    \item Model corrections become candidate feedback and shall not automatically become approved training data.
+    \item Category, priority, sentiment, and generated text shall be presented as model outputs rather than guaranteed facts.
+    \item Model, threshold, or label-mapping changes require an authorised user and a recorded version.
 \end{enumerate}
 
-\section{Other Requirements}
-
-\subsection{Data Requirements}
-The system shall maintain tickets, original and processed text, optional attachments, predictions, confidence values, model versions, response drafts, final responses, assignments, statuses, corrections, evaluation results, and audit events. Dataset records shall retain source ID, language form, translation/transliteration lineage, label, and split. Derived versions of the same Banking77 source record shall remain in one split.
-
-\subsection{Internationalisation Requirements}
-All stored and transmitted text shall use UTF-8. The UI shall correctly display English, Sinhala, Tamil, Latin-script Singlish and Tanglish, and mixed-script content. The system shall not assume that one ticket contains only one language.
-
-\subsection{Privacy and Retention Requirements}
-The prototype shall collect only information needed for ticket processing and evaluation. Personal and financial information shall be minimised, access-controlled, and excluded from public datasets or reports. Research/training data shall be de-identified where practicable. Retention periods for tickets, images, prompts, outputs, and feedback shall be configurable or documented.
-
-\subsection{Model Training and Evaluation Requirements}
-\begin{itemize}
-    \item Category experiments shall use a held-out test set and report aggregate, class-wise, and per-language metrics.
-    \item The project shall compare English performance with Sinhala, Tamil, Singlish, and Tanglish performance under the same split lineage.
-    \item Translation quality and label preservation shall be checked through a documented validation sample.
-    \item Naturally written code-mixed data, when available, shall be evaluated separately from translated or synthetically mixed data.
-    \item Priority and sentiment datasets, labels, baselines, metrics, and acceptance thresholds shall be documented independently of Banking77.
-    \item LLM responses shall be evaluated for relevance, language appropriateness, factual grounding, safety, and usefulness to agents.
-\end{itemize}
-
-\appendix
-\section{Glossary}
-\begin{longtable}{p{0.23\textwidth}p{0.70\textwidth}}
-\toprule
-\textbf{Term} & \textbf{Definition}\\
-\midrule
-Banking77 & Intent-classification dataset containing 77 online-banking customer-query categories.\\
-Code-mixed text & One message containing elements from more than one supported language or script.\\
-Singlish & Sinhala represented partly or fully using Latin characters.\\
-Tanglish & Tamil represented partly or fully using Latin characters.\\
-NLP & Natural Language Processing.\\
-OCR & Optical Character Recognition.\\
-LLM & Large Language Model.\\
-Macro F1-score & Unweighted mean of per-class F1-scores.\\
-Translation leakage & Inflated evaluation caused by placing translated versions of one source record in different data splits.\\
-Confidence threshold & Configured value below which a prediction is routed for manual review.\\
-TBD & To Be Determined.\\
-\bottomrule
-\end{longtable}
-
-\section{Analysis Models}
-The final SRS package should include or reference the following diagrams when available:
-\begin{itemize}
-    \item system context/use-case diagram;
-    \item end-to-end ticket-processing data-flow diagram;
-    \item multilingual model-training and inference architecture;
-    \item ticket state-transition diagram;
-    \item data or entity-relationship model;
-    \item deployment diagram for the prototype.
-\end{itemize}
-
-\section{To Be Determined List}
+\subsection*{To Be Determined}
 \begin{enumerate}
-    \item Final university, department, author names, and approval date.
-    \item Whether the prototype uses all 77 Banking77 categories or an approved subset/mapping.
+    \item Final university, department, member names, and submission/approval date.
+    \item Whether all 77 Banking77 categories or an approved subset will be used.
     \item Final multilingual encoder and preprocessing/transliteration approach.
     \item Source and annotation procedure for urgency and sentiment labels.
-    \item Final OCR/vision component and LLM response-generation component.
+    \item Final OCR/vision and LLM response-generation components.
     \item Confidence thresholds and quantitative acceptance targets for each task.
     \item Maximum image size, retention period, and deployment hardware.
     \item Availability and size of naturally written code-mixed evaluation data.
 \end{enumerate}
 
+
+\end{templatebody}
 \end{document}
