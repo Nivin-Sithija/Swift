@@ -26,3 +26,4 @@ context/
 # Agent working notes (local only)
 AGENTS.md
 MEMORY.md
+outputs/
