@@ -16,7 +16,10 @@ describe("DataTable", () => {
   it("renders a header row and one row per item", () => {
     render(
       <DataTable<Row>
-        columns={[{ key: "id", label: "Ticket" }, { key: "subject", label: "Subject" }]}
+        columns={[
+          { key: "id", label: "Ticket" },
+          { key: "subject", label: "Subject" },
+        ]}
         rows={rows}
         rowKey={(row) => row.id}
       />,

@@ -76,8 +76,8 @@ export function PredictionCard({
 }: {
   title: string;
   prediction: TicketPrediction;
-  options: string[];
-  onSave: (v: string, r: string) => void;
+  options: readonly string[];
+  onSave: (value: string, reason: string) => void;
   criticalReason?: string;
 }) {
   const [value, setValue] = useState(prediction.value);
@@ -168,10 +168,11 @@ export function InternalNotes({
   onAdd,
 }: {
   initial: InternalNote[];
-  onAdd: (text: string) => Promise<void>;
+  onAdd: (text: string) => Promise<InternalNote>;
 }) {
   const [notes, setNotes] = useState(initial);
   const [text, setText] = useState("");
+  const [error, setError] = useState("");
   return (
     <section className="card">
       <div className="card-heading">
@@ -201,22 +202,26 @@ export function InternalNotes({
           placeholder="Add useful context for another agent…"
         />
       </label>
+      {error && (
+        <small className="field-error" role="alert">
+          {error}
+        </small>
+      )}
       <div className="row end">
         <button
           className="btn secondary"
           disabled={!text.trim()}
           onClick={async () => {
-            await onAdd(text);
-            setNotes((v) => [
-              ...v,
-              {
-                id: crypto.randomUUID(),
-                author: "Anika Fernando",
-                text,
-                at: new Date().toISOString(),
-              },
-            ]);
-            setText("");
+            try {
+              setError("");
+              // The service owns note identity; render exactly what it stored.
+              const note = await onAdd(text);
+              setNotes((v) => [...v, note]);
+              setText("");
+            } catch (cause) {
+              console.error("[InternalNotes/add]", cause);
+              setError("The note could not be saved. Try again.");
+            }
           }}
         >
           Add internal note
@@ -334,11 +339,11 @@ export function ResponseEditor({
         description="This will mark the reviewed draft as the final customer-visible response."
         confirmLabel="Approve and send"
         onCancel={() => setDialog(null)}
-          onConfirm={() => {
-            setSaved(text);
-            setDialog(null);
-            onApproved(text);
-          }}
+        onConfirm={() => {
+          setSaved(text);
+          setDialog(null);
+          onApproved(text);
+        }}
       />
       <ConfirmationDialog
         open={dialog === "reject"}

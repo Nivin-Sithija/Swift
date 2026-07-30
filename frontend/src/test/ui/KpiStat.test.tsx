@@ -9,7 +9,15 @@ describe("KpiStat", () => {
   });
 
   it("renders the delta and sublabel with the requested tone", () => {
-    render(<KpiStat label="Avg. Response Time" value="4m 12s" delta="↓ 8%" deltaTone="success" sublabel="vs last week" />);
+    render(
+      <KpiStat
+        label="Avg. Response Time"
+        value="4m 12s"
+        delta="↓ 8%"
+        deltaTone="success"
+        sublabel="vs last week"
+      />,
+    );
     expect(screen.getByText("↓ 8%")).toHaveClass("text-success-text");
     expect(screen.getByText("vs last week")).toBeInTheDocument();
   });

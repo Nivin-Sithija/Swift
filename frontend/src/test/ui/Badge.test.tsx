@@ -9,7 +9,10 @@ describe("Badge", () => {
 
   it("applies the tone's classes", () => {
     render(<Badge tone="success">Resolved</Badge>);
-    expect(screen.getByText("Resolved")).toHaveClass("bg-success-subtle", "text-success-text");
+    expect(screen.getByText("Resolved")).toHaveClass(
+      "bg-success-subtle",
+      "text-success-text",
+    );
   });
 
   it("defaults to the neutral tone", () => {
