@@ -1,0 +1,10 @@
+{
+  "language": "singlish",
+  "model": "linear_svm",
+  "C": 1.0,
+  "accuracy": 0.8642416368950958,
+  "macro_f1": 0.8634866813706755,
+  "weighted_f1": 0.8634679850568696,
+  "n_test_samples": 3079,
+  "n_classes": 77
+}

@@ -1,0 +1,13 @@
+Model,Language,C_Parameter,Class_Weight,Validation_Macro_F1_Pct,Validation_Samples
+Logistic Regression,english,0.1,None,75.18,2000
+Logistic Regression,english,0.1,balanced,80.92,2000
+Logistic Regression,english,1.0,None,89.38,2000
+Logistic Regression,english,1.0,balanced,88.83,2000
+Logistic Regression,english,5.0,None,90.09,2000
+Logistic Regression,english,5.0,balanced,90.19,2000
+Linear SVM,english,0.1,None,88.69,2000
+Linear SVM,english,0.1,balanced,88.92,2000
+Linear SVM,english,1.0,None,90.2,2000
+Linear SVM,english,1.0,balanced,90.21,2000
+Linear SVM,english,5.0,None,89.87,2000
+Linear SVM,english,5.0,balanced,89.77,2000
