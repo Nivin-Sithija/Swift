@@ -2,10 +2,12 @@ import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "../../lib/utils";
 
-export type BadgeTone = "neutral" | "primary" | "success" | "info" | "warning" | "error" | "accent2";
+export type BadgeTone =
+  "neutral" | "primary" | "success" | "info" | "warning" | "error" | "accent2";
 
 const toneClasses: Record<BadgeTone, string> = {
-  neutral: "bg-neutral-badge-subtle border-neutral-badge-border text-neutral-badge-text",
+  neutral:
+    "bg-neutral-badge-subtle border-neutral-badge-border text-neutral-badge-text",
   primary: "bg-primary-subtle border-primary-subtle-border text-primary-text",
   success: "bg-success-subtle border-success-border text-success-text",
   info: "bg-info-subtle border-info-border text-info-text",
@@ -22,7 +24,12 @@ export interface BadgeProps {
 }
 
 /** Pill-shaped status/label chip — the core vocabulary for category, priority, sentiment, language and channel tags. */
-export function Badge({ tone = "neutral", icon: Icon, children, className }: BadgeProps) {
+export function Badge({
+  tone = "neutral",
+  icon: Icon,
+  children,
+  className,
+}: BadgeProps) {
   return (
     <span
       className={cn(

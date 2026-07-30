@@ -26,7 +26,6 @@ export function filterTickets(
     status: string;
     priority: string;
     language: string;
-    category: string;
   }>,
 ) {
   const query = filters.search?.trim().toLowerCase();
@@ -36,25 +35,32 @@ export function filterTickets(
         ticket.id.toLowerCase().includes(query) ||
         ticket.subject.toLowerCase().includes(query) ||
         ticket.customerName.toLowerCase().includes(query)) &&
-      (!filters.status || filters.status === "all" || ticket.status === filters.status) &&
+      (!filters.status ||
+        filters.status === "all" ||
+        ticket.status === filters.status) &&
       (!filters.priority ||
         filters.priority === "all" ||
         ticket.priority.value === filters.priority) &&
       (!filters.language ||
         filters.language === "all" ||
-        ticket.language === filters.language) &&
-      (!filters.category ||
-        filters.category === "all" ||
-        ticket.category.value === filters.category),
+        ticket.language === filters.language),
   );
 }
 
-export const sortByPriority = (tickets: Ticket[]) =>
-  [...tickets].sort(
-    (a, b) =>
-      priorityRank[b.priority.value as TicketPriority] -
-        priorityRank[a.priority.value as TicketPriority] ||
-      +new Date(b.createdAt) - +new Date(a.createdAt),
-  );
+export type TicketSort = "priority" | "newest" | "confidence" | "waiting";
 
-export const delay = (ms = 350) => new Promise((resolve) => setTimeout(resolve, ms));
+const comparators: Record<TicketSort, (a: Ticket, b: Ticket) => number> = {
+  priority: (a, b) =>
+    priorityRank[b.priority.value as TicketPriority] -
+      priorityRank[a.priority.value as TicketPriority] ||
+    +new Date(b.createdAt) - +new Date(a.createdAt),
+  newest: (a, b) => +new Date(b.createdAt) - +new Date(a.createdAt),
+  confidence: (a, b) => a.category.confidence - b.category.confidence,
+  waiting: (a, b) => +new Date(a.createdAt) - +new Date(b.createdAt),
+};
+
+export const sortTickets = (tickets: Ticket[], sort: TicketSort = "priority") =>
+  [...tickets].sort(comparators[sort]);
+
+export const delay = (ms = 350) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
