@@ -11,12 +11,18 @@ export interface TopNavProps {
   logo: ReactNode;
   items: TopNavItem[];
   right?: ReactNode;
+  className?: string;
 }
 
 /** Fixed-height full-width navbar. Swift has no sidebar — this is the only chrome above page content. */
-export function TopNav({ logo, items, right }: TopNavProps) {
+export function TopNav({ logo, items, right, className }: TopNavProps) {
   return (
-    <div className="flex h-[var(--navbar-height)] items-center gap-8 border-b border-border-subtle bg-surface-nav px-[var(--container-padding)]">
+    <div
+      className={cn(
+        "flex h-[var(--navbar-height)] items-center gap-8 border-b border-border-subtle bg-surface-nav px-[var(--container-padding)]",
+        className,
+      )}
+    >
       {logo}
       <nav className="flex flex-1 gap-6">
         {items.map((item) => (
@@ -24,7 +30,12 @@ export function TopNav({ logo, items, right }: TopNavProps) {
             key={item.to}
             to={item.to}
             className={({ isActive }) =>
-              cn("py-2 text-base", isActive ? "font-semibold text-primary-text" : "font-medium text-text-secondary")
+              cn(
+                "py-2 text-base",
+                isActive
+                  ? "font-semibold text-primary-text"
+                  : "font-medium text-text-secondary",
+              )
             }
           >
             {item.label}
