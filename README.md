@@ -148,20 +148,25 @@ Replace `mockTicketService` in `src/services/ticketService.ts` with a REST imple
 
 ### Frontend structure
 
+The app lives in `frontend/` (a sibling of the ML/research directories described in [Repository Layout](#repository-layout)):
+
 ```text
-src/
-  app/providers/       Theme, language and mock authentication
-  app/router/          Routes and role guards
-  components/agent/    Prediction, evidence, notes and response panels
-  components/common/   Shared controls and dialogs
-  components/layout/   Customer and agent application shells
-  components/tickets/  Tables, filters, cards, badges and timeline
-  mocks/               Central fictional ticket dataset
-  pages/               Login, customer, agent and utility pages
-  services/            Replaceable asynchronous service interface
-  test/                Behavioral Vitest/Testing Library tests
-  types/               Strict domain models
+frontend/
+  src/
+    app/providers/       Theme, language and mock authentication
+    app/router/          Routes and role guards
+    components/agent/    Prediction, evidence, notes and response panels
+    components/common/   Shared controls and dialogs
+    components/layout/   Customer and agent application shells
+    components/tickets/  Tables, filters, cards, badges and timeline
+    mocks/               Central fictional ticket dataset
+    pages/               Login, customer, agent and utility pages
+    services/            Replaceable asynchronous service interface
+    test/                Behavioral Vitest/Testing Library tests
+    types/               Strict domain models
 ```
+
+All `npm`/Docker commands below run from `frontend/` — `cd frontend` first.
 
 ### Testing
 
@@ -188,6 +193,7 @@ The frontend includes separate Docker workflows for live development and a minim
 Create a local environment file from the public example:
 
 ```bash
+cd frontend
 cp .env.example .env
 ```
 
@@ -363,8 +369,14 @@ Engineering decisions worth noting:
 ## Repository Layout
 
 ```
+frontend/      Vite + React + TypeScript support-ticket triage app (see Frontend structure above)
 context/       Product spec, architecture, model research, coding standards, build/progress tracking
 research/      Primary-source papers + bibliography backing modeling decisions
 datasets/      BANKING77-derived trilingual dataset pipeline (translation, romanization, labeling, audits)
 notebooks/     Dataset characteristics and prompt-benchmark analysis
+docs/          API, database and RAG-source documentation
+srs/           Software requirements specification (LaTeX report)
+feasibility report/  Feasibility study (LaTeX report)
+scripts/       Standalone data-cleaning utilities
+synthetic_ticket_dataset/  Synthetic multimodal (image) ticket samples
 ```
