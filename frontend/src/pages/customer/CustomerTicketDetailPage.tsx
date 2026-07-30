@@ -1,0 +1,179 @@
+import {
+  AlertTriangle,
+  ArrowLeft,
+  Image as ImageIcon,
+  MessageSquareText,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { PageHeader } from "../../components/layout/Layouts";
+import {
+  EmptyState,
+  LanguageBadge,
+  LoadingSkeleton,
+  PriorityBadge,
+  SentimentBadge,
+  StatusBadge,
+  TicketTimeline,
+  humanize,
+} from "../../components/tickets/TicketComponents";
+import { mockTicketService } from "../../services/ticketService";
+import type { Ticket } from "../../types";
+import { formatDate } from "../../lib/utils";
+export function CustomerTicketDetailPage() {
+  const { ticketId } = useParams();
+  const [ticket, setTicket] = useState<Ticket | null>(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    let active = true;
+    setLoading(true);
+    mockTicketService
+      .getTicket(ticketId || "")
+      .then((next) => {
+        if (active) setTicket(next);
+      })
+      .catch((error) => {
+        console.error("[CustomerTicketDetailPage/load]", error);
+        if (active) setTicket(null);
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [ticketId]);
+  if (loading) return <LoadingSkeleton />;
+  if (!ticket)
+    return (
+      <EmptyState
+        title="Ticket not found"
+        detail="This ticket may not exist or is not available to this customer."
+      />
+    );
+  return (
+    <>
+      <Link className="back-link" to="/customer/tickets">
+        <ArrowLeft />
+        Back to my tickets
+      </Link>
+      <PageHeader
+        eyebrow={ticket.id}
+        title={ticket.subject}
+        description="Customer-safe ticket view"
+        actions={
+          <>
+            <PriorityBadge value={ticket.priority.value} />
+            <StatusBadge value={ticket.status} />
+          </>
+        }
+      />
+      <div className="detail-grid">
+        <div className="stack">
+          <section className="card">
+            <div className="section-title">
+              <MessageSquareText />
+              <div>
+                <span className="eyebrow">Original customer message</span>
+                <h2>Your message</h2>
+              </div>
+            </div>
+            <p className="original-message">{ticket.message}</p>
+            <div className="meta-grid">
+              <div>
+                <span>Preferred response</span>
+                <strong>{humanize(ticket.preferredResponseLanguage)}</strong>
+              </div>
+              <div>
+                <span>Detected language form</span>
+                <LanguageBadge value={ticket.language} />
+              </div>
+              <div>
+                <span>Category</span>
+                <strong>{humanize(ticket.category.value)}</strong>
+              </div>
+              <div>
+                <span>Sentiment</span>
+                <SentimentBadge value={ticket.sentiment.value} />
+              </div>
+              <div>
+                <span>Assigned queue</span>
+                <strong>{ticket.assignedQueue}</strong>
+              </div>
+              <div>
+                <span>Created</span>
+                <strong>{formatDate(ticket.createdAt)}</strong>
+              </div>
+            </div>
+          </section>
+          {ticket.attachment && (
+            <section className="card">
+              <div className="section-title">
+                <ImageIcon />
+                <div>
+                  <span className="eyebrow">Supplementary evidence</span>
+                  <h2>Uploaded image</h2>
+                </div>
+              </div>
+              <img
+                className="evidence-image"
+                src={ticket.attachment.url}
+                alt="Customer uploaded transaction evidence"
+              />
+              {ticket.imageEvidence.status === "failed" && (
+                <div className="warning-box">
+                  <AlertTriangle />
+                  Image processing failed. Your ticket was still submitted
+                  successfully.
+                </div>
+              )}
+            </section>
+          )}
+          {ticket.approvedResponse ? (
+            <section className="card approved-response">
+              <span className="eyebrow">Approved response</span>
+              <h2>Support team response</h2>
+              <p>{ticket.approvedResponse.text}</p>
+              <small>
+                Approved by an authorised support agent ·{" "}
+                {formatDate(ticket.approvedResponse.approvedAt)}
+              </small>
+            </section>
+          ) : (
+            <section className="card empty-response">
+              <MessageSquareText />
+              <h2>No approved response yet</h2>
+              <p>
+                Your support team is reviewing this ticket. Only a
+                human-approved response will appear here.
+              </p>
+            </section>
+          )}
+        </div>
+        <aside className="stack">
+          <section className="card">
+            <h2>Current status</h2>
+            <TicketTimeline events={ticket.events} customerSafe />
+          </section>
+          <section className="card compact-card">
+            <h3>Ticket details</h3>
+            <dl>
+              <div>
+                <dt>Last updated</dt>
+                <dd>{formatDate(ticket.updatedAt)}</dd>
+              </div>
+              <div>
+                <dt>Response available</dt>
+                <dd>{ticket.approvedResponse ? "Yes" : "Not yet"}</dd>
+              </div>
+              <div>
+                <dt>Image status</dt>
+                <dd>{humanize(ticket.imageEvidence.status)}</dd>
+              </div>
+            </dl>
+          </section>
+        </aside>
+      </div>
+    </>
+  );
+}

@@ -1,42 +1,70 @@
-# Swift
+<h1 align="center">
+  <img src="frontend/public/logo.png" alt="" width="44" height="44" align="center" />
+  &nbsp;Swift
+</h1>
 
-Trilingual (Sinhala / English / Tamil), multimodal AI support-ticket triage system for banking and fintech. Incoming tickets — text, voice, or image (bank slips, receipts, error screenshots) — are transcribed/OCR'd, classified by category, priority, and sentiment, and routed: routine questions get a RAG-grounded drafted reply, fraud/urgent/negative-sentiment tickets escalate to a human agent.
+Trilingual (Sinhala / English / Tamil), multimodal AI support-ticket triage for banking and fintech. Incoming tickets — text, voice, or image (bank slips, receipts, error screenshots) — are transcribed/OCR'd, classified by intent, priority, and sentiment, and routed: routine questions get a RAG-grounded drafted reply, while fraud, urgent, and negative-sentiment tickets escalate to a human agent.
 
-Full product framing (pages, user flows, features in/out of scope, success criteria) lives in [`context/project-overview.md`](context/project-overview.md). System design and stack are in [`context/architecture.md`](context/architecture.md).
+| Track | Status |
+|---|---|
+| Research library |  indexed in [`research/README.md`](research/README.md) |
+| Trilingual dataset |  5 language/script folders, 9,998 train / 3,079 test, id-aligned |
+| Classifier bake-off |  harness built, baselines measured, encoder runs pending |
+| Application | Frontend prototype built; backend not scaffolded |
 
-The project has two tracks that are both mid-flight: a **research + dataset track** (this repo's current focus) and a **planned application build** (Next.js + FastAPI, specced but not yet implemented — see `context/build-plan.md`).
+---
+
+## Frontend prototype
+
+`frontend/` is a Vite + React + TypeScript prototype of the customer and agent workflows, running entirely on local mock data. It connects to no bank, model, or backend — all names, identifiers, transactions, and predictions are fictional.
+
+```bash
+cd frontend
+npm install
+npm run dev          # http://localhost:5173
+```
+
+Docker alternatives (copy `.env.example` to `.env` first): `npm run docker:dev` for hot reload, or `npm run docker:prod` for the production nginx container on port 8080.
+
+| Role | Email | Password |
+|---|---|---|
+| Customer | `customer@swift.demo` | `password123` |
+| Support agent | `agent@swift.demo` | `password123` |
+
+It covers ticket submission in all six language forms with optional image evidence, the agent queue and dashboard, prediction review and correction, and mandatory human approval of AI-drafted replies. `npm run test`, `npm run lint`, and `npm run build` gate changes. Runtime state is in-memory and resets on refresh; `mockTicketService` implements a typed `TicketService` interface designed for later REST replacement.
 
 ---
 
 ## Research
 
-`research/` is a working bibliography of primary-source papers backing every non-obvious modeling decision — not background reading, but load-bearing evidence for choices like model architecture, dataset scale, and how to handle romanized/code-mixed Sinhala. [`research/README.md`](research/README.md) is the index: each paper is summarized, cited by section, and linked to the decision it grounds in `context/model-research.md`.
+`research/` is a working bibliography of primary sources backing every non-obvious modeling decision — not background reading, but load-bearing evidence for choices like model architecture, dataset scale, and how to handle romanized code-mixed Sinhala. [`research/README.md`](research/README.md) indexes each paper against the decision it grounds in `context/model-research.md`.
 
 Findings that shaped the build:
-- **Fine-tuned beats zero-shot LLM, consistently** — across every paper in the library (banking-domain XLM-R+lexicon 88.4% vs. GPT-4o zero-shot 81.5%; SinLlama fine-tuned F1 72.5 vs. unfine-tuned 22.7) — the basis for the project's "ML models classify, LLM only replies" division of labor.
-- **Romanized Sinhala breaks tokenizers, not just models** — median perplexity is 312× worse than native script on the same LLMs (Rajapakse & Weerasinghe, 2026), traced to subword fragmentation. Directly motivated preserving English loanword spelling in the Singlish generator (`card`, not `kad`) and keeping reverse-transliteration in the classifier bake-off rather than dropping it.
-- **Neural models need data volume Sinhala datasets rarely have** — classical ML/CRF beat every neural architecture at ~2k–7.5k rows (Smith & Thayasivam, 2020); the pattern flips only past roughly a hundred thousand balanced rows (Arya, 2026). This calibrated the project's own dataset-scale targets and kept the classifier bake-off (never assume the transformer wins) in the plan.
-- **Plain oversampling beats SMOTE for code-mixed/low-resource text** in every paper that tried both — adopted as the default class-balancing method.
+
+- **Fine-tuned beats zero-shot LLM, consistently** — across every paper in the library (banking-domain XLM-R+lexicon 88.4% vs. GPT-4o zero-shot 81.5%; SinLlama fine-tuned F1 72.5 vs. unfine-tuned 22.7). This is the basis for the project's "ML models classify, LLM only replies" division of labor.
+- **Romanized Sinhala breaks tokenizers, not just models** — median perplexity is 312× worse than native script on the same LLMs (Rajapakse & Weerasinghe, 2026), traced to subword fragmentation. Directly motivated preserving English loanword spelling in the Singlish generator (`card`, not `kad`).
+- **Neural models need data volume Sinhala datasets rarely have** — classical ML/CRF beat every neural architecture at ~2k–7.5k rows (Smith & Thayasivam, 2020); the pattern flips only past roughly a hundred thousand balanced rows (Arya, 2026). This calibrated dataset-scale targets and kept the bake-off honest: never assume the transformer wins.
+- **Plain oversampling beats SMOTE** for code-mixed and low-resource text in every paper that tried both — adopted as the default class-balancing method.
 
 ---
 
 ## Data Science
 
-The dataset-engineering work (`datasets/`) turns [BANKING77](https://huggingface.co/datasets/PolyAI/banking77) (13,083 English support queries, 77 intents) into a labeled, trilingual, multi-script benchmark for the classifier bake-off — five language/script folders: `english/`, `sinhala/`, `singlish/` (romanized Sinhala), `tamil/`, `tamilish/` (romanized Tamil).
+`datasets/` turns [BANKING77](https://huggingface.co/datasets/PolyAI/banking77) (13,083 English support queries, 77 intents) into a labeled, trilingual, multi-script benchmark across five folders: `english/`, `sinhala/`, `singlish/` (romanized Sinhala), `tamil/`, and `tamilish/` (romanized Tamil).
 
-**Every `train_labeled.csv`/`test_labeled.csv` shares one schema**: `id, text_en, text, category, sentiment, priority`. `id` is the 0-based row index into `original-dataset/train.csv`/`test.csv` (the alignment key across all five folders); `text_en` is always the original English ticket text; `text` is that folder's own-language text. sentiment/priority are identical across all five for the same row — they're translations of the same ticket, labeled once in English and carried over, never re-labeled per language.
+**Every `train_labeled.csv` / `test_labeled.csv` shares one schema**: `id, text_en, text, intent, sentiment, priority`. `id` is the 0-based row index into `original-dataset/` — the alignment key across all five folders. `text_en` is always the original English; `text` is that folder's own-language text. Sentiment and priority are identical across all five for a given `id`: they are translations of one ticket, labeled once in English and carried over, never re-labeled per language.
 
 **Pipeline:**
-1. **Source** — BANKING77 `train.csv` / `test.csv` (`datasets/original-dataset/`), English text + intent only — no category/sentiment/priority ground truth exists upstream.
-2. **Labeling** — sentiment and priority are LLM-derived (category comes from BANKING77's own intent field), not scraped. `datasets/translation/prompts/` holds iterative prompt versions (v1 → v5); each version was validated against a hand-annotated gold benchmark subset before being trusted to label the full set (`datasets/english/`, incl. mismatch-analysis CSVs and a Label Studio config for manual review). v5 is the current production prompt, and its labels are the only source of truth — including for Tamil, whose translation arrived with its own (older, non-v5) sentiment/priority pass that was overwritten to stay in sync with the rest.
-3. **Translation** — English rows are machine-translated to Sinhala, then **hand-corrected by category** into colloquial, code-mixed Sinhala (not literal MT output) — tracked in a progress CSV, style rules documented in `datasets/translation/SINHALA_STYLE.md`. Tamil is machine-translated (Gemini) without a hand-correction pass yet.
-4. **Romanization** — Singlish is a rule-based transliterator (`romanize.py`, `singlishify.py`, `singlish_overrides.py`) generating romanized Sinhala from the corrected native-script text, preserving English loanword spelling per the Script Sensitivity finding above. Edits happen in the romanized (Singlish) CSV, since that's what's human-readable, and get **backported into the Sinhala source** via diff/update scripts (`singlish_diff.py`, `update_sinhala.py`) rather than maintained in two places by hand. Tamilish (romanized Tamil) was generated directly by the same translation pass as Tamil, not a separate rule-based step.
-5. **Auditing** — `audit_sentiment.py` / `apply_bulk_sentiment_fix.py` catch and bulk-correct systematic labeling errors after review; `datasets/localization/` runs a similar review pass over category localization.
-6. **Analysis** — `notebooks/data_preparation/dataset_characteristics_english.ipynb` (class balance, text length, vocabulary) and `notebooks/data_preparation/prompt_benchmark_findings.ipynb` (prompt-version accuracy comparison against gold labels) document the dataset and prompt-selection evidence.
 
-Working rule for this pipeline: a dataset's own heuristic labels are never trusted as ground truth for tuning a labeling prompt — every prompt version is checked against a freshly hand-annotated gold set first.
+1. **Source** — BANKING77 train/test, English text and intent only. No sentiment or priority ground truth exists upstream.
+2. **Labeling** — sentiment and priority are LLM-derived; intent comes from BANKING77 itself. `datasets/translation/prompts/` holds prompt versions v1 → v5, each validated against a hand-annotated gold set before being trusted on the full corpus. v5 is frozen and is the only source of truth.
+3. **Translation** — English is machine-translated to Sinhala, then hand-corrected category by category into colloquial, code-mixed Sinhala rather than literal MT output (style rules in `datasets/translation/SINHALA_STYLE.md`). Tamil is Gemini-translated with no hand-correction pass yet.
+4. **Romanization** — Singlish is rule-generated from the corrected native-script text, preserving English loanword spelling per the tokenizer finding above. Edits are made in the romanized file (the human-readable one) and backported into the Sinhala source via diff/update scripts rather than maintained in two places.
+5. **Auditing** — cross-language dedup and audit passes resolve label conflicts, true duplicates versus translation collisions, and untranslated rows. Audits never mutate source CSVs; they emit review files for a human pass to apply.
 
-**Status**: English/Sinhala/Singlish have both train and test sets fully v5-labeled. Tamil/Tamilish have the train set done but no test set yet (only a small preview sample) — generating their full test set is the next open item.
+Working rule: a dataset's own heuristic labels are never trusted as ground truth when tuning a labeling prompt — every prompt version is checked against a freshly hand-annotated gold set first.
+
+**Bake-off** (`notebooks/modeling/`) runs on a frozen split — 8,500 train / 1,498 dev / 3,079 test, never regenerated. Model selection happens on dev; test is touched once at the end by winners only. Two measured baselines shape reporting: always-Neutral sentiment scores 95.6% on dev (so `negative_f1` is reported, never accuracy), and intent → majority priority scores 0.9326 accuracy with no model at all.
 
 ---
 
@@ -46,29 +74,36 @@ The planned application (`context/architecture.md`) is a two-service system:
 
 | Layer | Stack |
 |---|---|
-| Frontend | Next.js 16 (App Router), TypeScript strict, Tailwind + shadcn/ui |
+| Frontend | React 19 + TypeScript strict + Tailwind (Vite; see note below) |
 | Backend | FastAPI (Python 3.11+, typed/mypy) |
 | Data | PostgreSQL 16 + pgvector (tickets, messages, KB articles, embeddings) |
-| Classification | XLM-RoBERTa backbone + per-language LoRA experts (category / priority / sentiment) |
+| Classification | XLM-RoBERTa backbone + per-language LoRA experts |
 | Language ID | Unicode script detection + per-pair CRF/XGBoost for code-mixed Si-En / Ta-En |
-| Multimodal | Whisper/MMS (ASR), Tesseract `sin+tam+eng` (OCR), Coqui/Indic-TTS (speech reply) |
-| RAG | BGE-M3/e5 embeddings in pgvector, Gemini (prod) / Ollama (dev) generation |
+| Multimodal | Whisper/MMS (ASR), Tesseract `sin+tam+eng` (OCR), Coqui/Indic-TTS |
+| RAG | BGE-M3/e5 embeddings in pgvector, Gemini (prod) / Ollama (dev) |
 | Channels | Web widget, Telegram, WhatsApp (Twilio/Meta) |
-| Analytics | PostHog |
 
-Engineering decisions worth noting:
-- **Pluggable banking data access** — `BankingProvider` is a Protocol with a stable `AccountRecord`/`TransactionRecord` schema; `MockBankingProvider` is the only implementation built (no real bank partner), but a real integration is a single adapter, not a pipeline rewrite.
-- **Classification never touches the LLM** — category/priority/sentiment are served by trained discriminative models (target <100ms, ONNX/quantized, kept warm as singletons); the LLM is reply-generation only. Keeps latency and cost predictable and avoids hallucinated labels.
-- **Scope is explicitly split** — `context/project-overview.md` marks which features match the formally submitted project proposal (multimodal ingestion, trilingual classification, agent dashboard with label correction) versus the applied extension built on top (RAG replies, TTS, Telegram/WhatsApp, auto-reply workflow), so the two aren't conflated when evaluated against the proposal.
-- **Status**: application code (`web/`, `api/`) has not been scaffolded yet — `context/build-plan.md` and `context/progress-tracker.md` track phase planning and what's actually shipped.
+Decisions worth noting:
+
+- **Pluggable banking data access** — `BankingProvider` is a Protocol with a stable record schema. `MockBankingProvider` is the only implementation (no real bank partner), but a real integration is one adapter, not a pipeline rewrite.
+- **Classification never touches the LLM** — intent, priority, and sentiment are served by trained discriminative models (target <100ms, kept warm as singletons); the LLM generates replies only. Keeps latency and cost predictable and avoids hallucinated labels.
+- **Scope is explicitly split** — `context/project-overview.md` marks which features match the submitted proposal (multimodal ingestion, trilingual classification, agent dashboard with label correction) versus the applied extension on top (RAG replies, TTS, Telegram/WhatsApp).
+- **Frontend stack is unresolved** — `architecture.md` specifies Next.js 16 App Router, but the prototype was built on Vite + React Router, which suits a static nginx deployment against a separate FastAPI backend. The spec has not been reconciled.
 
 ---
 
 ## Repository Layout
 
-```
-context/       Product spec, architecture, model research, coding standards, build/progress tracking
-research/      Primary-source papers + bibliography backing modeling decisions
-datasets/      BANKING77-derived trilingual dataset pipeline (translation, romanization, labeling, audits)
-notebooks/     Dataset characteristics and prompt-benchmark analysis
+```text
+frontend/                  Vite + React + TypeScript support-ticket triage prototype
+context/                   Product spec, architecture, model research, standards, progress
+research/                  Primary-source papers backing modeling decisions
+datasets/                  BANKING77-derived trilingual pipeline (translation, romanization, labeling)
+notebooks/modeling/        swiftbench harness for the classifier bake-off
+notebooks/data_preparation/  Dataset characteristics, cleaning and prompt-benchmark analysis
+docs/                      API, database and RAG-source documentation
+srs/                       Software requirements specification (LaTeX)
+feasibility report/        Feasibility study (LaTeX)
+scripts/                   Standalone data-cleaning utilities
+synthetic_ticket_dataset/  Synthetic multimodal (image) ticket samples
 ```

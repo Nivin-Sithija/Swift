@@ -3,9 +3,17 @@
 
 # Node
 node_modules/
+dist/
+.vite/
+coverage/
+*.log
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
 
 # Python
 .venv/
+.venv*/
 venv/
 env/
 __pycache__/
@@ -15,6 +23,12 @@ __pycache__/
 .env
 .env.local
 .env.*.local
+
+# Editor
+.idea/
+.vscode/*
+!.vscode/tasks.json
+!.vscode/extensions.json
 
 # Claude / skills
 .claude/
