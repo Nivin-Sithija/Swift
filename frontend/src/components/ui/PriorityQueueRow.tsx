@@ -23,7 +23,13 @@ export interface PriorityQueueRowProps {
 }
 
 /** Single row in the dashboard's live priority queue list. */
-export function PriorityQueueRow({ customer, snippet, priority, category, minutesAgo }: PriorityQueueRowProps) {
+export function PriorityQueueRow({
+  customer,
+  snippet,
+  priority,
+  category,
+  minutesAgo,
+}: PriorityQueueRowProps) {
   return (
     <div className="flex items-center gap-4 border-b border-border-subtle py-3 last:border-b-0">
       <span className={`h-2 w-2 shrink-0 rounded-full ${dotClass[priority]}`} />
@@ -33,7 +39,9 @@ export function PriorityQueueRow({ customer, snippet, priority, category, minute
       </div>
       <span className="shrink-0 text-sm text-text-muted">{category}</span>
       <Badge tone={priorityTone[priority]}>{priority}</Badge>
-      <span className="w-14 shrink-0 text-right text-sm text-text-muted">{minutesAgo}</span>
+      <span className="w-14 shrink-0 text-right text-sm text-text-muted">
+        {minutesAgo}
+      </span>
     </div>
   );
 }

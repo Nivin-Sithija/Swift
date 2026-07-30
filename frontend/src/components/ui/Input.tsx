@@ -2,7 +2,10 @@ import { forwardRef, type InputHTMLAttributes } from "react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "../../lib/utils";
 
-export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+export interface InputProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "size"
+> {
   icon?: LucideIcon;
   size?: "sm" | "md";
 }
@@ -14,7 +17,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 ) {
   return (
     <div className="relative flex items-center">
-      {Icon ? <Icon size={15} className="pointer-events-none absolute left-2.5 text-text-muted" /> : null}
+      {Icon ? (
+        <Icon
+          size={15}
+          className="pointer-events-none absolute left-2.5 text-text-muted"
+        />
+      ) : null}
       <input
         ref={ref}
         className={cn(

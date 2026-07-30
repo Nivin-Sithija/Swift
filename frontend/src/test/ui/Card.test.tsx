@@ -9,8 +9,16 @@ describe("Card", () => {
   });
 
   it("renders a title heading and an action slot", () => {
-    render(<Card title="Recent Tickets" action={<button>View all</button>}>Body</Card>);
-    expect(screen.getByRole("heading", { name: "Recent Tickets" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "View all" })).toBeInTheDocument();
+    render(
+      <Card title="Recent Tickets" action={<button>View all</button>}>
+        Body
+      </Card>,
+    );
+    expect(
+      screen.getByRole("heading", { name: "Recent Tickets" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "View all" }),
+    ).toBeInTheDocument();
   });
 });

@@ -1,4 +1,8 @@
-# Swift
+<p align="center">
+  <img src="frontend/public/logo.png" alt="Swift" width="120" height="120" />
+</p>
+
+<h1 align="center">Swift</h1>
 
 Trilingual (Sinhala / English / Tamil), multimodal AI support-ticket triage system for banking and fintech. Incoming tickets — text, voice, or image (bank slips, receipts, error screenshots) — are transcribed/OCR'd, classified by category, priority, and sentiment, and routed: routine questions get a RAG-grounded drafted reply, fraud/urgent/negative-sentiment tickets escalate to a human agent.
 

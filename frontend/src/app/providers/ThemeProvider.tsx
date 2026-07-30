@@ -1,10 +1,21 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 
 export type Theme = "dark" | "light" | "system";
-const ThemeContext = createContext<{ theme: Theme; setTheme: (theme: Theme) => void } | null>(null);
+const ThemeContext = createContext<{
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+} | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(() => (localStorage.getItem("swift-theme") as Theme) || "dark");
+  const [theme, setThemeState] = useState<Theme>(
+    () => (localStorage.getItem("swift-theme") as Theme) || "dark",
+  );
   useEffect(() => {
     const media = matchMedia("(prefers-color-scheme: dark)");
     const apply = () => {
@@ -20,7 +31,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("swift-theme", next);
     setThemeState(next);
   };
-  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 }
 
 export function useTheme() {
