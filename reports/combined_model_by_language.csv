@@ -1,0 +1,13 @@
+Model,Evaluation_Language,Accuracy_Pct,Combined_Macro_F1_Pct,Monolingual_Macro_F1_Pct,Difference_Macro_F1_Pct,Weighted_F1_Pct,Impact
+Logistic Regression,english,91.36,91.36,90.48,0.88,91.36,Improves
+Logistic Regression,sinhala,85.81,85.63,83.08,2.55,85.63,Improves
+Logistic Regression,singlish,87.63,87.56,86.07,1.49,87.56,Improves
+Logistic Regression,tamil,84.83,84.07,84.22,-0.15,84.07,Harms
+Logistic Regression,tamilish,60.9,58.81,59.05,-0.24,58.8,Harms
+Logistic Regression,all,82.1,82.16,82.16,-0.0,82.15,Neutral
+Linear SVM,english,91.75,91.76,90.98,0.78,91.76,Improves
+Linear SVM,sinhala,86.36,86.1,82.75,3.35,86.1,Improves
+Linear SVM,singlish,87.89,87.83,86.49,1.34,87.83,Improves
+Linear SVM,tamil,86.88,86.35,86.35,-0.0,86.35,Neutral
+Linear SVM,tamilish,62.85,61.21,61.05,0.16,61.2,Improves
+Linear SVM,all,83.14,83.18,83.18,-0.0,83.18,Neutral

@@ -1,0 +1,8318 @@
+[
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "Refund_not_showing_up",
+    "Precision": 94.87,
+    "Recall": 92.5,
+    "F1_Score": 93.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "activate_my_card",
+    "Precision": 100.0,
+    "Recall": 92.5,
+    "F1_Score": 96.1,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "age_limit",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "apple_pay_or_google_pay",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "atm_support",
+    "Precision": 94.87,
+    "Recall": 94.87,
+    "F1_Score": 94.87,
+    "Support": 39
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "automatic_top_up",
+    "Precision": 100.0,
+    "Recall": 95.0,
+    "F1_Score": 97.44,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "balance_not_updated_after_bank_transfer",
+    "Precision": 74.42,
+    "Recall": 80.0,
+    "F1_Score": 77.11,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "balance_not_updated_after_cheque_or_cash_deposit",
+    "Precision": 88.37,
+    "Recall": 95.0,
+    "F1_Score": 91.57,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "beneficiary_not_allowed",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "cancel_transfer",
+    "Precision": 97.37,
+    "Recall": 92.5,
+    "F1_Score": 94.87,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "card_about_to_expire",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "card_acceptance",
+    "Precision": 90.0,
+    "Recall": 90.0,
+    "F1_Score": 90.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "card_arrival",
+    "Precision": 85.37,
+    "Recall": 87.5,
+    "F1_Score": 86.42,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "card_delivery_estimate",
+    "Precision": 90.24,
+    "Recall": 92.5,
+    "F1_Score": 91.36,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "card_linking",
+    "Precision": 95.12,
+    "Recall": 97.5,
+    "F1_Score": 96.3,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "card_not_working",
+    "Precision": 74.0,
+    "Recall": 92.5,
+    "F1_Score": 82.22,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "card_payment_fee_charged",
+    "Precision": 92.11,
+    "Recall": 87.5,
+    "F1_Score": 89.74,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "card_payment_not_recognised",
+    "Precision": 84.21,
+    "Recall": 80.0,
+    "F1_Score": 82.05,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "card_payment_wrong_exchange_rate",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "card_swallowed",
+    "Precision": 94.87,
+    "Recall": 92.5,
+    "F1_Score": 93.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "cash_withdrawal_charge",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "cash_withdrawal_not_recognised",
+    "Precision": 84.44,
+    "Recall": 95.0,
+    "F1_Score": 89.41,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "change_pin",
+    "Precision": 100.0,
+    "Recall": 92.5,
+    "F1_Score": 96.1,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "compromised_card",
+    "Precision": 84.09,
+    "Recall": 92.5,
+    "F1_Score": 88.1,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "contactless_not_working",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "country_support",
+    "Precision": 90.7,
+    "Recall": 97.5,
+    "F1_Score": 93.98,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "declined_card_payment",
+    "Precision": 85.11,
+    "Recall": 100.0,
+    "F1_Score": 91.95,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "declined_cash_withdrawal",
+    "Precision": 88.37,
+    "Recall": 95.0,
+    "F1_Score": 91.57,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "declined_transfer",
+    "Precision": 100.0,
+    "Recall": 82.5,
+    "F1_Score": 90.41,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "direct_debit_payment_not_recognised",
+    "Precision": 93.94,
+    "Recall": 77.5,
+    "F1_Score": 84.93,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "disposable_card_limits",
+    "Precision": 87.18,
+    "Recall": 85.0,
+    "F1_Score": 86.08,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "edit_personal_details",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "exchange_charge",
+    "Precision": 85.37,
+    "Recall": 87.5,
+    "F1_Score": 86.42,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "exchange_rate",
+    "Precision": 90.7,
+    "Recall": 97.5,
+    "F1_Score": 93.98,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "exchange_via_app",
+    "Precision": 83.72,
+    "Recall": 90.0,
+    "F1_Score": 86.75,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "extra_charge_on_statement",
+    "Precision": 92.11,
+    "Recall": 87.5,
+    "F1_Score": 89.74,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "failed_transfer",
+    "Precision": 74.0,
+    "Recall": 92.5,
+    "F1_Score": 82.22,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "fiat_currency_support",
+    "Precision": 93.94,
+    "Recall": 77.5,
+    "F1_Score": 84.93,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "get_disposable_virtual_card",
+    "Precision": 86.11,
+    "Recall": 77.5,
+    "F1_Score": 81.58,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "get_physical_card",
+    "Precision": 86.67,
+    "Recall": 97.5,
+    "F1_Score": 91.76,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "getting_spare_card",
+    "Precision": 92.5,
+    "Recall": 92.5,
+    "F1_Score": 92.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "getting_virtual_card",
+    "Precision": 79.17,
+    "Recall": 95.0,
+    "F1_Score": 86.36,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "lost_or_stolen_card",
+    "Precision": 88.37,
+    "Recall": 95.0,
+    "F1_Score": 91.57,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "lost_or_stolen_phone",
+    "Precision": 100.0,
+    "Recall": 97.5,
+    "F1_Score": 98.73,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "order_physical_card",
+    "Precision": 89.47,
+    "Recall": 85.0,
+    "F1_Score": 87.18,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "passcode_forgotten",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "pending_card_payment",
+    "Precision": 86.05,
+    "Recall": 92.5,
+    "F1_Score": 89.16,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "pending_cash_withdrawal",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "pending_top_up",
+    "Precision": 92.11,
+    "Recall": 87.5,
+    "F1_Score": 89.74,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "pending_transfer",
+    "Precision": 90.32,
+    "Recall": 70.0,
+    "F1_Score": 78.87,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "pin_blocked",
+    "Precision": 94.44,
+    "Recall": 85.0,
+    "F1_Score": 89.47,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "receiving_money",
+    "Precision": 94.59,
+    "Recall": 87.5,
+    "F1_Score": 90.91,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "request_refund",
+    "Precision": 92.5,
+    "Recall": 92.5,
+    "F1_Score": 92.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "reverted_card_payment?",
+    "Precision": 82.22,
+    "Recall": 92.5,
+    "F1_Score": 87.06,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "supported_cards_and_currencies",
+    "Precision": 88.37,
+    "Recall": 95.0,
+    "F1_Score": 91.57,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "terminate_account",
+    "Precision": 88.89,
+    "Recall": 100.0,
+    "F1_Score": 94.12,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "top_up_by_bank_transfer_charge",
+    "Precision": 89.19,
+    "Recall": 82.5,
+    "F1_Score": 85.71,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "top_up_by_card_charge",
+    "Precision": 92.86,
+    "Recall": 97.5,
+    "F1_Score": 95.12,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "top_up_by_cash_or_cheque",
+    "Precision": 94.59,
+    "Recall": 87.5,
+    "F1_Score": 90.91,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "top_up_failed",
+    "Precision": 80.0,
+    "Recall": 80.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "top_up_limits",
+    "Precision": 90.48,
+    "Recall": 95.0,
+    "F1_Score": 92.68,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "top_up_reverted",
+    "Precision": 87.18,
+    "Recall": 85.0,
+    "F1_Score": 86.08,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "topping_up_by_card",
+    "Precision": 91.89,
+    "Recall": 85.0,
+    "F1_Score": 88.31,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "transaction_charged_twice",
+    "Precision": 90.91,
+    "Recall": 100.0,
+    "F1_Score": 95.24,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "transfer_fee_charged",
+    "Precision": 94.87,
+    "Recall": 92.5,
+    "F1_Score": 93.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "transfer_into_account",
+    "Precision": 85.37,
+    "Recall": 87.5,
+    "F1_Score": 86.42,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "transfer_not_received_by_recipient",
+    "Precision": 85.37,
+    "Recall": 87.5,
+    "F1_Score": 86.42,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "transfer_timing",
+    "Precision": 86.05,
+    "Recall": 92.5,
+    "F1_Score": 89.16,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "unable_to_verify_identity",
+    "Precision": 86.84,
+    "Recall": 82.5,
+    "F1_Score": 84.62,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "verify_my_identity",
+    "Precision": 76.74,
+    "Recall": 82.5,
+    "F1_Score": 79.52,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "verify_source_of_funds",
+    "Precision": 93.02,
+    "Recall": 100.0,
+    "F1_Score": 96.39,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "verify_top_up",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "virtual_card_not_working",
+    "Precision": 96.88,
+    "Recall": 77.5,
+    "F1_Score": 86.11,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "visa_or_mastercard",
+    "Precision": 100.0,
+    "Recall": 92.5,
+    "F1_Score": 96.1,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "why_verify_identity",
+    "Precision": 83.78,
+    "Recall": 77.5,
+    "F1_Score": 80.52,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "wrong_amount_of_cash_received",
+    "Precision": 97.3,
+    "Recall": 90.0,
+    "F1_Score": 93.51,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "english",
+    "Intent_Class": "wrong_exchange_rate_for_cash_withdrawal",
+    "Precision": 91.18,
+    "Recall": 77.5,
+    "F1_Score": 83.78,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "Refund_not_showing_up",
+    "Precision": 88.1,
+    "Recall": 92.5,
+    "F1_Score": 90.24,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "activate_my_card",
+    "Precision": 94.74,
+    "Recall": 90.0,
+    "F1_Score": 92.31,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "age_limit",
+    "Precision": 97.5,
+    "Recall": 97.5,
+    "F1_Score": 97.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "apple_pay_or_google_pay",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "atm_support",
+    "Precision": 85.37,
+    "Recall": 89.74,
+    "F1_Score": 87.5,
+    "Support": 39
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "automatic_top_up",
+    "Precision": 100.0,
+    "Recall": 92.5,
+    "F1_Score": 96.1,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "balance_not_updated_after_bank_transfer",
+    "Precision": 76.92,
+    "Recall": 75.0,
+    "F1_Score": 75.95,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "balance_not_updated_after_cheque_or_cash_deposit",
+    "Precision": 90.7,
+    "Recall": 97.5,
+    "F1_Score": 93.98,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "beneficiary_not_allowed",
+    "Precision": 97.14,
+    "Recall": 85.0,
+    "F1_Score": 90.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "cancel_transfer",
+    "Precision": 97.5,
+    "Recall": 97.5,
+    "F1_Score": 97.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "card_about_to_expire",
+    "Precision": 100.0,
+    "Recall": 92.5,
+    "F1_Score": 96.1,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "card_acceptance",
+    "Precision": 81.25,
+    "Recall": 97.5,
+    "F1_Score": 88.64,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "card_arrival",
+    "Precision": 69.39,
+    "Recall": 85.0,
+    "F1_Score": 76.4,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "card_delivery_estimate",
+    "Precision": 75.0,
+    "Recall": 67.5,
+    "F1_Score": 71.05,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "card_linking",
+    "Precision": 86.05,
+    "Recall": 92.5,
+    "F1_Score": 89.16,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "card_not_working",
+    "Precision": 85.37,
+    "Recall": 87.5,
+    "F1_Score": 86.42,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "card_payment_fee_charged",
+    "Precision": 68.89,
+    "Recall": 77.5,
+    "F1_Score": 72.94,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "card_payment_not_recognised",
+    "Precision": 72.92,
+    "Recall": 87.5,
+    "F1_Score": 79.55,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "card_payment_wrong_exchange_rate",
+    "Precision": 86.36,
+    "Recall": 95.0,
+    "F1_Score": 90.48,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "card_swallowed",
+    "Precision": 92.31,
+    "Recall": 90.0,
+    "F1_Score": 91.14,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "cash_withdrawal_charge",
+    "Precision": 94.44,
+    "Recall": 85.0,
+    "F1_Score": 89.47,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "cash_withdrawal_not_recognised",
+    "Precision": 80.95,
+    "Recall": 85.0,
+    "F1_Score": 82.93,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "change_pin",
+    "Precision": 96.15,
+    "Recall": 62.5,
+    "F1_Score": 75.76,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "compromised_card",
+    "Precision": 80.49,
+    "Recall": 82.5,
+    "F1_Score": 81.48,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "contactless_not_working",
+    "Precision": 97.37,
+    "Recall": 92.5,
+    "F1_Score": 94.87,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "country_support",
+    "Precision": 83.33,
+    "Recall": 100.0,
+    "F1_Score": 90.91,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "declined_card_payment",
+    "Precision": 80.0,
+    "Recall": 90.0,
+    "F1_Score": 84.71,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "declined_cash_withdrawal",
+    "Precision": 75.0,
+    "Recall": 90.0,
+    "F1_Score": 81.82,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "declined_transfer",
+    "Precision": 100.0,
+    "Recall": 82.5,
+    "F1_Score": 90.41,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "direct_debit_payment_not_recognised",
+    "Precision": 94.12,
+    "Recall": 80.0,
+    "F1_Score": 86.49,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "disposable_card_limits",
+    "Precision": 48.65,
+    "Recall": 90.0,
+    "F1_Score": 63.16,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "edit_personal_details",
+    "Precision": 92.5,
+    "Recall": 92.5,
+    "F1_Score": 92.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "exchange_charge",
+    "Precision": 87.8,
+    "Recall": 90.0,
+    "F1_Score": 88.89,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "exchange_rate",
+    "Precision": 70.18,
+    "Recall": 100.0,
+    "F1_Score": 82.47,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "exchange_via_app",
+    "Precision": 84.62,
+    "Recall": 27.5,
+    "F1_Score": 41.51,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "extra_charge_on_statement",
+    "Precision": 87.1,
+    "Recall": 67.5,
+    "F1_Score": 76.06,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "failed_transfer",
+    "Precision": 73.08,
+    "Recall": 95.0,
+    "F1_Score": 82.61,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "fiat_currency_support",
+    "Precision": 80.95,
+    "Recall": 85.0,
+    "F1_Score": 82.93,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "get_disposable_virtual_card",
+    "Precision": 80.0,
+    "Recall": 10.0,
+    "F1_Score": 17.78,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "get_physical_card",
+    "Precision": 67.86,
+    "Recall": 95.0,
+    "F1_Score": 79.17,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "getting_spare_card",
+    "Precision": 75.0,
+    "Recall": 52.5,
+    "F1_Score": 61.76,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "getting_virtual_card",
+    "Precision": 50.65,
+    "Recall": 97.5,
+    "F1_Score": 66.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "lost_or_stolen_card",
+    "Precision": 73.91,
+    "Recall": 85.0,
+    "F1_Score": 79.07,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "lost_or_stolen_phone",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "order_physical_card",
+    "Precision": 92.0,
+    "Recall": 57.5,
+    "F1_Score": 70.77,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "passcode_forgotten",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "pending_card_payment",
+    "Precision": 97.14,
+    "Recall": 85.0,
+    "F1_Score": 90.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "pending_cash_withdrawal",
+    "Precision": 97.37,
+    "Recall": 92.5,
+    "F1_Score": 94.87,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "pending_top_up",
+    "Precision": 78.72,
+    "Recall": 92.5,
+    "F1_Score": 85.06,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "pending_transfer",
+    "Precision": 72.09,
+    "Recall": 77.5,
+    "F1_Score": 74.7,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "pin_blocked",
+    "Precision": 89.19,
+    "Recall": 82.5,
+    "F1_Score": 85.71,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "receiving_money",
+    "Precision": 94.44,
+    "Recall": 85.0,
+    "F1_Score": 89.47,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "request_refund",
+    "Precision": 91.89,
+    "Recall": 85.0,
+    "F1_Score": 88.31,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "reverted_card_payment?",
+    "Precision": 89.19,
+    "Recall": 82.5,
+    "F1_Score": 85.71,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "supported_cards_and_currencies",
+    "Precision": 83.33,
+    "Recall": 87.5,
+    "F1_Score": 85.37,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "terminate_account",
+    "Precision": 81.63,
+    "Recall": 100.0,
+    "F1_Score": 89.89,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "top_up_by_bank_transfer_charge",
+    "Precision": 72.34,
+    "Recall": 85.0,
+    "F1_Score": 78.16,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "top_up_by_card_charge",
+    "Precision": 91.18,
+    "Recall": 77.5,
+    "F1_Score": 83.78,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "top_up_by_cash_or_cheque",
+    "Precision": 91.67,
+    "Recall": 82.5,
+    "F1_Score": 86.84,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "top_up_failed",
+    "Precision": 82.35,
+    "Recall": 70.0,
+    "F1_Score": 75.68,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "top_up_limits",
+    "Precision": 92.68,
+    "Recall": 95.0,
+    "F1_Score": 93.83,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "top_up_reverted",
+    "Precision": 78.05,
+    "Recall": 80.0,
+    "F1_Score": 79.01,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "topping_up_by_card",
+    "Precision": 71.11,
+    "Recall": 80.0,
+    "F1_Score": 75.29,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "transaction_charged_twice",
+    "Precision": 86.96,
+    "Recall": 100.0,
+    "F1_Score": 93.02,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "transfer_fee_charged",
+    "Precision": 88.24,
+    "Recall": 75.0,
+    "F1_Score": 81.08,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "transfer_into_account",
+    "Precision": 88.89,
+    "Recall": 80.0,
+    "F1_Score": 84.21,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "transfer_not_received_by_recipient",
+    "Precision": 77.5,
+    "Recall": 77.5,
+    "F1_Score": 77.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "transfer_timing",
+    "Precision": 82.5,
+    "Recall": 82.5,
+    "F1_Score": 82.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "unable_to_verify_identity",
+    "Precision": 86.49,
+    "Recall": 80.0,
+    "F1_Score": 83.12,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "verify_my_identity",
+    "Precision": 64.44,
+    "Recall": 72.5,
+    "F1_Score": 68.24,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "verify_source_of_funds",
+    "Precision": 90.91,
+    "Recall": 100.0,
+    "F1_Score": 95.24,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "verify_top_up",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "virtual_card_not_working",
+    "Precision": 100.0,
+    "Recall": 30.0,
+    "F1_Score": 46.15,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "visa_or_mastercard",
+    "Precision": 85.71,
+    "Recall": 90.0,
+    "F1_Score": 87.8,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "why_verify_identity",
+    "Precision": 86.49,
+    "Recall": 80.0,
+    "F1_Score": 83.12,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "wrong_amount_of_cash_received",
+    "Precision": 94.12,
+    "Recall": 80.0,
+    "F1_Score": 86.49,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "sinhala",
+    "Intent_Class": "wrong_exchange_rate_for_cash_withdrawal",
+    "Precision": 91.18,
+    "Recall": 77.5,
+    "F1_Score": 83.78,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "Refund_not_showing_up",
+    "Precision": 88.37,
+    "Recall": 95.0,
+    "F1_Score": 91.57,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "activate_my_card",
+    "Precision": 97.3,
+    "Recall": 90.0,
+    "F1_Score": 93.51,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "age_limit",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "apple_pay_or_google_pay",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "atm_support",
+    "Precision": 94.44,
+    "Recall": 87.18,
+    "F1_Score": 90.67,
+    "Support": 39
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "automatic_top_up",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "balance_not_updated_after_bank_transfer",
+    "Precision": 81.08,
+    "Recall": 75.0,
+    "F1_Score": 77.92,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "balance_not_updated_after_cheque_or_cash_deposit",
+    "Precision": 88.64,
+    "Recall": 97.5,
+    "F1_Score": 92.86,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "beneficiary_not_allowed",
+    "Precision": 97.14,
+    "Recall": 85.0,
+    "F1_Score": 90.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "cancel_transfer",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "card_about_to_expire",
+    "Precision": 100.0,
+    "Recall": 95.0,
+    "F1_Score": 97.44,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "card_acceptance",
+    "Precision": 84.44,
+    "Recall": 95.0,
+    "F1_Score": 89.41,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "card_arrival",
+    "Precision": 87.5,
+    "Recall": 87.5,
+    "F1_Score": 87.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "card_delivery_estimate",
+    "Precision": 76.74,
+    "Recall": 82.5,
+    "F1_Score": 79.52,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "card_linking",
+    "Precision": 92.5,
+    "Recall": 92.5,
+    "F1_Score": 92.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "card_not_working",
+    "Precision": 83.33,
+    "Recall": 87.5,
+    "F1_Score": 85.37,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "card_payment_fee_charged",
+    "Precision": 72.0,
+    "Recall": 90.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "card_payment_not_recognised",
+    "Precision": 77.78,
+    "Recall": 87.5,
+    "F1_Score": 82.35,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "card_payment_wrong_exchange_rate",
+    "Precision": 69.81,
+    "Recall": 92.5,
+    "F1_Score": 79.57,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "card_swallowed",
+    "Precision": 94.87,
+    "Recall": 92.5,
+    "F1_Score": 93.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "cash_withdrawal_charge",
+    "Precision": 97.22,
+    "Recall": 87.5,
+    "F1_Score": 92.11,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "cash_withdrawal_not_recognised",
+    "Precision": 82.05,
+    "Recall": 80.0,
+    "F1_Score": 81.01,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "change_pin",
+    "Precision": 90.91,
+    "Recall": 50.0,
+    "F1_Score": 64.52,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "compromised_card",
+    "Precision": 79.55,
+    "Recall": 87.5,
+    "F1_Score": 83.33,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "contactless_not_working",
+    "Precision": 100.0,
+    "Recall": 95.0,
+    "F1_Score": 97.44,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "country_support",
+    "Precision": 88.64,
+    "Recall": 97.5,
+    "F1_Score": 92.86,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "declined_card_payment",
+    "Precision": 81.25,
+    "Recall": 97.5,
+    "F1_Score": 88.64,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "declined_cash_withdrawal",
+    "Precision": 72.22,
+    "Recall": 97.5,
+    "F1_Score": 82.98,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "declined_transfer",
+    "Precision": 100.0,
+    "Recall": 75.0,
+    "F1_Score": 85.71,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "direct_debit_payment_not_recognised",
+    "Precision": 100.0,
+    "Recall": 82.5,
+    "F1_Score": 90.41,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "disposable_card_limits",
+    "Precision": 78.26,
+    "Recall": 90.0,
+    "F1_Score": 83.72,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "edit_personal_details",
+    "Precision": 92.68,
+    "Recall": 95.0,
+    "F1_Score": 93.83,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "exchange_charge",
+    "Precision": 92.31,
+    "Recall": 90.0,
+    "F1_Score": 91.14,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "exchange_rate",
+    "Precision": 75.0,
+    "Recall": 97.5,
+    "F1_Score": 84.78,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "exchange_via_app",
+    "Precision": 86.96,
+    "Recall": 50.0,
+    "F1_Score": 63.49,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "extra_charge_on_statement",
+    "Precision": 96.77,
+    "Recall": 75.0,
+    "F1_Score": 84.51,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "failed_transfer",
+    "Precision": 77.08,
+    "Recall": 92.5,
+    "F1_Score": 84.09,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "fiat_currency_support",
+    "Precision": 77.78,
+    "Recall": 87.5,
+    "F1_Score": 82.35,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "get_disposable_virtual_card",
+    "Precision": 93.33,
+    "Recall": 70.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "get_physical_card",
+    "Precision": 63.93,
+    "Recall": 97.5,
+    "F1_Score": 77.23,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "getting_spare_card",
+    "Precision": 72.73,
+    "Recall": 60.0,
+    "F1_Score": 65.75,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "getting_virtual_card",
+    "Precision": 79.17,
+    "Recall": 95.0,
+    "F1_Score": 86.36,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "lost_or_stolen_card",
+    "Precision": 76.09,
+    "Recall": 87.5,
+    "F1_Score": 81.4,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "lost_or_stolen_phone",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "order_physical_card",
+    "Precision": 83.78,
+    "Recall": 77.5,
+    "F1_Score": 80.52,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "passcode_forgotten",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "pending_card_payment",
+    "Precision": 97.14,
+    "Recall": 85.0,
+    "F1_Score": 90.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "pending_cash_withdrawal",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "pending_top_up",
+    "Precision": 75.0,
+    "Recall": 90.0,
+    "F1_Score": 81.82,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "pending_transfer",
+    "Precision": 77.5,
+    "Recall": 77.5,
+    "F1_Score": 77.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "pin_blocked",
+    "Precision": 89.47,
+    "Recall": 85.0,
+    "F1_Score": 87.18,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "receiving_money",
+    "Precision": 94.74,
+    "Recall": 90.0,
+    "F1_Score": 92.31,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "request_refund",
+    "Precision": 94.44,
+    "Recall": 85.0,
+    "F1_Score": 89.47,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "reverted_card_payment?",
+    "Precision": 89.19,
+    "Recall": 82.5,
+    "F1_Score": 85.71,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "supported_cards_and_currencies",
+    "Precision": 87.5,
+    "Recall": 87.5,
+    "F1_Score": 87.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "terminate_account",
+    "Precision": 81.25,
+    "Recall": 97.5,
+    "F1_Score": 88.64,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "top_up_by_bank_transfer_charge",
+    "Precision": 72.92,
+    "Recall": 87.5,
+    "F1_Score": 79.55,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "top_up_by_card_charge",
+    "Precision": 91.89,
+    "Recall": 85.0,
+    "F1_Score": 88.31,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "top_up_by_cash_or_cheque",
+    "Precision": 94.12,
+    "Recall": 80.0,
+    "F1_Score": 86.49,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "top_up_failed",
+    "Precision": 81.82,
+    "Recall": 67.5,
+    "F1_Score": 73.97,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "top_up_limits",
+    "Precision": 92.68,
+    "Recall": 95.0,
+    "F1_Score": 93.83,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "top_up_reverted",
+    "Precision": 77.27,
+    "Recall": 85.0,
+    "F1_Score": 80.95,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "topping_up_by_card",
+    "Precision": 73.81,
+    "Recall": 77.5,
+    "F1_Score": 75.61,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "transaction_charged_twice",
+    "Precision": 88.89,
+    "Recall": 100.0,
+    "F1_Score": 94.12,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "transfer_fee_charged",
+    "Precision": 88.24,
+    "Recall": 75.0,
+    "F1_Score": 81.08,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "transfer_into_account",
+    "Precision": 88.57,
+    "Recall": 77.5,
+    "F1_Score": 82.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "transfer_not_received_by_recipient",
+    "Precision": 80.56,
+    "Recall": 72.5,
+    "F1_Score": 76.32,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "transfer_timing",
+    "Precision": 80.95,
+    "Recall": 85.0,
+    "F1_Score": 82.93,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "unable_to_verify_identity",
+    "Precision": 87.8,
+    "Recall": 90.0,
+    "F1_Score": 88.89,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "verify_my_identity",
+    "Precision": 68.63,
+    "Recall": 87.5,
+    "F1_Score": 76.92,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "verify_source_of_funds",
+    "Precision": 88.89,
+    "Recall": 100.0,
+    "F1_Score": 94.12,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "verify_top_up",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "virtual_card_not_working",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "visa_or_mastercard",
+    "Precision": 92.5,
+    "Recall": 92.5,
+    "F1_Score": 92.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "why_verify_identity",
+    "Precision": 93.1,
+    "Recall": 67.5,
+    "F1_Score": 78.26,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "wrong_amount_of_cash_received",
+    "Precision": 78.05,
+    "Recall": 80.0,
+    "F1_Score": 79.01,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "singlish",
+    "Intent_Class": "wrong_exchange_rate_for_cash_withdrawal",
+    "Precision": 95.24,
+    "Recall": 50.0,
+    "F1_Score": 65.57,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "Refund_not_showing_up",
+    "Precision": 100.0,
+    "Recall": 10.0,
+    "F1_Score": 18.18,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "activate_my_card",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "age_limit",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "apple_pay_or_google_pay",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "atm_support",
+    "Precision": 97.22,
+    "Recall": 89.74,
+    "F1_Score": 93.33,
+    "Support": 39
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "automatic_top_up",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "balance_not_updated_after_bank_transfer",
+    "Precision": 68.57,
+    "Recall": 60.0,
+    "F1_Score": 64.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "balance_not_updated_after_cheque_or_cash_deposit",
+    "Precision": 97.22,
+    "Recall": 87.5,
+    "F1_Score": 92.11,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "beneficiary_not_allowed",
+    "Precision": 91.89,
+    "Recall": 85.0,
+    "F1_Score": 88.31,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "cancel_transfer",
+    "Precision": 80.43,
+    "Recall": 92.5,
+    "F1_Score": 86.05,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "card_about_to_expire",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "card_acceptance",
+    "Precision": 87.18,
+    "Recall": 85.0,
+    "F1_Score": 86.08,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "card_arrival",
+    "Precision": 87.8,
+    "Recall": 90.0,
+    "F1_Score": 88.89,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "card_delivery_estimate",
+    "Precision": 83.72,
+    "Recall": 90.0,
+    "F1_Score": 86.75,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "card_linking",
+    "Precision": 97.44,
+    "Recall": 95.0,
+    "F1_Score": 96.2,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "card_not_working",
+    "Precision": 74.0,
+    "Recall": 92.5,
+    "F1_Score": 82.22,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "card_payment_fee_charged",
+    "Precision": 63.27,
+    "Recall": 77.5,
+    "F1_Score": 69.66,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "card_payment_not_recognised",
+    "Precision": 70.45,
+    "Recall": 77.5,
+    "F1_Score": 73.81,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "card_payment_wrong_exchange_rate",
+    "Precision": 90.48,
+    "Recall": 95.0,
+    "F1_Score": 92.68,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "card_swallowed",
+    "Precision": 100.0,
+    "Recall": 82.5,
+    "F1_Score": 90.41,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "cash_withdrawal_charge",
+    "Precision": 82.05,
+    "Recall": 80.0,
+    "F1_Score": 81.01,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "cash_withdrawal_not_recognised",
+    "Precision": 78.38,
+    "Recall": 72.5,
+    "F1_Score": 75.32,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "change_pin",
+    "Precision": 87.5,
+    "Recall": 87.5,
+    "F1_Score": 87.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "compromised_card",
+    "Precision": 84.62,
+    "Recall": 82.5,
+    "F1_Score": 83.54,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "contactless_not_working",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "country_support",
+    "Precision": 92.68,
+    "Recall": 95.0,
+    "F1_Score": 93.83,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "declined_card_payment",
+    "Precision": 80.0,
+    "Recall": 90.0,
+    "F1_Score": 84.71,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "declined_cash_withdrawal",
+    "Precision": 76.47,
+    "Recall": 97.5,
+    "F1_Score": 85.71,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "declined_transfer",
+    "Precision": 85.0,
+    "Recall": 85.0,
+    "F1_Score": 85.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "direct_debit_payment_not_recognised",
+    "Precision": 93.75,
+    "Recall": 75.0,
+    "F1_Score": 83.33,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "disposable_card_limits",
+    "Precision": 92.68,
+    "Recall": 95.0,
+    "F1_Score": 93.83,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "edit_personal_details",
+    "Precision": 93.02,
+    "Recall": 100.0,
+    "F1_Score": 96.39,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "exchange_charge",
+    "Precision": 90.0,
+    "Recall": 90.0,
+    "F1_Score": 90.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "exchange_rate",
+    "Precision": 92.68,
+    "Recall": 95.0,
+    "F1_Score": 93.83,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "exchange_via_app",
+    "Precision": 78.05,
+    "Recall": 80.0,
+    "F1_Score": 79.01,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "extra_charge_on_statement",
+    "Precision": 85.71,
+    "Recall": 75.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "failed_transfer",
+    "Precision": 68.42,
+    "Recall": 65.0,
+    "F1_Score": 66.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "fiat_currency_support",
+    "Precision": 93.75,
+    "Recall": 75.0,
+    "F1_Score": 83.33,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "get_disposable_virtual_card",
+    "Precision": 58.46,
+    "Recall": 95.0,
+    "F1_Score": 72.38,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "get_physical_card",
+    "Precision": 83.33,
+    "Recall": 100.0,
+    "F1_Score": 90.91,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "getting_spare_card",
+    "Precision": 84.44,
+    "Recall": 95.0,
+    "F1_Score": 89.41,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "getting_virtual_card",
+    "Precision": 87.88,
+    "Recall": 72.5,
+    "F1_Score": 79.45,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "lost_or_stolen_card",
+    "Precision": 84.44,
+    "Recall": 95.0,
+    "F1_Score": 89.41,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "lost_or_stolen_phone",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "order_physical_card",
+    "Precision": 73.33,
+    "Recall": 82.5,
+    "F1_Score": 77.65,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "passcode_forgotten",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "pending_card_payment",
+    "Precision": 84.62,
+    "Recall": 82.5,
+    "F1_Score": 83.54,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "pending_cash_withdrawal",
+    "Precision": 91.89,
+    "Recall": 85.0,
+    "F1_Score": 88.31,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "pending_top_up",
+    "Precision": 96.88,
+    "Recall": 77.5,
+    "F1_Score": 86.11,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "pending_transfer",
+    "Precision": 69.57,
+    "Recall": 80.0,
+    "F1_Score": 74.42,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "pin_blocked",
+    "Precision": 90.62,
+    "Recall": 72.5,
+    "F1_Score": 80.56,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "receiving_money",
+    "Precision": 92.86,
+    "Recall": 97.5,
+    "F1_Score": 95.12,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "request_refund",
+    "Precision": 61.29,
+    "Recall": 95.0,
+    "F1_Score": 74.51,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "reverted_card_payment?",
+    "Precision": 62.96,
+    "Recall": 85.0,
+    "F1_Score": 72.34,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "supported_cards_and_currencies",
+    "Precision": 90.48,
+    "Recall": 95.0,
+    "F1_Score": 92.68,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "terminate_account",
+    "Precision": 90.7,
+    "Recall": 97.5,
+    "F1_Score": 93.98,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "top_up_by_bank_transfer_charge",
+    "Precision": 94.59,
+    "Recall": 87.5,
+    "F1_Score": 90.91,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "top_up_by_card_charge",
+    "Precision": 90.7,
+    "Recall": 97.5,
+    "F1_Score": 93.98,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "top_up_by_cash_or_cheque",
+    "Precision": 83.78,
+    "Recall": 77.5,
+    "F1_Score": 80.52,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "top_up_failed",
+    "Precision": 75.68,
+    "Recall": 70.0,
+    "F1_Score": 72.73,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "top_up_limits",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "top_up_reverted",
+    "Precision": 69.81,
+    "Recall": 92.5,
+    "F1_Score": 79.57,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "topping_up_by_card",
+    "Precision": 90.91,
+    "Recall": 75.0,
+    "F1_Score": 82.19,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "transaction_charged_twice",
+    "Precision": 92.5,
+    "Recall": 92.5,
+    "F1_Score": 92.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "transfer_fee_charged",
+    "Precision": 80.0,
+    "Recall": 90.0,
+    "F1_Score": 84.71,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "transfer_into_account",
+    "Precision": 87.5,
+    "Recall": 87.5,
+    "F1_Score": 87.5,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "transfer_not_received_by_recipient",
+    "Precision": 77.08,
+    "Recall": 92.5,
+    "F1_Score": 84.09,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "transfer_timing",
+    "Precision": 82.05,
+    "Recall": 80.0,
+    "F1_Score": 81.01,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "unable_to_verify_identity",
+    "Precision": 80.0,
+    "Recall": 90.0,
+    "F1_Score": 84.71,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "verify_my_identity",
+    "Precision": 80.95,
+    "Recall": 85.0,
+    "F1_Score": 82.93,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "verify_source_of_funds",
+    "Precision": 78.26,
+    "Recall": 90.0,
+    "F1_Score": 83.72,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "verify_top_up",
+    "Precision": 96.88,
+    "Recall": 77.5,
+    "F1_Score": 86.11,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "virtual_card_not_working",
+    "Precision": 100.0,
+    "Recall": 2.5,
+    "F1_Score": 4.88,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "visa_or_mastercard",
+    "Precision": 96.77,
+    "Recall": 75.0,
+    "F1_Score": 84.51,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "why_verify_identity",
+    "Precision": 76.09,
+    "Recall": 87.5,
+    "F1_Score": 81.4,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "wrong_amount_of_cash_received",
+    "Precision": 97.22,
+    "Recall": 87.5,
+    "F1_Score": 92.11,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamil",
+    "Intent_Class": "wrong_exchange_rate_for_cash_withdrawal",
+    "Precision": 94.44,
+    "Recall": 85.0,
+    "F1_Score": 89.47,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "Refund_not_showing_up",
+    "Precision": 78.95,
+    "Recall": 37.5,
+    "F1_Score": 50.85,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "activate_my_card",
+    "Precision": 100.0,
+    "Recall": 67.5,
+    "F1_Score": 80.6,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "age_limit",
+    "Precision": 71.7,
+    "Recall": 95.0,
+    "F1_Score": 81.72,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "apple_pay_or_google_pay",
+    "Precision": 100.0,
+    "Recall": 97.5,
+    "F1_Score": 98.73,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "atm_support",
+    "Precision": 47.3,
+    "Recall": 89.74,
+    "F1_Score": 61.95,
+    "Support": 39
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "automatic_top_up",
+    "Precision": 100.0,
+    "Recall": 72.5,
+    "F1_Score": 84.06,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "balance_not_updated_after_bank_transfer",
+    "Precision": 77.78,
+    "Recall": 70.0,
+    "F1_Score": 73.68,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "balance_not_updated_after_cheque_or_cash_deposit",
+    "Precision": 76.0,
+    "Recall": 47.5,
+    "F1_Score": 58.46,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "beneficiary_not_allowed",
+    "Precision": 91.3,
+    "Recall": 52.5,
+    "F1_Score": 66.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "cancel_transfer",
+    "Precision": 28.57,
+    "Recall": 95.0,
+    "F1_Score": 43.93,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "card_about_to_expire",
+    "Precision": 73.08,
+    "Recall": 47.5,
+    "F1_Score": 57.58,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "card_acceptance",
+    "Precision": 31.25,
+    "Recall": 87.5,
+    "F1_Score": 46.05,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "card_arrival",
+    "Precision": 53.45,
+    "Recall": 77.5,
+    "F1_Score": 63.27,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "card_delivery_estimate",
+    "Precision": 67.57,
+    "Recall": 62.5,
+    "F1_Score": 64.94,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "card_linking",
+    "Precision": 93.33,
+    "Recall": 70.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "card_not_working",
+    "Precision": 68.29,
+    "Recall": 70.0,
+    "F1_Score": 69.14,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "card_payment_fee_charged",
+    "Precision": 52.83,
+    "Recall": 70.0,
+    "F1_Score": 60.22,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "card_payment_not_recognised",
+    "Precision": 43.1,
+    "Recall": 62.5,
+    "F1_Score": 51.02,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "card_payment_wrong_exchange_rate",
+    "Precision": 38.82,
+    "Recall": 82.5,
+    "F1_Score": 52.8,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "card_swallowed",
+    "Precision": 97.22,
+    "Recall": 87.5,
+    "F1_Score": 92.11,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "cash_withdrawal_charge",
+    "Precision": 53.97,
+    "Recall": 85.0,
+    "F1_Score": 66.02,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "cash_withdrawal_not_recognised",
+    "Precision": 72.73,
+    "Recall": 80.0,
+    "F1_Score": 76.19,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "change_pin",
+    "Precision": 82.61,
+    "Recall": 47.5,
+    "F1_Score": 60.32,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "compromised_card",
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F1_Score": 0.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "contactless_not_working",
+    "Precision": 100.0,
+    "Recall": 92.5,
+    "F1_Score": 96.1,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "country_support",
+    "Precision": 72.73,
+    "Recall": 60.0,
+    "F1_Score": 65.75,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "declined_card_payment",
+    "Precision": 58.33,
+    "Recall": 17.5,
+    "F1_Score": 26.92,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "declined_cash_withdrawal",
+    "Precision": 60.0,
+    "Recall": 15.0,
+    "F1_Score": 24.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "declined_transfer",
+    "Precision": 96.15,
+    "Recall": 62.5,
+    "F1_Score": 75.76,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "direct_debit_payment_not_recognised",
+    "Precision": 48.0,
+    "Recall": 30.0,
+    "F1_Score": 36.92,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "disposable_card_limits",
+    "Precision": 75.0,
+    "Recall": 22.5,
+    "F1_Score": 34.62,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "edit_personal_details",
+    "Precision": 80.0,
+    "Recall": 60.0,
+    "F1_Score": 68.57,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "exchange_charge",
+    "Precision": 50.0,
+    "Recall": 20.0,
+    "F1_Score": 28.57,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "exchange_rate",
+    "Precision": 71.43,
+    "Recall": 12.5,
+    "F1_Score": 21.28,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "exchange_via_app",
+    "Precision": 79.59,
+    "Recall": 97.5,
+    "F1_Score": 87.64,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "extra_charge_on_statement",
+    "Precision": 79.41,
+    "Recall": 67.5,
+    "F1_Score": 72.97,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "failed_transfer",
+    "Precision": 40.0,
+    "Recall": 15.0,
+    "F1_Score": 21.82,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "fiat_currency_support",
+    "Precision": 49.23,
+    "Recall": 80.0,
+    "F1_Score": 60.95,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "get_disposable_virtual_card",
+    "Precision": 46.58,
+    "Recall": 85.0,
+    "F1_Score": 60.18,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "get_physical_card",
+    "Precision": 45.0,
+    "Recall": 90.0,
+    "F1_Score": 60.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "getting_spare_card",
+    "Precision": 71.88,
+    "Recall": 57.5,
+    "F1_Score": 63.89,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "getting_virtual_card",
+    "Precision": 67.86,
+    "Recall": 95.0,
+    "F1_Score": 79.17,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "lost_or_stolen_card",
+    "Precision": 51.79,
+    "Recall": 72.5,
+    "F1_Score": 60.42,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "lost_or_stolen_phone",
+    "Precision": 100.0,
+    "Recall": 92.5,
+    "F1_Score": 96.1,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "order_physical_card",
+    "Precision": 43.33,
+    "Recall": 65.0,
+    "F1_Score": 52.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "passcode_forgotten",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "pending_card_payment",
+    "Precision": 85.0,
+    "Recall": 42.5,
+    "F1_Score": 56.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "pending_cash_withdrawal",
+    "Precision": 96.97,
+    "Recall": 80.0,
+    "F1_Score": 87.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "pending_top_up",
+    "Precision": 48.08,
+    "Recall": 62.5,
+    "F1_Score": 54.35,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "pending_transfer",
+    "Precision": 41.98,
+    "Recall": 85.0,
+    "F1_Score": 56.2,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "pin_blocked",
+    "Precision": 88.24,
+    "Recall": 37.5,
+    "F1_Score": 52.63,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "receiving_money",
+    "Precision": 37.36,
+    "Recall": 85.0,
+    "F1_Score": 51.91,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "request_refund",
+    "Precision": 85.0,
+    "Recall": 42.5,
+    "F1_Score": 56.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "reverted_card_payment?",
+    "Precision": 93.33,
+    "Recall": 70.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "supported_cards_and_currencies",
+    "Precision": 65.79,
+    "Recall": 62.5,
+    "F1_Score": 64.1,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "terminate_account",
+    "Precision": 89.47,
+    "Recall": 85.0,
+    "F1_Score": 87.18,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "top_up_by_bank_transfer_charge",
+    "Precision": 91.67,
+    "Recall": 55.0,
+    "F1_Score": 68.75,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "top_up_by_card_charge",
+    "Precision": 66.67,
+    "Recall": 20.0,
+    "F1_Score": 30.77,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "top_up_by_cash_or_cheque",
+    "Precision": 88.89,
+    "Recall": 40.0,
+    "F1_Score": 55.17,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "top_up_failed",
+    "Precision": 19.42,
+    "Recall": 50.0,
+    "F1_Score": 27.97,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "top_up_limits",
+    "Precision": 88.1,
+    "Recall": 92.5,
+    "F1_Score": 90.24,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "top_up_reverted",
+    "Precision": 12.5,
+    "Recall": 2.5,
+    "F1_Score": 4.17,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "topping_up_by_card",
+    "Precision": 45.76,
+    "Recall": 67.5,
+    "F1_Score": 54.55,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "transaction_charged_twice",
+    "Precision": 96.3,
+    "Recall": 65.0,
+    "F1_Score": 77.61,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "transfer_fee_charged",
+    "Precision": 58.82,
+    "Recall": 25.0,
+    "F1_Score": 35.09,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "transfer_into_account",
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F1_Score": 0.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "transfer_not_received_by_recipient",
+    "Precision": 30.77,
+    "Recall": 10.0,
+    "F1_Score": 15.09,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "transfer_timing",
+    "Precision": 82.35,
+    "Recall": 70.0,
+    "F1_Score": 75.68,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "unable_to_verify_identity",
+    "Precision": 90.0,
+    "Recall": 22.5,
+    "F1_Score": 36.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "verify_my_identity",
+    "Precision": 35.45,
+    "Recall": 97.5,
+    "F1_Score": 52.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "verify_source_of_funds",
+    "Precision": 59.46,
+    "Recall": 55.0,
+    "F1_Score": 57.14,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "verify_top_up",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "virtual_card_not_working",
+    "Precision": 100.0,
+    "Recall": 25.0,
+    "F1_Score": 40.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "visa_or_mastercard",
+    "Precision": 94.87,
+    "Recall": 92.5,
+    "F1_Score": 93.67,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "why_verify_identity",
+    "Precision": 87.5,
+    "Recall": 35.0,
+    "F1_Score": 50.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "wrong_amount_of_cash_received",
+    "Precision": 48.75,
+    "Recall": 97.5,
+    "F1_Score": 65.0,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "tamilish",
+    "Intent_Class": "wrong_exchange_rate_for_cash_withdrawal",
+    "Precision": 84.62,
+    "Recall": 27.5,
+    "F1_Score": 41.51,
+    "Support": 40
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "Refund_not_showing_up",
+    "Precision": 91.18,
+    "Recall": 62.0,
+    "F1_Score": 73.81,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "activate_my_card",
+    "Precision": 99.43,
+    "Recall": 87.5,
+    "F1_Score": 93.09,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "age_limit",
+    "Precision": 91.55,
+    "Recall": 97.5,
+    "F1_Score": 94.43,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "apple_pay_or_google_pay",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "atm_support",
+    "Precision": 82.06,
+    "Recall": 93.85,
+    "F1_Score": 87.56,
+    "Support": 195
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "automatic_top_up",
+    "Precision": 99.44,
+    "Recall": 88.5,
+    "F1_Score": 93.65,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "balance_not_updated_after_bank_transfer",
+    "Precision": 80.98,
+    "Recall": 74.5,
+    "F1_Score": 77.6,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "balance_not_updated_after_cheque_or_cash_deposit",
+    "Precision": 85.35,
+    "Recall": 84.5,
+    "F1_Score": 84.92,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "beneficiary_not_allowed",
+    "Precision": 93.96,
+    "Recall": 85.5,
+    "F1_Score": 89.53,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "cancel_transfer",
+    "Precision": 70.85,
+    "Recall": 96.0,
+    "F1_Score": 81.53,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "card_about_to_expire",
+    "Precision": 98.16,
+    "Recall": 80.0,
+    "F1_Score": 88.15,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "card_acceptance",
+    "Precision": 63.92,
+    "Recall": 93.0,
+    "F1_Score": 75.76,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "card_arrival",
+    "Precision": 69.2,
+    "Recall": 86.5,
+    "F1_Score": 76.89,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "card_delivery_estimate",
+    "Precision": 78.4,
+    "Recall": 83.5,
+    "F1_Score": 80.87,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "card_linking",
+    "Precision": 93.33,
+    "Recall": 91.0,
+    "F1_Score": 92.15,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "card_not_working",
+    "Precision": 74.15,
+    "Recall": 87.5,
+    "F1_Score": 80.28,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "card_payment_fee_charged",
+    "Precision": 65.83,
+    "Recall": 79.0,
+    "F1_Score": 71.82,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "card_payment_not_recognised",
+    "Precision": 69.78,
+    "Recall": 78.5,
+    "F1_Score": 73.88,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "card_payment_wrong_exchange_rate",
+    "Precision": 70.0,
+    "Recall": 91.0,
+    "F1_Score": 79.13,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "card_swallowed",
+    "Precision": 98.38,
+    "Recall": 91.0,
+    "F1_Score": 94.55,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "cash_withdrawal_charge",
+    "Precision": 80.93,
+    "Recall": 87.0,
+    "F1_Score": 83.86,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "cash_withdrawal_not_recognised",
+    "Precision": 80.58,
+    "Recall": 83.0,
+    "F1_Score": 81.77,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "change_pin",
+    "Precision": 93.46,
+    "Recall": 71.5,
+    "F1_Score": 81.02,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "compromised_card",
+    "Precision": 77.4,
+    "Recall": 68.5,
+    "F1_Score": 72.68,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "contactless_not_working",
+    "Precision": 98.95,
+    "Recall": 94.0,
+    "F1_Score": 96.41,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "country_support",
+    "Precision": 85.44,
+    "Recall": 88.0,
+    "F1_Score": 86.7,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "declined_card_payment",
+    "Precision": 82.29,
+    "Recall": 79.0,
+    "F1_Score": 80.61,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "declined_cash_withdrawal",
+    "Precision": 81.91,
+    "Recall": 81.5,
+    "F1_Score": 81.7,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "declined_transfer",
+    "Precision": 95.73,
+    "Recall": 78.5,
+    "F1_Score": 86.26,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "direct_debit_payment_not_recognised",
+    "Precision": 89.68,
+    "Recall": 69.5,
+    "F1_Score": 78.31,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "disposable_card_limits",
+    "Precision": 86.55,
+    "Recall": 74.0,
+    "F1_Score": 79.78,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "edit_personal_details",
+    "Precision": 92.12,
+    "Recall": 93.5,
+    "F1_Score": 92.8,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "exchange_charge",
+    "Precision": 87.04,
+    "Recall": 70.5,
+    "F1_Score": 77.9,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "exchange_rate",
+    "Precision": 78.16,
+    "Recall": 80.5,
+    "F1_Score": 79.31,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "exchange_via_app",
+    "Precision": 80.92,
+    "Recall": 70.0,
+    "F1_Score": 75.07,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "extra_charge_on_statement",
+    "Precision": 88.14,
+    "Recall": 85.5,
+    "F1_Score": 86.8,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "failed_transfer",
+    "Precision": 69.95,
+    "Recall": 71.0,
+    "F1_Score": 70.47,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "fiat_currency_support",
+    "Precision": 78.05,
+    "Recall": 80.0,
+    "F1_Score": 79.01,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "get_disposable_virtual_card",
+    "Precision": 69.23,
+    "Recall": 81.0,
+    "F1_Score": 74.65,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "get_physical_card",
+    "Precision": 69.82,
+    "Recall": 96.0,
+    "F1_Score": 80.84,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "getting_spare_card",
+    "Precision": 79.29,
+    "Recall": 78.5,
+    "F1_Score": 78.89,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "getting_virtual_card",
+    "Precision": 75.93,
+    "Recall": 91.5,
+    "F1_Score": 82.99,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "lost_or_stolen_card",
+    "Precision": 73.19,
+    "Recall": 86.0,
+    "F1_Score": 79.08,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "lost_or_stolen_phone",
+    "Precision": 98.96,
+    "Recall": 95.0,
+    "F1_Score": 96.94,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "order_physical_card",
+    "Precision": 67.43,
+    "Recall": 73.5,
+    "F1_Score": 70.33,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "passcode_forgotten",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "pending_card_payment",
+    "Precision": 91.23,
+    "Recall": 78.0,
+    "F1_Score": 84.1,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "pending_cash_withdrawal",
+    "Precision": 94.15,
+    "Recall": 88.5,
+    "F1_Score": 91.24,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "pending_top_up",
+    "Precision": 72.65,
+    "Recall": 85.0,
+    "F1_Score": 78.34,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "pending_transfer",
+    "Precision": 70.97,
+    "Recall": 77.0,
+    "F1_Score": 73.86,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "pin_blocked",
+    "Precision": 92.64,
+    "Recall": 75.5,
+    "F1_Score": 83.2,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "receiving_money",
+    "Precision": 70.82,
+    "Recall": 91.0,
+    "F1_Score": 79.65,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "request_refund",
+    "Precision": 81.91,
+    "Recall": 81.5,
+    "F1_Score": 81.7,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "reverted_card_payment?",
+    "Precision": 81.13,
+    "Recall": 86.0,
+    "F1_Score": 83.5,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "supported_cards_and_currencies",
+    "Precision": 83.82,
+    "Recall": 85.5,
+    "F1_Score": 84.65,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "terminate_account",
+    "Precision": 83.98,
+    "Recall": 97.0,
+    "F1_Score": 90.02,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "top_up_by_bank_transfer_charge",
+    "Precision": 85.64,
+    "Recall": 80.5,
+    "F1_Score": 82.99,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "top_up_by_card_charge",
+    "Precision": 91.81,
+    "Recall": 78.5,
+    "F1_Score": 84.64,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "top_up_by_cash_or_cheque",
+    "Precision": 89.88,
+    "Recall": 75.5,
+    "F1_Score": 82.07,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "top_up_failed",
+    "Precision": 62.34,
+    "Recall": 72.0,
+    "F1_Score": 66.82,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "top_up_limits",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "top_up_reverted",
+    "Precision": 80.61,
+    "Recall": 66.5,
+    "F1_Score": 72.88,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "topping_up_by_card",
+    "Precision": 75.12,
+    "Recall": 77.0,
+    "F1_Score": 76.05,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "transaction_charged_twice",
+    "Precision": 90.67,
+    "Recall": 87.5,
+    "F1_Score": 89.06,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "transfer_fee_charged",
+    "Precision": 84.88,
+    "Recall": 73.0,
+    "F1_Score": 78.49,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "transfer_into_account",
+    "Precision": 86.62,
+    "Recall": 68.0,
+    "F1_Score": 76.19,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "transfer_not_received_by_recipient",
+    "Precision": 79.21,
+    "Recall": 70.5,
+    "F1_Score": 74.6,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "transfer_timing",
+    "Precision": 87.05,
+    "Recall": 84.0,
+    "F1_Score": 85.5,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "unable_to_verify_identity",
+    "Precision": 76.76,
+    "Recall": 71.0,
+    "F1_Score": 73.77,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "verify_my_identity",
+    "Precision": 60.15,
+    "Recall": 80.0,
+    "F1_Score": 68.67,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "verify_source_of_funds",
+    "Precision": 83.33,
+    "Recall": 87.5,
+    "F1_Score": 85.37,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "verify_top_up",
+    "Precision": 96.92,
+    "Recall": 94.5,
+    "F1_Score": 95.7,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "virtual_card_not_working",
+    "Precision": 99.05,
+    "Recall": 52.0,
+    "F1_Score": 68.2,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "visa_or_mastercard",
+    "Precision": 96.13,
+    "Recall": 87.0,
+    "F1_Score": 91.34,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "why_verify_identity",
+    "Precision": 83.33,
+    "Recall": 67.5,
+    "F1_Score": 74.59,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "wrong_amount_of_cash_received",
+    "Precision": 66.3,
+    "Recall": 90.5,
+    "F1_Score": 76.53,
+    "Support": 200
+  },
+  {
+    "Model": "Logistic Regression",
+    "Language": "all",
+    "Intent_Class": "wrong_exchange_rate_for_cash_withdrawal",
+    "Precision": 91.11,
+    "Recall": 61.5,
+    "F1_Score": 73.43,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "Refund_not_showing_up",
+    "Precision": 95.12,
+    "Recall": 97.5,
+    "F1_Score": 96.3,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "activate_my_card",
+    "Precision": 97.5,
+    "Recall": 97.5,
+    "F1_Score": 97.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "age_limit",
+    "Precision": 95.24,
+    "Recall": 100.0,
+    "F1_Score": 97.56,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "apple_pay_or_google_pay",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "atm_support",
+    "Precision": 94.87,
+    "Recall": 94.87,
+    "F1_Score": 94.87,
+    "Support": 39
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "automatic_top_up",
+    "Precision": 97.5,
+    "Recall": 97.5,
+    "F1_Score": 97.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "balance_not_updated_after_bank_transfer",
+    "Precision": 76.32,
+    "Recall": 72.5,
+    "F1_Score": 74.36,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "balance_not_updated_after_cheque_or_cash_deposit",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "beneficiary_not_allowed",
+    "Precision": 97.44,
+    "Recall": 95.0,
+    "F1_Score": 96.2,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "cancel_transfer",
+    "Precision": 100.0,
+    "Recall": 95.0,
+    "F1_Score": 97.44,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "card_about_to_expire",
+    "Precision": 100.0,
+    "Recall": 97.5,
+    "F1_Score": 98.73,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "card_acceptance",
+    "Precision": 94.59,
+    "Recall": 87.5,
+    "F1_Score": 90.91,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "card_arrival",
+    "Precision": 89.74,
+    "Recall": 87.5,
+    "F1_Score": 88.61,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "card_delivery_estimate",
+    "Precision": 83.72,
+    "Recall": 90.0,
+    "F1_Score": 86.75,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "card_linking",
+    "Precision": 95.12,
+    "Recall": 97.5,
+    "F1_Score": 96.3,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "card_not_working",
+    "Precision": 74.0,
+    "Recall": 92.5,
+    "F1_Score": 82.22,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "card_payment_fee_charged",
+    "Precision": 94.59,
+    "Recall": 87.5,
+    "F1_Score": 90.91,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "card_payment_not_recognised",
+    "Precision": 89.19,
+    "Recall": 82.5,
+    "F1_Score": 85.71,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "card_payment_wrong_exchange_rate",
+    "Precision": 85.71,
+    "Recall": 90.0,
+    "F1_Score": 87.8,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "card_swallowed",
+    "Precision": 97.22,
+    "Recall": 87.5,
+    "F1_Score": 92.11,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "cash_withdrawal_charge",
+    "Precision": 92.5,
+    "Recall": 92.5,
+    "F1_Score": 92.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "cash_withdrawal_not_recognised",
+    "Precision": 88.37,
+    "Recall": 95.0,
+    "F1_Score": 91.57,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "change_pin",
+    "Precision": 100.0,
+    "Recall": 95.0,
+    "F1_Score": 97.44,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "compromised_card",
+    "Precision": 83.72,
+    "Recall": 90.0,
+    "F1_Score": 86.75,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "contactless_not_working",
+    "Precision": 100.0,
+    "Recall": 97.5,
+    "F1_Score": 98.73,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "country_support",
+    "Precision": 90.7,
+    "Recall": 97.5,
+    "F1_Score": 93.98,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "declined_card_payment",
+    "Precision": 88.64,
+    "Recall": 97.5,
+    "F1_Score": 92.86,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "declined_cash_withdrawal",
+    "Precision": 92.5,
+    "Recall": 92.5,
+    "F1_Score": 92.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "declined_transfer",
+    "Precision": 97.06,
+    "Recall": 82.5,
+    "F1_Score": 89.19,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "direct_debit_payment_not_recognised",
+    "Precision": 90.0,
+    "Recall": 90.0,
+    "F1_Score": 90.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "disposable_card_limits",
+    "Precision": 94.44,
+    "Recall": 85.0,
+    "F1_Score": 89.47,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "edit_personal_details",
+    "Precision": 95.24,
+    "Recall": 100.0,
+    "F1_Score": 97.56,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "exchange_charge",
+    "Precision": 87.5,
+    "Recall": 87.5,
+    "F1_Score": 87.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "exchange_rate",
+    "Precision": 90.7,
+    "Recall": 97.5,
+    "F1_Score": 93.98,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "exchange_via_app",
+    "Precision": 90.0,
+    "Recall": 90.0,
+    "F1_Score": 90.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "extra_charge_on_statement",
+    "Precision": 97.3,
+    "Recall": 90.0,
+    "F1_Score": 93.51,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "failed_transfer",
+    "Precision": 75.56,
+    "Recall": 85.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "fiat_currency_support",
+    "Precision": 93.94,
+    "Recall": 77.5,
+    "F1_Score": 84.93,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "get_disposable_virtual_card",
+    "Precision": 92.11,
+    "Recall": 87.5,
+    "F1_Score": 89.74,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "get_physical_card",
+    "Precision": 86.67,
+    "Recall": 97.5,
+    "F1_Score": 91.76,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "getting_spare_card",
+    "Precision": 90.24,
+    "Recall": 92.5,
+    "F1_Score": 91.36,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "getting_virtual_card",
+    "Precision": 80.85,
+    "Recall": 95.0,
+    "F1_Score": 87.36,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "lost_or_stolen_card",
+    "Precision": 82.22,
+    "Recall": 92.5,
+    "F1_Score": 87.06,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "lost_or_stolen_phone",
+    "Precision": 100.0,
+    "Recall": 97.5,
+    "F1_Score": 98.73,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "order_physical_card",
+    "Precision": 89.47,
+    "Recall": 85.0,
+    "F1_Score": 87.18,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "passcode_forgotten",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "pending_card_payment",
+    "Precision": 87.8,
+    "Recall": 90.0,
+    "F1_Score": 88.89,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "pending_cash_withdrawal",
+    "Precision": 97.14,
+    "Recall": 85.0,
+    "F1_Score": 90.67,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "pending_top_up",
+    "Precision": 87.8,
+    "Recall": 90.0,
+    "F1_Score": 88.89,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "pending_transfer",
+    "Precision": 75.61,
+    "Recall": 77.5,
+    "F1_Score": 76.54,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "pin_blocked",
+    "Precision": 94.29,
+    "Recall": 82.5,
+    "F1_Score": 88.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "receiving_money",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "request_refund",
+    "Precision": 94.87,
+    "Recall": 92.5,
+    "F1_Score": 93.67,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "reverted_card_payment?",
+    "Precision": 90.48,
+    "Recall": 95.0,
+    "F1_Score": 92.68,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "supported_cards_and_currencies",
+    "Precision": 82.98,
+    "Recall": 97.5,
+    "F1_Score": 89.66,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "terminate_account",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "top_up_by_bank_transfer_charge",
+    "Precision": 97.3,
+    "Recall": 90.0,
+    "F1_Score": 93.51,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "top_up_by_card_charge",
+    "Precision": 95.12,
+    "Recall": 97.5,
+    "F1_Score": 96.3,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "top_up_by_cash_or_cheque",
+    "Precision": 94.59,
+    "Recall": 87.5,
+    "F1_Score": 90.91,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "top_up_failed",
+    "Precision": 81.58,
+    "Recall": 77.5,
+    "F1_Score": 79.49,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "top_up_limits",
+    "Precision": 88.37,
+    "Recall": 95.0,
+    "F1_Score": 91.57,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "top_up_reverted",
+    "Precision": 89.19,
+    "Recall": 82.5,
+    "F1_Score": 85.71,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "topping_up_by_card",
+    "Precision": 87.18,
+    "Recall": 85.0,
+    "F1_Score": 86.08,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "transaction_charged_twice",
+    "Precision": 88.89,
+    "Recall": 100.0,
+    "F1_Score": 94.12,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "transfer_fee_charged",
+    "Precision": 87.5,
+    "Recall": 87.5,
+    "F1_Score": 87.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "transfer_into_account",
+    "Precision": 87.18,
+    "Recall": 85.0,
+    "F1_Score": 86.08,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "transfer_not_received_by_recipient",
+    "Precision": 82.93,
+    "Recall": 85.0,
+    "F1_Score": 83.95,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "transfer_timing",
+    "Precision": 91.67,
+    "Recall": 82.5,
+    "F1_Score": 86.84,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "unable_to_verify_identity",
+    "Precision": 84.62,
+    "Recall": 82.5,
+    "F1_Score": 83.54,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "verify_my_identity",
+    "Precision": 85.0,
+    "Recall": 85.0,
+    "F1_Score": 85.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "verify_source_of_funds",
+    "Precision": 93.02,
+    "Recall": 100.0,
+    "F1_Score": 96.39,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "verify_top_up",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "virtual_card_not_working",
+    "Precision": 100.0,
+    "Recall": 85.0,
+    "F1_Score": 91.89,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "visa_or_mastercard",
+    "Precision": 100.0,
+    "Recall": 92.5,
+    "F1_Score": 96.1,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "why_verify_identity",
+    "Precision": 82.93,
+    "Recall": 85.0,
+    "F1_Score": 83.95,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "wrong_amount_of_cash_received",
+    "Precision": 94.74,
+    "Recall": 90.0,
+    "F1_Score": 92.31,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "english",
+    "Intent_Class": "wrong_exchange_rate_for_cash_withdrawal",
+    "Precision": 85.0,
+    "Recall": 85.0,
+    "F1_Score": 85.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "Refund_not_showing_up",
+    "Precision": 93.02,
+    "Recall": 100.0,
+    "F1_Score": 96.39,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "activate_my_card",
+    "Precision": 100.0,
+    "Recall": 97.5,
+    "F1_Score": 98.73,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "age_limit",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "apple_pay_or_google_pay",
+    "Precision": 100.0,
+    "Recall": 97.5,
+    "F1_Score": 98.73,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "atm_support",
+    "Precision": 87.5,
+    "Recall": 89.74,
+    "F1_Score": 88.61,
+    "Support": 39
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "automatic_top_up",
+    "Precision": 97.5,
+    "Recall": 97.5,
+    "F1_Score": 97.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "balance_not_updated_after_bank_transfer",
+    "Precision": 87.88,
+    "Recall": 72.5,
+    "F1_Score": 79.45,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "balance_not_updated_after_cheque_or_cash_deposit",
+    "Precision": 92.86,
+    "Recall": 97.5,
+    "F1_Score": 95.12,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "beneficiary_not_allowed",
+    "Precision": 97.22,
+    "Recall": 87.5,
+    "F1_Score": 92.11,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "cancel_transfer",
+    "Precision": 95.12,
+    "Recall": 97.5,
+    "F1_Score": 96.3,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "card_about_to_expire",
+    "Precision": 100.0,
+    "Recall": 92.5,
+    "F1_Score": 96.1,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "card_acceptance",
+    "Precision": 90.24,
+    "Recall": 92.5,
+    "F1_Score": 91.36,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "card_arrival",
+    "Precision": 67.35,
+    "Recall": 82.5,
+    "F1_Score": 74.16,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "card_delivery_estimate",
+    "Precision": 81.58,
+    "Recall": 77.5,
+    "F1_Score": 79.49,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "card_linking",
+    "Precision": 97.37,
+    "Recall": 92.5,
+    "F1_Score": 94.87,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "card_not_working",
+    "Precision": 87.5,
+    "Recall": 87.5,
+    "F1_Score": 87.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "card_payment_fee_charged",
+    "Precision": 82.86,
+    "Recall": 72.5,
+    "F1_Score": 77.33,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "card_payment_not_recognised",
+    "Precision": 69.39,
+    "Recall": 85.0,
+    "F1_Score": 76.4,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "card_payment_wrong_exchange_rate",
+    "Precision": 88.1,
+    "Recall": 92.5,
+    "F1_Score": 90.24,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "card_swallowed",
+    "Precision": 87.8,
+    "Recall": 90.0,
+    "F1_Score": 88.89,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "cash_withdrawal_charge",
+    "Precision": 96.67,
+    "Recall": 72.5,
+    "F1_Score": 82.86,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "cash_withdrawal_not_recognised",
+    "Precision": 85.71,
+    "Recall": 90.0,
+    "F1_Score": 87.8,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "change_pin",
+    "Precision": 90.62,
+    "Recall": 72.5,
+    "F1_Score": 80.56,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "compromised_card",
+    "Precision": 86.84,
+    "Recall": 82.5,
+    "F1_Score": 84.62,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "contactless_not_working",
+    "Precision": 97.37,
+    "Recall": 92.5,
+    "F1_Score": 94.87,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "country_support",
+    "Precision": 88.89,
+    "Recall": 100.0,
+    "F1_Score": 94.12,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "declined_card_payment",
+    "Precision": 82.22,
+    "Recall": 92.5,
+    "F1_Score": 87.06,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "declined_cash_withdrawal",
+    "Precision": 77.78,
+    "Recall": 87.5,
+    "F1_Score": 82.35,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "declined_transfer",
+    "Precision": 93.94,
+    "Recall": 77.5,
+    "F1_Score": 84.93,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "direct_debit_payment_not_recognised",
+    "Precision": 86.84,
+    "Recall": 82.5,
+    "F1_Score": 84.62,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "disposable_card_limits",
+    "Precision": 45.68,
+    "Recall": 92.5,
+    "F1_Score": 61.16,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "edit_personal_details",
+    "Precision": 93.02,
+    "Recall": 100.0,
+    "F1_Score": 96.39,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "exchange_charge",
+    "Precision": 94.29,
+    "Recall": 82.5,
+    "F1_Score": 88.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "exchange_rate",
+    "Precision": 65.57,
+    "Recall": 100.0,
+    "F1_Score": 79.21,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "exchange_via_app",
+    "Precision": 77.78,
+    "Recall": 35.0,
+    "F1_Score": 48.28,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "extra_charge_on_statement",
+    "Precision": 65.31,
+    "Recall": 80.0,
+    "F1_Score": 71.91,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "failed_transfer",
+    "Precision": 76.6,
+    "Recall": 90.0,
+    "F1_Score": 82.76,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "fiat_currency_support",
+    "Precision": 82.93,
+    "Recall": 85.0,
+    "F1_Score": 83.95,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "get_disposable_virtual_card",
+    "Precision": 100.0,
+    "Recall": 2.5,
+    "F1_Score": 4.88,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "get_physical_card",
+    "Precision": 70.37,
+    "Recall": 95.0,
+    "F1_Score": 80.85,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "getting_spare_card",
+    "Precision": 88.46,
+    "Recall": 57.5,
+    "F1_Score": 69.7,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "getting_virtual_card",
+    "Precision": 41.94,
+    "Recall": 97.5,
+    "F1_Score": 58.65,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "lost_or_stolen_card",
+    "Precision": 75.0,
+    "Recall": 82.5,
+    "F1_Score": 78.57,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "lost_or_stolen_phone",
+    "Precision": 100.0,
+    "Recall": 92.5,
+    "F1_Score": 96.1,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "order_physical_card",
+    "Precision": 80.95,
+    "Recall": 42.5,
+    "F1_Score": 55.74,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "passcode_forgotten",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "pending_card_payment",
+    "Precision": 87.8,
+    "Recall": 90.0,
+    "F1_Score": 88.89,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "pending_cash_withdrawal",
+    "Precision": 90.7,
+    "Recall": 97.5,
+    "F1_Score": 93.98,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "pending_top_up",
+    "Precision": 72.55,
+    "Recall": 92.5,
+    "F1_Score": 81.32,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "pending_transfer",
+    "Precision": 78.95,
+    "Recall": 75.0,
+    "F1_Score": 76.92,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "pin_blocked",
+    "Precision": 93.94,
+    "Recall": 77.5,
+    "F1_Score": 84.93,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "receiving_money",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "request_refund",
+    "Precision": 97.3,
+    "Recall": 90.0,
+    "F1_Score": 93.51,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "reverted_card_payment?",
+    "Precision": 94.59,
+    "Recall": 87.5,
+    "F1_Score": 90.91,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "supported_cards_and_currencies",
+    "Precision": 73.08,
+    "Recall": 95.0,
+    "F1_Score": 82.61,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "terminate_account",
+    "Precision": 95.24,
+    "Recall": 100.0,
+    "F1_Score": 97.56,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "top_up_by_bank_transfer_charge",
+    "Precision": 73.91,
+    "Recall": 85.0,
+    "F1_Score": 79.07,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "top_up_by_card_charge",
+    "Precision": 87.1,
+    "Recall": 67.5,
+    "F1_Score": 76.06,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "top_up_by_cash_or_cheque",
+    "Precision": 94.74,
+    "Recall": 90.0,
+    "F1_Score": 92.31,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "top_up_failed",
+    "Precision": 73.53,
+    "Recall": 62.5,
+    "F1_Score": 67.57,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "top_up_limits",
+    "Precision": 92.68,
+    "Recall": 95.0,
+    "F1_Score": 93.83,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "top_up_reverted",
+    "Precision": 77.5,
+    "Recall": 77.5,
+    "F1_Score": 77.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "topping_up_by_card",
+    "Precision": 73.81,
+    "Recall": 77.5,
+    "F1_Score": 75.61,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "transaction_charged_twice",
+    "Precision": 88.89,
+    "Recall": 100.0,
+    "F1_Score": 94.12,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "transfer_fee_charged",
+    "Precision": 86.67,
+    "Recall": 65.0,
+    "F1_Score": 74.29,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "transfer_into_account",
+    "Precision": 91.67,
+    "Recall": 82.5,
+    "F1_Score": 86.84,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "transfer_not_received_by_recipient",
+    "Precision": 67.44,
+    "Recall": 72.5,
+    "F1_Score": 69.88,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "transfer_timing",
+    "Precision": 82.86,
+    "Recall": 72.5,
+    "F1_Score": 77.33,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "unable_to_verify_identity",
+    "Precision": 93.94,
+    "Recall": 77.5,
+    "F1_Score": 84.93,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "verify_my_identity",
+    "Precision": 64.71,
+    "Recall": 82.5,
+    "F1_Score": 72.53,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "verify_source_of_funds",
+    "Precision": 93.02,
+    "Recall": 100.0,
+    "F1_Score": 96.39,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "verify_top_up",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "virtual_card_not_working",
+    "Precision": 100.0,
+    "Recall": 2.5,
+    "F1_Score": 4.88,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "visa_or_mastercard",
+    "Precision": 88.1,
+    "Recall": 92.5,
+    "F1_Score": 90.24,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "why_verify_identity",
+    "Precision": 82.5,
+    "Recall": 82.5,
+    "F1_Score": 82.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "wrong_amount_of_cash_received",
+    "Precision": 96.67,
+    "Recall": 72.5,
+    "F1_Score": 82.86,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "sinhala",
+    "Intent_Class": "wrong_exchange_rate_for_cash_withdrawal",
+    "Precision": 86.05,
+    "Recall": 92.5,
+    "F1_Score": 89.16,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "Refund_not_showing_up",
+    "Precision": 93.02,
+    "Recall": 100.0,
+    "F1_Score": 96.39,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "activate_my_card",
+    "Precision": 100.0,
+    "Recall": 92.5,
+    "F1_Score": 96.1,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "age_limit",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "apple_pay_or_google_pay",
+    "Precision": 100.0,
+    "Recall": 97.5,
+    "F1_Score": 98.73,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "atm_support",
+    "Precision": 94.59,
+    "Recall": 89.74,
+    "F1_Score": 92.11,
+    "Support": 39
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "automatic_top_up",
+    "Precision": 97.5,
+    "Recall": 97.5,
+    "F1_Score": 97.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "balance_not_updated_after_bank_transfer",
+    "Precision": 81.08,
+    "Recall": 75.0,
+    "F1_Score": 77.92,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "balance_not_updated_after_cheque_or_cash_deposit",
+    "Precision": 92.68,
+    "Recall": 95.0,
+    "F1_Score": 93.83,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "beneficiary_not_allowed",
+    "Precision": 97.22,
+    "Recall": 87.5,
+    "F1_Score": 92.11,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "cancel_transfer",
+    "Precision": 90.48,
+    "Recall": 95.0,
+    "F1_Score": 92.68,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "card_about_to_expire",
+    "Precision": 100.0,
+    "Recall": 97.5,
+    "F1_Score": 98.73,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "card_acceptance",
+    "Precision": 88.1,
+    "Recall": 92.5,
+    "F1_Score": 90.24,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "card_arrival",
+    "Precision": 82.5,
+    "Recall": 82.5,
+    "F1_Score": 82.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "card_delivery_estimate",
+    "Precision": 76.74,
+    "Recall": 82.5,
+    "F1_Score": 79.52,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "card_linking",
+    "Precision": 97.37,
+    "Recall": 92.5,
+    "F1_Score": 94.87,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "card_not_working",
+    "Precision": 80.0,
+    "Recall": 90.0,
+    "F1_Score": 84.71,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "card_payment_fee_charged",
+    "Precision": 75.0,
+    "Recall": 90.0,
+    "F1_Score": 81.82,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "card_payment_not_recognised",
+    "Precision": 77.27,
+    "Recall": 85.0,
+    "F1_Score": 80.95,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "card_payment_wrong_exchange_rate",
+    "Precision": 65.52,
+    "Recall": 95.0,
+    "F1_Score": 77.55,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "card_swallowed",
+    "Precision": 97.44,
+    "Recall": 95.0,
+    "F1_Score": 96.2,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "cash_withdrawal_charge",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "cash_withdrawal_not_recognised",
+    "Precision": 94.44,
+    "Recall": 85.0,
+    "F1_Score": 89.47,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "change_pin",
+    "Precision": 86.67,
+    "Recall": 65.0,
+    "F1_Score": 74.29,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "compromised_card",
+    "Precision": 91.67,
+    "Recall": 82.5,
+    "F1_Score": 86.84,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "contactless_not_working",
+    "Precision": 97.44,
+    "Recall": 95.0,
+    "F1_Score": 96.2,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "country_support",
+    "Precision": 93.02,
+    "Recall": 100.0,
+    "F1_Score": 96.39,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "declined_card_payment",
+    "Precision": 84.09,
+    "Recall": 92.5,
+    "F1_Score": 88.1,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "declined_cash_withdrawal",
+    "Precision": 80.0,
+    "Recall": 90.0,
+    "F1_Score": 84.71,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "declined_transfer",
+    "Precision": 91.43,
+    "Recall": 80.0,
+    "F1_Score": 85.33,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "direct_debit_payment_not_recognised",
+    "Precision": 91.89,
+    "Recall": 85.0,
+    "F1_Score": 88.31,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "disposable_card_limits",
+    "Precision": 72.0,
+    "Recall": 90.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "edit_personal_details",
+    "Precision": 95.24,
+    "Recall": 100.0,
+    "F1_Score": 97.56,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "exchange_charge",
+    "Precision": 94.44,
+    "Recall": 85.0,
+    "F1_Score": 89.47,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "exchange_rate",
+    "Precision": 70.18,
+    "Recall": 100.0,
+    "F1_Score": 82.47,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "exchange_via_app",
+    "Precision": 84.0,
+    "Recall": 52.5,
+    "F1_Score": 64.62,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "extra_charge_on_statement",
+    "Precision": 91.18,
+    "Recall": 77.5,
+    "F1_Score": 83.78,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "failed_transfer",
+    "Precision": 72.0,
+    "Recall": 90.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "fiat_currency_support",
+    "Precision": 87.18,
+    "Recall": 85.0,
+    "F1_Score": 86.08,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "get_disposable_virtual_card",
+    "Precision": 92.86,
+    "Recall": 65.0,
+    "F1_Score": 76.47,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "get_physical_card",
+    "Precision": 69.09,
+    "Recall": 95.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "getting_spare_card",
+    "Precision": 80.65,
+    "Recall": 62.5,
+    "F1_Score": 70.42,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "getting_virtual_card",
+    "Precision": 79.17,
+    "Recall": 95.0,
+    "F1_Score": 86.36,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "lost_or_stolen_card",
+    "Precision": 73.33,
+    "Recall": 82.5,
+    "F1_Score": 77.65,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "lost_or_stolen_phone",
+    "Precision": 97.3,
+    "Recall": 90.0,
+    "F1_Score": 93.51,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "order_physical_card",
+    "Precision": 80.49,
+    "Recall": 82.5,
+    "F1_Score": 81.48,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "passcode_forgotten",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "pending_card_payment",
+    "Precision": 87.8,
+    "Recall": 90.0,
+    "F1_Score": 88.89,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "pending_cash_withdrawal",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "pending_top_up",
+    "Precision": 72.34,
+    "Recall": 85.0,
+    "F1_Score": 78.16,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "pending_transfer",
+    "Precision": 80.0,
+    "Recall": 80.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "pin_blocked",
+    "Precision": 91.89,
+    "Recall": 85.0,
+    "F1_Score": 88.31,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "receiving_money",
+    "Precision": 94.74,
+    "Recall": 90.0,
+    "F1_Score": 92.31,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "request_refund",
+    "Precision": 94.74,
+    "Recall": 90.0,
+    "F1_Score": 92.31,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "reverted_card_payment?",
+    "Precision": 92.11,
+    "Recall": 87.5,
+    "F1_Score": 89.74,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "supported_cards_and_currencies",
+    "Precision": 76.6,
+    "Recall": 90.0,
+    "F1_Score": 82.76,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "terminate_account",
+    "Precision": 90.7,
+    "Recall": 97.5,
+    "F1_Score": 93.98,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "top_up_by_bank_transfer_charge",
+    "Precision": 73.91,
+    "Recall": 85.0,
+    "F1_Score": 79.07,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "top_up_by_card_charge",
+    "Precision": 88.24,
+    "Recall": 75.0,
+    "F1_Score": 81.08,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "top_up_by_cash_or_cheque",
+    "Precision": 94.74,
+    "Recall": 90.0,
+    "F1_Score": 92.31,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "top_up_failed",
+    "Precision": 75.68,
+    "Recall": 70.0,
+    "F1_Score": 72.73,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "top_up_limits",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "top_up_reverted",
+    "Precision": 85.0,
+    "Recall": 85.0,
+    "F1_Score": 85.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "topping_up_by_card",
+    "Precision": 82.05,
+    "Recall": 80.0,
+    "F1_Score": 81.01,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "transaction_charged_twice",
+    "Precision": 86.96,
+    "Recall": 100.0,
+    "F1_Score": 93.02,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "transfer_fee_charged",
+    "Precision": 82.86,
+    "Recall": 72.5,
+    "F1_Score": 77.33,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "transfer_into_account",
+    "Precision": 88.89,
+    "Recall": 80.0,
+    "F1_Score": 84.21,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "transfer_not_received_by_recipient",
+    "Precision": 78.79,
+    "Recall": 65.0,
+    "F1_Score": 71.23,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "transfer_timing",
+    "Precision": 87.88,
+    "Recall": 72.5,
+    "F1_Score": 79.45,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "unable_to_verify_identity",
+    "Precision": 88.57,
+    "Recall": 77.5,
+    "F1_Score": 82.67,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "verify_my_identity",
+    "Precision": 66.04,
+    "Recall": 87.5,
+    "F1_Score": 75.27,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "verify_source_of_funds",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "verify_top_up",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "virtual_card_not_working",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "visa_or_mastercard",
+    "Precision": 92.5,
+    "Recall": 92.5,
+    "F1_Score": 92.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "why_verify_identity",
+    "Precision": 88.57,
+    "Recall": 77.5,
+    "F1_Score": 82.67,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "wrong_amount_of_cash_received",
+    "Precision": 83.33,
+    "Recall": 75.0,
+    "F1_Score": 78.95,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "singlish",
+    "Intent_Class": "wrong_exchange_rate_for_cash_withdrawal",
+    "Precision": 78.57,
+    "Recall": 55.0,
+    "F1_Score": 64.71,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "Refund_not_showing_up",
+    "Precision": 91.67,
+    "Recall": 27.5,
+    "F1_Score": 42.31,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "activate_my_card",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "age_limit",
+    "Precision": 95.24,
+    "Recall": 100.0,
+    "F1_Score": 97.56,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "apple_pay_or_google_pay",
+    "Precision": 100.0,
+    "Recall": 100.0,
+    "F1_Score": 100.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "atm_support",
+    "Precision": 97.37,
+    "Recall": 94.87,
+    "F1_Score": 96.1,
+    "Support": 39
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "automatic_top_up",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "balance_not_updated_after_bank_transfer",
+    "Precision": 65.12,
+    "Recall": 70.0,
+    "F1_Score": 67.47,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "balance_not_updated_after_cheque_or_cash_deposit",
+    "Precision": 89.47,
+    "Recall": 85.0,
+    "F1_Score": 87.18,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "beneficiary_not_allowed",
+    "Precision": 97.3,
+    "Recall": 90.0,
+    "F1_Score": 93.51,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "cancel_transfer",
+    "Precision": 88.37,
+    "Recall": 95.0,
+    "F1_Score": 91.57,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "card_about_to_expire",
+    "Precision": 100.0,
+    "Recall": 97.5,
+    "F1_Score": 98.73,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "card_acceptance",
+    "Precision": 91.89,
+    "Recall": 85.0,
+    "F1_Score": 88.31,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "card_arrival",
+    "Precision": 85.71,
+    "Recall": 90.0,
+    "F1_Score": 87.8,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "card_delivery_estimate",
+    "Precision": 84.09,
+    "Recall": 92.5,
+    "F1_Score": 88.1,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "card_linking",
+    "Precision": 92.68,
+    "Recall": 95.0,
+    "F1_Score": 93.83,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "card_not_working",
+    "Precision": 74.47,
+    "Recall": 87.5,
+    "F1_Score": 80.46,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "card_payment_fee_charged",
+    "Precision": 78.72,
+    "Recall": 92.5,
+    "F1_Score": 85.06,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "card_payment_not_recognised",
+    "Precision": 67.35,
+    "Recall": 82.5,
+    "F1_Score": 74.16,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "card_payment_wrong_exchange_rate",
+    "Precision": 80.43,
+    "Recall": 92.5,
+    "F1_Score": 86.05,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "card_swallowed",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "cash_withdrawal_charge",
+    "Precision": 92.31,
+    "Recall": 90.0,
+    "F1_Score": 91.14,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "cash_withdrawal_not_recognised",
+    "Precision": 68.29,
+    "Recall": 70.0,
+    "F1_Score": 69.14,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "change_pin",
+    "Precision": 94.74,
+    "Recall": 90.0,
+    "F1_Score": 92.31,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "compromised_card",
+    "Precision": 86.84,
+    "Recall": 82.5,
+    "F1_Score": 84.62,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "contactless_not_working",
+    "Precision": 100.0,
+    "Recall": 92.5,
+    "F1_Score": 96.1,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "country_support",
+    "Precision": 90.48,
+    "Recall": 95.0,
+    "F1_Score": 92.68,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "declined_card_payment",
+    "Precision": 80.43,
+    "Recall": 92.5,
+    "F1_Score": 86.05,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "declined_cash_withdrawal",
+    "Precision": 90.7,
+    "Recall": 97.5,
+    "F1_Score": 93.98,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "declined_transfer",
+    "Precision": 78.57,
+    "Recall": 82.5,
+    "F1_Score": 80.49,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "direct_debit_payment_not_recognised",
+    "Precision": 91.43,
+    "Recall": 80.0,
+    "F1_Score": 85.33,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "disposable_card_limits",
+    "Precision": 92.86,
+    "Recall": 97.5,
+    "F1_Score": 95.12,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "edit_personal_details",
+    "Precision": 90.91,
+    "Recall": 100.0,
+    "F1_Score": 95.24,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "exchange_charge",
+    "Precision": 90.24,
+    "Recall": 92.5,
+    "F1_Score": 91.36,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "exchange_rate",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "exchange_via_app",
+    "Precision": 85.71,
+    "Recall": 75.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "extra_charge_on_statement",
+    "Precision": 92.11,
+    "Recall": 87.5,
+    "F1_Score": 89.74,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "failed_transfer",
+    "Precision": 70.27,
+    "Recall": 65.0,
+    "F1_Score": 67.53,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "fiat_currency_support",
+    "Precision": 87.88,
+    "Recall": 72.5,
+    "F1_Score": 79.45,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "get_disposable_virtual_card",
+    "Precision": 52.86,
+    "Recall": 92.5,
+    "F1_Score": 67.27,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "get_physical_card",
+    "Precision": 84.78,
+    "Recall": 97.5,
+    "F1_Score": 90.7,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "getting_spare_card",
+    "Precision": 90.0,
+    "Recall": 90.0,
+    "F1_Score": 90.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "getting_virtual_card",
+    "Precision": 93.94,
+    "Recall": 77.5,
+    "F1_Score": 84.93,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "lost_or_stolen_card",
+    "Precision": 81.82,
+    "Recall": 90.0,
+    "F1_Score": 85.71,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "lost_or_stolen_phone",
+    "Precision": 100.0,
+    "Recall": 95.0,
+    "F1_Score": 97.44,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "order_physical_card",
+    "Precision": 92.11,
+    "Recall": 87.5,
+    "F1_Score": 89.74,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "passcode_forgotten",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "pending_card_payment",
+    "Precision": 91.67,
+    "Recall": 82.5,
+    "F1_Score": 86.84,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "pending_cash_withdrawal",
+    "Precision": 94.74,
+    "Recall": 90.0,
+    "F1_Score": 92.31,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "pending_top_up",
+    "Precision": 88.89,
+    "Recall": 80.0,
+    "F1_Score": 84.21,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "pending_transfer",
+    "Precision": 69.05,
+    "Recall": 72.5,
+    "F1_Score": 70.73,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "pin_blocked",
+    "Precision": 94.44,
+    "Recall": 85.0,
+    "F1_Score": 89.47,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "receiving_money",
+    "Precision": 97.5,
+    "Recall": 97.5,
+    "F1_Score": 97.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "request_refund",
+    "Precision": 66.67,
+    "Recall": 95.0,
+    "F1_Score": 78.35,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "reverted_card_payment?",
+    "Precision": 78.05,
+    "Recall": 80.0,
+    "F1_Score": 79.01,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "supported_cards_and_currencies",
+    "Precision": 86.36,
+    "Recall": 95.0,
+    "F1_Score": 90.48,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "terminate_account",
+    "Precision": 97.5,
+    "Recall": 97.5,
+    "F1_Score": 97.5,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "top_up_by_bank_transfer_charge",
+    "Precision": 94.87,
+    "Recall": 92.5,
+    "F1_Score": 93.67,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "top_up_by_card_charge",
+    "Precision": 92.68,
+    "Recall": 95.0,
+    "F1_Score": 93.83,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "top_up_by_cash_or_cheque",
+    "Precision": 83.33,
+    "Recall": 75.0,
+    "F1_Score": 78.95,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "top_up_failed",
+    "Precision": 71.43,
+    "Recall": 75.0,
+    "F1_Score": 73.17,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "top_up_limits",
+    "Precision": 95.24,
+    "Recall": 100.0,
+    "F1_Score": 97.56,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "top_up_reverted",
+    "Precision": 69.39,
+    "Recall": 85.0,
+    "F1_Score": 76.4,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "topping_up_by_card",
+    "Precision": 93.75,
+    "Recall": 75.0,
+    "F1_Score": 83.33,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "transaction_charged_twice",
+    "Precision": 93.02,
+    "Recall": 100.0,
+    "F1_Score": 96.39,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "transfer_fee_charged",
+    "Precision": 87.8,
+    "Recall": 90.0,
+    "F1_Score": 88.89,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "transfer_into_account",
+    "Precision": 79.07,
+    "Recall": 85.0,
+    "F1_Score": 81.93,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "transfer_not_received_by_recipient",
+    "Precision": 80.43,
+    "Recall": 92.5,
+    "F1_Score": 86.05,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "transfer_timing",
+    "Precision": 93.33,
+    "Recall": 70.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "unable_to_verify_identity",
+    "Precision": 82.61,
+    "Recall": 95.0,
+    "F1_Score": 88.37,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "verify_my_identity",
+    "Precision": 91.43,
+    "Recall": 80.0,
+    "F1_Score": 85.33,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "verify_source_of_funds",
+    "Precision": 92.86,
+    "Recall": 97.5,
+    "F1_Score": 95.12,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "verify_top_up",
+    "Precision": 100.0,
+    "Recall": 82.5,
+    "F1_Score": 90.41,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "virtual_card_not_working",
+    "Precision": 100.0,
+    "Recall": 7.5,
+    "F1_Score": 13.95,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "visa_or_mastercard",
+    "Precision": 97.3,
+    "Recall": 90.0,
+    "F1_Score": 93.51,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "why_verify_identity",
+    "Precision": 79.59,
+    "Recall": 97.5,
+    "F1_Score": 87.64,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "wrong_amount_of_cash_received",
+    "Precision": 100.0,
+    "Recall": 90.0,
+    "F1_Score": 94.74,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamil",
+    "Intent_Class": "wrong_exchange_rate_for_cash_withdrawal",
+    "Precision": 85.37,
+    "Recall": 87.5,
+    "F1_Score": 86.42,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "Refund_not_showing_up",
+    "Precision": 69.7,
+    "Recall": 57.5,
+    "F1_Score": 63.01,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "activate_my_card",
+    "Precision": 89.74,
+    "Recall": 87.5,
+    "F1_Score": 88.61,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "age_limit",
+    "Precision": 69.64,
+    "Recall": 97.5,
+    "F1_Score": 81.25,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "apple_pay_or_google_pay",
+    "Precision": 92.86,
+    "Recall": 97.5,
+    "F1_Score": 95.12,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "atm_support",
+    "Precision": 53.62,
+    "Recall": 94.87,
+    "F1_Score": 68.52,
+    "Support": 39
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "automatic_top_up",
+    "Precision": 100.0,
+    "Recall": 80.0,
+    "F1_Score": 88.89,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "balance_not_updated_after_bank_transfer",
+    "Precision": 75.68,
+    "Recall": 70.0,
+    "F1_Score": 72.73,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "balance_not_updated_after_cheque_or_cash_deposit",
+    "Precision": 78.95,
+    "Recall": 37.5,
+    "F1_Score": 50.85,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "beneficiary_not_allowed",
+    "Precision": 96.0,
+    "Recall": 60.0,
+    "F1_Score": 73.85,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "cancel_transfer",
+    "Precision": 35.58,
+    "Recall": 92.5,
+    "F1_Score": 51.39,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "card_about_to_expire",
+    "Precision": 81.82,
+    "Recall": 45.0,
+    "F1_Score": 58.06,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "card_acceptance",
+    "Precision": 46.67,
+    "Recall": 87.5,
+    "F1_Score": 60.87,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "card_arrival",
+    "Precision": 63.83,
+    "Recall": 75.0,
+    "F1_Score": 68.97,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "card_delivery_estimate",
+    "Precision": 63.89,
+    "Recall": 57.5,
+    "F1_Score": 60.53,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "card_linking",
+    "Precision": 88.57,
+    "Recall": 77.5,
+    "F1_Score": 82.67,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "card_not_working",
+    "Precision": 86.96,
+    "Recall": 50.0,
+    "F1_Score": 63.49,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "card_payment_fee_charged",
+    "Precision": 65.91,
+    "Recall": 72.5,
+    "F1_Score": 69.05,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "card_payment_not_recognised",
+    "Precision": 40.85,
+    "Recall": 72.5,
+    "F1_Score": 52.25,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "card_payment_wrong_exchange_rate",
+    "Precision": 34.02,
+    "Recall": 82.5,
+    "F1_Score": 48.18,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "card_swallowed",
+    "Precision": 97.14,
+    "Recall": 85.0,
+    "F1_Score": 90.67,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "cash_withdrawal_charge",
+    "Precision": 58.62,
+    "Recall": 85.0,
+    "F1_Score": 69.39,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "cash_withdrawal_not_recognised",
+    "Precision": 76.19,
+    "Recall": 80.0,
+    "F1_Score": 78.05,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "change_pin",
+    "Precision": 77.42,
+    "Recall": 60.0,
+    "F1_Score": 67.61,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "compromised_card",
+    "Precision": 22.22,
+    "Recall": 5.0,
+    "F1_Score": 8.16,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "contactless_not_working",
+    "Precision": 100.0,
+    "Recall": 95.0,
+    "F1_Score": 97.44,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "country_support",
+    "Precision": 66.67,
+    "Recall": 60.0,
+    "F1_Score": 63.16,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "declined_card_payment",
+    "Precision": 83.33,
+    "Recall": 25.0,
+    "F1_Score": 38.46,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "declined_cash_withdrawal",
+    "Precision": 66.67,
+    "Recall": 15.0,
+    "F1_Score": 24.49,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "declined_transfer",
+    "Precision": 100.0,
+    "Recall": 67.5,
+    "F1_Score": 80.6,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "direct_debit_payment_not_recognised",
+    "Precision": 30.91,
+    "Recall": 42.5,
+    "F1_Score": 35.79,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "disposable_card_limits",
+    "Precision": 86.67,
+    "Recall": 32.5,
+    "F1_Score": 47.27,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "edit_personal_details",
+    "Precision": 76.32,
+    "Recall": 72.5,
+    "F1_Score": 74.36,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "exchange_charge",
+    "Precision": 70.0,
+    "Recall": 17.5,
+    "F1_Score": 28.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "exchange_rate",
+    "Precision": 72.73,
+    "Recall": 20.0,
+    "F1_Score": 31.37,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "exchange_via_app",
+    "Precision": 84.78,
+    "Recall": 97.5,
+    "F1_Score": 90.7,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "extra_charge_on_statement",
+    "Precision": 96.77,
+    "Recall": 75.0,
+    "F1_Score": 84.51,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "failed_transfer",
+    "Precision": 47.37,
+    "Recall": 22.5,
+    "F1_Score": 30.51,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "fiat_currency_support",
+    "Precision": 54.9,
+    "Recall": 70.0,
+    "F1_Score": 61.54,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "get_disposable_virtual_card",
+    "Precision": 50.72,
+    "Recall": 87.5,
+    "F1_Score": 64.22,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "get_physical_card",
+    "Precision": 52.31,
+    "Recall": 85.0,
+    "F1_Score": 64.76,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "getting_spare_card",
+    "Precision": 71.43,
+    "Recall": 50.0,
+    "F1_Score": 58.82,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "getting_virtual_card",
+    "Precision": 69.09,
+    "Recall": 95.0,
+    "F1_Score": 80.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "lost_or_stolen_card",
+    "Precision": 62.22,
+    "Recall": 70.0,
+    "F1_Score": 65.88,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "lost_or_stolen_phone",
+    "Precision": 95.0,
+    "Recall": 95.0,
+    "F1_Score": 95.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "order_physical_card",
+    "Precision": 42.62,
+    "Recall": 65.0,
+    "F1_Score": 51.49,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "passcode_forgotten",
+    "Precision": 97.56,
+    "Recall": 100.0,
+    "F1_Score": 98.77,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "pending_card_payment",
+    "Precision": 80.95,
+    "Recall": 42.5,
+    "F1_Score": 55.74,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "pending_cash_withdrawal",
+    "Precision": 96.97,
+    "Recall": 80.0,
+    "F1_Score": 87.67,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "pending_top_up",
+    "Precision": 39.06,
+    "Recall": 62.5,
+    "F1_Score": 48.08,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "pending_transfer",
+    "Precision": 45.76,
+    "Recall": 67.5,
+    "F1_Score": 54.55,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "pin_blocked",
+    "Precision": 65.38,
+    "Recall": 42.5,
+    "F1_Score": 51.52,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "receiving_money",
+    "Precision": 46.67,
+    "Recall": 87.5,
+    "F1_Score": 60.87,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "request_refund",
+    "Precision": 81.25,
+    "Recall": 32.5,
+    "F1_Score": 46.43,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "reverted_card_payment?",
+    "Precision": 100.0,
+    "Recall": 67.5,
+    "F1_Score": 80.6,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "supported_cards_and_currencies",
+    "Precision": 38.57,
+    "Recall": 67.5,
+    "F1_Score": 49.09,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "terminate_account",
+    "Precision": 97.06,
+    "Recall": 82.5,
+    "F1_Score": 89.19,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "top_up_by_bank_transfer_charge",
+    "Precision": 82.76,
+    "Recall": 60.0,
+    "F1_Score": 69.57,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "top_up_by_card_charge",
+    "Precision": 66.67,
+    "Recall": 20.0,
+    "F1_Score": 30.77,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "top_up_by_cash_or_cheque",
+    "Precision": 82.61,
+    "Recall": 47.5,
+    "F1_Score": 60.32,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "top_up_failed",
+    "Precision": 16.96,
+    "Recall": 47.5,
+    "F1_Score": 25.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "top_up_limits",
+    "Precision": 79.17,
+    "Recall": 95.0,
+    "F1_Score": 86.36,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "top_up_reverted",
+    "Precision": 23.08,
+    "Recall": 7.5,
+    "F1_Score": 11.32,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "topping_up_by_card",
+    "Precision": 52.08,
+    "Recall": 62.5,
+    "F1_Score": 56.82,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "transaction_charged_twice",
+    "Precision": 86.67,
+    "Recall": 65.0,
+    "F1_Score": 74.29,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "transfer_fee_charged",
+    "Precision": 76.47,
+    "Recall": 32.5,
+    "F1_Score": 45.61,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "transfer_into_account",
+    "Precision": 20.0,
+    "Recall": 5.0,
+    "F1_Score": 8.0,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "transfer_not_received_by_recipient",
+    "Precision": 33.33,
+    "Recall": 17.5,
+    "F1_Score": 22.95,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "transfer_timing",
+    "Precision": 85.29,
+    "Recall": 72.5,
+    "F1_Score": 78.38,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "unable_to_verify_identity",
+    "Precision": 90.91,
+    "Recall": 25.0,
+    "F1_Score": 39.22,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "verify_my_identity",
+    "Precision": 37.25,
+    "Recall": 95.0,
+    "F1_Score": 53.52,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "verify_source_of_funds",
+    "Precision": 54.84,
+    "Recall": 42.5,
+    "F1_Score": 47.89,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "verify_top_up",
+    "Precision": 90.7,
+    "Recall": 97.5,
+    "F1_Score": 93.98,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "virtual_card_not_working",
+    "Precision": 100.0,
+    "Recall": 37.5,
+    "F1_Score": 54.55,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "visa_or_mastercard",
+    "Precision": 79.17,
+    "Recall": 95.0,
+    "F1_Score": 86.36,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "why_verify_identity",
+    "Precision": 65.0,
+    "Recall": 32.5,
+    "F1_Score": 43.33,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "wrong_amount_of_cash_received",
+    "Precision": 44.94,
+    "Recall": 100.0,
+    "F1_Score": 62.02,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "tamilish",
+    "Intent_Class": "wrong_exchange_rate_for_cash_withdrawal",
+    "Precision": 86.67,
+    "Recall": 32.5,
+    "F1_Score": 47.27,
+    "Support": 40
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "Refund_not_showing_up",
+    "Precision": 90.06,
+    "Recall": 72.5,
+    "F1_Score": 80.33,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "activate_my_card",
+    "Precision": 94.85,
+    "Recall": 92.0,
+    "F1_Score": 93.4,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "age_limit",
+    "Precision": 88.44,
+    "Recall": 99.5,
+    "F1_Score": 93.65,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "apple_pay_or_google_pay",
+    "Precision": 98.5,
+    "Recall": 98.5,
+    "F1_Score": 98.5,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "atm_support",
+    "Precision": 83.87,
+    "Recall": 93.33,
+    "F1_Score": 88.35,
+    "Support": 195
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "automatic_top_up",
+    "Precision": 97.92,
+    "Recall": 94.0,
+    "F1_Score": 95.92,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "balance_not_updated_after_bank_transfer",
+    "Precision": 79.23,
+    "Recall": 72.5,
+    "F1_Score": 75.72,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "balance_not_updated_after_cheque_or_cash_deposit",
+    "Precision": 92.27,
+    "Recall": 83.5,
+    "F1_Score": 87.66,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "beneficiary_not_allowed",
+    "Precision": 96.0,
+    "Recall": 84.0,
+    "F1_Score": 89.6,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "cancel_transfer",
+    "Precision": 73.08,
+    "Recall": 95.0,
+    "F1_Score": 82.61,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "card_about_to_expire",
+    "Precision": 95.38,
+    "Recall": 82.5,
+    "F1_Score": 88.47,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "card_acceptance",
+    "Precision": 76.05,
+    "Recall": 90.5,
+    "F1_Score": 82.65,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "card_arrival",
+    "Precision": 77.83,
+    "Recall": 82.5,
+    "F1_Score": 80.1,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "card_delivery_estimate",
+    "Precision": 81.25,
+    "Recall": 84.5,
+    "F1_Score": 82.84,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "card_linking",
+    "Precision": 94.42,
+    "Recall": 93.0,
+    "F1_Score": 93.7,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "card_not_working",
+    "Precision": 74.55,
+    "Recall": 83.5,
+    "F1_Score": 78.77,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "card_payment_fee_charged",
+    "Precision": 77.78,
+    "Recall": 80.5,
+    "F1_Score": 79.12,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "card_payment_not_recognised",
+    "Precision": 67.89,
+    "Recall": 83.5,
+    "F1_Score": 74.89,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "card_payment_wrong_exchange_rate",
+    "Precision": 62.24,
+    "Recall": 91.5,
+    "F1_Score": 74.09,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "card_swallowed",
+    "Precision": 95.83,
+    "Recall": 92.0,
+    "F1_Score": 93.88,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "cash_withdrawal_charge",
+    "Precision": 82.94,
+    "Recall": 87.5,
+    "F1_Score": 85.16,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "cash_withdrawal_not_recognised",
+    "Precision": 81.6,
+    "Recall": 86.5,
+    "F1_Score": 83.98,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "change_pin",
+    "Precision": 91.33,
+    "Recall": 79.0,
+    "F1_Score": 84.72,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "compromised_card",
+    "Precision": 86.34,
+    "Recall": 69.5,
+    "F1_Score": 77.01,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "contactless_not_working",
+    "Precision": 98.94,
+    "Recall": 93.0,
+    "F1_Score": 95.88,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "country_support",
+    "Precision": 89.55,
+    "Recall": 90.0,
+    "F1_Score": 89.78,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "declined_card_payment",
+    "Precision": 83.77,
+    "Recall": 80.0,
+    "F1_Score": 81.84,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "declined_cash_withdrawal",
+    "Precision": 82.81,
+    "Recall": 79.5,
+    "F1_Score": 81.12,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "declined_transfer",
+    "Precision": 92.22,
+    "Recall": 77.0,
+    "F1_Score": 83.92,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "direct_debit_payment_not_recognised",
+    "Precision": 76.41,
+    "Recall": 74.5,
+    "F1_Score": 75.44,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "disposable_card_limits",
+    "Precision": 81.15,
+    "Recall": 77.5,
+    "F1_Score": 79.28,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "edit_personal_details",
+    "Precision": 90.38,
+    "Recall": 94.0,
+    "F1_Score": 92.16,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "exchange_charge",
+    "Precision": 92.36,
+    "Recall": 72.5,
+    "F1_Score": 81.23,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "exchange_rate",
+    "Precision": 74.55,
+    "Recall": 82.0,
+    "F1_Score": 78.1,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "exchange_via_app",
+    "Precision": 84.15,
+    "Recall": 69.0,
+    "F1_Score": 75.82,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "extra_charge_on_statement",
+    "Precision": 89.5,
+    "Recall": 89.5,
+    "F1_Score": 89.5,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "failed_transfer",
+    "Precision": 72.31,
+    "Recall": 70.5,
+    "F1_Score": 71.39,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "fiat_currency_support",
+    "Precision": 81.44,
+    "Recall": 79.0,
+    "F1_Score": 80.2,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "get_disposable_virtual_card",
+    "Precision": 68.97,
+    "Recall": 80.0,
+    "F1_Score": 74.07,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "get_physical_card",
+    "Precision": 73.18,
+    "Recall": 95.5,
+    "F1_Score": 82.86,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "getting_spare_card",
+    "Precision": 85.0,
+    "Recall": 76.5,
+    "F1_Score": 80.53,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "getting_virtual_card",
+    "Precision": 76.23,
+    "Recall": 93.0,
+    "F1_Score": 83.78,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "lost_or_stolen_card",
+    "Precision": 78.24,
+    "Recall": 84.5,
+    "F1_Score": 81.25,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "lost_or_stolen_phone",
+    "Precision": 97.44,
+    "Recall": 95.0,
+    "F1_Score": 96.2,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "order_physical_card",
+    "Precision": 74.54,
+    "Recall": 80.5,
+    "F1_Score": 77.4,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "passcode_forgotten",
+    "Precision": 99.01,
+    "Recall": 100.0,
+    "F1_Score": 99.5,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "pending_card_payment",
+    "Precision": 92.35,
+    "Recall": 78.5,
+    "F1_Score": 84.86,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "pending_cash_withdrawal",
+    "Precision": 94.27,
+    "Recall": 90.5,
+    "F1_Score": 92.35,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "pending_top_up",
+    "Precision": 69.01,
+    "Recall": 83.5,
+    "F1_Score": 75.57,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "pending_transfer",
+    "Precision": 69.95,
+    "Recall": 74.5,
+    "F1_Score": 72.15,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "pin_blocked",
+    "Precision": 89.22,
+    "Recall": 74.5,
+    "F1_Score": 81.2,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "receiving_money",
+    "Precision": 78.57,
+    "Recall": 93.5,
+    "F1_Score": 85.39,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "request_refund",
+    "Precision": 82.23,
+    "Recall": 81.0,
+    "F1_Score": 81.61,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "reverted_card_payment?",
+    "Precision": 89.3,
+    "Recall": 83.5,
+    "F1_Score": 86.3,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "supported_cards_and_currencies",
+    "Precision": 73.25,
+    "Recall": 89.0,
+    "F1_Score": 80.36,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "terminate_account",
+    "Precision": 95.98,
+    "Recall": 95.5,
+    "F1_Score": 95.74,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "top_up_by_bank_transfer_charge",
+    "Precision": 86.8,
+    "Recall": 85.5,
+    "F1_Score": 86.15,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "top_up_by_card_charge",
+    "Precision": 92.64,
+    "Recall": 75.5,
+    "F1_Score": 83.2,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "top_up_by_cash_or_cheque",
+    "Precision": 90.8,
+    "Recall": 79.0,
+    "F1_Score": 84.49,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "top_up_failed",
+    "Precision": 57.47,
+    "Recall": 75.0,
+    "F1_Score": 65.08,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "top_up_limits",
+    "Precision": 91.51,
+    "Recall": 97.0,
+    "F1_Score": 94.17,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "top_up_reverted",
+    "Precision": 77.46,
+    "Recall": 67.0,
+    "F1_Score": 71.85,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "topping_up_by_card",
+    "Precision": 77.84,
+    "Recall": 75.5,
+    "F1_Score": 76.65,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "transaction_charged_twice",
+    "Precision": 87.92,
+    "Recall": 91.0,
+    "F1_Score": 89.43,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "transfer_fee_charged",
+    "Precision": 87.12,
+    "Recall": 71.0,
+    "F1_Score": 78.24,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "transfer_into_account",
+    "Precision": 84.91,
+    "Recall": 67.5,
+    "F1_Score": 75.21,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "transfer_not_received_by_recipient",
+    "Precision": 72.54,
+    "Recall": 70.0,
+    "F1_Score": 71.25,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "transfer_timing",
+    "Precision": 87.79,
+    "Recall": 75.5,
+    "F1_Score": 81.18,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "unable_to_verify_identity",
+    "Precision": 87.43,
+    "Recall": 76.5,
+    "F1_Score": 81.6,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "verify_my_identity",
+    "Precision": 64.86,
+    "Recall": 84.0,
+    "F1_Score": 73.2,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "verify_source_of_funds",
+    "Precision": 86.89,
+    "Recall": 89.5,
+    "F1_Score": 88.18,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "verify_top_up",
+    "Precision": 97.93,
+    "Recall": 94.5,
+    "F1_Score": 96.18,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "virtual_card_not_working",
+    "Precision": 100.0,
+    "Recall": 51.0,
+    "F1_Score": 67.55,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "visa_or_mastercard",
+    "Precision": 92.89,
+    "Recall": 91.5,
+    "F1_Score": 92.19,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "why_verify_identity",
+    "Precision": 82.54,
+    "Recall": 78.0,
+    "F1_Score": 80.21,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "wrong_amount_of_cash_received",
+    "Precision": 70.27,
+    "Recall": 91.0,
+    "F1_Score": 79.3,
+    "Support": 200
+  },
+  {
+    "Model": "Linear SVM",
+    "Language": "all",
+    "Intent_Class": "wrong_exchange_rate_for_cash_withdrawal",
+    "Precision": 88.96,
+    "Recall": 68.5,
+    "F1_Score": 77.4,
+    "Support": 200
+  }
+]

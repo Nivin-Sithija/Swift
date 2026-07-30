@@ -1,0 +1,280 @@
+type,id,details
+exact_text_in_train_and_test,N/A,எனது அடையாள அட்டை உறுதிப்படுத்தப்பட எவ்வளவு நேரம் எடுக்கும்?
+exact_text_in_train_and_test,N/A,mage card eka vada karanne naa.
+exact_text_in_train_and_test,N/A,mage payment eka reverse vune ayi?
+exact_text_in_train_and_test,N/A,mage funds source eka verify karanna one.
+exact_text_in_train_and_test,N/A,நான் டொப்-அப் செய்யக்கூடிய அதிகூடிய தொகை எவ்வளவு?
+exact_text_in_train_and_test,N/A,මට මගේ කාඩ් එක පාවිච්චි කරන්න බෑ.
+exact_text_in_train_and_test,N/A,நாணய மாற்று கட்டணம் எவ்வளவு?
+exact_text_in_train_and_test,N/A,எனது அட்டையைப் பயன்படுத்தத் தொடங்குவதற்கு அதை நான் எவ்வாறு செயற்படுத்துவது?
+exact_text_in_train_and_test,N/A,எனக்கு ஒரு நாளைக்கு பல ஒருமுறை பயன்படுத்தும் அட்டைகளை உருவாக்க வேண்டும்.
+exact_text_in_train_and_test,N/A,top-ups වලට limit එකක් තියෙනවද?
+exact_text_in_train_and_test,N/A,disposable cards වලට restrictions මොනවද කියලා දැනගන්න ඕනේ.
+exact_text_in_train_and_test,N/A,ඔයාලා Visa හෝ Mastercard accept කරනවද?
+exact_text_in_train_and_test,N/A,mage debit ho credit card eken pay karanne koheda?
+exact_text_in_train_and_test,N/A,செயலி எனது அடையாளத்தை உறுதிப்படுத்தத் தவறிவிட்டது.
+exact_text_in_train_and_test,N/A,refund process එක මොකක්ද?
+exact_text_in_train_and_test,N/A,මට disposable cards කීයක් තියාගන්න පුළුවන්ද?
+exact_text_in_train_and_test,N/A,mage card PIN eka hoyaganne kohomada?
+exact_text_in_train_and_test,N/A,எனக்கு இன்னொரு அட்டை பெற முடியுமா?
+exact_text_in_train_and_test,N/A,அட்டை வந்து சேர எவ்வளவு காலம் எடுக்கும்?
+exact_text_in_train_and_test,N/A,passcode එක reset කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,virtual cards tiyenne koheda?
+exact_text_in_train_and_test,N/A,நான் எனது அடையாளத்தை உறுதிப்படுத்த மாட்டேன்.
+exact_text_in_train_and_test,N/A,මගේ කාඩ් එක එන්නේ කවදද?
+exact_text_in_train_and_test,N/A,எனது அடையாளத்தை நான் எவ்வாறு உறுதிப்படுத்துவது?
+exact_text_in_train_and_test,N/A,top up කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,mage identity eka verify karanne kohomada?
+exact_text_in_train_and_test,N/A,Apple Pay එකෙන් top up කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,ஒரு கடையில் எனது அட்டை வேலை செய்யவில்லை.
+exact_text_in_train_and_test,N/A,எனக்கு இன்னும் எனது பின் (PIN) இலக்கம் கிடைக்கவில்லை.
+exact_text_in_train_and_test,N/A,எனது அட்டை எனக்குக் கிடைக்கவில்லை.
+exact_text_in_train_and_test,N/A,maximum top up එක මොකක්ද?
+exact_text_in_train_and_test,N/A,මට virtual card එකක් ලබාගන්න පුළුවන්ද?
+exact_text_in_train_and_test,N/A,mage card eka vada karanne naa
+exact_text_in_train_and_test,N/A,top ups valata fees tiyenavada?
+exact_text_in_train_and_test,N/A,எனது அட்டை நிராகரிக்கப்பட்டது.
+exact_text_in_train_and_test,N/A,මගේ funds verify කරගන්න ඕනේ.
+exact_text_in_train_and_test,N/A,mata karansi kiyak tiyaganna puluvanda?
+exact_text_in_train_and_test,N/A,எனது காண்டாக்ட்லெஸ் வேலை செய்யவில்லை.
+exact_text_in_train_and_test,N/A,பணம் அனுப்புவதற்கு எனக்கு ஏன் கட்டணம் வசூலிக்கப்படுகிறது?
+exact_text_in_train_and_test,N/A,කාඩ් PIN එක තියෙන්නේ කොහෙද?
+exact_text_in_train_and_test,N/A,virtual cards තියෙන්නේ කොහෙද?
+exact_text_in_train_and_test,N/A,virtual card eka mata vada karanne naa
+exact_text_in_train_and_test,N/A,මගේ debit හෝ credit card එකෙන් pay කරන්නේ කොහෙද?
+exact_text_in_train_and_test,N/A,එක්ස්චේන්ජ් රේට් එක කොහොමද?
+exact_text_in_train_and_test,N/A,මගේ account එකට සල්ලි transfer කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,මගේ top up එක verify කරන්න ඕනේද?
+exact_text_in_train_and_test,N/A,money transfer එකක් පේන්න කොච්චර වෙලා යනවද?
+exact_text_in_train_and_test,N/A,maximum top up eka mokakda?
+exact_text_in_train_and_test,N/A,මගේ කාඩ් එක වැඩ කරන්නේ නෑ.
+exact_text_in_train_and_test,N/A,virtual card ekak labaganna vidiyak tiyenavada?
+exact_text_in_train_and_test,N/A,நீங்கள் காசோலைகளை ஏற்றுக்கொள்கிறீர்களா?
+exact_text_in_train_and_test,N/A,danatamat tiyena card ekak link karanne kohomada?
+exact_text_in_train_and_test,N/A,Google Pay eken top up karanne kohomada?
+exact_text_in_train_and_test,N/A,මගේ credit card එකෙන් සල්ලි transfer කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,நீங்கள் SWIFT பரிமாற்றங்களைச் செய்கிறீர்களா?
+exact_text_in_train_and_test,N/A,mage alut card eka activate karanne kohomada?
+exact_text_in_train_and_test,N/A,shop එකකදි මගේ කාඩ් එක වැඩ කළේ නෑ.
+exact_text_in_train_and_test,N/A,நான் எனது கணக்கை நீக்க விரும்புகிறேன்.
+exact_text_in_train_and_test,N/A,මගේ කාඩ් එක accept කරන තැන් මොනවද?
+exact_text_in_train_and_test,N/A,top ups වලට fees තියෙනවද?
+exact_text_in_train_and_test,N/A,මට transfer එකක් cancel කරගන්න ඕනේ
+exact_text_in_train_and_test,N/A,mata virtual card ekak one!
+exact_text_in_train_and_test,N/A,mage funds enne kohenda?
+exact_text_in_train_and_test,N/A,நான் எத்தனை நாணயங்களை வைத்திருக்க முடியும்?
+exact_text_in_train_and_test,N/A,நான் எவ்வாறு ஒரு உண்மையான அட்டையைப் பெறுவது?
+exact_text_in_train_and_test,N/A,මගේ credit card එකට සල්ලි transfer කරන්න පුළුවන්ද?
+exact_text_in_train_and_test,N/A,"mage PIN eka block vela, mama mokada karanna one?"
+exact_text_in_train_and_test,N/A,mage card eka thama ave naa.
+exact_text_in_train_and_test,N/A,virtual card ekak order karanne koheda?
+exact_text_in_train_and_test,N/A,"நான் இடம் மாறிவிட்டேன், எனது தனிப்பட்ட விபரங்களை மாற்ற வேண்டும்."
+exact_text_in_train_and_test,N/A,මගේ id එක verify කරගන්න බැරි ඇයි?
+exact_text_in_train_and_test,N/A,cash එකෙන් top up කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,இன்று காலை நான் செய்த பரிவர்த்தனையைத் திரும்பப் பெற விரும்புகிறேன்.
+exact_text_in_train_and_test,N/A,Oru transaction-ai rathu seyya mudiyuma?
+exact_text_in_train_and_test,N/A,Transfer yen decline aachchu?
+exact_text_in_train_and_test,N/A,நான் எனது அடையாளத்தை உறுதிப்படுத்த வேண்டுமா?
+exact_text_in_train_and_test,N/A,அட்டைகளை எங்கு விநியோகிக்க முடியும்?
+exact_text_in_train_and_test,N/A,எனக்கு எனது கடவுச்சொல் தெரியாது.
+exact_text_in_train_and_test,N/A,virtual card ekak ganne kohomada?
+exact_text_in_train_and_test,N/A,Where can I use my card?
+exact_text_in_train_and_test,N/A,mage top-up card eka verify karanne kohomada?
+exact_text_in_train_and_test,N/A,எனது அட்டை வேலை செய்யவில்லை.
+exact_text_in_train_and_test,N/A,transfer ekakata kochchara vela yanavada?
+exact_text_in_train_and_test,N/A,top ups valata limit ekak tiyenavada?
+exact_text_in_train_and_test,N/A,credit card එකෙන් සල්ලි transfer කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,cash eken top up karanne kohomada?
+exact_text_in_train_and_test,N/A,mata mage card eka pavichchi karanna baa.
+exact_text_in_train_and_test,N/A,அமெரிக்காவிற்கான விநியோக நேரம் என்ன?
+exact_text_in_train_and_test,N/A,Apple Pay එකෙන් top up කරන්න පුළුවන්ද?
+exact_text_in_train_and_test,N/A,cheque ekakin top up karanna bari ayi?
+exact_text_in_train_and_test,N/A,அடையாளச் சோதனைக்கு எனக்கு ஏதேனும் ஆவணங்கள் தேவையா?
+exact_text_in_train_and_test,N/A,எனது டொப்-அப் ரத்து செய்யப்பட்டுள்ளதா?
+exact_text_in_train_and_test,N/A,செயலியில் ஒரு அட்டையை எவ்வாறு சேர்ப்பது?
+exact_text_in_train_and_test,N/A,virtual card එක හොයාගන්නේ කොහෙන්ද?
+exact_text_in_train_and_test,N/A,refund process eka mokakda?
+exact_text_in_train_and_test,N/A,mage top up eka verify karanna oneda?
+exact_text_in_train_and_test,N/A,මගේ කාඩ් එක තාම ආවේ නෑ.
+exact_text_in_train_and_test,N/A,எனது அட்டை காலாவதியாகப் போகிறது.
+exact_text_in_train_and_test,N/A,Which cash machines will allow me to change my PIN?
+exact_text_in_train_and_test,N/A,top up karanne kohomada?
+exact_text_in_train_and_test,N/A,identity verification එකට කලින් transfers කරන්න පුළුවන්ද?
+exact_text_in_train_and_test,N/A,செயலி என்னை அடையாளம் காணவில்லை.
+exact_text_in_train_and_test,N/A,டாப்-அப் எல்லை என்ன?
+exact_text_in_train_and_test,N/A,මගේ contactless එක වැඩ නොකරන්නේ ඇයි?
+exact_text_in_train_and_test,N/A,mage card payment eka decline vune ayi?
+exact_text_in_train_and_test,N/A,money transfer ekak penna kochchara vela yanavada?
+exact_text_in_train_and_test,N/A,mage contactless eka vada nokaranne ayi?
+exact_text_in_train_and_test,N/A,எனக்கு ஏன் இன்னும் ஒரு விர்ச்சுவல் கார்ட் கிடைக்கவில்லை?
+exact_text_in_train_and_test,N/A,இந்தச் செயலி என்னை அடையாளம் காணவில்லை.
+exact_text_in_train_and_test,N/A,disposable cards valata restrictions monavada kiyala danaganna one.
+exact_text_in_train_and_test,N/A,mage transfer eka decline vune ayi?
+exact_text_in_train_and_test,N/A,"මගේ PIN එක block වෙලා, මම මොකද කරන්න ඕනේ?"
+exact_text_in_train_and_test,N/A,virtual card එකක් ලබාගන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,US credit cards accept karanavada?
+exact_text_in_train_and_test,N/A,Enoda top-up vela seiyala.
+exact_text_in_train_and_test,N/A,exchange rate eka kohomada?
+exact_text_in_train_and_test,N/A,mage card eka tava vada karanne naa.
+exact_text_in_train_and_test,N/A,அட்டைகள் எங்கு விநியோகிக்கப்படுகின்றன?
+exact_text_in_train_and_test,N/A,alut card ekak activate karanne kohomada?
+exact_text_in_train_and_test,N/A,මගේ කාඩ් එක තව වැඩ කරන්නේ නෑ.
+exact_text_in_train_and_test,N/A,Apple Pay eken top up karanna puluvanda?
+exact_text_in_train_and_test,N/A,දැනටමත් තියෙන කාඩ් එකක් ලින්ක් කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,Enoda card-ai naan engay payanpaduthalaam?
+exact_text_in_train_and_test,N/A,mage account eka delete karanna one.
+exact_text_in_train_and_test,N/A,මට කරන්සි කීයක් තියාගන්න පුළුවන්ද?
+exact_text_in_train_and_test,N/A,நிலுவையில் உள்ள கொடுப்பனவு என்றால் என்ன?
+exact_text_in_train_and_test,N/A,எனது முகவரியை மாற்ற விரும்புகிறேன்.
+exact_text_in_train_and_test,N/A,எனது அட்டையைச் செயற்படுத்த நான் என்ன செய்ய வேண்டும்?
+exact_text_in_train_and_test,N/A,davasakata disposable cards kipayak hadanna puluvanda?
+exact_text_in_train_and_test,N/A,කාඩ් එකෙන් top up කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,virtual card ekak labaganne kohomada?
+exact_text_in_train_and_test,N/A,top-ups valata limit ekak tiyenavada?
+exact_text_in_train_and_test,N/A,cash ganna bari ayi?
+exact_text_in_train_and_test,N/A,top-ups වලට limits තියෙනවද?
+exact_text_in_train_and_test,N/A,top-up card eka verify karanne kohomada?
+exact_text_in_train_and_test,N/A,எந்த ஏடிஎம்களில் நான் இந்த அட்டையைப் பயன்படுத்தலாம்?
+exact_text_in_train_and_test,N/A,எனது தனிப்பட்ட விபரங்களை நான் புதுப்பிக்க வேண்டும்.
+exact_text_in_train_and_test,N/A,mage id eka verify karaganna bari ayi?
+exact_text_in_train_and_test,N/A,alut card ekak link karanne kohomada?
+exact_text_in_train_and_test,N/A,මගේ අලුත් කාඩ් එක activate කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,mage disposable virtual card eka vada nokaranne ayi?
+exact_text_in_train_and_test,N/A,mage identity eka verify karanne koheda?
+exact_text_in_train_and_test,N/A,vayasa limit ekak tiyenavada?
+exact_text_in_train_and_test,N/A,mage identity eka verify karaganne kohomada?
+exact_text_in_train_and_test,N/A,நான் ஒரு பணப் பரிமாற்றத்தை ரத்து செய்ய விரும்புகிறேன்.
+exact_text_in_train_and_test,N/A,cheque එකකින් top up කරගන්න පුළුවන්ද?
+exact_text_in_train_and_test,N/A,எனது பணப் பரிமாற்றம் நிராகரிக்கப்பட்டது.
+exact_text_in_train_and_test,N/A,cheque එකකින් top up කරන්න පුළුවන්ද?
+exact_text_in_train_and_test,N/A,Apple Pay eken top up karanne kohomada?
+exact_text_in_train_and_test,N/A,virtual card eka hoyaganne kohenda?
+exact_text_in_train_and_test,N/A,auto top-up ekata limit ekak tiyenavada?
+exact_text_in_train_and_test,N/A,mata thama virtual card ekak labune natte ayi?
+exact_text_in_train_and_test,N/A,transfer එකකට කොච්චර වෙලා යනවද?
+exact_text_in_train_and_test,N/A,එක්ස්චේන්ජ් රේට් එක හොයාගන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,identity verification ekata kalin transfers karanna puluvanda?
+exact_text_in_train_and_test,N/A,mata virtual card ekak labaganna puluvanda?
+exact_text_in_train_and_test,N/A,சர்வதேச அட்டை மூலம் பணம் சேர்ப்பதற்கு கட்டணங்கள் உண்டா?
+exact_text_in_train_and_test,N/A,අලුත් කාඩ් එකක් activate කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,passcode eka reset karanne kohomada?
+exact_text_in_train_and_test,N/A,මගේ identity එක verify කරගන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,top-up verification code එක හොයාගන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,mage card eka accept karana tan monavada?
+exact_text_in_train_and_test,N/A,cash ගන්න බැරි ඇයි?
+exact_text_in_train_and_test,N/A,ஒரு பரிவர்த்தனையை ரத்து செய்ய முடியுமா?
+exact_text_in_train_and_test,N/A,කාඩ් එක එන්න කොච්චර වෙලා යනවද?
+exact_text_in_train_and_test,N/A,mage card eka dan vada karanne naa.
+exact_text_in_train_and_test,N/A,cheque ekakin top up karaganna puluvanda?
+exact_text_in_train_and_test,N/A,பணப்பரிமாற்றம் எப்போது நிறைவடையும்?
+exact_text_in_train_and_test,N/A,நான் தான் அது என்பதை இந்தச் செயலி நம்பவில்லை.
+exact_text_in_train_and_test,N/A,virtual card ekak labaganne kohenda?
+exact_text_in_train_and_test,N/A,mage account ekata salli transfer karanne kohomada?
+exact_text_in_train_and_test,N/A,මගේ funds එන්නේ කොහෙන්ද?
+exact_text_in_train_and_test,N/A,Card PIN enga iruku?
+exact_text_in_train_and_test,N/A,எனது டொப்-அப் ஏன் வேலை செய்யவில்லை?
+exact_text_in_train_and_test,N/A,எனது பணப் பரிமாற்றம் ஏன் நிராகரிக்கப்பட்டது?
+exact_text_in_train_and_test,N/A,මට virtual card එකක් ඕනේ!
+exact_text_in_train_and_test,N/A,How do I unblock my PIN?
+exact_text_in_train_and_test,N/A,mage virtual card eka vada karanne naa.
+exact_text_in_train_and_test,N/A,අලුත් කාඩ් එකක් ලින්ක් කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,மிக அருகிலுள்ள மாஸ்டர்கார்ட் ஏடிஎம் எங்கே உள்ளது?
+exact_text_in_train_and_test,N/A,mata transfer ekak cancel karaganna one
+exact_text_in_train_and_test,N/A,me card eka accept karana businesses monavada?
+exact_text_in_train_and_test,N/A,ඔයාලා support කරන countries මොනවද?
+exact_text_in_train_and_test,N/A,எனது கணக்கு அறிக்கையில் ஒரு விசித்திரமான கொடுப்பனவு உள்ளது.
+exact_text_in_train_and_test,N/A,exchange rate eka hoyaganne kohomada?
+exact_text_in_train_and_test,N/A,mata disposable cards kiyak tiyaganna puluvanda?
+exact_text_in_train_and_test,N/A,මට තාම virtual card එකක් ලැබුනේ නැත්තේ ඇයි?
+exact_text_in_train_and_test,N/A,டொப்-அப்களுக்கு ஏதேனும் கட்டணங்கள் உண்டா?
+exact_text_in_train_and_test,N/A,mage card eka ona tanaka pavichchi karanna puluvanda?
+exact_text_in_train_and_test,N/A,මගේ කාඩ් එක දැන් වැඩ කරන්නේ නෑ.
+exact_text_in_train_and_test,N/A,ஏடிஎம் எனது அட்டையை எடுத்துக்கொண்டது.
+exact_text_in_train_and_test,N/A,Top-up ellai enna?
+exact_text_in_train_and_test,N/A,මගේ funds source එක verify කරන්න ඕනේ.
+exact_text_in_train_and_test,N/A,card eka enna kochchara vela yanavada?
+exact_text_in_train_and_test,N/A,பணத்தைத் திரும்பப் பெற நான் என்ன செய்ய வேண்டும்?
+exact_text_in_train_and_test,N/A,mata pending payment ekak tiyenne ayi?
+exact_text_in_train_and_test,N/A,top-up verification code eka hoyaganne kohomada?
+exact_text_in_train_and_test,N/A,mage top up eka vada nokale ayi?
+exact_text_in_train_and_test,N/A,ஏதேனும் ஏடிஎம் (ATM) இயந்திரங்களில் எனது பின் (PIN) இலக்கத்தை மாற்ற முடியுமா?
+exact_text_in_train_and_test,N/A,பணப் பரிமாற்றம் ஏன் நிராகரிக்கப்பட்டது?
+exact_text_in_train_and_test,N/A,මගේ කාඩ් එක ඕන තැනක පාවිච්චි කරන්න පුළුවන්ද?
+exact_text_in_train_and_test,N/A,நான் ஏன் எனது அடையாளத்தை உறுதிப்படுத்த வேண்டும்?
+exact_text_in_train_and_test,N/A,எனது கொடுப்பனவு ஏன் நிராகரிக்கப்பட்டது?
+exact_text_in_train_and_test,N/A,shop ekakadi mage card eka vada kale naa.
+exact_text_in_train_and_test,N/A,card PIN eka tiyenne koheda?
+exact_text_in_train_and_test,N/A,At which ATMs can I use this card?
+exact_text_in_train_and_test,N/A,Enoda card vela seiyala.
+exact_text_in_train_and_test,N/A,මට pending payment එකක් තියෙන්නේ ඇයි?
+exact_text_in_train_and_test,N/A,எனது அட்டையை நான் எங்கு பயன்படுத்தலாம் என்பதில் ஏதேனும் கட்டுப்பாடுகள் உள்ளனவா?
+exact_text_in_train_and_test,N/A,Refund process enna?
+exact_text_in_train_and_test,N/A,මගේ funds එන්නේ කොහෙන්ද කියලා දැනගන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,நான் எவ்வளவு டொப்-அப் செய்ய முடியும்?
+exact_text_in_train_and_test,N/A,cheque ekakin top up karanna puluvanda?
+exact_text_in_train_and_test,N/A,இந்தச் செயலியைப் பயன்படுத்தி நான் எவ்வாறு நாணயங்களை மாற்றுவது?
+exact_text_in_train_and_test,N/A,"எனது அட்டையைச் செயற்படுத்த முயன்றேன், ஆனால் அது வேலை செய்யவில்லை."
+exact_text_in_train_and_test,N/A,இது எனது அடையாளத்தை உறுதிப்படுத்த என்னை அனுமதிக்கவில்லை.
+exact_text_in_train_and_test,N/A,මගේ කාඩ් PIN එක හොයාගන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,எனது கடவுச்சொல் வேலை செய்யவில்லை.
+exact_text_in_train_and_test,N/A,exchange fee eka mokakda?
+exact_text_in_train_and_test,N/A,What businesses accept this card?
+exact_text_in_train_and_test,N/A,මගේ account එක delete කරන්න ඕනේ.
+exact_text_in_train_and_test,N/A,මේ කාඩ් එක accept කරන businesses මොනවද?
+exact_text_in_train_and_test,N/A,මගේ identity එක verify කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,US cards valata top up charges monavada?
+exact_text_in_train_and_test,N/A,top ups valata kisi fees ekak tiyenavada?
+exact_text_in_train_and_test,N/A,top ups වලට limit එකක් තියෙනවද?
+exact_text_in_train_and_test,N/A,அடையாளச் சோதனை என்றால் என்ன?
+exact_text_in_train_and_test,N/A,எனது டொப்-அப் ஏன் வெற்றிகரமாக முடியவில்லை?
+exact_text_in_train_and_test,N/A,எனது அட்டையை நான் எங்கே பயன்படுத்தலாம்?
+exact_text_in_train_and_test,N/A,දවසකට disposable cards කීපයක් හදන්න පුළුවන්ද?
+exact_text_in_train_and_test,N/A,exchange fee එක මොකක්ද?
+exact_text_in_train_and_test,N/A,Google Pay එකෙන් top up කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,mage funds verify karaganna one.
+exact_text_in_train_and_test,N/A,நாணயங்களை மாற்றுவதற்கு எவ்வளவு செலவாகும்?
+exact_text_in_train_and_test,N/A,cheque එකකින් top up කරන්න බැරි ඇයි?
+exact_text_in_train_and_test,N/A,top ups වලට කිසි fees එකක් තියෙනවද?
+exact_text_in_train_and_test,N/A,mage credit card ekata salli transfer karanna puluvanda?
+exact_text_in_train_and_test,N/A,mage card eka enne kavadada?
+exact_text_in_train_and_test,N/A,US credit cards accept කරනවද?
+exact_text_in_train_and_test,N/A,මගේ කාඩ් එක පාවිච්චි කරන්නේ කොහෙද?
+exact_text_in_train_and_test,N/A,virtual card එකක් ලබාගන්න විදියක් තියෙනවද?
+exact_text_in_train_and_test,N/A,என்னால் அட்டையின் பின் (PIN) இலக்கத்தைக் கண்டறிய முடியவில்லை.
+exact_text_in_train_and_test,N/A,සල්ලි withdraw කරන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,கார்ட் மூலம் நான் எவ்வாறு டொப்-அப் செய்வது?
+exact_text_in_train_and_test,N/A,oyala Visa ho Mastercard accept karanavada?
+exact_text_in_train_and_test,N/A,top-ups valata limits tiyenavada?
+exact_text_in_train_and_test,N/A,mage yaluvanta mage account eka top up karanna puluvanda?
+exact_text_in_train_and_test,N/A,mage card eka pavichchi karanne koheda?
+exact_text_in_train_and_test,N/A,எனது காண்டாக்ட்லெஸ் ஏன் வேலை செய்யவில்லை?
+exact_text_in_train_and_test,N/A,"There are a few transaction that I don't recognize, I think someone managed to get my card details a"
+exact_text_in_train_and_test,N/A,මගේ කාඩ් එක වැඩ කරන්නේ නෑ
+exact_text_in_train_and_test,N/A,mage credit card eken salli transfer karanne kohomada?
+exact_text_in_train_and_test,N/A,எனது பின் (PIN) இலக்கம் எங்கே உள்ளது?
+exact_text_in_train_and_test,N/A,எனது கொடுப்பனவு ஏன் நிலுவையில் உள்ளது?
+exact_text_in_train_and_test,N/A,எனது தனிப்பட்ட விபரங்களை மாற்ற விரும்புகிறேன்.
+exact_text_in_train_and_test,N/A,salli withdraw karanne kohomada?
+exact_text_in_train_and_test,N/A,நாணயமாற்றுக் கட்டணம் எவ்வளவு?
+exact_text_in_train_and_test,N/A,මගේ top up එක වැඩ නොකළේ ඇයි?
+exact_text_in_train_and_test,N/A,பின் (PIN) இலக்கம் தனியாக விநியோகிக்கப்படுகிறதா?
+exact_text_in_train_and_test,N/A,எனது டொப்-அப் வேலை செய்யவில்லை.
+exact_text_in_train_and_test,N/A,මගේ කාඩ් එක ඕනම තැනක පාවිච්චි කරන්න පුළුවන්ද?
+exact_text_in_train_and_test,N/A,virtual card එකක් ගන්නේ කොහොමද?
+exact_text_in_train_and_test,N/A,mage card eka onama tanaka pavichchi karanna puluvanda?
+exact_text_in_train_and_test,N/A,oyala support karana countries monavada?
+exact_text_in_train_and_test,N/A,mage virtual card eka vada nokaranne ayi?
+exact_text_in_train_and_test,N/A,credit card eken salli transfer karanne kohomada?
+exact_text_in_train_and_test,N/A,මගේ identity එක verify කරන්නේ කොහෙද?
+exact_text_in_train_and_test,N/A,நான் கேட்ட முழுப் பணமும் எனக்குக் கிடைக்கவில்லை.
+exact_text_in_train_and_test,N/A,virtual card එකක් ලබාගන්නේ කොහෙන්ද?
+exact_text_in_train_and_test,N/A,நான் SWIFT மூலம் பரிமாற்றம் செய்யலாமா?
+exact_text_in_train_and_test,N/A,මගේ යාළුවන්ට මගේ account එක top up කරන්න පුළුවන්ද?
+exact_text_in_train_and_test,N/A,நான் பணம் எடுப்பது ஏன் நிராகரிக்கப்பட்டது?
+exact_text_in_train_and_test,N/A,disposable virtual card ekak labaganne kohomada?
+exact_text_in_train_and_test,N/A,mage funds enne kohenda kiyala danaganne kohomada?
+exact_text_in_train_and_test,N/A,card eken top up karanne kohomada?
+exact_text_in_train_and_test,N/A,US cards වලට top up charges මොනවද?
+exact_text_in_train_and_test,N/A,mage passcode eka amataka vunot mama mokada karanne?
+exact_text_in_train_and_test,N/A,நீங்கள் விசா அல்லது மாஸ்டர்கார்ட் வழங்குகிறீர்களா?
+exact_text_in_train_and_test,N/A,எனது அடையாளத்தை உறுதிப்படுத்த நான் எதைப் பயன்படுத்தலாம்?

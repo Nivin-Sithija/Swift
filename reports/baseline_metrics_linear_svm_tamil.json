@@ -1,0 +1,10 @@
+{
+  "language": "tamil",
+  "model": "linear_svm",
+  "C": 1.0,
+  "accuracy": 0.8681390061708347,
+  "macro_f1": 0.8631369037192159,
+  "weighted_f1": 0.8631051070133634,
+  "n_test_samples": 3079,
+  "n_classes": 77
+}

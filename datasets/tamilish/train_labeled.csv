@@ -218,9 +218,9 @@ id,text_en,text,category,sentiment,priority
 216,"I have found my lost or stolen card, would I still have to activate the new card that was sent to me through the mail in order to access my account?","Tholanja illati thiruttu pona enoda card-a kandupudichiten, enoda account-a use panna post-la vantha puthu card-a thaan activate panna venuma?",card_linking,Neutral,Low
 217,Where can I link a new card?,Puthu card-a enga link panrathu?,card_linking,Neutral,Low
 218,How do I add a card on to the app?,App-la card-a eppadi add panrathu?,card_linking,Neutral,Low
-219,"I found my card in my jacket this morning, so can I reactivate it?","Inniku kalai enoda jacket-la card-a kandupudichiten, athனால athai thirumba reactivate panna mudiyuma?",card_linking,Neutral,Low
+219,"I found my card in my jacket this morning, so can I reactivate it?","Inniku kalai enoda jacket-la card-a kandupudichiten, athanaala athai thirumba reactivate panna mudiyuma?",card_linking,Neutral,Low
 220,"I've obtained the card, how do I enable it on the app?","Enaku card kedachithu, athai app-la eppadi enable panrathu?",card_linking,Neutral,Low
-221,I need to find the card I received in the app.,Enaku vantha card-a app-la kandupடிக்க வேணும்.,card_linking,Neutral,Low
+221,I need to find the card I received in the app.,Enaku vantha card-a app-la kandupudikka venum.,card_linking,Neutral,Low
 222,How do I get my card on the app?,Enoda card-a app-la eppadi kondu varrathu?,card_linking,Neutral,Low
 223,"In the app, how can I make it show the new card that arrived?","App-la, puthusa vantha card-a eppadi kaatrakki seiyurathu?",card_linking,Neutral,Low
 224,How do I link my new card?,Enoda puthu card-a eppadi link panrathu?,card_linking,Neutral,Low
@@ -1442,10 +1442,10 @@ id,text_en,text,category,sentiment,priority
 1442,I would like to change currency,Naan currency matha virumburen.,exchange_via_app,Neutral,Low
 1443,How do I make a currency exchange?,Naan eppadi currency exchange panrathu?,exchange_via_app,Neutral,Low
 1444,"I can't figure out how to change LKR to USD, what do I do?","LKR ah USD ah eppadi mathurathunu enaku puriyala, naan enna panrathu?",exchange_via_app,Neutral,Low
-1445,"I accidentally chose to exchange LKR, but I need to pick USD. How can I change it?","Naan thavarithala LKR ah exchange panna select panniten, aana enaku USD select பண்ணனும். Naan eppadi atha mathurathu?",exchange_via_app,Neutral,Low
+1445,"I accidentally chose to exchange LKR, but I need to pick USD. How can I change it?","Naan thavarithala LKR ah exchange panna select panniten, aana enaku USD select pannanum. Naan eppadi atha mathurathu?",exchange_via_app,Neutral,Low
 1446,How can I exchange USD and LKR in the app?,App la USD matrum LKR ah naan eppadi exchange panrathu?,exchange_via_app,Neutral,Low
 1447,How can I exchange currencies in the app?,App la naan eppadi currency exchange panrathu?,exchange_via_app,Neutral,Low
-1448,I need to exchange a currency - can I do that here?,Naan oru currency exchange பண்ணனும் - atha inga panna mudiyuma?,exchange_via_app,Neutral,Low
+1448,I need to exchange a currency - can I do that here?,Naan oru currency exchange pannanum - atha inga panna mudiyuma?,exchange_via_app,Neutral,Low
 1449,How can I change the currency I'm exchanging from USD to LKR?,Naan mathura currency-a USD la irunthu LKR-a eppadi mathurathu?,exchange_via_app,Neutral,Low
 1450,What do I need to do to exchange my money?,Enoda panatha exchange panna naan enna seiyanum?,exchange_via_app,Neutral,Low
 1451,"I would like to exchange currencies, how do I go upon it?","Naan currency exchange panna virumburen, athai eppadi seiyurathu?",exchange_via_app,Neutral,Low
@@ -2509,7 +2509,7 @@ How do I unblock my PIN?",Enoda PIN-a epdi unblock panrathu?,pin_blocked,Neutral
 2508,"I got less than what i asked for in the ATM, why?","ATM la naan ketatha vida kuraiva thaan kedachuthu, yaen?",wrong_amount_of_cash_received,Neutral,Medium
 2509,"I'm stuck here at your broken ATM and I don't know what to do next. Asked for Rs 30,000, got Rs 10,000. ATM said I got Rs 30,000. Something very wrong here and I want my money now!","Ungaloda puzhuthana ATM la naan maatikituruken, aduthu enna panrathu nu theriyala. 30,000 rupa ketten, 10,000 rupa thaan kedachuthu. Aana ATM la 30,000 rupa kedacha mathiri kaatuthu. Inga etho thappa nadanthuruku, enoda cash enaku ipove venum!",wrong_amount_of_cash_received,Negative,Medium
 2510,"The machine only paid me a hundred when I wanted Rs 20,000","Enaku 20,000 rupa theva patta apo machine enaku nooru rupa thaan thanthuthu.",wrong_amount_of_cash_received,Neutral,Medium
-2511,There was a fee charged when I paid with my card.,Enoda card use panni pay pannும்போது fee charge panniyirukanga.,card_payment_fee_charged,Neutral,Medium
+2511,There was a fee charged when I paid with my card.,Enoda card use panni pay pannumbothu fee charge panniyirukanga.,card_payment_fee_charged,Neutral,Medium
 2512,I received a fee I should not have.,Enaku vara koodatha oru fee charge aayiruku.,card_payment_fee_charged,Neutral,Medium
 2513,Why am I being a charged for using my card?,Enoda card use panrathuku yen fee charge panranga?,card_payment_fee_charged,Neutral,Medium
 2514,Tell me why there is a fee for a card payment.,Card payment ku yen fee charge panranga nu sollunga.,card_payment_fee_charged,Neutral,Medium
@@ -2687,7 +2687,7 @@ How do I unblock my PIN?",Enoda PIN-a epdi unblock panrathu?,pin_blocked,Neutral
 2686,After I used my card I saw I was charged a fee for using it,"Card use pannadhuku aprom, adha use pannadhukaga fee charge pannirukuradha pathen.",card_payment_fee_charged,Neutral,Medium
 2687,Is there an allowance on cards?,Cards ku edhadhu allowance iruka?,card_payment_fee_charged,Neutral,Low
 2688,Why am I being charged a hidden fee?,Yen enaku hidden fee charge panreenga?,card_payment_fee_charged,Neutral,Medium
-2689,Can you explain why I was charged extra when I used the card?,Card use pannumpothu yen extra charge pannineenga nu explain பண்ண mudiyuma?,card_payment_fee_charged,Neutral,Medium
+2689,Can you explain why I was charged extra when I used the card?,Card use pannumpothu yen extra charge pannineenga nu explain panna mudiyuma?,card_payment_fee_charged,Neutral,Medium
 2690,Why did I get charged a fee on my card?,Enoda card la yen fee charge pannanga?,card_payment_fee_charged,Neutral,Medium
 2691,Do you have charges now when you pay with a card?,Ipo card moolam pay pannumpothu charges edhadhu iruka?,card_payment_fee_charged,Neutral,Low
 2692,What is the extra fee that was added when I used the card?,Card use pannumpothu add aana extra fee enna?,card_payment_fee_charged,Neutral,Medium
@@ -2695,7 +2695,7 @@ How do I unblock my PIN?",Enoda PIN-a epdi unblock panrathu?,pin_blocked,Neutral
 2694,Why am I being charged a fee for using my card? If there is some print out of places that charge me can you please send me that?,Card use pannadhukaga yen fee charge panreenga? Charge panra places oda list edhadhu irundha please anupa mudiyuma?,card_payment_fee_charged,Neutral,Medium
 2695,How can I tell if there will be a fee added to my payment or not?,Enoda payment la fee add aaguma illayanu epdi therinjukuradhu?,card_payment_fee_charged,Neutral,Low
 2696,You promised no fees but now I've got one. What the hell!?,Fee illainu promise pannitu ipo charge pannirukeenga. What the hell!?,card_payment_fee_charged,Negative,Medium
-2697,How do I know which payments I make will have additional fees? Where can I find this information online?,Naan panra endha payments ku extra fees varumnu epdi therinjukuradhu? Intha info online la enga paக்கலாம்?,card_payment_fee_charged,Neutral,Low
+2697,How do I know which payments I make will have additional fees? Where can I find this information online?,Naan panra endha payments ku extra fees varumnu epdi therinjukuradhu? Intha info online la enga paakkalam?,card_payment_fee_charged,Neutral,Low
 2698,I am worried that too much time has gone by for a transfer to be completed.,Oru transfer complete aaguradhuku rumba time aayiduchunu naan worry panren.,transfer_not_received_by_recipient,Negative,Medium
 2699,What is the time frame that it usually takes for a transfer to come through? I have a friend needing it immediately but it has yet to come through.,"Oru transfer vanthu seradhuku eppovum evlo time aagum? Enoda friend ku urgent ah venum, aana innum vanthu serala.",transfer_not_received_by_recipient,Neutral,High
 2700,My money transaction can't be seen by the person I sent it to,Naan kaasu anupina aaluku intha transaction kaatala.,transfer_not_received_by_recipient,Neutral,Medium
@@ -2716,7 +2716,7 @@ How do I unblock my PIN?",Enoda PIN-a epdi unblock panrathu?,pin_blocked,Neutral
 2715,"A transaction I did to my friend hasn't arrived yet, why?","Enoda friend ku panna transaction innum reach aagala, yen?",transfer_not_received_by_recipient,Neutral,Medium
 2716,Where is my last money transaction,Enoda last money transaction enga?,transfer_not_received_by_recipient,Neutral,Medium
 2717,I am having an issue with an in country transfer I did a few days ago. It has yet to appear in my account. I have checked to be sure that all account information is correct multiple times. What is taking the transfer so long?,Sila days ku munnadi panna in-country transfer la oru problem. Adhu innum enoda account la kaatala. Ella account details um correct thaan nu pala thadava check panniten. Transfer ku yen ivlo time aaguthu?,transfer_not_received_by_recipient,Neutral,Medium
-2718,I made a transfer the day before yesterday within this country. It is still not showing up at all. I have double-checked and the account number is certainly right. I've actually type this multiple times. can you look into what is going on here?,"Netru munthinam intha country kulla oru transfer pannen. Adhu innum kaatவே illa. Naan double-check panniten, account number kandipa correct thaan. Naan nijamaave idha pala thadava type panniten. Inga enna nadakuthunu konjam paaka mudiyuma?",transfer_not_received_by_recipient,Neutral,Medium
+2718,I made a transfer the day before yesterday within this country. It is still not showing up at all. I have double-checked and the account number is certainly right. I've actually type this multiple times. can you look into what is going on here?,"Netru munthinam intha country kulla oru transfer pannen. Adhu innum kaatve illa. Naan double-check panniten, account number kandipa correct thaan. Naan nijamaave idha pala thadava type panniten. Inga enna nadakuthunu konjam paaka mudiyuma?",transfer_not_received_by_recipient,Neutral,Medium
 2719,How much time do transfers typically take? I sent money to a friend who needs it urgently. It's been hours and has not gone through.,Podhuva transfer panna evlo neram edukkum? Urgent-a kaasu thevaipadra oru friend-uku naan kaasu anupinen. Pala mani neram aayum innum adhu poi serala.,transfer_not_received_by_recipient,Neutral,High
 2720,A transaction to a friend still hasn't shown up.,Friend-uku panna transaction innum kaatalai.,transfer_not_received_by_recipient,Neutral,High
 2721,I sent money and the recipient has not received their money after two weeks.,"Naan kaasu anupi rendu vaaram aayum, receiver-uku innum kaasu kedaikala.",transfer_not_received_by_recipient,Neutral,High
@@ -3348,8 +3348,8 @@ Where can I use my card?",Enoda card-ai naan engay payanpaduthalaam?,card_accept
 3346,I placed a cheque but the funds aren't there,"Naan cheque potten, aana kaasu innum varala.",balance_not_updated_after_cheque_or_cash_deposit,Neutral,Medium
 3347,The cheque I sent to you to have deposited a couple days ago has not cleared in my account yet. What is the issue?,Rendu naalaiku munnadi deposit panna naan anupina cheque innum enoda account-la clear aagala. Enna pirachnai?,balance_not_updated_after_cheque_or_cash_deposit,Neutral,Medium
 3348,"the balance has not changed, but I have deposited some money","Balance maarala, aana naan konjam kaasu deposit panniruken.",balance_not_updated_after_cheque_or_cash_deposit,Neutral,Medium
-3349,"I am worried about the amount of my cheque, which should be credited to my account few days before. As i have already sent you the cheque.",Sila naalaiku munnadiye enoda account-la credit aayiruka vendiya cheque amount pathi naan kavalapaduren. ஏna naan aerkanae cheque-a anupiten.,balance_not_updated_after_cheque_or_cash_deposit,Neutral,Medium
-3350,I need my account checked because it appears there is a problem. I attempted to update my balance yesterday using cheque but it doesn't seem to have worked.  Should this not be faster than this?,"Enoda account-a check பண்ணனும், ஏna etho pirachnai iruka pola theriyuthu. Nethu cheque vachu balance update panna try pannen, aana athu work aagala pola. Ithu ithavida fastaa irukanum thaane?",balance_not_updated_after_cheque_or_cash_deposit,Neutral,Medium
+3349,"I am worried about the amount of my cheque, which should be credited to my account few days before. As i have already sent you the cheque.",Sila naalaiku munnadiye enoda account-la credit aayiruka vendiya cheque amount pathi naan kavalapaduren. yena naan aerkanae cheque-a anupiten.,balance_not_updated_after_cheque_or_cash_deposit,Neutral,Medium
+3350,I need my account checked because it appears there is a problem. I attempted to update my balance yesterday using cheque but it doesn't seem to have worked.  Should this not be faster than this?,"Enoda account-a check pannanum, yena etho pirachnai iruka pola theriyuthu. Nethu cheque vachu balance update panna try pannen, aana athu work aagala pola. Ithu ithavida fastaa irukanum thaane?",balance_not_updated_after_cheque_or_cash_deposit,Neutral,Medium
 3351,I've deposited a check but the cash isn't showing that it's there yet.,"Naan cheque deposit panniruken, aana cash innum kaatalai.",balance_not_updated_after_cheque_or_cash_deposit,Neutral,Medium
 3352,Waiting for the cash I deposited this morning still,Inniku kaalai deposit panna kaasukaaga innum wait pannuren.,balance_not_updated_after_cheque_or_cash_deposit,Neutral,Medium
 3353,"I put cash in my account, but I don't see it.","Naan enoda account-la kaasu potten, aana athu kaatalai.",balance_not_updated_after_cheque_or_cash_deposit,Neutral,Medium
@@ -4462,7 +4462,7 @@ Where can I use my card?",Enoda card-ai naan engay payanpaduthalaam?,card_accept
 4460,What do I do if I detect fraudulent use on my car?,Enoda card-la fraudulent use ethavathu kandupidicha naan enna pannanum?,compromised_card,Neutral,High
 4461,I think my account has been hacked there are charges on there I don't recognize.,"Enoda account hack aayiduchu-nu nenaikuren, enaku theriyatha charges ethuvum athula iruku.",compromised_card,Neutral,High
 4462,I don't recognize some transactions.  Is someone else using it?,Sila transactions enaku theriyala. Vera yaro use panrangala?,compromised_card,Neutral,High
-4463,I just got an email in confirming my purchase with my card. I login to the mobile app on the card and found out there are several purchase were made without me aware of it. Evidently someone had stole my card information and made these fraudulent purchase. I need the transaction to be reverse and have my card suspended.,"Enoda card-la purchase pannathukaana confirmation email ippo thaan vanthuthu. Naan mobile app-la login panni paathaப்போ, enaku theriyama pala purchases nadanthuruku. Yaro enoda card details-a thirudi intha fraudulent purchases panni irukanga-nu nalla theriyuthu. Intha transactions-a reverse panni, enoda card-a suspend pannanum.",compromised_card,Neutral,High
+4463,I just got an email in confirming my purchase with my card. I login to the mobile app on the card and found out there are several purchase were made without me aware of it. Evidently someone had stole my card information and made these fraudulent purchase. I need the transaction to be reverse and have my card suspended.,"Enoda card-la purchase pannathukaana confirmation email ippo thaan vanthuthu. Naan mobile app-la login panni paathappo, enaku theriyama pala purchases nadanthuruku. Yaro enoda card details-a thirudi intha fraudulent purchases panni irukanga-nu nalla theriyuthu. Intha transactions-a reverse panni, enoda card-a suspend pannanum.",compromised_card,Neutral,High
 4464,How do I stop fraud to my account?,Enoda account la nadakura fraud ah eppadi thadukurathu?,compromised_card,Neutral,High
 4465,card is being used by someone else,Card ah vera yaro use panranga.,compromised_card,Neutral,High
 4466,I think someone else is using my card.,Yaro enoda card ah use panranga nu nenaikiren.,compromised_card,Neutral,High
@@ -4600,37 +4600,37 @@ At which ATMs can I use this card?",Entha ATMgalil naan intha card-ai use pannal
 4597,need to know places i can withdraw money,Naan kaasu edukkakkoodiya idangalai ariya vendum.,atm_support,Neutral,Low
 4598,The card can be used at which ATMs?,Indha card-ai endha ATM-galil payanpaduthalaam?,atm_support,Neutral,Low
 4599,What's the closest place to withdraw money?,Kaasu eduppadharku miga arugilulla idam edhu?,atm_support,Neutral,Low
-4600,Is there a list of ATMs that take this card?,Indha card-ai ஏற்க்கும் ATM-galin list edhadhum ulladha?,atm_support,Neutral,Low
+4600,Is there a list of ATMs that take this card?,Indha card-ai yerkkum ATM-galin list edhadhum ulladha?,atm_support,Neutral,Low
 4601,Is there a Mastercard ATM nearby?,Arugil edhadhum Mastercard ATM ulladha?,atm_support,Neutral,Low
 4602,Am I limited to what ATM I can use my card?,Enoda card-ai kurippitta ATM-galil mattum dhaan payanpadutha mudiyuma?,atm_support,Neutral,Low
 4603,how do I know where I can get money withdrawn?,Naan engay kaasu edukkalaam endru enakku eppadi theriyum?,atm_support,Neutral,Low
-4604,Tell me what ATMs take this card.,Indha card-ai ஏற்க்கும் ATM-gal edhavai endru enakku sollunga.,atm_support,Neutral,Low
+4604,Tell me what ATMs take this card.,Indha card-ai yerkkum ATM-gal edhavai endru enakku sollunga.,atm_support,Neutral,Low
 4605,Where are the ATMs that I can use Mastercard?,Naan Mastercard payanpaduthakkoodiya ATM-gal engay ullana?,atm_support,Neutral,Low
 4606,Where is an ATM?,ATM engay irukkiradhu?,atm_support,Neutral,Low
 4607,Which locations can I withdraw money from?,Naan endhendha idangalil irundhu kaasu edukkalaam?,atm_support,Neutral,Low
 4608,Can this card be used at all ATMs?,Indha card-ai ella ATM-galilum payanpaduthalaama?,atm_support,Neutral,Low
-4609,Are there any ATM's near me that accept this card?,Enakku arugil indha card-ai ஏற்க்கும் ATM-gal edhadhum ullanava?,atm_support,Neutral,Low
+4609,Are there any ATM's near me that accept this card?,Enakku arugil indha card-ai yerkkum ATM-gal edhadhum ullanava?,atm_support,Neutral,Low
 4610,I need help from someone in your department with finding my nearest ATM.,Enakku miga arugilulla ATM-ai kandupikka unga department-il ulla oruvarin udhavi enakku thevai.,atm_support,Neutral,Low
 4611,what are the locations i can withdraw money,Naan kaasu edukkakkoodiya idangal edhavai?,atm_support,Neutral,Low
-4612,Which ATMs accept this circuit board ?,Endha ATM-gal indha circuit board-ai ஏற்கின்றன?,atm_support,Neutral,Low
-4613,How many ATMs will take this card?,Ethanai ATM-gal indha card-ai ஏற்க்கும்?,atm_support,Neutral,Low
+4612,Which ATMs accept this circuit board ?,Endha ATM-gal indha circuit board-ai yerkkindrana?,atm_support,Neutral,Low
+4613,How many ATMs will take this card?,Ethanai ATM-gal indha card-ai yerkkum?,atm_support,Neutral,Low
 4614,What ATMs can I use this card at?,Indha card-ai naan endha ATM-galil payanpaduthalaam?,atm_support,Neutral,Low
-4615,Is this card accepted by ATMs?,Indha card ATM-galal ஏற்கப்படுகிறதா?,atm_support,Neutral,Low
+4615,Is this card accepted by ATMs?,Indha card ATM-galal yerkkapadukiratha?,atm_support,Neutral,Low
 4616,Are there only certain ATM machines where I can use this card?,Naan indha card-ai payanpaduthakkoodiya kurippitta ATM machines mattum dhaan ullanava?,atm_support,Neutral,Low
 4617,Where can I find a Mastercard ATM?,Naan oru Mastercard ATM-ai engay kaanalaam?,atm_support,Neutral,Low
 4618,Tell me what ATMs use this card.,Indha card-ai payanpaduthum ATM-gal edhavai endru enakku sollunga.,atm_support,Neutral,Low
-4619,Which ATMs take the card?,Endha ATM-gal indha card-ai ஏற்கின்றன?,atm_support,Neutral,Low
+4619,Which ATMs take the card?,Endha ATM-gal indha card-ai yerkkindrana?,atm_support,Neutral,Low
 4620,How far is the closest ATM from me?,Enakku miga arugilulla ATM evvalavu dhoorathil ulladhu?,atm_support,Neutral,Low
 4621,Can you tell me the ATMs I can use with my card?,Enoda card-ai payanpaduthi naan payanpaduthakkoodiya ATM-galai enakku solla mudiyuma?,atm_support,Neutral,Low
 4622,Where is a Mastercard ATM?,Mastercard ATM engay irukkiradhu?,atm_support,Neutral,Low
 4623,I need to know where I can withdraw money.,Naan engay kaasu edukkalaam enbadhai naan ariya vendum.,atm_support,Neutral,Low
 4624,Are there specific ATM's I can use with this card?,Indha card-udan naan payanpaduthakkoodiya kurippitta ATM-gal edhadhum ulladha?,atm_support,Neutral,Low
 4625,Where can I find an ATM?,Naan oru ATM-ai engay kaanalaam?,atm_support,Neutral,Low
-4626,How can I tell if an AMT will take this card?,Oru ATM indha card-ai ஏற்க்குமா endru naan eppadi arivadhu?,atm_support,Neutral,Low
+4626,How can I tell if an AMT will take this card?,Oru ATM indha card-ai yerkkuma endru naan eppadi arivadhu?,atm_support,Neutral,Low
 4627,How do I know it is a Mastercard ATM?,Adhu oru Mastercard ATM endru enakku eppadi theriyum?,atm_support,Neutral,Low
-4628,"ATMs, which ones will accept this card?","ATM-gal, ivatril edhavai indha card-ai ஏற்க்கும்?",atm_support,Neutral,Low
+4628,"ATMs, which ones will accept this card?","ATM-gal, ivatril edhavai indha card-ai yerkkum?",atm_support,Neutral,Low
 4629,What ATM locations are near me?,Enakku arugil ulla ATM idangal edhavai?,atm_support,Neutral,Low
-4630,What ATM accepts Mastercard?,Endha ATM Mastercard-ai ஏற்கிறது?,atm_support,Neutral,Low
+4630,What ATM accepts Mastercard?,Endha ATM Mastercard-ai yerkkirathu?,atm_support,Neutral,Low
 4631,Can I withdraw from any ATM?,Naan endha ATM-ilirundhum kaasu edukkalaama?,atm_support,Neutral,Low
 4632,"Hi, i found a large amount payment in my old statements which i am sure was not made by me. I am aware that the time has passed but is there a way to raise a dispute for this payment now?","Vanakkam, enoda pazhaya statement-galil oru periya amount pay panniruppadhai naan kanden, adhai naan seiyala enbadhil naan urudhiyaaga irukkiren. kaalam kadandhuvittadhu enbadhai naan ariven, aanaal ippo indha payment-ukku edhiraaga oru dispute raise panna edhadhum vazhi irukkiradha?",direct_debit_payment_not_recognised,Negative,High
 4633,what is the word?,Andha vaarthai enna?,direct_debit_payment_not_recognised,Neutral,High
@@ -4768,7 +4768,7 @@ At which ATMs can I use this card?",Entha ATMgalil naan intha card-ai use pannal
 4765,I have an unknown charge.,Enaku theriyatha oru charge pannirukanga.,direct_debit_payment_not_recognised,Neutral,High
 4766,What do I do if there is an electronic debit that is not correct?,Thavarana electronic debit onnu iruntha naan enna seiyanum?,direct_debit_payment_not_recognised,Neutral,High
 4767,There is a payment showing that I know I didn't make. I didn't use my card that day and I'm sure of it. Can you please cancel that transaction and return my money? Thankyou,"Naan pannala nu enaku nalla therinja oru payment kaatuthu. Aniku naan enoda card ah use pannave illa, athula naan sure ah irukan. Please antha transaction ah cancel panni enoda panatha thirumba thara mudiyuma? Thanks.",direct_debit_payment_not_recognised,Negative,High
-4768,after going over my transactions for the last couple of months I noticed a pretty large charge that I know I did not make. I know it's been a while but can I still dispute this charge?,"Kadantha sila maasama enoda transactions ah check pannapo, naan pannatha oru periya charge ah pathen. Ith நடந்து konjam naal aaiduchu nu theriyum, aana innum ithuku dispute panna mudiyuma?",direct_debit_payment_not_recognised,Negative,High
+4768,after going over my transactions for the last couple of months I noticed a pretty large charge that I know I did not make. I know it's been a while but can I still dispute this charge?,"Kadantha sila maasama enoda transactions ah check pannapo, naan pannatha oru periya charge ah pathen. Ith nadanthu konjam naal aaiduchu nu theriyum, aana innum ithuku dispute panna mudiyuma?",direct_debit_payment_not_recognised,Negative,High
 4769,Someone else made a Direct Debit transaction on my account,Enoda account la vera yaaro direct debit transaction pannirukanga.,direct_debit_payment_not_recognised,Negative,High
 4770,How can I dispute a direct debit charge on my account?,Enoda account la irukura direct debit charge ku eppadi dispute panrathu?,direct_debit_payment_not_recognised,Neutral,High
 4771,I have a direct debit I didn't make,Naan pannatha oru direct debit iruku.,direct_debit_payment_not_recognised,Negative,High
@@ -4808,7 +4808,7 @@ At which ATMs can I use this card?",Entha ATMgalil naan intha card-ai use pannal
 4805,"There is a direct debit that I didn't set up, what should I do?","Naan set pannaatha oru direct debit irukku, naan enna seiyanum?",direct_debit_payment_not_recognised,Negative,High
 4806,I see a direct debit that I didn't authorize,Naan authorize pannaatha oru direct debit-a naan paarkiren.,direct_debit_payment_not_recognised,Negative,High
 4807,"I know this very late, but I just went through my statements from the last couple months and there's one quite large-ish payment that I definitely haven't made. Is it still possible to dispute it?","Ithu romba late nu theriyum, aana pona sila maasathu statement-a paarkumpothu naan nichayama seiyatha oru periya payment irukku. Atha innum dispute panna mudiyuma?",direct_debit_payment_not_recognised,Negative,High
-4808,I checked my account and see that funds were deducted from a seller I didn't approve of. Can you help me understand?,"Enoda account-a check pannaப்போ, naan approve pannaatha oru seller kitta irunthu kaasu kazhikkapatturukuratha paathen. Enaku ithu enna nu puriya vaikka mudiyuma?",direct_debit_payment_not_recognised,Negative,High
+4808,I checked my account and see that funds were deducted from a seller I didn't approve of. Can you help me understand?,"Enoda account-a check pannappo, naan approve pannaatha oru seller kitta irunthu kaasu kazhikkapatturukuratha paathen. Enaku ithu enna nu puriya vaikka mudiyuma?",direct_debit_payment_not_recognised,Negative,High
 4809,There is a transaction showing in my app that I did not make as I have not used that card all day.  Please reimburse this amount to my account.,"Naan innaiku full-a antha card-a use pannaatha nala, naan seiyatha oru transaction app la kaatuthu. Thayaiseithu intha amount-a enoda account-ku thiruppi thanga.",direct_debit_payment_not_recognised,Negative,High
 4810,My app shows a direct debit that isn't mine.,Enoda app enaku sonthamillatha oru direct debit-a kaatuthu.,direct_debit_payment_not_recognised,Neutral,High
 4811,I haven't used my card all day but there is a payment showing in the app. Please cancel it!,"Naan innaiku full-a card use pannala, aana app la oru payment kaatuthu. Thayaiseithu atha cancel pannunga!",direct_debit_payment_not_recognised,Negative,High
@@ -5984,7 +5984,7 @@ At which ATMs can I use this card?",Entha ATMgalil naan intha card-ai use pannal
 5981,I've tried several times to make a payment and every time my card is declined? Could my card be locked? I don't know what to do.,Naan pala thadava payment panna try pannen aana ovvoru thadavayum card decline aaguthu. En card lock aayirukumo? Enna panrathu nu theriyala.,declined_card_payment,Negative,Medium
 5982,"I had a problem with my card payment, can you help?","Enoda card payment la oru prechana, help panna mudiyuma?",declined_card_payment,Neutral,Medium
 5983,I tried to used my card in a shop and the transaction was declined.,Naan oru kadaila en card ah use panna try pannen aana transaction decline aaiduchu.,declined_card_payment,Neutral,Medium
-5984,"I was out today looking forward to paying with my new card, turns out the payment kept getting declined. This is really sad, what's going on?","Naan iniku veliya pogumpothu en puthu card vachi pay பண்ணலாம் nu nenachen, aana payment thodarnthu decline aagite irunthuchu. Ithu romba varuthama iruku, enna nadakuthu?",declined_card_payment,Negative,Medium
+5984,"I was out today looking forward to paying with my new card, turns out the payment kept getting declined. This is really sad, what's going on?","Naan iniku veliya pogumpothu en puthu card vachi pay pannalam nu nenachen, aana payment thodarnthu decline aagite irunthuchu. Ithu romba varuthama iruku, enna nadakuthu?",declined_card_payment,Negative,Medium
 5985,Card payment didn't go through.,Card payment complete aagala.,declined_card_payment,Neutral,Medium
 5986,Please help to explain to me why my new card was declined when I tried to use it at my grocery store this morning to pay for the items I needed.  I tried three times to use it and it kept being declined.  I was very embarrassed standing there trying to buy my groceries.,Iniku kalaila grocery store la enaku thevayana porutkaluku pay panna en puthu card use pannumpothu yen decline aachu nu konjam solreengala. Naan moonu thadava try pannen aana thodarnthu decline aachchi. Grocery vanga anga ninnutu irukumbothu enaku romba embarrassed ah irunthuchu.,declined_card_payment,Negative,Medium
 5987,My card payment was not successful.,Enoda card payment successful aagala.,declined_card_payment,Neutral,Medium
@@ -8319,7 +8319,7 @@ Which cash machines will allow me to change my PIN?",Entha ATM machines enoda pi
 8315,I tried withdrawing money in another country and the exchange rate was wrong.,"Naan vera naatula cash withdraw panna try pannen, exchange rate thappa irunthathu.",wrong_exchange_rate_for_cash_withdrawal,Neutral,Medium
 8316,I withdrew some cash and the exchange rate seems to be wrong.,"Naan konjam cash withdraw pannen, exchange rate thappa irukira mari theriyuthu.",wrong_exchange_rate_for_cash_withdrawal,Neutral,Medium
 8317,I withdraw money abroad but I didn't get the right amount.,Naan foreign la cash withdraw pannen aana enaku sariyana amount kedaikala.,wrong_exchange_rate_for_cash_withdrawal,Neutral,Medium
-8318,The applied exchange rate is wrong for the cash I got abroad.,Naan foreign la edutha cash ku apply panna exchange rate thappானது.,wrong_exchange_rate_for_cash_withdrawal,Neutral,Medium
+8318,The applied exchange rate is wrong for the cash I got abroad.,Naan foreign la edutha cash ku apply panna exchange rate thappanathu.,wrong_exchange_rate_for_cash_withdrawal,Neutral,Medium
 8319,I am reluctant to use ATMs international because I don't get an accurate exchange rate,Enaku sariyana exchange rate kedaikatha nala naan international ATM use panna thayanguren.,wrong_exchange_rate_for_cash_withdrawal,Neutral,Medium
 8320,I didn't receive the correct exchange rate when I got cash.,Naan cash edutha pothu enaku sariyana exchange rate kedaikala.,wrong_exchange_rate_for_cash_withdrawal,Neutral,Medium
 8321,How did you arrive at the rate of exchange? I thought that I would get more cash.,Intha exchange rate ah eppadi calculate panninga? Enaku innum kooduthal cash kedaikum nu nenachen.,wrong_exchange_rate_for_cash_withdrawal,Neutral,Medium
@@ -8635,7 +8635,7 @@ Which cash machines will allow me to change my PIN?",Entha ATM machines enoda pi
 8631,I am wondering about a transfer from a different country that doesn't show up yet?,"Vera naatula irundhu panna transfer innum kaatala, adha pathi dhan yosikiren?",balance_not_updated_after_bank_transfer,Neutral,Medium
 8632,I just made a transfer from a local bank account. How long does that typically take to show up? I just want to make sure it worked alright.,Naan ippo dhan local bank account la irundhu transfer pannen. Adhu kaata normal ah evlo neram aagum? Ellam sariya nadandhukanu confirm panna dhan kekuren.,balance_not_updated_after_bank_transfer,Neutral,Medium
 8633,I just made a transfer from France 2 days ago. It has not yet reached my bank. Is it possible it takes longer because it was an international transfer?,Naan 2 naalaiku munnadi dhan France la irundhu transfer pannen. Adhu innum enoda bank ku varala. Adhu international transfer nala kooduthal time edukuma?,balance_not_updated_after_bank_transfer,Neutral,Medium
-8634,Im going to need to make a transfer from a local bank account but I need it to go through ASAP. Is that going to be possible or will it take forever?? Im hoping it will be a couple hours and not a couple weeks.,"Naan local bank account la irundhu transfer பண்ணனும், aana adhu seekiram nadakanum. Adhu mudiyuma illa romba time edukuma? Sila weeks aagama sila hours kula aagum nu namburen.",balance_not_updated_after_bank_transfer,Neutral,High
+8634,Im going to need to make a transfer from a local bank account but I need it to go through ASAP. Is that going to be possible or will it take forever?? Im hoping it will be a couple hours and not a couple weeks.,"Naan local bank account la irundhu transfer pannanum, aana adhu seekiram nadakanum. Adhu mudiyuma illa romba time edukuma? Sila weeks aagama sila hours kula aagum nu namburen.",balance_not_updated_after_bank_transfer,Neutral,High
 8635,How long before a bank transfer shows up in the account?,Bank transfer account la kaata evlo neram aagum?,balance_not_updated_after_bank_transfer,Neutral,Medium
 8636,How soon will my balance be updated to reflect my transfer?,Enoda transfer a kaata enoda balance evlo seekiram update aagum?,balance_not_updated_after_bank_transfer,Neutral,Medium
 8637,My transfer into my account isn't showing up.,Enoda account ku panna transfer kaatala.,balance_not_updated_after_bank_transfer,Neutral,Medium
@@ -9383,7 +9383,7 @@ Which cash machines will allow me to change my PIN?",Entha ATM machines enoda pi
 9379,Why was I charged for withdrawing cash?,Cash withdraw pannathuku yen enakku charge pannunanga?,cash_withdrawal_charge,Neutral,Medium
 9380,"When I withdrew my money, why was there an extra charge?","Naan enoda kasu eduthapo, yen anga extra charge irunthathu?",cash_withdrawal_charge,Neutral,Medium
 9381,I took out money and there is a fee.  Why?,"Naan kasu eduthen, athuku fee pottirukkanga. Yen?",cash_withdrawal_charge,Neutral,Medium
-9382,Is there a cash withdrawal fee? Because I just got charged?,Cash withdrawal fee ethum irukka? ஏன்னா enakku ippo thaan charge pannunanga?,cash_withdrawal_charge,Neutral,Medium
+9382,Is there a cash withdrawal fee? Because I just got charged?,Cash withdrawal fee ethum irukka? yeenna enakku ippo thaan charge pannunanga?,cash_withdrawal_charge,Neutral,Medium
 9383,"Hello, I wanted to get some more information about ATM Withdraw Fee. I have been withdrawing money for years and notice this charge on my account. I always thought it was no fee since its you guys ATM company that I am withdrawing. Can you please explain?","Hello, enakku ATM Withdraw Fee pathi innum konjam details venum. Naan varushakkanakka kasu withdraw panren, aana ippo en account-la intha charge-ah paarkiren. Ungaloda ATM company-la irunthu thaan naan kasu edukkiren, athanala fee irukkathu nu thaan eppovum nenachen. Konjam explain panna mudiyuma?",cash_withdrawal_charge,Neutral,Medium
 9384,How much money can I withdraw before fees? I noticed a fee on my card but I didn't think I had hit the limit of how much I could withdraw in a month.,"Fee podrathuku munnadi naan evvalavu kasu withdraw panna mudiyum? En card-la oru fee pottirukkuratha paathen, aana naan oru masathula withdraw panra limit-ah thottuten nu nenakkala.",cash_withdrawal_charge,Neutral,Medium
 9385,"This is not right, I was told I could take out cash at the ATM for free?","Ithu sari illa, ATM-la free-ah kasu edukkalam nu thaane enakku sonnanga?",cash_withdrawal_charge,Neutral,Medium
