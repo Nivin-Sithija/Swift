@@ -1,0 +1,13 @@
+Model,Language,Train_Mode,Test_Samples,Accuracy_Pct,Macro_F1_Pct,Weighted_F1_Pct
+Logistic Regression,english,Monolingual / Monoscript,3079,90.61,90.62,90.62
+Logistic Regression,sinhala,Monolingual / Monoscript,3079,83.47,82.85,82.85
+Logistic Regression,singlish,Monolingual / Monoscript,3079,86.33,86.19,86.19
+Logistic Regression,tamil,Monolingual / Monoscript,3079,85.55,84.78,84.78
+Logistic Regression,tamilish,Monolingual / Monoscript,3079,60.8,59.3,59.3
+Logistic Regression,all,Combined (All Scripts),15395,82.31,82.35,82.35
+Linear SVM,english,Monolingual / Monoscript,3079,90.94,90.95,90.94
+Linear SVM,sinhala,Monolingual / Monoscript,3079,83.66,82.81,82.81
+Linear SVM,singlish,Monolingual / Monoscript,3079,86.42,86.35,86.35
+Linear SVM,tamil,Monolingual / Monoscript,3079,86.81,86.31,86.31
+Linear SVM,tamilish,Monolingual / Monoscript,3079,62.23,61.0,61.0
+Linear SVM,all,Combined (All Scripts),15395,83.23,83.26,83.26

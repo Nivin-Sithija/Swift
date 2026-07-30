@@ -1,0 +1,10 @@
+{
+  "language": "all",
+  "model": "logistic_regression",
+  "C": 1.0,
+  "accuracy": 0.823059434881455,
+  "macro_f1": 0.8235237410150991,
+  "weighted_f1": 0.8235026868502571,
+  "n_test_samples": 15395,
+  "n_classes": 77
+}
