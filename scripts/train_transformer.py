@@ -1,7 +1,6 @@
 """
 scripts/train_transformer.py
 
-Day 4 — Shazan: Baselines and transformer setup
 Fine-tunes FacebookAI/xlm-roberta-base on the 77-class BANKING77 dataset across
 the 5 language tracks (english, sinhala, singlish, tamil, tamilish) or individual languages.
 
@@ -131,6 +130,7 @@ def save_environment_info(output_dir: str, sys_args: list):
 
 def main():
     parser = argparse.ArgumentParser(description="Fine-tune XLM-RoBERTa on BANKING77 Multilingual Intent Classifier")
+    parser.add_argument("--config", default=None, help="Path to JSON experiment config file (e.g. configs/xlm_roberta_all_01.json)")
     parser.add_argument("--model-name", default="FacebookAI/xlm-roberta-base", help="Pretrained model identifier")
     parser.add_argument("--language", default="all", help="Language track (all, english, sinhala, singlish, tamil, tamilish)")
     parser.add_argument("--max-length", type=int, default=128, help="Max tokenization sequence length")
@@ -143,6 +143,20 @@ def main():
     parser.add_argument("--output-dir", default="outputs/xlmr_all_01", help="Output directory for checkpoints and reports")
     parser.add_argument("--smoke-test", action="store_true", help="Run a rapid 10-step smoke test for verification")
     args = parser.parse_args()
+
+    # If --config is passed, load parameters from JSON config file
+    if args.config and os.path.exists(args.config):
+        print(f"=== Loading Experiment Configuration from {args.config} ===")
+        with open(args.config, "r", encoding="utf-8") as f:
+            cfg = json.load(f)
+        args.model_name = cfg.get("model_name", args.model_name)
+        args.max_length = cfg.get("max_length", args.max_length)
+        args.epochs = cfg.get("epochs", args.epochs)
+        args.learning_rate = cfg.get("learning_rate", args.learning_rate)
+        args.train_batch_size = cfg.get("per_device_train_batch_size", args.train_batch_size)
+        args.eval_batch_size = cfg.get("per_device_eval_batch_size", args.eval_batch_size)
+        args.gradient_accumulation_steps = cfg.get("gradient_accumulation_steps", args.gradient_accumulation_steps)
+        args.seed = cfg.get("seed", args.seed)
 
     # If smoke test, override output_dir if default
     if args.smoke_test and args.output_dir == "outputs/xlmr_all_01":
