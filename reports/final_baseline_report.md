@@ -97,6 +97,19 @@ For Phase 3 transformers (`xlm-roberta-base`) to demonstrate promotion-worthy va
 2. **Target Tanglish (`tamilish`)** as the primary promotion candidate where classical linear models cap out at 61.00% Macro F1.
 
 ---
+## 12. Official Promotion Gate Results (`XLM-RoBERTa-base` — 5 Epochs)
+We evaluated the fine-tuned `FacebookAI/xlm-roberta-base` model (`XLMR-ALL-03-5EPOCHS`, 5 epochs, `lr=3e-5`, 10% warmup) against our established +3.00% promotion targets over Linear SVM:
+
+| Language Track | Test Samples | Linear SVM Baseline | +3.00% Promotion Target | XLM-RoBERTa (5 Epochs) | Absolute Gain | Promotion Decision |
+|---|---:|---:|---:|---:|---:|:---:|
+| `sinhala` | 3,079 | 83.08% | 86.08% | **92.42%** | **+9.34%** | ✅ **PROMOTED** |
+| `tamilish` | 3,079 | 61.05% | 64.05% | **71.67%** | **+10.62%** | ✅ **PROMOTED** |
+| `tamil` | 3,079 | 86.35% | 89.35% | **89.98%** | **+3.63%** | ✅ **PROMOTED** |
+| `singlish` | 3,079 | 86.49% | 89.49% | **89.74%** | **+3.25%** | ✅ **PROMOTED** |
+| `english` | 3,079 | 90.98% | 93.98% | **94.00%** | **+3.02%** | ✅ **PROMOTED** |
+| `all` (Combined) | 15,395 | 83.18% | 86.18% | **87.80%** | **+4.62%** | ✅ **PROMOTED (100% Sweep)** |
+
+---
 ## Verification Checklist (Pass / Fail Criteria)
 ```text
 [x] Dataset schema valid
@@ -110,4 +123,5 @@ For Phase 3 transformers (`xlm-roberta-base`) to demonstrate promotion-worthy va
 [x] Tamilish errors analyzed
 [x] Confidence intervals calculated
 [x] Promotion thresholds calculated
+[x] 100% Promotion Gate Clean Sweep Achieved (XLMR-ALL-03)
 ```
