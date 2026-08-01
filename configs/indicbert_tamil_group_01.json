@@ -1,6 +1,6 @@
 {
   "experiment_id": "INDICBERT-TAMIL-GROUP-01",
-  "model_name": "ai4bharat/indic-bert",
+  "model_name": "ai4bharat/IndicBERTv2-MLM-only",
   "training_data": "Tamil and Tanglish tracks (tamil, tamilish)",
   "task": "77-class intent classification (BANKING77)",
   "max_length": 128,
