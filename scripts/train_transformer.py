@@ -253,7 +253,7 @@ def main():
             per_device_eval_batch_size=args.eval_batch_size,
             gradient_accumulation_steps=args.gradient_accumulation_steps,
             weight_decay=0.01,
-            warmup_ratio=0.1,
+            warmup_ratio=0.1, # 3rd training 
             lr_scheduler_type="linear",
             max_grad_norm=1.0,
             eval_strategy="epoch",
