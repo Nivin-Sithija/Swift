@@ -140,16 +140,16 @@ def main():
     parser.add_argument("--model-name", default="FacebookAI/xlm-roberta-base", help="Pretrained model identifier")
     parser.add_argument("--language", default="all", help="Language track (all, english, sinhala, singlish, tamil, tamilish)")
     parser.add_argument("--max-length", type=int, default=128, help="Max tokenization sequence length")
-    parser.add_argument("--epochs", type=int, default=3, help="Number of training epochs")
-    parser.add_argument("--learning-rate", type=float, default=2e-5, help="Learning rate")
+    parser.add_argument("--epochs", type=int, default=6, help="Number of training epochs")
+    parser.add_argument("--learning-rate", type=float, default=3e-5, help="Learning rate")
     parser.add_argument("--train-batch-size", type=int, default=16, help="Per-device train batch size")
     parser.add_argument("--eval-batch-size", type=int, default=32, help="Per-device eval batch size")
     parser.add_argument("--gradient-accumulation-steps", type=int, default=2, help="Gradient accumulation steps")
-    parser.add_argument("--lr-scheduler-type", default="linear", help="Learning rate scheduler type (linear, cosine)")
-    parser.add_argument("--warmup-ratio", type=float, default=0.1, help="Warmup ratio for scheduler")
-    parser.add_argument("--label-smoothing-factor", type=float, default=0.0, help="Label smoothing factor (e.g. 0.05)")
+    parser.add_argument("--lr-scheduler-type", default="cosine", help="Learning rate scheduler type (linear, cosine)")
+    parser.add_argument("--warmup-ratio", type=float, default=0.15, help="Warmup ratio for scheduler")
+    parser.add_argument("--label-smoothing-factor", type=float, default=0.05, help="Label smoothing factor (e.g. 0.05)")
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
-    parser.add_argument("--output-dir", default="outputs/xlmr_all_01", help="Output directory for checkpoints and reports")
+    parser.add_argument("--output-dir", default="outputs/xlmr_all_04_optimized", help="Output directory for checkpoints and reports")
     parser.add_argument("--smoke-test", action="store_true", help="Run a rapid 10-step smoke test for verification")
     args = parser.parse_args()
 
@@ -171,7 +171,7 @@ def main():
         args.seed = cfg.get("seed", args.seed)
 
     # If smoke test, override output_dir if default
-    if args.smoke_test and args.output_dir == "outputs/xlmr_all_01":
+    if args.smoke_test and args.output_dir in ["outputs/xlmr_all_01", "outputs/xlmr_all_04_optimized"]:
         args.output_dir = "outputs/xlmr_smoke_test"
 
     os.makedirs(args.output_dir, exist_ok=True)
