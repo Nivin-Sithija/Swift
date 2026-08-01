@@ -155,9 +155,9 @@ python scripts/train_transformer.py --config configs/xlm_roberta_all_03_5epochs.
 
 ## 8. Verified GPU Experimental Results (`XLM-RoBERTa`)
 
-We executed the full official training pipeline on Google Colab across all 5 language tracks. Below is the side-by-side comparison of the Classical Baseline vs. Promotion Target vs. 3-Epoch XLM-R (`XLMR-ALL-01`) vs. 5-Epoch XLM-R (`XLMR-ALL-03`) vs. our final **Optimized Champion Model (`XLMR-ALL-04-OPTIMIZED` with Cosine LR decay, 15% warmup, and 0.05 Label Smoothing over 6 epochs)**:
+We executed the full official training pipeline on Google Colab across all 5 language tracks. Below is the side-by-side comparison of the Classical Baseline vs. Promotion Target vs. 3-Epoch XLM-R (`XLMR-ALL-01`) vs. 5-Epoch XLM-R (`XLMR-ALL-03`) vs. our final **Optimized  Model (`XLMR-ALL-04-OPTIMIZED` with Cosine LR decay, 15% warmup, and 0.05 Label Smoothing over 6 epochs)**:
 
-| Language Track | Test Samples | Linear SVM Macro F1 | Promotion Target (+3%) | 3-Epoch XLM-R Macro F1 | 5-Epoch XLM-R Macro F1 | **Optimized Champion (`XLMR-ALL-04`)** | Total Absolute Gain over SVM | Did Champion Beat Target? |
+| Language Track | Test Samples | Linear SVM Macro F1 | Promotion Target (+3%) | 3-Epoch XLM-R Macro F1 | 5-Epoch XLM-R Macro F1 | **Optimized  (`XLMR-ALL-04`)** | Total Absolute Gain over SVM | Did  Beat Target? |
 |---|---:|---:|---:|---:|---:|---:|---:|:---:|
 | **`sinhala`** | 3,079 | 83.08% | 86.08% | 91.02% | 92.42% | **92.42%** | **+9.34%** 🔥 | ✅ **YES** |
 | **`tamilish` (Tanglish)** | 3,079 | 61.05% | 64.05% | 64.66% | 71.67% | **72.04%** 🚀 | **+10.99%** 🚀 | ✅ **YES** |
@@ -167,7 +167,7 @@ We executed the full official training pipeline on Google Colab across all 5 lan
 | **`all` (Combined)** | 15,395 | 83.18% | 86.18% | 85.15% | 87.80% | **88.29%** 👑 | **+5.11%** 🏆 | ✅ **YES (100% Sweep!)** |
 
 ### Key Scientific Findings:
-1. **100% Promotion Gate Clean Sweep (6/6 Tracks):** Our optimized champion model (`XLMR-ALL-04-OPTIMIZED`) achieved an all-time high of **`88.29%` Macro F1** (`88.24%` accuracy) across all 15,395 test queries, surpassing the +3.00% promotion gate across every track.
+1. **100% Promotion Gate Clean Sweep (6/6 Tracks):** Our optimized  model (`XLMR-ALL-04-OPTIMIZED`) achieved an all-time high of **`88.29%` Macro F1** (`88.24%` accuracy) across all 15,395 test queries, surpassing the +3.00% promotion gate across every track.
 2. **Four Languages Simultaneously in the 90s:** For the first time, English (`93.88%`), Sinhala (`92.42%`), Tamil (`91.74%`), and Singlish (`90.03%`) all achieved $\ge 90\%$ Macro F1.
 3. **Massive +10.99% Jump on Tanglish (`tamilish`):** Cosine learning rate decay and label smoothing regularized the model's predictions on ambiguous Romanized Tamil spelling variants, driving Tanglish Macro F1 past the 72% barrier to **`72.04%`** (`73.11%` accuracy).
 4. **+9.34% Jump on Native Sinhala (`sinhala`):** Deep subword representations and attention over Indic scripts allowed XLM-RoBERTa to achieve **`92.42%` Macro F1**, demonstrating the massive superiority of pretrained contextual transformers over TF-IDF n-grams for morphologically rich Indic languages.
