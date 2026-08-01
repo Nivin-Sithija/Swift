@@ -141,8 +141,33 @@ We executed a 10-step verification test (`--smoke-test`) to prove pipeline stabi
 ---
 
 ## 7. How to Run Official Training on GPU / Colab
-To launch the official 3-epoch experiment (`XLMR-ALL-01`) on any GPU environment:
+To launch the official 3-epoch experiment (`XLMR-ALL-01`) or 5-epoch experiment (`XLMR-ALL-03-5EPOCHS`) on any GPU environment:
 
 ```powershell
-python scripts/train_transformer.py --language all --output-dir outputs/xlmr_all_01
+# 3-Epoch Baseline
+python scripts/train_transformer.py --config configs/xlm_roberta_all_01.json --output-dir outputs/xlmr_all_01
+
+# 5-Epoch Optimized Run (with lr=3e-5 and 10% warmup)
+python scripts/train_transformer.py --config configs/xlm_roberta_all_03_5epochs.json --output-dir outputs/xlmr_all_03_5epochs
 ```
+
+---
+
+## 8. Verified GPU Experimental Results (`XLM-RoBERTa`)
+
+We executed the full official training pipeline on Google Colab across all 5 language tracks. Below is the side-by-side comparison of the Classical Baseline vs. Promotion Target vs. 3-Epoch XLM-R (`XLMR-ALL-01`) vs. 5-Epoch XLM-R (`XLMR-ALL-03-5EPOCHS`):
+
+| Language Track | Test Samples | Linear SVM Macro F1 | Promotion Gate Target (+3%) | 3-Epoch XLM-R Macro F1 | 5-Epoch XLM-R Macro F1 | Total Absolute Gain over SVM | Did 5-Epoch Beat Target? |
+|---|---:|---:|---:|---:|---:|---:|:---:|
+| **`sinhala`** | 3,079 | 83.08% | 86.08% | 91.02% | **92.42%** | **+9.34%** 🔥 | ✅ **YES** |
+| **`tamilish` (Tanglish)** | 3,079 | 61.05% | 64.05% | 64.66% | **71.67%** | **+10.62%** 🚀 | ✅ **YES** |
+| **`tamil`** | 3,079 | 86.35% | 89.35% | 89.17% | **89.98%** | **+3.63%** ⭐ | ✅ **YES** |
+| **`singlish`** | 3,079 | 86.49% | 89.49% | 86.42% | **89.74%** | **+3.25%** ⭐ | ✅ **YES** |
+| **`english`** | 3,079 | 90.98% | 93.98% | 92.19% | **94.00%** | **+3.02%** ⭐ | ✅ **YES** |
+| **`all` (Combined)** | 15,395 | 83.18% | 86.18% | 85.15% | **87.80%** | **+4.62%** 🏆 | ✅ **YES (100% Sweep!)** |
+
+### Key Scientific Findings:
+1. **100% Promotion Gate Clean Sweep (6/6 Tracks):** The 5-epoch model (`XLMR-ALL-03-5EPOCHS`) with `lr=3e-5` and 10% learning rate warmup surpassed the **+3.00% Macro F1 promotion gate** on **every single language track** and on the combined multilingual test set.
+2. **Massive +10.62% Jump on Tanglish (`tamilish`):** Extending training to 5 epochs allowed the classification head to learn complex code-mixed Romanized Tamil subword combinations, driving accuracy from `66.61%` to **`72.69%`** and Macro F1 from `61.05%` to **`71.67%`**.
+3. **+9.34% Jump on Native Sinhala (`sinhala`):** Deep subword representations and attention over Indic scripts allowed XLM-RoBERTa to achieve **`92.42%` Macro F1**, demonstrating the massive superiority of pretrained contextual transformers over TF-IDF n-grams for morphologically rich Indic languages.
+
