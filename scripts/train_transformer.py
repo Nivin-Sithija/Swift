@@ -80,13 +80,16 @@ def load_and_prepare_dataset(language_arg: str, val_size: float = 0.1):
     full_train_df = pd.DataFrame(train_rows)
     test_df = pd.DataFrame(test_rows)
 
-    # Stratified split into train and validation
-    train_df, val_df = train_test_split(
-        full_train_df,
+    # Grouped stratified split by source_id so all language tracks for a given ID stay in either train or val
+    unique_ids_df = full_train_df[["source_id", "category"]].drop_duplicates(subset=["source_id"])
+    train_ids, val_ids = train_test_split(
+        unique_ids_df["source_id"],
         test_size=val_size,
         random_state=RANDOM_STATE,
-        stratify=full_train_df["category"]
+        stratify=unique_ids_df["category"]
     )
+    train_df = full_train_df[full_train_df["source_id"].isin(train_ids)].reset_index(drop=True)
+    val_df = full_train_df[full_train_df["source_id"].isin(val_ids)].reset_index(drop=True)
 
     return train_df.reset_index(drop=True), val_df.reset_index(drop=True), test_df.reset_index(drop=True)
 
