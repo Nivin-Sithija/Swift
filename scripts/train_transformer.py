@@ -145,6 +145,9 @@ def main():
     parser.add_argument("--train-batch-size", type=int, default=16, help="Per-device train batch size")
     parser.add_argument("--eval-batch-size", type=int, default=32, help="Per-device eval batch size")
     parser.add_argument("--gradient-accumulation-steps", type=int, default=2, help="Gradient accumulation steps")
+    parser.add_argument("--lr-scheduler-type", default="linear", help="Learning rate scheduler type (linear, cosine)")
+    parser.add_argument("--warmup-ratio", type=float, default=0.1, help="Warmup ratio for scheduler")
+    parser.add_argument("--label-smoothing-factor", type=float, default=0.0, help="Label smoothing factor (e.g. 0.05)")
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
     parser.add_argument("--output-dir", default="outputs/xlmr_all_01", help="Output directory for checkpoints and reports")
     parser.add_argument("--smoke-test", action="store_true", help="Run a rapid 10-step smoke test for verification")
@@ -162,6 +165,9 @@ def main():
         args.train_batch_size = cfg.get("per_device_train_batch_size", args.train_batch_size)
         args.eval_batch_size = cfg.get("per_device_eval_batch_size", args.eval_batch_size)
         args.gradient_accumulation_steps = cfg.get("gradient_accumulation_steps", args.gradient_accumulation_steps)
+        args.lr_scheduler_type = cfg.get("lr_scheduler_type", args.lr_scheduler_type)
+        args.warmup_ratio = cfg.get("warmup_ratio", args.warmup_ratio)
+        args.label_smoothing_factor = cfg.get("label_smoothing_factor", args.label_smoothing_factor)
         args.seed = cfg.get("seed", args.seed)
 
     # If smoke test, override output_dir if default
@@ -256,8 +262,9 @@ def main():
             per_device_eval_batch_size=args.eval_batch_size,
             gradient_accumulation_steps=args.gradient_accumulation_steps,
             weight_decay=0.01,
-            warmup_ratio=0.1, # 3rd training 
-            lr_scheduler_type="linear",
+            warmup_ratio=args.warmup_ratio,
+            lr_scheduler_type=args.lr_scheduler_type,
+            label_smoothing_factor=args.label_smoothing_factor,
             max_grad_norm=1.0,
             eval_strategy="epoch",
             save_strategy="epoch",
