@@ -364,7 +364,7 @@ def main():
     print("\n=== Test Set Metrics by Language Track ===")
     print(lang_df.to_string(index=False))
     print(f"\nAll reproducible outputs saved to: {args.output_dir}")
-    print("=== Day 4 Pipeline Execution Complete! ===")
+
 
 
 if __name__ == "__main__":
