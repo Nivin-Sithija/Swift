@@ -47,7 +47,10 @@ def load_and_prepare_dataset(language_arg: str, val_size: float = 0.1):
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     datasets_dir = os.path.join(base_dir, "datasets")
 
-    target_langs = LANGUAGES if language_arg.lower() == "all" else [language_arg.lower()]
+    if language_arg.lower() == "all":
+        target_langs = LANGUAGES
+    else:
+        target_langs = [l.strip().lower() for l in language_arg.split(",") if l.strip()]
     train_rows, test_rows = [], []
 
     for lang in target_langs:
