@@ -1,0 +1,33 @@
+{
+  "run_id": "sentiment__labse__tr-english-sinhala-singlish-tamil-tamilish__ev-sinhala__arm-class-weight",
+  "task": "sentiment",
+  "model": "labse",
+  "train_langs": [
+    "english",
+    "sinhala",
+    "singlish",
+    "tamil",
+    "tamilish"
+  ],
+  "eval_lang": "sinhala",
+  "arm": "class_weight",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "perlang-multi",
+  "recorded_utc": "2026-08-01T16:30:21+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9686248331108144,
+  "macro_f1": 0.8274273920961619,
+  "macro_precision": 0.8129725931131413,
+  "macro_recall": 0.8435006170300288,
+  "weighted_f1": 0.9693542663854289,
+  "n": 1498,
+  "negative_f1": 0.6713286713286714,
+  "negative_precision": 0.64,
+  "negative_recall": 0.7058823529411765,
+  "n_negative_true": 68,
+  "n_negative_pred": 75,
+  "headline_metric": "negative_f1",
+  "headline": 0.6713286713286714,
+  "regime": "multi-cell"
+}

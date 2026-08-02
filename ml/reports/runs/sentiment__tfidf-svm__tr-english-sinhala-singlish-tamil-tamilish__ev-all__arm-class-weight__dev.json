@@ -1,0 +1,32 @@
+{
+  "run_id": "sentiment__tfidf-svm__tr-english-sinhala-singlish-tamil-tamilish__ev-all__arm-class-weight",
+  "task": "sentiment",
+  "model": "tfidf-svm",
+  "train_langs": [
+    "english",
+    "sinhala",
+    "singlish",
+    "tamil",
+    "tamilish"
+  ],
+  "eval_lang": "all",
+  "arm": "class_weight",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "claude-pooled",
+  "recorded_utc": "2026-08-01T13:38:48+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.962082777036048,
+  "macro_f1": 0.7877754272207277,
+  "macro_precision": 0.7794849197933913,
+  "macro_recall": 0.7966536404771699,
+  "weighted_f1": 0.9626477095192444,
+  "n": 7490,
+  "negative_f1": 0.5954415954415955,
+  "negative_precision": 0.5773480662983426,
+  "negative_recall": 0.6147058823529412,
+  "n_negative_true": 340,
+  "n_negative_pred": 362,
+  "headline_metric": "negative_f1",
+  "headline": 0.5954415954415955
+}

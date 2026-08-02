@@ -1,0 +1,33 @@
+{
+  "run_id": "sentiment__labse-lora__tr-english-sinhala-singlish-tamil-tamilish__ev-english__arm-class-weight",
+  "task": "sentiment",
+  "model": "labse-lora",
+  "train_langs": [
+    "english",
+    "sinhala",
+    "singlish",
+    "tamil",
+    "tamilish"
+  ],
+  "eval_lang": "english",
+  "arm": "class_weight",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "perlang-lora-multi",
+  "recorded_utc": "2026-08-01T18:33:38+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.8985313751668892,
+  "macro_f1": 0.6634205469327421,
+  "macro_precision": 0.6240679264555669,
+  "macro_recall": 0.7997840394899218,
+  "weighted_f1": 0.9191880773280363,
+  "n": 1498,
+  "negative_f1": 0.3821138211382114,
+  "negative_precision": 0.2640449438202247,
+  "negative_recall": 0.6911764705882353,
+  "n_negative_true": 68,
+  "n_negative_pred": 178,
+  "headline_metric": "negative_f1",
+  "headline": 0.3821138211382114,
+  "regime": "lora-multi-cell"
+}
