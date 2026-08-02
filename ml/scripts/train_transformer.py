@@ -1,7 +1,6 @@
 """
 ml/scripts/train_transformer.py
 
-Day 4 — Shazan: Baselines and transformer setup
 Fine-tunes FacebookAI/xlm-roberta-base on the 77-class BANKING77 dataset across
 the 5 language tracks (english, sinhala, singlish, tamil, tamilish) or individual languages.
 
@@ -55,7 +54,10 @@ def load_and_prepare_dataset(language_arg: str, val_size: float = 0.1):
     """
     datasets_dir = DATASETS_DIR
 
-    target_langs = LANGUAGES if language_arg.lower() == "all" else [language_arg.lower()]
+    if language_arg.lower() == "all":
+        target_langs = LANGUAGES
+    else:
+        target_langs = [l.strip().lower() for l in language_arg.split(",") if l.strip()]
     train_rows, test_rows = [], []
 
     for lang in target_langs:
@@ -88,13 +90,16 @@ def load_and_prepare_dataset(language_arg: str, val_size: float = 0.1):
     full_train_df = pd.DataFrame(train_rows)
     test_df = pd.DataFrame(test_rows)
 
-    # Stratified split into train and validation
-    train_df, val_df = train_test_split(
-        full_train_df,
+    # Grouped stratified split by source_id so all language tracks for a given ID stay in either train or val
+    unique_ids_df = full_train_df[["source_id", "category"]].drop_duplicates(subset=["source_id"])
+    train_ids, val_ids = train_test_split(
+        unique_ids_df["source_id"],
         test_size=val_size,
         random_state=RANDOM_STATE,
-        stratify=full_train_df["category"]
+        stratify=unique_ids_df["category"]
     )
+    train_df = full_train_df[full_train_df["source_id"].isin(train_ids)].reset_index(drop=True)
+    val_df = full_train_df[full_train_df["source_id"].isin(val_ids)].reset_index(drop=True)
 
     return train_df.reset_index(drop=True), val_df.reset_index(drop=True), test_df.reset_index(drop=True)
 
@@ -138,18 +143,39 @@ def save_environment_info(output_dir: str, sys_args: list):
 
 def main():
     parser = argparse.ArgumentParser(description="Fine-tune XLM-RoBERTa on BANKING77 Multilingual Intent Classifier")
+    parser.add_argument("--config", default=None, help="Path to JSON experiment config file (e.g. configs/xlm_roberta_all_01.json)")
     parser.add_argument("--model-name", default="FacebookAI/xlm-roberta-base", help="Pretrained model identifier")
     parser.add_argument("--language", default="all", help="Language track (all, english, sinhala, singlish, tamil, tamilish)")
     parser.add_argument("--max-length", type=int, default=128, help="Max tokenization sequence length")
-    parser.add_argument("--epochs", type=int, default=3, help="Number of training epochs")
-    parser.add_argument("--learning-rate", type=float, default=2e-5, help="Learning rate")
+    parser.add_argument("--epochs", type=int, default=6, help="Number of training epochs")
+    parser.add_argument("--learning-rate", type=float, default=3e-5, help="Learning rate")
     parser.add_argument("--train-batch-size", type=int, default=16, help="Per-device train batch size")
     parser.add_argument("--eval-batch-size", type=int, default=32, help="Per-device eval batch size")
     parser.add_argument("--gradient-accumulation-steps", type=int, default=2, help="Gradient accumulation steps")
+    parser.add_argument("--lr-scheduler-type", default="cosine", help="Learning rate scheduler type (linear, cosine)")
+    parser.add_argument("--warmup-ratio", type=float, default=0.15, help="Warmup ratio for scheduler")
+    parser.add_argument("--label-smoothing-factor", type=float, default=0.05, help="Label smoothing factor (e.g. 0.05)")
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
     parser.add_argument("--output-dir", default=os.path.join(ML_DIR, "outputs", "xlmr_all_01"), help="Output directory for checkpoints and reports")
     parser.add_argument("--smoke-test", action="store_true", help="Run a rapid 10-step smoke test for verification")
     args = parser.parse_args()
+
+    # If --config is passed, load parameters from JSON config file
+    if args.config and os.path.exists(args.config):
+        print(f"=== Loading Experiment Configuration from {args.config} ===")
+        with open(args.config, "r", encoding="utf-8") as f:
+            cfg = json.load(f)
+        args.model_name = cfg.get("model_name", args.model_name)
+        args.max_length = cfg.get("max_length", args.max_length)
+        args.epochs = cfg.get("epochs", args.epochs)
+        args.learning_rate = cfg.get("learning_rate", args.learning_rate)
+        args.train_batch_size = cfg.get("per_device_train_batch_size", args.train_batch_size)
+        args.eval_batch_size = cfg.get("per_device_eval_batch_size", args.eval_batch_size)
+        args.gradient_accumulation_steps = cfg.get("gradient_accumulation_steps", args.gradient_accumulation_steps)
+        args.lr_scheduler_type = cfg.get("lr_scheduler_type", args.lr_scheduler_type)
+        args.warmup_ratio = cfg.get("warmup_ratio", args.warmup_ratio)
+        args.label_smoothing_factor = cfg.get("label_smoothing_factor", args.label_smoothing_factor)
+        args.seed = cfg.get("seed", args.seed)
 
     # If smoke test, override output_dir if default
     if args.smoke_test and args.output_dir == os.path.join(ML_DIR, "outputs", "xlmr_all_01"):
@@ -243,7 +269,9 @@ def main():
             per_device_eval_batch_size=args.eval_batch_size,
             gradient_accumulation_steps=args.gradient_accumulation_steps,
             weight_decay=0.01,
-            lr_scheduler_type="linear",
+            warmup_ratio=args.warmup_ratio,
+            lr_scheduler_type=args.lr_scheduler_type,
+            label_smoothing_factor=args.label_smoothing_factor,
             max_grad_norm=1.0,
             eval_strategy="epoch",
             save_strategy="epoch",
@@ -343,7 +371,7 @@ def main():
     print("\n=== Test Set Metrics by Language Track ===")
     print(lang_df.to_string(index=False))
     print(f"\nAll reproducible outputs saved to: {args.output_dir}")
-    print("=== Day 4 Pipeline Execution Complete! ===")
+
 
 
 if __name__ == "__main__":
