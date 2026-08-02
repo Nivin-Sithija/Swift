@@ -1,0 +1,29 @@
+{
+  "run_id": "sentiment__majority__tr-singlish__ev-singlish__arm-none",
+  "task": "sentiment",
+  "model": "majority",
+  "train_langs": [
+    "singlish"
+  ],
+  "eval_lang": "singlish",
+  "arm": "none",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:09:30+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9546061415220294,
+  "macro_f1": 0.4883879781420765,
+  "macro_precision": 0.4773030707610147,
+  "macro_recall": 0.5,
+  "weighted_f1": 0.9324363267599057,
+  "n": 1498,
+  "negative_f1": 0.0,
+  "negative_precision": 0.0,
+  "negative_recall": 0.0,
+  "n_negative_true": 68,
+  "n_negative_pred": 0,
+  "headline_metric": "negative_f1",
+  "headline": 0.0,
+  "constant_label": "Neutral"
+}

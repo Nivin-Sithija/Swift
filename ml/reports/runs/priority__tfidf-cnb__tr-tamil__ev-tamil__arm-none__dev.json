@@ -1,0 +1,29 @@
+{
+  "run_id": "priority__tfidf-cnb__tr-tamil__ev-tamil__arm-none",
+  "task": "priority",
+  "model": "tfidf-cnb",
+  "train_langs": [
+    "tamil"
+  ],
+  "eval_lang": "tamil",
+  "arm": "none",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:23:54+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.869826435246996,
+  "macro_f1": 0.8536280943008907,
+  "macro_precision": 0.862683766939912,
+  "macro_recall": 0.848094395902332,
+  "weighted_f1": 0.8701967648236829,
+  "n": 1498,
+  "f1_low": 0.8909209666884389,
+  "f1_medium": 0.8561702127659574,
+  "f1_high": 0.8137931034482758,
+  "headline_metric": "macro_f1",
+  "headline": 0.8536280943008907,
+  "n_train": 8500,
+  "fit_seconds": 0.39,
+  "regime": "mono"
+}

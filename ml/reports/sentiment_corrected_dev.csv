@@ -1,0 +1,4 @@
+setup,negative_f1
+bake-off max (optimistic),0.6395
+CV tuned C,0.5525
+CV tuned C + tuned threshold,0.5721

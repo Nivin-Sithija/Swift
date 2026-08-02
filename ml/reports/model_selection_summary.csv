@@ -1,0 +1,3 @@
+task,metric,floor,floor_note,classical_best,best_config,ceiling_note
+sentiment,negative_f1,0.0,always-Neutral,0.6395,tfidf-logreg/ros/singlish,unknown — 462 Negative training tickets is the binding constraint
+priority,macro_f1,0.904,intent-chained (the honest bar),0.9119,tfidf-svm/class_weight/tamil,oracle 0.9147 — gold-intent upper bound
