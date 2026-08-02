@@ -1,0 +1,31 @@
+{
+  "run_id": "sentiment__tfidf-sgd__tr-sinhala__ev-sinhala__arm-ros",
+  "task": "sentiment",
+  "model": "tfidf-sgd",
+  "train_langs": [
+    "sinhala"
+  ],
+  "eval_lang": "sinhala",
+  "arm": "ros",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:21:23+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9546061415220294,
+  "macro_f1": 0.7000506472244143,
+  "macro_precision": 0.7351519337016574,
+  "macro_recall": 0.675082270670506,
+  "weighted_f1": 0.9512858524659734,
+  "n": 1498,
+  "negative_f1": 0.423728813559322,
+  "negative_precision": 0.5,
+  "negative_recall": 0.36764705882352944,
+  "n_negative_true": 68,
+  "n_negative_pred": 50,
+  "headline_metric": "negative_f1",
+  "headline": 0.423728813559322,
+  "n_train": 16212,
+  "fit_seconds": 0.76,
+  "regime": "mono"
+}
