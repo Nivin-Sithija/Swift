@@ -1,0 +1,28 @@
+{
+  "run_id": "priority__intent-lookup-oracle__tr-singlish__ev-singlish__arm-none",
+  "task": "priority",
+  "model": "intent-lookup-oracle",
+  "train_langs": [
+    "singlish"
+  ],
+  "eval_lang": "singlish",
+  "arm": "none",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:10:21+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9265687583444593,
+  "macro_f1": 0.9146998971638217,
+  "macro_precision": 0.9279958203049875,
+  "macro_recall": 0.9039830760308475,
+  "weighted_f1": 0.9264536465657688,
+  "n": 1498,
+  "f1_low": 0.9386973180076629,
+  "f1_medium": 0.9203849518810149,
+  "f1_high": 0.8850174216027874,
+  "headline_metric": "macro_f1",
+  "headline": 0.9146998971638217,
+  "is_oracle": true,
+  "note": "uses gold intent; upper bound, not a target"
+}

@@ -1,0 +1,29 @@
+{
+  "run_id": "priority__tfidf-cnb__tr-english__ev-singlish__arm-class-weight",
+  "task": "priority",
+  "model": "tfidf-cnb",
+  "train_langs": [
+    "english"
+  ],
+  "eval_lang": "singlish",
+  "arm": "class_weight",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:25:01+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.7963951935914553,
+  "macro_f1": 0.75786819308414,
+  "macro_precision": 0.7622324430256335,
+  "macro_recall": 0.7543527336691606,
+  "weighted_f1": 0.7954781299440181,
+  "n": 1498,
+  "f1_low": 0.8373531230674088,
+  "f1_medium": 0.7717996289424861,
+  "f1_high": 0.6644518272425249,
+  "headline_metric": "macro_f1",
+  "headline": 0.75786819308414,
+  "n_train": 8500,
+  "fit_seconds": 0.27,
+  "regime": "zeroshot-en"
+}

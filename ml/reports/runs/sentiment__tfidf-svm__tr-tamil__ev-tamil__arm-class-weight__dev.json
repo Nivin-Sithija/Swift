@@ -1,0 +1,31 @@
+{
+  "run_id": "sentiment__tfidf-svm__tr-tamil__ev-tamil__arm-class-weight",
+  "task": "sentiment",
+  "model": "tfidf-svm",
+  "train_langs": [
+    "tamil"
+  ],
+  "eval_lang": "tamil",
+  "arm": "class_weight",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:21:34+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9612817089452603,
+  "macro_f1": 0.7884428081658096,
+  "macro_precision": 0.7741043008364794,
+  "macro_recall": 0.8046380090497738,
+  "weighted_f1": 0.9623029136766014,
+  "n": 1498,
+  "negative_f1": 0.5972222222222222,
+  "negative_precision": 0.5657894736842105,
+  "negative_recall": 0.6323529411764706,
+  "n_negative_true": 68,
+  "n_negative_pred": 76,
+  "headline_metric": "negative_f1",
+  "headline": 0.5972222222222222,
+  "n_train": 8500,
+  "fit_seconds": 0.54,
+  "regime": "mono"
+}

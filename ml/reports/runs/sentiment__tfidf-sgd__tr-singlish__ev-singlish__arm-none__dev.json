@@ -1,0 +1,31 @@
+{
+  "run_id": "sentiment__tfidf-sgd__tr-singlish__ev-singlish__arm-none",
+  "task": "sentiment",
+  "model": "tfidf-sgd",
+  "train_langs": [
+    "singlish"
+  ],
+  "eval_lang": "singlish",
+  "arm": "none",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:21:28+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9526034712950601,
+  "macro_f1": 0.6942637441609774,
+  "macro_precision": 0.7209701638702095,
+  "macro_recall": 0.6740333196215549,
+  "weighted_f1": 0.9497893130474122,
+  "n": 1498,
+  "negative_f1": 0.4132231404958678,
+  "negative_precision": 0.4716981132075472,
+  "negative_recall": 0.36764705882352944,
+  "n_negative_true": 68,
+  "n_negative_pred": 53,
+  "headline_metric": "negative_f1",
+  "headline": 0.4132231404958678,
+  "n_train": 8500,
+  "fit_seconds": 0.33,
+  "regime": "mono"
+}
