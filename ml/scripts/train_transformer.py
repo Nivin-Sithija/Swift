@@ -1,5 +1,5 @@
 """
-scripts/train_transformer.py
+ml/scripts/train_transformer.py
 
 Day 4 — Shazan: Baselines and transformer setup
 Fine-tunes FacebookAI/xlm-roberta-base on the 77-class BANKING77 dataset across
@@ -36,6 +36,14 @@ from datasets import Dataset
 
 RANDOM_STATE = 42
 LANGUAGES = ["english", "sinhala", "singlish", "tamil", "tamilish"]
+# ml/scripts/train_transformer.py -> ml/scripts -> ml -> repo root.
+# Anchored on __file__ rather than the cwd so the script works from anywhere.
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ML_DIR = os.path.join(REPO_ROOT, "ml")
+DATASETS_DIR = os.path.join(REPO_ROOT, "datasets")
+MODELS_DIR = os.path.join(ML_DIR, "models")
+REPORTS_DIR = os.path.join(ML_DIR, "reports")
+
 
 
 def load_and_prepare_dataset(language_arg: str, val_size: float = 0.1):
@@ -45,8 +53,7 @@ def load_and_prepare_dataset(language_arg: str, val_size: float = 0.1):
       - validation split (10% stratified by default)
       - test split (100% untouched official test set)
     """
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    datasets_dir = os.path.join(base_dir, "datasets")
+    datasets_dir = DATASETS_DIR
 
     target_langs = LANGUAGES if language_arg.lower() == "all" else [language_arg.lower()]
     train_rows, test_rows = [], []
@@ -140,13 +147,13 @@ def main():
     parser.add_argument("--eval-batch-size", type=int, default=32, help="Per-device eval batch size")
     parser.add_argument("--gradient-accumulation-steps", type=int, default=2, help="Gradient accumulation steps")
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
-    parser.add_argument("--output-dir", default="outputs/xlmr_all_01", help="Output directory for checkpoints and reports")
+    parser.add_argument("--output-dir", default=os.path.join(ML_DIR, "outputs", "xlmr_all_01"), help="Output directory for checkpoints and reports")
     parser.add_argument("--smoke-test", action="store_true", help="Run a rapid 10-step smoke test for verification")
     args = parser.parse_args()
 
     # If smoke test, override output_dir if default
-    if args.smoke_test and args.output_dir == "outputs/xlmr_all_01":
-        args.output_dir = "outputs/xlmr_smoke_test"
+    if args.smoke_test and args.output_dir == os.path.join(ML_DIR, "outputs", "xlmr_all_01"):
+        args.output_dir = os.path.join(ML_DIR, "outputs", "xlmr_smoke_test")
 
     os.makedirs(args.output_dir, exist_ok=True)
     save_environment_info(args.output_dir, sys.argv)

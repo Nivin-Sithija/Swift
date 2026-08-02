@@ -1,0 +1,41 @@
+id,split,text_en,category,sentiment_v5,priority,sentiment_v6
+0,train,I am still waiting on my card?,card_arrival,Neutral,Low,Neutral
+1,train,What can I do if my card still hasn't arrived after 2 weeks?,card_arrival,Neutral,Low,Neutral
+2,train,I have been waiting over a week. Is the card still coming?,card_arrival,Neutral,Low,Neutral
+3,train,Can I track my card while it is in the process of delivery?,card_arrival,Neutral,Low,Neutral
+4,train,"How do I know if I will get my card, or if it is lost?",card_arrival,Neutral,Low,Neutral
+5,train,When did you send me my new card?,card_arrival,Neutral,Low,Neutral
+6,train,Do you have info about the card on delivery?,card_arrival,Neutral,Low,Neutral
+7,train,What do I do if I still have not received my new card?,card_arrival,Neutral,Low,Neutral
+8,train,Does the package with my card have tracking?,card_arrival,Neutral,Low,Neutral
+9,train,I ordered my card but it still isn't here,card_arrival,Neutral,Low,Neutral
+10,train,Why has my new card still not come?,card_arrival,Neutral,Low,Negative
+11,train,"I still haven't received my card after two weeks, is it lost?",card_arrival,Neutral,Low,Neutral
+12,train,Can you track my card for me?,card_arrival,Neutral,Low,Neutral
+13,train,Is there a way to track the delivery of my card?,card_arrival,Neutral,Low,Neutral
+14,train,It's been a week since I ordered my card and it's not here. Please help?,card_arrival,Neutral,Low,Neutral
+15,train,Will I be able to track the card that was sent to me?,card_arrival,Neutral,Low,Neutral
+16,train,I don't have my card in 1 week.  Should I be worried?,card_arrival,Neutral,Low,Neutral
+17,train,How do I know when my new card is going to arrive?,card_arrival,Neutral,Low,Neutral
+18,train,My new card has not been delivered to my home yet. What is going on?,card_arrival,Neutral,Low,Negative
+19,train,It's been a week since you issued me a card and I still didn't get it. Should I keep waiting?,card_arrival,Neutral,Low,Neutral
+20,train,"On the card that is coming, what's the tracking info?",card_arrival,Neutral,Low,Neutral
+21,train,What is the status of my card's delivery?,card_arrival,Neutral,Low,Neutral
+22,train,Have you sent out my card yet?,card_arrival,Neutral,Low,Neutral
+23,train,My card isn't here yet.,card_arrival,Neutral,Low,Neutral
+24,train,where is my new card?,card_arrival,Neutral,Low,Neutral
+25,train,It's been a week since you sent my card and I still don't have it.,card_arrival,Neutral,Low,Negative
+26,train,How do I track the card you sent me?,card_arrival,Neutral,Low,Neutral
+27,train,When will I recieve my new card?,card_arrival,Neutral,Low,Neutral
+28,train,When will I get my new card?,card_arrival,Neutral,Low,Neutral
+29,train,What is the expected delivery date for my card?,card_arrival,Neutral,Low,Neutral
+30,train,Is there a tracking number for the card you sent me?,card_arrival,Neutral,Low,Neutral
+31,train,I would like to track the card you sent to me.,card_arrival,Neutral,Low,Neutral
+32,train,Has my card been lost in delivery?,card_arrival,Neutral,Low,Neutral
+33,train,My new card hasn't came in.,card_arrival,Neutral,Low,Neutral
+34,train,Where is the card I ordered 2 weeks ago?,card_arrival,Neutral,Low,Neutral
+35,train,Can I get an update on my replacement card?,card_arrival,Neutral,Low,Neutral
+36,train,How long does it take for a new card to ship?,card_arrival,Neutral,Low,Neutral
+37,train,What's the tracking on the card you sent?,card_arrival,Neutral,Low,Neutral
+38,train,I haven't received my card and am worried it is lost.,card_arrival,Negative,Low,Neutral
+39,train,My card still hasn't been delivered,card_arrival,Neutral,Low,Neutral

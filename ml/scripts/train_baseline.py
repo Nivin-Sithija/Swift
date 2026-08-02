@@ -12,7 +12,7 @@ Supports both:
   - Combined multilingual runs (--language all)
 
 Usage:
-  python scripts/train_baseline.py --language tamilish --model linear_svm --output-dir models
+  python ml/scripts/train_baseline.py --language tamilish --model linear_svm
 """
 import argparse
 import json
@@ -35,6 +35,14 @@ from sklearn.svm import LinearSVC
 RANDOM_STATE = 42
 LANGUAGES = ["english", "sinhala", "singlish", "tamil", "tamilish"]
 
+# ml/scripts/train_baseline.py -> ml/scripts -> ml -> repo root.
+# Anchored on __file__ rather than the cwd so the script works from anywhere.
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ML_DIR = os.path.join(REPO_ROOT, "ml")
+DATASETS_DIR = os.path.join(REPO_ROOT, "datasets")
+MODELS_DIR = os.path.join(ML_DIR, "models")
+REPORTS_DIR = os.path.join(ML_DIR, "reports")
+
 
 def load_dataset(args) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Load train and test splits from configurable CSV or from repository dataset directories."""
@@ -55,9 +63,8 @@ def load_dataset(args) -> tuple[pd.DataFrame, pd.DataFrame]:
         return train_df, test_df
     else:
         # Load directly from existing multi-folder structure
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        datasets_dir = os.path.join(base_dir, "datasets")
-        
+        datasets_dir = DATASETS_DIR
+
         target_langs = LANGUAGES if args.language.lower() == "all" else [args.language.lower()]
         train_rows, test_rows = [], []
         
@@ -182,11 +189,11 @@ def main():
     parser.add_argument("--language", type=str, default="english", help="Target language (english, sinhala, singlish, tamil, tamilish, or all).")
     parser.add_argument("--model", type=str, default="logistic_regression", choices=["logistic_regression", "linear_svm"], help="Model type.")
     parser.add_argument("--C", type=float, default=1.0, help="Regularization parameter C.")
-    parser.add_argument("--output-dir", type=str, default="models", help="Directory to save trained models and metrics.")
+    parser.add_argument("--output-dir", type=str, default=MODELS_DIR, help="Directory to save trained models and metrics.")
     args = parser.parse_args()
 
     os.makedirs(args.output_dir, exist_ok=True)
-    os.makedirs("reports", exist_ok=True)
+    os.makedirs(REPORTS_DIR, exist_ok=True)
     
     train_df, test_df = load_dataset(args)
     
@@ -197,7 +204,7 @@ def main():
     pipeline.fit(train_df[args.text_column].values, train_df[args.label_column].values)
     
     print(f"Evaluating on {len(test_df)} test rows...")
-    metrics = evaluate_pipeline(pipeline, test_df, args.label_col if hasattr(args, 'label_col') else args.label_column, args.text_column)
+    metrics = evaluate_pipeline(pipeline, test_df, args.label_column, args.text_column)
     
     print("\n" + "="*80)
     print(f"EVALUATION RESULTS — Language: [{args.language}] | Model: [{args.model}]")
@@ -214,7 +221,7 @@ def main():
     print(f"\nSaved trained pipeline to: {model_path}")
     
     # Save detailed metrics JSON
-    metrics_path = os.path.join("reports", f"baseline_metrics_{args.model}_{args.language}.json")
+    metrics_path = os.path.join(REPORTS_DIR, f"baseline_metrics_{args.model}_{args.language}.json")
     with open(metrics_path, "w", encoding="utf-8") as f:
         json.dump({
             "language": args.language,

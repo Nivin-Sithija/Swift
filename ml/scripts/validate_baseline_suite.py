@@ -21,7 +21,7 @@ Performs:
   15. Synthesis of reports/final_baseline_report.md with verified pass/fail checklist
 
 Usage:
-  python scripts/validate_baseline_suite.py --id-col id --text-col text --label-col category
+  python ml/scripts/validate_baseline_suite.py --id-col id --text-col text --label-col category
 """
 
 import argparse
@@ -56,11 +56,18 @@ from sklearn.svm import LinearSVC
 RANDOM_STATE = 42
 LANGUAGES = ["english", "sinhala", "singlish", "tamil", "tamilish"]
 MODELS = ["logistic_regression", "linear_svm"]
+# ml/scripts/validate_baseline_suite.py -> ml/scripts -> ml -> repo root.
+# Anchored on __file__ rather than the cwd so the script works from anywhere.
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ML_DIR = os.path.join(REPO_ROOT, "ml")
+DATASETS_DIR = os.path.join(REPO_ROOT, "datasets")
+MODELS_DIR = os.path.join(ML_DIR, "models")
+REPORTS_DIR = os.path.join(ML_DIR, "reports")
+
 
 
 def get_dataset_dir() -> str:
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    return os.path.join(base_dir, "datasets")
+    return DATASETS_DIR
 
 
 def load_all_data(id_col: str, text_col: str, label_col: str) -> pd.DataFrame:
@@ -851,9 +858,9 @@ def main():
     parser.add_argument("--text-col", default="text", help="Name of text column")
     parser.add_argument("--label-col", default="category", help="Name of label/category column")
     parser.add_argument("--allow-leakage", action="store_true", help="Allow training even if leakage detected")
-    parser.add_argument("--output-dir", default="reports", help="Directory for output report files")
-    parser.add_argument("--models-dir", default="models", help="Directory for saved .joblib models")
-    parser.add_argument("--predictions-dir", default="predictions", help="Directory for saved test prediction CSVs")
+    parser.add_argument("--output-dir", default=REPORTS_DIR, help="Directory for output report files")
+    parser.add_argument("--models-dir", default=MODELS_DIR, help="Directory for saved .joblib models")
+    parser.add_argument("--predictions-dir", default=os.path.join(ML_DIR, "predictions"), help="Directory for saved test prediction CSVs")
     args = parser.parse_args()
     
     os.makedirs(args.output_dir, exist_ok=True)
