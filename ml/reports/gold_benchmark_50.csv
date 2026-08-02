@@ -1,0 +1,51 @@
+id,text_en,text,category,sentiment,priority,cmi,naturalness_score,code_mixing_appropriate,transliteration_consistent,meaning_preserved
+0,How do I locate my card?,Enoda card-ai naan eppadi kandupidikkuthu?,card_arrival,Neutral,Low,0.0,4,True,True,True
+40,Why won't my card show up on the app?,Enoda card yen app-la kaattala?,card_linking,Neutral,Low,20.0,5,True,True,True
+80,I need to know your exchange rates.,Unga maatru rates-ai naan therinthu kolla vendum.,exchange_rate,Neutral,Low,0.0,4,True,True,True
+120,I purchased something in a foreign currency but the rate applied is wrong,"Naan oru velinaattu currency-la etho vaanginen, aanaal payanpaduthappatta maatru rate thavaranaathu.",card_payment_wrong_exchange_rate,Neutral,Medium,9.1,4,True,True,True
+160,My statement has Rs 10 I have been charged showing up on it.,Enoda statement-la enakku charge panna Rs 10 kaattuthu.,extra_charge_on_statement,Neutral,Medium,28.6,5,True,True,True
+200,My withdrawl is still pending.  Why?,Enoda withdrawal innum pending-il ulladhu. yaen?,pending_cash_withdrawal,Neutral,Low,0.0,4,True,True,True
+240,"If I request that my funds be held, what currencies do you use?","Enoda panathai vaithirukka naan kettaal, neenga entha currencies use pannuveenga?",fiat_currency_support,Neutral,Low,20.0,5,True,True,True
+280,I need my card now!,Enakku ippo enoda card thevai!,card_delivery_estimate,Neutral,Low,20.0,5,True,True,True
+320,"When traveling, can I auto top-up my card at certain times?","Travel pannum podhu, specific times-la enoda card-ah auto top-up panna mudiyuma?",automatic_top_up,Neutral,Low,0.0,4,True,True,True
+360,I've tried my card a bunch of times and it never worked.,"Naan en card-ai pala thadavai try panni paathen, aana athu velai seiyave illa.",card_not_working,Neutral,Medium,7.7,5,True,True,True
+400,May I exchange currencies with this?,Idhai vachu naan currency exchange panna mudiyuma?,exchange_via_app,Neutral,Low,28.6,5,True,True,True
+440,"My entire gym bag, including my wallet, was stolen out of my locker today. Everything in my wallet is gone - how do I block the card to make it can't be used?",Inniku enoda locker la irunthu enoda wallet oda sethu gym bag muzhusa thiruttu poiduchu. Wallet la iruntha ellame pochu - card ah use panna mudiyatha padi eppadi block panrathu?,lost_or_stolen_card,Neutral,High,28.6,5,True,True,True
+480,how old do i need to be to get an account for myself,Enakku endru oru account-ai thirappatharku enakku eththanai vayathaaha irukka veendum?,age_limit,Neutral,Low,0.0,4,True,True,True
+560,Are contactless payments enabled on my new card?,Enoda puthiya card-il contactless koduppanavugal seyalpaduthapattullatha?,contactless_not_working,Neutral,Low,0.0,4,True,True,True
+640,"new customer and filling gas today, it's not working, the thing shows pending half an hour!","Naan oru puthiya vaadikkaiyaalar, indru gas nirappukiren, athu velai seiyala, arai mani neramaaga pending endru kaattuthu!",pending_top_up,Negative,Medium,6.2,5,True,True,True
+680,I made a transaction this morning and would like to revert it.,"Naan indru kaalai oru transaction seithen, athai thirumbap pera virumbugiren.",cancel_transfer,Neutral,Medium,10.0,5,True,True,True
+800,I payed with a card and was charged an extra fee,"Naan card ai payanpaduthi cash seluthinen, atharku melathiga fee vasoolikapattathu.",card_payment_fee_charged,Neutral,Medium,30.0,5,True,True,True
+920,Where can I obtain my virtual card?,Enoda virtual card-ai naan engu peralaam?,getting_virtual_card,Neutral,Low,16.7,5,True,True,True
+960,Will my card be accepted all over the world?,Enoda card ulagam muzhuvathum etrukkollappaduma?,card_acceptance,Neutral,Low,20.0,5,True,True,True
+1040,I tried making an update to my balance using cheque just yesterday but it doesn't appear to have worked. Should this not be a faster process? I need you to please check over my account because something has went wrong.,"Naan netruthaan cheque-ai payanpaduthi enoda balance-ai update seiya muyandren, aanaal athu velai seithathaga theriyala. Ithu innum vegamaana seyalmuraiyaga irukka vendaama? Etho thavaru nadanthullathaal please enoda account-ai saripaarkkavum.",balance_not_updated_after_cheque_or_cash_deposit,Neutral,Medium,7.4,5,True,True,True
+1080,I have a strange payment in my statement,Enoda statement la oru vithyasamana payment iruku.,card_payment_not_recognised,Neutral,High,28.6,5,True,True,True
+1120,"I no longer live at my address on file, how do I change it?","Pathivilulla mugavariyil naan ippothu vasippathillai, athai naan eppadi maatruvathu?",edit_personal_details,Neutral,Low,0.0,4,True,True,True
+1240,What do I do with my card PIN?,Enoda card pin number-ai naan enna seyya veendum?,get_physical_card,Neutral,Low,25.0,5,True,True,True
+1360,How can i get multiple disposble cards.,Naan eppadi pala disposable card-galai petrukkolvathu?,disposable_card_limits,Neutral,Low,16.7,5,True,True,True
+1400,I think someone is using my card to make transactions I don't remember.,Enakku ninaivillaatha transactions-ai seivatharku yaaro enoda card-ai payanpaduthukiraargal endru naan ninaikkiren.,compromised_card,Neutral,High,0.0,4,True,True,True
+1440,Do all ATMs take this card?,Ella ATM machine-galum indha card-ai accept pannuma?,atm_support,Neutral,Low,14.3,5,True,True,True
+1480,Help me.  There is a Direct Debit that I didn't make.,Enakku uthavungal. naan seyyatha oru neradi patru ingay ullathu.,direct_debit_payment_not_recognised,Negative,High,0.0,4,True,True,True
+1520,What do I do if I forget my passcode?  Because I did.,Enoda kadavukkureyeettai (passcode) naan maranthuvittaal naan enna seivathu? Yenendral naan athai maranthuvitten.,passcode_forgotten,Neutral,Medium,0.0,4,True,True,True
+1560,Can you tell me why you won't let me get my own money out of the money machine? I know I used the right PIN.,ATM iyandhirathilirundhu enoda sondha panathai eduka neenga yen anumadhikalai endru enakku solla mudiyuma? Naan sariyana PIN-ai payanpaduthinen endru enakku theriyum.,declined_cash_withdrawal,Neutral,Medium,5.0,5,True,True,True
+1600,"My card payment is still on hold, why is it so?","Enoda card koduppanavu innum niruthi vaikkappattulladhu, adhu yen appadi?",pending_card_payment,Neutral,Low,11.1,5,True,True,True
+1640,My phone was stolen,Enoda phone thirudappattu vittathu.,lost_or_stolen_phone,Neutral,High,25.0,5,True,True,True
+1720,I tried to make a transfer and it was declined. Why?,"Naan oru transfer panna try pannen, aana athu decline aayiduchu. Yen?",declined_transfer,Neutral,Medium,27.3,5,True,True,True
+1760,The refund isn't showing up on my account.,Enoda account-la thirumbap petra cash kaattavillai.,Refund_not_showing_up,Neutral,Medium,16.7,5,True,True,True
+1800,My credit card was declined.,Enoda credit card niragarikkapattathu.,declined_card_payment,Neutral,Medium,50.0,5,True,True,True
+1840,"I did transfer, why is it pending","Naan transfer panniten, yen athu pending-la irukku?",pending_transfer,Neutral,Low,14.3,5,True,True,True
+1920,"What do I do if an ATM ""stole"" my card?","ATM machine enoda card-ai ""eduthukondal"" naan enna seiya vendum?",card_swallowed,Neutral,Medium,22.2,5,True,True,True
+2120,What kind of cash machines would allow me to change my PIN?,Entha vagaiyaana ATM iyandhirangal enoda PIN ilakkathai maatra anumadhikkum?,change_pin,Neutral,Low,22.2,5,True,True,True
+2160,I've tried numerous times to submit a transfer of funds. Why isn't it going through?,Naan palathadavi money transfer seiya try panniyean. Athu yen innum pogalai?,beneficiary_not_allowed,Neutral,Medium,27.3,5,True,True,True
+2280,dont understand why transfer failed,Panamaatram yaen tholviyadainthathu endru puriyala,failed_transfer,Neutral,Medium,0.0,4,True,True,True
+2400,Would it be possible to get another card?,Enakku innoru card pera mudiyuma?,getting_spare_card,Neutral,Low,20.0,5,True,True,True
+2480,How do I receive my physical card,Enoda physical card-ai naan eppadi pettrukkolvathu?,order_physical_card,Neutral,Low,0.0,4,True,True,True
+2600,can i get a description of how to use a disposable virtual card,Oru disposable virtual card-ai eppadi payanpaduthuvathu enbathu patriya vilakkathai pera mudiyuma?,get_disposable_virtual_card,Neutral,Low,18.2,5,True,True,True
+2680,I made a transfer a few hours ago from a local bank account.  I do not yet see the transfer.  Please check on this for me.,Naan konjam nerathuku munnadi local bank account-la irundhu transfer pannen. aana adhu innum kaatala. please idhai check panni sollunga.,balance_not_updated_after_bank_transfer,Neutral,Medium,21.1,5,True,True,True
+2720,Think someone has took money out with my card. What shall I do?,Yaro enoda card-a vachu cash eduthitanga nu nenaikuren. Naan enna seiyanum?,cash_withdrawal_not_recognised,Neutral,High,9.1,5,True,True,True
+2760,Is there an exchange fee?,Currency maatru fee edhum ulladha?,exchange_charge,Neutral,Low,40.0,5,True,True,True
+2840,Could you please activate my card,Thavu seithu enoda cardai activate seiya mudiyuma?,activate_my_card,Neutral,Low,14.3,5,True,True,True
+2880,I see some fees for cash withdraw.,Cash eduppatharku sila kattanangal aravidappattiruppathai naan kaankiren.,cash_withdrawal_charge,Neutral,Medium,14.3,5,True,True,True
+2920,Am I able to order a new card and have it sent to me in China?,Ennal oru puthiya card-ai munpathivu seithu athanai China-vukku anuppa vaikka mudiyuma?,card_about_to_expire,Neutral,Low,0.0,4,True,True,True
+2960,Is the top up feature available on the Apple Watch?,Apple Watch il top-up seyyum vasathi ullatha?,apple_pay_or_google_pay,Neutral,Low,0.0,4,True,True,True
+3040,I live in the US but want to get a card,"Naan amerikaavil vasikkireen, aanal oru card pera virumbukireen.",country_support,Neutral,Low,12.5,5,True,True,True
