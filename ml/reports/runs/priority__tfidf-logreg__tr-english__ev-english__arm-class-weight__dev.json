@@ -1,0 +1,29 @@
+{
+  "run_id": "priority__tfidf-logreg__tr-english__ev-english__arm-class-weight",
+  "task": "priority",
+  "model": "tfidf-logreg",
+  "train_langs": [
+    "english"
+  ],
+  "eval_lang": "english",
+  "arm": "class_weight",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:23:26+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9058744993324432,
+  "macro_f1": 0.8996939225437878,
+  "macro_precision": 0.8972111653458804,
+  "macro_recall": 0.9024027946197339,
+  "weighted_f1": 0.9060759567356516,
+  "n": 1498,
+  "f1_low": 0.9218950064020487,
+  "f1_medium": 0.8882978723404256,
+  "f1_high": 0.8888888888888888,
+  "headline_metric": "macro_f1",
+  "headline": 0.8996939225437878,
+  "n_train": 8500,
+  "fit_seconds": 0.45,
+  "regime": "mono"
+}
