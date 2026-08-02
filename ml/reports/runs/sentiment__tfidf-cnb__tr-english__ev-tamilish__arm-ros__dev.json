@@ -1,0 +1,31 @@
+{
+  "run_id": "sentiment__tfidf-cnb__tr-english__ev-tamilish__arm-ros",
+  "task": "sentiment",
+  "model": "tfidf-cnb",
+  "train_langs": [
+    "english"
+  ],
+  "eval_lang": "tamilish",
+  "arm": "ros",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:22:51+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9225634178905207,
+  "macro_f1": 0.6215095358826246,
+  "macro_precision": 0.6063147845062739,
+  "macro_recall": 0.6442924722336487,
+  "weighted_f1": 0.9284222509236084,
+  "n": 1498,
+  "negative_f1": 0.2839506172839506,
+  "negative_precision": 0.24468085106382978,
+  "negative_recall": 0.3382352941176471,
+  "n_negative_true": 68,
+  "n_negative_pred": 94,
+  "headline_metric": "negative_f1",
+  "headline": 0.2839506172839506,
+  "n_train": 16212,
+  "fit_seconds": 0.67,
+  "regime": "zeroshot-en"
+}

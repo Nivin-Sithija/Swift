@@ -1,0 +1,33 @@
+{
+  "run_id": "sentiment__xlmr-base__tr-english-sinhala-singlish-tamil-tamilish__ev-english__arm-class-weight",
+  "task": "sentiment",
+  "model": "xlmr-base",
+  "train_langs": [
+    "english",
+    "sinhala",
+    "singlish",
+    "tamil",
+    "tamilish"
+  ],
+  "eval_lang": "english",
+  "arm": "class_weight",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "perlang-multi",
+  "recorded_utc": "2026-08-01T19:02:44+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9572763684913218,
+  "macro_f1": 0.7809481159234853,
+  "macro_precision": 0.7534834310560643,
+  "macro_recall": 0.8165466886055122,
+  "weighted_f1": 0.9596379075882123,
+  "n": 1498,
+  "negative_f1": 0.5844155844155844,
+  "negative_precision": 0.5232558139534884,
+  "negative_recall": 0.6617647058823529,
+  "n_negative_true": 68,
+  "n_negative_pred": 86,
+  "headline_metric": "negative_f1",
+  "headline": 0.5844155844155844,
+  "regime": "multi-cell"
+}

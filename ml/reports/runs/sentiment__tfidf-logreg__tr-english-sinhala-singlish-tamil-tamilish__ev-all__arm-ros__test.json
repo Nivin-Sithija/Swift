@@ -1,0 +1,32 @@
+{
+  "run_id": "sentiment__tfidf-logreg__tr-english-sinhala-singlish-tamil-tamilish__ev-all__arm-ros",
+  "task": "sentiment",
+  "model": "tfidf-logreg",
+  "train_langs": [
+    "english",
+    "sinhala",
+    "singlish",
+    "tamil",
+    "tamilish"
+  ],
+  "eval_lang": "all",
+  "arm": "ros",
+  "eval_portion": "test",
+  "split_sha": "e7b5934392cd",
+  "author": "final-test-classical",
+  "recorded_utc": "2026-08-01T14:07:13+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9529717440727509,
+  "macro_f1": 0.7126420008938897,
+  "macro_precision": 0.6753253654326515,
+  "macro_recall": 0.775775821369914,
+  "weighted_f1": 0.9581951904405847,
+  "n": 15395,
+  "negative_f1": 0.44984802431610943,
+  "negative_precision": 0.3649815043156597,
+  "negative_recall": 0.5861386138613861,
+  "n_negative_true": 505,
+  "n_negative_pred": 811,
+  "headline_metric": "negative_f1",
+  "headline": 0.44984802431610943
+}
