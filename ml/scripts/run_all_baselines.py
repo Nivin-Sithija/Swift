@@ -13,16 +13,25 @@ Outputs:
 """
 import os
 import subprocess
+import sys
 import json
 import pandas as pd
 
 LANGUAGES = ["english", "sinhala", "singlish", "tamil", "tamilish", "all"]
+# ml/scripts/run_all_baselines.py -> ml/scripts -> ml -> repo root.
+# Anchored on __file__ rather than the cwd so the script works from anywhere.
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ML_DIR = os.path.join(REPO_ROOT, "ml")
+DATASETS_DIR = os.path.join(REPO_ROOT, "datasets")
+MODELS_DIR = os.path.join(ML_DIR, "models")
+REPORTS_DIR = os.path.join(ML_DIR, "reports")
+
 MODELS = ["logistic_regression", "linear_svm"]
 
 
 def main():
-    os.makedirs("models", exist_ok=True)
-    os.makedirs("reports", exist_ok=True)
+    os.makedirs(MODELS_DIR, exist_ok=True)
+    os.makedirs(REPORTS_DIR, exist_ok=True)
     
     results = []
     
@@ -33,11 +42,11 @@ def main():
             print(f"========================================================================")
             
             cmd = [
-                "python",
-                "scripts/train_baseline.py",
+                sys.executable,
+                os.path.join(ML_DIR, "scripts", "train_baseline.py"),
                 "--language", lang,
                 "--model", model,
-                "--output-dir", "models"
+                "--output-dir", MODELS_DIR
             ]
             
             env = {**os.environ, "PYTHONUNBUFFERED": "1"}
@@ -46,7 +55,7 @@ def main():
                 print(f"ERROR: Baseline run failed for {model} on {lang}")
                 continue
                 
-            json_path = os.path.join("reports", f"baseline_metrics_{model}_{lang}.json")
+            json_path = os.path.join(REPORTS_DIR, f"baseline_metrics_{model}_{lang}.json")
             if os.path.exists(json_path):
                 with open(json_path, "r", encoding="utf-8") as f:
                     data = json.load(f)
@@ -61,11 +70,11 @@ def main():
                     })
                     
     df = pd.DataFrame(results)
-    csv_path = os.path.join("reports", "baseline_results.csv")
+    csv_path = os.path.join(REPORTS_DIR, "baseline_results.csv")
     df.to_csv(csv_path, index=False)
     print(f"\nSaved consolidated baseline results to: {csv_path}")
     
-    md_path = os.path.join("reports", "baseline_comparison.md")
+    md_path = os.path.join(REPORTS_DIR, "baseline_comparison.md")
     with open(md_path, "w", encoding="utf-8") as f:
         f.write("# Classical ML Baseline Performance Report — Trilingual Banking Classifier\n\n")
         f.write("This report presents the empirical benchmark results for classical linear models (**Logistic Regression** and **Linear SVM**) trained on **TF-IDF Word + Character n-gram FeatureUnions** across all 77 fine-grained BANKING77 support-ticket intents.\n\n")
@@ -87,11 +96,11 @@ def main():
         f.write("- These classical baseline numbers define the **+3.0% F1 promotion gate** required for candidate transformer models (`xlm-roberta-base`) in Phase 3.\n\n")
         
         f.write("## 3. Saved Model Bundles (`models/`)\n\n")
-        f.write("All 12 trained pipelines (containing both fitted TF-IDF vectorizers and classifiers) are saved in `models/` as `.joblib` files, ready for raw-text inference:\n")
+        f.write("All 12 trained pipelines (containing both fitted TF-IDF vectorizers and classifiers) are saved in `ml/models/` as `.joblib` files, ready for raw-text inference:\n")
         f.write("```python\n")
         f.write("import joblib\n\n")
         f.write("# Example raw-text inference\n")
-        f.write("pipeline = joblib.load('models/tfidf_linear_svm_tamilish.joblib')\n")
+        f.write("pipeline = joblib.load('ml/models/tfidf_linear_svm_tamilish.joblib')\n")
         f.write("predicted_category = pipeline.predict(['Enoda card innum vanthu serala'])[0]\n")
         f.write("```\n")
         
