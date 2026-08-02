@@ -1,0 +1,21 @@
+id,text,category,sentiment,priority
+0,mama mage kadpata soya ganne keseda?,card_arrival,Neutral,Low
+40,mage kadpata yedume nopenvanne ayi?,card_linking,Neutral,Low
+80,mata obe vinimaya anupata dana ganimata avashyayi.,exchange_rate,Neutral,Low
+120,mama videsha mudalakin yamak mila di gat namut adala gastuva varadiyi,card_payment_wrong_exchange_rate,Negative,Medium
+160,mage prakashaye rupiyal 10k tiyenava eka pennala magen ayakarala tiyenava.,extra_charge_on_statement,Neutral,Medium
+200,mage mudal apasu ganima tavamat siduvemin pavati.  ayi?,pending_cash_withdrawal,Neutral,Low
+240,"mage aramudal randava taba ganna lesa ma illa sitinne nam, oba bhavita karanne kumana mudal vargada?",fiat_currency_support,Neutral,Low
+280,mata dan mage kadpata avashyayi!,card_delivery_estimate,Neutral,Low
+320,"gaman karana vita, mata nishchita velavaka mage kadpata svayankriyava top-ap kala hakida?",automatic_top_up,Positive,Low
+360,mama mage kadpata kihipa vatavak utsaha kara ati atara eya kisi vitekat kriya kale nata.,card_not_working,Neutral,Medium
+400,mata meya samanga mudal huvamaru kala hakida?,exchange_via_app,Neutral,Low
+440,mage mudal pasumbiya atuluva mage sampurna jim begayama ada mage lokarayen sorakam kara ata. mage mudal pasumbiye ati siyalla nati vi ata - kadpata bhavita kala nohaki lesa avahira karanne keseda?,lost_or_stolen_card,Neutral,High
+480,ma venuven ginumak laba ganimata mage vayasa kopamana viya yutuda?,age_limit,Neutral,Low
+520,mama mage PIN agulu hara ganne keseda?,pin_blocked,Neutral,High
+560,mage nava kadpatehi sambandhata rahita gevim sabala kara tibeda?,contactless_not_working,Neutral,Medium
+600,maruvim bhara ganimata oba kopamana mudalak aya karanneda yanna,top_up_by_bank_transfer_charge,Neutral,Medium
+640,"ada nava paribhogikaya saha ges piravima, eya kriya nokarayi, paya bhagayak bala sitina bava penvayi!",pending_top_up,Neutral,Low
+680,mama ada udesana ganudenuvak kala atara eya apasu haravimata kamatiyi.,cancel_transfer,Neutral,Medium
+720,obata mage ihalata sima kala hakida?,top_up_limits,Positive,Low
+760,"meka ATm eke prashnayakda mage ginume prashnayakda kiyala mama danne naha, namut mama dan inna ATm eken rupiyal 30,000k ganna baluva, eken mata dunne rupiyal 10,000yi. meya doshayakda natahot hariyatama siduvanne kumakda?",wrong_amount_of_cash_received,Neutral,Medium

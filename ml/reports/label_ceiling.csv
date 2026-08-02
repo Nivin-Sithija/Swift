@@ -1,0 +1,4 @@
+task,metric,v5_vs_human,ci_low,ci_high,agreement,cohen_kappa
+sentiment,negative_f1,0.5769,0.4,0.7273,0.956,0.5546
+priority,macro_f1,0.7722,0.7263,0.8147,0.804,0.6446
+category,macro_f1,1.0,1.0,1.0,1.0,1.0

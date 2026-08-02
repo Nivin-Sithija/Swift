@@ -1,0 +1,3 @@
+prompt,split,n_scored,n_unparsed,sentiment_negative_f1,sentiment_negative_recall,sentiment_agreement,sentiment_kappa,priority_macro_f1,priority_agreement,priority_kappa
+v5,holdout,250,0,0.4615,0.375,0.944,0.4337,0.7959,0.812,0.6601
+v6,holdout,250,0,0.6875,0.6875,0.96,0.6661,0.7773,0.808,0.6299

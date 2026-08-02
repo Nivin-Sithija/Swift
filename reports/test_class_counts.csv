@@ -1,6 +1,0 @@
-language,label,test_samples,expected_samples,missing_count,reason
-english,atm_support,39,40,1,"Original BANKING77 benchmark (Casanueva et al., 2020) has 39 test samples for atm_support (86 train, 125 total)."
-sinhala,atm_support,39,40,1,"Original BANKING77 benchmark (Casanueva et al., 2020) has 39 test samples for atm_support (86 train, 125 total)."
-singlish,atm_support,39,40,1,"Original BANKING77 benchmark (Casanueva et al., 2020) has 39 test samples for atm_support (86 train, 125 total)."
-tamil,atm_support,39,40,1,"Original BANKING77 benchmark (Casanueva et al., 2020) has 39 test samples for atm_support (86 train, 125 total)."
-tamilish,atm_support,39,40,1,"Original BANKING77 benchmark (Casanueva et al., 2020) has 39 test samples for atm_support (86 train, 125 total)."
