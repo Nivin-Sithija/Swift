@@ -1,0 +1,31 @@
+{
+  "run_id": "sentiment__tfidf-cnb__tr-english__ev-sinhala__arm-class-weight",
+  "task": "sentiment",
+  "model": "tfidf-cnb",
+  "train_langs": [
+    "english"
+  ],
+  "eval_lang": "sinhala",
+  "arm": "class_weight",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:22:50+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.8251001335113485,
+  "macro_f1": 0.5538930187092228,
+  "macro_precision": 0.5511314508757628,
+  "macro_recall": 0.6702797202797203,
+  "weighted_f1": 0.8701465207301946,
+  "n": 1498,
+  "negative_f1": 0.20606060606060606,
+  "negative_precision": 0.1297709923664122,
+  "negative_recall": 0.5,
+  "n_negative_true": 68,
+  "n_negative_pred": 262,
+  "headline_metric": "negative_f1",
+  "headline": 0.20606060606060606,
+  "n_train": 8500,
+  "fit_seconds": 0.28,
+  "regime": "zeroshot-en"
+}

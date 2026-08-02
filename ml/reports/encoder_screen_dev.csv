@@ -1,0 +1,6 @@
+model,hf_name,params_m,negative_f1,negative_recall,negative_precision,accuracy,train_seconds,ms_per_sample
+mmbert,jhu-clsp/mmBERT-base,307.5,0.3268,0.8882,0.2003,0.8339,891.2,0.39
+xlmr-base,FacebookAI/xlm-roberta-base,278.0,0.2343,0.8971,0.1348,0.7339,281.5,0.24
+twhin-bert,Twitter/twhin-bert-base,278.0,0.2235,0.7706,0.1307,0.757,544.4,0.35
+indicbert,ai4bharat/IndicBERTv2-MLM-only,278.0,0.2134,0.8206,0.1226,0.7254,265.9,0.64
+xlmr-large,FacebookAI/xlm-roberta-large,559.9,0.2082,0.8176,0.1193,0.7176,1263.2,0.32
