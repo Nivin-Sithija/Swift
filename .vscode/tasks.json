@@ -6,43 +6,163 @@
       "type": "shell",
       "command": "docker compose up --build",
       "isBackground": true,
-      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
       "problemMatcher": []
     },
     {
       "label": "Stop Docker Development",
       "type": "shell",
       "command": "docker compose down",
-      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
       "problemMatcher": []
     },
     {
       "label": "Build Production Image",
       "type": "shell",
       "command": "docker compose -f docker-compose.prod.yml build frontend",
-      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
       "problemMatcher": []
     },
     {
       "label": "Start Docker Production",
       "type": "shell",
       "command": "docker compose -f docker-compose.prod.yml up --build -d",
-      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
       "problemMatcher": []
     },
     {
       "label": "Stop Docker Production",
       "type": "shell",
       "command": "docker compose -f docker-compose.prod.yml down",
-      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
       "problemMatcher": []
     },
     {
       "label": "View Frontend Logs",
       "type": "shell",
       "command": "docker compose logs -f frontend",
-      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
       "problemMatcher": []
+    },
+    {
+      "label": "Kaggle: doctor (check setup)",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv312/bin/python ${workspaceFolder}/ml/kaggle/runner.py doctor",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Kaggle: sync payload",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv312/bin/python ${workspaceFolder}/ml/kaggle/runner.py sync",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Kaggle: run SMOKE (xlmr-base)",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv312/bin/python ${workspaceFolder}/ml/kaggle/runner.py run --models xlmr-base --smoke",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Kaggle: run encoders (choose models)",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv312/bin/python ${workspaceFolder}/ml/kaggle/runner.py run --models ${input:kaggleModels} --epochs ${input:kaggleEpochs}",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Kaggle: watch status",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv312/bin/python ${workspaceFolder}/ml/kaggle/runner.py status --watch",
+      "isBackground": true,
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Kaggle: fetch results",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv312/bin/python ${workspaceFolder}/ml/kaggle/runner.py fetch",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "kaggleModels",
+      "type": "pickString",
+      "description": "Encoder(s) to fine-tune on the T4",
+      "options": [
+        "xlmr-base,labse",
+        "mmbert",
+        "canine-c",
+        "sinbert-large,sinhalaberto",
+        "xlmr-base",
+        "labse",
+        "xlmr-base,mmbert,labse"
+      ],
+      "default": "xlmr-base,labse"
+    },
+    {
+      "id": "kaggleEpochs",
+      "type": "pickString",
+      "description": "Epochs",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "default": "3"
     }
   ]
 }

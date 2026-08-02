@@ -1,0 +1,33 @@
+{
+  "run_id": "sentiment__twhin-bert__tr-english-sinhala-singlish-tamil-tamilish__ev-singlish__arm-class-weight",
+  "task": "sentiment",
+  "model": "twhin-bert",
+  "train_langs": [
+    "english",
+    "sinhala",
+    "singlish",
+    "tamil",
+    "tamilish"
+  ],
+  "eval_lang": "singlish",
+  "arm": "class_weight",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "perlang-multi",
+  "recorded_utc": "2026-08-01T19:29:16+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9579439252336449,
+  "macro_f1": 0.7686792702565574,
+  "macro_precision": 0.7568282970250644,
+  "macro_recall": 0.7818798848210613,
+  "weighted_f1": 0.9589216762187663,
+  "n": 1498,
+  "negative_f1": 0.5594405594405595,
+  "negative_precision": 0.5333333333333333,
+  "negative_recall": 0.5882352941176471,
+  "n_negative_true": 68,
+  "n_negative_pred": 75,
+  "headline_metric": "negative_f1",
+  "headline": 0.5594405594405595,
+  "regime": "multi-cell"
+}

@@ -1,0 +1,29 @@
+{
+  "run_id": "priority__tfidf-logreg__tr-tamil__ev-tamil__arm-class-weight",
+  "task": "priority",
+  "model": "tfidf-logreg",
+  "train_langs": [
+    "tamil"
+  ],
+  "eval_lang": "tamil",
+  "arm": "class_weight",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:23:47+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9038718291054739,
+  "macro_f1": 0.8965650518642834,
+  "macro_precision": 0.8901807211302474,
+  "macro_recall": 0.903795910639909,
+  "weighted_f1": 0.9041977994415152,
+  "n": 1498,
+  "f1_low": 0.9186046511627907,
+  "f1_medium": 0.890061565523307,
+  "f1_high": 0.8810289389067524,
+  "headline_metric": "macro_f1",
+  "headline": 0.8965650518642834,
+  "n_train": 8500,
+  "fit_seconds": 0.83,
+  "regime": "mono"
+}

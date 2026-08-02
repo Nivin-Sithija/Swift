@@ -1,0 +1,29 @@
+{
+  "run_id": "priority__tfidf-svm__tr-singlish__ev-singlish__arm-ros",
+  "task": "priority",
+  "model": "tfidf-svm",
+  "train_langs": [
+    "singlish"
+  ],
+  "eval_lang": "singlish",
+  "arm": "ros",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:23:42+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9118825100133512,
+  "macro_f1": 0.9067563956173336,
+  "macro_precision": 0.9114615660848537,
+  "macro_recall": 0.9023030210075776,
+  "weighted_f1": 0.9118710153647628,
+  "n": 1498,
+  "f1_low": 0.9266750948166877,
+  "f1_medium": 0.8942652329749103,
+  "f1_high": 0.8993288590604027,
+  "headline_metric": "macro_f1",
+  "headline": 0.9067563956173336,
+  "n_train": 13569,
+  "fit_seconds": 0.81,
+  "regime": "mono"
+}

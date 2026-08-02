@@ -9,7 +9,7 @@ Trilingual (Sinhala / English / Tamil), multimodal AI support-ticket triage for 
 |---|---|
 | Research library |  indexed in [`research/README.md`](research/README.md) |
 | Trilingual dataset |  5 language/script folders, 9,998 train / 3,079 test, id-aligned |
-| Classifier bake-off |  harness built, baselines measured, encoder runs pending |
+| Classifier bake-off |  harness built; intent, sentiment and priority baselines measured on dev; encoder runs pending |
 | Application | Frontend prototype built; backend not scaffolded |
 
 ---
@@ -52,7 +52,7 @@ Findings that shaped the build:
 
 `datasets/` turns [BANKING77](https://huggingface.co/datasets/PolyAI/banking77) (13,083 English support queries, 77 intents) into a labeled, trilingual, multi-script benchmark across five folders: `english/`, `sinhala/`, `singlish/` (romanized Sinhala), `tamil/`, and `tamilish/` (romanized Tamil).
 
-**Every `train_labeled.csv` / `test_labeled.csv` shares one schema**: `id, text_en, text, intent, sentiment, priority`. `id` is the 0-based row index into `original-dataset/` — the alignment key across all five folders. `text_en` is always the original English; `text` is that folder's own-language text. Sentiment and priority are identical across all five for a given `id`: they are translations of one ticket, labeled once in English and carried over, never re-labeled per language.
+**Every `train_labeled.csv` / `test_labeled.csv` shares one schema**: `id, text_en, text, category, sentiment, priority`. `category` holds BANKING77's 77-way intent label — "intent" is the task name, `category` is the column name. `id` is the 0-based row index into `original-dataset/` — the alignment key across all five folders. `text_en` is always the original English; `text` is that folder's own-language text. Sentiment and priority are identical across all five for a given `id`: they are translations of one ticket, labeled once in English and carried over, never re-labeled per language.
 
 **Pipeline:**
 
@@ -64,7 +64,17 @@ Findings that shaped the build:
 
 Working rule: a dataset's own heuristic labels are never trusted as ground truth when tuning a labeling prompt — every prompt version is checked against a freshly hand-annotated gold set first.
 
-**Bake-off** (`notebooks/modeling/`) runs on a frozen split — 8,500 train / 1,498 dev / 3,079 test, never regenerated. Model selection happens on dev; test is touched once at the end by winners only. Two measured baselines shape reporting: always-Neutral sentiment scores 95.6% on dev (so `negative_f1` is reported, never accuracy), and intent → majority priority scores 0.9326 accuracy with no model at all.
+**Bake-off** ([`ml/`](ml/README.md), driven from `notebooks/modeling/`) runs on a frozen split — 8,500 train / 1,498 dev / 3,079 test, drawn once on `id` and fanned out to all five languages, never regenerated. Splitting on rows instead of `id` would put a ticket's English copy in train and its Sinhala copy in dev. Model selection happens on dev; test is touched once at the end by winners only.
+
+Three measured floors shape how results are reported:
+
+| task | floor | result |
+|---|---|---|
+| Sentiment | always answer `Neutral` | 95.5% accuracy, **0.000** Negative-F1 — so Negative-F1 is reported, never accuracy |
+| Priority | predicted intent → majority-priority lookup (`intent-chained`) | macro-F1 0.892–0.904 — the honest bar |
+| Priority | **gold** intent → lookup | macro-F1 0.9147 — an *oracle*, not a target; gold intent doesn't exist at serving time |
+
+On dev, a direct TF-IDF priority classifier beats `intent-chained` in all five languages (+0.7 to +1.9pp macro-F1), so priority earns its own head rather than hanging off the intent model. For sentiment, the highest-*accuracy* arm is the worst model: unbalanced training scores 0.962 accuracy at 0.357 Negative-F1, while `class_weight` scores 0.955 accuracy at 0.580.
 
 ---
 
@@ -95,15 +105,21 @@ Decisions worth noting:
 ## Repository Layout
 
 ```text
-frontend/                  Vite + React + TypeScript support-ticket triage prototype
-context/                   Product spec, architecture, model research, standards, progress
-research/                  Primary-source papers backing modeling decisions
-datasets/                  BANKING77-derived trilingual pipeline (translation, romanization, labeling)
-notebooks/modeling/        swiftbench harness for the classifier bake-off
+frontend/                    Vite + React + TypeScript support-ticket triage prototype
+context/                     Product spec, architecture, model research, standards, progress
+research/                    Primary-source papers backing modeling decisions
+datasets/                    BANKING77-derived trilingual pipeline (translation, romanization, labeling)
+ml/                          Everything that trains or evaluates a model — see ml/README.md
+  swiftbench/                Shared harness: frozen split, metrics, baselines, result format
+  scripts/                   Standalone CLI training runs (intent only)
+  configs/ splits/           Recorded experiment configs; the frozen split manifest
+  models/ predictions/ reports/   Run artifacts
+notebooks/modeling/          Experiment notebooks driving swiftbench (intent, sentiment, priority)
+notebooks/baselines/         TF-IDF feature-pipeline walkthrough
 notebooks/data_preparation/  Dataset characteristics, cleaning and prompt-benchmark analysis
-docs/                      API, database and RAG-source documentation
-srs/                       Software requirements specification (LaTeX)
-feasibility report/        Feasibility study (LaTeX)
-scripts/                   Standalone data-cleaning utilities
-synthetic_ticket_dataset/  Synthetic multimodal (image) ticket samples
+docs/                        API, database and RAG-source documentation
+srs/                         Software requirements specification (LaTeX)
+feasibility report/          Feasibility study (LaTeX)
+scripts/                     Standalone data-cleaning utilities
+synthetic_ticket_dataset/    Synthetic multimodal (image) ticket samples
 ```
