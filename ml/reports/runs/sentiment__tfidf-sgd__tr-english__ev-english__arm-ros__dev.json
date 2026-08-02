@@ -1,0 +1,31 @@
+{
+  "run_id": "sentiment__tfidf-sgd__tr-english__ev-english__arm-ros",
+  "task": "sentiment",
+  "model": "tfidf-sgd",
+  "train_langs": [
+    "english"
+  ],
+  "eval_lang": "english",
+  "arm": "ros",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:21:16+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9539385847797063,
+  "macro_f1": 0.6594949844344518,
+  "macro_precision": 0.7261316758236676,
+  "macro_recall": 0.625709584533114,
+  "weighted_f1": 0.9473859992730997,
+  "n": 1498,
+  "negative_f1": 0.34285714285714286,
+  "negative_precision": 0.4864864864864865,
+  "negative_recall": 0.2647058823529412,
+  "n_negative_true": 68,
+  "n_negative_pred": 37,
+  "headline_metric": "negative_f1",
+  "headline": 0.34285714285714286,
+  "n_train": 16212,
+  "fit_seconds": 0.7,
+  "regime": "mono"
+}

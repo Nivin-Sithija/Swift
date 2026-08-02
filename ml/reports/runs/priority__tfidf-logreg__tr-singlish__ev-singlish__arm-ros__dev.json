@@ -1,0 +1,29 @@
+{
+  "run_id": "priority__tfidf-logreg__tr-singlish__ev-singlish__arm-ros",
+  "task": "priority",
+  "model": "tfidf-logreg",
+  "train_langs": [
+    "singlish"
+  ],
+  "eval_lang": "singlish",
+  "arm": "ros",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:23:40+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9098798397863819,
+  "macro_f1": 0.9067725172187716,
+  "macro_precision": 0.9069136112900819,
+  "macro_recall": 0.9067054817172244,
+  "weighted_f1": 0.9099735047042927,
+  "n": 1498,
+  "f1_low": 0.9229789942711648,
+  "f1_medium": 0.893048128342246,
+  "f1_high": 0.9042904290429042,
+  "headline_metric": "macro_f1",
+  "headline": 0.9067725172187716,
+  "n_train": 13569,
+  "fit_seconds": 1.26,
+  "regime": "mono"
+}

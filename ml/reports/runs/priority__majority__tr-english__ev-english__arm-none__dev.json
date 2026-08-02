@@ -1,0 +1,27 @@
+{
+  "run_id": "priority__majority__tr-english__ev-english__arm-none",
+  "task": "priority",
+  "model": "majority",
+  "train_langs": [
+    "english"
+  ],
+  "eval_lang": "english",
+  "arm": "none",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:10:18+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.527369826435247,
+  "macro_f1": 0.23018648018648016,
+  "macro_precision": 0.17578994214508234,
+  "macro_recall": 0.3333333333333333,
+  "weighted_f1": 0.3641802123110534,
+  "n": 1498,
+  "f1_low": 0.6905594405594405,
+  "f1_medium": 0.0,
+  "f1_high": 0.0,
+  "headline_metric": "macro_f1",
+  "headline": 0.23018648018648016,
+  "constant_label": "Low"
+}
