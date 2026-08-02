@@ -1,0 +1,33 @@
+{
+  "run_id": "priority__tfidf-sgd__tr-english-sinhala-singlish-tamil-tamilish__ev-tamil__arm-ros",
+  "task": "priority",
+  "model": "tfidf-sgd",
+  "train_langs": [
+    "english",
+    "sinhala",
+    "singlish",
+    "tamil",
+    "tamilish"
+  ],
+  "eval_lang": "tamil",
+  "arm": "ros",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:24:45+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9038718291054739,
+  "macro_f1": 0.897700741539793,
+  "macro_precision": 0.9049301154057415,
+  "macro_recall": 0.8910387080076113,
+  "weighted_f1": 0.9038347268783186,
+  "n": 1498,
+  "f1_low": 0.9204545454545454,
+  "f1_medium": 0.8845120859444942,
+  "f1_high": 0.888135593220339,
+  "headline_metric": "macro_f1",
+  "headline": 0.897700741539793,
+  "n_train": 67845,
+  "fit_seconds": 4.57,
+  "regime": "multi"
+}

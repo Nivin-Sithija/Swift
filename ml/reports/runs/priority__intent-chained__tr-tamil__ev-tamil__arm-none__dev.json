@@ -1,0 +1,29 @@
+{
+  "run_id": "priority__intent-chained__tr-tamil__ev-tamil__arm-none",
+  "task": "priority",
+  "model": "intent-chained",
+  "train_langs": [
+    "tamil"
+  ],
+  "eval_lang": "tamil",
+  "arm": "none",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:10:23+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9012016021361816,
+  "macro_f1": 0.8920888569290951,
+  "macro_precision": 0.9103325121285964,
+  "macro_recall": 0.8782014628137595,
+  "weighted_f1": 0.9012707940137477,
+  "n": 1498,
+  "f1_low": 0.9167733674775929,
+  "f1_medium": 0.8871527777777778,
+  "f1_high": 0.8723404255319149,
+  "headline_metric": "macro_f1",
+  "headline": 0.8920888569290951,
+  "is_oracle": false,
+  "intent_model": "tfidf-svm",
+  "intent_accuracy": 0.9112149532710281
+}

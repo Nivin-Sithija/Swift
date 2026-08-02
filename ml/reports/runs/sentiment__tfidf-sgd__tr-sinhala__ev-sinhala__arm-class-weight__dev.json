@@ -1,0 +1,31 @@
+{
+  "run_id": "sentiment__tfidf-sgd__tr-sinhala__ev-sinhala__arm-class-weight",
+  "task": "sentiment",
+  "model": "tfidf-sgd",
+  "train_langs": [
+    "sinhala"
+  ],
+  "eval_lang": "sinhala",
+  "arm": "class_weight",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:21:22+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9579439252336449,
+  "macro_f1": 0.7103128194266666,
+  "macro_precision": 0.7629808059952589,
+  "macro_recall": 0.6768305224187577,
+  "weighted_f1": 0.953831639722049,
+  "n": 1498,
+  "negative_f1": 0.4424778761061947,
+  "negative_precision": 0.5555555555555556,
+  "negative_recall": 0.36764705882352944,
+  "n_negative_true": 68,
+  "n_negative_pred": 45,
+  "headline_metric": "negative_f1",
+  "headline": 0.4424778761061947,
+  "n_train": 8500,
+  "fit_seconds": 0.32,
+  "regime": "mono"
+}

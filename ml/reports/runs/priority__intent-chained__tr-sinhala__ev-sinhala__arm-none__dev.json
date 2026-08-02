@@ -1,0 +1,29 @@
+{
+  "run_id": "priority__intent-chained__tr-sinhala__ev-sinhala__arm-none",
+  "task": "priority",
+  "model": "intent-chained",
+  "train_langs": [
+    "sinhala"
+  ],
+  "eval_lang": "sinhala",
+  "arm": "none",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:10:19+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9125500667556742,
+  "macro_f1": 0.9011157149500391,
+  "macro_precision": 0.9140188746584705,
+  "macro_recall": 0.8901548448116924,
+  "weighted_f1": 0.9124265492243381,
+  "n": 1498,
+  "f1_low": 0.928435718809373,
+  "f1_medium": 0.899911426040744,
+  "f1_high": 0.875,
+  "headline_metric": "macro_f1",
+  "headline": 0.9011157149500391,
+  "is_oracle": false,
+  "intent_model": "tfidf-svm",
+  "intent_accuracy": 0.9238985313751669
+}

@@ -1,0 +1,29 @@
+{
+  "run_id": "priority__tfidf-svm__tr-tamilish__ev-tamilish__arm-class-weight",
+  "task": "priority",
+  "model": "tfidf-svm",
+  "train_langs": [
+    "tamilish"
+  ],
+  "eval_lang": "tamilish",
+  "arm": "class_weight",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:23:59+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.9058744993324432,
+  "macro_f1": 0.9036149356904074,
+  "macro_precision": 0.910612381334403,
+  "macro_recall": 0.8970849170097632,
+  "weighted_f1": 0.9058094343934585,
+  "n": 1498,
+  "f1_low": 0.9207547169811321,
+  "f1_medium": 0.8846846846846846,
+  "f1_high": 0.9054054054054054,
+  "headline_metric": "macro_f1",
+  "headline": 0.9036149356904074,
+  "n_train": 8500,
+  "fit_seconds": 0.52,
+  "regime": "mono"
+}
