@@ -1,0 +1,29 @@
+{
+  "run_id": "priority__tfidf-sgd__tr-english__ev-sinhala__arm-none",
+  "task": "priority",
+  "model": "tfidf-sgd",
+  "train_langs": [
+    "english"
+  ],
+  "eval_lang": "sinhala",
+  "arm": "none",
+  "eval_portion": "dev",
+  "split_sha": "e7b5934392cd",
+  "author": "",
+  "recorded_utc": "2026-07-31T05:24:58+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.7016021361815754,
+  "macro_f1": 0.6043300952201006,
+  "macro_precision": 0.8033210122767361,
+  "macro_recall": 0.5670284159081795,
+  "weighted_f1": 0.6766610085300184,
+  "n": 1498,
+  "f1_low": 0.7738903394255875,
+  "f1_medium": 0.6047565118912798,
+  "f1_high": 0.43434343434343436,
+  "headline_metric": "macro_f1",
+  "headline": 0.6043300952201006,
+  "n_train": 8500,
+  "fit_seconds": 0.32,
+  "regime": "zeroshot-en"
+}
