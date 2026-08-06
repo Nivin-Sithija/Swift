@@ -17,7 +17,7 @@ import {
   LoadingSkeleton,
   TicketTable,
 } from "../../components/tickets/TicketComponents";
-import { mockTicketService } from "../../services/ticketService";
+import { ticketService } from "../../services/serviceSelector";
 import type { DashboardMetrics, Ticket } from "../../types";
 import { CURRENT_AGENT } from "../../lib/constants";
 const chartData: Array<[string, number]> = [
@@ -43,8 +43,8 @@ export function AgentDashboardPage() {
   const load = () => {
     setError(false);
     Promise.all([
-      mockTicketService.getDashboardMetrics(),
-      mockTicketService.getTickets(),
+      ticketService.getDashboardMetrics(),
+      ticketService.getTickets(),
     ])
       .then(([m, t]) => {
         setMetrics(m);
