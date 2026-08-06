@@ -11,7 +11,7 @@ import {
   TicketTable,
 } from "../../components/tickets/TicketComponents";
 import { filterTickets, sortTickets, type TicketSort } from "../../lib/utils";
-import { mockTicketService } from "../../services/ticketService";
+import { ticketService } from "../../services/serviceSelector";
 import type { Ticket } from "../../types";
 import { CURRENT_AGENT, EMPTY_FILTERS } from "../../lib/constants";
 const PAGE_SIZE = 8;
@@ -31,7 +31,7 @@ export function AgentQueuePage({
   const load = () => {
     setLoading(true);
     setError(false);
-    mockTicketService
+    ticketService
       .getTickets()
       .then(setTickets)
       .catch((cause) => {

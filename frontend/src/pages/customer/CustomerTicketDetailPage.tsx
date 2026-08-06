@@ -17,7 +17,7 @@ import {
   TicketTimeline,
   humanize,
 } from "../../components/tickets/TicketComponents";
-import { mockTicketService } from "../../services/ticketService";
+import { ticketService } from "../../services/serviceSelector";
 import type { Ticket } from "../../types";
 import { formatDate } from "../../lib/utils";
 export function CustomerTicketDetailPage() {
@@ -27,7 +27,7 @@ export function CustomerTicketDetailPage() {
   useEffect(() => {
     let active = true;
     setLoading(true);
-    mockTicketService
+    ticketService
       .getTicket(ticketId || "")
       .then((next) => {
         if (active) setTicket(next);

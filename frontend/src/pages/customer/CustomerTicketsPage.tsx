@@ -9,7 +9,7 @@ import {
   TicketFilters,
   TicketTable,
 } from "../../components/tickets/TicketComponents";
-import { mockTicketService } from "../../services/ticketService";
+import { ticketService } from "../../services/serviceSelector";
 import type { Ticket } from "../../types";
 import { filterTickets } from "../../lib/utils";
 import { EMPTY_FILTERS } from "../../lib/constants";
@@ -23,7 +23,7 @@ export function CustomerTicketsPage() {
   const load = () => {
     setLoading(true);
     setError(false);
-    mockTicketService
+    ticketService
       .getTickets()
       .then((data) => setTickets(data.slice(0, 10)))
       .catch((cause) => {

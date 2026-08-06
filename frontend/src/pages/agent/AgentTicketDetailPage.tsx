@@ -27,10 +27,8 @@ import {
   TicketTimeline,
   humanize,
 } from "../../components/tickets/TicketComponents";
-import {
-  mockTicketService,
-  type AdjacentTickets,
-} from "../../services/ticketService";
+import { ticketService } from "../../services/serviceSelector";
+import type { AdjacentTickets } from "../../services/ticketService";
 import type { Ticket, TicketEvent, TicketStatus } from "../../types";
 import { formatDate } from "../../lib/utils";
 import {
@@ -54,8 +52,8 @@ export function AgentTicketDetailPage() {
     setTicket(null);
     setLoadError(false);
     Promise.all([
-      mockTicketService.getTicket(ticketId || ""),
-      mockTicketService.getAdjacentTicketIds(ticketId || ""),
+      ticketService.getTicket(ticketId || ""),
+      ticketService.getAdjacentTicketIds(ticketId || ""),
     ])
       .then(([next, adjacent]) => {
         if (!active) return;
@@ -79,7 +77,7 @@ export function AgentTicketDetailPage() {
     );
   if (!ticket) return <LoadingSkeleton />;
   const update = async (patch: Partial<Ticket>) =>
-    setTicket(await mockTicketService.updateTicket(ticket.id, patch));
+    setTicket(await ticketService.updateTicket(ticket.id, patch));
   const transition = async (status: TicketStatus) => {
     await update({ status });
     setDialog(null);
@@ -226,7 +224,7 @@ export function AgentTicketDetailPage() {
           </section>
           <InternalNotes
             initial={ticket.notes}
-            onAdd={(text) => mockTicketService.addInternalNote(ticket.id, text)}
+            onAdd={(text) => ticketService.addInternalNote(ticket.id, text)}
           />
           <ResponseEditor
             ticket={ticket}
