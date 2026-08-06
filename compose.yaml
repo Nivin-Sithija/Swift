@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment: {POSTGRES_DB: swift, POSTGRES_USER: swift, POSTGRES_PASSWORD: swift}
+    volumes: ["postgres_data:/var/lib/postgresql/data"]
+    healthcheck: {test: ["CMD-SHELL", "pg_isready -U swift -d swift"], interval: 5s, timeout: 3s, retries: 20}
+  redis:
+    image: redis:7-alpine
+    healthcheck: {test: ["CMD", "redis-cli", "ping"], interval: 5s, timeout: 3s, retries: 20}
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      SWIFT_DATABASE_URL: postgresql+asyncpg://swift:swift@postgres:5432/swift
+      SWIFT_REDIS_URL: redis://redis:6379/0
+      SWIFT_SECRET_KEY: development-only-change-me-at-least-32-characters
+      SWIFT_STORAGE_ROOT: /data/attachments
+    ports: ["8000:8000"]
+    volumes: ["attachment_data:/data/attachments"]
+    depends_on: {postgres: {condition: service_healthy}, redis: {condition: service_healthy}}
+    command: ["sh", "-c", "alembic upgrade head && python -m app.seed.seed && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+  worker:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      SWIFT_DATABASE_URL: postgresql+asyncpg://swift:swift@postgres:5432/swift
+      SWIFT_REDIS_URL: redis://redis:6379/0
+      SWIFT_SECRET_KEY: development-only-change-me-at-least-32-characters
+      SWIFT_STORAGE_ROOT: /data/attachments
+    volumes: ["attachment_data:/data/attachments"]
+    depends_on: {postgres: {condition: service_healthy}, redis: {condition: service_healthy}}
+    command: ["dramatiq", "app.workers.tasks"]
+  frontend:
+    build: ./frontend
+    ports: ["8080:8080"]
+    environment: {API_BASE_URL: "http://localhost:8000/api/v1"}
+    depends_on: {api: {condition: service_started}}
+volumes: {postgres_data: {}, attachment_data: {}}
