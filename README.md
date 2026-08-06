@@ -10,7 +10,7 @@ Trilingual (Sinhala / English / Tamil), multimodal AI support-ticket triage for 
 | Research library |  indexed in [`research/README.md`](research/README.md) |
 | Trilingual dataset |  5 language/script folders, 9,998 train / 3,079 test, id-aligned |
 | Classifier bake-off |  harness built; intent, sentiment and priority baselines measured on dev; encoder runs pending |
-| Application | Frontend prototype built; backend not scaffolded |
+| Application | Frontend prototype plus FastAPI/PostgreSQL backend scaffold and REST integration |
 
 ---
 
@@ -105,6 +105,7 @@ Decisions worth noting:
 ## Repository Layout
 
 ```text
+backend/                     FastAPI API, PostgreSQL models/migrations, auth and workers
 frontend/                    Vite + React + TypeScript support-ticket triage prototype
 context/                     Product spec, architecture, model research, standards, progress
 research/                    Primary-source papers backing modeling decisions
