@@ -24,7 +24,7 @@ import { Input } from "../ui/Input";
 import { IconButton } from "../ui/Button";
 import { Badge } from "../ui/Badge";
 import { cn } from "../../lib/utils";
-import { mockTicketService } from "../../services/ticketService";
+import { ticketService } from "../../services/serviceSelector";
 import type { DashboardMetrics } from "../../types";
 
 function ProfileMenu() {
@@ -176,7 +176,7 @@ export function AgentLayout() {
   // Sidebar counts have to come from the same source as the dashboard, or they drift.
   useEffect(() => {
     let active = true;
-    mockTicketService
+    ticketService
       .getDashboardMetrics()
       .then((next) => active && setMetrics(next))
       .catch((error) => console.error("[AgentLayout/metrics]", error));

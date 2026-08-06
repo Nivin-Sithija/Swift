@@ -5,6 +5,7 @@ import type {
   Ticket,
   User,
   UserRole,
+  TicketSubmission,
 } from "../types";
 import { delay } from "../lib/utils";
 import { CURRENT_AGENT } from "../lib/constants";
@@ -20,6 +21,7 @@ export interface AdjacentTickets {
 export interface TicketService {
   login(email: string, password: string, role: UserRole): Promise<User>;
   logout(): Promise<void>;
+  createTicket?(submission: TicketSubmission): Promise<Ticket>;
   getTickets(): Promise<Ticket[]>;
   getTicket(id: string): Promise<Ticket>;
   getAdjacentTicketIds(id: string): Promise<AdjacentTickets>;

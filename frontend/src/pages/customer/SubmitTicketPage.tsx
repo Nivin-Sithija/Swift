@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Link } from "react-router-dom";
+import { ticketService } from "../../services/serviceSelector";
+import type { Ticket } from "../../types";
 import { PageHeader } from "../../components/layout/Layouts";
 import { ImageUploader } from "../../components/tickets/ImageUploader";
 import {
@@ -45,6 +47,8 @@ export function SubmitTicketPage() {
   const [placeholder, setPlaceholder] = useState(0);
   const [processing, setProcessing] = useState(-1);
   const [confirmation, setConfirmation] = useState(false);
+  const [createdTicket, setCreatedTicket] = useState<Ticket | null>(null);
+  const [submitError, setSubmitError] = useState("");
   const {
     register,
     handleSubmit,
@@ -69,20 +73,25 @@ export function SubmitTicketPage() {
     );
     return () => clearInterval(id);
   }, []);
-  const submit = () => {
+  const submit = async (data: Data) => {
+    setSubmitError("");
     setProcessing(0);
-    let step = 0;
-    const id = setInterval(() => {
-      step++;
-      setProcessing(step);
-      if (step >= steps.length) {
-        clearInterval(id);
-        setTimeout(() => {
-          setProcessing(-1);
-          setConfirmation(true);
-        }, 300);
-      }
-    }, 260);
+    try {
+      const created = ticketService.createTicket
+        ? await ticketService.createTicket({
+            subject: data.subject,
+            message: data.description,
+            preferredResponseLanguage: data.language,
+            attachment: file,
+          })
+        : null;
+      setCreatedTicket(created);
+      setConfirmation(true);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "Ticket submission failed");
+    } finally {
+      setProcessing(-1);
+    }
   };
   if (confirmation)
     return (
@@ -99,7 +108,7 @@ export function SubmitTicketPage() {
         <div className="confirmation-card">
           <div>
             <span>Ticket ID</span>
-            <strong>SW-2026-1043</strong>
+            <strong>{createdTicket?.id || "SW-2026-1043"}</strong>
           </div>
           <div>
             <span>Submitted</span>
@@ -107,19 +116,19 @@ export function SubmitTicketPage() {
           </div>
           <div>
             <span>Language form</span>
-            <strong>Mixed / English</strong>
+            <strong>{createdTicket?.language || "Pending analysis"}</strong>
           </div>
           <div>
             <span>Predicted category</span>
-            <strong>Card payment reversed</strong>
+            <strong>{createdTicket?.category.value || "Pending analysis"}</strong>
           </div>
           <div>
             <span>Priority</span>
-            <PriorityBadge value="high" />
+            <PriorityBadge value={createdTicket?.priority.value || "medium"} />
           </div>
           <div>
             <span>Status</span>
-            <StatusBadge value="new" />
+            <StatusBadge value={createdTicket?.status || "new"} />
           </div>
           <div>
             <span>Image processing</span>
@@ -127,8 +136,8 @@ export function SubmitTicketPage() {
           </div>
         </div>
         <div className="confirmation-actions">
-          <Link className="btn" to="/customer/tickets/SW-2026-1042">
-            View example ticket <ArrowRight />
+          <Link className="btn" to={`/customer/tickets/${createdTicket?.id || "SW-2026-1042"}`}>
+            View ticket <ArrowRight />
           </Link>
           <button
             className="btn secondary"
@@ -236,6 +245,7 @@ export function SubmitTicketPage() {
           {errors.terms && (
             <small className="field-error">{errors.terms.message}</small>
           )}
+          {submitError && <small className="field-error">{submitError}</small>}
           <div className="form-actions">
             <button
               type="button"
