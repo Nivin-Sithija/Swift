@@ -11,10 +11,9 @@ services:
     build:
       context: .
       dockerfile: backend/Dockerfile
+    env_file: [./backend/.env]
     environment:
-      SWIFT_DATABASE_URL: postgresql+asyncpg://swift:swift@postgres:5432/swift
       SWIFT_REDIS_URL: redis://redis:6379/0
-      SWIFT_SECRET_KEY: development-only-change-me-at-least-32-characters
       SWIFT_STORAGE_ROOT: /data/attachments
     ports: ["8000:8000"]
     volumes: ["attachment_data:/data/attachments"]
@@ -24,10 +23,9 @@ services:
     build:
       context: .
       dockerfile: backend/Dockerfile
+    env_file: [./backend/.env]
     environment:
-      SWIFT_DATABASE_URL: postgresql+asyncpg://swift:swift@postgres:5432/swift
       SWIFT_REDIS_URL: redis://redis:6379/0
-      SWIFT_SECRET_KEY: development-only-change-me-at-least-32-characters
       SWIFT_STORAGE_ROOT: /data/attachments
     volumes: ["attachment_data:/data/attachments"]
     depends_on: {postgres: {condition: service_healthy}, redis: {condition: service_healthy}}

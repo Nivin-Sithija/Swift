@@ -2,6 +2,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from pydantic import Field
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -21,6 +22,16 @@ class Settings(BaseSettings):
     max_upload_bytes: int = 10 * 1024 * 1024
     low_confidence_threshold: float = 0.60
     use_inline_processing: bool = True
+
+    @field_validator("database_url")
+    @classmethod
+    def normalize_async_database_url(cls, value: str) -> str:
+        """Accept standard Postgres URLs while always using SQLAlchemy's asyncpg driver."""
+        if value.startswith("postgres://"):
+            return value.replace("postgres://", "postgresql+asyncpg://", 1)
+        if value.startswith("postgresql://"):
+            return value.replace("postgresql://", "postgresql+asyncpg://", 1)
+        return value
 
     @property
     def allowed_origins(self) -> list[str]:
