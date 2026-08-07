@@ -541,13 +541,25 @@ small {
   border-radius: 7px;
   padding: 0 0.45rem;
   height: 35px;
+  background: var(--panel-2);
+  color: var(--text);
 }
 .select-compact select {
   border: 0;
   background: transparent;
   font-size: 0.8rem;
   max-width: 78px;
+  color: var(--text);
+  color-scheme: light;
+  margin-top: 0;
+  padding: 0;
 }
+.select-compact select option {
+  background: var(--panel);
+  color: var(--text);
+}
+.dark .select-compact select { color-scheme: dark; }
+.dark .select-compact select option { background: #212120; color: #f5f3ef; }
 .nav-tools {
   display: flex;
   align-items: center;

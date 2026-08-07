@@ -13,8 +13,10 @@ import { ticketService } from "../../services/serviceSelector";
 import type { Ticket } from "../../types";
 import { filterTickets } from "../../lib/utils";
 import { EMPTY_FILTERS } from "../../lib/constants";
+import { useLanguage } from "../../app/providers/LanguageProvider";
 const PAGE_SIZE = 6;
 export function CustomerTicketsPage() {
+  const { tr } = useLanguage();
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -41,9 +43,9 @@ export function CustomerTicketsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Support history"
-        title="My tickets"
-        description="Track requests, status updates, and approved responses."
+        eyebrow={tr("Support history")}
+        title={tr("My tickets")}
+        description={tr("Track requests, status updates, and approved responses.")}
       />
       <div className="card list-card">
         <TicketFilters
