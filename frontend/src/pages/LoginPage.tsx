@@ -1,6 +1,6 @@
 import { Eye, EyeOff, LockKeyhole, ShieldCheck } from "lucide-react";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -12,6 +12,7 @@ import {
 } from "../components/common/Controls";
 import type { UserRole } from "../types";
 import { useLanguage } from "../app/providers/LanguageProvider";
+import { isDevelopmentMode } from "../lib/config";
 
 const schema = z.object({
   email: z.email("Enter a valid email address"),
@@ -21,6 +22,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 export function LoginPage() {
   const { tr } = useLanguage();
+  const developmentMode = isDevelopmentMode();
   const { user, login } = useAuth();
   const navigate = useNavigate();
   const [role, setRole] = useState<UserRole>("customer");
@@ -132,7 +134,11 @@ export function LoginPage() {
                 autoComplete="email"
                 {...register("email")}
                 placeholder={
-                  role === "agent" ? "agent@swift.demo" : "customer@swift.demo"
+                  developmentMode
+                    ? role === "agent"
+                      ? "agent@swift.demo"
+                      : "customer@swift.demo"
+                    : "you@example.com"
                 }
               />
               {errors.email && (
@@ -171,22 +177,29 @@ export function LoginPage() {
             </div>
             {serverError && (
               <div className="form-error" role="alert">
-                {serverError}. Try the demo account below.
+                {serverError}{developmentMode ? ". Try the demo account below." : "."}
               </div>
             )}
             <button className="btn wide" disabled={isSubmitting}>
               {isSubmitting ? tr("Signing in…") : tr("Sign in securely")}
             </button>
-            <button
-              type="button"
-              className="btn secondary wide"
-              onClick={useDemo}
-            >
-              Use {role} demo account
-            </button>
+            {developmentMode && (
+              <button
+                type="button"
+                className="btn secondary wide"
+                onClick={useDemo}
+              >
+                Use {role} demo account
+              </button>
+            )}
           </form>
+          {developmentMode && (
+            <p className="demo-hint">
+              Development mode · Demo password: <code>password123</code>
+            </p>
+          )}
           <p className="demo-hint">
-            Demo password: <code>password123</code>
+            New to Swift? <Link className="link-button" to="/register">Create an account</Link>
           </p>
         </div>
       </section>
