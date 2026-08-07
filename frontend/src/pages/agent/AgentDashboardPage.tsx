@@ -17,9 +17,10 @@ import {
   LoadingSkeleton,
   TicketTable,
 } from "../../components/tickets/TicketComponents";
-import { mockTicketService } from "../../services/ticketService";
+import { ticketService } from "../../services/serviceSelector";
 import type { DashboardMetrics, Ticket } from "../../types";
 import { CURRENT_AGENT } from "../../lib/constants";
+import { useLanguage } from "../../app/providers/LanguageProvider";
 const chartData: Array<[string, number]> = [
   ["Card payments", 38],
   ["Transfers", 27],
@@ -30,21 +31,22 @@ const chartData: Array<[string, number]> = [
 const greetingFor = (hour: number) =>
   hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
 export function AgentDashboardPage() {
+  const { tr, language } = useLanguage();
   const now = new Date();
-  const today = new Intl.DateTimeFormat("en-LK", {
+  const today = new Intl.DateTimeFormat(language === "si" ? "si-LK" : language === "ta" ? "ta-LK" : "en-LK", {
     weekday: "long",
     day: "numeric",
     month: "long",
   }).format(now);
-  const greeting = greetingFor(now.getHours());
+  const greeting = tr(greetingFor(now.getHours()));
   const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [error, setError] = useState(false);
   const load = () => {
     setError(false);
     Promise.all([
-      mockTicketService.getDashboardMetrics(),
-      mockTicketService.getTickets(),
+      ticketService.getDashboardMetrics(),
+      ticketService.getTickets(),
     ])
       .then(([m, t]) => {
         setMetrics(m);
@@ -58,19 +60,19 @@ export function AgentDashboardPage() {
   useEffect(load, []);
   const cards = metrics
     ? ([
-        ["New tickets", metrics.newTickets, Inbox, "primary"],
-        ["Assigned to me", metrics.assignedToMe, UserCheck, "primary"],
-        ["High priority", metrics.highPriority, AlertTriangle, "warning"],
-        ["Critical", metrics.critical, ShieldAlert, "error"],
-        ["Escalated", metrics.escalated, Siren, "warning"],
-        ["Resolved today", metrics.resolvedToday, CheckCircle2, "success"],
+        [tr("New tickets"), metrics.newTickets, Inbox, "primary"],
+        [tr("Assigned to me"), metrics.assignedToMe, UserCheck, "primary"],
+        [tr("High Priority"), metrics.highPriority, AlertTriangle, "warning"],
+        [tr("Critical"), metrics.critical, ShieldAlert, "error"],
+        [tr("Escalated"), metrics.escalated, Siren, "warning"],
+        [tr("Resolved today"), metrics.resolvedToday, CheckCircle2, "success"],
         [
           "Avg. first response",
           metrics.averageFirstResponse,
           Clock3,
           "neutral",
         ],
-        ["Low confidence", metrics.lowConfidence, CircleHelp, "neutral"],
+        [tr("Low confidence"), metrics.lowConfidence, CircleHelp, "neutral"],
       ] as const)
     : [];
   return (
@@ -81,7 +83,7 @@ export function AgentDashboardPage() {
         description="Here is the state of your support operation right now."
         actions={
           <Link className="btn" to="/agent/tickets">
-            Open queue <ArrowRight />
+            {tr("Open queue")} <ArrowRight />
           </Link>
         }
       />
@@ -115,7 +117,7 @@ export function AgentDashboardPage() {
               <div className="card-heading">
                 <div>
                   <span className="eyebrow">Distribution</span>
-                  <h2>Tickets by category</h2>
+                  <h2>{tr("Tickets by category")}</h2>
                 </div>
                 <select aria-label="Chart period">
                   <option>Last 7 days</option>
@@ -152,7 +154,7 @@ export function AgentDashboardPage() {
             </section>
             <section className="card language-panel">
               <span className="eyebrow">Language form</span>
-              <h2>Multilingual mix</h2>
+              <h2>{tr("Multilingual mix")}</h2>
               {[
                 ["English", "42%"],
                 ["Sinhala", "18%"],
@@ -172,7 +174,7 @@ export function AgentDashboardPage() {
             <div className="card-heading">
               <div>
                 <span className="eyebrow">Needs attention</span>
-                <h2>Recent ticket queue</h2>
+                <h2>{tr("Recent ticket queue")}</h2>
               </div>
               <Link className="link-button" to="/agent/tickets">
                 View full queue <ArrowRight />
