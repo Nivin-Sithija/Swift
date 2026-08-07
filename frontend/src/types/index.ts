@@ -1,4 +1,4 @@
-export type UserRole = "customer" | "agent";
+export type UserRole = "customer" | "agent" | "administrator";
 export type SupportedLanguage =
   "english" | "sinhala" | "tamil" | "singlish" | "tanglish" | "mixed";
 export type TicketPriority = "low" | "medium" | "high" | "critical";
@@ -115,6 +115,20 @@ export interface DashboardMetrics {
   averageFirstResponse: string;
   lowConfidence: number;
 }
+export interface AdminDashboardMetrics {
+  customers: number;
+  agents: number;
+  administrators: number;
+  activeSessions: number;
+  openTickets: number;
+  supportQueues: number;
+  auditEvents: number;
+  recentUsers: Array<User & { isActive: boolean; createdAt: string }>;
+}
+export type AdminUserRecord = User & { isActive: boolean; createdAt: string };
+export type AdminQueue = { id: string; name: string; description?: string; isActive: boolean; ticketCount: number };
+export type AdminAudit = { id: string; actor: string; action: string; entityType: string; entityId: string; detail?: string; createdAt: string };
+export type AdminSetting = { key: string; value: string; valueType: string; description: string; updatedAt: string };
 export interface TicketSubmission {
   subject: string;
   message: string;

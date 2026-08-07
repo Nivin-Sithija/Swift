@@ -13,7 +13,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from sqlalchemy.orm.interfaces import ORMOption
 
-from app.api.dependencies import CurrentUser, Db, StaffUser
+from app.api.dependencies import AdministratorUser, CurrentUser, Db, StaffUser
 from app.core.config import get_settings
 from app.core.security import (
     create_access_token,
@@ -42,6 +42,7 @@ from app.models.entities import (
     ProcessingJob,
     Response,
     SupportQueue,
+    SystemSetting,
     Ticket,
     TicketEvent,
     TicketNote,
@@ -50,6 +51,17 @@ from app.models.entities import (
 )
 from app.schemas.api import (
     AssignmentRequest,
+    AdminDashboardOut,
+    AdminAuditList,
+    AdminAuditOut,
+    AdminQueueCreate,
+    AdminQueueOut,
+    AdminQueueUpdate,
+    AdminSettingOut,
+    AdminSettingsUpdate,
+    AdminUserList,
+    AdminUserUpdate,
+    AdminUserOut,
     AttachmentOut,
     DashboardOut,
     EscalationRequest,
@@ -508,7 +520,7 @@ async def assign(ticket_id: str, payload: AssignmentRequest, user: StaffUser, db
     ticket = await get_ticket(db, ticket_id, user)
     agent_id = payload.agent_id or user.id
     agent = await db.get(User, agent_id)
-    if not agent or agent.role not in {UserRole.agent, UserRole.supervisor, UserRole.administrator}:
+    if not agent or agent.role not in {UserRole.agent, UserRole.administrator}:
         raise HTTPException(400, "Target user is not an active agent")
     ticket.assigned_agent_id = agent.id
     if payload.queue_id:
@@ -713,3 +725,130 @@ async def dashboard(user: StaffUser, db: Db) -> DashboardOut:
         average_first_response="Not available",
         low_confidence=await count(Ticket.manual_review_required.is_(True)),
     )
+
+
+@router.get("/admin/dashboard", response_model=AdminDashboardOut)
+async def admin_dashboard(_user: AdministratorUser, db: Db) -> AdminDashboardOut:
+    async def user_count(role: UserRole) -> int:
+        return (await db.scalar(select(func.count(User.id)).where(User.role == role))) or 0
+
+    now = utcnow()
+    closed = {TicketStatus.resolved, TicketStatus.closed}
+    recent = (
+        await db.scalars(select(User).order_by(User.created_at.desc()).limit(6))
+    ).all()
+    return AdminDashboardOut(
+        customers=await user_count(UserRole.customer),
+        agents=await user_count(UserRole.agent),
+        administrators=await user_count(UserRole.administrator),
+        active_sessions=(
+            await db.scalar(
+                select(func.count(AuthSession.id)).where(
+                    AuthSession.revoked_at.is_(None), AuthSession.expires_at > now
+                )
+            )
+        )
+        or 0,
+        open_tickets=(
+            await db.scalar(select(func.count(Ticket.id)).where(Ticket.status.not_in(closed)))
+        )
+        or 0,
+        support_queues=(await db.scalar(select(func.count(SupportQueue.id)))) or 0,
+        audit_events=(await db.scalar(select(func.count(AuditLog.id)))) or 0,
+        recent_users=[AdminUserOut.model_validate(user) for user in recent],
+    )
+
+
+@router.get("/admin/users", response_model=AdminUserList)
+async def admin_users(_admin: AdministratorUser, db: Db, query: str | None = None) -> AdminUserList:
+    conditions = []
+    if query:
+        conditions.append(or_(User.full_name.ilike(f"%{query}%"), User.email.ilike(f"%{query}%")))
+    users = (await db.scalars(select(User).where(*conditions).order_by(User.created_at.desc()))).all()
+    return AdminUserList(items=[AdminUserOut.model_validate(user) for user in users], total=len(users))
+
+
+@router.patch("/admin/users/{user_id}", response_model=AdminUserOut)
+async def admin_update_user(user_id: uuid.UUID, payload: AdminUserUpdate, admin: AdministratorUser, db: Db) -> AdminUserOut:
+    user = await db.get(User, user_id)
+    if not user: raise HTTPException(404, "User not found")
+    if user.id == admin.id and (payload.is_active is False or (payload.role and payload.role != "administrator")):
+        raise HTTPException(409, "You cannot remove your own administrator access")
+    if user.role == UserRole.administrator and (payload.is_active is False or (payload.role and payload.role != "administrator")):
+        active_admins = (await db.scalar(select(func.count(User.id)).where(User.role == UserRole.administrator, User.is_active.is_(True)))) or 0
+        if active_admins <= 1: raise HTTPException(409, "At least one active administrator is required")
+    changes = []
+    if payload.role is not None and user.role.value != payload.role:
+        changes.append(f"role:{user.role.value}->{payload.role}"); user.role = UserRole(payload.role)
+    if payload.is_active is not None and user.is_active != payload.is_active:
+        changes.append(f"active:{user.is_active}->{payload.is_active}"); user.is_active = payload.is_active
+        if not payload.is_active:
+            sessions = (await db.scalars(select(AuthSession).where(AuthSession.user_id == user.id, AuthSession.revoked_at.is_(None)))).all()
+            for session in sessions: session.revoked_at = utcnow()
+    audit(db, admin, "user_updated", "user", str(user.id), ";".join(changes))
+    await db.commit(); await db.refresh(user)
+    return AdminUserOut.model_validate(user)
+
+
+@router.get("/admin/queues", response_model=list[AdminQueueOut])
+async def admin_queues(_admin: AdministratorUser, db: Db) -> list[AdminQueueOut]:
+    rows = (await db.execute(select(SupportQueue, func.count(Ticket.id)).outerjoin(Ticket, Ticket.queue_id == SupportQueue.id).group_by(SupportQueue.id).order_by(SupportQueue.name))).all()
+    return [AdminQueueOut(id=q.id, name=q.name, description=q.description, is_active=q.is_active, ticket_count=count) for q, count in rows]
+
+
+@router.post("/admin/queues", response_model=AdminQueueOut, status_code=201)
+async def admin_create_queue(payload: AdminQueueCreate, admin: AdministratorUser, db: Db) -> AdminQueueOut:
+    if await db.scalar(select(SupportQueue.id).where(func.lower(SupportQueue.name) == payload.name.strip().lower())): raise HTTPException(409, "Queue name already exists")
+    queue = SupportQueue(name=payload.name.strip(), description=payload.description, is_active=True); db.add(queue); await db.flush()
+    audit(db, admin, "queue_created", "support_queue", str(queue.id), queue.name); await db.commit(); await db.refresh(queue)
+    return AdminQueueOut.model_validate(queue)
+
+
+@router.patch("/admin/queues/{queue_id}", response_model=AdminQueueOut)
+async def admin_update_queue(queue_id: uuid.UUID, payload: AdminQueueUpdate, admin: AdministratorUser, db: Db) -> AdminQueueOut:
+    queue = await db.get(SupportQueue, queue_id)
+    if not queue: raise HTTPException(404, "Queue not found")
+    open_count = (await db.scalar(select(func.count(Ticket.id)).where(Ticket.queue_id == queue.id, Ticket.status.not_in({TicketStatus.resolved, TicketStatus.closed})))) or 0
+    if payload.is_active is False and open_count: raise HTTPException(409, "Move or resolve open tickets before deactivating this queue")
+    if payload.name is not None: queue.name = payload.name.strip()
+    if payload.description is not None: queue.description = payload.description
+    if payload.is_active is not None: queue.is_active = payload.is_active
+    audit(db, admin, "queue_updated", "support_queue", str(queue.id), queue.name); await db.commit(); await db.refresh(queue)
+    return AdminQueueOut(id=queue.id, name=queue.name, description=queue.description, is_active=queue.is_active, ticket_count=open_count)
+
+
+@router.get("/admin/audit-logs", response_model=AdminAuditList)
+async def admin_audit_logs(_admin: AdministratorUser, db: Db, query: str | None = None, page: int = Query(1, ge=1), page_size: int = Query(25, ge=1, le=100)) -> AdminAuditList:
+    conditions = [or_(AuditLog.action.ilike(f"%{query}%"), AuditLog.entity_type.ilike(f"%{query}%"), AuditLog.detail.ilike(f"%{query}%"))] if query else []
+    total = (await db.scalar(select(func.count(AuditLog.id)).where(*conditions))) or 0
+    logs = (await db.scalars(select(AuditLog).where(*conditions).order_by(AuditLog.created_at.desc()).offset((page-1)*page_size).limit(page_size))).all()
+    users = {u.id: u.full_name for u in (await db.scalars(select(User))).all()}
+    return AdminAuditList(items=[AdminAuditOut(id=x.id, actor=users.get(x.user_id, "System"), action=x.action, entity_type=x.entity_type, entity_id=x.entity_id, detail=x.detail, created_at=x.created_at) for x in logs], total=total)
+
+
+SETTING_DEFINITIONS = {
+    "customer_registration_enabled": ("true", "boolean", "Allow customers to create accounts"),
+    "agent_registration_enabled": ("true", "boolean", "Allow invite-code support-agent registration"),
+    "low_confidence_threshold": ("0.60", "number", "Predictions below this confidence require review"),
+    "max_upload_mb": ("10", "integer", "Maximum attachment size in megabytes"),
+    "maintenance_message": ("", "string", "Optional customer-facing maintenance message"),
+}
+
+@router.get("/admin/settings", response_model=list[AdminSettingOut])
+async def admin_settings(_admin: AdministratorUser, db: Db) -> list[AdminSettingOut]:
+    existing = {x.key: x for x in (await db.scalars(select(SystemSetting))).all()}
+    return [AdminSettingOut(key=key, value=existing[key].value if key in existing else default, value_type=kind, description=description, updated_at=existing[key].updated_at if key in existing else utcnow()) for key,(default,kind,description) in SETTING_DEFINITIONS.items()]
+
+@router.patch("/admin/settings", response_model=list[AdminSettingOut])
+async def admin_update_settings(payload: AdminSettingsUpdate, admin: AdministratorUser, db: Db) -> list[AdminSettingOut]:
+    for key, value in payload.values.items():
+        if key not in SETTING_DEFINITIONS: raise HTTPException(400, f"Setting is not configurable: {key}")
+        default, kind, description = SETTING_DEFINITIONS[key]
+        if kind == "boolean" and value not in {"true", "false"}: raise HTTPException(422, f"{key} must be true or false")
+        if kind == "number" and not 0 <= float(value) <= 1: raise HTTPException(422, f"{key} must be between 0 and 1")
+        if kind == "integer" and not 1 <= int(value) <= 100: raise HTTPException(422, f"{key} must be between 1 and 100")
+        setting = await db.get(SystemSetting, key)
+        if setting: setting.value, setting.updated_by = value, admin.id
+        else: db.add(SystemSetting(key=key, value=value, value_type=kind, description=description, updated_by=admin.id))
+        audit(db, admin, "system_setting_changed", "system_setting", key, "value updated")
+    await db.commit(); return await admin_settings(admin, db)

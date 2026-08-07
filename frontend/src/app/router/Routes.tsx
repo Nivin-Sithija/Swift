@@ -1,7 +1,7 @@
 import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
 import type { UserRole } from "../../types";
-import { AgentLayout, CustomerLayout } from "../../components/layout/Layouts";
+import { AdministratorLayout, AgentLayout, CustomerLayout } from "../../components/layout/Layouts";
 import { LoginPage } from "../../pages/LoginPage";
 import { RegisterPage } from "../../pages/RegisterPage";
 import { SubmitTicketPage } from "../../pages/customer/SubmitTicketPage";
@@ -11,6 +11,11 @@ import { AgentDashboardPage } from "../../pages/agent/AgentDashboardPage";
 import { AgentQueuePage } from "../../pages/agent/AgentQueuePage";
 import { AgentTicketDetailPage } from "../../pages/agent/AgentTicketDetailPage";
 import { NotFoundPage, PlaceholderPage } from "../../pages/UtilityPages";
+import { AdminDashboardPage } from "../../pages/admin/AdminDashboardPage";
+import { AdminAuditPage, AdminQueuesPage, AdminSettingsPage, AdminUsersPage } from "../../pages/admin/AdminManagementPages";
+
+const homeForRole = (role: UserRole) =>
+  role === "administrator" ? "/admin/dashboard" : role === "agent" ? "/agent/dashboard" : "/customer/submit";
 
 function ProtectedRoute({ role }: { role: UserRole }) {
   const { user } = useAuth();
@@ -20,7 +25,7 @@ function ProtectedRoute({ role }: { role: UserRole }) {
   if (user.role !== role)
     return (
       <Navigate
-        to={user.role === "agent" ? "/agent/dashboard" : "/customer/submit"}
+        to={homeForRole(user.role)}
         replace
       />
     );
@@ -70,6 +75,15 @@ export function AppRoutes() {
             path="/agent/settings"
             element={<PlaceholderPage title="Settings" />}
           />
+        </Route>
+      </Route>
+      <Route element={<ProtectedRoute role="administrator" />}>
+        <Route element={<AdministratorLayout />}>
+          <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+          <Route path="/admin/users" element={<AdminUsersPage />} />
+          <Route path="/admin/queues" element={<AdminQueuesPage />} />
+          <Route path="/admin/audit" element={<AdminAuditPage />} />
+          <Route path="/admin/settings" element={<AdminSettingsPage />} />
         </Route>
       </Route>
       <Route path="/not-found" element={<NotFoundPage />} />

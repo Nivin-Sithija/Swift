@@ -23,7 +23,6 @@ async def seed() -> None:
         for name, email, role in (
             ("Maya Silva", "customer@swift.demo", UserRole.customer),
             ("Anika Perera", "agent@swift.demo", UserRole.agent),
-            ("Meera Ravi", "supervisor@swift.demo", UserRole.supervisor),
             ("Swift Admin", "admin@swift.demo", UserRole.administrator),
         ):
             if not await db.scalar(select(User).where(User.email == email)):
