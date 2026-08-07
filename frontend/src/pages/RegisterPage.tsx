@@ -31,7 +31,6 @@ export function RegisterPage() {
     defaultValues: { name: "", email: "", password: "", confirmPassword: "", agentCode: "" },
   });
   if (user) return <Navigate to={user.role === "administrator" ? "/admin/dashboard" : user.role === "agent" ? "/agent/dashboard" : "/customer/submit"} replace />;
-  if (user) return <Navigate to={user.role === "agent" ? "/agent/dashboard" : "/customer/submit"} replace />;
   const preferredLanguage = language === "si" ? "sinhala" : language === "ta" ? "tamil" : "english";
   return (
     <main className="login-page">
