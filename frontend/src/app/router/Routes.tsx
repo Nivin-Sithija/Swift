@@ -10,7 +10,9 @@ import { CustomerTicketDetailPage } from "../../pages/customer/CustomerTicketDet
 import { AgentDashboardPage } from "../../pages/agent/AgentDashboardPage";
 import { AgentQueuePage } from "../../pages/agent/AgentQueuePage";
 import { AgentTicketDetailPage } from "../../pages/agent/AgentTicketDetailPage";
-import { NotFoundPage, PlaceholderPage } from "../../pages/UtilityPages";
+import { AgentReportsPage } from "../../pages/agent/AgentReportsPage";
+import { AgentSettingsPage } from "../../pages/agent/AgentSettingsPage";
+import { NotFoundPage } from "../../pages/UtilityPages";
 import { AdminDashboardPage } from "../../pages/admin/AdminDashboardPage";
 import { AdminAuditPage, AdminQueuesPage, AdminSettingsPage, AdminUsersPage } from "../../pages/admin/AdminManagementPages";
 
@@ -69,11 +71,11 @@ export function AppRoutes() {
           />
           <Route
             path="/agent/reports"
-            element={<PlaceholderPage title="Reports" />}
+            element={<AgentReportsPage />}
           />
           <Route
             path="/agent/settings"
-            element={<PlaceholderPage title="Settings" />}
+            element={<AgentSettingsPage />}
           />
         </Route>
       </Route>

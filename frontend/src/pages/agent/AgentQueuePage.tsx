@@ -15,13 +15,15 @@ import { ticketService } from "../../services/serviceSelector";
 import type { Ticket } from "../../types";
 import { CURRENT_AGENT, EMPTY_FILTERS } from "../../lib/constants";
 import { useLanguage } from "../../app/providers/LanguageProvider";
-const PAGE_SIZE = 8;
+import { loadAgentPreferences } from "../../lib/agentPreferences";
 export function AgentQueuePage({
   mode = "all",
 }: {
   mode?: "all" | "high" | "escalated" | "resolved";
 }) {
   const { tr } = useLanguage();
+  const [preferences] = useState(loadAgentPreferences);
+  const pageSize = Number(preferences.pageSize);
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -61,7 +63,7 @@ export function AgentQueuePage({
     () => sortTickets(filterTickets(scoped, filters), sort),
     [scoped, filters, sort],
   );
-  const shown = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const shown = filtered.slice((page - 1) * pageSize, page * pageSize);
   const title =
     mode === "high"
       ? "High-priority review"
@@ -96,7 +98,7 @@ export function AgentQueuePage({
           <button onClick={() => setNotice("")}>Dismiss</button>
         </div>
       )}
-      <div className="card list-card">
+      <div className={`card list-card${preferences.compactQueue ? " compact-queue" : ""}`}>
         <TicketFilters
           filters={filters}
           onChange={(p) => setFilters((v) => ({ ...v, ...p }))}
@@ -161,7 +163,7 @@ export function AgentQueuePage({
               </span>
               <Pagination
                 page={page}
-                pages={Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))}
+                pages={Math.max(1, Math.ceil(filtered.length / pageSize))}
                 onChange={setPage}
               />
             </div>
