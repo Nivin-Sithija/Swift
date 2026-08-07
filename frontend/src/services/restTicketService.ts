@@ -1,5 +1,5 @@
 import { getApiBaseUrl } from "../lib/config";
-import type { DashboardMetrics, InternalNote, Ticket, TicketSubmission, User, UserRole } from "../types";
+import type { AdminAudit, AdminDashboardMetrics, AdminQueue, AdminSetting, AdminUserRecord, DashboardMetrics, InternalNote, Ticket, TicketSubmission, User, UserRole } from "../types";
 import type { AdjacentTickets, TicketService } from "./ticketService";
 
 type ApiPrediction = { id: string; value: string; confidence: number; model_version: string; predicted_at: string };
@@ -55,7 +55,7 @@ export const restTicketService: TicketService = {
   async login(email: string, password: string, _role: UserRole): Promise<User> {
     const result = await request<{ access_token: string; user: { id: string; full_name: string; email: string; role: UserRole } }>("/auth/login", { method: "POST", body: JSON.stringify({ email, password }) }, false);
     accessToken = result.access_token;
-    return { id: result.user.id, name: result.user.full_name, email: result.user.email, role: result.user.role === "customer" ? "customer" : "agent" };
+    return { id: result.user.id, name: result.user.full_name, email: result.user.email, role: result.user.role };
   },
   async register(input) {
     const result = await request<{ access_token: string; user: { id: string; full_name: string; email: string; role: UserRole } }>("/auth/register", {
@@ -70,7 +70,7 @@ export const restTicketService: TicketService = {
       }),
     }, false);
     accessToken = result.access_token;
-    return { id: result.user.id, name: result.user.full_name, email: result.user.email, role: result.user.role === "customer" ? "customer" : "agent" };
+    return { id: result.user.id, name: result.user.full_name, email: result.user.email, role: result.user.role };
   },
   async logout() { await request<void>("/auth/logout", { method: "POST" }); accessToken = null; },
   async createTicket(submission: TicketSubmission) {
@@ -88,4 +88,23 @@ export const restTicketService: TicketService = {
   },
   async addInternalNote(id, text): Promise<InternalNote> { const n = await request<{ id: string; author: string; text: string; at: string }>(`/tickets/${id}/notes`, { method: "POST", body: JSON.stringify({ text }) }); return n; },
   async getDashboardMetrics() { const m = await request<Record<string, number | string>>("/dashboard/metrics"); return { newTickets: Number(m.new_tickets), assignedToMe: Number(m.assigned_to_me), highPriority: Number(m.high_priority), critical: Number(m.critical), escalated: Number(m.escalated), resolvedToday: Number(m.resolved_today), averageFirstResponse: String(m.average_first_response), lowConfidence: Number(m.low_confidence) } satisfies DashboardMetrics; },
+  async getAdminDashboard() {
+    const m = await request<Record<string, unknown>>("/admin/dashboard");
+    return {
+      customers: Number(m.customers), agents: Number(m.agents), administrators: Number(m.administrators),
+      activeSessions: Number(m.active_sessions), openTickets: Number(m.open_tickets), supportQueues: Number(m.support_queues), auditEvents: Number(m.audit_events),
+      recentUsers: (m.recent_users as Array<Record<string, unknown>>).map((user) => ({
+        id: String(user.id), name: String(user.full_name), email: String(user.email), role: user.role as UserRole,
+        isActive: Boolean(user.is_active), createdAt: String(user.created_at),
+      })),
+    } satisfies AdminDashboardMetrics;
+  },
+  async getAdminUsers() { const x=await request<{items:Array<Record<string,unknown>>}>("/admin/users"); return x.items.map(u=>({id:String(u.id),name:String(u.full_name),email:String(u.email),role:u.role as UserRole,isActive:Boolean(u.is_active),createdAt:String(u.created_at)})); },
+  async updateAdminUser(id, patch) { const u=await request<Record<string,unknown>>(`/admin/users/${id}`,{method:"PATCH",body:JSON.stringify(patch)}); return {id:String(u.id),name:String(u.full_name),email:String(u.email),role:u.role as UserRole,isActive:Boolean(u.is_active),createdAt:String(u.created_at)} satisfies AdminUserRecord; },
+  async getAdminQueues() { const x=await request<Array<Record<string,unknown>>>("/admin/queues"); return x.map(q=>({id:String(q.id),name:String(q.name),description:q.description?String(q.description):undefined,isActive:Boolean(q.is_active),ticketCount:Number(q.ticket_count)})); },
+  async createAdminQueue(input) { const q=await request<Record<string,unknown>>("/admin/queues",{method:"POST",body:JSON.stringify(input)}); return {id:String(q.id),name:String(q.name),description:q.description?String(q.description):undefined,isActive:Boolean(q.is_active),ticketCount:Number(q.ticket_count)} satisfies AdminQueue; },
+  async updateAdminQueue(id, patch) { const q=await request<Record<string,unknown>>(`/admin/queues/${id}`,{method:"PATCH",body:JSON.stringify(patch)}); return {id:String(q.id),name:String(q.name),description:q.description?String(q.description):undefined,isActive:Boolean(q.is_active),ticketCount:Number(q.ticket_count)} satisfies AdminQueue; },
+  async getAdminAudit() { const x=await request<{items:Array<Record<string,unknown>>}>("/admin/audit-logs"); return x.items.map(a=>({id:String(a.id),actor:String(a.actor),action:String(a.action),entityType:String(a.entity_type),entityId:String(a.entity_id),detail:a.detail?String(a.detail):undefined,createdAt:String(a.created_at)} satisfies AdminAudit)); },
+  async getAdminSettings() { const x=await request<Array<Record<string,unknown>>>("/admin/settings"); return x.map(s=>({key:String(s.key),value:String(s.value),valueType:String(s.value_type),description:String(s.description),updatedAt:String(s.updated_at)} satisfies AdminSetting)); },
+  async updateAdminSettings(values) { return request<AdminSetting[]>("/admin/settings",{method:"PATCH",body:JSON.stringify({values})}); },
 };

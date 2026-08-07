@@ -12,7 +12,7 @@ docker compose up --build
 
 The API is at `http://localhost:8000`, Swagger UI at `/docs`, and frontend at `http://localhost:8080`. The API container runs `alembic upgrade head` and the idempotent seed before startup.
 
-Demo passwords are `password123`: `customer@swift.demo`, `agent@swift.demo`, `supervisor@swift.demo`, and `admin@swift.demo`. These are development accounts only.
+Demo passwords are `password123`: `customer@swift.demo`, `agent@swift.demo`, and `admin@swift.demo`. These are development accounts only.
 
 Set `VITE_USE_MOCK_API=false` when building the frontend to use the REST service. Mock mode remains the default. Copy `.env.example` to `.env` for non-Compose backend development and replace the secret.
 
