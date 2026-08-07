@@ -14,25 +14,20 @@ import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/layout/Layouts";
 import {
   ErrorState,
+  humanize,
   LoadingSkeleton,
   TicketTable,
 } from "../../components/tickets/TicketComponents";
 import { ticketService } from "../../services/serviceSelector";
 import type { DashboardMetrics, Ticket } from "../../types";
-import { CURRENT_AGENT } from "../../lib/constants";
 import { useLanguage } from "../../app/providers/LanguageProvider";
+import { useAuth } from "../../app/providers/AuthProvider";
 import { loadAgentPreferences } from "../../lib/agentPreferences";
-const chartData: Array<[string, number]> = [
-  ["Card payments", 38],
-  ["Transfers", 27],
-  ["Cash withdrawal", 19],
-  ["Account access", 13],
-  ["Other", 8],
-];
 const greetingFor = (hour: number) =>
   hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
 export function AgentDashboardPage() {
   const { tr, language } = useLanguage();
+  const { user } = useAuth();
   const now = new Date();
   const today = new Intl.DateTimeFormat(language === "si" ? "si-LK" : language === "ta" ? "ta-LK" : "en-LK", {
     weekday: "long",
@@ -83,11 +78,21 @@ export function AgentDashboardPage() {
         [tr("Low confidence"), metrics.lowConfidence, CircleHelp, "neutral"],
       ] as const)
     : [];
+  const categoryMaximum = Math.max(
+    1,
+    ...(metrics?.categoryDistribution.map((item) => item.count) ?? []),
+  );
+  const volumeMaximum = Math.max(
+    1,
+    ...(metrics?.weeklyVolume.map((item) => item.count) ?? []),
+  );
+  const languageTotal =
+    metrics?.languageDistribution.reduce((sum, item) => sum + item.count, 0) ?? 0;
   return (
     <>
       <PageHeader
         eyebrow={today}
-        title={`${greeting}, ${CURRENT_AGENT.split(" ")[0]}`}
+        title={`${greeting}, ${user?.name.split(" ")[0] ?? "Agent"}`}
         description="Here is the state of your support operation right now."
         actions={
           <Link className="btn" to={preferredQueuePath}>
@@ -132,13 +137,13 @@ export function AgentDashboardPage() {
                 </select>
               </div>
               <div className="bar-chart">
-                {chartData.map(([label, value]) => (
-                  <div key={label}>
-                    <span>{label}</span>
+                {metrics.categoryDistribution.slice(0, 5).map((item) => (
+                  <div key={item.label}>
+                    <span>{humanize(item.label)}</span>
                     <div>
-                      <i style={{ width: `${value * 2}%` }} />
+                      <i style={{ width: `${(item.count / categoryMaximum) * 100}%` }} />
                     </div>
-                    <strong>{value}</strong>
+                    <strong>{item.count}</strong>
                   </div>
                 ))}
               </div>
@@ -150,11 +155,11 @@ export function AgentDashboardPage() {
                 className="volume-chart"
                 aria-label="Weekly ticket volume chart"
               >
-                {[46, 62, 54, 78, 69, 88, 57].map((v, i) => (
-                  <div key={i}>
-                    <span style={{ height: `${v}%` }} />
+                {metrics.weeklyVolume.map((item) => (
+                  <div key={item.date}>
+                    <span style={{ height: `${Math.max(4, (item.count / volumeMaximum) * 100)}%` }} title={`${item.count} tickets`} />
                     <small>
-                      {["Thu", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed"][i]}
+                      {new Intl.DateTimeFormat(language === "si" ? "si-LK" : language === "ta" ? "ta-LK" : "en-LK", { weekday: "short" }).format(new Date(`${item.date}T12:00:00`))}
                     </small>
                   </div>
                 ))}
@@ -163,17 +168,10 @@ export function AgentDashboardPage() {
             <section className="card language-panel">
               <span className="eyebrow">Language form</span>
               <h2>{tr("Multilingual mix")}</h2>
-              {[
-                ["English", "42%"],
-                ["Sinhala", "18%"],
-                ["Tamil", "14%"],
-                ["Singlish", "12%"],
-                ["Tanglish", "8%"],
-                ["Mixed", "6%"],
-              ].map(([x, v]) => (
-                <div className="row spread" key={x}>
-                  <span>{x}</span>
-                  <strong>{v}</strong>
+              {metrics.languageDistribution.map((item) => (
+                <div className="row spread" key={item.label}>
+                  <span>{humanize(item.label)}</span>
+                  <strong>{languageTotal ? Math.round((item.count / languageTotal) * 100) : 0}%</strong>
                 </div>
               ))}
             </section>

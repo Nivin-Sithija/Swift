@@ -64,6 +64,8 @@ from app.schemas.api import (
     AdminUserOut,
     AttachmentOut,
     DashboardOut,
+    DashboardBreakdownItem,
+    DashboardTrendPoint,
     EscalationRequest,
     EventOut,
     LoginRequest,
@@ -713,6 +715,45 @@ async def dashboard(user: StaffUser, db: Db) -> DashboardOut:
         return (await db.scalar(select(func.count(Ticket.id)).where(*conditions))) or 0
 
     today = datetime.now(UTC).replace(hour=0, minute=0, second=0, microsecond=0)
+    tickets = (
+        await db.scalars(select(Ticket).options(selectinload(Ticket.category)))
+    ).all()
+    category_counts: dict[str, int] = {}
+    language_counts: dict[str, int] = {}
+    for ticket in tickets:
+        category = ticket.category.display_name if ticket.category else "Unclassified"
+        category_counts[category] = category_counts.get(category, 0) + 1
+        language = ticket.language.value.replace("code_mixed", "mixed").title()
+        language_counts[language] = language_counts.get(language, 0) + 1
+    response_durations = [
+        (response.sent_at - ticket.created_at).total_seconds()
+        for response, ticket in (
+            await db.execute(
+                select(Response, Ticket)
+                .join(Ticket, Ticket.id == Response.ticket_id)
+                .where(Response.sent_at.is_not(None))
+            )
+        ).all()
+        if response.sent_at is not None and response.sent_at >= ticket.created_at
+    ]
+    if response_durations:
+        average_minutes = round(sum(response_durations) / len(response_durations) / 60)
+        average_first_response = (
+            f"{average_minutes} min"
+            if average_minutes < 60
+            else f"{average_minutes / 60:.1f} hr"
+        )
+    else:
+        average_first_response = "Not available"
+    weekly_volume = []
+    for days_ago in range(6, -1, -1):
+        day = (today - timedelta(days=days_ago)).date()
+        weekly_volume.append(
+            DashboardTrendPoint(
+                date=day.isoformat(),
+                count=sum(ticket.created_at.date() == day for ticket in tickets),
+            )
+        )
     return DashboardOut(
         new_tickets=await count(Ticket.status == TicketStatus.new),
         assigned_to_me=await count(Ticket.assigned_agent_id == user.id),
@@ -722,8 +763,21 @@ async def dashboard(user: StaffUser, db: Db) -> DashboardOut:
         resolved_today=await count(
             Ticket.status == TicketStatus.resolved, Ticket.updated_at >= today
         ),
-        average_first_response="Not available",
+        average_first_response=average_first_response,
         low_confidence=await count(Ticket.manual_review_required.is_(True)),
+        category_distribution=[
+            DashboardBreakdownItem(label=label, count=value)
+            for label, value in sorted(
+                category_counts.items(), key=lambda item: (-item[1], item[0])
+            )
+        ],
+        language_distribution=[
+            DashboardBreakdownItem(label=label, count=value)
+            for label, value in sorted(
+                language_counts.items(), key=lambda item: (-item[1], item[0])
+            )
+        ],
+        weekly_volume=weekly_volume,
     )
 
 
