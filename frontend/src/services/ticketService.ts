@@ -1,6 +1,8 @@
 import { mockTickets } from "../mocks/tickets";
 import type {
   DashboardMetrics,
+  AdminDashboardMetrics,
+  AdminUserRecord, AdminQueue, AdminAudit, AdminSetting,
   InternalNote,
   Ticket,
   User,
@@ -29,11 +31,22 @@ export interface TicketService {
   updateTicket(id: string, patch: Partial<Ticket>): Promise<Ticket>;
   addInternalNote(id: string, text: string): Promise<InternalNote>;
   getDashboardMetrics(): Promise<DashboardMetrics>;
+  getAdminDashboard(): Promise<AdminDashboardMetrics>;
+  getAdminUsers(): Promise<AdminUserRecord[]>;
+  updateAdminUser(id: string, patch: { role?: UserRole; is_active?: boolean }): Promise<AdminUserRecord>;
+  getAdminQueues(): Promise<AdminQueue[]>;
+  createAdminQueue(input: { name: string; description?: string }): Promise<AdminQueue>;
+  updateAdminQueue(id: string, patch: { name?: string; description?: string; is_active?: boolean }): Promise<AdminQueue>;
+  getAdminAudit(): Promise<AdminAudit[]>;
+  getAdminSettings(): Promise<AdminSetting[]>;
+  updateAdminSettings(values: Record<string,string>): Promise<AdminSetting[]>;
 }
 
 export const mockTicketService: TicketService = {
   async login(email, password, role) {
     await delay(500);
+    if (email === "admin@swift.demo" && password === "password123")
+      return { id: "admin-1", name: "Swift Admin", email, role: "administrator" };
     const expected =
       role === "agent" ? "agent@swift.demo" : "customer@swift.demo";
     if (email !== expected || password !== "password123")
@@ -105,4 +118,24 @@ export const mockTicketService: TicketService = {
       lowConfidence: tickets.filter((t) => t.requiresManualReview).length,
     };
   },
+  async getAdminDashboard() {
+    await delay();
+    return {
+      customers: 24, agents: 6, administrators: 2, activeSessions: 8,
+      openTickets: tickets.filter((ticket) => !["resolved", "closed"].includes(ticket.status)).length,
+      supportQueues: 3, auditEvents: 42,
+      recentUsers: [
+        { id: "customer-1", name: "Maya Silva", email: "customer@swift.demo", role: "customer" as const, isActive: true, createdAt: new Date().toISOString() },
+        { id: "agent-1", name: CURRENT_AGENT, email: "agent@swift.demo", role: "agent" as const, isActive: true, createdAt: new Date().toISOString() },
+      ],
+    };
+  },
+  async getAdminUsers() { return (await this.getAdminDashboard()).recentUsers; },
+  async updateAdminUser(id, patch) { const user=(await this.getAdminUsers()).find(x=>x.id===id)!; return {...user, role:patch.role??user.role, isActive:patch.is_active??user.isActive}; },
+  async getAdminQueues() { return [{id:"general",name:"General Support",description:"Default queue",isActive:true,ticketCount:tickets.length}]; },
+  async createAdminQueue(input) { return {id:crypto.randomUUID(),...input,isActive:true,ticketCount:0}; },
+  async updateAdminQueue(id, patch) { return {id,name:patch.name??"Queue",description:patch.description,isActive:patch.is_active??true,ticketCount:0}; },
+  async getAdminAudit() { return []; },
+  async getAdminSettings() { return []; },
+  async updateAdminSettings() { return []; },
 };

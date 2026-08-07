@@ -40,14 +40,18 @@ export function LoginPage() {
   if (user)
     return (
       <Navigate
-        to={user.role === "agent" ? "/agent/dashboard" : "/customer/submit"}
+        to={user.role === "administrator" ? "/admin/dashboard" : user.role === "agent" ? "/agent/dashboard" : "/customer/submit"}
         replace
       />
     );
   const useDemo = () => {
     setValue(
       "email",
-      role === "agent" ? "agent@swift.demo" : "customer@swift.demo",
+      role === "administrator"
+        ? "admin@swift.demo"
+        : role === "agent"
+          ? "agent@swift.demo"
+          : "customer@swift.demo",
     );
     setValue("password", "password123");
   };
@@ -111,14 +115,30 @@ export function LoginPage() {
             >
               {tr("Support agent")}
             </button>
+            {developmentMode && (
+              <button
+                role="tab"
+                aria-selected={role === "administrator"}
+                onClick={() => {
+                  setRole("administrator");
+                  setServerError("");
+                }}
+              >
+                Administrator
+              </button>
+            )}
           </div>
           <form
             onSubmit={handleSubmit(async (data) => {
               try {
                 setServerError("");
-                await login(data.email, data.password, role, data.remember);
+                const signedIn = await login(data.email, data.password, role, data.remember);
                 navigate(
-                  role === "agent" ? "/agent/dashboard" : "/customer/submit",
+                  signedIn.role === "administrator"
+                    ? "/admin/dashboard"
+                    : signedIn.role === "agent"
+                      ? "/agent/dashboard"
+                      : "/customer/submit",
                 );
               } catch (error) {
                 setServerError(
@@ -135,9 +155,11 @@ export function LoginPage() {
                 {...register("email")}
                 placeholder={
                   developmentMode
-                    ? role === "agent"
-                      ? "agent@swift.demo"
-                      : "customer@swift.demo"
+                    ? role === "administrator"
+                      ? "admin@swift.demo"
+                      : role === "agent"
+                        ? "agent@swift.demo"
+                        : "customer@swift.demo"
                     : "you@example.com"
                 }
               />
