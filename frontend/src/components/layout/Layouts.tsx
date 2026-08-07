@@ -24,13 +24,14 @@ import { Input } from "../ui/Input";
 import { IconButton } from "../ui/Button";
 import { Badge } from "../ui/Badge";
 import { cn } from "../../lib/utils";
-import { mockTicketService } from "../../services/ticketService";
+import { ticketService } from "../../services/serviceSelector";
 import type { DashboardMetrics } from "../../types";
 
 function ProfileMenu() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const { tr } = useLanguage();
   const container = useRef<HTMLDivElement>(null);
   // A dropdown that only closes via its own trigger traps the user behind it.
   useEffect(() => {
@@ -61,7 +62,7 @@ function ProfileMenu() {
             {user?.name}
           </span>
           <span className="block text-xs text-text-muted">
-            {user?.role === "agent" ? "Support agent" : "Customer"}
+            {tr(user?.role === "agent" ? "Support agent" : "Customer")}
           </span>
         </span>
         <ChevronDown size={14} className="shrink-0 text-text-muted" />
@@ -75,7 +76,7 @@ function ProfileMenu() {
               navigate("/login");
             }}
           >
-            <LogOut size={16} /> Log out
+            <LogOut size={16} /> {tr("Log out")}
           </button>
         </div>
       ) : null}
@@ -83,7 +84,7 @@ function ProfileMenu() {
   );
 }
 export function CustomerLayout() {
-  const { t } = useLanguage();
+  const { t, tr } = useLanguage();
   return (
     <div className="flex min-h-screen flex-col">
       <TopNav
@@ -109,8 +110,8 @@ export function CustomerLayout() {
         <Outlet />
       </main>
       <footer className="footer">
-        <span>Swift Support prototype</span>
-        <span>Never share passwords or PINs in a ticket.</span>
+        <span>{tr("Swift Support prototype")}</span>
+        <span>{tr("Never share passwords or PINs in a ticket.")}</span>
       </footer>
     </div>
   );
@@ -171,12 +172,13 @@ function SidebarLink({
   );
 }
 export function AgentLayout() {
+  const { tr } = useLanguage();
   const [sidebar, setSidebar] = useState(false);
   const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
   // Sidebar counts have to come from the same source as the dashboard, or they drift.
   useEffect(() => {
     let active = true;
-    mockTicketService
+    ticketService
       .getDashboardMetrics()
       .then((next) => active && setMetrics(next))
       .catch((error) => console.error("[AgentLayout/metrics]", error));
@@ -203,12 +205,13 @@ export function AgentLayout() {
         </div>
         <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto p-3">
           <span className="mb-1 px-2.5 text-xs font-semibold uppercase tracking-wide text-text-muted">
-            Workspace
+            {tr("Workspace")}
           </span>
           {workspaceLinks.map(({ count, ...link }) => (
             <SidebarLink
               key={link.to}
               {...link}
+              label={tr(link.label)}
               badge={
                 count && metrics?.[count] ? String(metrics[count]) : undefined
               }
@@ -219,7 +222,7 @@ export function AgentLayout() {
         <div className="flex flex-col gap-0.5 border-t border-border-subtle p-3">
           <SidebarLink
             to="/agent/settings"
-            label="Settings"
+            label={tr("Settings")}
             icon={Settings}
             onClick={() => setSidebar(false)}
           />
@@ -230,10 +233,10 @@ export function AgentLayout() {
             />
             <span className="flex flex-col">
               <strong className="text-xs font-semibold text-text-primary">
-                Secure workspace
+                {tr("Secure workspace")}
               </strong>
               <small className="text-xs text-text-muted">
-                Human approval required
+                {tr("Human approval required")}
               </small>
             </span>
           </div>
@@ -249,7 +252,7 @@ export function AgentLayout() {
           />
           <Input
             icon={Search}
-            placeholder="Search ID, customer or subject…"
+            placeholder={tr("Search tickets…")}
             aria-label="Global search"
             className="flex-1"
           />
