@@ -57,6 +57,21 @@ export const restTicketService: TicketService = {
     accessToken = result.access_token;
     return { id: result.user.id, name: result.user.full_name, email: result.user.email, role: result.user.role === "customer" ? "customer" : "agent" };
   },
+  async register(input) {
+    const result = await request<{ access_token: string; user: { id: string; full_name: string; email: string; role: UserRole } }>("/auth/register", {
+      method: "POST",
+      body: JSON.stringify({
+        full_name: input.name,
+        email: input.email,
+        password: input.password,
+        role: input.role,
+        preferred_language: input.preferredLanguage,
+        agent_registration_code: input.agentCode || null,
+      }),
+    }, false);
+    accessToken = result.access_token;
+    return { id: result.user.id, name: result.user.full_name, email: result.user.email, role: result.user.role === "customer" ? "customer" : "agent" };
+  },
   async logout() { await request<void>("/auth/logout", { method: "POST" }); accessToken = null; },
   async createTicket(submission: TicketSubmission) {
     const created = await request<ApiTicket>("/tickets", { method: "POST", body: JSON.stringify({ subject: submission.subject, message: submission.message, preferred_response_language: submission.preferredResponseLanguage }) });

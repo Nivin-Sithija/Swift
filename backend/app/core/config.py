@@ -22,6 +22,7 @@ class Settings(BaseSettings):
     max_upload_bytes: int = 10 * 1024 * 1024
     low_confidence_threshold: float = 0.60
     use_inline_processing: bool = True
+    agent_registration_code: str | None = None
 
     @field_validator("database_url")
     @classmethod

@@ -3,6 +3,7 @@ import { useAuth } from "../providers/AuthProvider";
 import type { UserRole } from "../../types";
 import { AgentLayout, CustomerLayout } from "../../components/layout/Layouts";
 import { LoginPage } from "../../pages/LoginPage";
+import { RegisterPage } from "../../pages/RegisterPage";
 import { SubmitTicketPage } from "../../pages/customer/SubmitTicketPage";
 import { CustomerTicketsPage } from "../../pages/customer/CustomerTicketsPage";
 import { CustomerTicketDetailPage } from "../../pages/customer/CustomerTicketDetailPage";
@@ -30,6 +31,7 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
       <Route element={<ProtectedRoute role="customer" />}>
         <Route element={<CustomerLayout />}>
           <Route path="/customer/submit" element={<SubmitTicketPage />} />

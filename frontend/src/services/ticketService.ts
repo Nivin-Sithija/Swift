@@ -20,6 +20,7 @@ export interface AdjacentTickets {
 
 export interface TicketService {
   login(email: string, password: string, role: UserRole): Promise<User>;
+  register(input: { name: string; email: string; password: string; role: UserRole; preferredLanguage: "english" | "sinhala" | "tamil"; agentCode?: string }): Promise<User>;
   logout(): Promise<void>;
   createTicket?(submission: TicketSubmission): Promise<Ticket>;
   getTickets(): Promise<Ticket[]>;
@@ -40,6 +41,10 @@ export const mockTicketService: TicketService = {
     return role === "agent"
       ? { id: "agent-1", name: CURRENT_AGENT, email, role }
       : { id: "customer-1", name: "Maya Silva", email, role };
+  },
+  async register(input) {
+    await delay(500);
+    return { id: crypto.randomUUID(), name: input.name, email: input.email, role: input.role };
   },
   async logout() {
     await delay(100);
