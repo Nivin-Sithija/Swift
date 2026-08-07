@@ -1053,6 +1053,12 @@ textarea {
 .table-wrap {
   overflow: auto;
 }
+
+.compact-queue table th,
+.compact-queue table td {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
 table {
   border-collapse: collapse;
   width: 100%;

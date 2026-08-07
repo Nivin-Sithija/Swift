@@ -21,6 +21,7 @@ import { ticketService } from "../../services/serviceSelector";
 import type { DashboardMetrics, Ticket } from "../../types";
 import { CURRENT_AGENT } from "../../lib/constants";
 import { useLanguage } from "../../app/providers/LanguageProvider";
+import { loadAgentPreferences } from "../../lib/agentPreferences";
 const chartData: Array<[string, number]> = [
   ["Card payments", 38],
   ["Transfers", 27],
@@ -39,6 +40,13 @@ export function AgentDashboardPage() {
     month: "long",
   }).format(now);
   const greeting = tr(greetingFor(now.getHours()));
+  const [preferences] = useState(loadAgentPreferences);
+  const preferredQueuePath =
+    preferences.defaultQueueView === "high"
+      ? "/agent/high-priority"
+      : preferences.defaultQueueView === "escalated"
+        ? "/agent/escalated"
+        : "/agent/tickets";
   const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [error, setError] = useState(false);
@@ -82,7 +90,7 @@ export function AgentDashboardPage() {
         title={`${greeting}, ${CURRENT_AGENT.split(" ")[0]}`}
         description="Here is the state of your support operation right now."
         actions={
-          <Link className="btn" to="/agent/tickets">
+          <Link className="btn" to={preferredQueuePath}>
             {tr("Open queue")} <ArrowRight />
           </Link>
         }
