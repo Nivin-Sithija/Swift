@@ -11,7 +11,16 @@ class Base(DeclarativeBase):
 
 
 settings = get_settings()
-engine = create_async_engine(settings.database_url, pool_pre_ping=True)
+
+
+def engine_options(database_url: str) -> dict[str, object]:
+    options: dict[str, object] = {"pool_pre_ping": True}
+    if ".supabase.com" in database_url:
+        options["connect_args"] = {"ssl": "require"}
+    return options
+
+
+engine = create_async_engine(settings.database_url, **engine_options(settings.database_url))
 SessionLocal = async_sessionmaker(engine, expire_on_commit=False)
 
 
