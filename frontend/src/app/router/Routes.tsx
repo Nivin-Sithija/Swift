@@ -20,8 +20,9 @@ const homeForRole = (role: UserRole) =>
   role === "administrator" ? "/admin/dashboard" : role === "agent" ? "/agent/dashboard" : "/customer/submit";
 
 function ProtectedRoute({ role }: { role: UserRole }) {
-  const { user } = useAuth();
+  const { user, restoring } = useAuth();
   const location = useLocation();
+  if (restoring) return null;
   if (!user)
     return <Navigate to="/login" replace state={{ from: location.pathname }} />;
   if (user.role !== role)

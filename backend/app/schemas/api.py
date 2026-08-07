@@ -159,6 +159,19 @@ class DashboardOut(BaseModel):
     resolved_today: int
     average_first_response: str
     low_confidence: int
+    category_distribution: list["DashboardBreakdownItem"]
+    language_distribution: list["DashboardBreakdownItem"]
+    weekly_volume: list["DashboardTrendPoint"]
+
+
+class DashboardBreakdownItem(BaseModel):
+    label: str
+    count: int
+
+
+class DashboardTrendPoint(BaseModel):
+    date: str
+    count: int
 
 
 class AdminUserOut(BaseModel):
