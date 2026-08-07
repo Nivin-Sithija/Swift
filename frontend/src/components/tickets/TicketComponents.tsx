@@ -374,7 +374,7 @@ export function ErrorState({ retry }: { retry: () => void }) {
     <div className="empty error">
       <AlertTriangle />
       <h3>{tr("Service temporarily unavailable")}</h3>
-      <p>The mock ticket service could not load this view.</p>
+      <p>The ticket service could not load this view. Check your connection or sign in again.</p>
       <button className="btn" onClick={retry}>
         {tr("Try again")}
       </button>

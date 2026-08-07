@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { ticketService } from "../../services/serviceSelector";
 import type { User, UserRole } from "../../types";
 const AuthContext = createContext<{
@@ -11,9 +11,10 @@ const AuthContext = createContext<{
   ) => Promise<User>;
   register: (input: { name: string; email: string; password: string; role: UserRole; preferredLanguage: "english" | "sinhala" | "tamil"; agentCode?: string }) => Promise<void>;
   logout: () => Promise<void>;
+  restoring: boolean;
 } | null>(null);
 export function MockAuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(() => {
+  const [storedUser] = useState<User | null>(() => {
     const raw =
       sessionStorage.getItem("swift-session") ||
       localStorage.getItem("swift-session");
@@ -23,6 +24,25 @@ export function MockAuthProvider({ children }: { children: ReactNode }) {
       return null;
     }
   });
+  const [user, setUser] = useState<User | null>(storedUser);
+  const [restoring, setRestoring] = useState(Boolean(storedUser));
+  useEffect(() => {
+    if (!storedUser) return;
+    let active = true;
+    ticketService
+      .restoreSession(storedUser)
+      .then((restored) => {
+        if (active) setUser(restored);
+      })
+      .catch(() => {
+        if (!active) return;
+        localStorage.removeItem("swift-session");
+        sessionStorage.removeItem("swift-session");
+        setUser(null);
+      })
+      .finally(() => active && setRestoring(false));
+    return () => { active = false; };
+  }, [storedUser]);
   const login = async (
     email: string,
     password: string,
@@ -49,7 +69,7 @@ export function MockAuthProvider({ children }: { children: ReactNode }) {
     setUser(next);
   };
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, login, register, logout, restoring }}>
       {children}
     </AuthContext.Provider>
   );

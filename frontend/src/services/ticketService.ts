@@ -24,6 +24,7 @@ export interface TicketService {
   login(email: string, password: string, role: UserRole): Promise<User>;
   register(input: { name: string; email: string; password: string; role: UserRole; preferredLanguage: "english" | "sinhala" | "tamil"; agentCode?: string }): Promise<User>;
   logout(): Promise<void>;
+  restoreSession(user: User): Promise<User>;
   createTicket?(submission: TicketSubmission): Promise<Ticket>;
   getTickets(): Promise<Ticket[]>;
   getTicket(id: string): Promise<Ticket>;
@@ -61,6 +62,9 @@ export const mockTicketService: TicketService = {
   },
   async logout() {
     await delay(100);
+  },
+  async restoreSession(user) {
+    return user;
   },
   async getTickets() {
     await delay();
@@ -106,6 +110,13 @@ export const mockTicketService: TicketService = {
   },
   async getDashboardMetrics() {
     await delay();
+    const categoryCounts = new Map<string, number>();
+    const languageCounts = new Map<string, number>();
+    tickets.forEach((ticket) => {
+      categoryCounts.set(ticket.category.value, (categoryCounts.get(ticket.category.value) ?? 0) + 1);
+      languageCounts.set(ticket.language, (languageCounts.get(ticket.language) ?? 0) + 1);
+    });
+    const today = new Date();
     return {
       newTickets: tickets.filter((t) => t.status === "new").length,
       assignedToMe: tickets.filter((t) => t.assignedAgent === CURRENT_AGENT)
@@ -113,9 +124,32 @@ export const mockTicketService: TicketService = {
       highPriority: tickets.filter((t) => t.priority.value === "high").length,
       critical: tickets.filter((t) => t.priority.value === "critical").length,
       escalated: tickets.filter((t) => t.status === "escalated").length,
-      resolvedToday: 6,
-      averageFirstResponse: "18 min",
+      resolvedToday: tickets.filter((ticket) =>
+        ticket.status === "resolved" &&
+        new Date(ticket.updatedAt).toDateString() === today.toDateString()
+      ).length,
+      averageFirstResponse: (() => {
+        const responseMinutes = tickets
+          .filter((ticket) => ticket.approvedResponse)
+          .map((ticket) =>
+            (new Date(ticket.approvedResponse!.approvedAt).getTime() - new Date(ticket.createdAt).getTime()) / 60_000
+          )
+          .filter((minutes) => minutes >= 0);
+        return responseMinutes.length
+          ? `${Math.round(responseMinutes.reduce((sum, value) => sum + value, 0) / responseMinutes.length)} min`
+          : "Not available";
+      })(),
       lowConfidence: tickets.filter((t) => t.requiresManualReview).length,
+      categoryDistribution: [...categoryCounts].map(([label, count]) => ({ label, count })).sort((a, b) => b.count - a.count),
+      languageDistribution: [...languageCounts].map(([label, count]) => ({ label, count })).sort((a, b) => b.count - a.count),
+      weeklyVolume: Array.from({ length: 7 }, (_, index) => {
+        const date = new Date(today);
+        date.setDate(today.getDate() - (6 - index));
+        return {
+          date: date.toISOString().slice(0, 10),
+          count: tickets.filter((ticket) => new Date(ticket.createdAt).toDateString() === date.toDateString()).length,
+        };
+      }),
     };
   },
   async getAdminDashboard() {
