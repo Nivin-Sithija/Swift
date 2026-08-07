@@ -16,6 +16,7 @@ type ApiTicket = Record<string, unknown> & {
 };
 
 let accessToken: string | null = null;
+let refreshPromise: Promise<string> | null = null;
 const url = (path: string) => `${getApiBaseUrl()}${path}`;
 async function request<T>(path: string, init: RequestInit = {}, retry = true): Promise<T> {
   const headers = new Headers(init.headers);
@@ -23,10 +24,18 @@ async function request<T>(path: string, init: RequestInit = {}, retry = true): P
   if (accessToken) headers.set("Authorization", `Bearer ${accessToken}`);
   const response = await fetch(url(path), { ...init, headers, credentials: "include" });
   if (response.status === 401 && retry) {
-    const refreshed = await fetch(url("/auth/refresh"), { method: "POST", credentials: "include" });
-    if (refreshed.ok) {
-      accessToken = ((await refreshed.json()) as { access_token: string }).access_token;
+    refreshPromise ??= fetch(url("/auth/refresh"), { method: "POST", credentials: "include" })
+      .then(async (refreshed) => {
+        if (!refreshed.ok) throw new Error("Session expired");
+        return ((await refreshed.json()) as { access_token: string }).access_token;
+      })
+      .finally(() => { refreshPromise = null; });
+    try {
+      accessToken = await refreshPromise;
       return request<T>(path, init, false);
+    } catch {
+      accessToken = null;
+      throw new Error("Session expired");
     }
   }
   if (!response.ok) throw new Error(((await response.json().catch(() => null)) as { message?: string } | null)?.message || `Request failed (${response.status})`);
@@ -73,6 +82,10 @@ export const restTicketService: TicketService = {
     return { id: result.user.id, name: result.user.full_name, email: result.user.email, role: result.user.role };
   },
   async logout() { await request<void>("/auth/logout", { method: "POST" }); accessToken = null; },
+  async restoreSession() {
+    const result = await request<{ id: string; full_name: string; email: string; role: UserRole }>("/users/me");
+    return { id: result.id, name: result.full_name, email: result.email, role: result.role };
+  },
   async createTicket(submission: TicketSubmission) {
     const created = await request<ApiTicket>("/tickets", { method: "POST", body: JSON.stringify({ subject: submission.subject, message: submission.message, preferred_response_language: submission.preferredResponseLanguage }) });
     if (submission.attachment) { const body = new FormData(); body.append("file", submission.attachment); await request(`/tickets/${created.id}/attachments`, { method: "POST", body }); return this.getTicket(created.id); }
@@ -87,7 +100,20 @@ export const restTicketService: TicketService = {
     return this.getTicket(id);
   },
   async addInternalNote(id, text): Promise<InternalNote> { const n = await request<{ id: string; author: string; text: string; at: string }>(`/tickets/${id}/notes`, { method: "POST", body: JSON.stringify({ text }) }); return n; },
-  async getDashboardMetrics() { const m = await request<Record<string, number | string>>("/dashboard/metrics"); return { newTickets: Number(m.new_tickets), assignedToMe: Number(m.assigned_to_me), highPriority: Number(m.high_priority), critical: Number(m.critical), escalated: Number(m.escalated), resolvedToday: Number(m.resolved_today), averageFirstResponse: String(m.average_first_response), lowConfidence: Number(m.low_confidence) } satisfies DashboardMetrics; },
+  async getDashboardMetrics() {
+    const m = await request<Record<string, unknown>>("/dashboard/metrics");
+    const breakdown = (value: unknown) =>
+      (value as Array<{ label: string; count: number }> | undefined) ?? [];
+    return {
+      newTickets: Number(m.new_tickets), assignedToMe: Number(m.assigned_to_me),
+      highPriority: Number(m.high_priority), critical: Number(m.critical),
+      escalated: Number(m.escalated), resolvedToday: Number(m.resolved_today),
+      averageFirstResponse: String(m.average_first_response), lowConfidence: Number(m.low_confidence),
+      categoryDistribution: breakdown(m.category_distribution),
+      languageDistribution: breakdown(m.language_distribution),
+      weeklyVolume: (m.weekly_volume as Array<{ date: string; count: number }> | undefined) ?? [],
+    } satisfies DashboardMetrics;
+  },
   async getAdminDashboard() {
     const m = await request<Record<string, unknown>>("/admin/dashboard");
     return {

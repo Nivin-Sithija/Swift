@@ -41,6 +41,7 @@ services:
       context: ./frontend
       args:
         VITE_DEVELOPMENT_MODE: ${VITE_DEVELOPMENT_MODE:-false}
+        VITE_USE_MOCK_API: "false"
     ports: ["8080:8080"]
     environment: {API_BASE_URL: "http://localhost:8000/api/v1"}
     depends_on: {api: {condition: service_started}}

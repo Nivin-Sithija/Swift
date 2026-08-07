@@ -114,6 +114,9 @@ export interface DashboardMetrics {
   resolvedToday: number;
   averageFirstResponse: string;
   lowConfidence: number;
+  categoryDistribution: Array<{ label: string; count: number }>;
+  languageDistribution: Array<{ label: string; count: number }>;
+  weeklyVolume: Array<{ date: string; count: number }>;
 }
 export interface AdminDashboardMetrics {
   customers: number;
