@@ -1,4 +1,5 @@
 import hashlib
+import secrets
 import uuid
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -16,6 +17,7 @@ from app.api.dependencies import CurrentUser, Db, StaffUser
 from app.core.config import get_settings
 from app.core.security import (
     create_access_token,
+    hash_password,
     hash_refresh_token,
     new_refresh_token,
     verify_password,
@@ -53,6 +55,7 @@ from app.schemas.api import (
     EscalationRequest,
     EventOut,
     LoginRequest,
+    RegisterRequest,
     NoteCreate,
     NoteOut,
     PredictionOut,
@@ -214,6 +217,55 @@ async def health() -> dict[str, str]:
 async def ready(db: Db) -> dict[str, str]:
     await db.scalar(select(1))
     return {"status": "ready"}
+
+
+@router.post("/auth/register", response_model=TokenResponse, status_code=201)
+async def register(
+    payload: RegisterRequest, response: HttpResponse, db: Db
+) -> TokenResponse:
+    email = payload.email.lower()
+    if await db.scalar(select(User.id).where(func.lower(User.email) == email)):
+        raise HTTPException(409, "An account with this email already exists")
+    role = UserRole(payload.role)
+    if role == UserRole.agent:
+        configured_code = settings.agent_registration_code
+        provided_code = payload.agent_registration_code or ""
+        if not configured_code:
+            raise HTTPException(503, "Support-agent registration is not configured")
+        if not secrets.compare_digest(provided_code, configured_code):
+            raise HTTPException(403, "Invalid support-agent registration code")
+    user = User(
+        full_name=payload.full_name.strip(),
+        email=email,
+        password_hash=hash_password(payload.password),
+        role=role,
+        preferred_language=payload.preferred_language,
+    )
+    db.add(user)
+    await db.flush()
+    raw, hashed = new_refresh_token()
+    db.add(
+        AuthSession(
+            user_id=user.id,
+            token_hash=hashed,
+            expires_at=utcnow() + timedelta(days=settings.refresh_token_days),
+        )
+    )
+    await db.commit()
+    response.set_cookie(
+        "swift_refresh",
+        raw,
+        httponly=True,
+        samesite="lax",
+        secure=settings.environment == "production",
+        max_age=settings.refresh_token_days * 86400,
+        path="/api/v1/auth",
+    )
+    return TokenResponse(
+        access_token=create_access_token(user.id, user.role.value),
+        expires_in=settings.access_token_minutes * 60,
+        user=UserOut.model_validate(user),
+    )
 
 
 @router.post("/auth/login", response_model=TokenResponse)

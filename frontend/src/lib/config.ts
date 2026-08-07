@@ -12,3 +12,6 @@ export function getApiBaseUrl(): string {
 
 export const getAppName = (): string =>
   import.meta.env.VITE_APP_NAME?.trim() || "Swift";
+
+export const isDevelopmentMode = (): boolean =>
+  import.meta.env.VITE_DEVELOPMENT_MODE?.trim().toLowerCase() === "true";
