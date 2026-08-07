@@ -14,6 +14,7 @@ import {
   StatusBadge,
 } from "../../components/tickets/TicketComponents";
 import { formatDate } from "../../lib/utils";
+import { useLanguage } from "../../app/providers/LanguageProvider";
 const schema = z.object({
   subject: z.string().min(5, "Use at least 5 characters").max(150),
   description: z
@@ -43,6 +44,7 @@ const steps = [
   "Creating ticket",
 ];
 export function SubmitTicketPage() {
+  const { tr } = useLanguage();
   const [file, setFile] = useState<File | null>(null);
   const [placeholder, setPlaceholder] = useState(0);
   const [processing, setProcessing] = useState(-1);
@@ -115,19 +117,19 @@ export function SubmitTicketPage() {
             <strong>{formatDate(new Date().toISOString())}</strong>
           </div>
           <div>
-            <span>Language form</span>
+            <span>{tr("Language")}</span>
             <strong>{createdTicket?.language || "Pending analysis"}</strong>
           </div>
           <div>
-            <span>Predicted category</span>
+            <span>{tr("Category")}</span>
             <strong>{createdTicket?.category.value || "Pending analysis"}</strong>
           </div>
           <div>
-            <span>Priority</span>
+            <span>{tr("Priority")}</span>
             <PriorityBadge value={createdTicket?.priority.value || "medium"} />
           </div>
           <div>
-            <span>Status</span>
+            <span>{tr("Status")}</span>
             <StatusBadge value={createdTicket?.status || "new"} />
           </div>
           <div>
@@ -137,7 +139,7 @@ export function SubmitTicketPage() {
         </div>
         <div className="confirmation-actions">
           <Link className="btn" to={`/customer/tickets/${createdTicket?.id || "SW-2026-1042"}`}>
-            View ticket <ArrowRight />
+            {tr("View ticket")} <ArrowRight />
           </Link>
           <button
             className="btn secondary"
@@ -147,7 +149,7 @@ export function SubmitTicketPage() {
               setFile(null);
             }}
           >
-            Submit another ticket
+            {tr("Submit another ticket")}
           </button>
         </div>
       </div>
@@ -155,8 +157,8 @@ export function SubmitTicketPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Customer support"
-        title="How can we help?"
+        eyebrow={tr("Customer support")}
+        title={tr("How can we help?")}
         description="Write naturally in English, සිංහල, தமிழ், Singlish, Tanglish, or a mix. Your original wording is always preserved."
       />
       <div className="submit-grid">
@@ -168,12 +170,12 @@ export function SubmitTicketPage() {
           <div className="section-heading">
             <span>1</span>
             <div>
-              <h2>Tell us what happened</h2>
+              <h2>{tr("Tell us what happened")}</h2>
               <p>Do not include passwords, PINs or full card numbers.</p>
             </div>
           </div>
           <label>
-            Subject <span className="required">*</span>
+            {tr("Subject")} <span className="required">*</span>
             <input
               {...register("subject")}
               placeholder="A short summary of the issue"
@@ -189,7 +191,7 @@ export function SubmitTicketPage() {
             </span>
           </label>
           <label>
-            Detailed description <span className="required">*</span>
+            {tr("Detailed description")} <span className="required">*</span>
             <textarea
               {...register("description")}
               placeholder={placeholders[placeholder]}
@@ -210,7 +212,7 @@ export function SubmitTicketPage() {
             </span>
           </label>
           <label>
-            Preferred response language
+            {tr("Preferred response language")}
             <select {...register("language")}>
               <option value="english">English</option>
               <option value="sinhala">සිංහල</option>
@@ -218,15 +220,15 @@ export function SubmitTicketPage() {
             </select>
           </label>
           <label>
-            Category selection
-            <input value="Let the system detect" disabled />
+            {tr("Category selection")}
+            <input value={tr("Let the system detect")} disabled />
             <small>Agents can review and correct advisory predictions.</small>
           </label>
           <div className="section-heading">
             <span>2</span>
             <div>
               <h2>
-                Add image evidence <em>Optional</em>
+                {tr("Add image evidence")} <em>{tr("Optional")}</em>
               </h2>
               <p>
                 A screenshot, receipt, transaction slip or error screen can
@@ -256,16 +258,16 @@ export function SubmitTicketPage() {
               }}
             >
               <RotateCcw />
-              Clear
+              {tr("Clear")}
             </button>
             <button className="btn">
-              Submit ticket <ArrowRight />
+              {tr("Submit ticket")} <ArrowRight />
             </button>
           </div>
         </form>
         <aside className="support-aside">
           <div className="card">
-            <h3>Before you submit</h3>
+            <h3>{tr("Before you submit")}</h3>
             <ul className="check-list">
               <li>Describe what you expected to happen.</li>
               <li>Include an approximate date or reference if safe.</li>
@@ -274,7 +276,7 @@ export function SubmitTicketPage() {
           </div>
           <div className="card subtle">
             <ShieldCheck />
-            <h3>Human review is built in</h3>
+            <h3>{tr("Human review is built in")}</h3>
             <p>
               Automated analysis helps route your request. An authorised support
               agent reviews responses before approval.

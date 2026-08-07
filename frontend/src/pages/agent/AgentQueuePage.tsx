@@ -14,12 +14,14 @@ import { filterTickets, sortTickets, type TicketSort } from "../../lib/utils";
 import { ticketService } from "../../services/serviceSelector";
 import type { Ticket } from "../../types";
 import { CURRENT_AGENT, EMPTY_FILTERS } from "../../lib/constants";
+import { useLanguage } from "../../app/providers/LanguageProvider";
 const PAGE_SIZE = 8;
 export function AgentQueuePage({
   mode = "all",
 }: {
   mode?: "all" | "high" | "escalated" | "resolved";
 }) {
+  const { tr } = useLanguage();
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -71,8 +73,8 @@ export function AgentQueuePage({
   return (
     <>
       <PageHeader
-        eyebrow="Support operations"
-        title={title}
+        eyebrow={tr("Support operations")}
+        title={tr(title)}
         description={`${filtered.length} tickets · advisory predictions require agent judgement`}
         actions={
           <select
@@ -80,10 +82,10 @@ export function AgentQueuePage({
             value={sort}
             onChange={(e) => setSort(e.target.value as TicketSort)}
           >
-            <option value="priority">Priority first</option>
-            <option value="newest">Newest</option>
-            <option value="confidence">Lowest confidence</option>
-            <option value="waiting">Longest waiting</option>
+            <option value="priority">{tr("Priority first")}</option>
+            <option value="newest">{tr("Newest")}</option>
+            <option value="confidence">{tr("Lowest confidence")}</option>
+            <option value="waiting">{tr("Longest waiting")}</option>
           </select>
         }
       />
@@ -112,7 +114,7 @@ export function AgentQueuePage({
               }
             >
               <UserRoundPlus />
-              Assign to me
+              {tr("Assign to me")}
             </button>
             <button
               className="btn secondary small"
@@ -123,7 +125,7 @@ export function AgentQueuePage({
               }
             >
               <AlertTriangle />
-              Escalate
+              {tr("Escalate")}
             </button>
             <button className="link-button" onClick={() => setSelected([])}>
               Clear selection
