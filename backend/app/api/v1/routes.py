@@ -75,6 +75,7 @@ from app.schemas.api import (
     EscalationRequest,
     EventOut,
     LoginRequest,
+    RegisterRequest,
     NoteCreate,
     NoteOut,
     PredictionOut,
