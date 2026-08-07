@@ -1,5 +1,6 @@
 import uuid
 from datetime import datetime
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
@@ -14,6 +15,15 @@ from app.domain.enums import (
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str = Field(min_length=8, max_length=128)
+
+
+class RegisterRequest(BaseModel):
+    full_name: str = Field(min_length=2, max_length=150)
+    email: EmailStr
+    password: str = Field(min_length=8, max_length=128)
+    role: Literal["customer", "agent"] = "customer"
+    preferred_language: InterfaceLanguage = InterfaceLanguage.english
+    agent_registration_code: str | None = Field(default=None, max_length=256)
 
 
 class UserOut(BaseModel):

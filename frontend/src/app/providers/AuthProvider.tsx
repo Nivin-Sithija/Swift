@@ -9,6 +9,7 @@ const AuthContext = createContext<{
     role: UserRole,
     remember?: boolean,
   ) => Promise<void>;
+  register: (input: { name: string; email: string; password: string; role: UserRole; preferredLanguage: "english" | "sinhala" | "tamil"; agentCode?: string }) => Promise<void>;
   logout: () => Promise<void>;
 } | null>(null);
 export function MockAuthProvider({ children }: { children: ReactNode }) {
@@ -41,8 +42,13 @@ export function MockAuthProvider({ children }: { children: ReactNode }) {
     sessionStorage.removeItem("swift-session");
     setUser(null);
   };
+  const register = async (input: { name: string; email: string; password: string; role: UserRole; preferredLanguage: "english" | "sinhala" | "tamil"; agentCode?: string }) => {
+    const next = await ticketService.register(input);
+    sessionStorage.setItem("swift-session", JSON.stringify(next));
+    setUser(next);
+  };
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );

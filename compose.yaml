@@ -16,7 +16,9 @@ services:
       SWIFT_REDIS_URL: redis://redis:6379/0
       SWIFT_STORAGE_ROOT: /data/attachments
     ports: ["8000:8000"]
-    volumes: ["attachment_data:/data/attachments"]
+    volumes:
+      - attachment_data:/data/attachments
+      - ./backend/app:/app/app:ro
     depends_on: {postgres: {condition: service_healthy}, redis: {condition: service_healthy}}
     command: ["sh", "-c", "alembic upgrade head && python -m app.seed.seed && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
   worker:
@@ -27,11 +29,16 @@ services:
     environment:
       SWIFT_REDIS_URL: redis://redis:6379/0
       SWIFT_STORAGE_ROOT: /data/attachments
-    volumes: ["attachment_data:/data/attachments"]
+    volumes:
+      - attachment_data:/data/attachments
+      - ./backend/app:/app/app:ro
     depends_on: {postgres: {condition: service_healthy}, redis: {condition: service_healthy}}
     command: ["dramatiq", "app.workers.tasks"]
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        VITE_DEVELOPMENT_MODE: ${VITE_DEVELOPMENT_MODE:-false}
     ports: ["8080:8080"]
     environment: {API_BASE_URL: "http://localhost:8000/api/v1"}
     depends_on: {api: {condition: service_started}}
