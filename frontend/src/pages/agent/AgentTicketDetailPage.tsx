@@ -307,7 +307,7 @@ export function AgentTicketDetailPage() {
           title={`${humanize(type)} this ticket?`}
           description={
             type === "escalate"
-              ? "A supervisor and specialist queue will be notified in this mock workspace."
+              ? "An administrator and specialist queue will be notified in this mock workspace."
               : `This will change the customer-visible status to ${type}d.`
           }
           confirmLabel={humanize(type)}
