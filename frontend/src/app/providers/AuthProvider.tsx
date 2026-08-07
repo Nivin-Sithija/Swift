@@ -8,7 +8,7 @@ const AuthContext = createContext<{
     password: string,
     role: UserRole,
     remember?: boolean,
-  ) => Promise<void>;
+  ) => Promise<User>;
   register: (input: { name: string; email: string; password: string; role: UserRole; preferredLanguage: "english" | "sinhala" | "tamil"; agentCode?: string }) => Promise<void>;
   logout: () => Promise<void>;
 } | null>(null);
@@ -35,6 +35,7 @@ export function MockAuthProvider({ children }: { children: ReactNode }) {
       JSON.stringify(next),
     );
     setUser(next);
+    return next;
   };
   const logout = async () => {
     await ticketService.logout();
