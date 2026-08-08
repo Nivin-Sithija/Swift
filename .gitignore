@@ -11,6 +11,14 @@ coverage/
 vite.config.js
 vite.config.d.ts
 
+# LaTeX build artifacts (docs/ sources are the .tex; the .pdf is committed)
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+
 # Python
 .venv/
 .venv*/

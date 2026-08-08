@@ -112,17 +112,19 @@ research/                    Primary-source papers backing modeling decisions
 datasets/                    BANKING77-derived trilingual pipeline (translation, romanization, labeling)
 ml/                          Everything that trains or evaluates a model — see ml/README.md
   swiftbench/                Shared harness: frozen split, metrics, baselines, result format
-  scripts/                   Standalone CLI training runs (intent only)
+  scripts/                   Standalone CLI training runs (intent only) and tokenizer probes
   configs/ splits/           Recorded experiment configs; the frozen split manifest
   models/ predictions/ reports/   Run artifacts
   reports/RESULTS.md         Master results report — every experiment, score and verdict in one place
 notebooks/modeling/          Experiment notebooks driving swiftbench (intent, sentiment, priority)
 notebooks/baselines/         TF-IDF feature-pipeline walkthrough
 notebooks/data_preparation/  Dataset characteristics, cleaning and prompt-benchmark analysis
-docs/                        API contract and database schema
+docs/                        All formal project documents — see docs/README.md
+  srs/                       Software requirements specification (LaTeX + PDF)
+  architecture/              Architecture and design report (LaTeX + PDF) and its diagrams
+  feasibility-study/         Feasibility study (LaTeX + PDF)
+  api/ database/             OpenAPI contract and PostgreSQL schema (DBML)
+  project-overview.pdf project-proposal.pdf   Project overview and original proposal
 rag/                         RAG knowledge sources: raw docs + manifest (ingestion pipeline pending) — see rag/README.md
-srs/                         Software requirements specification (LaTeX)
-feasibility report/          Feasibility study (LaTeX)
-scripts/                     Standalone data-cleaning utilities
 synthetic_ticket_dataset/    Synthetic multimodal (image) ticket samples
 ```

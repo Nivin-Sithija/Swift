@@ -5,6 +5,7 @@ frontend/dist
 dist
 notebooks
 research
+docs
 synthetic_ticket_dataset
 ml
 datasets/*
