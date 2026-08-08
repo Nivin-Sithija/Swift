@@ -51,8 +51,9 @@ def load_data(args) -> pd.DataFrame:
             raise ValueError(f"Missing required columns in input CSV: {sorted(missing)}")
         return df
     else:
-        # Load from repository dataset directories
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        # Load from repository dataset directories.
+        # ml/scripts/compare_tokenizers.py -> ml/scripts -> ml -> repo root.
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         datasets_dir = os.path.join(base_dir, "datasets")
         rows = []
         for lang in LANGUAGES:
