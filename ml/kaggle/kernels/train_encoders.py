@@ -71,6 +71,25 @@ SOURCE = find_payload()
 
 ML_SRC = find_swiftbench(SOURCE)
 
+# Refuse a stale dataset version. Kaggle needs a minute or two to process a new version, and a
+# kernel started inside that window silently attaches the previous one -- old code, tracebacks
+# pointing at line numbers that no longer exist, and a diagnosis that sends you chasing a bug you
+# already fixed. Checked before anything else so the failure costs seconds, not a GPU session.
+try:
+    EXPECTED_PAYLOAD_SHA  # noqa: F821 -- injected by runner.py; absent from older headers
+except NameError:
+    EXPECTED_PAYLOAD_SHA = None
+if EXPECTED_PAYLOAD_SHA:
+    stamp_file = ML_SRC / "splits" / "payload_stamp.json"
+    got = json.loads(stamp_file.read_text())["sha"] if stamp_file.exists() else None
+    if got != EXPECTED_PAYLOAD_SHA:
+        raise SystemExit(
+            f"STALE PAYLOAD: kernel expects {EXPECTED_PAYLOAD_SHA}, attached dataset is {got}.\n"
+            "Kaggle had not finished processing the new dataset version when this kernel started.\n"
+            "Wait for `kaggle datasets status` to report 'ready', then re-run."
+        )
+    print(f"payload sha {got} -- matches the kernel")
+
 # /kaggle/input is read-only, and `results.save()` writes to <root>/ml/reports/runs. So the
 # payload is assembled in a writable root first -- it is ~20 MB, which costs nothing.
 if not ROOT.exists():
@@ -127,11 +146,43 @@ try:
 except NameError:
     EVAL_PORTION = "dev"
 summary = []
+# Older runner headers do not inject this -- default to off so a routine bake-off run does not
+# suddenly start writing multi-hundred-MB checkpoints for every candidate.
+try:
+    SAVE_MODELS
+except NameError:
+    SAVE_MODELS = False
+# LoRA + learning rate arrived with the decoder SLM candidates; older runner headers omit them.
+try:
+    LORA
+except NameError:
+    LORA, LORA_R, LORA_ALPHA = False, 8, 16
+try:
+    LORA_TARGETS
+except NameError:
+    LORA_TARGETS = "attn"
+try:
+    LR
+except NameError:
+    LR = None
+
+if LORA:
+    # peft is not in the Kaggle image by default. Installed only when needed so an encoder run
+    # does not pay for it, and pinned to nothing so the image's transformers stays satisfied.
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "peft"], check=False)
+    # ...and then torchao is removed. peft's LoRA layer dispatcher calls `is_torchao_available()`
+    # unconditionally, and that helper *raises* on an out-of-range version rather than returning
+    # False. The Kaggle image ships torchao 0.10.0; current peft wants >0.16.0, so every
+    # `get_peft_model` call dies with an ImportError before a single step runs. We do not quantize,
+    # so nothing here needs torchao -- and uninstalling is safer than upgrading it, which would
+    # drag in a torch the image's CUDA build may not match.
+    subprocess.run([sys.executable, "-m", "pip", "uninstall", "-y", "-q", "torchao"], check=False)
 
 for name in models:
     print("\n" + "=" * 70)
     print(f"### {name}   task={TASK}  epochs={EPOCHS}  batch={BATCH_SIZE}  "  # noqa: F821
-          f"fit={FIT_PORTION}  eval={EVAL_PORTION}  smoke={SMOKE}")           # noqa: F821
+          f"fit={FIT_PORTION}  eval={EVAL_PORTION}  smoke={SMOKE}  "         # noqa: F821
+          f"save_models={SAVE_MODELS}  lora={LORA}({LORA_TARGETS})  lr={LR}")
     print("=" * 70, flush=True)
     started = time.time()
     try:
@@ -144,9 +195,12 @@ for name in models:
             epochs=1 if SMOKE else EPOCHS,                # noqa: F821
             batch_size=BATCH_SIZE,                        # noqa: F821
             subsample=1200 if SMOKE else None,            # noqa: F821
+            lora=LORA, lora_r=LORA_R, lora_alpha=LORA_ALPHA, lora_targets=LORA_TARGETS,
+            **({"lr": LR} if LR else {}),
             author="kaggle",
             save=True,
             verbose=True,
+            save_dir=str(WORK / "models" / f"{TASK}_{name}") if SAVE_MODELS else None,  # noqa: F821
         )
         row = {"model": name, "status": "ok",
                **{k: v for k, v in run.scores.items() if not isinstance(v, (list, dict))}}

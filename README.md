@@ -115,6 +115,7 @@ ml/                          Everything that trains or evaluates a model — see
   scripts/                   Standalone CLI training runs (intent only)
   configs/ splits/           Recorded experiment configs; the frozen split manifest
   models/ predictions/ reports/   Run artifacts
+  reports/RESULTS.md         Master results report — every experiment, score and verdict in one place
 notebooks/modeling/          Experiment notebooks driving swiftbench (intent, sentiment, priority)
 notebooks/baselines/         TF-IDF feature-pipeline walkthrough
 notebooks/data_preparation/  Dataset characteristics, cleaning and prompt-benchmark analysis

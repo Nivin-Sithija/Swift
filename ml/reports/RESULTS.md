@@ -77,6 +77,11 @@ Class prevalence:
 | 22 | Strategy A — reverse transliteration | sentiment | **built, not run** | Would be circular: our Singlish is rule-generated |
 | 23 | Code-switch augmentation | sentiment | **built, not run** | Blocked on human-typed romanized data |
 | 24 | Adapters unfrozen (Rathnayake T3) | sentiment | **built, needs peft** | Checks a documented near-null |
+| 25 | SLM tokenizer screen, 5 candidates × 2,000 rows/lang | — | done | Only Gemma 3 survives; Qwen/Llama at 4–6× LaBSE fertility on Si/Ta (§14.1) |
+| 26 | LoRA target coverage, Q/V vs all 7 projections | intent | done | **+2.70pp (1b), +4.56pp (270m)** — reverses the "encoders win everywhere" reading (§14.2) |
+| 27 | Gemma 3 + LoRA vs encoders, 3 tasks | all | done | **Ties on all three, wins none.** Keep LaBSE (§14.3, §14.8) |
+| 28 | Model size 1b vs 270m | all | done | 270M knee replicates; sentiment collapses −0.082 (§14.5) |
+| 29 | Intent encoder bake-off (LaBSE, mmBERT) | intent | done | mmBERT 0.9280 / LaBSE 0.9224 dev — **first encoder result on intent**; no test run yet |
 
 ---
 
@@ -87,6 +92,16 @@ Class prevalence:
 | **intent** | LinearSVC | word (1,2) + char (3,5) TF-IDF, `all` | **83.18%** macro-F1 | [82.55, 83.72] | — | 1.00 (BANKING77 ground truth) |
 | **sentiment** | **LaBSE** (fine-tuned, multilingual) | 3 ep, lr 2e-5, bs 32, class_weight | **0.5664** Neg-F1 | — | classical 0.4572 (+0.109) | 0.5769 [0.40, 0.73] |
 | **priority** | **LaBSE** (fine-tuned, multilingual) | same | **0.8900** macro-F1 | — | classical 0.8722 (+0.018) | **0.7722** |
+
+**Challenged and held (2026-08-08).** A small decoder LM — Gemma 3 1B with LoRA over all attention
+and MLP projections — was run against these champions on all three tasks. It **ties on all three and
+wins none**: sentiment 0.6428 vs LaBSE 0.6334 (⅛ of the CI), priority 0.9165 vs 0.9168, intent
+0.9243 vs 0.9224 inside a three-way tie with mmBERT's 0.9280. All dev, no test runs. The champions
+above are unchanged. See **§14**.
+
+**Intent's champion row is the weak one.** LinearSVC 83.18% is the only test-set number, and it is
+classical — the first encoder results on intent (mmBERT 0.9280, LaBSE 0.9224 dev) landed 2026-08-08
+and **have not been scored on test**. Intent is the one task with a genuinely open champion.
 
 > **Quote the priority ceiling alongside the priority score.** 0.8900 is agreement with the *v5
 > labeling rule*. That rule agrees with human annotation at only **0.7722** (κ=0.64), so 0.7722 is
@@ -716,6 +731,13 @@ The likely explanation is the `fix_tamilish.py` style standardization (§3.6) la
 measurements, plus test-vs-dev, but **this has not been verified** — do not quote either number for
 tamilish intent without re-running.
 
+*Update 2026-08-08:* three independent transformer runs on the frozen split now put tamilish intent
+dev macro-F1 at **0.9052–0.9146** (LaBSE, mmBERT, gemma-3-1b — §14.4), clustering with the 0.8917
+figure, not the 61.05%. That strengthens the case that 61.05% is the stale measurement, but it does
+**not** resolve the gap: these are dev and transformer, the 61.05% is official-test and classical,
+so the two still differ in two variables at once. Resolving it needs a classical tamilish run on the
+frozen split.
+
 ---
 
 ## 12. Source map — where each number comes from
@@ -728,6 +750,8 @@ tamilish intent without re-running.
 | [`baseline_comparison.md`](baseline_comparison.md) | Intent LR vs SVM comparison, saved model bundles |
 | [`tokenizer_comparison.md`](tokenizer_comparison.md) | 3-tokenizer × 15k study, `max_length` decision |
 | [`bakeoff_sentiment_priority.md`](bakeoff_sentiment_priority.md) | Sentiment/priority dev bake-off + §6 and §7 corrections |
+| [`SLM_RESEARCH.md`](SLM_RESEARCH.md) | SLM desk research, model shortlist, experiment plan — the input to §14 |
+| [`slm_tokenizer_fertility.csv`](slm_tokenizer_fertility.csv) | §14.1 fertility/character-preservation screen (`ml/scripts/probe_slm_tokenizers.py`) |
 | [`final_test_results.md`](final_test_results.md) | Classical final test, dev→test decomposition, label ceiling, tokenizer defect, techniques |
 | [`ENCODER_FINDINGS.md`](ENCODER_FINDINGS.md) | Encoder bake-off both tasks, per-language, LoRA, TwHIN-BERT |
 | [`progress_and_results_summary.md`](progress_and_results_summary.md) | Phase 1–3 narrative, XLM-R pipeline setup and smoke test |
@@ -779,3 +803,197 @@ in `ml/kaggle/kernels/`. **T4 is Turing: fp16 only, no bf16, no flash-attn-2.**
     evaluate romanized-specific techniques. Real human-typed text is required first.
 13. **Always measure character preservation when tokenizing non-Latin scripts** (§7.4 cost 40–69% of
     the characters and raised nothing).
+
+---
+
+## 14. Small language models — Gemma 3 + LoRA vs the encoders
+
+Added 2026-08-08. Desk research and the model shortlist live in
+[`SLM_RESEARCH.md`](SLM_RESEARCH.md); this section is the measured outcome. Appended as §14 rather
+than inserted after §5 because §6–§12 are cross-referenced from `ml/models/README.md`,
+`final_test_results.md` and `bakeoff_sentiment_priority.md`, and renumbering would break them.
+
+**Question.** A fine-tuned encoder (LaBSE, 471M, all weights trained) is the standing champion on
+sentiment and priority. Does a small *decoder* language model with LoRA beat it?
+
+**Protocol.** Identical to the encoder roster: frozen split `e7b5934392cd`, pooled multilingual
+training (all 5 tracks), `arm=class_weight`, evaluated on the 7,490-row dev set. Decoders run
+through the same `swiftbench.train_encoder.run()` loop as the encoders — a causal LM with a
+classification head is the same fit/score problem — so the numbers sit in one table honestly.
+**All SLM numbers are dev. None has been scored on test.**
+
+### 14.1 Tokenizer screen — the gate that cut the shortlist to one family
+
+`ml/scripts/probe_slm_tokenizers.py`, output [`slm_tokenizer_fertility.csv`](slm_tokenizer_fertility.csv).
+2,000 train rows per language, same method as §7.2 (so these are comparable to that CSV, **not** to
+§7.3, which sampled 300 dev tickets and reads systematically higher).
+
+| model | english | singlish | **sinhala** | **tamil** | tamilish | vocab |
+|---|---:|---:|---:|---:|---:|---:|
+| **LaBSE** (incumbent) | 1.184 | 1.617 | **1.374** | **1.858** | 1.999 | 501k |
+| **Gemma 3** (1b & 270m) | 1.181 | 1.862 | **2.239** | **2.195** | 2.205 | 262k |
+| Qwen3 (0.6b/1.7b/emb-0.6b) | 1.158 | 2.022 | 5.969 | 9.225 | 2.345 | 152k |
+| Llama-3.2-1B | 1.155 | 2.005 | 7.394 | 11.460 | 2.335 | 128k |
+| SinLlama | 1.155 | 2.005 | **1.279** | 11.460 | 2.335 | 133k |
+
+- **Gemma 3 was the only SLM family worth GPU time.** Qwen and Llama shred Sinhala and Tamil into
+  6–11 tokens per word — the fragmentation regime the Script Sensitivity paper traces the 312×
+  romanized perplexity gap to. This killed `Qwen3-Embedding-0.6B`, whose MTEB-multilingual ranking
+  is real and irrelevant: that leaderboard contains neither Sinhala nor Tamil.
+- **SinLlama's Sinhala vocabulary extension genuinely works** — 1.279, the only checkpoint here to
+  beat LaBSE on any language. Tamil at 11.460 is untouched Llama-3. A Sinhala specialist, nothing
+  else, and 8B.
+- **Character and combining-mark preservation is 1.0 for every candidate**, and ZWJ (U+200D)
+  survives every round trip. The §7.4 defect was a scikit-learn problem; no HF tokenizer repeats it.
+- **Do not treat fertility as predictive.** §7.2 already warned this and §14.3 confirms it again:
+  mmBERT runs at 3.67 on Sinhala (2.7× LaBSE) and still posts the *best* Sinhala intent cell. The
+  probe is a cheap filter against catastrophic fragmentation, not a quality ranking. A 1.5×-of-LaBSE
+  gate drafted in `SLM_RESEARCH.md` §6 would have wrongly dropped Gemma at 1.63×; it was corrected
+  against mmBERT's own evidence before any run.
+
+Gated-repo note: `google/*` and `meta-llama/*` require a licence click a Kaggle kernel cannot
+perform. The `unsloth/` mirrors carry identical vocabularies and weights and are what the registry
+uses. **This is the HuggingFace namespace, not the unsloth library** — no unsloth code is involved;
+fine-tuning is plain `transformers` + `peft`.
+
+### 14.2 LoRA target coverage — the single largest effect measured in this section
+
+The first Gemma runs adapted Q/V only, inheriting the encoder-era target list. Gemma 3 has **seven**
+projections per block (`q,k,v,o,gate,up,down`), so Q/V reaches 2 of 7. arXiv:2606.08051 — the source
+of the r=8 / α=16 / lr 1e-4 recipe — specifies *all attention and MLP projections*. Rerun with
+everything else held constant (intent, dev macro-F1):
+
+| model | Q/V only | all 7 | Δ | trainable params |
+|---|---:|---:|---:|---:|
+| gemma-3-1b | 0.8973 | **0.9243** | **+2.70pp** | 0.08% → 0.66% |
+| gemma-3-270m | 0.8582 | **0.9038** | **+4.56pp** | 0.16% → 0.72% |
+
+**This reverses a conclusion.** On the Q/V config the encoders beat Gemma on all five languages, and
+that was reported. With full coverage Gemma passes LaBSE on all five. The romanized deficit that
+looked architectural (singlish −4.3pp, tamilish −5.2pp) was a LoRA-coverage artifact.
+
+It also retires the caveat on §5.9 / experiment 18. That LoRA null result ran at the encoder's
+lr 2e-5 on Q/V only; both were wrong for this method. `lora_targets` is now an explicit parameter
+(`"attn"` | `"all"`) stamped into every run's scores.
+
+### 14.3 Head-to-head — all three tasks, pooled dev
+
+Like-for-like only: `regime=multi`, all 5 languages, `n_train=42,500`, `eval_lang=all`,
+`arm=class_weight`. Encoders are full fine-tunes at lr 2e-5 / bs 32; Gemma is LoRA-all at
+lr 1e-4 / bs 16. Both 3 epochs.
+
+| task | metric | classical | LaBSE | mmBERT | **gemma-3-1b** | gemma-3-270m |
+|---|---|---:|---:|---:|---:|---:|
+| **intent** | macro-F1 | — | 0.9224 | **0.9280** | 0.9243 | 0.9038 |
+| **priority** | macro-F1 | 0.9028 | **0.9168** | 0.9148 | 0.9165 | 0.9040 |
+| **sentiment** | Negative-F1 | 0.595 | 0.6334 | 0.6203 | **0.6428** | 0.5611 |
+
+**gemma-3-1b matches the encoders on all three tasks while training 0.66% of its weights.** It never
+decisively beats one:
+
+- **intent** — the top three span 0.6pp (mmBERT 0.9280, Gemma 0.9243, LaBSE 0.9224). On 7,490 dev
+  rows that ordering is not resolvable. Read as a three-way tie.
+- **priority** — 0.9165 vs LaBSE 0.9168 is a gap of **0.0003**. A tie by any reading. And the
+  priority label ceiling is **0.7722**: every model here scores ~0.14 *above* the point where v5
+  labels stop agreeing with humans, so this ranks fidelity to the v5 rule, not classification.
+- **sentiment** — Gemma's +0.0094 over LaBSE is **one eighth of the CI**. Dev holds 68 unique
+  Negative tickets, giving ≈ ±0.08 (§0 rule 1, §5.3). A tie.
+
+This is what the literature predicted. arXiv:2512.12677 fine-tuned ~20 causal LLMs (270M–20B) and
+got Llama-3.2-3B to F1 0.86 against BERT's 0.854 — **p=0.24, not significant**. Decoders beat
+encoders on classification at 70B (arXiv:2412.08587), not at 1B.
+
+### 14.4 Per-language, intent dev (LoRA-all)
+
+| model | english | sinhala | singlish | tamil | tamilish |
+|---|---:|---:|---:|---:|---:|
+| mmBERT | **0.9366** | **0.9370** | **0.9159** | **0.9367** | **0.9146** |
+| gemma-3-1b | 0.9327 | 0.9359 | 0.9156 | 0.9317 | 0.9061 |
+| LaBSE | 0.9325 | 0.9330 | 0.9112 | 0.9305 | 0.9052 |
+
+Gemma beats LaBSE on all five and ties mmBERT on singlish (0.9156 vs 0.9159). mmBERT wins every
+cell despite the worst Sinhala fertility of the three — see §14.1's warning.
+
+### 14.5 Model size — the 270M knee replicates
+
+arXiv:2606.08051 measured −6.58 F1 from 1B → 270M. Ours, LoRA-all:
+
+| task | 1b | 270m | Δ |
+|---|---:|---:|---:|
+| intent | 0.9243 | 0.9038 | −0.021 |
+| priority | 0.9165 | 0.9040 | −0.013 |
+| sentiment | 0.6428 | 0.5611 | **−0.082** |
+
+Same direction, and **sentiment is where 270M collapses** — the minority-class task punishes reduced
+capacity hardest. gemma-3-270m is not a viable candidate for this project.
+
+### 14.6 Epoch behaviour splits by task
+
+| task | gemma-3-1b best epoch | reading |
+|---|---|---|
+| intent | **3 / 3** | still improving — 6 epochs untested, plausibly more headroom |
+| priority | 2 / 3 | converged, epoch 3 was worse |
+| sentiment | 2 / 3 | converged, epoch 3 was worse |
+
+The "3 epochs may be undertrained" caveat therefore applies to **intent only**. On priority and
+sentiment more epochs would likely hurt.
+
+### 14.7 Integration defects found — all silent-failure class
+
+Recorded because each produced plausible output rather than an error, which is this project's
+recurring failure mode (§7.4, §11).
+
+1. **Gemma 3 checkpoints are stored bfloat16**, and transformers honours the stored dtype. The
+   Kaggle T4 is Turing and has **no bf16**. Dtype is now pinned explicitly: fp32 master weights with
+   fp16 autocast. Loading the backbone in fp16 instead makes the LoRA params fp16 and
+   `GradScaler.unscale_` refuses them outright.
+2. **Decoder sequence classification pools the last non-pad token.** With `config.pad_token_id`
+   unset, every short row in a batch is classified from a padding embedding — no error, plausible
+   metrics.
+3. **The classification head is `score` on causal backbones, `classifier` on encoders.** The wrong
+   name in `modules_to_save` leaves the head frozen at random init.
+4. **Intent's 77-class label space was derived after subsampling** (pre-existing), so any smoke run
+   raised `KeyError` on the first absent intent. Now fixed from the full training frame.
+5. **`runner.py fetch` gated on `config.json`**, but peft writes `adapter_config.json` — every LoRA
+   checkpoint was saved on Kaggle and silently dropped on fetch.
+6. **LoRA saves carry no `id2label`.** Adapters loaded as LABEL_0/LABEL_1 with no way to tell which
+   index is "Negative" — the §11 inversion trap. Every save now writes `label_order.json` with
+   labels, base model, LoRA config and split sha.
+7. **Kaggle attaches the previous dataset version** if a kernel starts before processing finishes —
+   old code, tracebacks against line numbers that no longer exist. A payload content-hash stamp now
+   makes the kernel refuse to run on a mismatch.
+
+### 14.8 Verdict
+
+**Keep the encoders. The SLM ties but does not win, and costs more to run.**
+
+| task | recommendation | why |
+|---|---|---|
+| **sentiment** | **LaBSE** | Gemma's +0.0094 is ⅛ of the CI. LaBSE's 0.5663 test number is already banked; Gemma has none. The binding constraint is labels, not capacity — v6 relabel moved holdout 0.4615 → 0.6875 (§8.3). |
+| **priority** | **LaBSE** | 0.0003 apart. Already 0.14 above the 0.7722 label ceiling — neither model is limited by capacity. |
+| **intent** | **mmBERT or LaBSE**, needs a test run | Three-way tie on dev. **No encoder or SLM has an intent test result** — the only genuinely open champion question of the three. |
+
+Supporting economics: Gemma trains at **~40 rows/s vs LaBSE's ~115** (2.9× slower) at 1B vs 471M
+parameters, and needs a `peft` dependency plus base-model + adapter loading at serve time.
+
+**The one place the SLM shape is genuinely better** is not accuracy: at 0.66% trainable parameters,
+several task adapters share one backbone. Three tasks currently mean three full LaBSE checkpoints;
+they could be one Gemma backbone plus three ~26MB adapters. That is a serving-architecture argument,
+and it should be decided on deployment cost, not on these scores.
+
+**Method, if an SLM is used anyway:** classification head (not instruction tuning — arXiv:2512.12677
+found equal F1 at 8× the trainable parameters, plus label-parsing brittleness); LoRA over **all**
+attention and MLP projections; r=8, α=16 (r=8 measured within 0.20 F1 of r=32); lr 1e-4; 3 epochs
+for intent, 2 for priority and sentiment.
+
+### 14.9 What this does not establish
+
+- **Every SLM number here is dev.** Test remains a one-shot per §0 rule 2, and no Gemma model has
+  earned it on priority or sentiment given the ties.
+- **No confidence intervals were computed for any SLM run.** The ties are argued from the dev CIs
+  measured in §3.2 and §5.3, not from bootstrapping these runs.
+- **Romanized conclusions remain unresolved** (§10). Singlish is rule-generated and Tamilish
+  machine-translated, so Gemma's romanized cells inherit the same caveat as every other model's.
+- **6 epochs on intent is untested**, and §14.6 says that is the one task where it could still move.
+- **No notebook.** Unlike the encoder roster (`11`–`16`), this phase is reproducible only through
+  `ml/kaggle/runner.py`. A `17_slm_gemma3.ipynb` is owed.
