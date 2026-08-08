@@ -118,7 +118,8 @@ ml/                          Everything that trains or evaluates a model — see
 notebooks/modeling/          Experiment notebooks driving swiftbench (intent, sentiment, priority)
 notebooks/baselines/         TF-IDF feature-pipeline walkthrough
 notebooks/data_preparation/  Dataset characteristics, cleaning and prompt-benchmark analysis
-docs/                        API, database and RAG-source documentation
+docs/                        API contract and database schema
+rag/                         RAG knowledge sources: raw docs + manifest (ingestion pipeline pending) — see rag/README.md
 srs/                         Software requirements specification (LaTeX)
 feasibility report/          Feasibility study (LaTeX)
 scripts/                     Standalone data-cleaning utilities
