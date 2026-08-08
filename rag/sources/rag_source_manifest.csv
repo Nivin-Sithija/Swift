@@ -1,0 +1,6 @@
+source_id,title,category,language,source_url,owner,approval_status,version,last_reviewed,local_path,cleaned_path,checksum
+SRC-ACC-001,Regular Savings Account,accounts,english,https://www.combank.lk/personal-banking/savings-accounts/regular-savings-account,Commercial Bank of Ceylon PLC,approved,1.0,2026-07-29,raw/accounts_combank_regular_savings.html,,
+SRC-CARD-001,Card Dispute Management Policy,cards,english,https://www.combank.lk/info/34,Commercial Bank of Ceylon PLC,approved,1.0,2026-07-29,raw/cards_combank_dispute_policy.html,,
+SRC-TRF-001,Card to Card Fund Transfer Facility,transfers,english,https://www.combank.lk/personal-banking/cards/card-to-card-fund-transfer-facility,Commercial Bank of Ceylon PLC,approved,1.0,2026-07-29,raw/transfers_combank_card_to_card.html,,
+SRC-LOAN-001,Pahasu Personal Loan Scheme,loans,english,https://www.peoplesbank.lk/quick-easy-loans-a-c-en/,People's Bank Sri Lanka,approved,1.0,2026-07-29,raw/loans_peoples_bank_pahasu.html,,
+SRC-FRAUD-001,Beware of Online Scams - Protect Your Bank Passwords and PINs,fraud_security,english,https://www.cbsl.gov.lk/en/news/beware-of-online-scams-protect-your-bank-passwords-and-pin,Central Bank of Sri Lanka,approved,1.0,2026-07-29,raw/fraud_cbsl_online_scams.html,,
