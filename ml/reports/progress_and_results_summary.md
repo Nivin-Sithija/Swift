@@ -60,7 +60,7 @@ We implemented scikit-learn feature pipelines combining **Word TF-IDF n-grams `(
 
 During data audit, we discovered several rows in the Romanized Tanglish (`tamilish`) column that contained stray native Tamil-script Unicode characters (`\u0B80`–`\u0BFF`).
 
-* **Resolution Script:** Built and executed [`scripts/clean_tamilish_script.py`](file:///c:/Users/ASUS/Desktop/Swif%20Shazan/Swift/scripts/clean_tamilish_script.py).
+* **Resolution Script:** Built and executed [`datasets/translation/clean_tamilish_script.py`](../../datasets/translation/clean_tamilish_script.py).
 * **Cleaning Results:**
   * Cleaned exactly **26 rows** in `train_labeled.csv` (IDs 221, 1445, 1448, 2511, 2689, 2697, 2718, 3349, 3350, 4463, 4600, 4604, 4609, 4612, 4613, 4615, 4619, 4626, 4628, 4630, 4768, 4808, 5984, 8318, 8634, 9382).
     * *Example:* `Enaku vantha card-a app-la kandupடிக்க வேணும்.` $\rightarrow$ `Enaku vantha card-a app-la kandupudikka venum.`
