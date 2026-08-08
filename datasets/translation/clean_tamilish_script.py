@@ -1,5 +1,5 @@
 """
-scripts/clean_tamilish_script.py
+datasets/translation/clean_tamilish_script.py
 
 Cleans and transliterates any stray Tamil-script characters (\u0B80-\u0BFF)
 inside the Latin-script Tanglish (tamilish) dataset files:
@@ -114,7 +114,8 @@ def process_file(filepath: str):
     print(f"[{os.path.basename(filepath)}] Saved cleaned file. Remaining Tamil script rows: {new_count}")
 
 def main():
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # datasets/translation/clean_tamilish_script.py -> datasets/translation -> datasets -> repo root.
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     train_file = os.path.join(base_dir, "datasets", "tamilish", "train_labeled.csv")
     test_file = os.path.join(base_dir, "datasets", "tamilish", "test_labeled.csv")
     
