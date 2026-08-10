@@ -65,7 +65,15 @@ ml/reports/encoder_summary.csv
 ml/reports/perlang_summary.csv
 ml/reports/perlang_lora_summary.csv
 
+
+# ignore kaggle dataset zip
+ml/OCR/kaggle_tesseract_dataset.zip
+
+
 # Fine-tuned encoder checkpoints (~1.9 GB each). Too large for git -- GitHub rejects
 # single files over 100 MB, and LFS free tier is 1 GB. Distribute via Kaggle/HF instead;
 # ml/models/README.md documents how to obtain and load them.
 ml/models/encoders/
+
+synthetic_ticket_dataset/screenshots/augmented/
+outputs/
