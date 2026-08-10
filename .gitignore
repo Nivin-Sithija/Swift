@@ -56,3 +56,7 @@ ml/reports/per_language_*.csv
 ml/reports/encoder_summary.csv
 ml/reports/perlang_summary.csv
 ml/reports/perlang_lora_summary.csv
+
+
+# ignore kaggle dataset zip
+ml/OCR/kaggle_tesseract_dataset.zip
