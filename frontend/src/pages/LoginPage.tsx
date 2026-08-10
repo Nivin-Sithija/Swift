@@ -11,6 +11,7 @@ import {
   ThemeSwitcher,
 } from "../components/common/Controls";
 import type { UserRole } from "../types";
+import { useLanguage } from "../app/providers/LanguageProvider";
 
 const schema = z.object({
   email: z.email("Enter a valid email address"),
@@ -19,6 +20,7 @@ const schema = z.object({
 });
 type FormData = z.infer<typeof schema>;
 export function LoginPage() {
+  const { tr } = useLanguage();
   const { user, login } = useAuth();
   const navigate = useNavigate();
   const [role, setRole] = useState<UserRole>("customer");
@@ -80,7 +82,7 @@ export function LoginPage() {
           <span className="mobile-logo">
             <Logo />
           </span>
-          <h2>Welcome to Swift</h2>
+          <h2>{tr("Welcome to Swift")}</h2>
           <p>Sign in to continue to your secure support workspace.</p>
           <div
             className="role-tabs"
@@ -95,7 +97,7 @@ export function LoginPage() {
                 setServerError("");
               }}
             >
-              Customer
+              {tr("Customer")}
             </button>
             <button
               role="tab"
@@ -105,7 +107,7 @@ export function LoginPage() {
                 setServerError("");
               }}
             >
-              Support agent
+              {tr("Support agent")}
             </button>
           </div>
           <form
@@ -125,7 +127,7 @@ export function LoginPage() {
             noValidate
           >
             <label>
-              Email address
+              {tr("Email address")}
               <input
                 autoComplete="email"
                 {...register("email")}
@@ -138,7 +140,7 @@ export function LoginPage() {
               )}
             </label>
             <label>
-              Password
+              {tr("Password")}
               <div className="password">
                 <input
                   type={show ? "text" : "password"}
@@ -161,10 +163,10 @@ export function LoginPage() {
             <div className="row spread">
               <label className="checkbox">
                 <input type="checkbox" {...register("remember")} />
-                Remember me
+                {tr("Remember me")}
               </label>
               <button type="button" className="link-button">
-                Forgot password?
+                {tr("Forgot password?")}
               </button>
             </div>
             {serverError && (
@@ -173,7 +175,7 @@ export function LoginPage() {
               </div>
             )}
             <button className="btn wide" disabled={isSubmitting}>
-              {isSubmitting ? "Signing in…" : "Sign in securely"}
+              {isSubmitting ? tr("Signing in…") : tr("Sign in securely")}
             </button>
             <button
               type="button"

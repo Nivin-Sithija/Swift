@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import { mockTicketService } from "../../services/ticketService";
+import { ticketService } from "../../services/serviceSelector";
 import type { User, UserRole } from "../../types";
 const AuthContext = createContext<{
   user: User | null;
@@ -28,7 +28,7 @@ export function MockAuthProvider({ children }: { children: ReactNode }) {
     role: UserRole,
     remember = false,
   ) => {
-    const next = await mockTicketService.login(email, password, role);
+    const next = await ticketService.login(email, password, role);
     (remember ? localStorage : sessionStorage).setItem(
       "swift-session",
       JSON.stringify(next),
@@ -36,7 +36,7 @@ export function MockAuthProvider({ children }: { children: ReactNode }) {
     setUser(next);
   };
   const logout = async () => {
-    await mockTicketService.logout();
+    await ticketService.logout();
     localStorage.removeItem("swift-session");
     sessionStorage.removeItem("swift-session");
     setUser(null);

@@ -2,12 +2,15 @@ export type UserRole = "customer" | "agent";
 export type SupportedLanguage =
   "english" | "sinhala" | "tamil" | "singlish" | "tanglish" | "mixed";
 export type TicketPriority = "low" | "medium" | "high" | "critical";
-export type TicketSentiment = "neutral" | "negative";
+export type TicketSentiment = "positive" | "neutral" | "negative";
 export type TicketStatus =
   | "new"
+  | "processing"
   | "in_review"
   | "assigned"
   | "escalated"
+  | "response_draft"
+  | "responded"
   | "resolved"
   | "closed"
   | "reopened";
@@ -111,6 +114,12 @@ export interface DashboardMetrics {
   resolvedToday: number;
   averageFirstResponse: string;
   lowConfidence: number;
+}
+export interface TicketSubmission {
+  subject: string;
+  message: string;
+  preferredResponseLanguage: "english" | "sinhala" | "tamil";
+  attachment?: File | null;
 }
 export interface FilterState {
   search: string;

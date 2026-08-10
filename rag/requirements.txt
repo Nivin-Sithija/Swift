@@ -1,0 +1,59 @@
+# --- CORE API & WEB FRAMEWORK ---
+fastapi                     # High-performance web framework for the API
+uvicorn[standard]           # ASGI server to run the FastAPI app
+python-dotenv               # For loading configuration from .env files
+requests                    # HTTP library for internal/external API calls
+streamlit                   # Frontend dashboard for the chat interface
+numpy                       # Numerical processing
+pytz                        # Timezone handling for logs
+nest-asyncio                # Support for nested async loops in notebooks/streamlit
+
+# --- GEMINI EMBEDDINGS ---
+google-generativeai          # Gemini API — embeddings (text-embedding-004 / gemini-embedding-001)
+langchain-google-genai       # LangChain integration for Gemini models
+
+# --- HUGGINGFACE EMBEDDINGS ---
+langchain-huggingface        # LangChain integration for local/HF-hosted embedding models
+sentence-transformers        # Runs multilingual embedding models locally (BGE-M3, multilingual-e5-large, etc.)
+
+# --- VECTOR DB & RETRIEVAL (Postgres + pgvector) ---
+sqlalchemy                  # ORM / query builder — matches project-wide DB access layer
+psycopg[binary]             # Postgres driver (psycopg 3)
+pgvector                    # pgvector type support for SQLAlchemy/psycopg
+flashrank                   # Ultra-fast local cross-encoder for semantic reranking
+
+# --- LANGCHAIN & AGENTIC ORCHESTRATION ---
+langchain                   # Core LLM orchestration
+langgraph                   # State-machine logic for cyclic agent flows
+langchain-groq              # Integration for lightning-fast Llama 3.3 models
+langchain-google-vertexai   # Required shim for NeMo Guardrails internal import (no GCP credentials needed)
+langchain-community==0.3.30  # Community-contributed tools and loaders — pinned: ragas 0.4.3 imports
+                             # langchain_community.chat_models.vertexai, removed upstream in 0.4.x
+langchain-openai            # OpenAI-compatible layer (used by Portkey gateway)
+pydantic>=2.0.0             # Data validation and settings management
+pydantic-settings            # Settings management via env vars / .env files
+
+# --- DATA INGESTION & DOCUMENT PARSING ---
+unstructured                # Base library for DOCX/PPTX partitioning
+python-pptx                 # Parser for PowerPoint files
+python-docx                 # Parser for Word documents
+pypdf                       # Local PDF text extraction (replaces Document AI)
+beautifulsoup4               # High-speed HTML text extraction
+pdfplumber                  # Fallback PDF parser for scanned/complex layouts
+
+# --- OBSERVABILITY & DISTRIBUTED TRACING ---
+langsmith                   # Specialized tracing for LangChain/LangGraph
+logfire[fastapi,requests]   # Pydantic Logfire — FastAPI + requests instrumentation
+loguru                      # Enhanced logging for Python
+
+# --- GUARDRAILS ---
+nemoguardrails               # NVIDIA NeMo Guardrails for input/output safety rails
+langchain-nvidia-ai-endpoints # LangChain integration with NVIDIA AI Endpoints
+
+# --- LLM GATEWAY ---
+portkey-ai                  # Portkey Gateway for unified LLM routing, fallbacks & observability
+
+# --- EVALUATION (EVALS) ---
+ragas                       # RAG-specific evaluation metrics (Faithfulness, Relevancy, Recall)
+deepeval                    # Pytest-compatible test runner wrapping RAGAS & safety metrics
+langfuse                    # Live production monitoring, tracing & user feedback collection
