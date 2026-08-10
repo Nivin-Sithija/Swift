@@ -17,6 +17,7 @@ import {
   TICKET_STATUSES,
 } from "../../lib/constants";
 import { SearchInput } from "../common/Controls";
+import { useLanguage } from "../../app/providers/LanguageProvider";
 
 export const humanize = (value: string) =>
   value.replaceAll("_", " ").replace(/\b\w/g, (x) => x.toUpperCase());
@@ -105,6 +106,7 @@ export function TicketFilters({
   onChange: (patch: Partial<FilterState>) => void;
   onClear: () => void;
 }) {
+  const { tr } = useLanguage();
   return (
     <div className="filters">
       <SearchInput
@@ -116,10 +118,10 @@ export function TicketFilters({
         value={filters.status}
         onChange={(e) => onChange({ status: e.target.value })}
       >
-        <option value="all">All statuses</option>
+        <option value="all">{tr("All statuses")}</option>
         {TICKET_STATUSES.map((x) => (
           <option key={x} value={x}>
-            {humanize(x)}
+            {tr(humanize(x))}
           </option>
         ))}
       </select>
@@ -128,10 +130,10 @@ export function TicketFilters({
         value={filters.priority}
         onChange={(e) => onChange({ priority: e.target.value })}
       >
-        <option value="all">All priorities</option>
+        <option value="all">{tr("All priorities")}</option>
         {TICKET_PRIORITIES.map((x) => (
           <option key={x} value={x}>
-            {humanize(x)}
+            {tr(humanize(x))}
           </option>
         ))}
       </select>
@@ -140,15 +142,15 @@ export function TicketFilters({
         value={filters.language}
         onChange={(e) => onChange({ language: e.target.value })}
       >
-        <option value="all">All languages</option>
+        <option value="all">{tr("All languages")}</option>
         {SUPPORTED_LANGUAGES.map((x) => (
           <option key={x} value={x}>
-            {humanize(x)}
+            {tr(humanize(x))}
           </option>
         ))}
       </select>
       <button className="btn ghost" onClick={onClear}>
-        Clear filters
+        {tr("Clear filters")}
       </button>
     </div>
   );
@@ -164,6 +166,7 @@ export function TicketTable({
   selected?: string[];
   onSelect?: (id: string) => void;
 }) {
+  const { tr } = useLanguage();
   return (
     <div className="table-wrap">
       <table>
@@ -174,16 +177,16 @@ export function TicketTable({
                 <span className="sr-only">Select</span>
               </th>
             )}
-            <th>Ticket</th>
-            {agent && <th>Customer</th>}
-            <th>Subject</th>
-            <th>Language</th>
-            <th>Category</th>
-            <th>Priority</th>
+            <th>{tr("Ticket")}</th>
+            {agent && <th>{tr("Customer")}</th>}
+            <th>{tr("Subject")}</th>
+            <th>{tr("Language")}</th>
+            <th>{tr("Category")}</th>
+            <th>{tr("Priority")}</th>
             {agent && <th>Sentiment</th>}
             {agent && <th>Confidence</th>}
-            <th>Status</th>
-            <th>{agent ? "Assigned agent" : "Updated"}</th>
+            <th>{tr("Status")}</th>
+            <th>{tr(agent ? "Assigned agent" : "Updated")}</th>
             <th>
               <span className="sr-only">Action</span>
             </th>
@@ -277,6 +280,7 @@ export function TicketCards({
   tickets: Ticket[];
   agent?: boolean;
 }) {
+  const { tr } = useLanguage();
   return (
     <div className="ticket-cards">
       {tickets.map((ticket) => (
@@ -297,7 +301,7 @@ export function TicketCards({
               className="btn small"
               to={`${agent ? "/agent" : "/customer"}/tickets/${ticket.id}`}
             >
-              View
+              {tr("View")}
             </Link>
           </div>
         </article>
@@ -314,6 +318,7 @@ export function Pagination({
   pages: number;
   onChange: (page: number) => void;
 }) {
+  const { tr } = useLanguage();
   return (
     <nav className="pagination" aria-label="Pagination">
       <button
@@ -325,7 +330,7 @@ export function Pagination({
         <span className="sr-only">Previous</span>
       </button>
       <span>
-        Page <strong>{page}</strong> of {pages}
+        {tr("Page")} <strong>{page}</strong> {tr("of")} {pages}
       </span>
       <button
         className="icon-btn"
@@ -354,22 +359,24 @@ export function EmptyState({
   title?: string;
   detail?: string;
 }) {
+  const { tr } = useLanguage();
   return (
     <div className="empty">
       <ImageOff />
-      <h3>{title}</h3>
-      <p>{detail}</p>
+      <h3>{tr(title)}</h3>
+      <p>{tr(detail)}</p>
     </div>
   );
 }
 export function ErrorState({ retry }: { retry: () => void }) {
+  const { tr } = useLanguage();
   return (
     <div className="empty error">
       <AlertTriangle />
-      <h3>Service temporarily unavailable</h3>
+      <h3>{tr("Service temporarily unavailable")}</h3>
       <p>The mock ticket service could not load this view.</p>
       <button className="btn" onClick={retry}>
-        Try again
+        {tr("Try again")}
       </button>
     </div>
   );

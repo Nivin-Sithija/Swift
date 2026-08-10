@@ -10,7 +10,7 @@ Trilingual (Sinhala / English / Tamil), multimodal AI support-ticket triage for 
 | Research library |  indexed in [`research/README.md`](research/README.md) |
 | Trilingual dataset |  5 language/script folders, 9,998 train / 3,079 test, id-aligned |
 | Classifier bake-off |  harness built; intent, sentiment and priority baselines measured on dev; encoder runs pending |
-| Application | Frontend prototype built; backend not scaffolded |
+| Application | Frontend prototype plus FastAPI/PostgreSQL backend scaffold and REST integration |
 
 ---
 
@@ -105,21 +105,26 @@ Decisions worth noting:
 ## Repository Layout
 
 ```text
+backend/                     FastAPI API, PostgreSQL models/migrations, auth and workers
 frontend/                    Vite + React + TypeScript support-ticket triage prototype
 context/                     Product spec, architecture, model research, standards, progress
 research/                    Primary-source papers backing modeling decisions
 datasets/                    BANKING77-derived trilingual pipeline (translation, romanization, labeling)
 ml/                          Everything that trains or evaluates a model — see ml/README.md
   swiftbench/                Shared harness: frozen split, metrics, baselines, result format
-  scripts/                   Standalone CLI training runs (intent only)
+  scripts/                   Standalone CLI training runs (intent only) and tokenizer probes
   configs/ splits/           Recorded experiment configs; the frozen split manifest
   models/ predictions/ reports/   Run artifacts
+  reports/RESULTS.md         Master results report — every experiment, score and verdict in one place
 notebooks/modeling/          Experiment notebooks driving swiftbench (intent, sentiment, priority)
 notebooks/baselines/         TF-IDF feature-pipeline walkthrough
 notebooks/data_preparation/  Dataset characteristics, cleaning and prompt-benchmark analysis
-docs/                        API, database and RAG-source documentation
-srs/                         Software requirements specification (LaTeX)
-feasibility report/          Feasibility study (LaTeX)
-scripts/                     Standalone data-cleaning utilities
+docs/                        All formal project documents — see docs/README.md
+  srs/                       Software requirements specification (LaTeX + PDF)
+  architecture/              Architecture and design report (LaTeX + PDF) and its diagrams
+  feasibility-study/         Feasibility study (LaTeX + PDF)
+  api/ database/             OpenAPI contract and PostgreSQL schema (DBML)
+  project-overview.pdf project-proposal.pdf   Project overview and original proposal
+rag/                         RAG knowledge sources: raw docs + manifest (ingestion pipeline pending) — see rag/README.md
 synthetic_ticket_dataset/    Synthetic multimodal (image) ticket samples
 ```

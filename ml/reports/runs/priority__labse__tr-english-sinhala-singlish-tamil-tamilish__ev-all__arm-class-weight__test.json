@@ -14,7 +14,7 @@
   "eval_portion": "test",
   "split_sha": "e7b5934392cd",
   "author": "kaggle",
-  "recorded_utc": "2026-08-02T05:01:44+00:00",
+  "recorded_utc": "2026-08-07T12:13:16+00:00",
   "python": "3.12.13",
   "accuracy": 0.90074699577785,
   "macro_f1": 0.890035016904239,
@@ -34,12 +34,12 @@
   "lr": 2e-05,
   "batch_size": 32,
   "max_length": 128,
-  "train_seconds": 1310.2,
+  "train_seconds": 1338.7,
   "hf_name": "sentence-transformers/LaBSE",
   "fit_portion": "train+dev",
   "device": "cuda",
   "fp16": true,
-  "rows_per_second": 114.5,
+  "rows_per_second": 112.0,
   "regime": "multi",
   "family": "encoder"
 }

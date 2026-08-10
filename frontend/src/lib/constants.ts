@@ -12,6 +12,7 @@ export const CURRENT_AGENT = "Anika Fernando";
 
 export const TICKET_STATUSES: TicketStatus[] = [
   "new",
+  "processing",
   "in_review",
   "assigned",
   "escalated",
@@ -27,7 +28,11 @@ export const TICKET_PRIORITIES: TicketPriority[] = [
   "critical",
 ];
 
-export const TICKET_SENTIMENTS: TicketSentiment[] = ["neutral", "negative"];
+export const TICKET_SENTIMENTS: TicketSentiment[] = [
+  "positive",
+  "neutral",
+  "negative",
+];
 
 export const SUPPORTED_LANGUAGES: SupportedLanguage[] = [
   "english",

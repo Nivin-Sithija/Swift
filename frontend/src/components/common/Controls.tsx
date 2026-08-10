@@ -36,11 +36,11 @@ export function ThemeSwitcher() {
   );
 }
 export function LanguageSelector() {
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, tr } = useLanguage();
   return (
     <label className="select-compact">
       <Languages size={16} />
-      <span className="sr-only">Interface language</span>
+      <span className="sr-only">{tr("Interface language")}</span>
       <select
         value={language}
         onChange={(e) => setLanguage(e.target.value as "en" | "si" | "ta")}
@@ -61,17 +61,18 @@ export function SearchInput({
   onChange: (v: string) => void;
   placeholder?: string;
 }) {
+  const { tr } = useLanguage();
   return (
     <label className="search">
       <Search size={17} />
-      <span className="sr-only">Search</span>
+      <span className="sr-only">{tr("Search")}</span>
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder}
+        placeholder={tr(placeholder)}
       />
       {value && (
-        <button onClick={() => onChange("")} aria-label="Clear search">
+        <button onClick={() => onChange("")} aria-label={tr("Clear search")}>
           <X size={15} />
         </button>
       )}
