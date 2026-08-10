@@ -10,9 +10,11 @@ COPY . .
 ARG VITE_API_BASE_URL=http://localhost:8000/api/v1
 ARG VITE_APP_NAME=Swift
 ARG VITE_DEFAULT_THEME=dark
+ARG VITE_USE_MOCK_API=false
 ENV VITE_API_BASE_URL=${VITE_API_BASE_URL} \
     VITE_APP_NAME=${VITE_APP_NAME} \
-    VITE_DEFAULT_THEME=${VITE_DEFAULT_THEME}
+    VITE_DEFAULT_THEME=${VITE_DEFAULT_THEME} \
+    VITE_USE_MOCK_API=${VITE_USE_MOCK_API}
 
 RUN npm run build
 
@@ -28,7 +30,9 @@ COPY --chown=nginx:nginx nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --chown=nginx:nginx nginx/default.conf.template /etc/nginx/templates/default.conf.template
 COPY --chown=nginx:nginx nginx/40-runtime-config.sh /docker-entrypoint.d/40-runtime-config.sh
 
-RUN chmod 755 /docker-entrypoint.d/40-runtime-config.sh
+RUN chmod 755 /docker-entrypoint.d/40-runtime-config.sh \
+    && mkdir -p /tmp/nginx-conf \
+    && chown -R nginx:nginx /tmp/nginx-conf
 
 ENV API_BASE_URL=http://backend:8000/api/v1 \
     NGINX_ENVSUBST_OUTPUT_DIR=/tmp/nginx-conf
