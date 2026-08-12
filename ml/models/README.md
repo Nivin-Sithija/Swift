@@ -38,9 +38,20 @@ dumped; the scores in `ml/reports/` came from models that no longer exist.
 fine-tuned on all five languages pooled, `class_weight` arm, fit on `train+dev` (49,990 rows),
 scored once on test (15,395 rows). Produced by `ml/kaggle/runner.py ... --save-models`.
 
-There is **no fine-tuned encoder for intent.** `ml/reports/runs/` holds zero intent runs, and
-`ml/reports/RESULTS.md` §10 confirms no transformer has been run against the intent gates. Intent
-is classical-only today.
+⚠️ **`train+dev` means dev is inside these checkpoints' training data.** Anything that re-evaluates
+them — a linear probe, a calibration pass, a threshold sweep — must score on **test**, the only
+portion their backbones never saw, and compare against their *test* numbers (sentiment 0.5664,
+priority 0.8900), never their dev ones. Scoring one of them on dev does not error and does not look
+wrong: `swiftbench.probe` first read `priority_labse` at 0.9645 macro-F1 against that model's own
+0.9168 fine-tune, which is memorised rows presenting as a breakthrough. `probe.score()` now refuses
+the combination; nothing else does.
+
+**Intent has fine-tuned encoders on dev but no saved weights and no test scoring.**
+`ml/reports/runs/` holds four intent encoder runs — mmbert 0.9280, gemma-3-1b 0.9243 (LoRA), labse
+0.9224, gemma-3-270m 0.9038 (LoRA), all pooled dev macro-F1, all best-epoch 3 of 3. They post-date
+the "intent is classical-only" note this paragraph used to carry. What is still true: no intent
+encoder has been scored on test, and none was saved with `--save-models`, so the deployable intent
+model remains the classical `tfidf_linear_svm_all.joblib`.
 
 ---
 
