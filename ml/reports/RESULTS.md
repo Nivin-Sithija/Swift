@@ -82,6 +82,7 @@ Class prevalence:
 | 27 | Gemma 3 + LoRA vs encoders, 3 tasks | all | done | **Ties on all three, wins none.** Keep LaBSE (§14.3, §14.8) |
 | 28 | Model size 1b vs 270m | all | done | 270M knee replicates; sentiment collapses −0.082 (§14.5) |
 | 29 | Intent encoder bake-off (LaBSE, mmBERT) | intent | done | mmBERT 0.9280 / LaBSE 0.9224 dev — **first encoder result on intent**; no test run yet |
+| 30 | Linear probing, 7 frozen backbones × 3 tasks × 2 poolings | all | done | Retention **intent > priority > sentiment for every backbone**; frozen serving rejected; TwHIN-BERT most script-agnostic (§15) |
 
 ---
 
@@ -102,6 +103,12 @@ above are unchanged. See **§14**.
 **Intent's champion row is the weak one.** LinearSVC 83.18% is the only test-set number, and it is
 classical — the first encoder results on intent (mmBERT 0.9280, LaBSE 0.9224 dev) landed 2026-08-08
 and **have not been scored on test**. Intent is the one task with a genuinely open champion.
+
+**Probed and held (2026-08-09).** Linear probing froze all seven backbones and fitted a logistic
+regression on their pooled vectors. LaBSE wins the *frozen* probe on all three tasks too — its lead
+predates any training on our data. The champions above are unchanged, and two cheaper alternatives
+were measured and closed: frozen-backbone serving loses to the classical model, and a backbone
+fine-tuned for one task carries nothing for the others. See **§15**.
 
 > **Quote the priority ceiling alongside the priority score.** 0.8900 is agreement with the *v5
 > labeling rule*. That rule agrees with human annotation at only **0.7722** (κ=0.64), so 0.7722 is
@@ -691,13 +698,14 @@ human-typed romanized tickets. The purpose-built `deshanksuman/romanized-sinhala
 
 | # | Item | Why it matters |
 |---|---|---|
-| 1 | **Roll out prompt v6** beyond the 40-row pilot | +0.226 holdout Negative-F1 — larger than any modelling gain measured in this report |
-| 2 | **Intent has no transformer run** against the §3.5 promotion gates | The one task with genuine ground truth is still classical-only; published BERT on BANKING77 ≈ 93–94% vs our 90.98% English |
+| 1 | **Roll out prompt v6** beyond the 40-row pilot | +0.226 holdout Negative-F1 — larger than any modelling gain measured in this report. §15.2 strengthens this: no frozen encoder carries the Negative label, so the encoder door is now measured shut as well as the training one |
+| 2 | **Intent transformers exist on dev but have never been test-scored or saved** | mmBERT 0.9280 / LaBSE 0.9224 / gemma-3-1b 0.9243 (§14.3, row 29) sit unbanked while intent ships classical at 83.18%. Biggest uncashed result in the report — a few Kaggle GPU-hours |
 | 3 | **Tamilish is the weak track on every task** — priority 0.7994–0.8229, intent 61.05% | Only double-digit per-language gap in the project |
 | 4 | **Human-typed romanized tickets** | Blocks Strategy A, augmentation, TwHIN-BERT, and any romanized-specific claim |
 | 5 | **Fair LoRA sweep** at lr ~1e-4 | §5.9 shows drop-in failure, not that LoRA can't work |
 | 6 | **Single-request latency** never measured | `ms_per_sample` 0.24–0.64 in `encoder_screen_dev.csv` is *batched MPS throughput*, not a valid check against the 100ms serving budget |
 | 7 | **Intent score discrepancy across workstreams** | See §11, item 5 — unresolved |
+| 8 | **Joint multi-task fine-tuning, and LoRA adapters over a shared base**, both untested | §15.3 rules out *freeze-then-add-heads* but says nothing about either of these. §14.8's one-backbone-plus-three-adapters serving argument is still open |
 
 ---
 
@@ -753,7 +761,8 @@ frozen split.
 | [`SLM_RESEARCH.md`](SLM_RESEARCH.md) | SLM desk research, model shortlist, experiment plan — the input to §14 |
 | [`slm_tokenizer_fertility.csv`](slm_tokenizer_fertility.csv) | §14.1 fertility/character-preservation screen (`ml/scripts/probe_slm_tokenizers.py`) |
 | [`final_test_results.md`](final_test_results.md) | Classical final test, dev→test decomposition, label ceiling, tokenizer defect, techniques |
-| [`ENCODER_FINDINGS.md`](ENCODER_FINDINGS.md) | Encoder bake-off both tasks, per-language, LoRA, TwHIN-BERT |
+| [`ENCODER_FINDINGS.md`](ENCODER_FINDINGS.md) | Encoder bake-off both tasks, per-language, LoRA, TwHIN-BERT; **§6 linear probing** — the input to §15 |
+| [`probe_dev.csv`](probe_dev.csv) · [`probe_test_finetuned.csv`](probe_test_finetuned.csv) · [`probe_C_sweep.csv`](probe_C_sweep.csv) | §15 probe cells (264 dev, 18 test), and the `C` check |
 | [`progress_and_results_summary.md`](progress_and_results_summary.md) | Phase 1–3 narrative, XLM-R pipeline setup and smoke test |
 
 ### Notebooks (`notebooks/modeling/`)
@@ -765,6 +774,7 @@ frozen split.
 | `07`–`08` | Encoder bake-off screen, word-tokenizer comparison |
 | `10` | **Final test evaluation (classical)** |
 | `11`–`16` | One notebook per encoder candidate |
+| `17` | **Linear probing** — frozen backbones, retention tables, fine-tuned-vs-pretrained (§15) |
 | `20`–`23` | Techniques: lexicon, Strategy A, augmentation, adapters |
 | `30` | **Leaderboard** — collates `runs/*.json`, enforces the promotion rule |
 | `32`–`35` | Final test classical, final test encoders, per-language findings, priority encoders |
@@ -772,10 +782,16 @@ frozen split.
 
 ### Key data artifacts
 
-`runs/*.json` (425 run files, each stamped with the split sha — `results.load_all()` drops
-mismatches so a stale run cannot enter a ranking) · `encoder_summary.csv` · `per_language_*.csv` ·
-`history_*.csv` · `final_test_results.csv` · `label_ceiling.csv` · `prompt_v6_*_scores.csv` ·
-`word_tokenizer_*.csv` · `encoder_tokenizer_fertility.csv` · `technique_lexicon_*.csv`
+`runs/*.json` (715 run files, each stamped with the split sha — `results.load_all()` drops
+mismatches so a stale run cannot enter a ranking; 282 carry `family: "probe"` and a model name of
+`<backbone>-probe-<pooling>`) · `encoder_summary.csv` · `per_language_*.csv` · `history_*.csv` ·
+`final_test_results.csv` · `label_ceiling.csv` · `prompt_v6_*_scores.csv` · `word_tokenizer_*.csv` ·
+`encoder_tokenizer_fertility.csv` · `technique_lexicon_*.csv` · `probe_*.csv`
+
+The §15 embedding cache lives under `ml/cache/` (1.4 GB, gitignored). It regenerates in one forward
+pass per backbone; every `.npz` carries the `id` array and split sha it was built from, and
+`probe.features()` asserts both, because a stale cache would match labels to the wrong rows and leave
+every metric afterwards looking plausible.
 
 GPU driver: `ml/kaggle/runner.py` (T4 pinned; `--task`, `--fit-portion`, `--eval-portion`), kernels
 in `ml/kaggle/kernels/`. **T4 is Turing: fp16 only, no bf16, no flash-attn-2.**
@@ -796,13 +812,21 @@ in `ml/kaggle/kernels/`. **T4 is Turing: fp16 only, no bf16, no flash-attn-2.**
 7. **Never promote on a tuned-threshold number.**
 8. **Quote the label ceiling next to every sentiment and priority score.**
 9. **Relabel before re-modelling on sentiment** — the model sits inside the ceiling's CI, so label
-   quality is the binding constraint, not model capacity.
+   quality is the binding constraint, not model capacity. §15.2 closes the other direction too: no
+   frozen backbone probes sentiment above the classical baseline, so swapping encoders is not a lever
+   either.
 10. **Plain random oversampling, never SMOTE** — three papers plus our own measurement.
 11. **Never average Sinhala and Tamil** — Indo-Aryan vs Dravidian, documented family gap to 13pp.
 12. **Romanized conclusions are unresolved by our data.** Synthetic Singlish/Tamilish cannot
     evaluate romanized-specific techniques. Real human-typed text is required first.
 13. **Always measure character preservation when tokenizing non-Latin scripts** (§7.4 cost 40–69% of
     the characters and raised nothing).
+14. **No frozen-backbone serving.** §15.4 — a pretrained LaBSE probe on test loses to the classical
+    champion on both priority and intent. If a transformer ships, it ships fine-tuned.
+15. **Never freeze a task's fine-tuned backbone and hang another task's head off it.** §15.3 — the
+    representation moves toward its own task only (+0.108 on its own, +0.003 on the other).
+16. **Check the optimiser actually converged before reading a probe score.** §15.5 trap 1 — an
+    underfit logistic regression reports a plausible number; `n_iter` is the only thing that says so.
 
 ---
 
@@ -997,3 +1021,168 @@ for intent, 2 for priority and sentiment.
 - **6 epochs on intent is untested**, and §14.6 says that is the one task where it could still move.
 - **No notebook.** Unlike the encoder roster (`11`–`16`), this phase is reproducible only through
   `ml/kaggle/runner.py`. A `17_slm_gemma3.ipynb` is owed.
+
+---
+
+## 15. Linear probing — how much was in the backbone before we trained it
+
+Run 2026-08-09 on the suggestion of Theekshana (Iron One AI Labs). Every section above measures a
+model *after* fine-tuning. This one freezes the backbone — no gradient reaches it — takes one forward
+pass per row, and fits a logistic regression on the pooled vector. `swiftbench/probe.py`, driven from
+`17_encoder_linear_probe.ipynb`. Extraction is paid once per backbone and reused across all three
+tasks, so the whole roster costs a single pass (~1.4 GB cache under `ml/cache/`, gitignored).
+
+The number that matters is the **gap to that model's own fine-tune**, not the probe's absolute score.
+
+### 15.1 Retention — probe ÷ fine-tune, pooled dev
+
+`class_weight`, best pooling per cell, 264 cells across 7 backbones × 3 tasks × 6 language cells.
+
+| task | labse | gemma-3-1b | mmbert | xlmr-base | twhin-bert | gemma-3-270m | canine-c |
+|---|---|---|---|---|---|---|---|
+| **probe** intent | **0.8614** | 0.8570 | 0.8170 | 0.8074 | 0.8249 | 0.7990 | 0.6410 |
+| *retained* | *0.934* | *0.927* | *0.880* | — | — | *0.884* | — |
+| **probe** priority | **0.8265** | 0.7887 | 0.7719 | 0.7643 | 0.7685 | 0.7255 | 0.6565 |
+| *retained* | *0.901* | *0.861* | *0.844* | *0.834* | *0.863* | *0.803* | *0.747* |
+| **probe** sentiment | **0.4666** | 0.4391 | 0.4137 | 0.4068 | 0.3828 | 0.3539 | 0.3164 |
+| *retained* | *0.737* | *0.683* | *0.667* | *0.812* | *0.640* | *0.631* | *0.594* |
+
+*(retention blank where no fine-tune exists at this split sha for that model/task.)*
+
+**Retention is ordered intent > priority > sentiment for every backbone, with no exceptions.**
+Intent is 88–93% linearly decodable from a representation that never saw our data; sentiment is
+59–74%. Fine-tuning does the most work on exactly the task whose labels agree with humans least
+(§8.2: sentiment κ=0.55, priority κ=0.64).
+
+**LaBSE wins the frozen probe on all three tasks and retains the most on all three.** The bake-off
+champion (§5.5, §4.4) was already the champion before any training — its advantage is in the
+pretrained representation, not in how it responds to our labels.
+
+### 15.2 What this says about sentiment — and what it does not
+
+This was run to test a specific hypothesis: *if the probe lands near the fine-tune, fine-tuning is
+mostly fitting label noise.* **The hypothesis failed.** Sentiment has the largest gap of the three
+tasks, not the smallest. Fine-tuning adds more on sentiment than anywhere else.
+
+The correct reading is a three-step chain, and the probe supplies only the first step:
+
+1. **Every frozen backbone probes sentiment below the classical TF-IDF baseline** (0.3164–0.4666
+   against 0.5950 dev). No pretrained representation encodes our Negative label well → **a different
+   off-the-shelf encoder is not the lever.** ← the probe's contribution
+2. **But fine-tuning does help** — LaBSE 0.5664 test vs classical 0.4572 (§5.5). Step 1 alone does
+   not close the question.
+3. **And 0.5664 ≈ the 0.5769 human-vs-v5 agreement** (§8.2) → the fine-tune has already learned the
+   v5 rule about as well as a human reproduces it. ← measured 2026-08-01, independent of the probe
+
+Both directions exhausted ⟹ the labels bind. This **reinforces §10 item 1 and decision 9**, but it
+does so by closing the encoder door, not by the mechanism originally hypothesised.
+
+⚠️ Do not compress this to "the probes are below baseline, therefore the label ceiling is reached."
+The probe says nothing about the ceiling; the ceiling came from 500 hand-annotated rows in §8.
+
+One alternative reading the probe cannot separate: **Negative, as v5 defines it, may be a
+topic-derived construct rather than a polarity signal** — consistent with §9.1, where the mined
+lexicon terms came out as topic markers (`poiduchu`/lost, fraud) rather than polarity words. Noisy
+labels and an awkwardly-*defined* label look identical to a probe. Relabelling is right either way,
+but under this reading v6 should tighten the definition, not just re-annotate more carefully.
+
+### 15.3 What fine-tuning puts into the representation is task-specific
+
+Both saved checkpoints from `ml/models/encoders/` probed against pretrained LaBSE. **Scored on
+test** — they were fit on `train+dev`, so dev is inside their training data (§15.5, trap 3).
+
+| probe (test) | pretrained labse | labse-ft-sentiment | labse-ft-priority |
+|---|---:|---:|---:|
+| sentiment | 0.3735 | **+0.1075** | +0.0132 |
+| priority | 0.8015 | +0.0025 | **+0.0810** |
+| intent | 0.7822 | −0.0146 | +0.0150 |
+
+The diagonal is everything; the off-diagonal is noise.
+
+**Rules out:** fine-tune one backbone on one task, freeze it, hang the other two tasks' heads off it.
+
+**Does not rule out** — and must not be read as ruling out — **joint** multi-task fine-tuning, or
+**LoRA adapters over a shared frozen base** (§14.8's serving proposal: one backbone plus three
+~26 MB adapters). Both keep a per-task path into the backbone, which is exactly what the probe shows
+is needed. Neither is measured.
+
+How much of each fine-tuned model lives in its head, on test:
+
+| task | ft-probe | full fine-tuned model | head contributes |
+|---|---:|---:|---:|
+| priority | 0.8825 | 0.8900 | **0.0075** |
+| sentiment | 0.4810 | 0.5664 | **0.0854** |
+
+Priority's fine-tuned representation is essentially linearly separable already. Sentiment's is not —
+eleven times more of it sits in the nonlinear head.
+
+### 15.4 Two things measured and closed
+
+**A frozen backbone is not servable here.** Pretrained LaBSE probed on test reaches priority
+**0.8015** and intent **0.7822**, both *below* the classical TF-IDF champion (0.8722, 0.8318). The
+cheap-serving idea — one frozen encoder, three logistic regressions, no fine-tuning, no GPU — loses
+to a model that fits in a joblib. If a transformer ships at all, it has to be fine-tuned.
+
+**TwHIN-BERT was right about romanized text, and the fine-tune hid it.** Native-script minus
+romanized, `(sinhala+tamil)/2 − (singlish+tamilish)/2`, pooled dev:
+
+| backbone | sentiment | priority | intent |
+|---|---:|---:|---:|
+| **twhin-bert** | **0.032** | **0.012** | **0.003** |
+| canine-c | −0.021 | −0.001 | −0.022 |
+| gemma-3-1b | 0.014 | 0.021 | 0.051 |
+| labse | 0.113 | 0.075 | 0.027 |
+| mmbert | 0.034 | 0.057 | 0.087 |
+| xlmr-base | 0.081 | 0.064 | 0.077 |
+
+`model-research.md` §5 named TwHIN-BERT as the code-switch model and §5.10 found it lost. The probe
+says §5.10 was right about the *model* and §5 was right about the *representation*: TwHIN-BERT is the
+most script-agnostic backbone in the roster on all three tasks, with CANINE (character-level) the
+only one near it. They lose on absolute quality, not on script transfer; LaBSE buys its lead on
+native script and gives back the most on romanized.
+
+**This does not change the ship decision** — LaBSE still wins every romanized cell outright — but it
+is the first evidence separating "handles romanized well" from "is good at the task", and it is
+invisible to a fine-tune. Caveat from §10 item 4 unchanged: Singlish is rule-generated and Tamilish
+machine-translated, so every gap here is an optimistic floor.
+
+### 15.5 Integration defects found — all silent-failure class
+
+Same category as §7.4, §11 and §14.7. Each produced a plausible number and raised nothing.
+
+1. **Unit-norm features do not fit at `C=1`.** Row L2-normalisation is required for the cross-model
+   column to mean anything (Gemma's activation scale is nowhere near BERT's, so a fixed `C` would
+   otherwise regularise each backbone differently) — but it makes every feature O(1/√dim), the L2
+   penalty dominates from the first step, and lbfgs hit its gradient tolerance after **4 iterations**.
+   Intent read **0.167** macro-F1. A `StandardScaler` between the normalisation and the regression —
+   same vectors, same `C` — gives **0.807**. `probe.fit()` now reports `n_iter`.
+2. **Gemma's tokenizer pads on the left.** `mask.sum(1) - 1` for last-token pooling indexes into the
+   padding block. Intent read **0.0768** against 0.7990 for the same model's mean pooling — low
+   enough to look like a genuine finding about decoders. Scanning the mask from the right gives
+   **0.7918**, and last-token pooling in fact *beats* mean on sentiment and priority.
+   **`transformers`' own decoder sequence-classification pooling is unaffected** — verified
+   empirically on `Gemma3ForSequenceClassification` (left-padded batched logits match unpadded
+   single-example logits to 1e-5), so §14's Gemma numbers stand.
+3. **The saved checkpoints cannot be scored on dev.** They were fit on `train+dev` (§4.5 protocol),
+   so `labse-ft-priority` probed **0.9645** against its own fine-tune's 0.9168 — memorised rows
+   presenting as a breakthrough. `probe.score()` refuses the combination now; 72 contaminated run
+   records were deleted. `ml/models/README.md` carries the warning.
+4. **Pooling must be per-model.** LaBSE prefers **cls** on sentiment and priority — its dual-encoder
+   objective optimised that position — while every MLM encoder prefers **mean**, by up to 0.048
+   (twhin-bert priority) and 0.168 (canine-c intent). One fixed convention across the roster would
+   have measured where each model stores sentence meaning rather than whether it encodes the task.
+
+`C` was checked once on LaBSE rather than swept per cell: the optimum is 0.01–0.1, and the `C=1.0`
+default costs 0.017 on intent, 0.005 on priority and 0.000 on sentiment (`probe_C_sweep.csv`).
+
+### 15.6 What this does not establish
+
+- **All retention numbers are dev.** Only the §15.3 fine-tuned-checkpoint comparison touched test,
+  and only because `train+dev` fitting left it no uncontaminated alternative.
+- **No confidence intervals.** The retention ordering holds across all seven backbones without
+  exception, which is why it is stated; individual cells are not bootstrapped.
+- **`sinbert-large` and `sinhalaberto` are absent from the tables.** Both are Sinhala-only, so they
+  produce no pooled `all` cell to compare against a pooled fine-tune.
+- **A probe is a linear read-out.** It measures what is *linearly* decodable. A representation could
+  encode sentiment non-linearly and probe poorly; that would still make it a bad frozen-serving
+  candidate, but it is not the same claim as "the information is absent."

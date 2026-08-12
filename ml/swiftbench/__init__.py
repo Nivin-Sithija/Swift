@@ -33,11 +33,11 @@ from __future__ import annotations
 import importlib
 from typing import TYPE_CHECKING
 
-__all__ = ["baselines", "config", "data", "imbalance", "metrics", "models",
+__all__ = ["baselines", "config", "data", "imbalance", "metrics", "models", "probe",
            "results", "splits", "tokenize", "train_classical", "train_encoder", "tuning"]
 
 if TYPE_CHECKING:  # pragma: no cover
-    from . import (baselines, config, data, imbalance, metrics, models,
+    from . import (baselines, config, data, imbalance, metrics, models, probe,
                    results, splits, tokenize, train_classical, train_encoder, tuning)
 
 
