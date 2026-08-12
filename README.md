@@ -3,128 +3,90 @@
   &nbsp;Swift
 </h1>
 
-Trilingual (Sinhala / English / Tamil), multimodal AI support-ticket triage for banking and fintech. Incoming tickets — text, voice, or image (bank slips, receipts, error screenshots) — are transcribed/OCR'd, classified by intent, priority, and sentiment, and routed: routine questions get a RAG-grounded drafted reply, while fraud, urgent, and negative-sentiment tickets escalate to a human agent.
+Trilingual (Sinhala / English / Tamil), multimodal AI support-ticket triage for banking and fintech. Tickets — text, voice, or image — are transcribed/OCR'd, classified by intent, priority and sentiment, then routed: routine questions get a RAG-grounded draft reply, fraud and negative-sentiment tickets escalate to a human.
 
-| Track | Status |
-|---|---|
-| Research library |  indexed in [`research/README.md`](research/README.md) |
-| Trilingual dataset |  5 language/script folders, 9,998 train / 3,079 test, id-aligned |
-| Classifier bake-off |  harness built; intent, sentiment and priority baselines measured on dev; encoder runs pending |
-| Application | Frontend prototype plus FastAPI/PostgreSQL backend scaffold and REST integration |
+Pipeline: BANKING77 → translate + romanize to 5 tracks → LLM-label sentiment/priority → frozen split → classifier bake-off → serve.
 
----
+## Layout
 
-## Frontend prototype
+- `datasets/`: 5 language tracks, translation, romanization and labeling scripts.
+- `ml/swiftbench/`: shared harness — frozen split, metrics, baselines, result format.
+- `ml/scripts/`, `ml/configs/`, `ml/kaggle/`: CLI training runs (intent only) and their committed configs; Kaggle T4 job runner.
+- `ml/OCR/`: image→text pipeline — dataset generator, Tesseract/EasyOCR evaluation, CER analysis.
+- `ml/models/`, `ml/predictions/`, `ml/reports/`: run artifacts. **`ml/reports/RESULTS.md` is the master results report.**
+- `notebooks/modeling/`: the experiment notebooks that drive swiftbench.
+- `research/`: primary-source papers backing each modeling decision.
+- `backend/`, `frontend/`: FastAPI + PostgreSQL service; Vite + React prototype.
+- `rag/`, `docs/`, `context/`: RAG sources; formal documents; spec and architecture notes.
 
-`frontend/` is a Vite + React + TypeScript prototype of the customer and agent workflows, running entirely on local mock data. It connects to no bank, model, or backend — all names, identifiers, transactions, and predictions are fictional.
+## Dataset
 
-```bash
-cd frontend
-npm install
-npm run dev          # http://localhost:5173
-```
+[BANKING77](https://huggingface.co/datasets/PolyAI/banking77) → labeled, multi-script, five-track corpus. One ticket exists five times under one `id`.
 
-Docker alternatives (copy `.env.example` to `.env` first): `npm run docker:dev` for hot reload, or `npm run docker:prod` for the production nginx container on port 8080.
+- Tracks: `english`, `sinhala`, `singlish` (romanized Sinhala), `tamil`, `tamilish` (romanized Tamil).
+- Schema, all 10 CSVs: `id, text_en, text, category, sentiment, priority`. **`category` is the column, `intent` is the task.**
+- 9,998 train / 3,079 test per track; 65,385 rows total.
+- `intent` = genuine BANKING77 ground truth. `sentiment` / `priority` = **LLM-derived, prompt v5** — a classifier trained on them learns to reproduce v5, not truth.
+- Sinhala hand-corrected to colloquial code-mixed; Singlish rule-generated preserving loanword spelling (`card`, not `kad`); Tamil Gemini-translated, no hand pass yet.
+- Audits never mutate source CSVs — they emit review files for a human pass.
 
-| Role | Email | Password |
-|---|---|---|
-| Customer | `customer@swift.demo` | `password123` |
-| Support agent | `agent@swift.demo` | `password123` |
+## Evaluations
 
-It covers ticket submission in all six language forms with optional image evidence, the agent queue and dashboard, prediction review and correction, and mandatory human approval of AI-drafted replies. `npm run test`, `npm run lint`, and `npm run build` gate changes. Runtime state is in-memory and resets on refresh; `mockTicketService` implements a typed `TicketService` interface designed for later REST replacement.
+Frozen split `e7b5934392cd` — 8,500 / 1,498 / 3,079 tickets, drawn on `id`, never regenerated. Dev ranks, test confirms once. Full workings: [`ml/reports/RESULTS.md`](ml/reports/RESULTS.md).
 
----
+Floors: sentiment always-`Neutral` = 95.5% acc / **0.000** Neg-F1 · priority always-`Low` = 0.2302 · priority `intent-chained` = 0.9040 (the honest bar; the 0.9147 gold-intent version is an oracle).
 
-## Research
+| Task | Champion | Test | Beats | Label ceiling |
+|---|---|---:|---|---:|
+| intent | LaBSE fine-tuned, `all` | **88.54%** macro-F1 | classical 83.18% | 1.00 |
+| sentiment | LaBSE fine-tuned, `class_weight` | **0.5664** Neg-F1 | classical 0.4572 | 0.5769 |
+| priority | LaBSE fine-tuned, `class_weight` | **0.8900** macro-F1 | classical 0.8722 | **0.7722** |
 
-`research/` is a working bibliography of primary sources backing every non-obvious modeling decision — not background reading, but load-bearing evidence for choices like model architecture, dataset scale, and how to handle romanized code-mixed Sinhala. [`research/README.md`](research/README.md) indexes each paper against the decision it grounds in `context/model-research.md`.
+Intent's number comes from the **official** split (9,998/3,079 per track), not the frozen one — the same split its classical baseline was measured on, so the promotion comparison holds, but it does not sit in one table with the frozen-split dev figures. LaBSE clears all six +3.00pp promotion gates; XLM-R clears five and misses english by 0.10pp.
 
-Findings that shaped the build:
+Challenged twice, held both times: Gemma 3 1B + LoRA-all ties LaBSE on all three tasks and wins none (dev); linear probing shows LaBSE wins the *frozen* probe too, so its lead predates training.
 
-- **Fine-tuned beats zero-shot LLM, consistently** — across every paper in the library (banking-domain XLM-R+lexicon 88.4% vs. GPT-4o zero-shot 81.5%; SinLlama fine-tuned F1 72.5 vs. unfine-tuned 22.7). This is the basis for the project's "ML models classify, LLM only replies" division of labor.
-- **Romanized Sinhala breaks tokenizers, not just models** — median perplexity is 312× worse than native script on the same LLMs (Rajapakse & Weerasinghe, 2026), traced to subword fragmentation. Directly motivated preserving English loanword spelling in the Singlish generator (`card`, not `kad`).
-- **Neural models need data volume Sinhala datasets rarely have** — classical ML/CRF beat every neural architecture at ~2k–7.5k rows (Smith & Thayasivam, 2020); the pattern flips only past roughly a hundred thousand balanced rows (Arya, 2026). This calibrated dataset-scale targets and kept the bake-off honest: never assume the transformer wins.
-- **Plain oversampling beats SMOTE** for code-mixed and low-resource text in every paper that tried both — adopted as the default class-balancing method.
+**OCR** — 2,000 synthetic ticket images (500 renders × 4 conditions), CER. Language-routed Tesseract vs an EasyOCR Latin-model baseline; **bold wins the cell**:
 
----
+| Script | clean | rotation | blur | low-res |
+|---|---|---|---|---|
+| Latin | **9.94** / 10.14 | **30.76** / 52.58 | 34.96 / **17.54** | 55.34 / **46.58** |
+| Sinhala | **11.26** / 21.81 | **33.93** / 58.20 | 39.92 / **29.11** | 64.52 / **57.07** |
+| Tamil | **10.63** / 26.41 | **31.97** / 60.28 | 34.45 / **33.57** | **58.49** / 60.13 |
 
-## Data Science
+Routing to the `sin`/`tam` packs erases the native-script penalty on clean input — Tamil −15.78pp, Sinhala −10.55pp, all three scripts landing at ~10–11% — and wins rotation by 22–28pp. It **loses under blur and low-resolution**, which is the phone-camera case; that fallback is unmeasured. Feed Tesseract raw RGB: every OpenCV pre-processing variant tried made CER worse.
 
-`datasets/` turns [BANKING77](https://huggingface.co/datasets/PolyAI/banking77) (13,083 English support queries, 77 intents) into a labeled, trilingual, multi-script benchmark across five folders: `english/`, `sinhala/`, `singlish/` (romanized Sinhala), `tamil/`, and `tamilish/` (romanized Tamil).
+Labeling prompts vs the 500-row human gold set:
 
-**Every `train_labeled.csv` / `test_labeled.csv` shares one schema**: `id, text_en, text, category, sentiment, priority`. `category` holds BANKING77's 77-way intent label — "intent" is the task name, `category` is the column name. `id` is the 0-based row index into `original-dataset/` — the alignment key across all five folders. `text_en` is always the original English; `text` is that folder's own-language text. Sentiment and priority are identical across all five for a given `id`: they are translations of one ticket, labeled once in English and carried over, never re-labeled per language.
+| v1 | v5 (frozen) | v6 | v7 | v8 |
+|---:|---:|---:|---:|---:|
+| 0.622 | **0.5769** | 0.6875 *(holdout)* | 0.6667 | **0.7812** |
 
-**Pipeline:**
+## Findings
 
-1. **Source** — BANKING77 train/test, English text and intent only. No sentiment or priority ground truth exists upstream.
-2. **Labeling** — sentiment and priority are LLM-derived; intent comes from BANKING77 itself. `datasets/translation/prompts/` holds prompt versions v1 → v5, each validated against a hand-annotated gold set before being trusted on the full corpus. v5 is frozen and is the only source of truth.
-3. **Translation** — English is machine-translated to Sinhala, then hand-corrected category by category into colloquial, code-mixed Sinhala rather than literal MT output (style rules in `datasets/translation/SINHALA_STYLE.md`). Tamil is Gemini-translated with no hand-correction pass yet.
-4. **Romanization** — Singlish is rule-generated from the corrected native-script text, preserving English loanword spelling per the tokenizer finding above. Edits are made in the romanized file (the human-readable one) and backported into the Sinhala source via diff/update scripts rather than maintained in two places.
-5. **Auditing** — cross-language dedup and audit passes resolve label conflicts, true duplicates versus translation collisions, and untranslated rows. Audits never mutate source CSVs; they emit review files for a human pass to apply.
+- **Labels bind sentiment, not model capacity.** Champion 0.5664 vs a 0.5769 ceiling — inside its own CI. No frozen backbone probes above the classical baseline either. Relabel before re-modelling.
+- **Priority's 0.8900 is agreement with the v5 rule, not with humans** (κ=0.64, 0.7722). Quote the ceiling next to the score.
+- **Class balancing beats model choice, and the highest-accuracy arm is the worst model** — 0.9281 acc / 0.3171 Neg-F1 unbalanced vs 0.9252 / 0.4061 with `class_weight`.
+- **Rank on the CI.** The 0.6395 bake-off headline was the max of 168 noisy draws; all top-10 configs sat in one interval. Dev has 340 Negative *rows* but only **68 unique Negative tickets**.
+- **One multilingual model, all three tasks.** Sinhala +3.35pp, Singlish +1.34pp, neutral elsewhere. No per-language specialist wins. Zero-shot to an unseen script collapses (0.085).
+- **Recalibrating the category→priority table was the biggest labeling gain** — 4% → 92% on the 25 affected gold rows.
+- **Negative looks like a topic construct, not polarity** — mined lexicon returns fraud/loss markers. Reproducing published lexicon correction gave a null result (CV picked α=0).
+- **Positive does not exist** — Neutral 9,540 / Negative 463 / Positive 0. Downstream code must tolerate a zero-count class.
+- **Tamilish is the weak track everywhere** — intent 61.05% classical / 72.04% fine-tuned, priority 0.7994–0.8229. Cause: unstandardized romanization Singlish avoids. Transformers narrow it by ~11pp and it still trails every other track by ~18pp.
+- **Indic-specialist encoders lose to multilingual ones on a mixed-script corpus** — on pooled intent, MuRIL 62.10% and IndicBERT 76.24% land *below* the 83.18% classical baseline that XLM-R and LaBSE clear by 5pp. IndicBERT buys 0.20pp on Tanglish; informal romanized text wants web-scale pretraining, not curated Indic corpora.
+- **Never pre-process images for Tesseract.** Binarization spiked CER past 80%; even deskew+grayscale alone cost Sinhala 4.3pp. Its internal Leptonica already does adaptive localized binarization — external OpenCV work blinds it. Same silent-failure shape as the tokenizer defect.
+- **A pooled OCR CER hides an inverted ranking** — Tesseract wins clean and rotation, EasyOCR wins blur and low-res. Report CER by script *and* condition or the engine recommendation flips silently.
+- **Default tokenizers silently drop Indic script** — sklearn's `token_pattern` discarded 40.1% of Sinhala and 69.3% of Tamil characters. Fixed; always measure character preservation.
+- **Fertility does not predict encoder quality** — the screen's winner had the worst fertility; MuRIL led it only by mapping ⅔ of Sinhala to `[UNK]`.
+- **Romanized conclusions are unresolved** — Singlish is rule-generated, Tamilish machine-translated, so romanized-specific techniques test a function we applied.
 
-Working rule: a dataset's own heuristic labels are never trusted as ground truth when tuning a labeling prompt — every prompt version is checked against a freshly hand-annotated gold set first.
+## Next
 
-**Bake-off** ([`ml/`](ml/README.md), driven from `notebooks/modeling/`) runs on a frozen split — 8,500 train / 1,498 dev / 3,079 test, drawn once on `id` and fanned out to all five languages, never regenerated. Splitting on rows instead of `id` would put a ticket's English copy in train and its Sinhala copy in dev. Model selection happens on dev; test is touched once at the end by winners only.
-
-Three measured floors shape how results are reported:
-
-| task | floor | result |
-|---|---|---|
-| Sentiment | always answer `Neutral` | 95.5% accuracy, **0.000** Negative-F1 — so Negative-F1 is reported, never accuracy |
-| Priority | predicted intent → majority-priority lookup (`intent-chained`) | macro-F1 0.892–0.904 — the honest bar |
-| Priority | **gold** intent → lookup | macro-F1 0.9147 — an *oracle*, not a target; gold intent doesn't exist at serving time |
-
-On dev, a direct TF-IDF priority classifier beats `intent-chained` in all five languages (+0.7 to +1.9pp macro-F1), so priority earns its own head rather than hanging off the intent model. For sentiment, the highest-*accuracy* arm is the worst model: unbalanced training scores 0.962 accuracy at 0.357 Negative-F1, while `class_weight` scores 0.955 accuracy at 0.580.
-
----
-
-## Software Engineering
-
-The planned application (`context/architecture.md`) is a two-service system:
-
-| Layer | Stack |
-|---|---|
-| Frontend | React 19 + TypeScript strict + Tailwind (Vite; see note below) |
-| Backend | FastAPI (Python 3.11+, typed/mypy) |
-| Data | PostgreSQL 16 + pgvector (tickets, messages, KB articles, embeddings) |
-| Classification | XLM-RoBERTa backbone + per-language LoRA experts |
-| Language ID | Unicode script detection + per-pair CRF/XGBoost for code-mixed Si-En / Ta-En |
-| Multimodal | Whisper/MMS (ASR), Tesseract `sin+tam+eng` (OCR), Coqui/Indic-TTS |
-| RAG | BGE-M3/e5 embeddings in pgvector, Gemini (prod) / Ollama (dev) |
-| Channels | Web widget, Telegram, WhatsApp (Twilio/Meta) |
-
-Decisions worth noting:
-
-- **Pluggable banking data access** — `BankingProvider` is a Protocol with a stable record schema. `MockBankingProvider` is the only implementation (no real bank partner), but a real integration is one adapter, not a pipeline rewrite.
-- **Classification never touches the LLM** — intent, priority, and sentiment are served by trained discriminative models (target <100ms, kept warm as singletons); the LLM generates replies only. Keeps latency and cost predictable and avoids hallucinated labels.
-- **Scope is explicitly split** — `context/project-overview.md` marks which features match the submitted proposal (multimodal ingestion, trilingual classification, agent dashboard with label correction) versus the applied extension on top (RAG replies, TTS, Telegram/WhatsApp).
-- **Frontend stack is unresolved** — `architecture.md` specifies Next.js 16 App Router, but the prototype was built on Vite + React Router, which suits a static nginx deployment against a separate FastAPI backend. The spec has not been reconciled.
-
----
-
-## Repository Layout
-
-```text
-backend/                     FastAPI API, PostgreSQL models/migrations, auth and workers
-frontend/                    Vite + React + TypeScript support-ticket triage prototype
-context/                     Product spec, architecture, model research, standards, progress
-research/                    Primary-source papers backing modeling decisions
-datasets/                    BANKING77-derived trilingual pipeline (translation, romanization, labeling)
-ml/                          Everything that trains or evaluates a model — see ml/README.md
-  swiftbench/                Shared harness: frozen split, metrics, baselines, result format
-  scripts/                   Standalone CLI training runs (intent only) and tokenizer probes
-  configs/ splits/           Recorded experiment configs; the frozen split manifest
-  models/ predictions/ reports/   Run artifacts
-  reports/RESULTS.md         Master results report — every experiment, score and verdict in one place
-notebooks/modeling/          Experiment notebooks driving swiftbench (intent, sentiment, priority)
-notebooks/baselines/         TF-IDF feature-pipeline walkthrough
-notebooks/data_preparation/  Dataset characteristics, cleaning and prompt-benchmark analysis
-docs/                        All formal project documents — see docs/README.md
-  srs/                       Software requirements specification (LaTeX + PDF)
-  architecture/              Architecture and design report (LaTeX + PDF) and its diagrams
-  feasibility-study/         Feasibility study (LaTeX + PDF)
-  api/ database/             OpenAPI contract and PostgreSQL schema (DBML)
-  project-overview.pdf project-proposal.pdf   Project overview and original proposal
-rag/                         RAG knowledge sources: raw docs + manifest (ingestion pipeline pending) — see rag/README.md
-synthetic_ticket_dataset/    Synthetic multimodal (image) ticket samples
-```
+1. **Roll out prompt v8** beyond the staging file — +0.20 gold Neg-F1, larger than any modelling gain measured.
+2. **Reconcile the two intent workstreams.** LaBSE 88.54% is banked on the official split; mmBERT 0.9280 / LaBSE 0.9224 / Gemma 0.9243 sit on frozen-split dev. Neither has been run against the other's split, and no intent checkpoint is saved.
+3. **Chain OCR into the classifier and measure end-to-end.** CER stops at 10–11% on clean images; what that costs in intent macro-F1 is the number the multimodal claim actually rests on.
+4. **Close the Tamilish gap** — the only double-digit per-language deficit, still ~18pp after fine-tuning.
+5. **Handle degraded images.** Tesseract loses to EasyOCR on blur and low-res; a condition-aware fallback, or a better engine (Cloud Vision, Surya, PaddleOCR), is untested.
+6. **Collect human-typed romanized tickets** — blocks Strategy A, code-switch augmentation and the TwHIN-BERT claim. Real photographs are the same gap on the image side: every CER here is synthetic and optimistic.
+7. **Measure single-request latency.** The 0.24–0.64 ms/sample figure is batched throughput, not a check against the 100ms serving budget — and OCR, the slower half, has no published latency at all.
+8. **Untested and open:** joint multi-task fine-tuning, LoRA adapters over one shared backbone, a fair LoRA sweep at lr ~1e-4.

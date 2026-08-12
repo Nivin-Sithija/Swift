@@ -2,7 +2,8 @@
 
 Every experiment run on the trilingual banking-ticket classifiers, with scores, in one place.
 Compiled 2026-08-02 from the artifacts in `ml/reports/` (CSV/JSON), the notebooks in
-`notebooks/modeling/`, and the four topic reports listed in §12.
+`notebooks/modeling/`, and the topic reports listed in §12. Last extended **2026-08-12** with the
+intent transformer benchmark (§16) and the OCR engine ablation (§17).
 
 **This file summarises; it does not replace.** Where a number here is contested or was later
 retracted, §11 says so and points at the source report.
@@ -83,6 +84,9 @@ Class prevalence:
 | 28 | Model size 1b vs 270m | all | done | 270M knee replicates; sentiment collapses −0.082 (§14.5) |
 | 29 | Intent encoder bake-off (LaBSE, mmBERT) | intent | done | mmBERT 0.9280 / LaBSE 0.9224 dev — **first encoder result on intent**; no test run yet |
 | 30 | Linear probing, 7 frozen backbones × 3 tasks × 2 poolings | all | done | Retention **intent > priority > sentiment for every backbone**; frozen serving rejected; TwHIN-BERT most script-agnostic (§15) |
+| 31 | Intent transformer benchmark, 4 architectures on the **official** split | intent | done | **LaBSE 88.54% test macro-F1** on `all`, +5.36pp over classical; LaBSE clears all six §3.5 gates, XLM-R five of six (§16) |
+| 32 | OCR engine ablation — EasyOCR vs language-routed Tesseract, 2,000 images | ocr | done | Tesseract halves native-script CER on clean images; **loses on blur and low-res** (§17) |
+| 33 | OpenCV pre-processing ablation (binarize / deskew / grayscale) | ocr | done | **Every variant made CER worse.** Feed Tesseract raw RGB (§17.3) |
 
 ---
 
@@ -90,7 +94,7 @@ Class prevalence:
 
 | Task | Champion | Config | Test score | 95% CI | Beats | Label ceiling |
 |---|---|---|---:|---|---|---|
-| **intent** | LinearSVC | word (1,2) + char (3,5) TF-IDF, `all` | **83.18%** macro-F1 | [82.55, 83.72] | — | 1.00 (BANKING77 ground truth) |
+| **intent** | **LaBSE** (fine-tuned, multilingual) | 5 ep, lr 3e-5 cosine, 15% warmup, ls 0.05, eff. bs 32, `all` | **88.54%** macro-F1 | — | classical 83.18% (+5.36) | 1.00 (BANKING77 ground truth) |
 | **sentiment** | **LaBSE** (fine-tuned, multilingual) | 3 ep, lr 2e-5, bs 32, class_weight | **0.5664** Neg-F1 | — | classical 0.4572 (+0.109) | 0.5769 [0.40, 0.73] |
 | **priority** | **LaBSE** (fine-tuned, multilingual) | same | **0.8900** macro-F1 | — | classical 0.8722 (+0.018) | **0.7722** |
 
@@ -100,9 +104,23 @@ wins none**: sentiment 0.6428 vs LaBSE 0.6334 (⅛ of the CI), priority 0.9165 v
 0.9243 vs 0.9224 inside a three-way tie with mmBERT's 0.9280. All dev, no test runs. The champions
 above are unchanged. See **§14**.
 
-**Intent's champion row is the weak one.** LinearSVC 83.18% is the only test-set number, and it is
-classical — the first encoder results on intent (mmBERT 0.9280, LaBSE 0.9224 dev) landed 2026-08-08
-and **have not been scored on test**. Intent is the one task with a genuinely open champion.
+**Intent's champion changed on 2026-08-12.** A 4-way transformer benchmark (XLM-R, LaBSE, IndicBERT,
+MuRIL) fine-tuned on the **official** BANKING77 split scored **LaBSE at 88.54% macro-F1 on test**,
+clearing the §3.5 promotion gate on all six tracks and retiring the classical LinearSVC. Three
+things to carry with that number:
+
+- It comes from the **official split** (9,998 train / 3,079 test per track, `ml/scripts/train_transformer.py`),
+  the same split §3 measures classical on — so the promotion comparison is like-for-like. It is
+  **not** the frozen swiftbench split `e7b5934392cd`, so it does not sit in one table with the dev
+  figures in §14.3 or §15.1.
+- **The frozen-split intent test run is still owed** (§10 item 2). mmBERT 0.9280 / LaBSE 0.9224 /
+  gemma-3-1b 0.9243 remain dev-only there. Two workstreams now have intent transformer numbers on
+  two different splits, and neither has been run against the other's.
+- **LaBSE takes all six gates; XLM-R takes five** — it misses english by 0.10pp, which both source
+  reports record as a pass (§11 item 8). And every LaBSE−XLM-R per-track gap is inside the noise
+  band, so treat the two as tied on architecture and separated only by the pooled track (§16.3).
+
+See **§16**.
 
 **Probed and held (2026-08-09).** Linear probing froze all seven backbones and fitted a logistic
 regression on their pooled vectors. LaBSE wins the *frozen* probe on all three tasks too — its lead
@@ -199,7 +217,9 @@ nothing in accuracy and removes four models from the serving path.
 | `tamilish` | 61.05% | **64.05%** |
 | `all` | 83.18% | **86.18%** |
 
-*No transformer has yet been run against these gates on the intent task — see §10.*
+**Cleared on 2026-08-12 — by LaBSE, on all six.** Margins run from +0.15pp (english) to +6.87pp
+(sinhala). **XLM-R sweeps five of six and misses english by 0.10pp** (93.88% against the 93.98%
+gate); both source reports mark that cell promoted anyway — see §11 item 8. Full tables in **§16**.
 
 ### 3.6 Tamilish error analysis — why 61%
 
@@ -464,7 +484,7 @@ code-mixing, which we do not have. → **Revisit with real romanized data.**
 
 | Task | Floor | What the floor is | Champion (test) | Headroom used |
 |---|---:|---|---:|---|
-| intent | ~1.3% | random over 77 classes | 83.18% (`all`) | — |
+| intent | ~1.3% | random over 77 classes | **88.54%** (`all`, LaBSE) | classical 83.18% is now the floor, not the champion |
 | sentiment | **0.000** | always-Neutral (95.5% accuracy) | 0.5664 | wide headroom remains |
 | priority | 0.2302 | always-Low | 0.8900 | past its 0.7722 label ceiling |
 | priority (fair bar) | 0.9040 | `intent-chained`, dev | 0.9168 dev | +0.013 |
@@ -699,13 +719,16 @@ human-typed romanized tickets. The purpose-built `deshanksuman/romanized-sinhala
 | # | Item | Why it matters |
 |---|---|---|
 | 1 | **Roll out prompt v6** beyond the 40-row pilot | +0.226 holdout Negative-F1 — larger than any modelling gain measured in this report. §15.2 strengthens this: no frozen encoder carries the Negative label, so the encoder door is now measured shut as well as the training one |
-| 2 | **Intent transformers exist on dev but have never been test-scored or saved** | mmBERT 0.9280 / LaBSE 0.9224 / gemma-3-1b 0.9243 (§14.3, row 29) sit unbanked while intent ships classical at 83.18%. Biggest uncashed result in the report — a few Kaggle GPU-hours |
-| 3 | **Tamilish is the weak track on every task** — priority 0.7994–0.8229, intent 61.05% | Only double-digit per-language gap in the project |
+| 2 | **The frozen-split intent transformers are still dev-only** | Partly closed 2026-08-12: §16 banks a test number (LaBSE 88.54%) but on the *official* split. mmBERT 0.9280 / LaBSE 0.9224 / gemma-3-1b 0.9243 (§14.3) remain unbanked on the frozen split, so the two workstreams' intent models have never been compared |
+| 3 | **Tamilish is the weak track on every task** — priority 0.7994–0.8229, intent 70.57–72.04% after fine-tuning | Only double-digit per-language gap in the project. Transformers narrow it (61.05% → 72.04%) but it stays ~18pp below every other track |
 | 4 | **Human-typed romanized tickets** | Blocks Strategy A, augmentation, TwHIN-BERT, and any romanized-specific claim |
 | 5 | **Fair LoRA sweep** at lr ~1e-4 | §5.9 shows drop-in failure, not that LoRA can't work |
 | 6 | **Single-request latency** never measured | `ms_per_sample` 0.24–0.64 in `encoder_screen_dev.csv` is *batched MPS throughput*, not a valid check against the 100ms serving budget |
 | 7 | **Intent score discrepancy across workstreams** | See §11, item 5 — unresolved |
 | 8 | **Joint multi-task fine-tuning, and LoRA adapters over a shared base**, both untested | §15.3 rules out *freeze-then-add-heads* but says nothing about either of these. §14.8's one-backbone-plus-three-adapters serving argument is still open |
+| 9 | **OCR loses to the EasyOCR baseline on blur and low-resolution** | §17.2 — language-routed Tesseract wins clean (−15.78pp Tamil CER) and rotation (−28pp) but is *worse* on blur (+10.8 Sinhala) and low-res (+7.5 Sinhala). Those two are exactly the WhatsApp-upload case the augmentation was built to simulate. A per-condition fallback is unmeasured |
+| 10 | **No intent/sentiment/priority accuracy has been measured on OCR'd text** | §17 stops at CER. The pipeline claim is that image tickets classify as well as typed ones; at 10–11% clean CER that is plausible and untested. Chaining §17's Tesseract output into the §16 classifier is the missing end-to-end number |
+| 11 | **OCR ground truth is synthetic** | 500 generated bank-screenshot images with known `visible_text`, degraded programmatically. Real photos bring perspective, glare, cropping and compression that `ImageFilter.GaussianBlur(1.5)` does not. Same caveat family as item 4 |
 
 ---
 
@@ -723,6 +746,8 @@ above; they are listed here so nothing quietly disappears.
 | 5 | mmBERT Sinhala fertility = 4.60 | bake-off §5 encoder probe | Real figure is **3.67**; the 4.60 came from a four-sentence probe that also never tested Tamil (3.72, its worst). |
 | 6 | Fertility predicts encoder quality | implicit in early screening | **It does not.** §5.4's winner was the worst-fertility candidate. Fertility screens for efficiency and catastrophic `[UNK]` failure only. |
 | 7 | All numbers in reports dated before 2026-08-01 | everywhere | Predate the Indic tokenizer fix (§7.4) and are mildly conservative for Sinhala and Tamil. |
+| 8 | XLM-R "100% promotion sweep, 6/6 tracks" on intent | `final_baseline_report.md` §12, `progress_and_results_summary.md` §8 | **English was a 0.10pp miss**: 93.88% against the 93.98% gate, and the same row reports the gain as `+2.90%` against a `+3.00%` requirement. XLM-R swept **5 of 6**. Corrected in §16.2. LaBSE does sweep all six, so the promotion conclusion survives — the sweep claim for XLM-R does not. |
+| 9 | Tesseract "completely resolved this bottleneck" on degraded images | `ocr_multimodal_ablation_report.md` §3A | True for **clean and rotated** input only. Under blur and low-resolution Tesseract is **worse** than the EasyOCR baseline on Latin (+17.42 / +8.76pp CER) and Sinhala (+10.81 / +7.45pp). Corrected in §17.2. |
 
 ### Two unresolved inconsistencies, flagged not fixed
 
@@ -746,6 +771,28 @@ figure, not the 61.05%. That strengthens the case that 61.05% is the stale measu
 so the two still differ in two variables at once. Resolving it needs a classical tamilish run on the
 frozen split.
 
+*Update 2026-08-12 — the reading flips.* §16 removes the classical-vs-transformer variable: XLM-R
+scores tamilish **72.04%** and LaBSE **70.57%** on the **official test split**. So on official test,
+a transformer buys +9.5 to +11.0pp over classical's 61.05% — a real gain, and nowhere near 0.90.
+Lining the four measurements up:
+
+| measurement | split | model class | tamilish intent |
+|---|---|---|---:|
+| §3.1 baseline suite | official test | classical | 61.05% |
+| **§16.2 4-way benchmark** | **official test** | **transformer** | **70.57–72.04%** |
+| Phase-3 bake-off notes | frozen dev | classical | 0.8917 |
+| §14.4 | frozen dev | transformer | 0.9052–0.9146 |
+
+Read down the columns: holding the split fixed, model class moves tamilish by ~10pp (official) and
+~2pp (frozen). Holding model class fixed, **the split moves it by ~19–28pp.** The dominant variable
+is therefore **dev-versus-test, not staleness and not the `fix_tamilish.py` pass** — and the frozen
+dev set is drawn from the official *train* portion, which is the mechanism that would produce
+exactly this. `61.05%` and `0.90` are measuring different things, and the honest tamilish figure for
+a shipped model is the official-test one: **72.04%**.
+
+This is now a resolved inconsistency in all but name; what remains owed is the confirming run
+(intent on the frozen split's *test* portion) rather than an explanation.
+
 ---
 
 ## 12. Source map — where each number comes from
@@ -754,7 +801,7 @@ frozen split.
 
 | Report | Covers |
 |---|---|
-| [`final_baseline_report.md`](final_baseline_report.md) | Intent classical baselines, validation suite, leakage, CIs, promotion gates |
+| [`final_baseline_report.md`](final_baseline_report.md) | Intent classical baselines, validation suite, leakage, CIs, promotion gates; **§12–§13** the intent transformer runs and 4-way ablation — the input to §16 |
 | [`baseline_comparison.md`](baseline_comparison.md) | Intent LR vs SVM comparison, saved model bundles |
 | [`tokenizer_comparison.md`](tokenizer_comparison.md) | 3-tokenizer × 15k study, `max_length` decision |
 | [`bakeoff_sentiment_priority.md`](bakeoff_sentiment_priority.md) | Sentiment/priority dev bake-off + §6 and §7 corrections |
@@ -763,7 +810,9 @@ frozen split.
 | [`final_test_results.md`](final_test_results.md) | Classical final test, dev→test decomposition, label ceiling, tokenizer defect, techniques |
 | [`ENCODER_FINDINGS.md`](ENCODER_FINDINGS.md) | Encoder bake-off both tasks, per-language, LoRA, TwHIN-BERT; **§6 linear probing** — the input to §15 |
 | [`probe_dev.csv`](probe_dev.csv) · [`probe_test_finetuned.csv`](probe_test_finetuned.csv) · [`probe_C_sweep.csv`](probe_C_sweep.csv) | §15 probe cells (264 dev, 18 test), and the `C` check |
-| [`progress_and_results_summary.md`](progress_and_results_summary.md) | Phase 1–3 narrative, XLM-R pipeline setup and smoke test |
+| [`progress_and_results_summary.md`](progress_and_results_summary.md) | Phase 1–3 narrative, XLM-R pipeline setup and smoke test; **§8–§9** the XLM-R epoch progression and the 4-way ablation (§16) |
+| [`ocr_multimodal_ablation_report.md`](ocr_multimodal_ablation_report.md) | EasyOCR vs Tesseract CER by script and condition, OpenCV pre-processing ablation — the input to §17 |
+| [`../OCR/README.md`](../OCR/README.md) | How to regenerate the 2,000-image OCR set and rerun the evaluation on Kaggle (§17.4) |
 
 ### Notebooks (`notebooks/modeling/`)
 
@@ -796,14 +845,23 @@ every metric afterwards looking plausible.
 GPU driver: `ml/kaggle/runner.py` (T4 pinned; `--task`, `--fit-portion`, `--eval-portion`), kernels
 in `ml/kaggle/kernels/`. **T4 is Turing: fp16 only, no bf16, no flash-attn-2.**
 
+**§16 runs on a separate path.** `ml/scripts/train_transformer.py --config ml/configs/<name>.json`,
+executed on Colab against the official split — not `swiftbench`, not `runs/*.json`, no split-sha
+stamp. Nine configs are committed under `ml/configs/`. **§17 runs on a third path**: standalone
+scripts in `ml/OCR/`, evaluated in a Kaggle notebook because Tesseract's `sin`/`tam` packs are
+`apt` installs. Neither writes into the `runs/` ledger, which is why neither can be ranked against a
+frozen-split number.
+
 ---
 
 ## 13. Decisions on record
 
 1. **Ship one multilingually fine-tuned LaBSE** for sentiment and priority. Best model on both tasks
    and every language; clears the classical CI on both.
-2. **Ship the classical LinearSVC `all` model for intent** until a transformer is run against the
-   §3.5 gates.
+2. **Ship fine-tuned LaBSE `all` for intent too** *(changed 2026-08-12, was classical LinearSVC)*.
+   §16 clears all six §3.5 gates at 88.54% test macro-F1. Caveat carried: measured on the official
+   split, so it is not directly comparable to the frozen-split figures in §14 — and if the customer
+   base is heavily Tanglish, §16.3 says XLM-R is the better single model for that track.
 3. **One multilingual model, not five monolingual ones** — true on all three tasks.
 4. **No per-language models, no LoRA, no TwHIN-BERT** — none beat multilingual LaBSE on our data.
 5. **Report Negative-F1 for sentiment and macro-F1 for priority. Never accuracy.**
@@ -827,6 +885,14 @@ in `ml/kaggle/kernels/`. **T4 is Turing: fp16 only, no bf16, no flash-attn-2.**
     representation moves toward its own task only (+0.108 on its own, +0.003 on the other).
 16. **Check the optimiser actually converged before reading a probe score.** §15.5 trap 1 — an
     underfit logistic regression reports a plausible number; `n_iter` is the only thing that says so.
+17. **Route OCR by script: Tesseract `sin`/`tam` for native, EasyOCR for Latin** (§17.2). Halves
+    native-script CER on clean images. The one engine that reads Sinhala is the one that ships for
+    Sinhala.
+18. **Feed Tesseract raw RGB. No OpenCV pre-processing.** §17.3 — binarization, deskewing and
+    grayscaling each made CER worse, because Tesseract's internal Leptonica already does adaptive
+    localised binarization and external manipulation blinds it.
+19. **Never quote a single pooled OCR CER.** §17.2 — the engine ranking *inverts* between clean and
+    blurred input. Report CER by script **and** condition, or the recommendation flips silently.
 
 ---
 
@@ -1186,3 +1252,225 @@ default costs 0.017 on intent, 0.005 on priority and 0.000 on sentiment (`probe_
 - **A probe is a linear read-out.** It measures what is *linearly* decodable. A representation could
   encode sentiment non-linearly and probe poorly; that would still make it a bad frozen-serving
   candidate, but it is not the same claim as "the information is absent."
+
+---
+
+## 16. Intent transformers — the promotion gates, cleared
+
+Added 2026-08-12 from `final_baseline_report.md` §12–§13 and `progress_and_results_summary.md`
+§8–§9. This is the workstream that finally answers §3.5, and it is **the only place in this report
+with an intent transformer number on a held-out test set.**
+
+**Read the split line before the scores.** These runs use the **official** BANKING77 split — 9,998
+train / 3,079 test per track, 15,395 pooled — driven by `ml/scripts/train_transformer.py` against
+committed configs in `ml/configs/`, executed on Colab. That is the same split §3 measures classical
+baselines on, so **the promotion-gate comparison is like-for-like**. It is *not* the frozen
+swiftbench split `e7b5934392cd`, so these numbers cannot be tabled next to §14.3 or §15.1, and they
+carry no split-sha stamp and no `runs/*.json` record.
+
+### 16.1 Protocol
+
+| Item | Value |
+|---|---|
+| Task | 77-class intent, macro-F1 |
+| Train / test | 9,998 / 3,079 per track; `all` = 5 tracks pooled, 15,395 test rows |
+| Sequence length | 128 (the §7.1 decision — 100% coverage, 0% truncation) |
+| Optimiser | lr 3e-5, weight decay 0.01, max grad norm 1.0, effective batch 32 (16 × 2 accum) |
+| Champion schedule | cosine decay, 15% warmup, label smoothing 0.05 |
+| Epochs | 5 (LaBSE, MuRIL, IndicBERT), 6 (`XLMR-ALL-04-OPTIMIZED`) |
+| Selection | `load_best_model_at_end` on macro-F1, per-epoch eval |
+| Seed | 42 (`seed` and `data_seed`); single seed, no repeats |
+
+### 16.2 The gate sweep — and where the gain actually came from
+
+XLM-R against the §3.5 gates, by training budget:
+
+| Track | Best classical | Gate (+3.00) | 3 ep | 5 ep | **6 ep + cosine + ls** | champion vs gate |
+|---|---:|---:|---:|---:|---:|---:|
+| `sinhala` | 83.08% | 86.08% | 91.02% | 92.42% | **92.42%** | +6.34 ✅ |
+| `tamilish` | 61.05% | 64.05% | 64.66% | 71.67% | **72.04%** | +7.99 ✅ |
+| `tamil` | 86.35% | 89.35% | 89.17% ✗ | 89.98% | **91.74%** | +2.39 ✅ |
+| `singlish` | 86.49% | 89.49% | 86.42% ✗ | 89.74% | **90.03%** | +0.54 ✅ |
+| `english` | 90.98% | 93.98% | 92.19% ✗ | 94.00% ✅ | **93.88%** | **−0.10 ✗** |
+| `all` | 83.18% | 86.18% | 85.15% ✗ | 87.80% | **88.29%** | +2.11 ✅ |
+
+Three things this table says that the source reports do not:
+
+1. **The sweep was bought with epochs, not architecture.** At 3 epochs XLM-R **failed four of the
+   six gates**, including the pooled `all` track. The 3→5 epoch step is worth +2.65pp on `all`; the
+   5→6 step with cosine decay and label smoothing adds +0.49pp. Anyone reading "transformers clear
+   the gates" should read "transformers clear the gates *at 5+ epochs*" — §14.6 found the same thing
+   from the other direction, that intent was the one task still improving at its epoch budget.
+2. **English peaked at 5 epochs and regressed at 6** (94.00 → 93.88). The run labelled "champion" is
+   not the best English model that was trained. The `all` track is what promoted it, and on `all`
+   the extra epoch genuinely helped.
+3. **That regression put english below its gate, and both source reports still marked it promoted.**
+   93.88% against a 93.98% threshold is a **0.10pp miss** — and the gain column in those reports
+   reads `+2.90%` against a stated `+3.00%` requirement, so the failure is visible in the same row
+   that declares "✅ PROMOTED (100% Sweep)". XLM-R swept **five of six**, not six. Logged as §11
+   item 8. This does not change the ship decision: LaBSE clears english at 94.13% (+0.15) and takes
+   all six on its own.
+
+### 16.3 4-way architecture ablation — LaBSE and XLM-R tie; the Indic specialists lose
+
+All four architectures, official test macro-F1. MuRIL and IndicBERT were run on the Tamil/Tanglish
+group and pooled `all` only.
+
+| Track | Best classical | MuRIL (36k) | IndicBERT (200k) | XLM-R (250k) | **LaBSE (501k)** | LaBSE − XLM-R |
+|---|---:|---:|---:|---:|---:|---:|
+| `english` | 90.98% | — | — | 93.88% | **94.13%** | +0.25 |
+| `sinhala` | 83.08% | — | — | 92.42% | **92.95%** | +0.53 |
+| `singlish` | 86.49% | — | — | 90.03% | **90.65%** | +0.62 |
+| `tamil` | 86.35% | 66.01% | 89.81% | 91.74% | **93.27%** | +1.53 |
+| `tamilish` | 61.05% | 57.62% | 61.25% | **72.04%** | 70.57% | −1.47 |
+| `all` | 83.18% | 62.10% | 76.24% | 88.29% | **88.54%** | +0.25 |
+
+**What is solid:**
+
+- **LaBSE `all` at 88.54% is the new intent champion**, +5.36pp over classical and +2.36pp over the
+  gate. It is the highest intent score ever measured on a held-out set in this project.
+- **Both Indic specialists fail outright on the pooled track.** MuRIL 62.10% and IndicBERT 76.24%
+  are *below* the 83.18% classical baseline — a specialist vocabulary is not a substitute for
+  multilingual coverage when the input mixes five tracks. MuRIL's 36k WordPiece vocabulary is the
+  same disqualification §7.2 reached from `[UNK]` rate alone (64.53% on Sinhala), now confirmed
+  downstream.
+- **IndicBERT buys nothing on Tanglish** — 61.25% against classical's 61.05%. The romanized track
+  needs web-scale informal pretraining, which is XLM-R's 2.5 TB CommonCrawl and not AI4Bharat's
+  curated Indic corpora.
+
+**What is not solid, and is stated more strongly in the source reports than the data supports:**
+
+> `final_baseline_report.md` §13 declares LaBSE the "undisputed champion" per track and XLM-R the
+> winner on Tanglish. **Every LaBSE − XLM-R gap in that table is 0.25–1.53pp.** §3.2's bootstrap puts
+> per-track 95% CI *widths* at 2.07–2.97pp on 3,079 rows and 1.17pp on the 15,395-row `all` track.
+> No CIs were computed for these runs, and each is a single seed. Per §0 rule 1, **LaBSE vs XLM-R is
+> a tie on every track including Tanglish.** What separates cleanly is transformer vs classical
+> (+3.15 to +10.99pp) and both multilingual models vs both Indic specialists (+12 to +26pp on `all`).
+
+So the ship decision is **LaBSE** — it wins or ties everywhere and takes the pooled track — but the
+"route Tanglish to XLM-R" recommendation in §13 of that report is not supported by a 1.47pp gap. If
+Tanglish volume justifies a second model later, that needs its own run with intervals.
+
+### 16.4 What this does not establish
+
+- **Single seed, no confidence intervals.** Everything in §16.3 beyond "transformers beat classical"
+  is within-noise ordering.
+- **No frozen-split run.** These models have never been scored on the swiftbench split, and the
+  §14/§15 models have never been scored on the official test split. The two intent workstreams have
+  no shared measurement (§10 item 2).
+- **No saved checkpoints in `ml/models/`.** Only the configs are committed; reproducing means
+  re-running on Colab.
+- **Intent only.** These architectures were not run on sentiment or priority here — LaBSE's standing
+  on those tasks comes from §4–§5, on the frozen split.
+- **Tanglish remains the weak track**, ~18pp below every other language even after fine-tuning
+  (§10 item 3). §11(b) now reads the 61% / 90% discrepancy as a dev-vs-test artifact.
+
+---
+
+## 17. OCR — engine selection for the multimodal ingestion path
+
+Added 2026-08-12 from [`ocr_multimodal_ablation_report.md`](ocr_multimodal_ablation_report.md).
+Scripts and reproduction steps in [`ml/OCR/`](../OCR/README.md). This is the first section of this
+report that does not measure a classifier: image tickets (bank slips, receipts, error screenshots)
+have to become text before §16 can read them, and this measures how well that step works.
+
+### 17.1 Setup
+
+| Item | Value |
+|---|---|
+| Images | **500** synthetic bank-screenshot renders × **4 conditions** = 2,000 evaluations |
+| Conditions | `clean`; `blur` (Gaussian radius 1.5); `rotation` (5°, expanded canvas, white fill); `low-resolution` (30% bilinear downscale → nearest upscale) |
+| Script groups | Latin 333/condition (English, Singlish, Tanglish, romanized Mixed-language), Sinhala 84, Tamil 83 |
+| Ground truth | the generator's own `visible_text` — exact, not transcribed |
+| Metric | **CER** via `jiwer`, lowercased and whitespace-normalised; empty prediction against non-empty truth scores 1.0. WER and per-image latency are also recorded |
+| Baseline engine | EasyOCR, **English/Latin model only**, run over every row |
+| Candidate engine | Tesseract, language-routed: `sin+eng` / `tam+eng` / `eng` on the metadata script column |
+
+The routing was verified rather than assumed: all 1,332 Latin-group rows — including the 332
+"Mixed-language" ones — contain **zero** Sinhala or Tamil codepoints, so no native-script image is
+being handed to the `eng` pack.
+
+### 17.2 EasyOCR vs language-routed Tesseract — the ranking inverts by condition
+
+CER, lower is better. Δ is Tesseract minus EasyOCR; **negative means Tesseract is better**.
+
+| Script | Condition | EasyOCR (Latin model) | Tesseract (routed) | Δ |
+|---|---|---:|---:|---:|
+| **Latin** | clean | 10.14% | **9.94%** | −0.20 |
+| **Latin** | rotation | 52.58% | **30.76%** | **−21.82** |
+| **Latin** | blur | **17.54%** | 34.96% | **+17.42** |
+| **Latin** | low-resolution | **46.58%** | 55.34% | +8.76 |
+| **Sinhala** | clean | 21.81% | **11.26%** | **−10.55** |
+| **Sinhala** | rotation | 58.20% | **33.93%** | **−24.27** |
+| **Sinhala** | blur | **29.11%** | 39.92% | +10.81 |
+| **Sinhala** | low-resolution | **57.07%** | 64.52% | +7.45 |
+| **Tamil** | clean | 26.41% | **10.63%** | **−15.78** |
+| **Tamil** | rotation | 60.28% | **31.97%** | **−28.31** |
+| **Tamil** | blur | **33.57%** | 34.45% | +0.88 |
+| **Tamil** | low-resolution | 60.13% | **58.49%** | −1.64 |
+
+**The decision, and it is the right one:** route native script to Tesseract. On clean input —
+the condition that dominates real uploads — Tesseract cuts Tamil CER by 15.78pp and Sinhala by
+10.55pp, bringing both native scripts to ~11%, level with Latin's 9.94%. Before routing, native
+script was 2–2.6× worse than Latin; after, the script penalty is gone. It also wins rotation by
+22–28pp, almost certainly Leptonica's built-in deskew doing work EasyOCR does not attempt.
+
+**Two caveats the source report does not carry:**
+
+1. **Tesseract is worse under blur and low-resolution** — on Latin by +17.42 and +8.76pp, on Sinhala
+   by +10.81 and +7.45pp. Those are not marginal, and blur plus low-resolution is *precisely* the
+   phone-camera / WhatsApp-forward case the augmentation suite was built to simulate. The report's
+   claim that Tesseract "completely resolved this bottleneck" holds for clean and rotated input only.
+   Logged as §10 item 9; a condition-aware fallback is unmeasured.
+2. **The EasyOCR arm is not an engine comparison at parity.** It ran the English/Latin model over
+   native-script images, so its 21.81% / 26.41% measure an engine reading a script it was not loaded
+   for. What this table establishes is that **language routing is required** — not that Tesseract's
+   recogniser is better than EasyOCR's given equal configuration.
+
+### 17.3 The OpenCV pre-processing ablation — every variant made it worse
+
+An OpenCV pre-processing stage was built to attack the degradation columns, and ablated away again:
+
+| Variant | Effect |
+|---|---|
+| Gaussian blur + Otsu binarization | CER spiked **over 80%** — Indic loops, curves and diacritics bleed together under global thresholding |
+| Auto-deskew + grayscale only | Sinhala `clean` regressed **11.26% → 15.55%** — even the mildest, most obviously-safe transform cost 4.3pp |
+
+**Mechanism:** Tesseract does not want raw pixels. Its internal Leptonica library already performs
+adaptive *localised* binarization and structural analysis tuned for the downstream LSTM. Handing it
+a pre-binarized or pre-deskewed matrix blinds those stages — the work is done twice, worse, and
+irreversibly.
+
+This is the same shape as §7.4 and §14.7: a plausible, well-intentioned pre-processing step that
+silently destroys information and raises nothing. → **decision 18: feed raw RGB.**
+
+### 17.4 Reproduction
+
+The 2,000 augmented images are gitignored; `metadata.csv` (the 500 ground-truth records fanned to
+2,000 rows) is committed. Regenerate and re-evaluate:
+
+```bash
+python ml/OCR/prepare_ocr_dataset.py     # labels.json → augmented images + metadata.csv
+```
+
+Evaluation runs on Kaggle rather than locally because the `sin` and `tam` packs are `apt` installs
+(`tesseract-ocr-sin`, `tesseract-ocr-tam`); `ml/OCR/README.md` carries the notebook cell, including
+the cross-platform zip one-liner that avoids Windows backslash paths breaking on Kaggle's Linux
+filesystem. Then `evaluate_tesseract.py` → `analyze_ocr_results.py`, or `evaluate_ocr.py` for the
+EasyOCR arm.
+
+### 17.5 What this does not establish
+
+- **Synthetic images, exact ground truth.** 500 generated screenshots degraded programmatically.
+  Real photographs add perspective, glare, shadow, cropping and JPEG artifacts that
+  `GaussianBlur(1.5)` and a 5° rotation do not model. Every CER here is an optimistic floor — the
+  same caveat that governs the romanized text tracks (§10 item 4).
+- **No downstream accuracy.** CER is a proxy. Nobody has fed Tesseract output into the §16 intent
+  classifier and measured what the 10–11% clean CER costs in macro-F1. That end-to-end number is
+  the one the pipeline claim actually rests on (§10 item 10).
+- **No latency figures.** `evaluate_tesseract.py` records per-image latency; the report does not
+  quote it. Same gap as §10 item 6 on the text path, and OCR is the slower half of the pipeline.
+- **Sinhala and Tamil hold 84 and 83 images per condition.** Small enough that a few catastrophic
+  failures move the mean several points, and no intervals were computed.
+- **Only two engines.** Google Cloud Vision, Surya, PaddleOCR and TrOCR are untested; the report
+  names Cloud Vision as the obvious next comparison.
