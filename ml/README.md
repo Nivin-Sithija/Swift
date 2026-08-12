@@ -23,6 +23,12 @@ ml/
 | `tokenize.py` | scikit-learn's default `token_pattern` discarded **40% of Sinhala and 69% of Tamil characters**. Word tokenization now goes through `indic-nlp-library`, dispatched on script. |
 | `train_encoder.py` | the mirror of `train_classical` for fine-tuning encoders; fp16 on CUDA, fp32 on MPS |
 | `config.SWIFT_REPO_ROOT` | env override so the package can be imported from `/kaggle/input` |
+| `probe.py` | linear probing — freeze the backbone, extract pooled vectors once, fit a logistic regression. Measures how much task signal pretraining already carried, i.e. how much fine-tuning actually added. Driven from `17_encoder_linear_probe.ipynb`. |
+
+`probe.py` caches pooled vectors under `ml/cache/embeddings/` (gitignored, ~2 GB for the full
+roster, regenerable in one forward pass). Every `.npz` carries the `id` array and split sha it was
+built from, and `probe.features()` asserts both against the frame it is used with — a stale cache
+would match labels to the wrong rows and leave every metric downstream looking plausible.
 
 Notebooks that drive the harness are in [`../notebooks/modeling/`](../notebooks/modeling/).
 **Experiments are run in notebooks, not scripts** — you want to watch a sweep
