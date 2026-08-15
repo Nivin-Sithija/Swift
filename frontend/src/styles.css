@@ -607,6 +607,8 @@ small {
   margin-left: auto;
 }
 .agent-page {
+  width: 100%;
+  min-width: 0;
   padding: 2rem;
   max-width: 1600px;
   margin: 0 auto;
@@ -1079,7 +1081,26 @@ textarea {
   background: none;
 }
 .table-wrap {
+  width: 100%;
+  max-width: 100%;
   overflow: auto;
+}
+
+.list-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.ticket-table-link {
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ticket-table-link:hover,
+.ticket-table-link:focus-visible {
+  color: var(--primary);
+  text-decoration: underline;
 }
 
 .compact-queue table th,
