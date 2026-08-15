@@ -3,8 +3,27 @@ from dataclasses import replace
 from typing import Any, cast
 
 import httpx
+import numpy as np
 
 from app.rag.types import Embedder, Evidence
+
+
+class _TokenTypeSessionAdapter:
+    """Work around FlashRank 0.2.x omitting required all-zero segment IDs."""
+
+    def __init__(self, session: Any) -> None:
+        self._session = session
+
+    def run(self, output_names: Any, input_feed: dict[str, Any], *args: Any, **kwargs: Any) -> Any:
+        if "token_type_ids" not in input_feed and "input_ids" in input_feed:
+            input_feed = {
+                **input_feed,
+                "token_type_ids": np.zeros_like(input_feed["input_ids"], dtype=np.int64),
+            }
+        return self._session.run(output_names, input_feed, *args, **kwargs)
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self._session, name)
 
 
 class BGEM3Embedder:
@@ -100,9 +119,15 @@ class FlashRankReranker:
         except ImportError as exc:
             raise RuntimeError("Install Swift with the 'rag' extra to use FlashRank") from exc
         self._ranker: Any = Ranker()
+        required_inputs = {item.name for item in self._ranker.session.get_inputs()}
+        if "token_type_ids" in required_inputs:
+            self._ranker.session = _TokenTypeSessionAdapter(self._ranker.session)
 
     async def rerank(self, query: str, evidence: list[Evidence]) -> list[Evidence]:
         from flashrank import RerankRequest
+
+        if not evidence:
+            return []
         passages = [{"id": item.chunk_id, "text": item.text} for item in evidence]
         results = await asyncio.to_thread(self._ranker.rerank, RerankRequest(query=query, passages=passages))
         by_id = {item.chunk_id: item for item in evidence}
