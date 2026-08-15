@@ -106,6 +106,7 @@ export function AgentTicketDetailPage() {
     if (!ragInstitution) return;
     setRagLoading(true);
     setRagError("");
+    setRagResult(null);
     try {
       const result = await ticketService.generateRagDraft(
         ticket,
