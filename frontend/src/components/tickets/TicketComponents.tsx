@@ -273,6 +273,44 @@ export function TicketTable({
     </div>
   );
 }
+
+export function TableLoadingRows({ columns, rows = 6 }: { columns: number; rows?: number }) {
+  return (
+    <tbody className="table-loading" aria-busy="true">
+      {Array.from({ length: rows }, (_, row) => (
+        <tr key={row}>
+          {Array.from({ length: columns }, (_, column) => (
+            <td key={column}>
+              <span
+                className="table-cell-skeleton"
+                style={{
+                  width: `${55 + ((row * 13 + column * 17) % 40)}%`,
+                  animationDelay: `${(row + column) * 55}ms`,
+                }}
+              />
+              {row === 0 && column === 0 && <span className="sr-only">Loading table data…</span>}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  );
+}
+
+export function TicketTableSkeleton({ agent = false, rows = 6 }: { agent?: boolean; rows?: number }) {
+  const { tr } = useLanguage();
+  const headers = agent
+    ? ["", "Ticket", "Customer", "Subject", "Language", "Category", "Priority", "Sentiment", "Confidence", "Status", "Assigned agent", ""]
+    : ["Ticket", "Subject", "Language", "Category", "Priority", "Status", "Updated", ""];
+  return (
+    <div className="table-wrap" role="status" aria-label="Loading tickets">
+      <table>
+        <thead><tr>{headers.map((header, index) => <th key={`${header}-${index}`}>{header ? tr(header) : <span className="sr-only">Action</span>}</th>)}</tr></thead>
+        <TableLoadingRows columns={headers.length} rows={rows} />
+      </table>
+    </div>
+  );
+}
 export function TicketCards({
   tickets,
   agent = false,
@@ -345,10 +383,19 @@ export function Pagination({
 }
 export function LoadingSkeleton() {
   return (
-    <div className="skeletons" role="status" aria-label="Loading tickets">
+    <div className="skeletons" role="status" aria-live="polite" aria-label="Loading content">
       {[1, 2, 3, 4].map((x) => (
-        <div className="skeleton" key={x} />
+        <div className="skeleton" key={x} style={{ animationDelay: `${x * 90}ms` }} />
       ))}
+      <span className="sr-only">Loading content…</span>
+    </div>
+  );
+}
+export function LoadingSpinner({ label = "Loading", fullPage = false }: { label?: string; fullPage?: boolean }) {
+  return (
+    <div className={fullPage ? "page-loading" : "inline-loading"} role="status" aria-live="polite">
+      <LoaderCircle className="spin" aria-hidden="true" />
+      <span>{label}</span>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { LockKeyhole, ShieldCheck, UserPlus } from "lucide-react";
+import { LoaderCircle, LockKeyhole, ShieldCheck, UserPlus } from "lucide-react";
 import { Navigate, Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -69,7 +69,7 @@ export function RegisterPage() {
             <label>Confirm password<input type="password" autoComplete="new-password" {...register("confirmPassword")} placeholder="Enter the password again" />{errors.confirmPassword && <small className="field-error">{errors.confirmPassword.message}</small>}</label>
             {role === "agent" && <label>Support-agent registration code<input type="password" autoComplete="off" {...register("agentCode")} placeholder="Provided by your organisation" /><small>Required to prevent unauthorised staff accounts.</small></label>}
             {serverError && <div className="form-error" role="alert">{serverError}</div>}
-            <button className="btn wide" disabled={isSubmitting}><UserPlus />{isSubmitting ? "Creating account…" : "Create account"}</button>
+            <button className="btn wide" disabled={isSubmitting}>{isSubmitting ? <LoaderCircle className="spin" aria-hidden="true" /> : <UserPlus />}{isSubmitting ? "Creating account…" : "Create account"}</button>
           </form>
           <p className="demo-hint">Already registered? <Link className="link-button" to="/login">Sign in</Link></p>
         </div>
