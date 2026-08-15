@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:16-alpine
+    image: pgvector/pgvector:pg16
     environment: {POSTGRES_DB: swift, POSTGRES_USER: swift, POSTGRES_PASSWORD: swift}
     volumes: ["postgres_data:/var/lib/postgresql/data"]
     healthcheck: {test: ["CMD-SHELL", "pg_isready -U swift -d swift"], interval: 5s, timeout: 3s, retries: 20}
