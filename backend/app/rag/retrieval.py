@@ -66,7 +66,7 @@ class PostgresHybridRetriever:
         )
 
     async def _query(self, mode: str, query: str, params: dict[str, object]) -> list[Evidence]:
-        filters = "a.approval_status = 'approved' AND a.review_date >= CURRENT_DATE - CAST(:review_days AS integer) AND (:institution IS NULL OR a.institution = :institution) AND (:category IS NULL OR a.category = :category)"
+        filters = "a.approval_status = 'approved' AND a.review_date >= CURRENT_DATE - CAST(:review_days AS integer) AND (CAST(:institution AS text) IS NULL OR a.institution = CAST(:institution AS text)) AND (CAST(:category AS text) IS NULL OR a.category = CAST(:category AS text))"
         if mode == "dense":
             sql = f"""SELECT c.id::text AS chunk_id, a.source_id, a.title, a.source_url,
                 a.institution, a.category, a.language, a.source_authority, a.version,
