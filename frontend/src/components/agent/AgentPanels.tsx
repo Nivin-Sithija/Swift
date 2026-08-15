@@ -3,6 +3,7 @@ import {
   Check,
   Clipboard,
   FileImage,
+  LoaderCircle,
   RefreshCw,
   Save,
   Send,
@@ -173,6 +174,7 @@ export function InternalNotes({
   const [notes, setNotes] = useState(initial);
   const [text, setText] = useState("");
   const [error, setError] = useState("");
+  const [adding, setAdding] = useState(false);
   return (
     <section className="card">
       <div className="card-heading">
@@ -210,10 +212,11 @@ export function InternalNotes({
       <div className="row end">
         <button
           className="btn secondary"
-          disabled={!text.trim()}
+          disabled={!text.trim() || adding}
           onClick={async () => {
             try {
               setError("");
+              setAdding(true);
               // The service owns note identity; render exactly what it stored.
               const note = await onAdd(text);
               setNotes((v) => [...v, note]);
@@ -221,10 +224,13 @@ export function InternalNotes({
             } catch (cause) {
               console.error("[InternalNotes/add]", cause);
               setError("The note could not be saved. Try again.");
+            } finally {
+              setAdding(false);
             }
           }}
         >
-          Add internal note
+          {adding && <LoaderCircle className="spin" aria-hidden="true" />}
+          {adding ? "Adding note…" : "Add internal note"}
         </button>
       </div>
     </section>
