@@ -103,11 +103,15 @@ async function request<T>(
       throw new Error("Session expired");
     }
   }
-  if (!response.ok)
+  if (!response.ok) {
+    const error = (await response.json().catch(() => null)) as {
+      detail?: string;
+      message?: string;
+    } | null;
     throw new Error(
-      ((await response.json().catch(() => null)) as { message?: string } | null)
-        ?.message || `Request failed (${response.status})`,
+      error?.detail || error?.message || `Request failed (${response.status})`,
     );
+  }
   return response.status === 204
     ? (undefined as T)
     : (response.json() as Promise<T>);
