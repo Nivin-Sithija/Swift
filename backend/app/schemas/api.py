@@ -1,5 +1,5 @@
 import uuid
-from datetime import datetime
+from datetime import date, datetime
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
@@ -256,3 +256,37 @@ class ErrorOut(BaseModel):
     code: str
     message: str
     request_id: str | None = None
+
+
+class ConsumerAssistanceRequest(BaseModel):
+    query: str = Field(min_length=3, max_length=5000)
+    institution: str | None = Field(default=None, min_length=2, max_length=200)
+    category: str | None = Field(default=None, max_length=100)
+    language: Literal["english", "sinhala", "tamil", "singlish", "tamilish"] | None = None
+    intent: str | None = Field(default=None, max_length=150)
+    sentiment: str | None = Field(default=None, max_length=30)
+    priority: str | None = Field(default=None, max_length=30)
+
+
+class CitationOut(BaseModel):
+    marker: str
+    source_id: str
+    title: str
+    institution: str
+    url: str
+    version: str
+    review_date: date
+    chunk_ids: list[str]
+
+
+class ConsumerAssistanceOut(BaseModel):
+    route: Literal["rag_draft", "human_escalation"]
+    original_query: str
+    normalized_query: str
+    language: str
+    draft: str | None
+    citations: list[CitationOut]
+    confidence: float = Field(ge=0, le=1)
+    escalation_reason: str | None
+    approval_required: bool
+    provider: str | None
