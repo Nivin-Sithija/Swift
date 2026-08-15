@@ -5,6 +5,7 @@ import pytest
 from app.rag.citations import build_citations, citations_are_valid
 from app.rag.evaluation import ndcg_at_k, recall_at_k, reciprocal_rank
 from app.rag.languages import detect_consumer_language, normalize_query
+from app.rag.models import HuggingFaceEmbedder, build_embedder
 from app.rag.retrieval import PostgresHybridRetriever, evidence_confidence, reciprocal_rank_fusion
 from app.rag.safety import route_safety
 from app.rag.service import ConsumerRAGService
@@ -54,6 +55,8 @@ def test_citations_preserve_source_metadata() -> None:
     assert citation.source_id == "SRC-1"
     assert citation.chunk_ids == ("a",)
     assert not citations_are_valid("Unsupported claim", [item])
+    assert citations_are_valid("Required documents:\n1. ID\n2. Address proof [E1]", [item])
+    assert not citations_are_valid("Supported claim [E1]\n\nSeparate unsupported claim", [item])
 
 
 def test_multilingual_detection_and_normalization() -> None:
@@ -133,3 +136,35 @@ async def test_institution_filter_is_passed_to_every_retrieval_channel() -> None
     await retriever.retrieve(context)
     assert len(db.calls) == 2
     assert all(call["institution"] == "People's Bank" for call in db.calls)
+
+
+class FakeHFResponse:
+    def raise_for_status(self) -> None:
+        return None
+    def json(self) -> list[list[float]]:
+        return [[0.25, 0.75]]
+
+
+class FakeHFClient:
+    async def __aenter__(self) -> "FakeHFClient":
+        return self
+    async def __aexit__(self, *_args: object) -> None:
+        return None
+    async def post(self, url: str, **kwargs: object) -> FakeHFResponse:
+        assert url.endswith("/BAAI/bge-m3/pipeline/feature-extraction")
+        assert kwargs["json"] == {"inputs": "hello"}
+        return FakeHFResponse()
+
+
+@pytest.mark.asyncio
+async def test_huggingface_embedder_flattens_and_validates_vector(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr("app.rag.models.httpx.AsyncClient", lambda **_kwargs: FakeHFClient())
+    embedder = HuggingFaceEmbedder(token="test-token", dimensions=2)
+    assert await embedder.embed_query("hello") == [0.25, 0.75]
+
+
+def test_hosted_embedder_requires_token() -> None:
+    with pytest.raises(RuntimeError, match="SWIFT_HUGGINGFACE_TOKEN"):
+        build_embedder(
+            provider="huggingface", model_name="BAAI/bge-m3", dimensions=1024, timeout=20
+        )
