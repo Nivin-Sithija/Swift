@@ -27,5 +27,5 @@ def citations_are_valid(answer: str, evidence: list[Evidence]) -> bool:
     markers = [int(value) for value in MARKER.findall(answer)]
     if not markers or any(index < 1 or index > len(evidence) for index in markers):
         return False
-    factual_lines = [line for line in answer.splitlines() if line.strip()]
-    return all(MARKER.search(line) for line in factual_lines)
+    factual_blocks = [block for block in re.split(r"\n\s*\n", answer) if block.strip()]
+    return all(MARKER.search(block) for block in factual_blocks)
