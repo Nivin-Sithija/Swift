@@ -9,6 +9,7 @@ import {
   TicketCards,
   TicketFilters,
   TicketTable,
+  TicketTableSkeleton,
 } from "../../components/tickets/TicketComponents";
 import { filterTickets, sortTickets, type TicketSort } from "../../lib/utils";
 import { ticketService } from "../../services/serviceSelector";
@@ -135,7 +136,7 @@ export function AgentQueuePage({
           </div>
         )}
         {loading ? (
-          <LoadingSkeleton />
+          <><div className="desktop-only"><TicketTableSkeleton agent rows={8} /></div><div className="mobile-list"><LoadingSkeleton /></div></>
         ) : error ? (
           <ErrorState retry={load} />
         ) : shown.length === 0 ? (

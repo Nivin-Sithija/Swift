@@ -1,4 +1,4 @@
-import { Eye, EyeOff, LockKeyhole, ShieldCheck } from "lucide-react";
+import { Eye, EyeOff, LoaderCircle, LockKeyhole, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -203,12 +203,14 @@ export function LoginPage() {
               </div>
             )}
             <button className="btn wide" disabled={isSubmitting}>
+              {isSubmitting && <LoaderCircle className="spin" aria-hidden="true" />}
               {isSubmitting ? tr("Signing in…") : tr("Sign in securely")}
             </button>
             {developmentMode && (
               <button
                 type="button"
                 className="btn secondary wide"
+                disabled={isSubmitting}
                 onClick={useDemo}
               >
                 Use {role} demo account

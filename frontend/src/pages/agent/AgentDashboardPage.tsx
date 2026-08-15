@@ -17,12 +17,15 @@ import {
   humanize,
   LoadingSkeleton,
   TicketTable,
+  TicketTableSkeleton,
 } from "../../components/tickets/TicketComponents";
 import { ticketService } from "../../services/serviceSelector";
 import type { DashboardMetrics, Ticket } from "../../types";
 import { useLanguage } from "../../app/providers/LanguageProvider";
 import { useAuth } from "../../app/providers/AuthProvider";
 import { loadAgentPreferences } from "../../lib/agentPreferences";
+import { delay } from "../../lib/utils";
+const DASHBOARD_LOADING_FLOOR_MS = 650;
 const greetingFor = (hour: number) =>
   hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
 export function AgentDashboardPage() {
@@ -50,6 +53,7 @@ export function AgentDashboardPage() {
     Promise.all([
       ticketService.getDashboardMetrics(),
       ticketService.getTickets(),
+      delay(DASHBOARD_LOADING_FLOOR_MS),
     ])
       .then(([m, t]) => {
         setMetrics(m);
@@ -103,7 +107,7 @@ export function AgentDashboardPage() {
       {error ? (
         <ErrorState retry={load} />
       ) : !metrics ? (
-        <LoadingSkeleton />
+        <div className="stack"><LoadingSkeleton /><section className="card list-card"><TicketTableSkeleton agent /></section></div>
       ) : (
         <>
           <div className="metric-grid">
