@@ -6,16 +6,25 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.dependencies import Db
 from app.core.config import Settings, get_settings
-from app.rag.models import BGEM3Embedder, FlashRankReranker
+from app.rag.models import FlashRankReranker, build_embedder
 from app.rag.providers import FallbackProvider, GeminiProvider, GroqProvider
 from app.rag.retrieval import PostgresHybridRetriever
 from app.rag.service import ConsumerRAGService
+from app.rag.types import Embedder
 
 
 @lru_cache
-def model_components() -> tuple[BGEM3Embedder, FlashRankReranker]:
+def model_components() -> tuple[Embedder, FlashRankReranker]:
     settings = get_settings()
-    return BGEM3Embedder(settings.rag_embedding_model), FlashRankReranker()
+    return build_embedder(
+        provider=settings.rag_embedding_provider,
+        model_name=settings.rag_embedding_model,
+        dimensions=settings.rag_embedding_dimensions,
+        timeout=settings.rag_request_timeout_seconds,
+        huggingface_token=settings.huggingface_token,
+        huggingface_provider=settings.huggingface_provider,
+        huggingface_endpoint_url=settings.huggingface_endpoint_url,
+    ), FlashRankReranker()
 
 
 def provider(settings: Settings) -> FallbackProvider:

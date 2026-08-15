@@ -27,6 +27,10 @@ class Settings(BaseSettings):
     gemini_api_key: str | None = None
     gemini_model: str = "gemini-2.5-flash"
     rag_embedding_model: str = "BAAI/bge-m3"
+    rag_embedding_provider: str = "local"
+    huggingface_token: str | None = None
+    huggingface_provider: str = "hf-inference"
+    huggingface_endpoint_url: str | None = None
     rag_embedding_dimensions: int = 1024
     rag_candidate_limit: int = 20
     rag_final_limit: int = 5
