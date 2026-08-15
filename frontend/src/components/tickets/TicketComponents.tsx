@@ -211,7 +211,12 @@ export function TicketTable({
                 </td>
               )}
               <td>
-                <strong>{ticket.id}</strong>
+                <Link
+                  className="ticket-table-link"
+                  to={`${agent ? "/agent" : "/customer"}/tickets/${ticket.id}`}
+                >
+                  {ticket.id}
+                </Link>
                 <small>{formatDate(ticket.createdAt)}</small>
               </td>
               {agent && (
@@ -221,7 +226,12 @@ export function TicketTable({
                 </td>
               )}
               <td>
-                <span className="subject">{ticket.subject}</span>
+                <Link
+                  className="subject ticket-table-link"
+                  to={`${agent ? "/agent" : "/customer"}/tickets/${ticket.id}`}
+                >
+                  {ticket.subject}
+                </Link>
                 {ticket.requiresManualReview && (
                   <small className="warning-text">
                     <AlertTriangle size={12} /> Manual review
