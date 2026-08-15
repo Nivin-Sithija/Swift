@@ -6,6 +6,8 @@ import {
   ChevronRight,
   MessageSquareText,
   LoaderCircle,
+  ExternalLink,
+  Sparkles,
   UserCheck,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -30,7 +32,12 @@ import {
 } from "../../components/tickets/TicketComponents";
 import { ticketService } from "../../services/serviceSelector";
 import type { AdjacentTickets } from "../../services/ticketService";
-import type { Ticket, TicketEvent, TicketStatus } from "../../types";
+import type {
+  RagAssistanceResult,
+  Ticket,
+  TicketEvent,
+  TicketStatus,
+} from "../../types";
 import { formatDate } from "../../lib/utils";
 import {
   CURRENT_AGENT,
@@ -49,6 +56,10 @@ export function AgentTicketDetailPage() {
   );
   const [notice, setNotice] = useState("");
   const [saving, setSaving] = useState(false);
+  const [ragInstitution, setRagInstitution] = useState("");
+  const [ragResult, setRagResult] = useState<RagAssistanceResult | null>(null);
+  const [ragLoading, setRagLoading] = useState(false);
+  const [ragError, setRagError] = useState("");
   useEffect(() => {
     let active = true;
     setTicket(null);
@@ -90,6 +101,40 @@ export function AgentTicketDetailPage() {
     await update({ status });
     setDialog(null);
     setNotice(`Ticket marked ${humanize(status)}.`);
+  };
+  const generateRagDraft = async () => {
+    if (!ragInstitution) return;
+    setRagLoading(true);
+    setRagError("");
+    try {
+      const result = await ticketService.generateRagDraft(
+        ticket,
+        ragInstitution,
+      );
+      setRagResult(result);
+      if (result.route === "rag_draft" && result.draft) {
+        setTicket({
+          ...ticket,
+          draft: {
+            ...ticket.draft,
+            text: result.draft,
+            language: ticket.preferredResponseLanguage,
+            updatedAt: new Date().toISOString(),
+            status: "draft",
+          },
+        });
+        setNotice("Grounded RAG draft generated for agent review.");
+      } else {
+        setNotice("");
+      }
+    } catch (cause) {
+      console.error("[AgentTicketDetailPage/generateRagDraft]", cause);
+      setRagError(
+        cause instanceof Error ? cause.message : "RAG generation failed.",
+      );
+    } finally {
+      setRagLoading(false);
+    }
   };
   /** Corrections are the project's audit surface — record the agent's reason on the
       ticket's own event trail so it is visible, not silently dropped. */
@@ -157,7 +202,9 @@ export function AgentTicketDetailPage() {
             {saving ? <LoaderCircle className="spin" /> : <UserCheck />}
             {saving ? "Saving…" : "Assign to me"}
           </button>
-          <button className="btn secondary small" disabled={saving}>Reassign</button>
+          <button className="btn secondary small" disabled={saving}>
+            Reassign
+          </button>
           <button
             className="btn warning small"
             disabled={saving}
@@ -238,6 +285,105 @@ export function AgentTicketDetailPage() {
             initial={ticket.notes}
             onAdd={(text) => ticketService.addInternalNote(ticket.id, text)}
           />
+          <section className="card rag-draft-card">
+            <div className="card-heading">
+              <div>
+                <span className="eyebrow">Approved-source assistance</span>
+                <h2>Generate grounded RAG draft</h2>
+              </div>
+              <span className="ai-label">
+                <Sparkles /> Agent-only
+              </span>
+            </div>
+            <p className="muted-copy">
+              Select the institution explicitly. Swift will not infer or mix
+              bank-specific policy.
+            </p>
+            <div className="rag-controls">
+              <label>
+                Policy institution
+                <select
+                  value={ragInstitution}
+                  onChange={(event) => {
+                    setRagInstitution(event.target.value);
+                    setRagResult(null);
+                    setRagError("");
+                  }}
+                >
+                  <option value="">Select institution</option>
+                  <option value="Commercial Bank of Ceylon PLC">
+                    Commercial Bank of Ceylon
+                  </option>
+                  <option value="People's Bank Sri Lanka">
+                    People&apos;s Bank Sri Lanka
+                  </option>
+                  <option value="Central Bank of Sri Lanka">
+                    Central Bank of Sri Lanka
+                  </option>
+                </select>
+              </label>
+              <button
+                className="btn primary"
+                disabled={!ragInstitution || ragLoading}
+                onClick={generateRagDraft}
+              >
+                {ragLoading ? <LoaderCircle className="spin" /> : <Sparkles />}
+                {ragLoading ? "Generating…" : "Generate RAG draft"}
+              </button>
+            </div>
+            {ragError && (
+              <div className="error-alert" role="alert">
+                <AlertTriangle />
+                {ragError}
+              </div>
+            )}
+            {ragResult && (
+              <div
+                className={`rag-result ${ragResult.route === "human_escalation" ? "escalated" : "grounded"}`}
+              >
+                <div className="rag-result-summary">
+                  <strong>
+                    {ragResult.route === "rag_draft"
+                      ? "Grounded draft ready"
+                      : "Human escalation required"}
+                  </strong>
+                  <span>
+                    {Math.round(ragResult.confidence * 100)}% evidence
+                    confidence
+                  </span>
+                </div>
+                {ragResult.escalationReason && (
+                  <p>Reason: {humanize(ragResult.escalationReason)}</p>
+                )}
+                {ragResult.citations.length > 0 && (
+                  <div className="rag-citations">
+                    <h3>Evidence citations</h3>
+                    {ragResult.citations.map((citation) => (
+                      <a
+                        key={`${citation.sourceId}-${citation.marker}`}
+                        href={citation.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <span>
+                          [{citation.marker}] {citation.title}
+                        </span>
+                        <small>
+                          {citation.institution} · v{citation.version} ·
+                          reviewed {citation.reviewDate}
+                        </small>
+                        <ExternalLink />
+                      </a>
+                    ))}
+                  </div>
+                )}
+                <small>
+                  Provider: {ragResult.provider || "Not called"} · Agent
+                  approval required
+                </small>
+              </div>
+            )}
+          </section>
           <ResponseEditor
             ticket={ticket}
             onApproved={(text) => {
