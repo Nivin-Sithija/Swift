@@ -1,11 +1,17 @@
 from datetime import date
 
+import numpy as np
 import pytest
 
 from app.rag.citations import build_citations, citations_are_valid
 from app.rag.evaluation import ndcg_at_k, recall_at_k, reciprocal_rank
 from app.rag.languages import detect_consumer_language, normalize_query
-from app.rag.models import HuggingFaceEmbedder, build_embedder
+from app.rag.models import (
+    FlashRankReranker,
+    HuggingFaceEmbedder,
+    _TokenTypeSessionAdapter,
+    build_embedder,
+)
 from app.rag.retrieval import PostgresHybridRetriever, evidence_confidence, reciprocal_rank_fusion
 from app.rag.safety import route_safety
 from app.rag.service import ConsumerRAGService
@@ -40,6 +46,26 @@ def test_rrf_deduplicates_and_rewards_shared_results() -> None:
     fused = reciprocal_rank_fusion([[a, b], [b, c]])
     assert [item.chunk_id for item in fused] == ["b", "a", "c"]
     assert len({item.chunk_id for item in fused}) == 3
+
+
+def test_flashrank_adapter_supplies_required_token_type_ids() -> None:
+    class Session:
+        def run(self, _outputs: object, inputs: dict[str, object]) -> dict[str, object]:
+            return inputs
+
+    inputs = {
+        "input_ids": np.array([[1, 2]], dtype=np.int64),
+        "attention_mask": np.array([[1, 1]], dtype=np.int64),
+    }
+    result = _TokenTypeSessionAdapter(Session()).run(None, inputs)
+    assert "token_type_ids" in result
+    assert result["token_type_ids"].tolist() == [[0, 0]]
+
+
+@pytest.mark.asyncio
+async def test_flashrank_does_not_invoke_model_for_empty_candidates() -> None:
+    reranker = object.__new__(FlashRankReranker)
+    assert await reranker.rerank("query", []) == []
 
 
 def test_confidence_uses_evidence_quality() -> None:
