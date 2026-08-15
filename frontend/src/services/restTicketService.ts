@@ -468,11 +468,10 @@ export const restTicketService: TicketService = {
       {
         method: "POST",
         body: JSON.stringify({
-          query: ticket.message,
-          institution,
-          category: ticket.category.value,
-          language,
-          intent: ticket.category.value,
+        query: ticket.message,
+        institution,
+        language,
+        intent: ticket.category.value,
           sentiment: ticket.sentiment.value,
           priority: ticket.priority.value,
         }),
