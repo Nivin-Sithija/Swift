@@ -3,7 +3,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 WORKDIR /app
 COPY backend/pyproject.toml ./
 COPY backend/app ./app
-RUN pip install --no-cache-dir .
+RUN pip install --no-cache-dir '.[rag]'
 COPY backend/alembic.ini ./
 COPY backend/alembic ./alembic
 COPY datasets/english/train_labeled.csv ./datasets/english/train_labeled.csv

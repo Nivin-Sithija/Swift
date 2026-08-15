@@ -15,13 +15,22 @@ dependencies = [
   "pyjwt>=2.10,<3",
   "pwdlib[argon2]>=0.2,<1",
   "python-multipart>=0.0.20,<1",
+  "httpx>=0.28,<1",
+  "pgvector>=0.3,<1",
   "redis>=5,<6",
   "dramatiq[redis]>=1.17,<2",
   "joblib>=1.4,<2",
   "scikit-learn>=1.5,<2",
 ]
 
+[project.scripts]
+swift-ingest-kb = "app.rag.ingest:main"
+
 [project.optional-dependencies]
+rag = [
+  "FlagEmbedding>=1.3,<2",
+  "flashrank>=0.2,<1",
+]
 dev = [
   "httpx>=0.28,<1",
   "pytest>=8,<9",
