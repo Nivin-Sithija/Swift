@@ -6,12 +6,14 @@ import csv
 import hashlib
 import re
 import uuid
+from datetime import date
 from pathlib import Path
 
 from sqlalchemy import text
 
+from app.core.config import get_settings
 from app.core.db import SessionLocal
-from app.rag.models import BGEM3Embedder
+from app.rag.models import build_embedder
 
 HEADING = re.compile(r"^(#{1,6})\s+(.+)$", re.MULTILINE)
 OFFICIAL_DOMAINS = ("combank.lk", "peoplesbank.lk", "cbsl.gov.lk")
@@ -49,7 +51,16 @@ def validate_source(row: dict[str, str]) -> None:
 
 
 async def ingest(manifest: Path, root: Path) -> int:
-    embedder = BGEM3Embedder()
+    settings = get_settings()
+    embedder = build_embedder(
+        provider=settings.rag_embedding_provider,
+        model_name=settings.rag_embedding_model,
+        dimensions=settings.rag_embedding_dimensions,
+        timeout=settings.rag_request_timeout_seconds,
+        huggingface_token=settings.huggingface_token,
+        huggingface_provider=settings.huggingface_provider,
+        huggingface_endpoint_url=settings.huggingface_endpoint_url,
+    )
     rows = list(csv.DictReader(manifest.open(encoding="utf-8")))
     ingested = 0
     async with SessionLocal() as db:
@@ -73,7 +84,7 @@ async def ingest(manifest: Path, root: Path) -> int:
                     "id": article_id, "source_id": row["source_id"], "title": row["title"],
                     "source_url": row["source_url"], "institution": row["owner"], "category": row["category"],
                     "language": row["language"], "authority": authority, "version": row["version"],
-                    "review_date": row["last_reviewed"], "checksum": checksum,
+                    "review_date": date.fromisoformat(row["last_reviewed"]), "checksum": checksum,
                 })
             await db.execute(text("DELETE FROM knowledge_chunks WHERE article_id=:id"), {"id": article_id})
             for index, (section, chunk) in enumerate(chunk_markdown(content)):
