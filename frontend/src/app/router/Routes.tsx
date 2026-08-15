@@ -15,6 +15,7 @@ import { AgentSettingsPage } from "../../pages/agent/AgentSettingsPage";
 import { NotFoundPage } from "../../pages/UtilityPages";
 import { AdminDashboardPage } from "../../pages/admin/AdminDashboardPage";
 import { AdminAuditPage, AdminQueuesPage, AdminSettingsPage, AdminUsersPage } from "../../pages/admin/AdminManagementPages";
+import { LoadingSpinner } from "../../components/tickets/TicketComponents";
 
 const homeForRole = (role: UserRole) =>
   role === "administrator" ? "/admin/dashboard" : role === "agent" ? "/agent/dashboard" : "/customer/submit";
@@ -22,7 +23,7 @@ const homeForRole = (role: UserRole) =>
 function ProtectedRoute({ role }: { role: UserRole }) {
   const { user, restoring } = useAuth();
   const location = useLocation();
-  if (restoring) return null;
+  if (restoring) return <LoadingSpinner label="Restoring your secure session…" fullPage />;
   if (!user)
     return <Navigate to="/login" replace state={{ from: location.pathname }} />;
   if (user.role !== role)

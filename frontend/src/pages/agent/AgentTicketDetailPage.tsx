@@ -5,6 +5,7 @@ import {
   ChevronLeft,
   ChevronRight,
   MessageSquareText,
+  LoaderCircle,
   UserCheck,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -47,6 +48,7 @@ export function AgentTicketDetailPage() {
     null,
   );
   const [notice, setNotice] = useState("");
+  const [saving, setSaving] = useState(false);
   useEffect(() => {
     let active = true;
     setTicket(null);
@@ -76,8 +78,14 @@ export function AgentTicketDetailPage() {
       />
     );
   if (!ticket) return <LoadingSkeleton />;
-  const update = async (patch: Partial<Ticket>) =>
-    setTicket(await ticketService.updateTicket(ticket.id, patch));
+  const update = async (patch: Partial<Ticket>) => {
+    setSaving(true);
+    try {
+      setTicket(await ticketService.updateTicket(ticket.id, patch));
+    } finally {
+      setSaving(false);
+    }
+  };
   const transition = async (status: TicketStatus) => {
     await update({ status });
     setDialog(null);
@@ -141,16 +149,18 @@ export function AgentTicketDetailPage() {
         <div className="command-actions">
           <button
             className="btn secondary small"
+            disabled={saving}
             onClick={() =>
               update({ assignedAgent: CURRENT_AGENT, status: "assigned" })
             }
           >
-            <UserCheck />
-            Assign to me
+            {saving ? <LoaderCircle className="spin" /> : <UserCheck />}
+            {saving ? "Saving…" : "Assign to me"}
           </button>
-          <button className="btn secondary small">Reassign</button>
+          <button className="btn secondary small" disabled={saving}>Reassign</button>
           <button
             className="btn warning small"
+            disabled={saving}
             onClick={() => setDialog("escalate")}
           >
             <AlertTriangle />
@@ -158,12 +168,14 @@ export function AgentTicketDetailPage() {
           </button>
           <button
             className="btn success small"
+            disabled={saving}
             onClick={() => setDialog("resolve")}
           >
             Resolve
           </button>
           <button
             className="btn ghost small"
+            disabled={saving}
             onClick={() => setDialog("close")}
           >
             Close

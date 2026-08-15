@@ -2,25 +2,30 @@ import { Activity, KeyRound, ListTree, ScrollText, ShieldCheck, Ticket, UserCog,
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PageHeader } from "../../components/layout/Layouts";
-import { ErrorState, LoadingSkeleton } from "../../components/tickets/TicketComponents";
+import { ErrorState, LoadingSkeleton, TableLoadingRows } from "../../components/tickets/TicketComponents";
 import { Badge } from "../../components/ui/Badge";
 import { ticketService } from "../../services/serviceSelector";
 import type { AdminDashboardMetrics } from "../../types";
-import { formatDate } from "../../lib/utils";
+import { delay, formatDate } from "../../lib/utils";
+
+const DASHBOARD_LOADING_FLOOR_MS = 650;
 
 export function AdminDashboardPage() {
   const [metrics, setMetrics] = useState<AdminDashboardMetrics | null>(null);
   const [error, setError] = useState(false);
   const load = () => {
     setError(false);
-    ticketService.getAdminDashboard().then(setMetrics).catch((cause) => {
+    Promise.all([
+      ticketService.getAdminDashboard(),
+      delay(DASHBOARD_LOADING_FLOOR_MS),
+    ]).then(([next]) => setMetrics(next)).catch((cause) => {
       console.error("[AdminDashboardPage/load]", cause);
       setError(true);
     });
   };
   useEffect(load, []);
   if (error) return <ErrorState retry={load} />;
-  if (!metrics) return <LoadingSkeleton />;
+  if (!metrics) return <><PageHeader eyebrow="System governance" title="Administrator overview" description="Loading current system totals…"/><LoadingSkeleton/><section className="card list-card"><div className="table-wrap"><table><thead><tr><th>User</th><th>Email</th><th>Role</th><th>Status</th><th>Created</th></tr></thead><TableLoadingRows columns={5}/></table></div></section></>;
   const cards = [
     ["Customers", metrics.customers, Users, "primary"],
     ["Support agents", metrics.agents, UserCog, "success"],
