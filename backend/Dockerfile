@@ -6,6 +6,7 @@ COPY backend/pyproject.toml ./
 COPY backend/app ./app
 RUN pip install --no-cache-dir '.[rag]'
 RUN pip install --no-cache-dir . --extra-index-url https://download.pytorch.org/whl/cpu
+RUN pip install --no-cache-dir '.[rag]'
 COPY backend/alembic.ini ./
 COPY backend/alembic ./alembic
 COPY ml ./ml
