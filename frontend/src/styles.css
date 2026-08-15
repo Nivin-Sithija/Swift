@@ -589,7 +589,9 @@ small {
   justify-content: space-between;
 }
 .agent-main {
+  width: 0;
   min-width: 0;
+  overflow-x: hidden;
 }
 .agent-top {
   height: 68px;
@@ -609,6 +611,7 @@ small {
 .agent-page {
   width: 100%;
   min-width: 0;
+  box-sizing: border-box;
   padding: 2rem;
   max-width: 1600px;
   margin: 0 auto;
