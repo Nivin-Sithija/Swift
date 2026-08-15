@@ -1,6 +1,6 @@
 # Swift backend
 
-FastAPI modular-monolith backend for the Swift multilingual ticket prototype. It provides secure session rotation, role-based ticket access, persistent PostgreSQL storage, attachments, advisory classification, review/audit workflows, deterministic multilingual response templates, and a Redis worker boundary. RAG, vector search, LLMs, bank-core access, and real notification delivery are intentionally excluded.
+FastAPI modular-monolith backend for the Swift multilingual ticket prototype. It provides secure session rotation, role-based ticket access, persistent PostgreSQL storage, attachments, advisory classification, review/audit workflows, deterministic multilingual response templates, a safety-routed consumer banking RAG drafting subsystem, and a Redis worker boundary. Bank-core access and real notification delivery remain excluded. See [RAG.md](RAG.md).
 
 ## Run
 
@@ -21,7 +21,7 @@ Set `VITE_USE_MOCK_API=false` when building the frontend to use the REST service
 ```bash
 python -m venv .venv
 . .venv/bin/activate
-pip install -e '.[dev]'
+pip install -e '.[dev,rag]'
 alembic upgrade head
 python -m app.seed.seed
 uvicorn app.main:app --reload
