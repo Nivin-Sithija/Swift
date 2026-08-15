@@ -49,31 +49,34 @@ from app.models.entities import (
     User,
     utcnow,
 )
+from app.rag.dependencies import ConsumerRAG
 from app.schemas.api import (
-    AssignmentRequest,
-    AdminDashboardOut,
     AdminAuditList,
     AdminAuditOut,
+    AdminDashboardOut,
     AdminQueueCreate,
     AdminQueueOut,
     AdminQueueUpdate,
     AdminSettingOut,
     AdminSettingsUpdate,
     AdminUserList,
-    AdminUserUpdate,
     AdminUserOut,
+    AdminUserUpdate,
+    AssignmentRequest,
     AttachmentOut,
-    DashboardOut,
+    ConsumerAssistanceOut,
+    ConsumerAssistanceRequest,
     DashboardBreakdownItem,
+    DashboardOut,
     DashboardTrendPoint,
     EscalationRequest,
     EventOut,
     LoginRequest,
-    RegisterRequest,
     NoteCreate,
     NoteOut,
     PredictionOut,
     PredictionReview,
+    RegisterRequest,
     ResponseEdit,
     ResponseOut,
     StatusUpdate,
@@ -225,6 +228,15 @@ async def get_ticket(db: AsyncSession, public_id: str, user: User) -> Ticket:
 @router.get("/health", tags=["Health"])
 async def health() -> dict[str, str]:
     return {"status": "ok", "service": "swift-api"}
+
+
+@router.post("/consumer-assistance/drafts", response_model=ConsumerAssistanceOut, tags=["RAG"])
+async def create_consumer_assistance_draft(
+    payload: ConsumerAssistanceRequest, _user: StaffUser, service: ConsumerRAG
+) -> ConsumerAssistanceOut:
+    """Create a safety-routed draft. This endpoint never approves or sends it."""
+    result = await service.assist(**payload.model_dump())
+    return ConsumerAssistanceOut.model_validate(result, from_attributes=True)
 
 
 @router.get("/ready", tags=["Health"])
