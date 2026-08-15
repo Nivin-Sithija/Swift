@@ -7,6 +7,7 @@ import {
   LoadingSkeleton,
   PriorityBadge,
   StatusBadge,
+  TableLoadingRows,
   humanize,
 } from "../../components/tickets/TicketComponents";
 import { ticketService } from "../../services/serviceSelector";
@@ -110,7 +111,7 @@ export function AgentReportsPage() {
               <option value="all">All time</option>
             </select>
             <button className="btn secondary" onClick={load} disabled={loading}>
-              <RefreshCw /> Refresh
+              <RefreshCw className={loading ? "spin" : undefined} /> {loading ? "Refreshing…" : "Refresh"}
             </button>
             <button className="btn" onClick={exportCsv} disabled={!scoped.length}>
               <Download /> Export CSV
@@ -119,7 +120,7 @@ export function AgentReportsPage() {
         }
       />
       {loading ? (
-        <LoadingSkeleton />
+        <div className="stack"><LoadingSkeleton /><section className="card list-card"><div className="table-wrap"><table><thead><tr><th>Ticket</th><th>Priority</th><th>Status</th></tr></thead><TableLoadingRows columns={3} /></table></div></section></div>
       ) : error ? (
         <ErrorState retry={load} />
       ) : (
