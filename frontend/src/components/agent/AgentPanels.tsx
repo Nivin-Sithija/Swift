@@ -10,7 +10,7 @@ import {
   Sparkles,
   Trash2,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { InternalNote, Ticket, TicketPrediction } from "../../types";
 import { ConfidenceIndicator, humanize } from "../tickets/TicketComponents";
 import { ConfirmationDialog } from "../common/Controls";
@@ -246,6 +246,10 @@ export function ResponseEditor({
   const [text, setText] = useState(ticket.draft.text);
   const [saved, setSaved] = useState(ticket.draft.text);
   const [dialog, setDialog] = useState<"approve" | "reject" | null>(null);
+  useEffect(() => {
+    setText(ticket.draft.text);
+    setSaved(ticket.draft.text);
+  }, [ticket.draft.text]);
   const dirty = text !== saved;
   return (
     <section className="card response-editor">
