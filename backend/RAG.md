@@ -43,6 +43,19 @@ SWIFT_GEMINI_API_KEY=
 SWIFT_GEMINI_MODEL=gemini-2.5-flash
 ```
 
+For hosted BGE-M3 embeddings without local PyTorch:
+
+```dotenv
+SWIFT_RAG_EMBEDDING_PROVIDER=huggingface
+SWIFT_HUGGINGFACE_TOKEN=
+SWIFT_HUGGINGFACE_PROVIDER=hf-inference
+SWIFT_RAG_EMBEDDING_MODEL=BAAI/bge-m3
+```
+
+The token needs Inference Providers permission. Set `SWIFT_HUGGINGFACE_ENDPOINT_URL` only when
+using a dedicated endpoint URL. For local BGE-M3 instead, set the provider to `local` and install
+`pip install -e '.[rag-local]'`; that optional extra includes the PyTorch-backed FlagEmbedding stack.
+
 `SWIFT_GEMINI_API_KEY` is optional, but without it provider failure escalates instead of falling back.
 Retrieval tuning is controlled by `SWIFT_RAG_EMBEDDING_MODEL`,
 `SWIFT_RAG_EMBEDDING_DIMENSIONS`, `SWIFT_RAG_CANDIDATE_LIMIT`, `SWIFT_RAG_FINAL_LIMIT`,
