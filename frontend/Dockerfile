@@ -31,6 +31,7 @@ COPY --chown=nginx:nginx nginx/default.conf.template /etc/nginx/templates/defaul
 COPY --chown=nginx:nginx nginx/40-runtime-config.sh /docker-entrypoint.d/40-runtime-config.sh
 
 RUN chmod 755 /docker-entrypoint.d/40-runtime-config.sh \
+    && sed -i 's/\r$//' /docker-entrypoint.d/40-runtime-config.sh \
     && mkdir -p /tmp/nginx-conf \
     && chown -R nginx:nginx /tmp/nginx-conf
 
