@@ -1,5 +1,8 @@
 import hashlib
 import uuid
+import pytesseract
+from PIL import Image
+from sqlalchemy import delete
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Annotated, Any
@@ -323,16 +326,16 @@ async def create_ticket(payload: TicketCreate, user: CurrentUser, db: Db) -> Tic
     event(ticket, user, "ticket_created", "Ticket received securely", True)
     db.add(ticket)
     await db.flush()
-    await process_ticket_record(db, ticket)
+    await process_ticket_record(db, ticket, payload.is_ocr)
     await db.commit()
     return ticket_out(await get_ticket(db, public_id, user), staff_view=False)
 
 
-async def process_ticket_record(db: AsyncSession, ticket: Ticket) -> None:
+async def process_ticket_record(db: AsyncSession, ticket: Ticket, is_ocr: bool = False) -> None:
     job = ProcessingJob(ticket_id=ticket.id, job_type="ticket_analysis", status=JobStatus.running)
     db.add(job)
     language = detect_language(ticket.original_text)
-    intent, priority, sentiment = classify(ticket.original_text)
+    intent, priority, sentiment = classify(ticket.original_text, is_ocr)
     for task, result in (
         (PredictionTask.language, language),
         (PredictionTask.category, intent),
@@ -358,8 +361,9 @@ async def process_ticket_record(db: AsyncSession, ticket: Ticket) -> None:
         category=intent.value,
     )
     ticket.status = TicketStatus.in_review
-    ticket.responses.append(
+    db.add(
         Response(
+            ticket_id=ticket.id,
             text=response_template(ticket.response_language.value),
             language=ticket.response_language,
         )
@@ -548,6 +552,22 @@ async def upload_attachment(
     )
     db.add(attachment)
     event(ticket, user, "attachment_uploaded", "Attachment validated and stored", True)
+    
+    if file.content_type in ("image/png", "image/jpeg"):
+        try:
+            # Run Tesseract OCR on the uploaded image
+            ocr_text = pytesseract.image_to_string(Image.open(path), lang="eng+tam+sin").strip()
+            if ocr_text:
+                ticket.original_text += f"\n\n[OCR Extracted Text]:\n{ocr_text}"
+                
+                # Delete old predictions and generate new ones via the SVM router
+                await db.execute(delete(Prediction).where(Prediction.ticket_id == ticket.id))
+                await process_ticket_record(db, ticket, is_ocr=True)
+                event(ticket, user, "ocr_processed", "OCR extracted text and updated predictions", True)
+        except Exception as e:
+            # If OCR fails, log the event but don't break the attachment upload
+            event(ticket, user, "ocr_failed", f"OCR failed: {str(e)}", True)
+            
     await db.commit()
     return AttachmentOut(
         id=attachment.id,
