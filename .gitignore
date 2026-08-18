@@ -81,3 +81,10 @@ ml/models/encoders/
 
 synthetic_ticket_dataset/screenshots/augmented/
 outputs/
+
+# Ignore large binaries and artifacts
+*.exe
+*.zip
+ml/OCR/screenshots/
+ml/OCR/results/
+

@@ -19,6 +19,7 @@ def main():
         return
         
     df = pd.read_csv(metadata_path)
+    df = df.head(200) # ONLY evaluate 200 for speed
     print(f"Loaded {len(df)} records from metadata.csv.")
     
     # Initialize EasyOCR reader for English (EasyOCR's Tamil model is throwing a size mismatch bug, and Sinhala is unsupported)
