@@ -85,7 +85,7 @@ def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Result]:
         else:
             import requests
             import os
-            API_URL = "https://api-inference.huggingface.co/models/Swift-Support/labse-intent-1.0"
+            API_URL = "https://router.huggingface.co/hf-inference/models/Swift-Support/labse-intent-1.0"
             HF_TOKEN = os.getenv("HF_TOKEN", "PUT_YOUR_HUGGING_FACE_TOKEN_HERE")
             
             headers = {"Authorization": f"Bearer {HF_TOKEN}"}
