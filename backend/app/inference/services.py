@@ -1,7 +1,14 @@
 import re
 from dataclasses import dataclass
+from pathlib import Path
+import joblib
+import torch
+from transformers import pipeline
 
 from app.domain.enums import LanguageForm, Priority, Sentiment
+
+_labse_pipeline = None
+_svm_pipeline = None
 
 
 @dataclass(frozen=True)
@@ -39,15 +46,41 @@ def detect_language(text: str) -> Result:
     return Result(value.value, 0.90 if value != LanguageForm.unknown else 0.30, "unicode-rules-1.0")
 
 
-def classify(text: str) -> tuple[Result, Result, Result]:
+def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Result]:
+    global _labse_pipeline, _svm_pipeline
+    
+    ml_dir = Path("/app/ml")
+    if not ml_dir.exists():
+        ml_dir = Path(__file__).resolve().parents[3] / "ml"
+    
+    # 1. Intent Classification Router
+    if is_ocr:
+        # Route OCR text to SVM
+        if _svm_pipeline is None:
+            svm_path = ml_dir / "models" / "tfidf_linear_svm_all.joblib"
+            _svm_pipeline = joblib.load(svm_path)
+            
+        pred = _svm_pipeline.predict([text])[0]
+        intent_result = Result(pred, 0.85, "svm-intent-1.0")
+    else:
+        # Route digital text to LaBSE Transformer
+        if _labse_pipeline is None:
+            labse_path = ml_dir / "models" / "encoders" / "intent_labse" / "best_model"
+            device = 0 if torch.cuda.is_available() else -1
+            _labse_pipeline = pipeline(
+                "text-classification", 
+                model=str(labse_path), 
+                tokenizer=str(labse_path), 
+                device=device,
+                truncation=True,
+                max_length=128
+            )
+            
+        res = _labse_pipeline(text)[0]
+        intent_result = Result(res["label"], res["score"], "labse-intent-1.0")
+
+    # 2. Priority & Sentiment (Keeping mocked for now)
     lowered = text.lower()
-    category = (
-        "cash_withdrawal"
-        if any(x in lowered for x in ("atm", "cash", "සල්ලි", "பணம்"))
-        else "card_payment_wrong_exchange_rate"
-        if "card" in lowered
-        else "cash_withdrawal"
-    )
     critical = any(
         x in lowered for x in ("fraud", "stolen", "not recognise", "unauthorised", "unauthorized")
     )
@@ -55,7 +88,7 @@ def classify(text: str) -> tuple[Result, Result, Result]:
         x in lowered for x in ("failed", "deduct", "missing", "blocked", "නැහැ", "தோல்வி")
     )
     return (
-        Result(category, 0.62, "development-keyword-intent-1.0"),
+        intent_result,
         Result(
             (
                 Priority.critical if critical else Priority.high if negative else Priority.medium
