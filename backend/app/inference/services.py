@@ -64,20 +64,46 @@ def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Result]:
         intent_result = Result(pred, 0.85, "svm-intent-1.0")
     else:
         # Route digital text to LaBSE Transformer
-        if _labse_pipeline is None:
-            labse_path = ml_dir / "models" / "encoders" / "intent_labse" / "best_model"
-            device = 0 if torch.cuda.is_available() else -1
-            _labse_pipeline = pipeline(
-                "text-classification", 
-                model=str(labse_path), 
-                tokenizer=str(labse_path), 
-                device=device,
-                truncation=True,
-                max_length=128
-            )
+        labse_path = ml_dir / "models" / "encoders" / "intent_labse" / "best_model"
+        
+        # 1. Local Fallback
+        if labse_path.exists():
+            if _labse_pipeline is None:
+                device = 0 if torch.cuda.is_available() else -1
+                _labse_pipeline = pipeline(
+                    "text-classification", 
+                    model=str(labse_path), 
+                    tokenizer=str(labse_path), 
+                    device=device,
+                    truncation=True,
+                    max_length=128
+                )
+            res = _labse_pipeline(text)[0]
+            intent_result = Result(res["label"], res["score"], "labse-intent-1.0")
             
-        res = _labse_pipeline(text)[0]
-        intent_result = Result(res["label"], res["score"], "labse-intent-1.0")
+        # 2. Serverless Cloud Fallback 
+        else:
+            import requests
+            import os
+            API_URL = "https://api-inference.huggingface.co/models/Swift-Support/labse-intent-1.0"
+            HF_TOKEN = os.getenv("HF_TOKEN", "PUT_YOUR_HUGGING_FACE_TOKEN_HERE")
+            
+            headers = {"Authorization": f"Bearer {HF_TOKEN}"}
+            
+            try:
+                # Send the text directly to Hugging Face's servers
+                response = requests.post(API_URL, headers=headers, json={"inputs": text})
+                
+                if response.status_code == 200:
+                    # The API returns a list of lists, we grab the top prediction
+                    res = response.json()[0][0]
+                    intent_result = Result(res["label"], res["score"], "labse-intent-1.0-cloud-api")
+                else:
+                    print(f"Hugging Face API Error: {response.text}")
+                    intent_result = Result("unknown_intent", 0.0, "api_error")
+            except Exception as e:
+                print(f"Failed to connect to Hugging Face: {e}")
+                intent_result = Result("unknown_intent", 0.0, "connection_error")
 
     # 2. Priority & Sentiment (Keeping mocked for now)
     lowered = text.lower()
