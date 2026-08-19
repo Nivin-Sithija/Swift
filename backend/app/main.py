@@ -4,13 +4,16 @@ from collections.abc import Awaitable, Callable
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from starlette.responses import Response
 
 from app.api.v1.routes import router
 from app.core.config import get_settings
 
 settings = get_settings()
+settings.storage_root.mkdir(parents=True, exist_ok=True)
 app = FastAPI(title="Swift Ticket Management API", version="1.0.0")
+app.mount("/attachments", StaticFiles(directory=str(settings.storage_root)), name="attachments")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.allowed_origins,
