@@ -10,7 +10,11 @@ Never claim an action was performed. Keep policies separated by institution. Be 
 answer is general policy guidance derived from approved sources, not confirmation of account activity."""
 
 
-def build_prompt(context: QueryContext, evidence: list[Evidence]) -> tuple[str, str]:
+def build_prompt(
+    context: QueryContext,
+    evidence: list[Evidence],
+    ticket_context: str | None = None,
+) -> tuple[str, str]:
     blocks = []
     for index, item in enumerate(evidence, 1):
         blocks.append(
@@ -18,7 +22,8 @@ def build_prompt(context: QueryContext, evidence: list[Evidence]) -> tuple[str, 
             f"version={item.version}; reviewed={item.review_date.isoformat()}; chunk={item.chunk_id}\n{item.text}"
         )
     user = (
-        f"Original query: {context.original_query}\nNormalized retrieval query: {context.normalized_query}\n"
+        f"Ticket context: {ticket_context or context.original_query}\n"
+        f"Original query (customer's current question): {context.original_query}\nNormalized retrieval query: {context.normalized_query}\n"
         f"Required response language: {context.language.value}\nInstitution scope: {context.institution or 'regulator/general only'}\n\n"
         "Evidence:\n" + "\n\n".join(blocks)
     )
