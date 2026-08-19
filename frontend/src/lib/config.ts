@@ -13,5 +13,6 @@ export function getApiBaseUrl(): string {
 export const getAppName = (): string =>
   import.meta.env.VITE_APP_NAME?.trim() || "Swift";
 
-export const isDevelopmentMode = (): boolean =>
-  import.meta.env.VITE_DEVELOPMENT_MODE?.trim().toLowerCase() === "true";
+/** A single switch controls both the mock data source and demo-only UI. */
+export const isMockMode = (): boolean =>
+  import.meta.env.VITE_USE_MOCK_API?.trim().toLowerCase() === "true";

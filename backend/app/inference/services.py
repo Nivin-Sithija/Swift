@@ -1,14 +1,17 @@
 import re
 from dataclasses import dataclass
 from pathlib import Path
+
 import joblib
 import torch
 from transformers import pipeline
 
+from app.core.config import get_settings
 from app.domain.enums import LanguageForm, Priority, Sentiment
 
 _labse_pipeline = None
 _svm_pipeline = None
+settings = get_settings()
 
 
 @dataclass(frozen=True)
@@ -63,17 +66,17 @@ def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Result]:
         pred = _svm_pipeline.predict([text])[0]
         intent_result = Result(pred, 0.85, "svm-intent-1.0")
     else:
-        # Route digital text to LaBSE Transformer
+        # Route digital text to the LaBSE Transformer hosted on Hugging Face.
         if _labse_pipeline is None:
-            labse_path = ml_dir / "models" / "encoders" / "intent_labse" / "best_model"
             device = 0 if torch.cuda.is_available() else -1
             _labse_pipeline = pipeline(
-                "text-classification", 
-                model=str(labse_path), 
-                tokenizer=str(labse_path), 
+                "text-classification",
+                model=settings.intent_model_id,
+                tokenizer=settings.intent_model_id,
+                token=settings.huggingface_token,
                 device=device,
                 truncation=True,
-                max_length=128
+                max_length=128,
             )
             
         res = _labse_pipeline(text)[0]

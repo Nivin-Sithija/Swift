@@ -5,7 +5,6 @@ interface ImportMetaEnv {
   readonly VITE_APP_NAME?: string;
   readonly VITE_DEFAULT_THEME?: string;
   readonly VITE_USE_MOCK_API?: string;
-  readonly VITE_DEVELOPMENT_MODE?: string;
 }
 
 interface ImportMeta {
