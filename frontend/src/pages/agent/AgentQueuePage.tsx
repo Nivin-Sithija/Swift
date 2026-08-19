@@ -14,8 +14,9 @@ import {
 import { filterTickets, sortTickets, type TicketSort } from "../../lib/utils";
 import { ticketService } from "../../services/serviceSelector";
 import type { Ticket } from "../../types";
-import { CURRENT_AGENT, EMPTY_FILTERS } from "../../lib/constants";
+import { EMPTY_FILTERS } from "../../lib/constants";
 import { useLanguage } from "../../app/providers/LanguageProvider";
+import { useAuth } from "../../app/providers/AuthProvider";
 import { loadAgentPreferences } from "../../lib/agentPreferences";
 export function AgentQueuePage({
   mode = "all",
@@ -23,6 +24,7 @@ export function AgentQueuePage({
   mode?: "all" | "high" | "escalated" | "resolved";
 }) {
   const { tr } = useLanguage();
+  const { user } = useAuth();
   const [preferences] = useState(loadAgentPreferences);
   const pageSize = Number(preferences.pageSize);
   const [tickets, setTickets] = useState<Ticket[]>([]);
@@ -112,7 +114,7 @@ export function AgentQueuePage({
               className="btn small"
               onClick={() =>
                 setNotice(
-                  `${selected.length} tickets assigned to ${CURRENT_AGENT}.`,
+                  `${selected.length} tickets assigned to ${user?.name || "the current agent"}.`,
                 )
               }
             >
