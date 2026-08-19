@@ -426,6 +426,10 @@ class CitationOut(BaseModel):
     chunk_ids: list[str]
 
 
+class ConsumerAssistanceIn(BaseModel):
+    message: str | None = Field(default=None, min_length=1, max_length=2000)
+
+
 class ConsumerAssistanceOut(BaseModel):
     route: Literal["rag_draft", "human_escalation"]
     original_query: str
