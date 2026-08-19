@@ -10,7 +10,6 @@ Project swift_ticket_system {
 Enum user_role {
   customer
   agent
-  supervisor
   administrator
   evaluator
 }
@@ -268,7 +267,7 @@ Table support_queues {
   queue_id uuid [pk]
   queue_name varchar(100) [not null, unique]
   description text
-  supervisor_id uuid
+  administrator_id uuid
   is_active boolean [not null, default: true]
   created_at timestamp [not null, default: `now()`]
   updated_at timestamp [not null, default: `now()`]
@@ -772,7 +771,7 @@ Ref: auth_sessions.user_id > users.user_id
 Ref: audit_logs.user_id > users.user_id
 
 // Queues and categories
-Ref: support_queues.supervisor_id > users.user_id
+Ref: support_queues.administrator_id > users.user_id
 Ref: ticket_categories.default_queue_id > support_queues.queue_id
 
 // Tickets
