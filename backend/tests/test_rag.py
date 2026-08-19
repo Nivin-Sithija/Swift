@@ -115,11 +115,11 @@ async def test_low_confidence_refuses_without_calling_generation() -> None:
 
 
 @pytest.mark.asyncio
-async def test_grounded_result_is_agent_approval_draft() -> None:
+async def test_grounded_result_is_direct_customer_assistance() -> None:
     service = ConsumerRAGService(FakeRetriever(RetrievalResult([evidence("a")], 0.9)), FakeLLM())
     result = await service.assist(query="What documents are required?", institution="Commercial Bank")
     assert result.route == "rag_draft"
-    assert result.approval_required is True
+    assert result.approval_required is False
     assert result.citations[0].source_id == "SRC-1"
 
 
