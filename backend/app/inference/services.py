@@ -1,3 +1,4 @@
+import asyncio
 import json
 import re
 from dataclasses import dataclass
@@ -65,7 +66,15 @@ async def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Res
         pred = _svm_pipeline.predict([text])[0]
         intent_result = Result(pred, 0.85, "svm-intent-1.0")
     else:
-        intent_result = await classify_intent_with_space(text)
+        try:
+            intent_result = await asyncio.wait_for(
+                classify_intent_with_space(text),
+                timeout=settings.ticket_submission_inference_timeout_seconds,
+            )
+        except TimeoutError:
+            # A cold or unavailable external model must not hold the customer's
+            # ticket submission open. Low confidence routes this for review.
+            intent_result = Result("unknown", 0.0, "huggingface-space-timeout")
 
     # 2. Priority & Sentiment (Keeping mocked for now)
     lowered = text.lower()

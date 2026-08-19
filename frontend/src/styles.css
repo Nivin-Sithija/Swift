@@ -625,7 +625,7 @@ small {
 }
 .login-brand {
   padding: clamp(2rem, 7vw, 7rem);
-   background: #0c1a2d;
+  background: #0c1a2d;
   color: #f0f9ff;
   display: flex;
   flex-direction: column;
@@ -760,7 +760,7 @@ textarea {
   border-radius: 7px;
   margin: 1rem 0;
 }
-.demo-hint {
+.account-hint {
   text-align: center;
   font-size: 0.8rem;
 }
@@ -784,8 +784,90 @@ textarea {
   gap: 1.2rem;
   align-items: start;
 }
+.customer-workspace-grid {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.9fr) minmax(440px, 1.1fr);
+  gap: 1.2rem;
+  align-items: start;
+}
+.customer-ticket-gallery {
+  min-width: 0;
+}
+.gallery-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.gallery-heading h2 {
+  margin: 0.15rem 0 0;
+}
+.ticket-count {
+  display: grid;
+  place-items: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  color: var(--primary);
+  font-weight: 700;
+}
+.ticket-gallery-list .ticket-cards {
+  display: grid;
+}
+.workspace-confirmation {
+  width: auto;
+  margin: 0;
+}
 .form-card {
   padding: clamp(1rem, 3vw, 2rem);
+}
+.customer-ticket-form > h2 {
+  margin: 0;
+}
+.form-intro {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 0.35rem 0 1.25rem;
+}
+.compact-attachment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.compact-attachment > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.compact-attachment small {
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.attachment-toggle {
+  flex: none;
+  border-radius: 50%;
+  color: var(--primary);
+}
+.attachment-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+.compact-attachment + .uploader-wrap {
+  margin-top: 0.75rem;
+}
+@media (max-width: 900px) {
+  .customer-workspace-grid {
+    grid-template-columns: 1fr;
+  }
 }
 .section-heading,
 .section-title {
