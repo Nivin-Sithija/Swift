@@ -1,15 +1,14 @@
+import json
 import re
 from dataclasses import dataclass
 from pathlib import Path
 
+import httpx
 import joblib
-import torch
-from transformers import pipeline
 
 from app.core.config import get_settings
 from app.domain.enums import LanguageForm, Priority, Sentiment
 
-_labse_pipeline = None
 _svm_pipeline = None
 settings = get_settings()
 
@@ -49,9 +48,9 @@ def detect_language(text: str) -> Result:
     return Result(value.value, 0.90 if value != LanguageForm.unknown else 0.30, "unicode-rules-1.0")
 
 
-def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Result]:
-    global _labse_pipeline, _svm_pipeline
-    
+async def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Result]:
+    global _svm_pipeline
+
     ml_dir = Path("/app/ml")
     if not ml_dir.exists():
         ml_dir = Path(__file__).resolve().parents[3] / "ml"
@@ -66,21 +65,7 @@ def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Result]:
         pred = _svm_pipeline.predict([text])[0]
         intent_result = Result(pred, 0.85, "svm-intent-1.0")
     else:
-        # Route digital text to the LaBSE Transformer hosted on Hugging Face.
-        if _labse_pipeline is None:
-            device = 0 if torch.cuda.is_available() else -1
-            _labse_pipeline = pipeline(
-                "text-classification",
-                model=settings.intent_model_id,
-                tokenizer=settings.intent_model_id,
-                token=settings.huggingface_token,
-                device=device,
-                truncation=True,
-                max_length=128,
-            )
-            
-        res = _labse_pipeline(text)[0]
-        intent_result = Result(res["label"], res["score"], "labse-intent-1.0")
+        intent_result = await classify_intent_with_space(text)
 
     # 2. Priority & Sentiment (Keeping mocked for now)
     lowered = text.lower()
@@ -105,6 +90,52 @@ def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Result]:
             "development-rules-sentiment-1.0",
         ),
     )
+
+
+async def classify_intent_with_space(text: str) -> Result:
+    """Call the public Gradio API hosted by the configured Hugging Face Space."""
+    base_url = settings.intent_space_url.rstrip("/")
+    headers = {}
+    if settings.huggingface_token:
+        headers["Authorization"] = f"Bearer {settings.huggingface_token}"
+
+    try:
+        async with httpx.AsyncClient(
+            headers=headers,
+            timeout=settings.intent_request_timeout_seconds,
+        ) as client:
+            started = await client.post(
+                f"{base_url}/gradio_api/call/predict",
+                json={"data": [text]},
+            )
+            started.raise_for_status()
+            event_id = started.json()["event_id"]
+            completed = await client.get(
+                f"{base_url}/gradio_api/call/predict/{event_id}"
+            )
+            completed.raise_for_status()
+
+        data_lines = [
+            line.removeprefix("data: ")
+            for line in completed.text.splitlines()
+            if line.startswith("data: ")
+        ]
+        if not data_lines:
+            raise ValueError("Hugging Face Space returned no prediction data")
+        data_line = data_lines[-1]
+        result = json.loads(data_line)[0]
+        confidence_by_label = {
+            item["label"]: item["confidence"] for item in result["confidences"]
+        }
+        confidence = confidence_by_label[result["label"]]
+        return Result(
+            str(result["label"]),
+            float(confidence),
+            settings.intent_model_id,
+        )
+    except (httpx.HTTPError, KeyError, TypeError, ValueError, json.JSONDecodeError):
+        # External inference must not prevent a customer from creating a ticket.
+        return Result("unknown", 0.0, "huggingface-space-unavailable")
 
 
 def response_template(language: str) -> str:
