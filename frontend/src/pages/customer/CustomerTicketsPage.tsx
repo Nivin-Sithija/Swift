@@ -8,6 +8,7 @@ import {
   TicketCards,
   TicketFilters,
   TicketTable,
+  TicketTableSkeleton,
 } from "../../components/tickets/TicketComponents";
 import { ticketService } from "../../services/serviceSelector";
 import type { Ticket } from "../../types";
@@ -57,7 +58,7 @@ export function CustomerTicketsPage() {
           onClear={() => setFilters(EMPTY_FILTERS)}
         />
         {loading ? (
-          <LoadingSkeleton />
+          <><div className="desktop-only"><TicketTableSkeleton /></div><div className="mobile-list"><LoadingSkeleton /></div></>
         ) : error ? (
           <ErrorState retry={load} />
         ) : shown.length === 0 ? (

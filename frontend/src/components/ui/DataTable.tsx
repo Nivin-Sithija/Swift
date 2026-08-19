@@ -11,6 +11,8 @@ export interface DataTableProps<T> {
   rows: T[];
   rowKey: (row: T) => string;
   onRowClick?: (row: T) => void;
+  loading?: boolean;
+  loadingRows?: number;
 }
 
 /** Bordered table shell — pass columns + rows, cells render whatever you give (e.g. Badge). */
@@ -19,6 +21,8 @@ export function DataTable<T>({
   rows,
   rowKey,
   onRowClick,
+  loading = false,
+  loadingRows = 6,
 }: DataTableProps<T>) {
   return (
     <div className="overflow-hidden rounded-lg border border-border-subtle bg-surface-card">
@@ -36,7 +40,17 @@ export function DataTable<T>({
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, index) => (
+          {loading && Array.from({ length: loadingRows }, (_, row) => (
+            <tr key={`loading-${row}`} aria-hidden="true" className="border-b border-border-subtle">
+              {columns.map((column, index) => (
+                <td key={column.key} className="px-4 py-3">
+                  <span className="table-cell-skeleton" style={{ width: `${55 + ((row + index) * 13) % 40}%` }} />
+                </td>
+              ))}
+            </tr>
+          ))}
+          {loading && <tr className="sr-only"><td colSpan={columns.length} role="status">Loading table data…</td></tr>}
+          {!loading && rows.map((row, index) => (
             <tr
               key={rowKey(row)}
               onClick={() => onRowClick?.(row)}
