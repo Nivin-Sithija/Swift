@@ -27,7 +27,9 @@ export function CustomerTicketDetailPage() {
   const { ticketId } = useParams();
   const [ticket, setTicket] = useState<Ticket | null>(null);
   const [loading, setLoading] = useState(true);
-  const [assistance, setAssistance] = useState<RagAssistanceResult | null>(null);
+  const [assistance, setAssistance] = useState<RagAssistanceResult | null>(
+    null,
+  );
   const [assistanceLoading, setAssistanceLoading] = useState(false);
   const [assistanceError, setAssistanceError] = useState("");
   useEffect(() => {
@@ -85,7 +87,7 @@ export function CustomerTicketDetailPage() {
     );
   return (
     <>
-      <Link className="back-link" to="/customer/tickets">
+      <Link className="back-link" to="/customer/submit">
         <ArrowLeft />
         Back to my tickets
       </Link>
@@ -167,11 +169,14 @@ export function CustomerTicketDetailPage() {
                 <span className="eyebrow">Approved-source guidance</span>
                 <h2>Response for your ticket</h2>
               </div>
-              <span className="ai-label"><Sparkles /> Customer assistance</span>
+              <span className="ai-label">
+                <Sparkles /> Customer assistance
+              </span>
             </div>
             {assistanceLoading && (
               <div className="inline-loading" role="status">
-                <LoaderCircle className="spin" /> Preparing response from approved sources…
+                <LoaderCircle className="spin" /> Preparing response from
+                approved sources…
               </div>
             )}
             {assistanceError && (
@@ -180,22 +185,44 @@ export function CustomerTicketDetailPage() {
               </div>
             )}
             {assistance && (
-              <div className={`rag-result ${assistance.route === "human_escalation" ? "escalated" : "grounded"}`}>
+              <div
+                className={`rag-result ${assistance.route === "human_escalation" ? "escalated" : "grounded"}`}
+              >
                 <div className="rag-result-summary">
-                  <strong>{assistance.draft ? "Response for your ticket" : "A support agent needs to review this"}</strong>
-                  <span>{Math.round(assistance.confidence * 100)}% evidence confidence</span>
+                  <strong>
+                    {assistance.draft
+                      ? "Response for your ticket"
+                      : "A support agent needs to review this"}
+                  </strong>
+                  <span>
+                    {Math.round(assistance.confidence * 100)}% evidence
+                    confidence
+                  </span>
                 </div>
                 {assistance.draft && <p>{assistance.draft}</p>}
                 {assistance.escalationReason && (
-                  <p>We could not safely provide an automated response: {humanize(assistance.escalationReason)}.</p>
+                  <p>
+                    We could not safely provide an automated response:{" "}
+                    {humanize(assistance.escalationReason)}.
+                  </p>
                 )}
                 {assistance.citations.length > 0 && (
                   <div className="rag-citations">
                     <h3>Sources</h3>
                     {assistance.citations.map((citation) => (
-                      <a key={`${citation.sourceId}-${citation.marker}`} href={citation.url} target="_blank" rel="noreferrer">
-                        <span>[{citation.marker}] {citation.title}</span>
-                        <small>{citation.institution} · reviewed {citation.reviewDate}</small>
+                      <a
+                        key={`${citation.sourceId}-${citation.marker}`}
+                        href={citation.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <span>
+                          [{citation.marker}] {citation.title}
+                        </span>
+                        <small>
+                          {citation.institution} · reviewed{" "}
+                          {citation.reviewDate}
+                        </small>
                         <ExternalLink />
                       </a>
                     ))}
