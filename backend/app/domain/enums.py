@@ -4,7 +4,6 @@ from enum import StrEnum
 class UserRole(StrEnum):
     customer = "customer"
     agent = "agent"
-    supervisor = "supervisor"
     administrator = "administrator"
 
 
