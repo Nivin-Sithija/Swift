@@ -7,35 +7,34 @@
    text-primary, rounded-lg, shadow-xs, text-sm, font-medium, etc.)
    ============================================================ */
 @theme {
-  /* Base neutrals — plain achromatic gray. Backgrounds, cards, and hover
-     states stay neutral; the palette's color only shows up on the
-     bronze accent and status tones, never as an ambient page tint. */
+  /* Base neutrals — cool blue-grays give light mode a subtle blue cast
+     while retaining enough neutrality for dense dashboard content. */
   --color-gray-0: #ffffff;
-  --color-gray-25: #fcfcfb;
-  --color-gray-50: #f7f7f5;
-  --color-gray-100: #eeeeec;
-  --color-gray-150: #e2e2de;
-  --color-gray-200: #d1d1cc;
-  --color-gray-300: #b6b6ae;
-  --color-gray-400: #96968c;
-  --color-gray-500: #77776c;
-  --color-gray-600: #5c5c52;
-  --color-gray-700: #42423a;
-  --color-gray-800: #2a2a24;
-  --color-gray-900: #17170f;
+  --color-gray-25: #f8fbff;
+  --color-gray-50: #f1f6fd;
+  --color-gray-100: #e6eef9;
+  --color-gray-150: #d8e3f1;
+  --color-gray-200: #c5d3e5;
+  --color-gray-300: #a7bad2;
+  --color-gray-400: #8198b5;
+  --color-gray-500: #617996;
+  --color-gray-600: #486079;
+  --color-gray-700: #334a63;
+  --color-gray-800: #20364e;
+  --color-gray-900: #10243b;
 
-  /* Base accent — the palette's bronze side (Papaya Whip #faedcd,
-     Light Bronze #d4a373), extended with darker steps for text/button contrast */
-  --color-bronze-50: #fdf1de;
-  --color-bronze-100: #faedcd;
-  --color-bronze-200: #eed4a8;
-  --color-bronze-300: #e2ba82;
-  --color-bronze-400: #d4a373;
-  --color-bronze-500: #c17c3e;
-  --color-bronze-600: #9c5a26;
-  --color-bronze-700: #7a4318;
-  --color-bronze-800: #533a24;
-  --color-bronze-900: #382718;
+  /* Base accent — the palette's blue side (Sky Blue #dbeafe,
+     Royal Blue #2563eb), extended with darker steps for text/button contrast */
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
 
   /* Semantic hues — muted variants within the same family, not separate colors */
   --color-green-50: #eef2df;
@@ -62,26 +61,26 @@
   --color-surface-sunken: var(--color-gray-25);
   --color-surface-hover: var(--color-gray-100);
   --color-surface-nav: var(--color-gray-0);
-  --color-surface-overlay: rgb(21 22 14 / 45%);
+  --color-surface-overlay: rgb(8 25 48 / 52%);
 
   --color-border-subtle: var(--color-gray-150);
   --color-border-default: var(--color-gray-200);
   --color-border-strong: var(--color-gray-300);
-  --color-border-focus: var(--color-bronze-500);
+  --color-border-focus: var(--color-blue-500);
 
   --color-text-primary: var(--color-gray-900);
   --color-text-secondary: var(--color-gray-600);
   --color-text-muted: var(--color-gray-400);
   --color-text-inverse: var(--color-gray-0);
-  --color-text-link: var(--color-bronze-700);
-  --color-text-link-hover: var(--color-bronze-800);
+  --color-text-link: var(--color-blue-700);
+  --color-text-link-hover: var(--color-blue-800);
 
-  --color-primary-solid: var(--color-bronze-600);
-  --color-primary-solid-hover: var(--color-bronze-700);
-  --color-primary-solid-active: var(--color-bronze-800);
-  --color-primary-subtle: var(--color-bronze-50);
-  --color-primary-subtle-border: var(--color-bronze-200);
-  --color-primary-text: var(--color-bronze-700);
+  --color-primary-solid: var(--color-blue-600);
+  --color-primary-solid-hover: var(--color-blue-700);
+  --color-primary-solid-active: var(--color-blue-800);
+  --color-primary-subtle: var(--color-blue-50);
+  --color-primary-subtle-border: var(--color-blue-200);
+  --color-primary-text: var(--color-blue-700);
 
   --color-success-solid: var(--color-green-600);
   --color-success-subtle: var(--color-green-50);
@@ -108,20 +107,20 @@
   --color-neutral-badge-border: var(--color-gray-200);
   --color-neutral-badge-text: var(--color-gray-700);
 
-  --color-accent2-subtle: var(--color-bronze-100);
-  --color-accent2-border: var(--color-bronze-200);
-  --color-accent2-text: var(--color-bronze-800);
+  --color-accent2-subtle: var(--color-blue-100);
+  --color-accent2-border: var(--color-blue-200);
+  --color-accent2-text: var(--color-blue-800);
 
-  /* Chart palette — a monochrome bronze ramp (light to dark) rather than
+  /* Chart palette — a monochrome blue ramp (light to dark) rather than
      a separate rainbow, so charts stay inside the same five-color palette;
      bars carry direct value labels so the tones don't need to be pairwise
      distinct at a glance */
-  --color-chart-1: var(--color-bronze-300);
-  --color-chart-2: var(--color-bronze-400);
-  --color-chart-3: var(--color-bronze-500);
-  --color-chart-4: var(--color-bronze-600);
-  --color-chart-5: var(--color-bronze-700);
-  --color-chart-single: var(--color-bronze-600);
+  --color-chart-1: var(--color-blue-300);
+  --color-chart-2: var(--color-blue-400);
+  --color-chart-3: var(--color-blue-500);
+  --color-chart-4: var(--color-blue-600);
+  --color-chart-5: var(--color-blue-700);
+  --color-chart-single: var(--color-blue-600);
 
   /* Spacing (4px base) */
   --spacing-1: 4px;
@@ -180,7 +179,7 @@
   --container-padding: 32px;
   --duration-fast: 120ms;
   --duration-base: 180ms;
-  --focus-ring: 0 0 0 3px var(--color-bronze-100);
+  --focus-ring: 0 0 0 3px var(--color-blue-100);
 }
 
 /* ============================================================
@@ -208,33 +207,33 @@
   color-scheme: light;
 }
 .dark {
-  --color-surface-canvas: #17170f;
-  --color-surface-card: #212120;
-  --color-surface-sunken: #282826;
-  --color-surface-hover: #333331;
-  --color-surface-nav: #212120;
-  --color-border-subtle: #383632;
-  --color-border-default: #423f3a;
-  --color-border-strong: #4f4b45;
-  --color-text-primary: #f5f3ef;
-  --color-text-secondary: #b8b2a6;
-  --color-text-muted: #8a8478;
-  --color-text-link: #e0b378;
-  --color-text-link-hover: #eec596;
-  --color-primary-solid: #d19a5e;
-  --color-primary-solid-hover: #e0ac74;
-  --color-primary-solid-active: #b9803f;
-  --color-primary-subtle: #332616;
-  --color-primary-subtle-border: #4f3b22;
-  --color-primary-text: #e0b378;
+  --color-surface-canvas: #071426;
+  --color-surface-card: #0d1d33;
+  --color-surface-sunken: #10243d;
+  --color-surface-hover: #172d48;
+  --color-surface-nav: #0a1a2f;
+  --color-border-subtle: #1d3552;
+  --color-border-default: #294563;
+  --color-border-strong: #3b5b7d;
+  --color-text-primary: #eff6ff;
+  --color-text-secondary: #b6c9df;
+  --color-text-muted: #8099b5;
+  --color-text-link: #93c5fd;
+  --color-text-link-hover: #bfdbfe;
+  --color-primary-solid: #60a5fa;
+  --color-primary-solid-hover: #93c5fd;
+  --color-primary-solid-active: #3b82f6;
+  --color-primary-subtle: #1e3a5f;
+  --color-primary-subtle-border: #2563eb;
+  --color-primary-text: #93c5fd;
   --color-success-solid: #8a9a52;
   --color-success-subtle: #262c18;
   --color-success-border: #3c4726;
   --color-success-text: #b9c98a;
-  --color-info-solid: #9c968a;
-  --color-info-subtle: #282826;
-  --color-info-border: #383632;
-  --color-info-text: #b8b2a6;
+  --color-info-solid: #7ea6d5;
+  --color-info-subtle: #10243d;
+  --color-info-border: #294563;
+  --color-info-text: #b6c9df;
   --color-warning-solid: #c9a13f;
   --color-warning-subtle: #2e2716;
   --color-warning-border: #493a1e;
@@ -244,18 +243,18 @@
   --color-error-subtle-hover: #3d271c;
   --color-error-border: #4a2c1e;
   --color-error-text: #e2a483;
-  --color-neutral-badge-subtle: #333331;
-  --color-neutral-badge-border: #423f3a;
-  --color-neutral-badge-text: #b8b2a6;
-  --color-accent2-subtle: #332616;
-  --color-accent2-border: #4f3b22;
-  --color-accent2-text: #eec596;
-  --color-chart-1: #e0ac74;
-  --color-chart-2: #d19a5e;
-  --color-chart-3: #b9803f;
-  --color-chart-4: #a06f38;
-  --color-chart-5: #86592c;
-  --color-chart-single: #d19a5e;
+  --color-neutral-badge-subtle: #172d48;
+  --color-neutral-badge-border: #294563;
+  --color-neutral-badge-text: #b6c9df;
+  --color-accent2-subtle: #1e3a5f;
+  --color-accent2-border: #2563eb;
+  --color-accent2-text: #bfdbfe;
+  --color-chart-1: #93c5fd;
+  --color-chart-2: #60a5fa;
+  --color-chart-3: #3b82f6;
+  --color-chart-4: #2563eb;
+  --color-chart-5: #1d4ed8;
+  --color-chart-single: #60a5fa;
   --bg: var(--color-surface-canvas);
   --panel: var(--color-surface-card);
   --panel-2: var(--color-surface-sunken);
@@ -562,8 +561,8 @@ small {
   color-scheme: dark;
 }
 .dark .select-compact select option {
-  background: #212120;
-  color: #f5f3ef;
+  background: #0d1d33;
+  color: #eff6ff;
 }
 .nav-tools {
   display: flex;
@@ -626,8 +625,8 @@ small {
 }
 .login-brand {
   padding: clamp(2rem, 7vw, 7rem);
-  background: #15160e;
-  color: #f7f2e2;
+   background: #0c1a2d;
+  color: #f0f9ff;
   display: flex;
   flex-direction: column;
 }
@@ -641,12 +640,12 @@ small {
 }
 .brand-copy p {
   font-size: 1.08rem;
-  color: #beb494;
+  color: #93c5fd;
 }
 .trust-list {
   display: flex;
   gap: 2rem;
-  color: #beb494;
+  color: #93c5fd;
   font-size: 0.85rem;
 }
 .trust-list span {
@@ -655,7 +654,7 @@ small {
   gap: 0.5rem;
 }
 .trust-list svg {
-  color: #d19a5e;
+  color: #60a5fa;
   width: 19px;
   height: 19px;
 }
@@ -917,7 +916,7 @@ textarea {
 .dialog-backdrop {
   position: fixed;
   inset: 0;
-  background: #15160ecc;
+  background: #0c1a2dcc;
   z-index: 100;
   display: grid;
   place-items: center;
@@ -1410,7 +1409,7 @@ td strong {
   width: 100%;
   max-height: 380px;
   object-fit: contain;
-  background: #15160e;
+  background: #0c1a2d;
   border-radius: 8px;
 }
 .approved-response {
