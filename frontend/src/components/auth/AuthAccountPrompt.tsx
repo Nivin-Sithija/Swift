@@ -11,7 +11,7 @@ export function AuthAccountPrompt({
   if (view === "login") {
     if (role === "administrator") return null;
     return (
-      <p className="demo-hint">
+      <p className="account-hint">
         New to Swift?{" "}
         <Link className="link-button" to={`/register?role=${role}`}>
           Create an account
@@ -21,7 +21,7 @@ export function AuthAccountPrompt({
   }
 
   return (
-    <p className="demo-hint">
+    <p className="account-hint">
       Already registered?{" "}
       <Link
         className="link-button"
