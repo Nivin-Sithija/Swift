@@ -69,11 +69,18 @@ class PostgresHybridRetriever:
             await self._query("lexical", query, {**params, "query": query})
             for query in query_variants
         ]
-        # Ticket classifier labels are finer-grained than knowledge-base categories.
-        # If an exact category yields nothing, retry approved sources without it.
-        if context.category and not any(lexical_rankings):
+        # Ticket classifier labels are finer-grained than knowledge-base categories
+        # and may also be "unknown". If category filtering yields nothing, retry
+        # every retrieval channel across all approved source categories.
+        if context.category and not dense and not any(lexical_rankings):
+            broad_params = {**params, "category": None}
+            dense = (
+                await self._query("dense", context.normalized_query, broad_params)
+                if embedding is not None
+                else []
+            )
             lexical_rankings = [
-                await self._query("lexical", query, {**params, "query": query, "category": None})
+                await self._query("lexical", query, {**broad_params, "query": query})
                 for query in query_variants
             ]
         fused = reciprocal_rank_fusion([dense, *lexical_rankings], limit=self.candidate_limit)
@@ -135,13 +142,25 @@ class PostgresHybridRetriever:
             ORDER BY a.source_id, n.chunk_index"""
         rows = (await self.db.execute(text(sql), {"ids": ids})).mappings().all()
         selected_ids = set(ids)
-        return [
-            replace(
-                self._evidence({**dict(row), "score": 0}, "dense"),
-                is_neighbor=row["chunk_id"] not in selected_ids,
+        # Keep ranked seeds first, then add only unique neighboring context.
+        # Capping this list prevents provider request/token-limit failures.
+        expanded = list(selected)
+        seen = set(selected_ids)
+        limit = self.final_limit + 3
+        for row in rows:
+            chunk_id = row["chunk_id"]
+            if chunk_id in seen:
+                continue
+            expanded.append(
+                replace(
+                    self._evidence({**dict(row), "score": 0}, "dense"),
+                    is_neighbor=True,
+                )
             )
-            for row in rows
-        ]
+            seen.add(chunk_id)
+            if len(expanded) >= limit:
+                break
+        return expanded
 
 
 def evidence_confidence(evidence: list[Evidence]) -> float:
