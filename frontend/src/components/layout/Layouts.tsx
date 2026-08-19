@@ -90,7 +90,7 @@ function ProfileMenu() {
   );
 }
 export function CustomerLayout() {
-  const { t, tr } = useLanguage();
+  const { tr } = useLanguage();
   return (
     <div className="flex min-h-screen flex-col">
       <TopNav
@@ -100,10 +100,7 @@ export function CustomerLayout() {
             <Logo />
           </Link>
         }
-        items={[
-          { to: "/customer/submit", label: t.submit },
-          { to: "/customer/tickets", label: t.tickets },
-        ]}
+        items={[{ to: "/customer/submit", label: tr("Support") }]}
         right={
           <>
             <LanguageSelector />
@@ -292,7 +289,11 @@ export function AgentLayout() {
   );
 }
 
-const administratorLinks: Array<{ to: string; label: string; icon: LucideIcon }> = [
+const administratorLinks: Array<{
+  to: string;
+  label: string;
+  icon: LucideIcon;
+}> = [
   { to: "/admin/dashboard", label: "Overview", icon: Gauge },
   { to: "/admin/users", label: "User management", icon: Users },
   { to: "/admin/queues", label: "Queue management", icon: ListTree },
@@ -304,18 +305,33 @@ export function AdministratorLayout() {
   const [sidebar, setSidebar] = useState(false);
   return (
     <div className="flex min-h-screen">
-      <aside className={cn(
-        "fixed inset-y-0 left-0 z-40 flex w-[260px] shrink-0 flex-col border-r border-border-subtle bg-surface-sunken transition-transform duration-200 md:sticky md:top-0 md:h-screen md:translate-x-0",
-        sidebar ? "translate-x-0" : "-translate-x-full",
-      )}>
+      <aside
+        className={cn(
+          "fixed inset-y-0 left-0 z-40 flex w-[260px] shrink-0 flex-col border-r border-border-subtle bg-surface-sunken transition-transform duration-200 md:sticky md:top-0 md:h-screen md:translate-x-0",
+          sidebar ? "translate-x-0" : "-translate-x-full",
+        )}
+      >
         <div className="flex items-center justify-between border-b border-border-subtle px-3 py-3.5">
           <Logo />
           <Badge tone="warning">Administrator</Badge>
-          <IconButton className="md:hidden" icon={X} aria-label="Close menu" onClick={() => setSidebar(false)} />
+          <IconButton
+            className="md:hidden"
+            icon={X}
+            aria-label="Close menu"
+            onClick={() => setSidebar(false)}
+          />
         </div>
         <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto p-3">
-          <span className="mb-1 px-2.5 text-xs font-semibold uppercase tracking-wide text-text-muted">Administration</span>
-          {administratorLinks.map((link) => <SidebarLink key={link.to} {...link} onClick={() => setSidebar(false)} />)}
+          <span className="mb-1 px-2.5 text-xs font-semibold uppercase tracking-wide text-text-muted">
+            Administration
+          </span>
+          {administratorLinks.map((link) => (
+            <SidebarLink
+              key={link.to}
+              {...link}
+              onClick={() => setSidebar(false)}
+            />
+          ))}
         </nav>
         <div className="border-t border-border-subtle p-3">
           <div className="rounded-md border border-warning-border bg-warning-subtle px-3 py-3 text-xs text-warning-text">
@@ -326,16 +342,37 @@ export function AdministratorLayout() {
       </aside>
       <div className="agent-main flex min-w-0 flex-1 flex-col">
         <header className="agent-top">
-          <IconButton className="menu-button" icon={Menu} aria-label="Open menu" onClick={() => setSidebar(true)} />
+          <IconButton
+            className="menu-button"
+            icon={Menu}
+            aria-label="Open menu"
+            onClick={() => setSidebar(true)}
+          />
           <div className="flex flex-1 flex-col">
-            <strong className="text-sm text-text-primary">Swift Administration</strong>
-            <span className="text-xs text-text-muted">Governance and system oversight</span>
+            <strong className="text-sm text-text-primary">
+              Swift Administration
+            </strong>
+            <span className="text-xs text-text-muted">
+              Governance and system oversight
+            </span>
           </div>
-          <div className="nav-tools"><LanguageSelector /><ThemeSwitcher /><ProfileMenu /></div>
+          <div className="nav-tools">
+            <LanguageSelector />
+            <ThemeSwitcher />
+            <ProfileMenu />
+          </div>
         </header>
-        <main className="agent-page"><Outlet /></main>
+        <main className="agent-page">
+          <Outlet />
+        </main>
       </div>
-      {sidebar ? <button className="fixed inset-0 z-30 bg-surface-overlay md:hidden" onClick={() => setSidebar(false)} aria-label="Close navigation" /> : null}
+      {sidebar ? (
+        <button
+          className="fixed inset-0 z-30 bg-surface-overlay md:hidden"
+          onClick={() => setSidebar(false)}
+          aria-label="Close navigation"
+        />
+      ) : null}
     </div>
   );
 }
