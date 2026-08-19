@@ -1,3 +1,4 @@
+import logging
 from collections import defaultdict
 from collections.abc import Mapping
 from dataclasses import replace
@@ -7,6 +8,8 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.rag.types import Embedder, Evidence, QueryContext, Reranker, RetrievalResult
+
+logger = logging.getLogger(__name__)
 
 
 def reciprocal_rank_fusion(
@@ -41,17 +44,38 @@ class PostgresHybridRetriever:
 
     async def retrieve(self, context: QueryContext) -> RetrievalResult:
         query_variants = list(dict.fromkeys((context.original_query, context.normalized_query)))
-        embedding = await self.embedder.embed_query(context.normalized_query)
+        embedding: list[float] | None = None
+        embedding_error: str | None = None
+        try:
+            embedding = await self.embedder.embed_query(context.normalized_query)
+        except RuntimeError as exc:
+            # Hosted embeddings are an enhancement, not a reason to make customer
+            # assistance unavailable. PostgreSQL FTS remains a grounded retriever.
+            embedding_error = type(exc).__name__
+            logger.warning("Dense embedding unavailable; using lexical retrieval", exc_info=True)
         params = {
-            "embedding": str(embedding), "limit": self.candidate_limit,
-            "institution": context.institution, "category": context.category,
+            "embedding": str(embedding) if embedding is not None else None,
+            "limit": self.candidate_limit,
+            "institution": context.institution,
+            "category": context.category,
             "review_days": self.review_max_age_days,
         }
-        dense = await self._query("dense", context.normalized_query, params)
+        dense = (
+            await self._query("dense", context.normalized_query, params)
+            if embedding is not None
+            else []
+        )
         lexical_rankings = [
             await self._query("lexical", query, {**params, "query": query})
             for query in query_variants
         ]
+        # Ticket classifier labels are finer-grained than knowledge-base categories.
+        # If an exact category yields nothing, retry approved sources without it.
+        if context.category and not any(lexical_rankings):
+            lexical_rankings = [
+                await self._query("lexical", query, {**params, "query": query, "category": None})
+                for query in query_variants
+            ]
         fused = reciprocal_rank_fusion([dense, *lexical_rankings], limit=self.candidate_limit)
         reranked = (await self.reranker.rerank(context.normalized_query, fused))[: self.final_limit]
         expanded = await self._expand_neighbors(reranked)
@@ -59,7 +83,13 @@ class PostgresHybridRetriever:
         return RetrievalResult(
             expanded if confidence >= self.min_confidence else [],
             confidence,
-            {"dense": len(dense), "lexical": sum(map(len, lexical_rankings)), "fused": len(fused), "selected": len(reranked)},
+            {
+                "dense": len(dense),
+                "lexical": sum(map(len, lexical_rankings)),
+                "fused": len(fused),
+                "selected": len(reranked),
+                "embedding_fallback": embedding_error or "none",
+            },
         )
 
     async def _query(self, mode: str, query: str, params: dict[str, object]) -> list[Evidence]:
@@ -105,7 +135,13 @@ class PostgresHybridRetriever:
             ORDER BY a.source_id, n.chunk_index"""
         rows = (await self.db.execute(text(sql), {"ids": ids})).mappings().all()
         selected_ids = set(ids)
-        return [replace(self._evidence({**dict(row), "score": 0}, "dense"), is_neighbor=row["chunk_id"] not in selected_ids) for row in rows]
+        return [
+            replace(
+                self._evidence({**dict(row), "score": 0}, "dense"),
+                is_neighbor=row["chunk_id"] not in selected_ids,
+            )
+            for row in rows
+        ]
 
 
 def evidence_confidence(evidence: list[Evidence]) -> float:
@@ -115,6 +151,8 @@ def evidence_confidence(evidence: list[Evidence]) -> float:
     top = evidence[0]
     rerank = max(0.0, min(1.0, top.rerank_score))
     retrieval = max(0.0, min(1.0, top.dense_score or top.lexical_score or top.fused_score * 30))
-    authority = sum(e.approval_status == "approved" and bool(e.source_authority) for e in evidence) / len(evidence)
+    authority = sum(
+        e.approval_status == "approved" and bool(e.source_authority) for e in evidence
+    ) / len(evidence)
     coherence = max(sum(e.institution == top.institution for e in evidence) / len(evidence), 0.0)
     return round(0.45 * rerank + 0.30 * retrieval + 0.15 * authority + 0.10 * coherence, 4)
