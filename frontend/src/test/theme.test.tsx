@@ -15,14 +15,14 @@ function Switch() {
   return <button onClick={() => setTheme("light")}>{theme}</button>;
 }
 describe("theme preference", () => {
-  it("defaults to dark on first visit", () => {
+  it("defaults to light on first visit", () => {
     render(
       <ThemeProvider>
         <Probe />
       </ThemeProvider>,
     );
-    expect(screen.getByText("dark")).toBeInTheDocument();
-    expect(document.documentElement).toHaveClass("dark");
+    expect(screen.getByText("light")).toBeInTheDocument();
+    expect(document.documentElement).not.toHaveClass("dark");
   });
   it("switches theme and persists it", async () => {
     render(

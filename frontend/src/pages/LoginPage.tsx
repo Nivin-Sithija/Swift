@@ -12,7 +12,7 @@ import {
 } from "../components/common/Controls";
 import type { UserRole } from "../types";
 import { useLanguage } from "../app/providers/LanguageProvider";
-import { isDevelopmentMode } from "../lib/config";
+import { isMockMode } from "../lib/config";
 
 const schema = z.object({
   email: z.email("Enter a valid email address"),
@@ -22,7 +22,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 export function LoginPage() {
   const { tr } = useLanguage();
-  const developmentMode = isDevelopmentMode();
+  const mockMode = isMockMode();
   const { user, login } = useAuth();
   const navigate = useNavigate();
   const [role, setRole] = useState<UserRole>("customer");
@@ -115,7 +115,7 @@ export function LoginPage() {
             >
               {tr("Support agent")}
             </button>
-            {developmentMode && (
+            {mockMode && (
               <button
                 role="tab"
                 aria-selected={role === "administrator"}
@@ -154,7 +154,7 @@ export function LoginPage() {
                 autoComplete="email"
                 {...register("email")}
                 placeholder={
-                  developmentMode
+                  mockMode
                     ? role === "administrator"
                       ? "admin@swift.demo"
                       : role === "agent"
@@ -199,14 +199,14 @@ export function LoginPage() {
             </div>
             {serverError && (
               <div className="form-error" role="alert">
-                {serverError}{developmentMode ? ". Try the demo account below." : "."}
+                {serverError}{mockMode ? ". Try the demo account below." : "."}
               </div>
             )}
             <button className="btn wide" disabled={isSubmitting}>
               {isSubmitting && <LoaderCircle className="spin" aria-hidden="true" />}
               {isSubmitting ? tr("Signing in…") : tr("Sign in securely")}
             </button>
-            {developmentMode && (
+            {mockMode && (
               <button
                 type="button"
                 className="btn secondary wide"
@@ -217,9 +217,9 @@ export function LoginPage() {
               </button>
             )}
           </form>
-          {developmentMode && (
+          {mockMode && (
             <p className="demo-hint">
-              Development mode · Demo password: <code>password123</code>
+              Mock mode · Demo password: <code>password123</code>
             </p>
           )}
           <p className="demo-hint">
