@@ -7,6 +7,12 @@ Trilingual (Sinhala / English / Tamil), multimodal AI support-ticket triage for 
 
 Pipeline: BANKING77 → translate + romanize to 5 tracks → LLM-label sentiment/priority → frozen split → classifier bake-off → serve.
 
+The backend now includes a production-oriented, multilingual consumer-banking RAG draft pipeline
+with safety escalation, approved-source filtering, BGE-M3/pgvector plus PostgreSQL FTS retrieval,
+RRF, FlashRank, Groq with Gemini fallback, grounded citations, and mandatory agent approval. Setup
+and operational details are in [`backend/RAG.md`](backend/RAG.md).
+
+
 ## Layout
 
 - `datasets/`: 5 language tracks, translation, romanization and labeling scripts.

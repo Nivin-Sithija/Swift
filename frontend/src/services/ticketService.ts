@@ -1,7 +1,13 @@
 import { mockTickets } from "../mocks/tickets";
 import type {
   DashboardMetrics,
+  AdminDashboardMetrics,
+  AdminUserRecord,
+  AdminQueue,
+  AdminAudit,
+  AdminSetting,
   InternalNote,
+  RagAssistanceResult,
   Ticket,
   User,
   UserRole,
@@ -20,7 +26,16 @@ export interface AdjacentTickets {
 
 export interface TicketService {
   login(email: string, password: string, role: UserRole): Promise<User>;
+  register(input: {
+    name: string;
+    email: string;
+    password: string;
+    role: UserRole;
+    preferredLanguage: "english" | "sinhala" | "tamil";
+    agentCode?: string;
+  }): Promise<User>;
   logout(): Promise<void>;
+  restoreSession(user: User): Promise<User>;
   createTicket?(submission: TicketSubmission): Promise<Ticket>;
   getTickets(): Promise<Ticket[]>;
   getTicket(id: string): Promise<Ticket>;
@@ -28,11 +43,40 @@ export interface TicketService {
   updateTicket(id: string, patch: Partial<Ticket>): Promise<Ticket>;
   addInternalNote(id: string, text: string): Promise<InternalNote>;
   getDashboardMetrics(): Promise<DashboardMetrics>;
+  getAdminDashboard(): Promise<AdminDashboardMetrics>;
+  getAdminUsers(): Promise<AdminUserRecord[]>;
+  updateAdminUser(
+    id: string,
+    patch: { role?: UserRole; is_active?: boolean },
+  ): Promise<AdminUserRecord>;
+  getAdminQueues(): Promise<AdminQueue[]>;
+  createAdminQueue(input: {
+    name: string;
+    description?: string;
+  }): Promise<AdminQueue>;
+  updateAdminQueue(
+    id: string,
+    patch: { name?: string; description?: string; is_active?: boolean },
+  ): Promise<AdminQueue>;
+  getAdminAudit(): Promise<AdminAudit[]>;
+  getAdminSettings(): Promise<AdminSetting[]>;
+  updateAdminSettings(values: Record<string, string>): Promise<AdminSetting[]>;
+  generateRagDraft(
+    ticket: Ticket,
+    institution: string,
+  ): Promise<RagAssistanceResult>;
 }
 
 export const mockTicketService: TicketService = {
   async login(email, password, role) {
     await delay(500);
+    if (email === "admin@swift.demo" && password === "password123")
+      return {
+        id: "admin-1",
+        name: "Swift Admin",
+        email,
+        role: "administrator",
+      };
     const expected =
       role === "agent" ? "agent@swift.demo" : "customer@swift.demo";
     if (email !== expected || password !== "password123")
@@ -41,8 +85,20 @@ export const mockTicketService: TicketService = {
       ? { id: "agent-1", name: CURRENT_AGENT, email, role }
       : { id: "customer-1", name: "Maya Silva", email, role };
   },
+  async register(input) {
+    await delay(500);
+    return {
+      id: crypto.randomUUID(),
+      name: input.name,
+      email: input.email,
+      role: input.role,
+    };
+  },
   async logout() {
     await delay(100);
+  },
+  async restoreSession(user) {
+    return user;
   },
   async getTickets() {
     await delay();
@@ -88,6 +144,19 @@ export const mockTicketService: TicketService = {
   },
   async getDashboardMetrics() {
     await delay();
+    const categoryCounts = new Map<string, number>();
+    const languageCounts = new Map<string, number>();
+    tickets.forEach((ticket) => {
+      categoryCounts.set(
+        ticket.category.value,
+        (categoryCounts.get(ticket.category.value) ?? 0) + 1,
+      );
+      languageCounts.set(
+        ticket.language,
+        (languageCounts.get(ticket.language) ?? 0) + 1,
+      );
+    });
+    const today = new Date();
     return {
       newTickets: tickets.filter((t) => t.status === "new").length,
       assignedToMe: tickets.filter((t) => t.assignedAgent === CURRENT_AGENT)
@@ -95,9 +164,164 @@ export const mockTicketService: TicketService = {
       highPriority: tickets.filter((t) => t.priority.value === "high").length,
       critical: tickets.filter((t) => t.priority.value === "critical").length,
       escalated: tickets.filter((t) => t.status === "escalated").length,
-      resolvedToday: 6,
-      averageFirstResponse: "18 min",
+      resolvedToday: tickets.filter(
+        (ticket) =>
+          ticket.status === "resolved" &&
+          new Date(ticket.updatedAt).toDateString() === today.toDateString(),
+      ).length,
+      averageFirstResponse: (() => {
+        const responseMinutes = tickets
+          .filter((ticket) => ticket.approvedResponse)
+          .map(
+            (ticket) =>
+              (new Date(ticket.approvedResponse!.approvedAt).getTime() -
+                new Date(ticket.createdAt).getTime()) /
+              60_000,
+          )
+          .filter((minutes) => minutes >= 0);
+        return responseMinutes.length
+          ? `${Math.round(responseMinutes.reduce((sum, value) => sum + value, 0) / responseMinutes.length)} min`
+          : "Not available";
+      })(),
       lowConfidence: tickets.filter((t) => t.requiresManualReview).length,
+      categoryDistribution: [...categoryCounts]
+        .map(([label, count]) => ({ label, count }))
+        .sort((a, b) => b.count - a.count),
+      languageDistribution: [...languageCounts]
+        .map(([label, count]) => ({ label, count }))
+        .sort((a, b) => b.count - a.count),
+      weeklyVolume: Array.from({ length: 7 }, (_, index) => {
+        const date = new Date(today);
+        date.setDate(today.getDate() - (6 - index));
+        return {
+          date: date.toISOString().slice(0, 10),
+          count: tickets.filter(
+            (ticket) =>
+              new Date(ticket.createdAt).toDateString() === date.toDateString(),
+          ).length,
+        };
+      }),
     };
   },
+  async getAdminDashboard() {
+    await delay();
+    return {
+      customers: 24,
+      agents: 6,
+      administrators: 2,
+      activeSessions: 8,
+      openTickets: tickets.filter(
+        (ticket) => !["resolved", "closed"].includes(ticket.status),
+      ).length,
+      supportQueues: 3,
+      auditEvents: 42,
+      recentUsers: [
+        {
+          id: "customer-1",
+          name: "Maya Silva",
+          email: "customer@swift.demo",
+          role: "customer" as const,
+          isActive: true,
+          createdAt: new Date().toISOString(),
+        },
+        {
+          id: "agent-1",
+          name: CURRENT_AGENT,
+          email: "agent@swift.demo",
+          role: "agent" as const,
+          isActive: true,
+          createdAt: new Date().toISOString(),
+        },
+      ],
+    };
+  },
+  async getAdminUsers() {
+    return (await this.getAdminDashboard()).recentUsers;
+  },
+  async updateAdminUser(id, patch) {
+    const user = (await this.getAdminUsers()).find((x) => x.id === id)!;
+    return {
+      ...user,
+      role: patch.role ?? user.role,
+      isActive: patch.is_active ?? user.isActive,
+    };
+  },
+  async getAdminQueues() {
+    return [
+      {
+        id: "general",
+        name: "General Support",
+        description: "Default queue",
+        isActive: true,
+        ticketCount: tickets.length,
+      },
+    ];
+  },
+  async createAdminQueue(input) {
+    return {
+      id: crypto.randomUUID(),
+      ...input,
+      isActive: true,
+      ticketCount: 0,
+    };
+  },
+  async updateAdminQueue(id, patch) {
+    return {
+      id,
+      name: patch.name ?? "Queue",
+      description: patch.description,
+      isActive: patch.is_active ?? true,
+      ticketCount: 0,
+    };
+  },
+  async getAdminAudit() {
+    return [];
+  },
+  async getAdminSettings() {
+    return [];
+  },
+  async updateAdminSettings() {
+    return [];
+  },
+  async generateRagDraft(ticket, institution) {
+    await delay(600);
+    if (["high", "critical"].includes(ticket.priority.value)) {
+      return {
+        route: "human_escalation",
+        originalQuery: ticket.message,
+        normalizedQuery: ticket.message.trim(),
+        language: ticket.language,
+        draft: null,
+        citations: [],
+        confidence: 0,
+        escalationReason: "high_priority",
+        approvalRequired: true,
+        provider: null,
+      };
+    }
+    return {
+      route: "rag_draft",
+      originalQuery: ticket.message,
+      normalizedQuery: ticket.message.trim(),
+      language: ticket.language,
+      draft: `This mock RAG draft is scoped to ${institution}. [E1]`,
+      citations: [
+        {
+          marker: "E1",
+          sourceId: "MOCK-SRC-1",
+          title: "Official product information",
+          institution,
+          url: "https://example.com",
+          version: "1.0",
+          reviewDate: "2026-07-29",
+          chunkIds: ["mock-chunk-1"],
+        },
+      ],
+      confidence: 0.82,
+      escalationReason: null,
+      approvalRequired: true,
+      provider: "mock",
+    };
+  },
+
 };
