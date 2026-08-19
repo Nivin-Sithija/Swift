@@ -12,7 +12,6 @@ import {
 } from "../components/common/Controls";
 import type { UserRole } from "../types";
 import { useLanguage } from "../app/providers/LanguageProvider";
-import { isMockMode } from "../lib/config";
 import { AuthAccountPrompt } from "../components/auth/AuthAccountPrompt";
 
 const schema = z.object({
@@ -23,7 +22,6 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 export function LoginPage({ staffOnly = false }: { staffOnly?: boolean }) {
   const { tr } = useLanguage();
-  const mockMode = isMockMode();
   const { user, login } = useAuth();
   const navigate = useNavigate();
   const [role, setRole] = useState<UserRole>(staffOnly ? "agent" : "customer");
@@ -32,7 +30,6 @@ export function LoginPage({ staffOnly = false }: { staffOnly?: boolean }) {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -45,17 +42,6 @@ export function LoginPage({ staffOnly = false }: { staffOnly?: boolean }) {
         replace
       />
     );
-  const useDemo = () => {
-    setValue(
-      "email",
-      role === "administrator"
-        ? "admin@swift.demo"
-        : role === "agent"
-          ? "agent@swift.demo"
-          : "customer@swift.demo",
-    );
-    setValue("password", "password123");
-  };
   return (
     <main className="login-page">
       <div className="login-brand">
@@ -76,7 +62,7 @@ export function LoginPage({ staffOnly = false }: { staffOnly?: boolean }) {
           </span>
           <span>
             <LockKeyhole />
-            Mock prototype · no real banking access
+            Secure access to your support workspace
           </span>
         </div>
       </div>
@@ -142,15 +128,7 @@ export function LoginPage({ staffOnly = false }: { staffOnly?: boolean }) {
               <input
                 autoComplete="email"
                 {...register("email")}
-                placeholder={
-                  mockMode
-                    ? role === "administrator"
-                      ? "admin@swift.demo"
-                      : role === "agent"
-                        ? "agent@swift.demo"
-                        : "customer@swift.demo"
-                    : "you@example.com"
-                }
+                placeholder="you@example.com"
               />
               {errors.email && (
                 <small className="field-error">{errors.email.message}</small>
@@ -188,29 +166,14 @@ export function LoginPage({ staffOnly = false }: { staffOnly?: boolean }) {
             </div>
             {serverError && (
               <div className="form-error" role="alert">
-                {serverError}{mockMode ? ". Try the demo account below." : "."}
+                {serverError}.
               </div>
             )}
             <button className="btn wide" disabled={isSubmitting}>
               {isSubmitting && <LoaderCircle className="spin" aria-hidden="true" />}
               {isSubmitting ? tr("Signing in…") : tr("Sign in securely")}
             </button>
-            {mockMode && (
-              <button
-                type="button"
-                className="btn secondary wide"
-                disabled={isSubmitting}
-                onClick={useDemo}
-              >
-                Use {role} demo account
-              </button>
-            )}
           </form>
-          {mockMode && (
-            <p className="demo-hint">
-              Mock mode · Demo password: <code>password123</code>
-            </p>
-          )}
           <AuthAccountPrompt view="login" role={role} />
         </div>
       </section>
