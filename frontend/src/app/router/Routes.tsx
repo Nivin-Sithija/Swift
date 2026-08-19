@@ -25,7 +25,7 @@ function ProtectedRoute({ role }: { role: UserRole }) {
   const location = useLocation();
   if (restoring) return <LoadingSpinner label="Restoring your secure session…" fullPage />;
   if (!user)
-    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
+    return <Navigate to={role === "customer" ? "/login" : "/admin/login"} replace state={{ from: location.pathname }} />;
   if (user.role !== role)
     return (
       <Navigate
@@ -40,6 +40,7 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/admin/login" element={<LoginPage staffOnly />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route element={<ProtectedRoute role="customer" />}>
         <Route element={<CustomerLayout />}>
