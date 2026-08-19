@@ -456,12 +456,12 @@ export const restTicketService: TicketService = {
       body: JSON.stringify({ values }),
     });
   },
-  async getCustomerTicketAssistance(ticketId) {
+  async getCustomerTicketAssistance(ticketId, message) {
     const result = await request<Record<string, unknown>>(
       `/tickets/${ticketId}/assistance`,
       {
         method: "POST",
-        body: "{}",
+        body: JSON.stringify(message ? { message } : {}),
       },
     );
     return {
