@@ -297,7 +297,7 @@ async def register(
         "swift_refresh",
         raw,
         httponly=True,
-        samesite="lax",
+        samesite="none" if settings.environment == "production" else "lax",
         secure=settings.environment == "production",
         max_age=settings.refresh_token_days * 86400,
         path="/api/v1/auth",
@@ -327,7 +327,7 @@ async def login(payload: LoginRequest, response: HttpResponse, db: Db) -> TokenR
         "swift_refresh",
         raw,
         httponly=True,
-        samesite="lax",
+        samesite="none" if settings.environment == "production" else "lax",
         secure=settings.environment == "production",
         max_age=settings.refresh_token_days * 86400,
         path="/api/v1/auth",
@@ -367,7 +367,7 @@ async def refresh(
         "swift_refresh",
         raw,
         httponly=True,
-        samesite="lax",
+        samesite="none" if settings.environment == "production" else "lax",
         secure=settings.environment == "production",
         max_age=settings.refresh_token_days * 86400,
         path="/api/v1/auth",
@@ -390,7 +390,12 @@ async def logout(
         if session:
             session.revoked_at = utcnow()
             await db.commit()
-    response.delete_cookie("swift_refresh", path="/api/v1/auth")
+    response.delete_cookie(
+        "swift_refresh",
+        path="/api/v1/auth",
+        secure=settings.environment == "production",
+        samesite="none" if settings.environment == "production" else "lax",
+    )
 
 
 @router.get("/users/me", response_model=UserOut)
