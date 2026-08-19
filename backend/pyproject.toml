@@ -24,8 +24,6 @@ dependencies = [
   "scikit-learn>=1.5,<2",
   "Pillow>=10.0,<12",
   "pytesseract>=0.3.10,<1",
-  "torch>=2.0,<3",
-  "transformers>=4.0,<5",
 ]
 
 [project.scripts]
