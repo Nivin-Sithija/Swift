@@ -30,20 +30,33 @@ describe("authentication and role routes", () => {
     expect(await screen.findByText(/valid email/i)).toBeInTheDocument();
     expect(screen.getByText(/at least 8/i)).toBeInTheDocument();
   });
-  it("preserves the selected agent role when opening registration", async () => {
-    renderApp("/login");
-    await userEvent.click(screen.getByRole("tab", { name: /support agent/i }));
-    await userEvent.click(screen.getByRole("link", { name: /create an account/i }));
-    expect(screen.getByRole("tab", { name: /support agent/i })).toHaveAttribute(
-      "aria-selected",
-      "true",
+  it("keeps staff login at its URL-only endpoint", () => {
+    const publicLogin = renderApp("/login");
+    expect(screen.queryByRole("tab", { name: /support agent/i })).not.toBeInTheDocument();
+    expect(screen.queryByText(/staff sign in/i)).not.toBeInTheDocument();
+    publicLogin.unmount();
+
+    renderApp("/admin/login");
+    expect(screen.getByRole("heading", { name: /staff sign in/i })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /support agent/i })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /administrator/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /create an account/i })).toHaveAttribute(
+      "href",
+      "/register?role=agent",
     );
-    expect(screen.getByLabelText(/registration code/i)).toBeInTheDocument();
+  });
+
+  it("returns agent registration to the staff login", () => {
+    renderApp("/register?role=agent");
+    expect(screen.getByRole("link", { name: /sign in/i })).toHaveAttribute(
+      "href",
+      "/admin/login",
+    );
   });
   it("redirects unauthenticated protected routes", () => {
     renderApp("/agent/dashboard");
     expect(
-      screen.getByRole("heading", { name: /welcome to swift/i }),
+      screen.getByRole("heading", { name: /staff sign in/i }),
     ).toBeInTheDocument();
   });
   it("prevents customer session from opening agent routes", async () => {
@@ -72,8 +85,9 @@ describe("authentication and role routes", () => {
       }),
     );
     renderApp("/agent/dashboard");
-    await waitFor(() =>
-      expect(screen.getByText("Assigned to me")).toBeInTheDocument(),
+    await waitFor(
+      () => expect(screen.getByText("Assigned to me")).toBeInTheDocument(),
+      { timeout: 3000 },
     );
     expect(screen.getByText("Avg. first response")).toBeInTheDocument();
   });
