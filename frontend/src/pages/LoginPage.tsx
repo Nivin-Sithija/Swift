@@ -1,6 +1,6 @@
-import { Eye, EyeOff, LockKeyhole, ShieldCheck } from "lucide-react";
+import { Eye, EyeOff, LoaderCircle, LockKeyhole, ShieldCheck } from "lucide-react";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -12,6 +12,7 @@ import {
 } from "../components/common/Controls";
 import type { UserRole } from "../types";
 import { useLanguage } from "../app/providers/LanguageProvider";
+import { isMockMode } from "../lib/config";
 
 const schema = z.object({
   email: z.email("Enter a valid email address"),
@@ -21,6 +22,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 export function LoginPage() {
   const { tr } = useLanguage();
+  const mockMode = isMockMode();
   const { user, login } = useAuth();
   const navigate = useNavigate();
   const [role, setRole] = useState<UserRole>("customer");
@@ -38,14 +40,18 @@ export function LoginPage() {
   if (user)
     return (
       <Navigate
-        to={user.role === "agent" ? "/agent/dashboard" : "/customer/submit"}
+        to={user.role === "administrator" ? "/admin/dashboard" : user.role === "agent" ? "/agent/dashboard" : "/customer/submit"}
         replace
       />
     );
   const useDemo = () => {
     setValue(
       "email",
-      role === "agent" ? "agent@swift.demo" : "customer@swift.demo",
+      role === "administrator"
+        ? "admin@swift.demo"
+        : role === "agent"
+          ? "agent@swift.demo"
+          : "customer@swift.demo",
     );
     setValue("password", "password123");
   };
@@ -109,14 +115,30 @@ export function LoginPage() {
             >
               {tr("Support agent")}
             </button>
+            {mockMode && (
+              <button
+                role="tab"
+                aria-selected={role === "administrator"}
+                onClick={() => {
+                  setRole("administrator");
+                  setServerError("");
+                }}
+              >
+                Administrator
+              </button>
+            )}
           </div>
           <form
             onSubmit={handleSubmit(async (data) => {
               try {
                 setServerError("");
-                await login(data.email, data.password, role, data.remember);
+                const signedIn = await login(data.email, data.password, role, data.remember);
                 navigate(
-                  role === "agent" ? "/agent/dashboard" : "/customer/submit",
+                  signedIn.role === "administrator"
+                    ? "/admin/dashboard"
+                    : signedIn.role === "agent"
+                      ? "/agent/dashboard"
+                      : "/customer/submit",
                 );
               } catch (error) {
                 setServerError(
@@ -132,7 +154,13 @@ export function LoginPage() {
                 autoComplete="email"
                 {...register("email")}
                 placeholder={
-                  role === "agent" ? "agent@swift.demo" : "customer@swift.demo"
+                  mockMode
+                    ? role === "administrator"
+                      ? "admin@swift.demo"
+                      : role === "agent"
+                        ? "agent@swift.demo"
+                        : "customer@swift.demo"
+                    : "you@example.com"
                 }
               />
               {errors.email && (
@@ -171,22 +199,31 @@ export function LoginPage() {
             </div>
             {serverError && (
               <div className="form-error" role="alert">
-                {serverError}. Try the demo account below.
+                {serverError}{mockMode ? ". Try the demo account below." : "."}
               </div>
             )}
             <button className="btn wide" disabled={isSubmitting}>
+              {isSubmitting && <LoaderCircle className="spin" aria-hidden="true" />}
               {isSubmitting ? tr("Signing in…") : tr("Sign in securely")}
             </button>
-            <button
-              type="button"
-              className="btn secondary wide"
-              onClick={useDemo}
-            >
-              Use {role} demo account
-            </button>
+            {mockMode && (
+              <button
+                type="button"
+                className="btn secondary wide"
+                disabled={isSubmitting}
+                onClick={useDemo}
+              >
+                Use {role} demo account
+              </button>
+            )}
           </form>
+          {mockMode && (
+            <p className="demo-hint">
+              Mock mode · Demo password: <code>password123</code>
+            </p>
+          )}
           <p className="demo-hint">
-            Demo password: <code>password123</code>
+            New to Swift? <Link className="link-button" to="/register">Create an account</Link>
           </p>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import uuid
-from datetime import datetime
+from datetime import date, datetime
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
@@ -14,6 +15,15 @@ from app.domain.enums import (
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str = Field(min_length=8, max_length=128)
+
+
+class RegisterRequest(BaseModel):
+    full_name: str = Field(min_length=2, max_length=150)
+    email: EmailStr
+    password: str = Field(min_length=8, max_length=128)
+    role: Literal["customer", "agent"] = "customer"
+    preferred_language: InterfaceLanguage = InterfaceLanguage.english
+    agent_registration_code: str | None = Field(default=None, max_length=256)
 
 
 class UserOut(BaseModel):
@@ -150,9 +160,290 @@ class DashboardOut(BaseModel):
     resolved_today: int
     average_first_response: str
     low_confidence: int
+    category_distribution: list["DashboardBreakdownItem"]
+    language_distribution: list["DashboardBreakdownItem"]
+    weekly_volume: list["DashboardTrendPoint"]
+
+
+class DashboardBreakdownItem(BaseModel):
+    label: str
+    count: int
+
+
+class DashboardTrendPoint(BaseModel):
+    date: str
+    count: int
+
+
+class AdminUserOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: uuid.UUID
+    full_name: str
+    email: EmailStr
+    role: UserRole
+    is_active: bool
+    created_at: datetime
+
+
+class AdminDashboardOut(BaseModel):
+    customers: int
+    agents: int
+    administrators: int
+    active_sessions: int
+    open_tickets: int
+    support_queues: int
+    audit_events: int
+    recent_users: list[AdminUserOut]
+
+
+class AdminUserList(BaseModel):
+    items: list[AdminUserOut]
+    total: int
+
+
+class AdminUserUpdate(BaseModel):
+    role: Literal["customer", "agent", "administrator"] | None = None
+    is_active: bool | None = None
+
+
+class AdminQueueOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: uuid.UUID
+    name: str
+    description: str | None
+    is_active: bool
+    ticket_count: int = 0
+
+
+class AdminQueueCreate(BaseModel):
+    name: str = Field(min_length=2, max_length=100)
+    description: str | None = Field(default=None, max_length=1000)
+
+
+class AdminQueueUpdate(BaseModel):
+    name: str | None = Field(default=None, min_length=2, max_length=100)
+    description: str | None = Field(default=None, max_length=1000)
+    is_active: bool | None = None
+
+
+class AdminAuditOut(BaseModel):
+    id: uuid.UUID
+    actor: str
+    action: str
+    entity_type: str
+    entity_id: str
+    detail: str | None
+    created_at: datetime
+
+
+class AdminAuditList(BaseModel):
+    items: list[AdminAuditOut]
+    total: int
+
+
+class AdminSettingOut(BaseModel):
+    key: str
+    value: str
+    value_type: str
+    description: str
+    updated_at: datetime
+
+
+class AdminSettingsUpdate(BaseModel):
+    values: dict[str, str]
+
+
+class AdminUserOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: uuid.UUID
+    full_name: str
+    email: EmailStr
+    role: UserRole
+    is_active: bool
+    created_at: datetime
+
+
+class AdminDashboardOut(BaseModel):
+    customers: int
+    agents: int
+    administrators: int
+    active_sessions: int
+    open_tickets: int
+    support_queues: int
+    audit_events: int
+    recent_users: list[AdminUserOut]
+
+
+class AdminUserList(BaseModel):
+    items: list[AdminUserOut]
+    total: int
+
+
+class AdminUserUpdate(BaseModel):
+    role: Literal["customer", "agent", "administrator"] | None = None
+    is_active: bool | None = None
+
+
+class AdminQueueOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: uuid.UUID
+    name: str
+    description: str | None
+    is_active: bool
+    ticket_count: int = 0
+
+
+class AdminQueueCreate(BaseModel):
+    name: str = Field(min_length=2, max_length=100)
+    description: str | None = Field(default=None, max_length=1000)
+
+
+class AdminQueueUpdate(BaseModel):
+    name: str | None = Field(default=None, min_length=2, max_length=100)
+    description: str | None = Field(default=None, max_length=1000)
+    is_active: bool | None = None
+
+
+class AdminAuditOut(BaseModel):
+    id: uuid.UUID
+    actor: str
+    action: str
+    entity_type: str
+    entity_id: str
+    detail: str | None
+    created_at: datetime
+
+
+class AdminAuditList(BaseModel):
+    items: list[AdminAuditOut]
+    total: int
+
+
+class AdminSettingOut(BaseModel):
+    key: str
+    value: str
+    value_type: str
+    description: str
+    updated_at: datetime
+
+
+class AdminSettingsUpdate(BaseModel):
+    values: dict[str, str]
+
+
+class AdminUserOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: uuid.UUID
+    full_name: str
+    email: EmailStr
+    role: UserRole
+    is_active: bool
+    created_at: datetime
+
+
+class AdminDashboardOut(BaseModel):
+    customers: int
+    agents: int
+    administrators: int
+    active_sessions: int
+    open_tickets: int
+    support_queues: int
+    audit_events: int
+    recent_users: list[AdminUserOut]
+
+
+class AdminUserList(BaseModel):
+    items: list[AdminUserOut]
+    total: int
+
+
+class AdminUserUpdate(BaseModel):
+    role: Literal["customer", "agent", "administrator"] | None = None
+    is_active: bool | None = None
+
+
+class AdminQueueOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: uuid.UUID
+    name: str
+    description: str | None
+    is_active: bool
+    ticket_count: int = 0
+
+
+class AdminQueueCreate(BaseModel):
+    name: str = Field(min_length=2, max_length=100)
+    description: str | None = Field(default=None, max_length=1000)
+
+
+class AdminQueueUpdate(BaseModel):
+    name: str | None = Field(default=None, min_length=2, max_length=100)
+    description: str | None = Field(default=None, max_length=1000)
+    is_active: bool | None = None
+
+
+class AdminAuditOut(BaseModel):
+    id: uuid.UUID
+    actor: str
+    action: str
+    entity_type: str
+    entity_id: str
+    detail: str | None
+    created_at: datetime
+
+
+class AdminAuditList(BaseModel):
+    items: list[AdminAuditOut]
+    total: int
+
+
+class AdminSettingOut(BaseModel):
+    key: str
+    value: str
+    value_type: str
+    description: str
+    updated_at: datetime
+
+
+class AdminSettingsUpdate(BaseModel):
+    values: dict[str, str]
 
 
 class ErrorOut(BaseModel):
     code: str
     message: str
     request_id: str | None = None
+
+
+class ConsumerAssistanceRequest(BaseModel):
+    query: str = Field(min_length=3, max_length=5000)
+    institution: str | None = Field(default=None, min_length=2, max_length=200)
+    category: str | None = Field(default=None, max_length=100)
+    language: Literal["english", "sinhala", "tamil", "singlish", "tamilish"] | None = None
+    intent: str | None = Field(default=None, max_length=150)
+    sentiment: str | None = Field(default=None, max_length=30)
+    priority: str | None = Field(default=None, max_length=30)
+
+
+class CitationOut(BaseModel):
+    marker: str
+    source_id: str
+    title: str
+    institution: str
+    url: str
+    version: str
+    review_date: date
+    chunk_ids: list[str]
+
+
+class ConsumerAssistanceOut(BaseModel):
+    route: Literal["rag_draft", "human_escalation"]
+    original_query: str
+    normalized_query: str
+    language: str
+    draft: str | None
+    citations: list[CitationOut]
+    confidence: float = Field(ge=0, le=1)
+    escalation_reason: str | None
+    approval_required: bool
+    provider: str | None

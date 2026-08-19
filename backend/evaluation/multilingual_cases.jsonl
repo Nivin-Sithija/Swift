@@ -1,0 +1,5 @@
+{"id":"en-accounts-1","language":"english","category":"accounts","institution":"Commercial Bank of Ceylon PLC","query":"What documents are needed for a regular savings account?","expected_route":"rag_draft","relevant_sources":["SRC-ACC-001"]}
+{"id":"si-security-1","language":"sinhala","category":"fraud_security","institution":"Commercial Bank of Ceylon PLC","query":"මගේ card එකෙන් මම නොකළ ගනුදෙනුවක් තියෙනවා","expected_route":"human_escalation","relevant_sources":[]}
+{"id":"ta-loans-1","language":"tamil","category":"loans","institution":"People's Bank Sri Lanka","query":"பஹசு கடனுக்கு யார் தகுதியானவர்?","expected_route":"rag_draft","relevant_sources":["SRC-LOAN-001"]}
+{"id":"singlish-accounts-1","language":"singlish","category":"accounts","institution":"Commercial Bank of Ceylon PLC","query":"regular savings account eka open karanna ona documents monawada?","expected_route":"rag_draft","relevant_sources":["SRC-ACC-001"]}
+{"id":"tamilish-action-1","language":"tamilish","category":"transfers","institution":"Commercial Bank of Ceylon PLC","query":"naan panna transfer ah cancel panna venum","expected_route":"human_escalation","relevant_sources":[]}
