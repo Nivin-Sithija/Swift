@@ -1,6 +1,6 @@
 import { Eye, EyeOff, LoaderCircle, LockKeyhole, ShieldCheck } from "lucide-react";
 import { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -13,6 +13,7 @@ import {
 import type { UserRole } from "../types";
 import { useLanguage } from "../app/providers/LanguageProvider";
 import { isMockMode } from "../lib/config";
+import { AuthAccountPrompt } from "../components/auth/AuthAccountPrompt";
 
 const schema = z.object({
   email: z.email("Enter a valid email address"),
@@ -20,12 +21,12 @@ const schema = z.object({
   remember: z.boolean(),
 });
 type FormData = z.infer<typeof schema>;
-export function LoginPage() {
+export function LoginPage({ staffOnly = false }: { staffOnly?: boolean }) {
   const { tr } = useLanguage();
   const mockMode = isMockMode();
   const { user, login } = useAuth();
   const navigate = useNavigate();
-  const [role, setRole] = useState<UserRole>("customer");
+  const [role, setRole] = useState<UserRole>(staffOnly ? "agent" : "customer");
   const [show, setShow] = useState(false);
   const [serverError, setServerError] = useState("");
   const {
@@ -88,23 +89,13 @@ export function LoginPage() {
           <span className="mobile-logo">
             <Logo />
           </span>
-          <h2>{tr("Welcome to Swift")}</h2>
-          <p>Sign in to continue to your secure support workspace.</p>
-          <div
+          <h2>{staffOnly ? "Staff sign in" : tr("Welcome to Swift")}</h2>
+          <p>{staffOnly ? "Sign in to your authorised staff workspace." : "Sign in to continue to your secure support workspace."}</p>
+          {staffOnly && <div
             className="role-tabs"
             role="tablist"
-            aria-label="Select account type"
+            aria-label="Select staff account type"
           >
-            <button
-              role="tab"
-              aria-selected={role === "customer"}
-              onClick={() => {
-                setRole("customer");
-                setServerError("");
-              }}
-            >
-              {tr("Customer")}
-            </button>
             <button
               role="tab"
               aria-selected={role === "agent"}
@@ -115,19 +106,17 @@ export function LoginPage() {
             >
               {tr("Support agent")}
             </button>
-            {mockMode && (
-              <button
-                role="tab"
-                aria-selected={role === "administrator"}
-                onClick={() => {
-                  setRole("administrator");
-                  setServerError("");
-                }}
-              >
-                Administrator
-              </button>
-            )}
-          </div>
+            <button
+              role="tab"
+              aria-selected={role === "administrator"}
+              onClick={() => {
+                setRole("administrator");
+                setServerError("");
+              }}
+            >
+              Administrator
+            </button>
+          </div>}
           <form
             onSubmit={handleSubmit(async (data) => {
               try {
@@ -222,9 +211,7 @@ export function LoginPage() {
               Mock mode · Demo password: <code>password123</code>
             </p>
           )}
-          <p className="demo-hint">
-            New to Swift? <Link className="link-button" to={`/register?role=${role}`}>Create an account</Link>
-          </p>
+          <AuthAccountPrompt view="login" role={role} />
         </div>
       </section>
     </main>
