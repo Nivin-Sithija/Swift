@@ -17,6 +17,21 @@ import { delay } from "../lib/utils";
 import { CURRENT_AGENT } from "../lib/constants";
 
 const tickets = structuredClone(mockTickets);
+const MOCK_ACCOUNTS_KEY = "swift-mock-accounts";
+export const MOCK_AGENT_REGISTRATION_CODE = "SWIFT-AGENT-2026";
+
+type MockAccount = User & { password: string };
+
+const readMockAccounts = (): MockAccount[] => {
+  try {
+    return JSON.parse(localStorage.getItem(MOCK_ACCOUNTS_KEY) || "[]") as MockAccount[];
+  } catch {
+    return [];
+  }
+};
+
+const writeMockAccounts = (accounts: MockAccount[]) =>
+  localStorage.setItem(MOCK_ACCOUNTS_KEY, JSON.stringify(accounts));
 
 /** Neighbouring ticket ids in queue order, for the detail page's prev/next control. */
 export interface AdjacentTickets {
@@ -70,6 +85,7 @@ export interface TicketService {
 export const mockTicketService: TicketService = {
   async login(email, password, role) {
     await delay(500);
+    const normalizedEmail = email.trim().toLowerCase();
     if (email === "admin@swift.demo" && password === "password123")
       return {
         id: "admin-1",
@@ -77,9 +93,18 @@ export const mockTicketService: TicketService = {
         email,
         role: "administrator",
       };
+    const registered = readMockAccounts().find(
+      (account) => account.email.toLowerCase() === normalizedEmail,
+    );
+    if (registered) {
+      if (registered.password !== password || registered.role !== role)
+        throw new Error("Invalid email or password");
+      const { password: _password, ...user } = registered;
+      return user;
+    }
     const expected =
       role === "agent" ? "agent@swift.demo" : "customer@swift.demo";
-    if (email !== expected || password !== "password123")
+    if (normalizedEmail !== expected || password !== "password123")
       throw new Error("Invalid email or password");
     return role === "agent"
       ? { id: "agent-1", name: CURRENT_AGENT, email, role }
@@ -87,12 +112,23 @@ export const mockTicketService: TicketService = {
   },
   async register(input) {
     await delay(500);
-    return {
+    const email = input.email.trim().toLowerCase();
+    const accounts = readMockAccounts();
+    const reservedEmails = ["admin@swift.demo", "agent@swift.demo", "customer@swift.demo"];
+    if (reservedEmails.includes(email) || accounts.some((account) => account.email === email))
+      throw new Error("An account with this email already exists");
+    if (input.role === "agent" && input.agentCode !== MOCK_AGENT_REGISTRATION_CODE)
+      throw new Error("Invalid support-agent registration code");
+    const account: MockAccount = {
       id: crypto.randomUUID(),
       name: input.name,
-      email: input.email,
+      email,
       role: input.role,
+      password: input.password,
     };
+    writeMockAccounts([...accounts, account]);
+    const { password: _password, ...user } = account;
+    return user;
   },
   async logout() {
     await delay(100);
