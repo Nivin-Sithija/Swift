@@ -456,25 +456,12 @@ export const restTicketService: TicketService = {
       body: JSON.stringify({ values }),
     });
   },
-  async generateRagDraft(ticket, institution) {
-    const language =
-      ticket.language === "tanglish"
-        ? "tamilish"
-        : ticket.language === "mixed"
-          ? ticket.preferredResponseLanguage
-          : ticket.language;
+  async getCustomerTicketAssistance(ticketId) {
     const result = await request<Record<string, unknown>>(
-      "/consumer-assistance/drafts",
+      `/tickets/${ticketId}/assistance`,
       {
         method: "POST",
-        body: JSON.stringify({
-        query: ticket.message,
-        institution,
-        language,
-        intent: ticket.category.value,
-          sentiment: ticket.sentiment.value,
-          priority: ticket.priority.value,
-        }),
+        body: "{}",
       },
     );
     return {
