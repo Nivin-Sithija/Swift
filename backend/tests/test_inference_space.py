@@ -1,3 +1,5 @@
+import asyncio
+
 import httpx
 import pytest
 
@@ -70,3 +72,18 @@ async def test_remote_space_failure_routes_to_manual_review(monkeypatch) -> None
     assert category.value == "unknown"
     assert category.confidence == 0.0
     assert category.model_version == "huggingface-space-unavailable"
+
+
+@pytest.mark.asyncio
+async def test_slow_remote_inference_does_not_block_ticket_submission(monkeypatch) -> None:
+    async def slow_prediction(_text: str):
+        await asyncio.sleep(1)
+
+    monkeypatch.setattr(services, "classify_intent_with_space", slow_prediction)
+    monkeypatch.setattr(services.settings, "ticket_submission_inference_timeout_seconds", 0.01)
+
+    category, _, _ = await services.classify("A normal customer message")
+
+    assert category.value == "unknown"
+    assert category.confidence == 0.0
+    assert category.model_version == "huggingface-space-timeout"
