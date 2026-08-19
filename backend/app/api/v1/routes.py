@@ -425,7 +425,7 @@ async def process_ticket_record(db: AsyncSession, ticket: Ticket, is_ocr: bool =
     job = ProcessingJob(ticket_id=ticket.id, job_type="ticket_analysis", status=JobStatus.running)
     db.add(job)
     language = detect_language(ticket.original_text)
-    intent, priority, sentiment = classify(ticket.original_text, is_ocr)
+    intent, priority, sentiment = await classify(ticket.original_text, is_ocr)
     for task, result in (
         (PredictionTask.language, language),
         (PredictionTask.category, intent),
