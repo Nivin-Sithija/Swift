@@ -1,4 +1,4 @@
-import { ArrowRight, RotateCcw, ShieldCheck } from "lucide-react";
+import { ArrowRight, Plus, RotateCcw, ShieldCheck, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +8,7 @@ import { ticketService } from "../../services/serviceSelector";
 import type { Ticket } from "../../types";
 import { PageHeader } from "../../components/layout/Layouts";
 import { ImageUploader } from "../../components/tickets/ImageUploader";
+import { CustomerTicketGallery } from "./CustomerTicketsPage";
 import {
   ProcessingStepper,
   PriorityBadge,
@@ -43,14 +44,19 @@ const steps = [
   "Processing image evidence",
   "Creating ticket",
 ];
+const textOnlySteps = steps.filter(
+  (step) => step !== "Processing image evidence",
+);
 export function SubmitTicketPage() {
   const { tr } = useLanguage();
   const [file, setFile] = useState<File | null>(null);
+  const [showUploader, setShowUploader] = useState(false);
   const [placeholder, setPlaceholder] = useState(0);
   const [processing, setProcessing] = useState(-1);
   const [confirmation, setConfirmation] = useState(false);
   const [createdTicket, setCreatedTicket] = useState<Ticket | null>(null);
   const [submitError, setSubmitError] = useState("");
+  const [galleryRefresh, setGalleryRefresh] = useState(0);
   const {
     register,
     handleSubmit,
@@ -69,6 +75,7 @@ export function SubmitTicketPage() {
   const subject = watch("subject");
   const description = watch("description");
   const processingActive = processing >= 0;
+  const processingSteps = file ? steps : textOnlySteps;
   useEffect(() => {
     const id = setInterval(
       () => setPlaceholder((p) => (p + 1) % placeholders.length),
@@ -79,11 +86,14 @@ export function SubmitTicketPage() {
   useEffect(() => {
     if (!processingActive) return;
     const id = window.setInterval(
-      () => setProcessing((current) => Math.min(current + 1, steps.length - 2)),
+      () =>
+        setProcessing((current) =>
+          Math.min(current + 1, processingSteps.length - 2),
+        ),
       550,
     );
     return () => window.clearInterval(id);
-  }, [processingActive]);
+  }, [processingActive, processingSteps.length]);
   const submit = async (data: Data) => {
     setSubmitError("");
     setProcessing(0);
@@ -97,71 +107,94 @@ export function SubmitTicketPage() {
           })
         : null;
       setCreatedTicket(created);
+      setGalleryRefresh((value) => value + 1);
       setConfirmation(true);
     } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : "Ticket submission failed");
+      setSubmitError(
+        error instanceof Error ? error.message : "Ticket submission failed",
+      );
     } finally {
       setProcessing(-1);
     }
   };
   if (confirmation)
     return (
-      <div className="narrow-page confirmation">
-        <div className="success-icon">
-          <ShieldCheck />
+      <>
+        <PageHeader
+          eyebrow={tr("Customer support")}
+          title={tr("How can we help?")}
+          description="Submit a request and track all your tickets in one place."
+        />
+        <div className="customer-workspace-grid">
+          <div className="card confirmation workspace-confirmation">
+            <div className="success-icon">
+              <ShieldCheck />
+            </div>
+            <span className="eyebrow">Ticket created successfully</span>
+            <h1>Your request is safely on its way.</h1>
+            <p>
+              We preserved your original message and prepared advisory
+              classifications for the support team.
+            </p>
+            <div className="confirmation-card">
+              <div>
+                <span>Ticket ID</span>
+                <strong>{createdTicket?.id || "SW-2026-1043"}</strong>
+              </div>
+              <div>
+                <span>Submitted</span>
+                <strong>{formatDate(new Date().toISOString())}</strong>
+              </div>
+              <div>
+                <span>{tr("Language")}</span>
+                <strong>{createdTicket?.language || "Pending analysis"}</strong>
+              </div>
+              <div>
+                <span>{tr("Category")}</span>
+                <strong>
+                  {createdTicket?.category.value || "Pending analysis"}
+                </strong>
+              </div>
+              <div>
+                <span>{tr("Priority")}</span>
+                <PriorityBadge
+                  value={createdTicket?.priority.value || "medium"}
+                />
+              </div>
+              <div>
+                <span>{tr("Status")}</span>
+                <StatusBadge value={createdTicket?.status || "new"} />
+              </div>
+              <div>
+                <span>Image processing</span>
+                <strong>
+                  {file ? "Evidence queued" : "No image attached"}
+                </strong>
+              </div>
+            </div>
+            <div className="confirmation-actions">
+              <Link
+                className="btn"
+                to={`/customer/tickets/${createdTicket?.id || "SW-2026-1042"}`}
+              >
+                {tr("View ticket")} <ArrowRight />
+              </Link>
+              <button
+                className="btn secondary"
+                onClick={() => {
+                  setConfirmation(false);
+                  reset();
+                  setFile(null);
+                  setShowUploader(false);
+                }}
+              >
+                {tr("Submit another ticket")}
+              </button>
+            </div>
+          </div>
+          <CustomerTicketGallery refreshKey={galleryRefresh} />
         </div>
-        <span className="eyebrow">Ticket created successfully</span>
-        <h1>Your request is safely on its way.</h1>
-        <p>
-          We preserved your original message and prepared advisory
-          classifications for the support team.
-        </p>
-        <div className="confirmation-card">
-          <div>
-            <span>Ticket ID</span>
-            <strong>{createdTicket?.id || "SW-2026-1043"}</strong>
-          </div>
-          <div>
-            <span>Submitted</span>
-            <strong>{formatDate(new Date().toISOString())}</strong>
-          </div>
-          <div>
-            <span>{tr("Language")}</span>
-            <strong>{createdTicket?.language || "Pending analysis"}</strong>
-          </div>
-          <div>
-            <span>{tr("Category")}</span>
-            <strong>{createdTicket?.category.value || "Pending analysis"}</strong>
-          </div>
-          <div>
-            <span>{tr("Priority")}</span>
-            <PriorityBadge value={createdTicket?.priority.value || "medium"} />
-          </div>
-          <div>
-            <span>{tr("Status")}</span>
-            <StatusBadge value={createdTicket?.status || "new"} />
-          </div>
-          <div>
-            <span>Image processing</span>
-            <strong>{file ? "Evidence queued" : "No image attached"}</strong>
-          </div>
-        </div>
-        <div className="confirmation-actions">
-          <Link className="btn" to={`/customer/tickets/${createdTicket?.id || "SW-2026-1042"}`}>
-            {tr("View ticket")} <ArrowRight />
-          </Link>
-          <button
-            className="btn secondary"
-            onClick={() => {
-              setConfirmation(false);
-              reset();
-              setFile(null);
-            }}
-          >
-            {tr("Submit another ticket")}
-          </button>
-        </div>
-      </div>
+      </>
     );
   return (
     <>
@@ -170,19 +203,16 @@ export function SubmitTicketPage() {
         title={tr("How can we help?")}
         description="Write naturally in English, සිංහල, தமிழ், Singlish, Tanglish, or a mix. Your original wording is always preserved."
       />
-      <div className="submit-grid">
+      <div className="customer-workspace-grid">
         <form
-          className="card form-card"
+          className="card form-card customer-ticket-form"
           onSubmit={handleSubmit(submit)}
           noValidate
         >
-          <div className="section-heading">
-            <span>1</span>
-            <div>
-              <h2>{tr("Tell us what happened")}</h2>
-              <p>Do not include passwords, PINs or full card numbers.</p>
-            </div>
-          </div>
+          <h2>{tr("Tell us what happened")}</h2>
+          <p className="form-intro">
+            Do not include passwords, PINs or full card numbers.
+          </p>
           <label>
             {tr("Subject")} <span className="required">*</span>
             <input
@@ -228,24 +258,24 @@ export function SubmitTicketPage() {
               <option value="tamil">தமிழ்</option>
             </select>
           </label>
-          <label>
-            {tr("Category selection")}
-            <input value={tr("Let the system detect")} disabled />
-            <small>Agents can review and correct advisory predictions.</small>
-          </label>
-          <div className="section-heading">
-            <span>2</span>
+          <div className="compact-attachment">
             <div>
-              <h2>
-                {tr("Add image evidence")} <em>{tr("Optional")}</em>
-              </h2>
-              <p>
-                A screenshot, receipt, transaction slip or error screen can
-                help.
-              </p>
+              <strong>{tr("Add image evidence")}</strong>
+              <small>{file ? file.name : tr("Optional")}</small>
             </div>
+            <button
+              className="icon-btn attachment-toggle"
+              type="button"
+              onClick={() => setShowUploader((visible) => !visible)}
+              aria-label={
+                showUploader ? "Close image uploader" : "Add image evidence"
+              }
+              aria-expanded={showUploader}
+            >
+              {showUploader ? <X /> : <Plus />}
+            </button>
           </div>
-          <ImageUploader value={file} onChange={setFile} />
+          {showUploader && <ImageUploader value={file} onChange={setFile} />}
           <label className="checkbox terms">
             <input type="checkbox" {...register("terms")} />
             <span>
@@ -264,34 +294,19 @@ export function SubmitTicketPage() {
               onClick={() => {
                 reset();
                 setFile(null);
+                setShowUploader(false);
               }}
             >
               <RotateCcw />
               {tr("Clear")}
             </button>
             <button className="btn" disabled={processingActive}>
-              {processingActive ? "Submitting…" : tr("Submit ticket")} <ArrowRight />
+              {processingActive ? "Submitting…" : tr("Submit ticket")}{" "}
+              <ArrowRight />
             </button>
           </div>
         </form>
-        <aside className="support-aside">
-          <div className="card">
-            <h3>{tr("Before you submit")}</h3>
-            <ul className="check-list">
-              <li>Describe what you expected to happen.</li>
-              <li>Include an approximate date or reference if safe.</li>
-              <li>Attach only relevant, redacted evidence.</li>
-            </ul>
-          </div>
-          <div className="card subtle">
-            <ShieldCheck />
-            <h3>{tr("Human review is built in")}</h3>
-            <p>
-              Automated analysis helps route your request. An authorised support
-              agent reviews responses before approval.
-            </p>
-          </div>
-        </aside>
+        <CustomerTicketGallery refreshKey={galleryRefresh} />
       </div>
       {processing >= 0 && (
         <div className="processing-overlay">
@@ -302,7 +317,7 @@ export function SubmitTicketPage() {
               Please keep this window open. No real banking systems are
               contacted.
             </p>
-            <ProcessingStepper current={processing} steps={steps} />
+            <ProcessingStepper current={processing} steps={processingSteps} />
           </div>
         </div>
       )}
