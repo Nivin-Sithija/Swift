@@ -1,4 +1,4 @@
-export type UserRole = "customer" | "agent";
+export type UserRole = "customer" | "agent" | "administrator";
 export type SupportedLanguage =
   "english" | "sinhala" | "tamil" | "singlish" | "tanglish" | "mixed";
 export type TicketPriority = "low" | "medium" | "high" | "critical";
@@ -114,12 +114,71 @@ export interface DashboardMetrics {
   resolvedToday: number;
   averageFirstResponse: string;
   lowConfidence: number;
+  categoryDistribution: Array<{ label: string; count: number }>;
+  languageDistribution: Array<{ label: string; count: number }>;
+  weeklyVolume: Array<{ date: string; count: number }>;
 }
+export interface AdminDashboardMetrics {
+  customers: number;
+  agents: number;
+  administrators: number;
+  activeSessions: number;
+  openTickets: number;
+  supportQueues: number;
+  auditEvents: number;
+  recentUsers: Array<User & { isActive: boolean; createdAt: string }>;
+}
+export type AdminUserRecord = User & { isActive: boolean; createdAt: string };
+export type AdminQueue = {
+  id: string;
+  name: string;
+  description?: string;
+  isActive: boolean;
+  ticketCount: number;
+};
+export type AdminAudit = {
+  id: string;
+  actor: string;
+  action: string;
+  entityType: string;
+  entityId: string;
+  detail?: string;
+  createdAt: string;
+};
+export type AdminSetting = {
+  key: string;
+  value: string;
+  valueType: string;
+  description: string;
+  updatedAt: string;
+};
 export interface TicketSubmission {
   subject: string;
   message: string;
   preferredResponseLanguage: "english" | "sinhala" | "tamil";
   attachment?: File | null;
+}
+export interface RagCitation {
+  marker: string;
+  sourceId: string;
+  title: string;
+  institution: string;
+  url: string;
+  version: string;
+  reviewDate: string;
+  chunkIds: string[];
+}
+export interface RagAssistanceResult {
+  route: "rag_draft" | "human_escalation";
+  originalQuery: string;
+  normalizedQuery: string;
+  language: string;
+  draft: string | null;
+  citations: RagCitation[];
+  confidence: number;
+  escalationReason: string | null;
+  approvalRequired: boolean;
+  provider: string | null;
 }
 export interface FilterState {
   search: string;

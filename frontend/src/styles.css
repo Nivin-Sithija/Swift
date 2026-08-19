@@ -558,8 +558,13 @@ small {
   background: var(--panel);
   color: var(--text);
 }
-.dark .select-compact select { color-scheme: dark; }
-.dark .select-compact select option { background: #212120; color: #f5f3ef; }
+.dark .select-compact select {
+  color-scheme: dark;
+}
+.dark .select-compact select option {
+  background: #212120;
+  color: #f5f3ef;
+}
 .nav-tools {
   display: flex;
   align-items: center;
@@ -584,7 +589,9 @@ small {
   justify-content: space-between;
 }
 .agent-main {
+  width: 0;
   min-width: 0;
+  overflow-x: hidden;
 }
 .agent-top {
   height: 68px;
@@ -602,6 +609,9 @@ small {
   margin-left: auto;
 }
 .agent-page {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   padding: 2rem;
   max-width: 1600px;
   margin: 0 auto;
@@ -973,6 +983,29 @@ textarea {
 .spin {
   animation: spin 1s linear infinite;
 }
+.inline-loading,
+.page-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.inline-loading svg {
+  width: 18px;
+  height: 18px;
+}
+.page-loading {
+  min-height: 100vh;
+  flex-direction: column;
+  background: var(--background);
+}
+.page-loading svg {
+  width: 34px;
+  height: 34px;
+  color: var(--primary);
+}
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -1051,7 +1084,32 @@ textarea {
   background: none;
 }
 .table-wrap {
+  width: 100%;
+  max-width: 100%;
   overflow: auto;
+}
+
+.list-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.ticket-table-link {
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ticket-table-link:hover,
+.ticket-table-link:focus-visible {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.compact-queue table th,
+.compact-queue table td {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 table {
   border-collapse: collapse;
@@ -1213,9 +1271,39 @@ td strong {
   background: var(--panel-2);
   animation: pulse 1.5s ease-in-out infinite;
 }
+.table-loading td {
+  height: 58px;
+}
+.table-cell-skeleton {
+  display: block;
+  height: 0.8rem;
+  min-width: 24px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--panel-2) 25%,
+    var(--surface-hover) 50%,
+    var(--panel-2) 75%
+  );
+  background-size: 200% 100%;
+  animation: table-shimmer 1.35s ease-in-out infinite;
+}
+@keyframes table-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
 @keyframes pulse {
   50% {
     opacity: 0.5;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spin,
+  .skeleton,
+  .table-cell-skeleton {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
   }
 }
 .empty {
@@ -1693,6 +1781,90 @@ dd {
 }
 .prominent {
   font-size: 0.9rem;
+}
+.rag-draft-card .muted-copy {
+  color: var(--muted);
+  margin-top: 0;
+}
+.rag-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.8rem;
+  align-items: end;
+}
+.rag-controls label {
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+.rag-controls .btn {
+  margin-bottom: 0;
+}
+.rag-result {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.rag-result.grounded {
+  border-color: color-mix(in srgb, var(--success) 45%, var(--border));
+  background: color-mix(in srgb, var(--success) 7%, var(--panel));
+}
+.rag-result.escalated {
+  border-color: color-mix(in srgb, var(--danger) 45%, var(--border));
+  background: color-mix(in srgb, var(--danger) 7%, var(--panel));
+}
+.rag-result-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.rag-result-summary span,
+.rag-result > small,
+.rag-citations small {
+  color: var(--muted);
+}
+.rag-citations {
+  margin: 1rem 0;
+}
+.rag-citations h3 {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.rag-citations a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.2rem 0.7rem;
+  padding: 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: inherit;
+  text-decoration: none;
+}
+.rag-citations a:hover {
+  border-color: var(--primary);
+}
+.rag-citations a small {
+  grid-column: 1;
+}
+.rag-citations svg {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 16px;
+}
+.error-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--danger);
+  margin-top: 1rem;
+}
+@media (max-width: 680px) {
+  .rag-controls {
+    grid-template-columns: 1fr;
+  }
+  .rag-result-summary {
+    flex-direction: column;
+  }
 }
 .editor-toolbar {
   display: flex;

@@ -34,9 +34,18 @@ CurrentUser = Annotated[User, Depends(current_user)]
 
 
 def staff(user: CurrentUser) -> User:
-    if user.role not in {UserRole.agent, UserRole.supervisor, UserRole.administrator}:
+    if user.role not in {UserRole.agent, UserRole.administrator}:
         raise HTTPException(403, "Staff access required")
     return user
 
 
 StaffUser = Annotated[User, Depends(staff)]
+
+
+def administrator(user: CurrentUser) -> User:
+    if user.role != UserRole.administrator:
+        raise HTTPException(403, "Administrator access required")
+    return user
+
+
+AdministratorUser = Annotated[User, Depends(administrator)]
