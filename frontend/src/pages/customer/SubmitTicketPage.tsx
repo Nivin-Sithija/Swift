@@ -43,6 +43,7 @@ const steps = [
   "Processing image evidence",
   "Creating ticket",
 ];
+const textOnlySteps = steps.filter((step) => step !== "Processing image evidence");
 export function SubmitTicketPage() {
   const { tr } = useLanguage();
   const [file, setFile] = useState<File | null>(null);
@@ -69,6 +70,7 @@ export function SubmitTicketPage() {
   const subject = watch("subject");
   const description = watch("description");
   const processingActive = processing >= 0;
+  const processingSteps = file ? steps : textOnlySteps;
   useEffect(() => {
     const id = setInterval(
       () => setPlaceholder((p) => (p + 1) % placeholders.length),
@@ -79,11 +81,14 @@ export function SubmitTicketPage() {
   useEffect(() => {
     if (!processingActive) return;
     const id = window.setInterval(
-      () => setProcessing((current) => Math.min(current + 1, steps.length - 2)),
+      () =>
+        setProcessing((current) =>
+          Math.min(current + 1, processingSteps.length - 2),
+        ),
       550,
     );
     return () => window.clearInterval(id);
-  }, [processingActive]);
+  }, [processingActive, processingSteps.length]);
   const submit = async (data: Data) => {
     setSubmitError("");
     setProcessing(0);
@@ -302,7 +307,7 @@ export function SubmitTicketPage() {
               Please keep this window open. No real banking systems are
               contacted.
             </p>
-            <ProcessingStepper current={processing} steps={steps} />
+            <ProcessingStepper current={processing} steps={processingSteps} />
           </div>
         </div>
       )}
