@@ -1,11 +1,14 @@
 import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
 import type { UserRole } from "../../types";
-import { AdministratorLayout, AgentLayout, CustomerLayout } from "../../components/layout/Layouts";
+import {
+  AdministratorLayout,
+  AgentLayout,
+  CustomerLayout,
+} from "../../components/layout/Layouts";
 import { LoginPage } from "../../pages/LoginPage";
 import { RegisterPage } from "../../pages/RegisterPage";
 import { SubmitTicketPage } from "../../pages/customer/SubmitTicketPage";
-import { CustomerTicketsPage } from "../../pages/customer/CustomerTicketsPage";
 import { CustomerTicketDetailPage } from "../../pages/customer/CustomerTicketDetailPage";
 import { AgentDashboardPage } from "../../pages/agent/AgentDashboardPage";
 import { AgentQueuePage } from "../../pages/agent/AgentQueuePage";
@@ -14,25 +17,36 @@ import { AgentReportsPage } from "../../pages/agent/AgentReportsPage";
 import { AgentSettingsPage } from "../../pages/agent/AgentSettingsPage";
 import { NotFoundPage } from "../../pages/UtilityPages";
 import { AdminDashboardPage } from "../../pages/admin/AdminDashboardPage";
-import { AdminAuditPage, AdminQueuesPage, AdminSettingsPage, AdminUsersPage } from "../../pages/admin/AdminManagementPages";
+import {
+  AdminAuditPage,
+  AdminQueuesPage,
+  AdminSettingsPage,
+  AdminUsersPage,
+} from "../../pages/admin/AdminManagementPages";
 import { LoadingSpinner } from "../../components/tickets/TicketComponents";
 
 const homeForRole = (role: UserRole) =>
-  role === "administrator" ? "/admin/dashboard" : role === "agent" ? "/agent/dashboard" : "/customer/submit";
+  role === "administrator"
+    ? "/admin/dashboard"
+    : role === "agent"
+      ? "/agent/dashboard"
+      : "/customer/submit";
 
 function ProtectedRoute({ role }: { role: UserRole }) {
   const { user, restoring } = useAuth();
   const location = useLocation();
-  if (restoring) return <LoadingSpinner label="Restoring your secure session…" fullPage />;
+  if (restoring)
+    return <LoadingSpinner label="Restoring your secure session…" fullPage />;
   if (!user)
-    return <Navigate to={role === "customer" ? "/login" : "/admin/login"} replace state={{ from: location.pathname }} />;
-  if (user.role !== role)
     return (
       <Navigate
-        to={homeForRole(user.role)}
+        to={role === "customer" ? "/login" : "/admin/login"}
         replace
+        state={{ from: location.pathname }}
       />
     );
+  if (user.role !== role)
+    return <Navigate to={homeForRole(user.role)} replace />;
   return <Outlet />;
 }
 export function AppRoutes() {
@@ -45,7 +59,10 @@ export function AppRoutes() {
       <Route element={<ProtectedRoute role="customer" />}>
         <Route element={<CustomerLayout />}>
           <Route path="/customer/submit" element={<SubmitTicketPage />} />
-          <Route path="/customer/tickets" element={<CustomerTicketsPage />} />
+          <Route
+            path="/customer/tickets"
+            element={<Navigate to="/customer/submit" replace />}
+          />
           <Route
             path="/customer/tickets/:ticketId"
             element={<CustomerTicketDetailPage />}
@@ -72,14 +89,8 @@ export function AppRoutes() {
             path="/agent/resolved"
             element={<AgentQueuePage mode="resolved" />}
           />
-          <Route
-            path="/agent/reports"
-            element={<AgentReportsPage />}
-          />
-          <Route
-            path="/agent/settings"
-            element={<AgentSettingsPage />}
-          />
+          <Route path="/agent/reports" element={<AgentReportsPage />} />
+          <Route path="/agent/settings" element={<AgentSettingsPage />} />
         </Route>
       </Route>
       <Route element={<ProtectedRoute role="administrator" />}>
