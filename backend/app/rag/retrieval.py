@@ -54,9 +54,6 @@ class PostgresHybridRetriever:
         ]
         fused = reciprocal_rank_fusion([dense, *lexical_rankings], limit=self.candidate_limit)
         reranked = (await self.reranker.rerank(context.normalized_query, fused))[: self.final_limit]
-        bank_institutions = {item.institution for item in reranked if item.source_authority == "bank_official"}
-        if context.institution is None and len(bank_institutions) > 1:
-            return RetrievalResult([], 0.0, {"reason": "ambiguous_institution", "institutions": len(bank_institutions)})
         expanded = await self._expand_neighbors(reranked)
         confidence = evidence_confidence(reranked)
         return RetrievalResult(

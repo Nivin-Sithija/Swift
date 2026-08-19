@@ -1,5 +1,5 @@
 import { LoaderCircle, LockKeyhole, ShieldCheck, UserPlus } from "lucide-react";
-import { Navigate, Link, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -8,6 +8,7 @@ import { useAuth } from "../app/providers/AuthProvider";
 import { useLanguage } from "../app/providers/LanguageProvider";
 import { LanguageSelector, Logo, ThemeSwitcher } from "../components/common/Controls";
 import type { UserRole } from "../types";
+import { AuthAccountPrompt } from "../components/auth/AuthAccountPrompt";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Enter your full name").max(150),
@@ -24,7 +25,10 @@ export function RegisterPage() {
   const { user, register: createAccount } = useAuth();
   const { language } = useLanguage();
   const navigate = useNavigate();
-  const [role, setRole] = useState<UserRole>("customer");
+  const [searchParams] = useSearchParams();
+  const [role, setRole] = useState<UserRole>(() =>
+    searchParams.get("role") === "agent" ? "agent" : "customer",
+  );
   const [serverError, setServerError] = useState("");
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -71,7 +75,7 @@ export function RegisterPage() {
             {serverError && <div className="form-error" role="alert">{serverError}</div>}
             <button className="btn wide" disabled={isSubmitting}>{isSubmitting ? <LoaderCircle className="spin" aria-hidden="true" /> : <UserPlus />}{isSubmitting ? "Creating account…" : "Create account"}</button>
           </form>
-          <p className="demo-hint">Already registered? <Link className="link-button" to="/login">Sign in</Link></p>
+          <AuthAccountPrompt view="register" role={role} />
         </div>
       </section>
     </main>

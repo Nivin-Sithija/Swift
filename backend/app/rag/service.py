@@ -24,7 +24,7 @@ class AssistanceResult:
     citations: list[Citation]
     confidence: float
     escalation_reason: str | None
-    approval_required: bool = True
+    approval_required: bool = False
     provider: str | None = None
 
 
