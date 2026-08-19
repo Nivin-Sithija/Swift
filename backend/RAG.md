@@ -1,8 +1,8 @@
 # Consumer banking RAG
 
-The RAG subsystem is isolated under `app/rag`. It creates drafts for authenticated support staff;
-it never approves or sends responses. Existing ticket classification, OCR/attachment handling, and
-response approval remain unchanged.
+The RAG subsystem is isolated under `app/rag`. It gives an authenticated customer a grounded,
+customer-safe answer derived from that customer's own ticket. Staff cannot call the assistance
+endpoint. Existing ticket classification and OCR/attachment handling remain unchanged.
 
 ## Flow
 
@@ -11,11 +11,12 @@ response approval remain unchanged.
 The RAG path conservatively normalizes the query while retaining the original, performs BGE-M3
 dense and PostgreSQL full-text retrieval over approved/current sources, combines rankings with RRF,
 uses FlashRank, expands selected chunks by one neighbor, computes evidence confidence, calls Groq
-with Gemini fallback, validates grounding/citations, and returns an agent-approval-required draft.
+with Gemini fallback, validates grounding/citations, and returns customer-visible policy guidance.
 
-Bank-specific retrieval must include `institution`. When it is omitted and candidates contain more
-than one bank, the request is escalated as ambiguous. CBSL material is marked separately from bank
-policy. Only `approved` sources within the configured review age are eligible.
+Retrieval searches relevant approved sources regardless of institution. Every citation retains its
+institution, and the generation prompt prohibits mixing distinct bank policies into unsupported
+claims. CBSL material is marked separately from bank policy. Only `approved` sources within the
+configured review age are eligible.
 The manifest checksum is verified against the immutable raw capture (matching the existing cleaner's
 contract); chunks are built only from its corresponding cleaned Markdown.
 
@@ -32,7 +33,8 @@ uvicorn app.main:app --reload
 ```
 
 Or run `docker compose up --build`, then execute ingestion inside the API container. The API is
-`POST /api/v1/consumer-assistance/drafts` and requires an agent/administrator bearer token.
+`POST /api/v1/tickets/{ticket_id}/assistance` requires the owning customer's bearer token. The
+server obtains the full query and classification context from the ticket; clients send no RAG input.
 
 Required generation configuration (never commit values):
 
