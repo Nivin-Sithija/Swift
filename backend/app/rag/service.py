@@ -34,7 +34,8 @@ class ConsumerRAGService:
 
     async def assist(self, *, query: str, institution: str | None, category: str | None = None,
                      language: str | None = None, intent: str | None = None,
-                     sentiment: str | None = None, priority: str | None = None) -> AssistanceResult:
+                     sentiment: str | None = None, priority: str | None = None,
+                     ticket_context: str | None = None) -> AssistanceResult:
         detected = detect_consumer_language(query)
         if language:
             detected = type(detected)(language)
@@ -45,7 +46,7 @@ class ConsumerRAGService:
         retrieval = await self.retriever.retrieve(context)
         if not retrieval.evidence:
             return self._escalation(context, "low_evidence_confidence", retrieval.confidence)
-        system, user = build_prompt(context, retrieval.evidence)
+        system, user = build_prompt(context, retrieval.evidence, ticket_context=ticket_context)
         try:
             answer = await self.llm.generate(system=system, user=user)
         except ProviderError:
