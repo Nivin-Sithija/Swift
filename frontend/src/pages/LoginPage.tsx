@@ -223,7 +223,7 @@ export function LoginPage() {
             </p>
           )}
           <p className="demo-hint">
-            New to Swift? <Link className="link-button" to="/register">Create an account</Link>
+            New to Swift? <Link className="link-button" to={`/register?role=${role}`}>Create an account</Link>
           </p>
         </div>
       </section>
