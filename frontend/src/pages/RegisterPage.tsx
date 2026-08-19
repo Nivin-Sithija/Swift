@@ -1,5 +1,5 @@
 import { LoaderCircle, LockKeyhole, ShieldCheck, UserPlus } from "lucide-react";
-import { Navigate, Link, useNavigate } from "react-router-dom";
+import { Navigate, Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -8,6 +8,8 @@ import { useAuth } from "../app/providers/AuthProvider";
 import { useLanguage } from "../app/providers/LanguageProvider";
 import { LanguageSelector, Logo, ThemeSwitcher } from "../components/common/Controls";
 import type { UserRole } from "../types";
+import { MOCK_AGENT_REGISTRATION_CODE } from "../services/ticketService";
+import { isMockMode } from "../lib/config";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Enter your full name").max(150),
@@ -24,7 +26,11 @@ export function RegisterPage() {
   const { user, register: createAccount } = useAuth();
   const { language } = useLanguage();
   const navigate = useNavigate();
-  const [role, setRole] = useState<UserRole>("customer");
+  const [searchParams] = useSearchParams();
+  const mockMode = isMockMode();
+  const [role, setRole] = useState<UserRole>(() =>
+    searchParams.get("role") === "agent" ? "agent" : "customer",
+  );
   const [serverError, setServerError] = useState("");
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -67,7 +73,7 @@ export function RegisterPage() {
             <label>Email address<input autoComplete="email" {...register("email")} placeholder="you@example.com" />{errors.email && <small className="field-error">{errors.email.message}</small>}</label>
             <label>Password<input type="password" autoComplete="new-password" {...register("password")} placeholder="At least 8 characters" />{errors.password && <small className="field-error">{errors.password.message}</small>}</label>
             <label>Confirm password<input type="password" autoComplete="new-password" {...register("confirmPassword")} placeholder="Enter the password again" />{errors.confirmPassword && <small className="field-error">{errors.confirmPassword.message}</small>}</label>
-            {role === "agent" && <label>Support-agent registration code<input type="password" autoComplete="off" {...register("agentCode")} placeholder="Provided by your organisation" /><small>Required to prevent unauthorised staff accounts.</small></label>}
+            {role === "agent" && <label>Support-agent registration code<input type="password" autoComplete="off" {...register("agentCode")} placeholder="Provided by your organisation" /><small>{mockMode ? <>Demo code: <code>{MOCK_AGENT_REGISTRATION_CODE}</code></> : "Required to prevent unauthorised staff accounts."}</small></label>}
             {serverError && <div className="form-error" role="alert">{serverError}</div>}
             <button className="btn wide" disabled={isSubmitting}>{isSubmitting ? <LoaderCircle className="spin" aria-hidden="true" /> : <UserPlus />}{isSubmitting ? "Creating account…" : "Create account"}</button>
           </form>
