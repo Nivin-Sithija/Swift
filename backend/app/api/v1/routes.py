@@ -1,17 +1,16 @@
 import hashlib
 import secrets
 import uuid
-import pytesseract
-from PIL import Image
-from sqlalchemy import delete
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Annotated, Any
 
+import pytesseract
 from fastapi import APIRouter, Cookie, File, HTTPException, Query, UploadFile
 from fastapi import Response as HttpResponse
 from fastapi.responses import FileResponse
-from sqlalchemy import func, or_, select
+from PIL import Image
+from sqlalchemy import delete, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from sqlalchemy.orm.interfaces import ORMOption
@@ -66,18 +65,8 @@ from app.schemas.api import (
     AdminUserOut,
     AdminUserUpdate,
     AssignmentRequest,
-    AdminDashboardOut,
-    AdminAuditList,
-    AdminAuditOut,
-    AdminQueueCreate,
-    AdminQueueOut,
-    AdminQueueUpdate,
-    AdminSettingOut,
-    AdminSettingsUpdate,
-    AdminUserList,
-    AdminUserUpdate,
-    AdminUserOut,
     AttachmentOut,
+    ConsumerAssistanceIn,
     ConsumerAssistanceOut,
     DashboardBreakdownItem,
     DashboardOut,
@@ -85,7 +74,6 @@ from app.schemas.api import (
     EscalationRequest,
     EventOut,
     LoginRequest,
-    RegisterRequest,
     NoteCreate,
     NoteOut,
     PredictionOut,
@@ -254,6 +242,7 @@ async def create_customer_ticket_assistance(
     user: CurrentUser,
     db: Db,
     service: ConsumerRAG,
+    payload: ConsumerAssistanceIn | None = None,
 ) -> ConsumerAssistanceOut:
     """Answer a customer using their own ticket and approved policy evidence."""
     if user.role != UserRole.customer:
@@ -265,11 +254,15 @@ async def create_customer_ticket_assistance(
         prediction = predictions.get(task)
         return (prediction.reviewed_value or prediction.value) if prediction else None
 
+    question = payload.message.strip() if payload and payload.message else None
     result = await service.assist(
-        query=ticket.original_text,
+        query=question or ticket.original_text,
+        ticket_context=ticket.original_text,
         institution=None,
         category=value(PredictionTask.category),
-        language=ticket.response_language.value,
+        # The initial answer follows the ticket preference. Follow-up chat
+        # replies follow the language/form used in the customer's new message.
+        language=None if question else ticket.response_language.value,
         intent=value(PredictionTask.category),
         sentiment=value(PredictionTask.sentiment),
         priority=value(PredictionTask.priority),
@@ -284,9 +277,7 @@ async def ready(db: Db) -> dict[str, str]:
 
 
 @router.post("/auth/register", response_model=TokenResponse, status_code=201)
-async def register(
-    payload: RegisterRequest, response: HttpResponse, db: Db
-) -> TokenResponse:
+async def register(payload: RegisterRequest, response: HttpResponse, db: Db) -> TokenResponse:
     email = payload.email.lower()
     if await db.scalar(select(User.id).where(func.lower(User.email) == email)):
         raise HTTPException(409, "An account with this email already exists")
@@ -670,22 +661,28 @@ async def upload_attachment(
     )
     db.add(attachment)
     event(ticket, user, "attachment_uploaded", "Attachment validated and stored", True)
-    
+
     if file.content_type in ("image/png", "image/jpeg"):
         try:
             # Run Tesseract OCR on the uploaded image
             ocr_text = pytesseract.image_to_string(Image.open(path), lang="eng+tam+sin").strip()
             if ocr_text:
                 ticket.original_text += f"\n\n[OCR Extracted Text]:\n{ocr_text}"
-                
+
                 # Delete old predictions and generate new ones via the SVM router
                 await db.execute(delete(Prediction).where(Prediction.ticket_id == ticket.id))
                 await process_ticket_record(db, ticket, is_ocr=True)
-                event(ticket, user, "ocr_processed", "OCR extracted text and updated predictions", True)
+                event(
+                    ticket,
+                    user,
+                    "ocr_processed",
+                    "OCR extracted text and updated predictions",
+                    True,
+                )
         except Exception as e:
             # If OCR fails, log the event but don't break the attachment upload
             event(ticket, user, "ocr_failed", f"OCR failed: {str(e)}", True)
-            
+
     await db.commit()
     return AttachmentOut(
         id=attachment.id,
@@ -787,9 +784,7 @@ async def dashboard(user: StaffUser, db: Db) -> DashboardOut:
         return (await db.scalar(select(func.count(Ticket.id)).where(*conditions))) or 0
 
     today = datetime.now(UTC).replace(hour=0, minute=0, second=0, microsecond=0)
-    tickets = (
-        await db.scalars(select(Ticket).options(selectinload(Ticket.category)))
-    ).all()
+    tickets = (await db.scalars(select(Ticket).options(selectinload(Ticket.category)))).all()
     category_counts: dict[str, int] = {}
     language_counts: dict[str, int] = {}
     for ticket in tickets:
@@ -811,9 +806,7 @@ async def dashboard(user: StaffUser, db: Db) -> DashboardOut:
     if response_durations:
         average_minutes = round(sum(response_durations) / len(response_durations) / 60)
         average_first_response = (
-            f"{average_minutes} min"
-            if average_minutes < 60
-            else f"{average_minutes / 60:.1f} hr"
+            f"{average_minutes} min" if average_minutes < 60 else f"{average_minutes / 60:.1f} hr"
         )
     else:
         average_first_response = "Not available"
@@ -860,9 +853,7 @@ async def admin_dashboard(_user: AdministratorUser, db: Db) -> AdminDashboardOut
 
     now = utcnow()
     closed = {TicketStatus.resolved, TicketStatus.closed}
-    recent = (
-        await db.scalars(select(User).order_by(User.created_at.desc()).limit(6))
-    ).all()
+    recent = (await db.scalars(select(User).order_by(User.created_at.desc()).limit(6))).all()
     return AdminDashboardOut(
         customers=await user_count(UserRole.customer),
         agents=await user_count(UserRole.agent),
@@ -890,91 +881,240 @@ async def admin_users(_admin: AdministratorUser, db: Db, query: str | None = Non
     conditions = []
     if query:
         conditions.append(or_(User.full_name.ilike(f"%{query}%"), User.email.ilike(f"%{query}%")))
-    users = (await db.scalars(select(User).where(*conditions).order_by(User.created_at.desc()))).all()
-    return AdminUserList(items=[AdminUserOut.model_validate(user) for user in users], total=len(users))
+    users = (
+        await db.scalars(select(User).where(*conditions).order_by(User.created_at.desc()))
+    ).all()
+    return AdminUserList(
+        items=[AdminUserOut.model_validate(user) for user in users], total=len(users)
+    )
 
 
 @router.patch("/admin/users/{user_id}", response_model=AdminUserOut)
-async def admin_update_user(user_id: uuid.UUID, payload: AdminUserUpdate, admin: AdministratorUser, db: Db) -> AdminUserOut:
+async def admin_update_user(
+    user_id: uuid.UUID, payload: AdminUserUpdate, admin: AdministratorUser, db: Db
+) -> AdminUserOut:
     user = await db.get(User, user_id)
-    if not user: raise HTTPException(404, "User not found")
-    if user.id == admin.id and (payload.is_active is False or (payload.role and payload.role != "administrator")):
+    if not user:
+        raise HTTPException(404, "User not found")
+    if user.id == admin.id and (
+        payload.is_active is False or (payload.role and payload.role != "administrator")
+    ):
         raise HTTPException(409, "You cannot remove your own administrator access")
-    if user.role == UserRole.administrator and (payload.is_active is False or (payload.role and payload.role != "administrator")):
-        active_admins = (await db.scalar(select(func.count(User.id)).where(User.role == UserRole.administrator, User.is_active.is_(True)))) or 0
-        if active_admins <= 1: raise HTTPException(409, "At least one active administrator is required")
+    if user.role == UserRole.administrator and (
+        payload.is_active is False or (payload.role and payload.role != "administrator")
+    ):
+        active_admins = (
+            await db.scalar(
+                select(func.count(User.id)).where(
+                    User.role == UserRole.administrator, User.is_active.is_(True)
+                )
+            )
+        ) or 0
+        if active_admins <= 1:
+            raise HTTPException(409, "At least one active administrator is required")
     changes = []
     if payload.role is not None and user.role.value != payload.role:
-        changes.append(f"role:{user.role.value}->{payload.role}"); user.role = UserRole(payload.role)
+        changes.append(f"role:{user.role.value}->{payload.role}")
+        user.role = UserRole(payload.role)
     if payload.is_active is not None and user.is_active != payload.is_active:
-        changes.append(f"active:{user.is_active}->{payload.is_active}"); user.is_active = payload.is_active
+        changes.append(f"active:{user.is_active}->{payload.is_active}")
+        user.is_active = payload.is_active
         if not payload.is_active:
-            sessions = (await db.scalars(select(AuthSession).where(AuthSession.user_id == user.id, AuthSession.revoked_at.is_(None)))).all()
-            for session in sessions: session.revoked_at = utcnow()
+            sessions = (
+                await db.scalars(
+                    select(AuthSession).where(
+                        AuthSession.user_id == user.id, AuthSession.revoked_at.is_(None)
+                    )
+                )
+            ).all()
+            for session in sessions:
+                session.revoked_at = utcnow()
     audit(db, admin, "user_updated", "user", str(user.id), ";".join(changes))
-    await db.commit(); await db.refresh(user)
+    await db.commit()
+    await db.refresh(user)
     return AdminUserOut.model_validate(user)
 
 
 @router.get("/admin/queues", response_model=list[AdminQueueOut])
 async def admin_queues(_admin: AdministratorUser, db: Db) -> list[AdminQueueOut]:
-    rows = (await db.execute(select(SupportQueue, func.count(Ticket.id)).outerjoin(Ticket, Ticket.queue_id == SupportQueue.id).group_by(SupportQueue.id).order_by(SupportQueue.name))).all()
-    return [AdminQueueOut(id=q.id, name=q.name, description=q.description, is_active=q.is_active, ticket_count=count) for q, count in rows]
+    rows = (
+        await db.execute(
+            select(SupportQueue, func.count(Ticket.id))
+            .outerjoin(Ticket, Ticket.queue_id == SupportQueue.id)
+            .group_by(SupportQueue.id)
+            .order_by(SupportQueue.name)
+        )
+    ).all()
+    return [
+        AdminQueueOut(
+            id=q.id,
+            name=q.name,
+            description=q.description,
+            is_active=q.is_active,
+            ticket_count=count,
+        )
+        for q, count in rows
+    ]
 
 
 @router.post("/admin/queues", response_model=AdminQueueOut, status_code=201)
-async def admin_create_queue(payload: AdminQueueCreate, admin: AdministratorUser, db: Db) -> AdminQueueOut:
-    if await db.scalar(select(SupportQueue.id).where(func.lower(SupportQueue.name) == payload.name.strip().lower())): raise HTTPException(409, "Queue name already exists")
-    queue = SupportQueue(name=payload.name.strip(), description=payload.description, is_active=True); db.add(queue); await db.flush()
-    audit(db, admin, "queue_created", "support_queue", str(queue.id), queue.name); await db.commit(); await db.refresh(queue)
+async def admin_create_queue(
+    payload: AdminQueueCreate, admin: AdministratorUser, db: Db
+) -> AdminQueueOut:
+    if await db.scalar(
+        select(SupportQueue.id).where(func.lower(SupportQueue.name) == payload.name.strip().lower())
+    ):
+        raise HTTPException(409, "Queue name already exists")
+    queue = SupportQueue(name=payload.name.strip(), description=payload.description, is_active=True)
+    db.add(queue)
+    await db.flush()
+    audit(db, admin, "queue_created", "support_queue", str(queue.id), queue.name)
+    await db.commit()
+    await db.refresh(queue)
     return AdminQueueOut.model_validate(queue)
 
 
 @router.patch("/admin/queues/{queue_id}", response_model=AdminQueueOut)
-async def admin_update_queue(queue_id: uuid.UUID, payload: AdminQueueUpdate, admin: AdministratorUser, db: Db) -> AdminQueueOut:
+async def admin_update_queue(
+    queue_id: uuid.UUID, payload: AdminQueueUpdate, admin: AdministratorUser, db: Db
+) -> AdminQueueOut:
     queue = await db.get(SupportQueue, queue_id)
-    if not queue: raise HTTPException(404, "Queue not found")
-    open_count = (await db.scalar(select(func.count(Ticket.id)).where(Ticket.queue_id == queue.id, Ticket.status.not_in({TicketStatus.resolved, TicketStatus.closed})))) or 0
-    if payload.is_active is False and open_count: raise HTTPException(409, "Move or resolve open tickets before deactivating this queue")
-    if payload.name is not None: queue.name = payload.name.strip()
-    if payload.description is not None: queue.description = payload.description
-    if payload.is_active is not None: queue.is_active = payload.is_active
-    audit(db, admin, "queue_updated", "support_queue", str(queue.id), queue.name); await db.commit(); await db.refresh(queue)
-    return AdminQueueOut(id=queue.id, name=queue.name, description=queue.description, is_active=queue.is_active, ticket_count=open_count)
+    if not queue:
+        raise HTTPException(404, "Queue not found")
+    open_count = (
+        await db.scalar(
+            select(func.count(Ticket.id)).where(
+                Ticket.queue_id == queue.id,
+                Ticket.status.not_in({TicketStatus.resolved, TicketStatus.closed}),
+            )
+        )
+    ) or 0
+    if payload.is_active is False and open_count:
+        raise HTTPException(409, "Move or resolve open tickets before deactivating this queue")
+    if payload.name is not None:
+        queue.name = payload.name.strip()
+    if payload.description is not None:
+        queue.description = payload.description
+    if payload.is_active is not None:
+        queue.is_active = payload.is_active
+    audit(db, admin, "queue_updated", "support_queue", str(queue.id), queue.name)
+    await db.commit()
+    await db.refresh(queue)
+    return AdminQueueOut(
+        id=queue.id,
+        name=queue.name,
+        description=queue.description,
+        is_active=queue.is_active,
+        ticket_count=open_count,
+    )
 
 
 @router.get("/admin/audit-logs", response_model=AdminAuditList)
-async def admin_audit_logs(_admin: AdministratorUser, db: Db, query: str | None = None, page: int = Query(1, ge=1), page_size: int = Query(25, ge=1, le=100)) -> AdminAuditList:
-    conditions = [or_(AuditLog.action.ilike(f"%{query}%"), AuditLog.entity_type.ilike(f"%{query}%"), AuditLog.detail.ilike(f"%{query}%"))] if query else []
+async def admin_audit_logs(
+    _admin: AdministratorUser,
+    db: Db,
+    query: str | None = None,
+    page: int = Query(1, ge=1),
+    page_size: int = Query(25, ge=1, le=100),
+) -> AdminAuditList:
+    conditions = (
+        [
+            or_(
+                AuditLog.action.ilike(f"%{query}%"),
+                AuditLog.entity_type.ilike(f"%{query}%"),
+                AuditLog.detail.ilike(f"%{query}%"),
+            )
+        ]
+        if query
+        else []
+    )
     total = (await db.scalar(select(func.count(AuditLog.id)).where(*conditions))) or 0
-    logs = (await db.scalars(select(AuditLog).where(*conditions).order_by(AuditLog.created_at.desc()).offset((page-1)*page_size).limit(page_size))).all()
+    logs = (
+        await db.scalars(
+            select(AuditLog)
+            .where(*conditions)
+            .order_by(AuditLog.created_at.desc())
+            .offset((page - 1) * page_size)
+            .limit(page_size)
+        )
+    ).all()
     users = {u.id: u.full_name for u in (await db.scalars(select(User))).all()}
-    return AdminAuditList(items=[AdminAuditOut(id=x.id, actor=users.get(x.user_id, "System"), action=x.action, entity_type=x.entity_type, entity_id=x.entity_id, detail=x.detail, created_at=x.created_at) for x in logs], total=total)
+    return AdminAuditList(
+        items=[
+            AdminAuditOut(
+                id=x.id,
+                actor=users.get(x.user_id, "System"),
+                action=x.action,
+                entity_type=x.entity_type,
+                entity_id=x.entity_id,
+                detail=x.detail,
+                created_at=x.created_at,
+            )
+            for x in logs
+        ],
+        total=total,
+    )
 
 
 SETTING_DEFINITIONS = {
     "customer_registration_enabled": ("true", "boolean", "Allow customers to create accounts"),
-    "agent_registration_enabled": ("true", "boolean", "Allow invite-code support-agent registration"),
-    "low_confidence_threshold": ("0.60", "number", "Predictions below this confidence require review"),
+    "agent_registration_enabled": (
+        "true",
+        "boolean",
+        "Allow invite-code support-agent registration",
+    ),
+    "low_confidence_threshold": (
+        "0.60",
+        "number",
+        "Predictions below this confidence require review",
+    ),
     "max_upload_mb": ("10", "integer", "Maximum attachment size in megabytes"),
     "maintenance_message": ("", "string", "Optional customer-facing maintenance message"),
 }
 
+
 @router.get("/admin/settings", response_model=list[AdminSettingOut])
 async def admin_settings(_admin: AdministratorUser, db: Db) -> list[AdminSettingOut]:
     existing = {x.key: x for x in (await db.scalars(select(SystemSetting))).all()}
-    return [AdminSettingOut(key=key, value=existing[key].value if key in existing else default, value_type=kind, description=description, updated_at=existing[key].updated_at if key in existing else utcnow()) for key,(default,kind,description) in SETTING_DEFINITIONS.items()]
+    return [
+        AdminSettingOut(
+            key=key,
+            value=existing[key].value if key in existing else default,
+            value_type=kind,
+            description=description,
+            updated_at=existing[key].updated_at if key in existing else utcnow(),
+        )
+        for key, (default, kind, description) in SETTING_DEFINITIONS.items()
+    ]
+
 
 @router.patch("/admin/settings", response_model=list[AdminSettingOut])
-async def admin_update_settings(payload: AdminSettingsUpdate, admin: AdministratorUser, db: Db) -> list[AdminSettingOut]:
+async def admin_update_settings(
+    payload: AdminSettingsUpdate, admin: AdministratorUser, db: Db
+) -> list[AdminSettingOut]:
     for key, value in payload.values.items():
-        if key not in SETTING_DEFINITIONS: raise HTTPException(400, f"Setting is not configurable: {key}")
+        if key not in SETTING_DEFINITIONS:
+            raise HTTPException(400, f"Setting is not configurable: {key}")
         default, kind, description = SETTING_DEFINITIONS[key]
-        if kind == "boolean" and value not in {"true", "false"}: raise HTTPException(422, f"{key} must be true or false")
-        if kind == "number" and not 0 <= float(value) <= 1: raise HTTPException(422, f"{key} must be between 0 and 1")
-        if kind == "integer" and not 1 <= int(value) <= 100: raise HTTPException(422, f"{key} must be between 1 and 100")
+        if kind == "boolean" and value not in {"true", "false"}:
+            raise HTTPException(422, f"{key} must be true or false")
+        if kind == "number" and not 0 <= float(value) <= 1:
+            raise HTTPException(422, f"{key} must be between 0 and 1")
+        if kind == "integer" and not 1 <= int(value) <= 100:
+            raise HTTPException(422, f"{key} must be between 1 and 100")
         setting = await db.get(SystemSetting, key)
-        if setting: setting.value, setting.updated_by = value, admin.id
-        else: db.add(SystemSetting(key=key, value=value, value_type=kind, description=description, updated_by=admin.id))
+        if setting:
+            setting.value, setting.updated_by = value, admin.id
+        else:
+            db.add(
+                SystemSetting(
+                    key=key,
+                    value=value,
+                    value_type=kind,
+                    description=description,
+                    updated_by=admin.id,
+                )
+            )
         audit(db, admin, "system_setting_changed", "system_setting", key, "value updated")
-    await db.commit(); return await admin_settings(admin, db)
+    await db.commit()
+    return await admin_settings(admin, db)
