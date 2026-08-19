@@ -68,6 +68,7 @@ export function SubmitTicketPage() {
   });
   const subject = watch("subject");
   const description = watch("description");
+  const processingActive = processing >= 0;
   useEffect(() => {
     const id = setInterval(
       () => setPlaceholder((p) => (p + 1) % placeholders.length),
@@ -75,6 +76,14 @@ export function SubmitTicketPage() {
     );
     return () => clearInterval(id);
   }, []);
+  useEffect(() => {
+    if (!processingActive) return;
+    const id = window.setInterval(
+      () => setProcessing((current) => Math.min(current + 1, steps.length - 2)),
+      550,
+    );
+    return () => window.clearInterval(id);
+  }, [processingActive]);
   const submit = async (data: Data) => {
     setSubmitError("");
     setProcessing(0);
@@ -260,8 +269,8 @@ export function SubmitTicketPage() {
               <RotateCcw />
               {tr("Clear")}
             </button>
-            <button className="btn">
-              {tr("Submit ticket")} <ArrowRight />
+            <button className="btn" disabled={processingActive}>
+              {processingActive ? "Submitting…" : tr("Submit ticket")} <ArrowRight />
             </button>
           </div>
         </form>

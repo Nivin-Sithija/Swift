@@ -1,8 +1,7 @@
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import Field
-from pydantic import field_validator
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -22,6 +21,25 @@ class Settings(BaseSettings):
     max_upload_bytes: int = 10 * 1024 * 1024
     low_confidence_threshold: float = 0.60
     use_inline_processing: bool = True
+    agent_registration_code: str | None = None
+    groq_api_key: str | None = None
+    groq_model: str = "llama-3.3-70b-versatile"
+    gemini_api_key: str | None = None
+    gemini_model: str = "gemini-2.5-flash"
+    rag_embedding_model: str = "BAAI/bge-m3"
+    rag_embedding_provider: str = "local"
+    huggingface_token: str | None = None
+    intent_model_id: str = "Swift-Support/labse-intent-1.0"
+    intent_space_url: str = "https://ruththra-labse-intent-demo.hf.space"
+    intent_request_timeout_seconds: float = 60.0
+    huggingface_provider: str = "hf-inference"
+    huggingface_endpoint_url: str | None = None
+    rag_embedding_dimensions: int = 1024
+    rag_candidate_limit: int = 20
+    rag_final_limit: int = 5
+    rag_min_confidence: float = 0.55
+    rag_review_max_age_days: int = 365
+    rag_request_timeout_seconds: float = 20.0
 
     @field_validator("database_url")
     @classmethod
