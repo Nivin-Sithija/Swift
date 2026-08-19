@@ -14,7 +14,7 @@ const ThemeContext = createContext<{
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(
-    () => (localStorage.getItem("swift-theme") as Theme) || "dark",
+    () => (localStorage.getItem("swift-theme") as Theme) || "light",
   );
   useEffect(() => {
     const media = matchMedia("(prefers-color-scheme: dark)");
