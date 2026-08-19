@@ -358,7 +358,7 @@ export function ResponseEditor({
       <ConfirmationDialog
         open={dialog === "reject"}
         title="Reject AI draft?"
-        description="The current generated draft will be cleared. This cannot be undone in the mock session."
+        description="The current generated draft will be cleared. This cannot be undone."
         confirmLabel="Reject draft"
         danger
         onCancel={() => setDialog(null)}

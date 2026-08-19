@@ -6,8 +6,6 @@ import {
   ChevronRight,
   MessageSquareText,
   LoaderCircle,
-  ExternalLink,
-  Sparkles,
   UserCheck,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -33,19 +31,20 @@ import {
 import { ticketService } from "../../services/serviceSelector";
 import type { AdjacentTickets } from "../../services/ticketService";
 import type {
-  RagAssistanceResult,
   Ticket,
   TicketEvent,
   TicketStatus,
 } from "../../types";
 import { formatDate } from "../../lib/utils";
+import { useAuth } from "../../app/providers/AuthProvider";
 import {
-  CURRENT_AGENT,
   TICKET_CATEGORIES,
   TICKET_PRIORITIES,
   TICKET_SENTIMENTS,
 } from "../../lib/constants";
 export function AgentTicketDetailPage() {
+  const { user } = useAuth();
+  const currentAgent = user?.name || "Current agent";
   const { ticketId } = useParams();
   const navigate = useNavigate();
   const [ticket, setTicket] = useState<Ticket | null>(null);
@@ -56,10 +55,6 @@ export function AgentTicketDetailPage() {
   );
   const [notice, setNotice] = useState("");
   const [saving, setSaving] = useState(false);
-  const [ragInstitution, setRagInstitution] = useState("");
-  const [ragResult, setRagResult] = useState<RagAssistanceResult | null>(null);
-  const [ragLoading, setRagLoading] = useState(false);
-  const [ragError, setRagError] = useState("");
   useEffect(() => {
     let active = true;
     setTicket(null);
@@ -102,48 +97,13 @@ export function AgentTicketDetailPage() {
     setDialog(null);
     setNotice(`Ticket marked ${humanize(status)}.`);
   };
-  const generateRagDraft = async () => {
-    if (!ragInstitution) return;
-    setRagLoading(true);
-    setRagError("");
-    setRagResult(null);
-    try {
-      const result = await ticketService.generateRagDraft(
-        ticket,
-        ragInstitution,
-      );
-      setRagResult(result);
-      if (result.route === "rag_draft" && result.draft) {
-        setTicket({
-          ...ticket,
-          draft: {
-            ...ticket.draft,
-            text: result.draft,
-            language: ticket.preferredResponseLanguage,
-            updatedAt: new Date().toISOString(),
-            status: "draft",
-          },
-        });
-        setNotice("Grounded RAG draft generated for agent review.");
-      } else {
-        setNotice("");
-      }
-    } catch (cause) {
-      console.error("[AgentTicketDetailPage/generateRagDraft]", cause);
-      setRagError(
-        cause instanceof Error ? cause.message : "RAG generation failed.",
-      );
-    } finally {
-      setRagLoading(false);
-    }
-  };
   /** Corrections are the project's audit surface — record the agent's reason on the
       ticket's own event trail so it is visible, not silently dropped. */
   const recordCorrection = (field: string, value: string, reason: string) => {
     const event: TicketEvent = {
       id: crypto.randomUUID(),
       label: `${field} corrected`,
-      detail: `${CURRENT_AGENT} changed ${field.toLowerCase()} to “${humanize(value)}” — ${reason}`,
+      detail: `${currentAgent} changed ${field.toLowerCase()} to “${humanize(value)}” — ${reason}`,
       at: new Date().toISOString(),
       customerVisible: false,
     };
@@ -197,7 +157,7 @@ export function AgentTicketDetailPage() {
             className="btn secondary small"
             disabled={saving}
             onClick={() =>
-              update({ assignedAgent: CURRENT_AGENT, status: "assigned" })
+              update({ assignedAgent: currentAgent, status: "assigned" })
             }
           >
             {saving ? <LoaderCircle className="spin" /> : <UserCheck />}
@@ -286,112 +246,13 @@ export function AgentTicketDetailPage() {
             initial={ticket.notes}
             onAdd={(text) => ticketService.addInternalNote(ticket.id, text)}
           />
-          <section className="card rag-draft-card">
-            <div className="card-heading">
-              <div>
-                <span className="eyebrow">Approved-source assistance</span>
-                <h2>Generate grounded RAG draft</h2>
-              </div>
-              <span className="ai-label">
-                <Sparkles /> Agent-only
-              </span>
-            </div>
-            <p className="muted-copy">
-              Select the institution explicitly. Swift will not infer or mix
-              bank-specific policy.
-            </p>
-            <div className="rag-controls">
-              <label>
-                Policy institution
-                <select
-                  value={ragInstitution}
-                  onChange={(event) => {
-                    setRagInstitution(event.target.value);
-                    setRagResult(null);
-                    setRagError("");
-                  }}
-                >
-                  <option value="">Select institution</option>
-                  <option value="Commercial Bank of Ceylon PLC">
-                    Commercial Bank of Ceylon
-                  </option>
-                  <option value="People's Bank Sri Lanka">
-                    People&apos;s Bank Sri Lanka
-                  </option>
-                  <option value="Central Bank of Sri Lanka">
-                    Central Bank of Sri Lanka
-                  </option>
-                </select>
-              </label>
-              <button
-                className="btn primary"
-                disabled={!ragInstitution || ragLoading}
-                onClick={generateRagDraft}
-              >
-                {ragLoading ? <LoaderCircle className="spin" /> : <Sparkles />}
-                {ragLoading ? "Generating…" : "Generate RAG draft"}
-              </button>
-            </div>
-            {ragError && (
-              <div className="error-alert" role="alert">
-                <AlertTriangle />
-                {ragError}
-              </div>
-            )}
-            {ragResult && (
-              <div
-                className={`rag-result ${ragResult.route === "human_escalation" ? "escalated" : "grounded"}`}
-              >
-                <div className="rag-result-summary">
-                  <strong>
-                    {ragResult.route === "rag_draft"
-                      ? "Grounded draft ready"
-                      : "Human escalation required"}
-                  </strong>
-                  <span>
-                    {Math.round(ragResult.confidence * 100)}% evidence
-                    confidence
-                  </span>
-                </div>
-                {ragResult.escalationReason && (
-                  <p>Reason: {humanize(ragResult.escalationReason)}</p>
-                )}
-                {ragResult.citations.length > 0 && (
-                  <div className="rag-citations">
-                    <h3>Evidence citations</h3>
-                    {ragResult.citations.map((citation) => (
-                      <a
-                        key={`${citation.sourceId}-${citation.marker}`}
-                        href={citation.url}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <span>
-                          [{citation.marker}] {citation.title}
-                        </span>
-                        <small>
-                          {citation.institution} · v{citation.version} ·
-                          reviewed {citation.reviewDate}
-                        </small>
-                        <ExternalLink />
-                      </a>
-                    ))}
-                  </div>
-                )}
-                <small>
-                  Provider: {ragResult.provider || "Not called"} · Agent
-                  approval required
-                </small>
-              </div>
-            )}
-          </section>
           <ResponseEditor
             ticket={ticket}
             onApproved={(text) => {
               update({
                 approvedResponse: {
                   text,
-                  approvedBy: CURRENT_AGENT,
+                  approvedBy: currentAgent,
                   approvedAt: new Date().toISOString(),
                 },
                 draft: { ...ticket.draft, text, status: "approved" },
@@ -466,7 +327,7 @@ export function AgentTicketDetailPage() {
           title={`${humanize(type)} this ticket?`}
           description={
             type === "escalate"
-              ? "An administrator and specialist queue will be notified in this mock workspace."
+              ? "An administrator and specialist queue will be notified."
               : `This will change the customer-visible status to ${type}d.`
           }
           confirmLabel={humanize(type)}

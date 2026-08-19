@@ -79,7 +79,6 @@ from app.schemas.api import (
     AdminUserOut,
     AttachmentOut,
     ConsumerAssistanceOut,
-    ConsumerAssistanceRequest,
     DashboardBreakdownItem,
     DashboardOut,
     DashboardTrendPoint,
@@ -245,12 +244,36 @@ async def health() -> dict[str, str]:
     return {"status": "ok", "service": "swift-api"}
 
 
-@router.post("/consumer-assistance/drafts", response_model=ConsumerAssistanceOut, tags=["RAG"])
-async def create_consumer_assistance_draft(
-    payload: ConsumerAssistanceRequest, _user: StaffUser, service: ConsumerRAG
+@router.post(
+    "/tickets/{ticket_id}/assistance",
+    response_model=ConsumerAssistanceOut,
+    tags=["RAG"],
+)
+async def create_customer_ticket_assistance(
+    ticket_id: str,
+    user: CurrentUser,
+    db: Db,
+    service: ConsumerRAG,
 ) -> ConsumerAssistanceOut:
-    """Create a safety-routed draft. This endpoint never approves or sends it."""
-    result = await service.assist(**payload.model_dump())
+    """Answer a customer using their own ticket and approved policy evidence."""
+    if user.role != UserRole.customer:
+        raise HTTPException(403, "Customer access required")
+    ticket = await get_ticket(db, ticket_id, user)
+    predictions = {prediction.task: prediction for prediction in ticket.predictions}
+
+    def value(task: PredictionTask) -> str | None:
+        prediction = predictions.get(task)
+        return (prediction.reviewed_value or prediction.value) if prediction else None
+
+    result = await service.assist(
+        query=ticket.original_text,
+        institution=None,
+        category=value(PredictionTask.category),
+        language=ticket.response_language.value,
+        intent=value(PredictionTask.category),
+        sentiment=value(PredictionTask.sentiment),
+        priority=value(PredictionTask.priority),
+    )
     return ConsumerAssistanceOut.model_validate(result, from_attributes=True)
 
 
@@ -297,7 +320,7 @@ async def register(
         "swift_refresh",
         raw,
         httponly=True,
-        samesite="lax",
+        samesite="none" if settings.environment == "production" else "lax",
         secure=settings.environment == "production",
         max_age=settings.refresh_token_days * 86400,
         path="/api/v1/auth",
@@ -327,7 +350,7 @@ async def login(payload: LoginRequest, response: HttpResponse, db: Db) -> TokenR
         "swift_refresh",
         raw,
         httponly=True,
-        samesite="lax",
+        samesite="none" if settings.environment == "production" else "lax",
         secure=settings.environment == "production",
         max_age=settings.refresh_token_days * 86400,
         path="/api/v1/auth",
@@ -367,7 +390,7 @@ async def refresh(
         "swift_refresh",
         raw,
         httponly=True,
-        samesite="lax",
+        samesite="none" if settings.environment == "production" else "lax",
         secure=settings.environment == "production",
         max_age=settings.refresh_token_days * 86400,
         path="/api/v1/auth",
@@ -390,7 +413,12 @@ async def logout(
         if session:
             session.revoked_at = utcnow()
             await db.commit()
-    response.delete_cookie("swift_refresh", path="/api/v1/auth")
+    response.delete_cookie(
+        "swift_refresh",
+        path="/api/v1/auth",
+        secure=settings.environment == "production",
+        samesite="none" if settings.environment == "production" else "lax",
+    )
 
 
 @router.get("/users/me", response_model=UserOut)
