@@ -123,6 +123,17 @@ def test_citations_preserve_source_metadata() -> None:
     assert not citations_are_valid("Unsupported claim", [item])
     assert citations_are_valid("Required documents:\n1. ID\n2. Address proof [E1]", [item])
     assert not citations_are_valid("Supported claim [E1]\n\nSeparate unsupported claim", [item])
+    assert citations_are_valid(
+        "General policy guidance from approved sources; this does not confirm "
+        "account activity.\n\nThe requirement is listed here. [E1]",
+        [item],
+    )
+    assert citations_are_valid(
+        "General policy guidance from approved sources; this does not confirm "
+        "account activity.\n\nBased on the approved bank policy:\n\n"
+        "* Submit the required document. [E1]",
+        [item],
+    )
 
 
 def test_multilingual_detection_and_normalization() -> None:
@@ -136,8 +147,10 @@ def test_multilingual_detection_and_normalization() -> None:
 class FakeRetriever:
     def __init__(self, result: RetrievalResult) -> None:
         self.result = result
+        self.last_context: QueryContext | None = None
 
-    async def retrieve(self, _context: QueryContext) -> RetrievalResult:
+    async def retrieve(self, context: QueryContext) -> RetrievalResult:
+        self.last_context = context
         return self.result
 
 
@@ -168,6 +181,20 @@ async def test_grounded_result_is_direct_customer_assistance() -> None:
     assert result.route == "rag_draft"
     assert result.approval_required is False
     assert result.citations[0].source_id == "SRC-1"
+
+
+@pytest.mark.asyncio
+async def test_follow_up_retrieval_includes_original_ticket_context() -> None:
+    retriever = FakeRetriever(RetrievalResult([evidence("a")], 0.9))
+    service = ConsumerRAGService(retriever, FakeLLM())
+    await service.assist(
+        query="Then how do I report that?",
+        ticket_context="I found an unauthorized card transaction.",
+        institution="Commercial Bank",
+    )
+    assert retriever.last_context is not None
+    assert "unauthorized card transaction" in retriever.last_context.normalized_query
+    assert "Then how do I report that?" in retriever.last_context.normalized_query
 
 
 def test_retrieval_metrics() -> None:
@@ -227,6 +254,22 @@ async def test_embedding_failure_falls_back_to_lexical_retrieval() -> None:
     assert len(db.calls) == 1
     assert db.calls[0]["query"] == "fees"
     assert result.diagnostics["embedding_fallback"] == "RuntimeError"
+
+
+@pytest.mark.asyncio
+async def test_unknown_category_retries_all_retrieval_without_filter() -> None:
+    db = CapturingDB()
+    retriever = PostgresHybridRetriever(db, FakeEmbedder(), FakeReranker())  # type: ignore[arg-type]
+    context = QueryContext(
+        "savings documents",
+        "savings documents",
+        ConsumerLanguage.english,
+        None,
+        "unknown",
+    )
+    await retriever.retrieve(context)
+    assert len(db.calls) == 4
+    assert [call["category"] for call in db.calls] == ["unknown", "unknown", None, None]
 
 
 class FakeHFResponse:

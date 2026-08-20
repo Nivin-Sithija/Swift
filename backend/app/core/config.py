@@ -23,9 +23,9 @@ class Settings(BaseSettings):
     use_inline_processing: bool = True
     agent_registration_code: str | None = None
     groq_api_key: str | None = None
-    groq_model: str = "llama-3.3-70b-versatile"
+    groq_model: str = "qwen/qwen3.6-27b"
     gemini_api_key: str | None = None
-    gemini_model: str = "gemini-2.5-flash"
+    gemini_model: str = "gemini-3.6-flash"
     rag_embedding_model: str = "BAAI/bge-m3"
     rag_embedding_provider: str = "local"
     huggingface_token: str | None = None
