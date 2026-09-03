@@ -1,8 +1,12 @@
 import {
   AlertTriangle,
   ArrowLeft,
+  ExternalLink,
   Image as ImageIcon,
+  LoaderCircle,
   MessageSquareText,
+  Send,
+  Sparkles,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -18,12 +22,44 @@ import {
   humanize,
 } from "../../components/tickets/TicketComponents";
 import { ticketService } from "../../services/serviceSelector";
-import type { Ticket } from "../../types";
+import type { RagAssistanceResult, Ticket } from "../../types";
 import { formatDate } from "../../lib/utils";
+
+export const assistanceFallback = (language: string) => {
+  const messages: Record<string, string> = {
+    tamil:
+      "அங்கீகரிக்கப்பட்ட தகவல்களின் அடிப்படையில் இதற்கு பாதுகாப்பாகப் பதிலளிக்க முடியவில்லை. ஆதரவு முகவர் இதை மதிப்பாய்வு செய்வார்.",
+    tamilish:
+      "Approved information-la irundhu ithukku safe-ah badhil solla mudiyala. Support agent ithai review pannuvaar.",
+    sinhala:
+      "අනුමත තොරතුරු මත පදනම්ව මෙයට ආරක්ෂිතව පිළිතුරු දිය නොහැක. සහාය නියෝජිතයෙකු මෙය සමාලෝචනය කරනු ඇත.",
+    singlish:
+      "Approved information walin mekata safely answer karanna ba. Support agent kenek meka review karai.",
+  };
+  return (
+    messages[language] ||
+    "I cannot answer that safely from the approved information. A support agent will review it."
+  );
+};
+
 export function CustomerTicketDetailPage() {
   const { ticketId } = useParams();
   const [ticket, setTicket] = useState<Ticket | null>(null);
   const [loading, setLoading] = useState(true);
+  const [assistance, setAssistance] = useState<RagAssistanceResult | null>(
+    null,
+  );
+  const [assistanceLoading, setAssistanceLoading] = useState(false);
+  const [assistanceError, setAssistanceError] = useState("");
+  const [question, setQuestion] = useState("");
+  const [chatMessages, setChatMessages] = useState<
+    Array<{
+      id: number;
+      role: "customer" | "assistant";
+      text: string;
+      result?: RagAssistanceResult;
+    }>
+  >([]);
   useEffect(() => {
     let active = true;
     setLoading(true);
@@ -43,6 +79,68 @@ export function CustomerTicketDetailPage() {
       active = false;
     };
   }, [ticketId]);
+  useEffect(() => {
+    if (!ticket) return;
+    let active = true;
+    setAssistanceLoading(true);
+    setAssistanceError("");
+    setAssistance(null);
+    ticketService
+      .getCustomerTicketAssistance(ticket.id)
+      .then((result) => {
+        if (active) setAssistance(result);
+      })
+      .catch((error) => {
+        if (active)
+          setAssistanceError(
+            error instanceof Error
+              ? error.message
+              : "Unable to generate assistance",
+          );
+      })
+      .finally(() => {
+        if (active) setAssistanceLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [ticket]);
+  const askQuestion = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const message = question.trim();
+    if (!ticket || !message || assistanceLoading) return;
+    const messageId = Date.now();
+    setChatMessages((current) => [
+      ...current,
+      { id: messageId, role: "customer", text: message },
+    ]);
+    setQuestion("");
+    setAssistanceError("");
+    setAssistanceLoading(true);
+    try {
+      const result = await ticketService.getCustomerTicketAssistance(
+        ticket.id,
+        message,
+      );
+      setChatMessages((current) => [
+        ...current,
+        {
+          id: messageId + 1,
+          role: "assistant",
+          text: result.draft || assistanceFallback(result.language),
+          result,
+        },
+      ]);
+    } catch (error) {
+      setAssistanceError(
+        error instanceof Error
+          ? error.message
+          : "Unable to answer your question",
+      );
+    } finally {
+      setAssistanceLoading(false);
+    }
+  };
   if (loading) return <LoadingSkeleton />;
   if (!ticket)
     return (
@@ -53,7 +151,7 @@ export function CustomerTicketDetailPage() {
     );
   return (
     <>
-      <Link className="back-link" to="/customer/tickets">
+      <Link className="back-link" to="/customer/submit">
         <ArrowLeft />
         Back to my tickets
       </Link>
@@ -129,6 +227,122 @@ export function CustomerTicketDetailPage() {
               )}
             </section>
           )}
+          <section className="card rag-draft-card">
+            <div className="card-heading">
+              <div>
+                <span className="eyebrow">Approved-source guidance</span>
+                <h2>Response for your ticket</h2>
+              </div>
+              <span className="ai-label">
+                <Sparkles /> Customer assistance
+              </span>
+            </div>
+            {assistanceLoading && (
+              <div className="inline-loading" role="status">
+                <LoaderCircle className="spin" /> Preparing response from
+                approved sources…
+              </div>
+            )}
+            {assistanceError && (
+              <div className="error-alert" role="alert">
+                <AlertTriangle /> {assistanceError}
+              </div>
+            )}
+            {assistance && (
+              <div
+                className={`rag-result ${assistance.route === "human_escalation" ? "escalated" : "grounded"}`}
+              >
+                <div className="rag-result-summary">
+                  <strong>
+                    {assistance.draft
+                      ? "Response for your ticket"
+                      : "A support agent needs to review this"}
+                  </strong>
+                  <span>
+                    {Math.round(assistance.confidence * 100)}% evidence
+                    confidence
+                  </span>
+                </div>
+                {assistance.draft && <p>{assistance.draft}</p>}
+                {assistance.escalationReason && (
+                  <p>
+                    We could not safely provide an automated response:{" "}
+                    {humanize(assistance.escalationReason)}.
+                  </p>
+                )}
+                {assistance.citations.length > 0 && (
+                  <div className="rag-citations">
+                    <h3>Sources</h3>
+                    {assistance.citations.map((citation) => (
+                      <a
+                        key={`${citation.sourceId}-${citation.marker}`}
+                        href={citation.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <span>
+                          [{citation.marker}] {citation.title}
+                        </span>
+                        <small>
+                          {citation.institution} · reviewed{" "}
+                          {citation.reviewDate}
+                        </small>
+                        <ExternalLink />
+                      </a>
+                    ))}
+                  </div>
+                )}
+                <small>General policy guidance from approved sources.</small>
+              </div>
+            )}
+            <div className="ticket-chat" aria-live="polite">
+              {chatMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`chat-message ${message.role}`}
+                >
+                  <strong>
+                    {message.role === "customer" ? "You" : "Swift assistant"}
+                  </strong>
+                  <p>{message.text}</p>
+                  {message.result && message.result.citations.length > 0 && (
+                    <div className="chat-sources">
+                      {message.result.citations.map((citation) => (
+                        <a
+                          key={`${message.id}-${citation.sourceId}-${citation.marker}`}
+                          href={citation.url}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          [{citation.marker}] {citation.title}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            <form className="ticket-chat-form" onSubmit={askQuestion}>
+              <label className="sr-only" htmlFor="ticket-question">
+                Ask about this ticket
+              </label>
+              <input
+                id="ticket-question"
+                value={question}
+                onChange={(event) => setQuestion(event.target.value)}
+                placeholder="Ask a question about this ticket…"
+                maxLength={2000}
+                disabled={assistanceLoading}
+              />
+              <button
+                className="btn"
+                disabled={!question.trim() || assistanceLoading}
+                aria-label="Send question"
+              >
+                <Send />
+              </button>
+            </form>
+          </section>
           {ticket.approvedResponse ? (
             <section className="card approved-response">
               <span className="eyebrow">Approved response</span>

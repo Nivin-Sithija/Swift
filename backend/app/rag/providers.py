@@ -14,12 +14,24 @@ class GroqProvider:
         self.api_key, self.model, self.timeout = api_key, model, timeout
 
     async def generate(self, *, system: str, user: str) -> str:
+        payload = {
+            "model": self.model,
+            "temperature": 0,
+            "messages": [
+                {"role": "system", "content": system},
+                {"role": "user", "content": user},
+            ],
+        }
+        if self.model.startswith("qwen/"):
+            payload["reasoning_format"] = "hidden"
+            payload["reasoning_effort"] = "none"
+            payload["max_completion_tokens"] = 2048
         try:
             async with httpx.AsyncClient(timeout=self.timeout) as client:
                 response = await client.post(
                     "https://api.groq.com/openai/v1/chat/completions",
                     headers={"Authorization": f"Bearer {self.api_key}"},
-                    json={"model": self.model, "temperature": 0, "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]},
+                    json=payload,
                 )
                 response.raise_for_status()
                 return str(response.json()["choices"][0]["message"]["content"]).strip()
@@ -34,14 +46,20 @@ class GeminiProvider:
         self.api_key, self.model, self.timeout = api_key, model, timeout
 
     async def generate(self, *, system: str, user: str) -> str:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent"
+        url = (
+            f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent"
+        )
         try:
             async with httpx.AsyncClient(timeout=self.timeout) as client:
-                response = await client.post(url, params={"key": self.api_key}, json={
-                    "system_instruction": {"parts": [{"text": system}]},
-                    "contents": [{"role": "user", "parts": [{"text": user}]}],
-                    "generationConfig": {"temperature": 0},
-                })
+                response = await client.post(
+                    url,
+                    params={"key": self.api_key},
+                    json={
+                        "system_instruction": {"parts": [{"text": system}]},
+                        "contents": [{"role": "user", "parts": [{"text": user}]}],
+                        "generationConfig": {"temperature": 0},
+                    },
+                )
                 response.raise_for_status()
                 return str(response.json()["candidates"][0]["content"]["parts"][0]["text"]).strip()
         except (httpx.HTTPError, KeyError, IndexError, TypeError) as exc:
