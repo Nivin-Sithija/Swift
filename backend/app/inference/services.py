@@ -69,35 +69,15 @@ async def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Res
         pred = _svm_pipeline.predict([text])[0]
         intent_result = Result(pred, 0.85, "svm-intent-1.0")
     else:
-        # Route digital text to LaBSE Transformer
-        labse_path = ml_dir / "models" / "encoders" / "intent_labse" / "best_model"
-        
-        # 1. Local Fallback
-        if labse_path.exists():
-            if _labse_pipeline is None:
-                device = 0 if torch.cuda.is_available() else -1
-                _labse_pipeline = pipeline(
-                    "text-classification", 
-                    model=str(labse_path), 
-                    tokenizer=str(labse_path), 
-                    device=device,
-                    truncation=True,
-                    max_length=128
-                )
-            res = _labse_pipeline(text)[0]
-            intent_result = Result(res["label"], res["score"], "labse-intent-1.0")
-            
-        # 2. Serverless Cloud Fallback 
-        else:
-            try:
-                intent_result = await asyncio.wait_for(
-                    classify_intent_with_space(text),
-                    timeout=settings.intent_request_timeout_seconds,
-                )
-            except TimeoutError:
-                # A cold or unavailable external model must not hold the customer's
-                # ticket submission open. Low confidence routes this for review.
-                intent_result = Result("unknown", 0.0, "huggingface-space-timeout")
+        try:
+            intent_result = await asyncio.wait_for(
+                classify_intent_with_space(text),
+                timeout=settings.ticket_submission_inference_timeout_seconds,
+            )
+        except TimeoutError:
+            # A cold or unavailable external model must not hold the customer's
+            # ticket submission open. Low confidence routes this for review.
+            intent_result = Result("unknown", 0.0, "huggingface-space-timeout")
 
     # 2. Priority & Sentiment (Keeping mocked for now)
     lowered = text.lower()

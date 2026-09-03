@@ -9,9 +9,9 @@ describe("public runtime configuration", () => {
     expect(getApiBaseUrl()).toBe("http://backend:8000/api/v1");
   });
 
-  it("uses a safe development fallback when runtime configuration is absent", () => {
+  it("uses the configured online API when runtime configuration is absent", () => {
     delete window.__APP_CONFIG__;
 
-    expect(getApiBaseUrl()).toBe("http://localhost:8000/api/v1");
+    expect(getApiBaseUrl()).toBe("https://swift-gp57.onrender.com/api/v1");
   });
 });

@@ -24,7 +24,7 @@ class AssistanceResult:
     citations: list[Citation]
     confidence: float
     escalation_reason: str | None
-    approval_required: bool = True
+    approval_required: bool = False
     provider: str | None = None
 
 
@@ -32,32 +32,77 @@ class ConsumerRAGService:
     def __init__(self, retriever: Retriever, llm: LLMProvider) -> None:
         self.retriever, self.llm = retriever, llm
 
-    async def assist(self, *, query: str, institution: str | None, category: str | None = None,
-                     language: str | None = None, intent: str | None = None,
-                     sentiment: str | None = None, priority: str | None = None) -> AssistanceResult:
+    async def assist(
+        self,
+        *,
+        query: str,
+        institution: str | None,
+        category: str | None = None,
+        language: str | None = None,
+        intent: str | None = None,
+        sentiment: str | None = None,
+        priority: str | None = None,
+        ticket_context: str | None = None,
+    ) -> AssistanceResult:
         detected = detect_consumer_language(query)
         if language:
             detected = type(detected)(language)
-        context = QueryContext(query, normalize_query(query), detected, institution, category, intent, sentiment, priority)
+        retrieval_text = (
+            f"{ticket_context}\nFollow-up question: {query}"
+            if ticket_context and ticket_context.strip() != query.strip()
+            else query
+        )
+        context = QueryContext(
+            query,
+            normalize_query(retrieval_text),
+            detected,
+            institution,
+            category,
+            intent,
+            sentiment,
+            priority,
+        )
         safety = route_safety(context)
         if safety.escalate:
             return self._escalation(context, safety.reason or "safety_policy")
         retrieval = await self.retriever.retrieve(context)
         if not retrieval.evidence:
             return self._escalation(context, "low_evidence_confidence", retrieval.confidence)
-        system, user = build_prompt(context, retrieval.evidence)
+        system, user = build_prompt(context, retrieval.evidence, ticket_context=ticket_context)
         try:
             answer = await self.llm.generate(system=system, user=user)
         except ProviderError:
-            return self._escalation(context, "generation_provider_unavailable", retrieval.confidence)
+            return self._escalation(
+                context, "generation_provider_unavailable", retrieval.confidence
+            )
         valid, reason = validate_grounding(answer, retrieval.evidence)
         if not valid:
-            return self._escalation(context, reason or "grounding_validation_failed", retrieval.confidence)
-        return AssistanceResult("rag_draft", query, context.normalized_query, detected.value, answer,
-                                build_citations(answer, retrieval.evidence), retrieval.confidence, None,
-                                provider=getattr(self.llm, "last_provider", self.llm.name))
+            return self._escalation(
+                context, reason or "grounding_validation_failed", retrieval.confidence
+            )
+        return AssistanceResult(
+            "rag_draft",
+            query,
+            context.normalized_query,
+            detected.value,
+            answer,
+            build_citations(answer, retrieval.evidence),
+            retrieval.confidence,
+            None,
+            provider=getattr(self.llm, "last_provider", self.llm.name),
+        )
 
     @staticmethod
-    def _escalation(context: QueryContext, reason: str, confidence: float = 0.0) -> AssistanceResult:
-        return AssistanceResult("human_escalation", context.original_query, context.normalized_query,
-                                context.language.value, None, [], confidence, reason)
+    def _escalation(
+        context: QueryContext, reason: str, confidence: float = 0.0
+    ) -> AssistanceResult:
+        return AssistanceResult(
+            "human_escalation",
+            context.original_query,
+            context.normalized_query,
+            context.language.value,
+            None,
+            [],
+            confidence,
+            reason,
+        )
