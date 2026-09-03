@@ -1,3 +1,4 @@
+import asyncio
 import json
 import re
 from dataclasses import dataclass
@@ -5,11 +6,14 @@ from pathlib import Path
 
 import httpx
 import joblib
+import torch
+from transformers import pipeline
 
 from app.core.config import get_settings
 from app.domain.enums import LanguageForm, Priority, Sentiment
 
 _svm_pipeline = None
+_labse_pipeline = None
 settings = get_settings()
 
 
@@ -49,7 +53,7 @@ def detect_language(text: str) -> Result:
 
 
 async def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Result]:
-    global _svm_pipeline
+    global _svm_pipeline, _labse_pipeline
 
     ml_dir = Path("/app/ml")
     if not ml_dir.exists():
@@ -85,28 +89,15 @@ async def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Res
             
         # 2. Serverless Cloud Fallback 
         else:
-            import requests
-            import os
-            API_URL = "https://router.huggingface.co/hf-inference/models/Swift-Support/labse-intent-1.0"
-            HF_TOKEN = os.getenv("HF_TOKEN", "PUT_YOUR_HUGGING_FACE_TOKEN_HERE")
-            
-            headers = {"Authorization": f"Bearer {HF_TOKEN}"}
-            
             try:
-                # Send the text directly to Hugging Face's servers
-                response = requests.post(API_URL, headers=headers, json={"inputs": text})
-                
-                if response.status_code == 200:
-                    # The API returns a list of lists, we grab the top prediction
-                    res = response.json()[0][0]
-                    intent_result = Result(res["label"], res["score"], "labse-intent-1.0-cloud-api")
-                else:
-                    print(f"Hugging Face API Error: {response.text}")
-                    intent_result = Result("unknown_intent", 0.0, "api_error")
-            except Exception as e:
-                print(f"Failed to connect to Hugging Face: {e}")
-                intent_result = Result("unknown_intent", 0.0, "connection_error")
-        intent_result = await classify_intent_with_space(text)
+                intent_result = await asyncio.wait_for(
+                    classify_intent_with_space(text),
+                    timeout=settings.intent_request_timeout_seconds,
+                )
+            except TimeoutError:
+                # A cold or unavailable external model must not hold the customer's
+                # ticket submission open. Low confidence routes this for review.
+                intent_result = Result("unknown", 0.0, "huggingface-space-timeout")
 
     # 2. Priority & Sentiment (Keeping mocked for now)
     lowered = text.lower()
