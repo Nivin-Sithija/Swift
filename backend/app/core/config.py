@@ -23,15 +23,16 @@ class Settings(BaseSettings):
     use_inline_processing: bool = True
     agent_registration_code: str | None = None
     groq_api_key: str | None = None
-    groq_model: str = "llama-3.3-70b-versatile"
+    groq_model: str = "qwen/qwen3.6-27b"
     gemini_api_key: str | None = None
-    gemini_model: str = "gemini-2.5-flash"
+    gemini_model: str = "gemini-3.6-flash"
     rag_embedding_model: str = "BAAI/bge-m3"
     rag_embedding_provider: str = "local"
     huggingface_token: str | None = None
     intent_model_id: str = "Swift-Support/labse-intent-1.0"
     intent_space_url: str = "https://ruththra-labse-intent-demo.hf.space"
     intent_request_timeout_seconds: float = 60.0
+    ticket_submission_inference_timeout_seconds: float = Field(default=2.0, gt=0)
     huggingface_provider: str = "hf-inference"
     huggingface_endpoint_url: str | None = None
     rag_embedding_dimensions: int = 1024

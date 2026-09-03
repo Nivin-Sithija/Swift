@@ -13,7 +13,7 @@ const AuthContext = createContext<{
   logout: () => Promise<void>;
   restoring: boolean;
 } | null>(null);
-export function MockAuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({ children }: { children: ReactNode }) {
   const [storedUser] = useState<User | null>(() => {
     const raw =
       sessionStorage.getItem("swift-session") ||
@@ -50,10 +50,12 @@ export function MockAuthProvider({ children }: { children: ReactNode }) {
     remember = false,
   ) => {
     const next = await ticketService.login(email, password, role);
-    (remember ? localStorage : sessionStorage).setItem(
-      "swift-session",
-      JSON.stringify(next),
-    );
+    // Keep a session in exactly one storage location. Otherwise an older login
+    // can win during restoration or reappear after the browser session ends.
+    const persistentStorage = remember ? localStorage : sessionStorage;
+    const staleStorage = remember ? sessionStorage : localStorage;
+    staleStorage.removeItem("swift-session");
+    persistentStorage.setItem("swift-session", JSON.stringify(next));
     setUser(next);
     return next;
   };
@@ -76,6 +78,6 @@ export function MockAuthProvider({ children }: { children: ReactNode }) {
 }
 export const useAuth = () => {
   const value = useContext(AuthContext);
-  if (!value) throw new Error("useAuth must be used within MockAuthProvider");
+  if (!value) throw new Error("useAuth must be used within AuthProvider");
   return value;
 };
