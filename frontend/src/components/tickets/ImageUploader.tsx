@@ -40,7 +40,7 @@ export function ImageUploader({
     return () => URL.revokeObjectURL(url);
   }, [value]);
 
-  // Mock upload progress — must stop when the file changes or the form unmounts.
+  // Preview progress must stop when the file changes or the form unmounts.
   useEffect(() => {
     if (!value || progress === 0 || progress >= 100) return;
     const timer = setInterval(

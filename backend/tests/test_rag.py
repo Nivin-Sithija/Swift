@@ -19,25 +19,65 @@ from app.rag.types import ConsumerLanguage, Evidence, QueryContext, RetrievalRes
 
 
 def evidence(chunk_id: str, institution: str = "Commercial Bank") -> Evidence:
-    return Evidence(chunk_id, "SRC-1", "Savings", "https://bank.example/savings", institution,
-                    "accounts", "english", "bank_official", "1.0", date(2026, 7, 29),
-                    "approved", 0, "Minimum opening deposit is listed here.",
-                    dense_score=0.9, rerank_score=0.9)
+    return Evidence(
+        chunk_id,
+        "SRC-1",
+        "Savings",
+        "https://bank.example/savings",
+        institution,
+        "accounts",
+        "english",
+        "bank_official",
+        "1.0",
+        date(2026, 7, 29),
+        "approved",
+        0,
+        "Minimum opening deposit is listed here.",
+        dense_score=0.9,
+        rerank_score=0.9,
+    )
 
 
-@pytest.mark.parametrize("query,priority", [
-    ("This is fraud", "medium"), ("cancel my transfer", "medium"),
-    ("What is my balance?", "medium"), ("routine question", "critical"),
-    ("මම නොකළ ගනුදෙනුවක්", "medium"), ("transfer ah cancel panna venum", "medium"),
-])
+@pytest.mark.parametrize(
+    "query,priority",
+    [
+        ("cancel my transfer", "medium"),
+        ("What is my balance?", "medium"),
+        ("transfer ah cancel panna venum", "medium"),
+    ],
+)
 def test_safety_router_escalates(query: str, priority: str) -> None:
-    context = QueryContext(query, query, ConsumerLanguage.english, "Commercial Bank", priority=priority)
+    context = QueryContext(
+        query, query, ConsumerLanguage.english, "Commercial Bank", priority=priority
+    )
     assert route_safety(context).escalate
 
 
 def test_safety_router_allows_routine_information() -> None:
-    context = QueryContext("What documents are required?", "What documents are required?",
-                           ConsumerLanguage.english, "Commercial Bank", priority="low")
+    context = QueryContext(
+        "What documents are required?",
+        "What documents are required?",
+        ConsumerLanguage.english,
+        "Commercial Bank",
+        priority="low",
+    )
+    assert not route_safety(context).escalate
+
+
+@pytest.mark.parametrize(
+    "query,priority",
+    [
+        ("This is fraud", "medium"),
+        ("routine question", "critical"),
+        ("මම නොකළ ගනුදෙනුවක්", "high"),
+    ],
+)
+def test_safety_router_allows_guidance_regardless_of_classification(
+    query: str, priority: str
+) -> None:
+    context = QueryContext(
+        query, query, ConsumerLanguage.english, "Commercial Bank", priority=priority
+    )
     assert not route_safety(context).escalate
 
 
@@ -83,24 +123,40 @@ def test_citations_preserve_source_metadata() -> None:
     assert not citations_are_valid("Unsupported claim", [item])
     assert citations_are_valid("Required documents:\n1. ID\n2. Address proof [E1]", [item])
     assert not citations_are_valid("Supported claim [E1]\n\nSeparate unsupported claim", [item])
+    assert citations_are_valid(
+        "General policy guidance from approved sources; this does not confirm "
+        "account activity.\n\nThe requirement is listed here. [E1]",
+        [item],
+    )
+    assert citations_are_valid(
+        "General policy guidance from approved sources; this does not confirm "
+        "account activity.\n\nBased on the approved bank policy:\n\n"
+        "* Submit the required document. [E1]",
+        [item],
+    )
 
 
 def test_multilingual_detection_and_normalization() -> None:
     assert detect_consumer_language("mage account eka") == ConsumerLanguage.singlish
     assert detect_consumer_language("enna panna mudiyala") == ConsumerLanguage.tamilish
     assert detect_consumer_language("எனது கணக்கு") == ConsumerLanguage.tamil
+    assert detect_consumer_language("enna pirachchani") == ConsumerLanguage.tamilish
     assert normalize_query("  fee\u00a0 details ") == "fee details"
 
 
 class FakeRetriever:
     def __init__(self, result: RetrievalResult) -> None:
         self.result = result
-    async def retrieve(self, _context: QueryContext) -> RetrievalResult:
+        self.last_context: QueryContext | None = None
+
+    async def retrieve(self, context: QueryContext) -> RetrievalResult:
+        self.last_context = context
         return self.result
 
 
 class FakeLLM:
     name = "fake"
+
     async def generate(self, *, system: str, user: str) -> str:
         assert "ONLY" in system and "Original query" in user
         return "The required documents are in the official source. [E1]"
@@ -109,18 +165,36 @@ class FakeLLM:
 @pytest.mark.asyncio
 async def test_low_confidence_refuses_without_calling_generation() -> None:
     service = ConsumerRAGService(FakeRetriever(RetrievalResult([], 0.2)), FakeLLM())
-    result = await service.assist(query="What documents are required?", institution="Commercial Bank")
+    result = await service.assist(
+        query="What documents are required?", institution="Commercial Bank"
+    )
     assert result.route == "human_escalation"
     assert result.draft is None
 
 
 @pytest.mark.asyncio
-async def test_grounded_result_is_agent_approval_draft() -> None:
+async def test_grounded_result_is_direct_customer_assistance() -> None:
     service = ConsumerRAGService(FakeRetriever(RetrievalResult([evidence("a")], 0.9)), FakeLLM())
-    result = await service.assist(query="What documents are required?", institution="Commercial Bank")
+    result = await service.assist(
+        query="What documents are required?", institution="Commercial Bank"
+    )
     assert result.route == "rag_draft"
-    assert result.approval_required is True
+    assert result.approval_required is False
     assert result.citations[0].source_id == "SRC-1"
+
+
+@pytest.mark.asyncio
+async def test_follow_up_retrieval_includes_original_ticket_context() -> None:
+    retriever = FakeRetriever(RetrievalResult([evidence("a")], 0.9))
+    service = ConsumerRAGService(retriever, FakeLLM())
+    await service.assist(
+        query="Then how do I report that?",
+        ticket_context="I found an unauthorized card transaction.",
+        institution="Commercial Bank",
+    )
+    assert retriever.last_context is not None
+    assert "unauthorized card transaction" in retriever.last_context.normalized_query
+    assert "Then how do I report that?" in retriever.last_context.normalized_query
 
 
 def test_retrieval_metrics() -> None:
@@ -132,6 +206,7 @@ def test_retrieval_metrics() -> None:
 class EmptyRows:
     def mappings(self) -> "EmptyRows":
         return self
+
     def all(self) -> list[object]:
         return []
 
@@ -139,6 +214,7 @@ class EmptyRows:
 class CapturingDB:
     def __init__(self) -> None:
         self.calls: list[dict[str, object]] = []
+
     async def execute(self, _statement: object, params: dict[str, object]) -> EmptyRows:
         self.calls.append(params)
         return EmptyRows()
@@ -147,6 +223,11 @@ class CapturingDB:
 class FakeEmbedder:
     async def embed_query(self, _text: str) -> list[float]:
         return [0.0]
+
+
+class FailingEmbedder:
+    async def embed_query(self, _text: str) -> list[float]:
+        raise RuntimeError("hosted embedding unavailable")
 
 
 class FakeReranker:
@@ -164,9 +245,37 @@ async def test_institution_filter_is_passed_to_every_retrieval_channel() -> None
     assert all(call["institution"] == "People's Bank" for call in db.calls)
 
 
+@pytest.mark.asyncio
+async def test_embedding_failure_falls_back_to_lexical_retrieval() -> None:
+    db = CapturingDB()
+    retriever = PostgresHybridRetriever(db, FailingEmbedder(), FakeReranker())  # type: ignore[arg-type]
+    context = QueryContext("fees", "fees", ConsumerLanguage.english, None)
+    result = await retriever.retrieve(context)
+    assert len(db.calls) == 1
+    assert db.calls[0]["query"] == "fees"
+    assert result.diagnostics["embedding_fallback"] == "RuntimeError"
+
+
+@pytest.mark.asyncio
+async def test_unknown_category_retries_all_retrieval_without_filter() -> None:
+    db = CapturingDB()
+    retriever = PostgresHybridRetriever(db, FakeEmbedder(), FakeReranker())  # type: ignore[arg-type]
+    context = QueryContext(
+        "savings documents",
+        "savings documents",
+        ConsumerLanguage.english,
+        None,
+        "unknown",
+    )
+    await retriever.retrieve(context)
+    assert len(db.calls) == 4
+    assert [call["category"] for call in db.calls] == ["unknown", "unknown", None, None]
+
+
 class FakeHFResponse:
     def raise_for_status(self) -> None:
         return None
+
     def json(self) -> list[list[float]]:
         return [[0.25, 0.75]]
 
@@ -174,8 +283,10 @@ class FakeHFResponse:
 class FakeHFClient:
     async def __aenter__(self) -> "FakeHFClient":
         return self
+
     async def __aexit__(self, *_args: object) -> None:
         return None
+
     async def post(self, url: str, **kwargs: object) -> FakeHFResponse:
         assert url.endswith("/BAAI/bge-m3/pipeline/feature-extraction")
         assert kwargs["json"] == {"inputs": "hello"}
@@ -183,7 +294,9 @@ class FakeHFClient:
 
 
 @pytest.mark.asyncio
-async def test_huggingface_embedder_flattens_and_validates_vector(monkeypatch: pytest.MonkeyPatch) -> None:
+async def test_huggingface_embedder_flattens_and_validates_vector(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     monkeypatch.setattr("app.rag.models.httpx.AsyncClient", lambda **_kwargs: FakeHFClient())
     embedder = HuggingFaceEmbedder(token="test-token", dimensions=2)
     assert await embedder.embed_query("hello") == [0.25, 0.75]

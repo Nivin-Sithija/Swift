@@ -415,16 +415,6 @@ class ErrorOut(BaseModel):
     request_id: str | None = None
 
 
-class ConsumerAssistanceRequest(BaseModel):
-    query: str = Field(min_length=3, max_length=5000)
-    institution: str | None = Field(default=None, min_length=2, max_length=200)
-    category: str | None = Field(default=None, max_length=100)
-    language: Literal["english", "sinhala", "tamil", "singlish", "tamilish"] | None = None
-    intent: str | None = Field(default=None, max_length=150)
-    sentiment: str | None = Field(default=None, max_length=30)
-    priority: str | None = Field(default=None, max_length=30)
-
-
 class CitationOut(BaseModel):
     marker: str
     source_id: str
@@ -434,6 +424,10 @@ class CitationOut(BaseModel):
     version: str
     review_date: date
     chunk_ids: list[str]
+
+
+class ConsumerAssistanceIn(BaseModel):
+    message: str | None = Field(default=None, min_length=1, max_length=2000)
 
 
 class ConsumerAssistanceOut(BaseModel):

@@ -6,10 +6,6 @@ import type {
   TicketStatus,
 } from "../types";
 
-/** The demo agent the mock service signs in as. Every "who did this" string
-    resolves here so there is one place to change when real auth lands. */
-export const CURRENT_AGENT = "Anika Fernando";
-
 export const TICKET_STATUSES: TicketStatus[] = [
   "new",
   "processing",
@@ -43,8 +39,7 @@ export const SUPPORTED_LANGUAGES: SupportedLanguage[] = [
   "mixed",
 ];
 
-/** The BANKING77 intents the mock data draws from. The production list is the
-    full 77-way taxonomy served by the classifier, not this preview subset. */
+/** Categories currently supported by the ticket review control. */
 export const TICKET_CATEGORIES = [
   "card_payment_wrong_exchange_rate",
   "cash_withdrawal",

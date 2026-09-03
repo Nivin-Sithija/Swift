@@ -1,0 +1,34 @@
+import { Link } from "react-router-dom";
+import type { UserRole } from "../../types";
+
+export function AuthAccountPrompt({
+  view,
+  role,
+}: {
+  view: "login" | "register";
+  role: UserRole;
+}) {
+  if (view === "login") {
+    if (role === "administrator") return null;
+    return (
+      <p className="account-hint">
+        New to Swift?{" "}
+        <Link className="link-button" to={`/register?role=${role}`}>
+          Create an account
+        </Link>
+      </p>
+    );
+  }
+
+  return (
+    <p className="account-hint">
+      Already registered?{" "}
+      <Link
+        className="link-button"
+        to={role === "agent" ? "/admin/login" : "/login"}
+      >
+        Sign in
+      </Link>
+    </p>
+  );
+}
