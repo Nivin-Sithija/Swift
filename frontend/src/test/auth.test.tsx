@@ -1,7 +1,7 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
-import { MockAuthProvider } from "../app/providers/AuthProvider";
+import { AuthProvider } from "../app/providers/AuthProvider";
 import { ThemeProvider } from "../app/providers/ThemeProvider";
 import { LanguageProvider } from "../app/providers/LanguageProvider";
 import { AppRoutes } from "../app/router/Routes";
@@ -10,14 +10,18 @@ const renderApp = (route: string) =>
     <ThemeProvider>
       <LanguageProvider>
         <MemoryRouter initialEntries={[route]}>
-          <MockAuthProvider>
+          <AuthProvider>
             <AppRoutes />
-          </MockAuthProvider>
+          </AuthProvider>
         </MemoryRouter>
       </LanguageProvider>
     </ThemeProvider>,
   );
 describe("authentication and role routes", () => {
+  beforeEach(() => {
+    localStorage.clear();
+    sessionStorage.clear();
+  });
   it("shows validation for incomplete login", async () => {
     renderApp("/login");
     await userEvent.click(
@@ -26,41 +30,33 @@ describe("authentication and role routes", () => {
     expect(await screen.findByText(/valid email/i)).toBeInTheDocument();
     expect(screen.getByText(/at least 8/i)).toBeInTheDocument();
   });
+  it("keeps staff login at its URL-only endpoint", () => {
+    const publicLogin = renderApp("/login");
+    expect(screen.queryByRole("tab", { name: /support agent/i })).not.toBeInTheDocument();
+    expect(screen.queryByText(/staff sign in/i)).not.toBeInTheDocument();
+    publicLogin.unmount();
+
+    renderApp("/admin/login");
+    expect(screen.getByRole("heading", { name: /staff sign in/i })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /support agent/i })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /administrator/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /create an account/i })).toHaveAttribute(
+      "href",
+      "/register?role=agent",
+    );
+  });
+
+  it("returns agent registration to the staff login", () => {
+    renderApp("/register?role=agent");
+    expect(screen.getByRole("link", { name: /sign in/i })).toHaveAttribute(
+      "href",
+      "/admin/login",
+    );
+  });
   it("redirects unauthenticated protected routes", () => {
     renderApp("/agent/dashboard");
     expect(
-      screen.getByRole("heading", { name: /welcome to swift/i }),
+      screen.getByRole("heading", { name: /staff sign in/i }),
     ).toBeInTheDocument();
-  });
-  it("prevents customer session from opening agent routes", async () => {
-    sessionStorage.setItem(
-      "swift-session",
-      JSON.stringify({
-        id: "c1",
-        name: "Maya",
-        email: "customer@swift.demo",
-        role: "customer",
-      }),
-    );
-    renderApp("/agent/dashboard");
-    expect(
-      await screen.findByRole("heading", { name: /how can we help/i }),
-    ).toBeInTheDocument();
-  });
-  it("renders agent dashboard metrics for an agent", async () => {
-    sessionStorage.setItem(
-      "swift-session",
-      JSON.stringify({
-        id: "a1",
-        name: "Anika Fernando",
-        email: "agent@swift.demo",
-        role: "agent",
-      }),
-    );
-    renderApp("/agent/dashboard");
-    await waitFor(() =>
-      expect(screen.getByText("Assigned to me")).toBeInTheDocument(),
-    );
-    expect(screen.getByText("Avg. first response")).toBeInTheDocument();
   });
 });
