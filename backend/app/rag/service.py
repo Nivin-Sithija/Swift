@@ -1,7 +1,10 @@
 from dataclasses import dataclass
 from typing import Protocol
 
+import logfire
+
 from app.rag.citations import build_citations
+from app.rag.guardrails import route_guardrails
 from app.rag.languages import detect_consumer_language, normalize_query
 from app.rag.prompts import build_prompt
 from app.rag.providers import ProviderError
@@ -62,20 +65,44 @@ class ConsumerRAGService:
             sentiment,
             priority,
         )
+        guardrail = route_guardrails(context)
         safety = route_safety(context)
+        logfire.info(
+            "rag.input_routing",
+            language=detected.value,
+            guardrail_reason=guardrail.reason,
+            safety_reason=safety.reason,
+            escalate=guardrail.escalate or safety.escalate,
+        )
+        if guardrail.escalate:
+            return self._escalation(context, guardrail.reason or "guardrail_triggered")
         if safety.escalate:
             return self._escalation(context, safety.reason or "safety_policy")
         retrieval = await self.retriever.retrieve(context)
+        logfire.info(
+            "rag.retrieval",
+            confidence=retrieval.confidence,
+            evidence_count=len(retrieval.evidence),
+            diagnostics=retrieval.diagnostics,
+        )
         if not retrieval.evidence:
             return self._escalation(context, "low_evidence_confidence", retrieval.confidence)
         system, user = build_prompt(context, retrieval.evidence, ticket_context=ticket_context)
         try:
             answer = await self.llm.generate(system=system, user=user)
         except ProviderError:
+            logfire.warn("rag.generation_failed", provider=self.llm.name)
             return self._escalation(
                 context, "generation_provider_unavailable", retrieval.confidence
             )
         valid, reason = validate_grounding(answer, retrieval.evidence)
+        provider_used = getattr(self.llm, "last_provider", self.llm.name)
+        logfire.info(
+            "rag.final_route",
+            route="rag_draft" if valid else "human_escalation",
+            provider=provider_used,
+            validation_reason=reason,
+        )
         if not valid:
             return self._escalation(
                 context, reason or "grounding_validation_failed", retrieval.confidence
@@ -89,7 +116,7 @@ class ConsumerRAGService:
             build_citations(answer, retrieval.evidence),
             retrieval.confidence,
             None,
-            provider=getattr(self.llm, "last_provider", self.llm.name),
+            provider=provider_used,
         )
 
     @staticmethod
