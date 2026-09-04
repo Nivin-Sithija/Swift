@@ -69,6 +69,9 @@ ml/reports/encoder_summary.csv
 ml/reports/perlang_summary.csv
 ml/reports/perlang_lora_summary.csv
 
+# Per-run RAG eval output; the golden/guardrail case files stay tracked.
+backend/evaluation/reports/
+
 
 # ignore kaggle dataset zip
 ml/OCR/kaggle_tesseract_dataset.zip

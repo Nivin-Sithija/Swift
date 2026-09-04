@@ -41,6 +41,9 @@ class Settings(BaseSettings):
     rag_min_confidence: float = 0.55
     rag_review_max_age_days: int = 365
     rag_request_timeout_seconds: float = 20.0
+    rag_provider_max_retries: int = 2
+    rag_provider_retry_base_delay_seconds: float = 0.5
+    logfire_token: str | None = None
 
     @field_validator("database_url")
     @classmethod
