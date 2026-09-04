@@ -15,7 +15,10 @@
     "docker:dev:down": "docker compose down",
     "docker:prod": "docker compose -f docker-compose.prod.yml up --build -d",
     "docker:prod:down": "docker compose -f docker-compose.prod.yml down",
-    "docker:logs": "docker compose logs -f frontend"
+    "docker:logs": "docker compose logs -f frontend",
+    "test:ui": "vitest --ui --watch",
+    "test:coverage": "vitest run --coverage --coverage.reportsDirectory=reports/coverage",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -37,6 +40,8 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
+    "@vitest/coverage-v8": "^4.1.11",
+    "@vitest/ui": "^4.1.11",
     "eslint": "^9.39.2",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
