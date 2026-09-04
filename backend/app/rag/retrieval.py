@@ -99,15 +99,21 @@ class PostgresHybridRetriever:
             },
         )
 
-    async def _query(self, mode: str, query: str, params: dict[str, object]) -> list[Evidence]:
+    async def _query(
+        self, mode: str, query: str, params: Mapping[str, object]
+    ) -> list[Evidence]:
         filters = "a.approval_status = 'approved' AND a.review_date >= CURRENT_DATE - CAST(:review_days AS integer) AND (CAST(:institution AS text) IS NULL OR a.institution = CAST(:institution AS text)) AND (CAST(:category AS text) IS NULL OR a.category = CAST(:category AS text))"
+        # nosec B608 - `filters` is the module-local constant defined above; every
+        # caller-supplied value is a bound parameter (:embedding, :query, :limit,
+        # :institution, :category, :review_days). Pinned by
+        # tests/database/test_integrity.py::test_retrieval_sql_interpolates_no_caller_data.
         if mode == "dense":
             sql = f"""SELECT c.id::text AS chunk_id, a.source_id, a.title, a.source_url,
                 a.institution, a.category, a.language, a.source_authority, a.version,
                 a.review_date, a.approval_status, c.chunk_index, c.content,
                 1 - (c.embedding <=> CAST(:embedding AS vector)) AS score
                 FROM knowledge_chunks c JOIN knowledge_articles a ON a.id=c.article_id
-                WHERE {filters} ORDER BY c.embedding <=> CAST(:embedding AS vector) LIMIT :limit"""
+                WHERE {filters} ORDER BY c.embedding <=> CAST(:embedding AS vector) LIMIT :limit"""  # nosec B608
         else:
             sql = f"""SELECT c.id::text AS chunk_id, a.source_id, a.title, a.source_url,
                 a.institution, a.category, a.language, a.source_authority, a.version,
@@ -115,7 +121,7 @@ class PostgresHybridRetriever:
                 ts_rank_cd(c.search_vector, websearch_to_tsquery('simple', :query)) AS score
                 FROM knowledge_chunks c JOIN knowledge_articles a ON a.id=c.article_id
                 WHERE {filters} AND c.search_vector @@ websearch_to_tsquery('simple', :query)
-                ORDER BY score DESC LIMIT :limit"""
+                ORDER BY score DESC LIMIT :limit"""  # nosec B608
         rows = (await self.db.execute(text(sql), params)).mappings().all()
         return [self._evidence(row, mode) for row in rows]
 
