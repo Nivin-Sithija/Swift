@@ -17,13 +17,18 @@ dependencies = [
   "pwdlib[argon2]>=0.2,<1",
   "python-multipart>=0.0.20,<1",
   "httpx>=0.28,<1",
-  "logfire[fastapi,httpx]>=3,<4",
+  # >=5 is required, not a preference: logfire 3.x pins
+  # opentelemetry-instrumentation-fastapi 0.56b0, whose route resolver crashes on
+  # FastAPI >=0.141 (_IncludedRouter has no .path). That combination 500s every request.
+  "logfire[fastapi,httpx]>=5,<6",
   "pgvector>=0.3,<1",
   "redis>=5,<6",
   "dramatiq[redis]>=1.17,<2",
   "joblib>=1.4,<2",
   "scikit-learn>=1.5,<2",
-  "Pillow>=10.0,<12",
+  # >=12.3 clears 25 advisories (PYSEC-2026-2249..3496) in the image decoders that
+  # parse customer-uploaded attachments in the OCR path.
+  "Pillow>=12.3,<13",
   "pytesseract>=0.3.10,<1",
 ]
 
@@ -41,15 +46,50 @@ rag-local = [
 ]
 dev = [
   "httpx>=0.28,<1",
-  "pytest>=8,<9",
-  "pytest-asyncio>=0.25,<1",
+  # schemathesis 4.x requires pytest>=9, which in turn needs pytest-asyncio>=1.0.
+  "pytest>=9,<10",
+  "pytest-asyncio>=1.0,<2",
+  "pytest-cov>=6,<8",
+  "pytest-timeout>=2.3,<3",
+  "pytest-json-report>=1.5,<2",
+  "pytest-subtests>=0.13,<1",
+  "hypothesis>=6.100,<7",
   "ruff>=0.9,<1",
   "mypy>=1.14,<2",
+]
+
+# Security and contract tooling. Split from `dev` because these are slower and are
+# meant to run as their own CI gates rather than on every local pytest invocation.
+security = [
+  "bandit[toml]>=1.8,<2",
+  "pip-audit>=2.7,<3",
+  "schemathesis>=4,<5",
 ]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
+# A hung external call should fail the run, not stall CI forever.
+timeout = 120
+markers = [
+  "security: adversarial and access-control tests",
+  "database: schema, constraint and transaction integrity tests",
+  "contract: OpenAPI contract conformance",
+  "observability: tracing, logging and PII-hygiene tests",
+  "slow: excluded from the fast pre-commit run",
+]
+
+[tool.coverage.run]
+source = ["app"]
+branch = true
+omit = ["app/workers/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.bandit]
+exclude_dirs = [".venv", "tests", "alembic"]
 
 [tool.logfire]
 # Tests exercise the service without booting main.py, where configure() is called.
@@ -64,9 +104,17 @@ select = ["E", "F", "I", "B", "UP"]
 ignore = ["E501", "E701", "E702"]
 
 [tool.mypy]
-python_version = "3.11"
+# 3.12 matches the interpreter this is actually checked with. NOTE: backend/Dockerfile
+# ships python:3.11-slim, so type checking and production run different minor versions --
+# align one of them.
+python_version = "3.12"
 strict = true
 plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+# Neither ships type stubs; both are used behind narrow, hand-typed wrappers.
+module = ["pytesseract.*", "joblib.*", "flashrank.*", "FlagEmbedding.*"]
+ignore_missing_imports = true
 
 [build-system]
 requires = ["hatchling"]
