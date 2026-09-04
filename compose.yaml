@@ -2,6 +2,8 @@ services:
   postgres:
     image: pgvector/pgvector:pg16
     environment: {POSTGRES_DB: swift, POSTGRES_USER: swift, POSTGRES_PASSWORD: swift}
+    # Exposed so host tooling (alembic, swift-ingest-kb, swift-eval-rag) can reach it.
+    ports: ["5432:5432"]
     volumes: ["postgres_data:/var/lib/postgresql/data"]
     healthcheck: {test: ["CMD-SHELL", "pg_isready -U swift -d swift"], interval: 5s, timeout: 3s, retries: 20}
   redis:
@@ -13,6 +15,8 @@ services:
       dockerfile: backend/Dockerfile
     env_file: [./backend/.env]
     environment:
+      # Overrides .env, which points at localhost for host-side tooling.
+      SWIFT_DATABASE_URL: postgresql://swift:swift@postgres:5432/swift
       SWIFT_REDIS_URL: redis://redis:6379/0
       SWIFT_STORAGE_ROOT: /data/attachments
     ports: ["8000:8000"]
@@ -29,6 +33,8 @@ services:
       dockerfile: backend/Dockerfile
     env_file: [./backend/.env]
     environment:
+      # Overrides .env, which points at localhost for host-side tooling.
+      SWIFT_DATABASE_URL: postgresql://swift:swift@postgres:5432/swift
       SWIFT_REDIS_URL: redis://redis:6379/0
       SWIFT_STORAGE_ROOT: /data/attachments
     volumes:
