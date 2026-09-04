@@ -91,3 +91,10 @@ outputs/
 ml/OCR/screenshots/
 ml/OCR/results/
 
+
+# Test-runner reports (regenerable: see backend/TESTING.md)
+backend/reports/
+frontend/reports/
+frontend/coverage/
+.coverage
+coverage.xml

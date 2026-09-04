@@ -1043,7 +1043,7 @@ async def admin_audit_logs(
         items=[
             AdminAuditOut(
                 id=x.id,
-                actor=users.get(x.user_id, "System"),
+                actor=users.get(x.user_id, "System") if x.user_id else "System",
                 action=x.action,
                 entity_type=x.entity_type,
                 entity_id=x.entity_id,
