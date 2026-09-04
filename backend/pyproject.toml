@@ -17,6 +17,7 @@ dependencies = [
   "pwdlib[argon2]>=0.2,<1",
   "python-multipart>=0.0.20,<1",
   "httpx>=0.28,<1",
+  "logfire[fastapi,httpx]>=3,<4",
   "pgvector>=0.3,<1",
   "redis>=5,<6",
   "dramatiq[redis]>=1.17,<2",
@@ -28,6 +29,7 @@ dependencies = [
 
 [project.scripts]
 swift-ingest-kb = "app.rag.ingest:main"
+swift-eval-rag = "app.rag.eval_runner:main"
 
 [project.optional-dependencies]
 rag = [
@@ -48,6 +50,10 @@ dev = [
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
+
+[tool.logfire]
+# Tests exercise the service without booting main.py, where configure() is called.
+ignore_no_config = true
 
 [tool.ruff]
 line-length = 100
