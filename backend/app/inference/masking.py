@@ -29,4 +29,14 @@ def redact_pii(text: str) -> str:
     phone_pattern = r'\b(?:\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\b'
     masked_text = re.sub(phone_pattern, "[REDACTED_PHONE]", masked_text)
 
+    # 4. Mask App UI Boilerplate (e.g., headers, bank names)
+    # Case insensitive matching for OCR variations
+    ui_patterns = [
+        r'(?i)secure\s*transaction\s*cent(?:er|re)',
+        r'(?i)service\s*transaction\s*cent(?:er|re)',
+        r'(?i)@?\s*nova\s*mobile\s*banking'
+    ]
+    for pattern in ui_patterns:
+        masked_text = re.sub(pattern, "[UI_HEADER_REMOVED]", masked_text)
+
     return masked_text
