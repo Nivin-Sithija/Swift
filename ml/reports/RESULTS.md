@@ -2,8 +2,10 @@
 
 Every experiment run on the trilingual banking-ticket classifiers, with scores, in one place.
 Compiled 2026-08-02 from the artifacts in `ml/reports/` (CSV/JSON), the notebooks in
-`notebooks/modeling/`, and the topic reports listed in §12. Last extended **2026-08-12** with the
-intent transformer benchmark (§16) and the OCR engine ablation (§17).
+`notebooks/modeling/`, and the topic reports listed in §12. Last extended **2026-09-04** with the
+Google Cloud Vision OCR benchmark (§17.7) and the end-to-end engine-vs-router measurement (§17.8);
+previously **2026-08-12** with the intent transformer
+benchmark (§16) and the OCR engine ablation (§17).
 
 **This file summarises; it does not replace.** Where a number here is contested or was later
 retracted, §11 says so and points at the source report.
@@ -87,6 +89,8 @@ Class prevalence:
 | 31 | Intent transformer benchmark, 4 architectures on the **official** split | intent | done | **LaBSE 88.54% test macro-F1** on `all`, +5.36pp over classical; LaBSE clears all six §3.5 gates, XLM-R five of six (§16) |
 | 32 | OCR engine ablation — EasyOCR vs language-routed Tesseract, 2,000 images | ocr | done | Tesseract halves native-script CER on clean images; **loses on blur and low-res** (§17) |
 | 33 | OpenCV pre-processing ablation (binarize / deskew / grayscale) | ocr | done | **Every variant made CER worse.** Feed Tesseract raw RGB (§17.3) |
+| 34 | OCR engine benchmark — Google Cloud Vision vs Tesseract, 2,000 images | ocr | done | **Vision 15.71% CER vs 37.21%** and flat under degradation; ties on clean, wins blur/low-res by 28–55pp (§17.7) |
+| 35 | End-to-end: both OCR engines × both routers, self-agreement and true-label accuracy | ocr | done | SVM on Vision text reproduces the typed-text decision on **99.50%** of images vs Tesseract's 81.70%; **accuracy is at the perfect-text ceiling**, and the ceiling itself (~78%) is a taxonomy failure, not an OCR one (§17.8) |
 
 ---
 
@@ -726,9 +730,10 @@ human-typed romanized tickets. The purpose-built `deshanksuman/romanized-sinhala
 | 6 | **Single-request latency** never measured | `ms_per_sample` 0.24–0.64 in `encoder_screen_dev.csv` is *batched MPS throughput*, not a valid check against the 100ms serving budget |
 | 7 | **Intent score discrepancy across workstreams** | See §11, item 5 — unresolved |
 | 8 | **Joint multi-task fine-tuning, and LoRA adapters over a shared base**, both untested | §15.3 rules out *freeze-then-add-heads* but says nothing about either of these. §14.8's one-backbone-plus-three-adapters serving argument is still open |
-| 9 | **OCR loses to the EasyOCR baseline on blur and low-resolution** | §17.2 — language-routed Tesseract wins clean (−15.78pp Tamil CER) and rotation (−28pp) but is *worse* on blur (+10.8 Sinhala) and low-res (+7.5 Sinhala). Those two are exactly the WhatsApp-upload case the augmentation was built to simulate. A per-condition fallback is unmeasured |
-| 10 | **No intent/sentiment/priority accuracy has been measured on OCR'd text** | §17 stops at CER. The pipeline claim is that image tickets classify as well as typed ones; at 10–11% clean CER that is plausible and untested. Chaining §17's Tesseract output into the §16 classifier is the missing end-to-end number |
+| 9 | ~~**OCR loses to the EasyOCR baseline on blur and low-resolution**~~ **Settled 2026-09-04 (§17.7)** | §17.2 — language-routed Tesseract wins clean and rotation but is *worse* on blur (+10.8 Sinhala) and low-res (+7.5 Sinhala): the WhatsApp-upload case. Resolved not by the proposed condition-aware fallback but by engine choice — Google Vision is flat across all four conditions (15.20–16.78% CER) and beats Tesseract by 28–55pp on exactly those two. **What remains owed is the switch itself**, `SWIFT_OCR_ENGINE=google_vision` plus a fallback path, neither implemented |
+| 10 | ~~**Downstream accuracy on OCR'd text is measured for Tesseract only**~~ **Closed 2026-09-04 (§17.8)** | Both engines × both routers, on two metrics. SVM on Vision text holds the typed-text routing decision on **99.50%** of images (Tesseract 81.70%) and scores **78.27%** true accuracy against a 78.16% perfect-text ceiling — OCR now costs the router nothing measurable. What the run also showed: the ceiling is the constraint, see item 12 |
 | 11 | **OCR ground truth is synthetic** | 500 generated bank-screenshot images with known `visible_text`, degraded programmatically. Real photos bring perspective, glare, cropping and compression that `ImageFilter.GaussianBlur(1.5)` does not. Same caveat family as item 4 |
+| 12 | **The intent taxonomy, not OCR, is now the ceiling on image tickets** | §17.8C — on *perfect* text the SVM router puts 132/132 `Cash not received` into `passcode_forgotten` and 136/136 `Cash withdrawal failure` into `failed_transfer`. `passcode_forgotten` absorbs 16.6% of all predictions and only 14 of 77 classes are ever emitted. BANKING77 has no intent for the ATM-debited-but-dispensed-nothing case. No OCR improvement can reach this; a domain taxonomy or a mapped label set can |
 
 ---
 
@@ -748,8 +753,9 @@ above; they are listed here so nothing quietly disappears.
 | 7 | All numbers in reports dated before 2026-08-01 | everywhere | Predate the Indic tokenizer fix (§7.4) and are mildly conservative for Sinhala and Tamil. |
 | 8 | XLM-R "100% promotion sweep, 6/6 tracks" on intent | `final_baseline_report.md` §12, `progress_and_results_summary.md` §8 | **English was a 0.10pp miss**: 93.88% against the 93.98% gate, and the same row reports the gain as `+2.90%` against a `+3.00%` requirement. XLM-R swept **5 of 6**. Corrected in §16.2. LaBSE does sweep all six, so the promotion conclusion survives — the sweep claim for XLM-R does not. |
 | 9 | Tesseract "completely resolved this bottleneck" on degraded images | `ocr_multimodal_ablation_report.md` §3A | True for **clean and rotated** input only. Under blur and low-resolution Tesseract is **worse** than the EasyOCR baseline on Latin (+17.42 / +8.76pp CER) and Sinhala (+10.81 / +7.45pp). Corrected in §17.2. |
+| 10 | The classical SVM is "definitively superior for OCR inputs" | §17.6 | **True on the metric it used, not on accuracy.** §17.6 scores self-agreement, where SVM leads LaBSE 99.50% to 86.15% on Vision text. Scored against the *true* label the two are indistinguishable: **78.27% vs 77.94%** (§17.8B). LaBSE is genuinely less stable under OCR noise, but its instability mostly reshuffles predictions inside categories it already gets wrong. SVM stays the production choice on stability, cost and no-GPU grounds — the accuracy claim is what overstates. |
 
-### Two unresolved inconsistencies, flagged not fixed
+### Three unresolved inconsistencies, flagged not fixed
 
 **(a) Classical intent baselines differ across three documents.** `baseline_summary.csv` (used
 throughout §3), `baseline_comparison.md`, and `final_baseline_report.md` quote figures for the same
@@ -793,6 +799,26 @@ a shipped model is the official-test one: **72.04%**.
 This is now a resolved inconsistency in all but name; what remains owed is the confirming run
 (intent on the frozen split's *test* portion) rather than an explanation.
 
+**(c) Tesseract's clean CER is reported at both ~10-11% and ~15%.** §17.2, from
+`ocr_multimodal_ablation_report.md`, puts language-routed Tesseract on clean images at **9.94%**
+Latin / **11.26%** Sinhala / **10.63%** Tamil. §17.7, computing from the committed
+`ml/OCR/results/ocr_tesseract_optimized_metrics.csv`, gets **15.82% / 15.55% / 14.73%** on the same
+images with the same `jiwer` metric — 4-6pp higher on every script. The per-image CSV behind the
+ablation figures is not committed, so the two cannot be diffed row by row.
+
+The likely explanation is normalisation, not a different Tesseract configuration: re-scoring the
+committed CSV order-insensitively (§17.7) yields **11.81% / 10.69% / 11.62%**, within ~1pp of the
+ablation numbers on all three scripts. That is what one would see if the ablation's scoring were
+less sensitive to token order than the current pipeline's. **This has not been verified**, and the
+difference is smaller than the gap it needs to explain on Latin.
+
+What this does and does not invalidate: **§17.7's comparison is internally consistent** — both
+engines are scored there from per-image result files under one metric, and Vision's 21.5pp lead is
+far outside the 4-6pp discrepancy. But **do not compare a Tesseract number from §17.2 against one
+from §17.7**, and do not quote a single clean-CER figure for Tesseract without naming its source
+file. Resolving it needs the ablation's per-image CSV committed, or `evaluate_tesseract.py` re-run
+end to end.
+
 ---
 
 ## 12. Source map — where each number comes from
@@ -812,6 +838,9 @@ This is now a resolved inconsistency in all but name; what remains owed is the c
 | [`probe_dev.csv`](probe_dev.csv) · [`probe_test_finetuned.csv`](probe_test_finetuned.csv) · [`probe_C_sweep.csv`](probe_C_sweep.csv) | §15 probe cells (264 dev, 18 test), and the `C` check |
 | [`progress_and_results_summary.md`](progress_and_results_summary.md) | Phase 1–3 narrative, XLM-R pipeline setup and smoke test; **§8–§9** the XLM-R epoch progression and the 4-way ablation (§16) |
 | [`ocr_multimodal_ablation_report.md`](ocr_multimodal_ablation_report.md) | EasyOCR vs Tesseract CER by script and condition, OpenCV pre-processing ablation — the input to §17 |
+| [`end_to_end_ocr_engines.md`](end_to_end_ocr_engines.md) · [`intent_accuracy_by_ocr_engine.md`](intent_accuracy_by_ocr_engine.md) | §17.8's two arms: router self-agreement per engine, and accuracy against the true label through the hand-built category bridge |
+| [`ocr_google_vision_benchmark.md`](ocr_google_vision_benchmark.md) | Google Cloud Vision vs Tesseract on the same 2,000 images: CER/WER by script and condition, the order-insensitive re-scoring, cost and latency — the input to §17.7 |
+| [`../OCR/results/ocr_google_vision_metrics.csv`](../OCR/results/ocr_google_vision_metrics.csv) · [`../OCR/results/ocr_tesseract_optimized_metrics.csv`](../OCR/results/ocr_tesseract_optimized_metrics.csv) | The two per-image result files §17.7 is computed from (2,000 rows each; join on `image_path`, not `id`) |
 | [`../OCR/README.md`](../OCR/README.md) | How to regenerate the 2,000-image OCR set and rerun the evaluation on Kaggle (§17.4) |
 
 ### Notebooks (`notebooks/modeling/`)
@@ -1473,10 +1502,18 @@ EasyOCR arm.
 - **Sinhala and Tamil hold 84 and 83 images per condition.** Small enough that a few catastrophic
   failures move the mean several points, and no intervals were computed.
 - **Only two engines.** Google Cloud Vision, Surya, PaddleOCR and TrOCR are untested; the report
-  names Cloud Vision as the obvious next comparison.
+  names Cloud Vision as the obvious next comparison. *(Cloud Vision tested 2026-09-04 — §17.7. Surya,
+  PaddleOCR and TrOCR remain untested.)*
 
 
 ### 17.6 End-to-End Downstream Impact
+
+> **Scope note (2026-09-04).** Every figure in this subsection is computed from **Tesseract**
+> output, before Google Vision existed in this project. §17.8 repeats the measurement for both
+> engines and both routers, adds accuracy against the true label, and qualifies the router
+> conclusion below (§11 correction 10). The numbers here are reproduced exactly by
+> `ml/OCR/measure_end_to_end_ocr.py`, so they are correct as far as they go — they are simply
+> the Tesseract column of a larger table.
 
 # End-to-End OCR Impact on Intent Classification
 
@@ -1499,3 +1536,211 @@ The F1 score below represents how well the classifier agrees with its own optima
 
 1. **The LaBSE Tokenizer Problem (Too Strict):** LaBSE uses dense subword tokenization trained on perfectly spelled text. When OCR slightly misreads a word (e.g., "account" → "acc0unt"), the tokenizer shatters it into meaningless fragments (e.g., `["acc", "0", "unt"]`). This destroys the sentence's context, causing the model to plummet to 49% accuracy.
 2. **The TF-IDF N-Gram Advantage (Resilient):** TF-IDF uses statistical character n-grams. When it sees "acc0unt", it still extracts overlapping chunks like `"acc"` and `"unt"`. The Linear SVM simply learns that the presence of these overlapping fragments strongly correlates with the intent, completely ignoring the garbled noise in the middle and retaining 94% accuracy.
+
+### 17.7 Google Cloud Vision vs Tesseract — the engine §17.5 said was untested
+
+Added 2026-09-04 from [`ocr_google_vision_benchmark.md`](ocr_google_vision_benchmark.md). Same 2,000
+images, same `jiwer` CER/WER, same lowercase-and-whitespace normalisation, same language routing
+(`sin+eng`/`tam+eng` becomes Vision language hints `si`/`ta`/`en` off the same metadata column).
+Scored with `ml/OCR/evaluate_google_vision.py`, compared with `ml/OCR/compare_ocr_engines.py`.
+This closes the last bullet of §17.5 and settles §10 item 9.
+
+CER, lower is better. Δ is Vision minus Tesseract; **negative means Vision is better**.
+
+| Script | Condition | Tesseract (routed) | Google Vision | Δ |
+|---|---|---:|---:|---:|
+| **Latin** | clean | **15.82%** | 15.61% | −0.21 |
+| **Latin** | rotation | 23.35% | **14.97%** | **−8.38** |
+| **Latin** | blur | 45.40% | **16.62%** | **−28.78** |
+| **Latin** | low-resolution | 60.53% | **14.89%** | **−45.64** |
+| **Sinhala** | clean | **15.55%** | 16.36% | +0.81 |
+| **Sinhala** | rotation | 27.30% | **15.69%** | **−11.61** |
+| **Sinhala** | blur | 51.35% | **17.20%** | **−34.15** |
+| **Sinhala** | low-resolution | 71.99% | **16.64%** | **−55.35** |
+| **Tamil** | clean | **14.73%** | 15.71% | +0.98 |
+| **Tamil** | rotation | 23.98% | **15.03%** | **−8.95** |
+| **Tamil** | blur | 45.30% | **17.00%** | **−28.30** |
+| **Tamil** | low-resolution | 62.23% | **14.98%** | **−47.25** |
+
+Pooled: **Vision 15.71% CER / 11.28% WER, Tesseract 37.21% / 111.22%**, Vision better on **85.9%**
+of individual images, zero ties. Vision failed on **0 of 2,000** calls and returned no empty
+extractions.
+
+**The finding is the slope, not the mean.** On clean input the two engines are indistinguishable —
+three cells inside ±1pp, and Tesseract nominally ahead on both native scripts. Every point of
+Vision's advantage is bought on degraded input, where Tesseract's error triples-to-quadruples and
+Vision's does not move: 15.75% clean to 15.20% low-resolution, against Tesseract's 15.59% to 62.74%.
+Blur and low-resolution are the WhatsApp-forward case the augmentation suite exists to model, and
+they are exactly where §17.2 found Tesseract losing to even the mis-configured EasyOCR arm. That
+gap is now closed by an engine that does not have the weakness at all, rather than by the
+condition-aware fallback §10 item 9 proposed.
+
+**Tesseract's WER above 100% is the downstream story.** It inserts more tokens than the reference
+contains (clean Latin 122.17%, rotation Latin 141.55%) because it hallucinates glyphs out of UI
+chrome — app logos and signal bars come back as stray Indic characters. Vision's WER is 8.90–14.87%
+across every cell. Those phantom tokens do not stay in the OCR layer: they enter `original_text` and
+are fed to the TF-IDF/SVM router §17.6 measures.
+
+#### The reading-order floor — why 15.71% understates Vision
+
+Vision's CER never drops below 11.65% on any of the 2,000 images and its standard deviation is 1.79
+points. That uniformity is not recognition error. Inspection shows the body text transcribed
+verbatim, with the whole residual coming from serialisation order:
+
+```
+Ground truth:  12:30 4G Nova Mobile Banking Secure transaction centre WAITING LKR 1,765.35 ...
+Vision output: 12:30 N Nova Mobile Banking Secure transaction centre [] 4G WAITING LKR 1,765.35 ...
+```
+
+Vision emits the status-bar block after the header, where `metadata.csv` puts it first, and renders
+the signal icon as a placeholder glyph. Every synthetic ticket carries the same status bar, so this
+is a near-constant per-image tax. Re-scored order-insensitively (tokens sorted before alignment,
+which removes serialisation order while preserving every substitution, insertion and deletion):
+
+| Script | clean | blur | low-resolution | rotation |
+|---|---:|---:|---:|---:|
+| **Vision** — Latin | **2.36%** | 4.07% | 5.44% | 1.83% |
+| **Vision** — Sinhala | **2.97%** | 3.99% | 7.78% | 2.47% |
+| **Vision** — Tamil | **2.82%** | 4.74% | 6.12% | 2.40% |
+| **Tesseract** — Latin | 11.81% | 43.32% | 61.61% | 26.60% |
+| **Tesseract** — Sinhala | 10.69% | 50.82% | 73.40% | 31.60% |
+| **Tesseract** — Tamil | 11.62% | 45.10% | 67.95% | 28.31% |
+
+Pooled: **Vision 3.67% vs Tesseract 37.21%**, Vision better on **99.8%** of images. Tesseract's
+figure is *unchanged* under this metric, which is the check that matters: its errors are genuine
+misreads, not ordering. Two consequences. Vision's real character accuracy is ≈96.3%, not ≈84%. And
+because the §17.6 router consumes bag-of-words TF-IDF, the order-insensitive column is the one that
+predicts downstream behaviour — a reordered status bar costs a bag-of-words model nothing.
+
+#### Cost, latency, and what this does not establish
+
+| Dimension | Tesseract | Google Vision |
+|---|---|---|
+| Latency / image | 0.435s local CPU | 0.699s network, batched 16/request |
+| Failure rate | n/a (local) | 0 / 2,000 |
+| Dependency | `tesseract-ocr` + `sin`/`tam` apt packs | HTTPS + API key |
+| Cost | free | 1,000 images/month free, then ~$1.50 / 1,000 |
+| Offline | yes | no |
+
+The full run cost ~$1.50. The two latency figures are **not comparable** — Vision's is a batched
+round trip amortised over 16 images, Tesseract's is local CPU time; the single-image serving figure
+is unmeasured on both (§10 item 6, same gap as the text path).
+
+Carrying forward from §17.5, unchanged by this run: the images are still **synthetic** with exact
+generated ground truth (§10 item 11), Sinhala and Tamil still hold 84 and 83 images per condition
+with no intervals computed, and Surya, PaddleOCR and TrOCR remain untested. New to this run: the
+§17.6 end-to-end numbers were produced from **Tesseract** output, so the SVM router's 94.15% clean /
+35.37% overall agreement is a Tesseract-conditioned result. Re-running it on Vision text is the
+obvious next measurement and is the number that would actually justify the engine switch in product
+terms.
+
+**Decision.** Promote Vision to primary (`SWIFT_OCR_ENGINE=google_vision`), keep Tesseract as the
+offline/outage fallback. The engine is selected at runtime in `backend/app/inference/ocr.py`; no
+call-site change is needed. Neither the switch nor the fallback is implemented as of this writing.
+
+**One inconsistency this run exposes:** the Tesseract column above does not match §17.2's. See §11,
+inconsistency (c).
+
+### 17.8 What each OCR engine costs the intent router
+
+Added 2026-09-04. §17.6 measured this for Tesseract only; §17.7 flagged that the engine now
+recommended for production was the untested one. This closes that gap and adds a second metric.
+Scripts: `ml/OCR/measure_end_to_end_ocr.py` (self-agreement, both routers, both engines) and
+`ml/OCR/measure_intent_accuracy.py` (accuracy against the true label). Both re-derive §17.6's
+Tesseract column exactly — 94.15 / 45.32 / 69.30 / 30.36 SVM and 49.70 / 39.56 / 48.29 / 30.05
+LaBSE — so the method is the same one, extended.
+
+#### A. Self-agreement — does the router still reach its own clean-text answer
+
+The §17.6 metric. The target is the router's own prediction on clean ground-truth text, because the
+synthetic set carries 15 categories and the routers emit 77 BANKING77 intents. `exact` is plain
+agreement; `F1` is macro-F1 over 77 classes and collapses when a rare intent takes a few hits.
+
+| Router | Condition | Tesseract F1 | Tesseract exact | Vision F1 | Vision exact |
+|---|---|---:|---:|---:|---:|
+| **SVM** | clean | 94.15% | 94.40% | **100.00%** | **100.00%** |
+| **SVM** | blur | 45.32% | 74.80% | **100.00%** | **100.00%** |
+| **SVM** | rotation | 69.30% | 92.80% | **99.85%** | **99.80%** |
+| **SVM** | low-resolution | 30.36% | 64.80% | **86.38%** | **98.20%** |
+| **SVM** | **overall** | **35.37%** | **81.70%** | **87.21%** | **99.50%** |
+| **LaBSE** | clean | 49.70% | 74.00% | 65.47% | 87.80% |
+| **LaBSE** | blur | 39.56% | 70.60% | 62.63% | 84.60% |
+| **LaBSE** | rotation | 48.29% | 70.20% | 73.27% | 91.00% |
+| **LaBSE** | low-resolution | 30.05% | 62.60% | 54.15% | 81.20% |
+| **LaBSE** | **overall** | **34.18%** | **69.35%** | **58.32%** | **86.15%** |
+
+On the production path — SVM, which is what `is_ocr=True` routes to — **Vision text reproduces the
+typed-text routing decision on 99.50% of images**, against Tesseract's 81.70%. That is 10 flipped
+tickets in 2,000 instead of 366. All 10 sit in the degraded conditions (9 low-resolution, 1
+rotation) and are marginal rather than catastrophic: their mean CER is 17.5% against 15.7% for the
+rest, so they are borderline routing decisions tipped by a word, not garbled text.
+
+**One number here is a measured argument for a change we have not made.** LaBSE flips on 12.2% of
+images even on *clean* Vision text that is character-for-character correct. The cause is the
+reading-order artifact of §17.7: Vision emits the status bar after the header, and LaBSE reads
+sequence. TF-IDF is bag-of-words and invariant to it, which is why SVM scores 100.00% on the same
+rows. Dropping status-bar blocks by bounding box — Vision returns per-block geometry that
+`backend/app/inference/ocr.py` currently discards — is therefore worth ~12pp *if* image tickets are
+ever routed to an encoder, and worth nothing on today's SVM path.
+
+#### B. Accuracy against the true label
+
+Self-agreement cannot see an error both texts share. This arm scores against `labels.json` through a
+hand-built bridge from the 15 synthetic categories to the BANKING77 intents that mean the same thing
+(`ACCEPTABLE` in `measure_intent_accuracy.py`); a prediction is correct if it lands anywhere in the
+set. The 132 `OTP not received` rows are excluded — no BANKING77 intent expresses "the one-time
+passcode never arrived", so no router can be right on them. 1,868 rows scored.
+
+| Router | ground truth (ceiling) | Tesseract | Google Vision |
+|---|---:|---:|---:|
+| **SVM** | 78.16% | 77.25% | **78.27%** |
+| **LaBSE** | 79.23% | 76.77% | **77.94%** |
+
+**Vision costs nothing.** Both routers on Vision text sit within ~1pp of their own perfect-text
+ceiling, and SVM on Vision is level with it in every condition (78.16 / 78.16 / 77.94 / 78.80
+against a flat 78.16 ceiling).
+
+**Tesseract's 77.25% overall is not a real score.** Per condition it reads 73.66 clean, 71.09
+low-resolution — and **86.94 on blur, above the 78.16 perfect-text ceiling** (LaBSE shows the same
+impossibility, 84.80 against 79.23). Corrupting text cannot improve comprehension; what it does is
+destroy tokens that were driving a systematically wrong answer, flipping some rows into the
+acceptable set by luck. Read Tesseract's accuracy column as noise, and the self-agreement table in
+§A as the reliable comparison.
+
+#### C. The bottleneck has moved out of OCR
+
+The ceiling is ~78%, and the missing 22% is unrelated to image quality. On **perfect** text the SVM
+router does this:
+
+| True category | Router's answer on perfect text | Rate |
+|---|---|---|
+| Cash not received | `passcode_forgotten` | 132/132 wrong |
+| Cash withdrawal failure | `failed_transfer` | 136/136 wrong |
+| Refund pending | `passcode_forgotten` | 68/132 wrong |
+| Wrong exchange rate | `passcode_forgotten` | 68/136 wrong |
+
+`passcode_forgotten` absorbs **332 of 2,000** predictions (16.6%) and the router emits only **14 of
+its 77 classes** on this data. The pattern is language-independent. This is a label-space failure,
+not a text-quality one: BANKING77 is a UK-fintech taxonomy with no intent for "the ATM debited me
+and dispensed no cash", so there is nowhere correct for the router to put it. §10 item 12.
+
+#### D. This qualifies §17.6's router conclusion
+
+§17.6 concludes the classical SVM is "definitively superior for OCR inputs". On its own metric it
+is: 99.50% vs 86.15% self-agreement on Vision text. On **accuracy against the true label the two
+routers are indistinguishable** — 78.27% vs 77.94%, well inside the resolution of the hand-built
+label bridge. Both are true. LaBSE is markedly less *stable* under OCR noise, but its instability
+mostly reshuffles predictions inside categories it was already getting wrong, so accuracy barely
+moves. The SVM remains the right production choice on stability, cost and no-GPU grounds; the
+"definitively superior" phrasing overstates the accuracy evidence. Logged as §11 correction 10.
+
+#### E. What this does not establish
+
+- **The label bridge is hand-built.** Widening or narrowing an `ACCEPTABLE` set moves the numbers,
+  and both routers hit the same ~78% ceiling because both fail the same unmappable categories. The
+  accuracy metric therefore has limited resolution — it cannot separate two routers a point apart.
+  The per-category table is printed with every run so the map stays auditable.
+- **Same synthetic images.** Every caveat in §17.5 and §17.7 still applies; nothing here has met a
+  real photograph.
+- **Neither number is a production accuracy claim.** These measure a router reading OCR text against
+  a 15-category synthetic taxonomy, not the shipped 77-way system on real tickets.
