@@ -30,8 +30,10 @@ def model_components() -> tuple[Embedder, FlashRankReranker]:
 def provider(settings: Settings) -> FallbackProvider:
     if not settings.groq_api_key:
         raise HTTPException(503, "RAG generation is not configured")
-    primary = GroqProvider(settings.groq_api_key, settings.groq_model, settings.rag_request_timeout_seconds)
-    fallback = GeminiProvider(settings.gemini_api_key, settings.gemini_model, settings.rag_request_timeout_seconds) if settings.gemini_api_key else None
+    retries = settings.rag_provider_max_retries
+    backoff = settings.rag_provider_retry_base_delay_seconds
+    primary = GroqProvider(settings.groq_api_key, settings.groq_model, settings.rag_request_timeout_seconds, retries, backoff)
+    fallback = GeminiProvider(settings.gemini_api_key, settings.gemini_model, settings.rag_request_timeout_seconds, retries, backoff) if settings.gemini_api_key else None
     return FallbackProvider(primary, fallback)
 
 
