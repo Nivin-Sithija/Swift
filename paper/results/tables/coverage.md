@@ -66,10 +66,10 @@
 | sentiment | labse-probe-cls                  |               |          0 |           0 |                 0 |      0 |     0 |
 | sentiment | labse-probe-mean                 |               |          0 |           0 |                 0 |      0 |     0 |
 | sentiment | majority                         |               |          0 |           0 |                 0 |      0 |     0 |
-| sentiment | mmbert                           | encoder       |          1 |           0 |                 0 |      0 |     0 |
+| sentiment | mmbert                           | encoder       |          1 |           1 |                 5 |      0 |     1 |
 | sentiment | mmbert-probe-cls                 |               |          0 |           0 |                 0 |      0 |     0 |
 | sentiment | mmbert-probe-mean                |               |          0 |           0 |                 0 |      0 |     0 |
-| sentiment | muril-base                       | encoder       |          1 |           0 |                 0 |      0 |     0 |
+| sentiment | muril-base                       | encoder       |          1 |           1 |                 5 |      0 |     1 |
 | sentiment | sinbert-large                    |               |          0 |           0 |                 0 |      0 |     0 |
 | sentiment | sinbert-large-probe-cls          |               |          0 |           0 |                 0 |      0 |     0 |
 | sentiment | sinbert-large-probe-mean         |               |          0 |           0 |                 0 |      0 |     0 |
@@ -83,7 +83,7 @@
 | sentiment | twhin-bert                       | encoder       |          1 |           0 |                 0 |      0 |     0 |
 | sentiment | twhin-bert-probe-cls             |               |          0 |           0 |                 0 |      0 |     0 |
 | sentiment | twhin-bert-probe-mean            |               |          0 |           0 |                 0 |      0 |     0 |
-| sentiment | xlmr-base                        | encoder       |          1 |           0 |                 0 |      0 |     0 |
+| sentiment | xlmr-base                        | encoder       |          1 |           1 |                 5 |      0 |     1 |
 | sentiment | xlmr-base-probe-cls              |               |          0 |           0 |                 0 |      0 |     0 |
 | sentiment | xlmr-base-probe-mean             |               |          0 |           0 |                 0 |      0 |     0 |
 | priority  | canine-c                         | encoder       |          1 |           0 |                 0 |      0 |     0 |

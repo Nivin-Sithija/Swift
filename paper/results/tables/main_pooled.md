@@ -23,6 +23,9 @@
 | sentiment | Negative-F1 | gemma-3-1b                       | encoder       | class_weight |   0.7126 |          |          |   0.9675 | 15395 |   49990 | train+dev   | v8            |               True |
 | sentiment | Negative-F1 | gemma-3-1b-multitask-sharedhead  | slm-multitask | class_weight |   0.7048 |          |          |   0.9608 | 15395 |  149970 | train+dev   | v8            |               True |
 | sentiment | Negative-F1 | gemma-3-1b-multitask-shared3head | slm-multitask | class_weight |   0.7042 |          |          |   0.9649 | 15395 |   49990 | train+dev   | v8            |               True |
+| sentiment | Negative-F1 | xlmr-base                        | encoder       | class_weight |   0.7007 |          |          |   0.9654 | 15395 |   49990 | train+dev   | v8            |               True |
+| sentiment | Negative-F1 | mmbert                           | encoder       | class_weight |      0.7 |          |          |   0.9669 | 15395 |   49990 | train+dev   | v8            |               True |
+| sentiment | Negative-F1 | muril-base                       | encoder       | class_weight |    0.679 |          |          |   0.9649 | 15395 |   49990 | train+dev   | v8            |               True |
 | sentiment | Negative-F1 | tfidf-svm                        | classical     | class_weight |   0.6653 |   0.6411 |   0.6889 |   0.9578 | 15395 |   49990 | train+dev   | v8            |               True |
 | sentiment | Negative-F1 | tfidf-logreg                     | classical     | ros          |   0.6383 |   0.6144 |    0.663 |   0.9514 | 15395 |   93690 | train+dev   | v8            |               True |
 | sentiment | Negative-F1 | tfidf-sgd                        | classical     | ros          |   0.6092 |   0.5817 |   0.6377 |   0.9576 | 15395 |   93690 | train+dev   | v8            |               True |
