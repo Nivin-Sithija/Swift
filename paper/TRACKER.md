@@ -1406,3 +1406,41 @@ priority — a deliberate scope, not a gap.
 
 - [ ] Fetch the four runs, rebuild tables, re-verify §2/§23/§24 against the new rows.
 - [ ] Re-check the §23 epoch audit once gemma-3-270m has 3-epoch curves on all three tasks.
+
+## Session 5e — GPU quota exhausted; two runs deferred, and a silent-failure bug fixed
+
+**The two queued gemma-3-270m runs did not happen.** Kaggle refused both pushes with
+`Maximum weekly GPU quota of 30.00 hours reached`. Confirmed by pulling the live kernel
+source: both kernels still hold their previous configs.
+
+### The bug that hid it
+
+`runner.py run` called `kaggle kernels push` and then printed "Running. Poll with:"
+unconditionally. **The Kaggle CLI reports a refused push on stdout and still exits 0**, so
+neither `check=True` nor the return code caught it. The failure mode is nastier than a missing
+run:
+
+1. push refused, old kernel version left in place;
+2. `status` reports the **previous** run's `COMPLETE`;
+3. `fetch` downloads the **previous** run's output, which looks entirely current.
+
+That is exactly what happened — a fetch returned muril-base intent a second time and it was
+briefly read as the new sentiment result. Fixed: the push output is now captured and scanned,
+the run returns non-zero, and it says explicitly that anything `status` or `fetch` reports
+describes the previous run. This is the same class of trap as the `.output` staleness the
+fetch guard already documents.
+
+No bad data entered the repo — verified no `gemma-3-270m` `__test.json` records exist for
+sentiment or priority.
+
+### Still owed, whenever quota resets
+
+| run | settings |
+|---|---|
+| gemma-3-270m, **sentiment** test | 3 ep, batch 16, LoRA all, r=8/α=16, lr 1e-4, train+dev |
+| gemma-3-270m, **priority** test | same |
+
+Matched to gemma-3-1b per task so 270M-vs-1B stays a parameter-count comparison.
+gemma-3-270m already has **dev** records on both tasks; only test is missing.
+
+- [ ] Re-run the two above once the weekly GPU quota resets.

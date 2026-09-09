@@ -263,7 +263,25 @@ def write_kernel(args) -> Path:
 def run(args):
     kdir = write_kernel(args)
     print(f"pushing kernel {slug(f'job-{args.job}')}  models={args.models} smoke={bool(args.smoke)}")
-    sh(["kaggle", "kernels", "push", "-p", str(kdir)])
+    r = sh(["kaggle", "kernels", "push", "-p", str(kdir)], check=False, capture=True)
+    out = f"{r.stdout or ''}{r.stderr or ''}".strip()
+    print(out)
+
+    # The Kaggle CLI reports a refused push on stdout and STILL EXITS 0, so neither
+    # check=True nor the return code catches it. It has to be read out of the text.
+    # This silently cost a run once: the GPU quota was exhausted, the push was refused,
+    # and the runner printed "Running. Poll with:" anyway -- so the old kernel was left
+    # in place, `status` reported the PREVIOUS run's COMPLETE, and a fetch returned that
+    # previous run's output looking entirely current.
+    if r.returncode != 0 or "error" in out.lower():
+        print("\nPUSH REFUSED -- the kernel was NOT started and the previous version is "
+              "still in place.\nAnything `status` or `fetch` reports for this job now "
+              "describes the PREVIOUS run.")
+        if "quota" in out.lower():
+            print("Weekly GPU quota is exhausted. Kaggle resets it on a rolling weekly "
+                  "basis; check kaggle.com/settings for the reset time.")
+        return 1
+
     print("\nRunning. Poll with:  python ml/kaggle/runner.py status")
     print("Kaggle kernels are capped at 12h; keep each job under that.")
     return 0
