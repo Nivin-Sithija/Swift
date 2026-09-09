@@ -46,12 +46,25 @@ def main() -> int:
     # label models are scored as probability estimates BEFORE any queue is simulated.
     from sklearn.metrics import log_loss, f1_score
     y = test["gold_priority"].to_numpy()
+
+    # sklearn's log_loss binarises `labels` through LabelBinarizer, which SORTS them, and
+    # then reads the columns of y_prob in that sorted order regardless of the order the
+    # `labels` argument was written in. Our columns are PRIORITY_CLASSES = Low, Medium,
+    # High, which sorts to High, Low, Medium -- so passing the columns as-is scores every
+    # probability against the wrong class. Measured: a perfect predictor scores 36.04
+    # that way and 0.0 this way. Reorder the columns to match the sorted labels.
+    LL_LABELS = sorted(pb.PRIORITY_CLASSES)
+    LL_ORDER = [pb.PRIORITY_CLASSES.index(k) for k in LL_LABELS]
+
     quality = []
     for name, P in posteriors.items():
         pred = np.array(pb.PRIORITY_CLASSES)[P.argmax(axis=1)]
+        # The stored posteriors are float32, so rows sum to 1 only to ~3e-7 and log_loss
+        # warns. Renormalise for the metric; the queue uses the unnormalised P as before.
+        Pll = P / P.sum(axis=1, keepdims=True)
         quality.append({
             "label_model": name,
-            "log_loss": log_loss(y, P, labels=pb.PRIORITY_CLASSES),
+            "log_loss": log_loss(y, Pll[:, LL_ORDER], labels=LL_LABELS),
             "macro_f1": f1_score(y, pred, average="macro"),
             # Argon & Ziya section 7: among signals, higher variability is better.
             # This is the quantity that result is about, so it is reported directly.
@@ -78,7 +91,7 @@ def main() -> int:
         cfg = pb.SimConfig(rho=rho, beta=args.beta)
         for lm, po in combos:
             P = posteriors[lm]
-            reps = [pb.summarise(pb.simulate(test, P, po, cfg, seed))
+            reps = [pb.summarise(pb.simulate(test, P, po, cfg, seed), beta=args.beta)
                     for seed in range(args.seeds)]
             r = pd.DataFrame(reps).mean().to_dict()
             r.update({"label_model": "-" if po == "fcfs" else lm,
@@ -87,17 +100,18 @@ def main() -> int:
         print(f"  rho={rho} done")
 
     res = pd.DataFrame(rows)
-    front = ["policy", "label_model", "rho", "rel_tardiness", "wait_High", "p95_High",
-             "worst_High", "lang_spread_High", "breach_rate", "wait_Low", "mean_wait"]
+    front = ["policy", "label_model", "rho", "lin_cost", "conv_cost", "rel_tardiness",
+             "wait_High", "p95_High", "worst_High", "lang_spread_High", "breach_rate",
+             "wait_Low", "mean_wait"]
     res = res[front + [c for c in res.columns if c not in front]]
     _save(res, "bakeoff_policies.csv",
           f"5 label models x 6 published ordering policies, {args.seeds} seeds, "
           f"beta={args.beta}. Scored against gold priority. Lower is better throughout.")
 
-    print("\n=== queue bake-off, rho = 1.05, ranked by relative tardiness ===")
-    hot = res[res.rho == 1.05].sort_values("rel_tardiness")
-    print(hot[["policy", "label_model", "rel_tardiness", "wait_High", "p95_High",
-               "worst_High", "lang_spread_High", "wait_Low"]]
+    print("\n=== queue bake-off, rho = 1.05, ranked by linear c-mu cost ===")
+    hot = res[res.rho == 1.05].sort_values("lin_cost")
+    print(hot[["policy", "label_model", "lin_cost", "conv_cost", "rel_tardiness",
+               "wait_High", "p95_High", "worst_High", "lang_spread_High", "wait_Low"]]
           .to_string(index=False, float_format=lambda v: f"{v:.3f}"))
 
     # ---- the sample set ------------------------------------------------------

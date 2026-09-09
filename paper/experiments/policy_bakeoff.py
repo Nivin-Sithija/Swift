@@ -384,15 +384,34 @@ def simulate(frame: pd.DataFrame, P: np.ndarray, policy: str, cfg: SimConfig,
     return sample
 
 
-def summarise(sample: pd.DataFrame) -> dict:
+def summarise(sample: pd.DataFrame, beta: float = 2.0) -> dict:
     """Scored against GOLD priority throughout -- a policy is judged on the tickets
-    that were really urgent, not on the ones it believed were."""
+    that were really urgent, not on the ones it believed were.
+
+    Two of the columns are the objectives the cited theorems are actually about, and
+    they are not interchangeable with `rel_tardiness`:
+
+    `lin_cost` = mean of c_k * w = mean of w / D_k, the linear delay cost. This is the
+    objective the c-mu rule minimises (Cox & Smith 1961) and the one Argon & Ziya (2009)
+    Theorem 3 is stated over, so it is the ONLY column against which the claim "a
+    posterior index beats any fixed priority class" can be tested.
+
+    `conv_cost` = mean of (w / D_k)^beta, the convex delay cost. This is the objective
+    the generalized c-mu rule minimises (Van Mieghem 1995), and the regime in which
+    Argon & Ziya section 9 predict HSF starves low-signal customers while Gcmu does not.
+
+    `rel_tardiness` counts only delay PAST the SLA, so it is a tardiness objective and no
+    cited result optimises it. It is kept as an operational readout, not as evidence.
+    """
     gold = sample["gold_priority"]
     sla = gold.map(SLA_MINUTES).to_numpy()
-    rel_tard = np.maximum(sample["wait"].to_numpy() - sla, 0.0) / sla
+    w = sample["wait"].to_numpy()
+    rel_tard = np.maximum(w - sla, 0.0) / sla
     row = {"mean_wait": sample["wait"].mean(),
+           "lin_cost": float((w / sla).mean()),
+           "conv_cost": float(np.power(w / sla, beta).mean()),
            "rel_tardiness": rel_tard.mean(),
-           "breach_rate": float((sample["wait"].to_numpy() > sla).mean())}
+           "breach_rate": float((w > sla).mean())}
     for k in PRIORITY_CLASSES:
         m = gold == k
         row[f"wait_{k}"] = sample.loc[m, "wait"].mean()
