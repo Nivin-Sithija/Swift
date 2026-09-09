@@ -1746,3 +1746,137 @@ The SLA windows D_k (30/120/480 min) are an assumption about the desk, not a mea
 tracker E10. Service times are LogNormal(mean 8 min, sigma 0.75), also assumed. The bake-off
 scores against *gold* priority, so it measures the ordering rule and not the classifier;
 the classifier's contribution enters only through the posterior it supplies.
+
+---
+
+## 23. Was the epoch budget enough? An audit, because 23 of 25 runs end on their best epoch
+
+**The flag.** Across the 25 fine-tuned test records, **23 have `best_epoch == epochs`** — the
+best epoch was the last one trained. Taken alone that is the signature of an undertrained
+roster: if training stops while the metric is still rising, every score is a lower bound and
+model comparisons are comparisons of budget.
+
+It is not sufficient evidence on its own, because a *flat* curve also ends on its last epoch.
+So the question is settled from the per-epoch histories in `paper/results/runs/history/`, not
+from `best_epoch`. Verdict: **the budget is adequate for the load-bearing claims, and
+inadequate for two specific things that must therefore not be claimed.**
+
+### 23.1 Where the budget is justified
+
+| run | per-epoch curve | last gain | verdict |
+|---|---|---:|---|
+| labse sentiment (3 ep) | 0.8246 → 0.8467 → 0.8478 | +0.0011 | converged |
+| labse priority (dev, 6 ep) | 0.9027 → 0.9074 → 0.9155 → 0.9152 → 0.9167 → 0.9103 | −0.0064 | **past the peak** |
+
+Sentiment at 3 epochs is converged, not truncated. Priority is the stronger case: the 6-epoch
+dev curve **peaks at epoch 5 and then declines**, and epoch 3 (0.9155) is only 0.0012 below
+that peak. So the 3-epoch priority test budget sits on the plateau. More epochs would not have
+helped and epoch 6 would have hurt.
+
+This also settles a comparison that looked confounded. On sentiment test, **LaBSE ran 3 epochs
+and xlmr-base, mmbert and muril-base ran 6** — an unmatched budget. But it is unmatched *against*
+the winner: LaBSE converged in 3 and still beat three models given twice the budget. The
+mismatch works against the reported result, so it cannot manufacture it.
+
+### 23.2 Where it is not — two things that must not be claimed
+
+**1. Intent is still improving at epoch 6.** Both leaders are climbing when training stops:
+
+| epoch | 1 | 2 | 3 | 4 | 5 | 6 | last gain |
+|---|---|---|---|---|---|---|---:|
+| labse | 0.8273 | 0.8641 | 0.8757 | 0.8794 | 0.8792 | **0.8835** | +0.0043 |
+| mmbert | 0.7962 | 0.8507 | 0.8597 | 0.8643 | 0.8654 | **0.8680** | +0.0025 |
+
+So **every intent number in this report is a lower bound**, and the roster ordering is a
+statement about a 6-epoch budget, not about the models at convergence.
+
+The headline contrast survives this, and it is worth showing why rather than asserting it.
+The LaBSE−mmBERT gap across the last three epochs is **+0.0151, +0.0138, +0.0155** — stable to
+±0.001 while both curves are still rising. The gap is not an artifact of where training
+stopped. §18.1's +0.0155 stands; "LaBSE reaches 0.8835 on intent" should be written as a
+budgeted result, not a converged one.
+
+**2. The three failed models are undertrained, and their scores are not evidence.**
+
+| model | epochs | curve | last gain | reported |
+|---|---|---|---:|---|
+| sinbert-large | 3 | 0.4419 → 0.4632 → 0.4939 | **+0.0306** | 0.1182 |
+| canine-c | 3 | — | **+0.0180** | 0.4702 |
+| sinhalaberto | 3 | — | +0.0051 | 0.1296 |
+
+These are the only runs climbing steeply at cutoff — an order of magnitude faster than the
+converged models. **Their low scores measure the budget, not the model.** Concretely:
+`canine-c` must not be cited as evidence about character-level models. The outline positions
+`clark2022canine` as "the design that cannot have this failure"; that is an argument from
+architecture and it stays, but the 0.4702 number cannot be used to support or refute it.
+
+### 23.3 What this changes
+
+- Intent results are lower bounds; say so once, in §3, and do not restate per number.
+- The LaBSE−mmBERT intent gap is budget-stable and can be claimed as-is.
+- Priority's 3-epoch budget is justified by its own dev curve — state that, since 3 looks thin
+  next to the 6 used elsewhere and a reviewer will ask.
+- Sentiment's budget mismatch runs against the winner and is safe to report plainly.
+- **sinbert-large, sinhalaberto and canine-c must be dropped from every comparative claim**, or
+  rerun to convergence. They are currently reported as if their scores were meaningful.
+
+---
+
+## 24. The "manually verified" claim, reconciled against the per-language results (B5)
+
+**There is no contradiction inside the repository.** README.md and RESULTS.md agree: Sinhala
+was hand-corrected to colloquial code-mixed text, Singlish was rule-generated, **Tamil was
+Gemini-translated with no hand pass**. The conflict is between that and the external
+"translations were manually verified" claim carried in `data_statement.md` as `[CONFIRM]`.
+The repository's own record is the more specific and it is the one to keep.
+
+The open question was whether that asymmetry *matters*. It does, and the per-language test
+results now say exactly where.
+
+### 24.1 The prediction
+
+If Sinhala received a hand pass that made it colloquial and code-mixed (measured: **40.35%
+Latin characters**, against Tamil's **1.26%**), and Tamil is raw MT output, then Tamil is the
+*cleaner, more monolingual* track. It should therefore be **easier** — and not uniformly, but
+specifically on the label that depends on register. Intent is topic classification over 77
+banking categories and should be largely register-invariant; sentiment depends on how
+frustration is colloquially expressed and should not be.
+
+### 24.2 Tamil minus Sinhala, every model with both tracks scored
+
+| task | mean Δ | Tamil higher in | Δ excluding muril-base |
+|---|---:|---:|---:|
+| **sentiment** | **+0.0666** | **8 of 8** | +0.0492 |
+| priority | +0.0264 | 5 of 5 | +0.0068 |
+| intent | −0.0028 | 4 of 9 | −0.0028 |
+
+**The prediction holds.** Tamil beats Sinhala on sentiment for **every single model, without
+exception**, by about 5 points once MuRIL is set aside. On intent the difference vanishes
+(−0.003, and Tamil is higher in fewer than half the models). Priority sits between and is
+negligible once MuRIL is excluded (+0.007).
+
+MuRIL is excluded from the summary column because it is the §2 Sinhala-blind case
+(Δ +0.1888 sentiment, +0.1048 priority) and would otherwise carry the average on its own.
+Its exclusion makes the finding *weaker* and it still holds 7/7 and 4/4.
+
+### 24.3 What this settles, and what it does not
+
+**Settled.** The provenance asymmetry is not a documentation detail — it has a measurable,
+task-specific signature that matches what an un-hand-passed track would produce. The Tamil
+track is easier because it is cleaner, not because Tamil is intrinsically easier than Sinhala.
+
+**Consequences the paper must carry:**
+
+1. **The tamil/tamilish contrast is not a second measurement of the sinhala/singlish effect.**
+   §16's caution was right and this is the evidence for it: the two pairs have different
+   baselines (40.35% vs 1.26% Latin) *and* different provenance. Report the sinhala/singlish
+   DiD as the finding; report tamil/tamilish as a track whose confound is now quantified.
+2. **Sentiment comparisons across sinhala and tamil are confounded** and must not be read as a
+   language effect. Intent comparisons are safe — the audit shows no track advantage there.
+3. `data_statement.md`'s `[CONFIRM]` should be resolved *against* the external claim: state
+   that Tamil received no hand pass, and cite the 1.26% Latin figure as the constraint that
+   makes any "manually verified" claim untenable for that track.
+
+**Not settled, and still needs a human record (tracker B5):** who performed the Sinhala pass,
+how many rows they touched, against what criteria, and what fraction changed. The analysis
+above establishes the *consequence* of the asymmetry; it cannot reconstruct the *process*.

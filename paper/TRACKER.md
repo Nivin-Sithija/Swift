@@ -1308,3 +1308,75 @@ So two comparisons in the current draft are confounded and must not be stated as
 
 The batch-32 gemma-3-270m record will be overwritten by that rerun, so it is archived at
 `ml/reports/runs_archive/gemma-3-270m_intent_bs32/` with a README explaining why.
+
+---
+
+# Session 5c — epoch audit, B5 reconciled, licence settled
+
+## Epoch budget: audited, mostly justified, two exceptions
+
+**23 of 25 fine-tuned test records have `best_epoch == epochs`.** On its own that reads as an
+undertrained roster. Settled from the per-epoch histories rather than from `best_epoch`,
+because a flat curve also ends on its last epoch. Written up as results §23.
+
+**Justified:**
+- **Sentiment 3 epochs** — labse 0.8246 → 0.8467 → 0.8478, last gain +0.0011. Converged.
+- **Priority 3 epochs** — the 6-epoch dev curve **peaks at epoch 5 and declines**; epoch 3 is
+  0.0012 below that peak. 3 sits on the plateau. State this, because 3 looks thin next to the
+  6 used elsewhere and a reviewer will ask.
+- **Sentiment budget mismatch is safe** — labse ran 3 epochs, xlmr/mmbert/muril ran 6. The
+  mismatch is against the winner, so it cannot manufacture the result.
+
+**Not justified — two things that must not be claimed:**
+- [ ] **Intent is still climbing at epoch 6** (labse +0.0043/epoch, mmbert +0.0025). Every
+  intent number is a **lower bound**; say so once in §3. The LaBSE−mmBERT gap is nonetheless
+  budget-stable (+0.0151 / +0.0138 / +0.0155 over the last three epochs), so §18.1's +0.0155
+  stands as written.
+- [ ] **sinbert-large, sinhalaberto and canine-c are undertrained**, climbing at +0.0306,
+  +0.0051 and +0.0180 per epoch at cutoff — an order of magnitude faster than the converged
+  models. Their scores (0.1182 / 0.1296 / 0.4702) measure the budget, not the model. **Drop
+  them from every comparative claim or rerun to convergence.** In particular `canine-c`'s
+  0.4702 cannot be used for or against the `clark2022canine` argument in outline §5; that
+  argument is architectural and stands on its own.
+
+## B5 — reconciled from the per-language results
+
+- [x] **B5 analytical half — DONE.** Results §24.
+
+There is **no contradiction inside the repo**: README and RESULTS.md agree that Sinhala was
+hand-corrected and **Tamil had no hand pass**. The conflict is with the external "manually
+verified" claim in `data_statement.md`. The repo record is more specific and wins.
+
+Tested whether the asymmetry matters, using the new per-language coverage. Prediction: if
+Sinhala is hand-corrected colloquial code-mix (40.35% Latin) and Tamil is raw MT (1.26%
+Latin), Tamil is the cleaner track and should be easier **specifically on register-dependent
+labels**. Tamil minus Sinhala:
+
+| task | mean Δ | Tamil higher in | Δ excl. muril-base |
+|---|---:|---:|---:|
+| sentiment | **+0.0666** | **8 of 8** | +0.0492 |
+| priority | +0.0264 | 5 of 5 | +0.0068 |
+| intent | −0.0028 | 4 of 9 | −0.0028 |
+
+Prediction holds. Consequences:
+- [ ] `data_statement.md` `[CONFIRM]` at line 39 must resolve **against** the external claim:
+  Tamil received no hand pass; cite 1.26% Latin as the constraint that makes "manually
+  verified" untenable for that track.
+- [ ] Sentiment comparisons across sinhala/tamil are confounded — do not read as a language
+  effect. Intent comparisons are clean.
+- [ ] tamil/tamilish is **not** a second measurement of sinhala/singlish. Confound now
+  quantified; §16's caution was correct.
+
+- [ ] **B5 documentary half — still `you`.** Who did the Sinhala pass, how many rows, what
+  criteria, what fraction changed. The analysis establishes the consequence, not the process.
+
+## Licence — settled
+
+- [x] **Corpus: CC BY 4.0.** Already in place at `datasets/LICENSE` with attribution to
+  PolyAI. This is not a free choice: BANKING77 is CC BY 4.0, so a derived corpus **must**
+  redistribute under the parent licence. `data_statement.md` §7 already states it. Nothing
+  outstanding.
+- [ ] **Code has no root LICENSE.** The corpus licence does not cover `ml/`, `backend/`,
+  `paper/experiments/`. Decision recorded as "our own work, with references in the paper",
+  which is an attribution policy rather than a licence. Suggest **MIT** (permissive, keeps
+  your copyright, standard for research code) — one file at repo root, then D4 closes.
