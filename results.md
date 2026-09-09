@@ -140,51 +140,79 @@ because they can be ranked against the v8 block.
 
 ---
 
-## 2. Test set, per language (frozen split)
+## 2. Test set, per language (frozen split, v8 labels)
 
-Per-language test coverage is thin — most test runs were scored pooled only. Blanks are unrun, and
-this is the single largest gap in the project (§8.1).
+**This section was rewritten 2026-09-09.** It previously said per-language test coverage was
+thin and carried a single v8 sentiment row. The v8 roster runs each wrote six records (pooled
+plus all five tracks), so coverage is now 8 models on sentiment, 5 on priority, 9 on intent,
+with every track filled. The old §2.3 v5 table is deleted rather than kept as "superseded" —
+v8 rows now exist for the same models, so nothing depends on it.
+
+Every cell below is `label_version` v8 on split `e7b5934392cd`. `spread` is best track minus
+worst track *within a model* — the number that says how unevenly a model serves the five
+languages, which pooled accuracy hides entirely.
 
 ### 2.1 Priority — macro-F1
 
-| model | family | english | sinhala | singlish | tamil | tamilish | **pooled** |
-|---|---|---:|---:|---:|---:|---:|---:|
-| `labse` | Encoder | 0.9229 | 0.9179 | 0.8817 | 0.9130 | 0.8142 | **0.8901** |
-| `tfidf-svm` | Classical | 0.9032 | 0.8745 | 0.8915 | 0.8905 | 0.7994 | **0.8722** |
-| `tfidf-logreg` | Classical | 0.8908 | 0.8822 | 0.8839 | 0.8847 | 0.8002 | **0.8683** |
-| `xlmr-base` | Encoder | 0.9234 | 0.9116 | 0.8780 | 0.8990 | 0.8229 | **—** |
+| model | family | English | Sinhala | Singlish | Tamil | Tanglish | **pooled** | spread |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `tfidf-svm` | classical | 0.9050 | 0.8848 | 0.8918 | 0.8854 | 0.7984 | **0.8734** | 0.1066 |
+| `muril-base` | encoder | 0.9095 | 0.8072 | 0.8861 | 0.9120 | 0.8412 | **0.8717** | 0.1048 |
+| `tfidf-logreg` | classical | 0.8987 | 0.8810 | 0.8889 | 0.8849 | 0.7985 | **0.8706** | 0.1002 |
+| `tfidf-sgd` | classical | 0.8953 | 0.8802 | 0.8831 | 0.8853 | 0.7805 | **0.8659** | 0.1148 |
+| `tfidf-cnb` | classical | 0.8643 | 0.8479 | 0.8540 | 0.8653 | 0.7782 | **0.8422** | 0.0871 |
 
-
-> `labse` per-language generated 2026-09-05 by re-scoring the saved checkpoint; its pooled 0.8901
-> reproduces the recorded 0.8900 to +0.00005. `xlmr-base` has per-language cells but its pooled test
-> figure lives only in the run JSON (**0.8872**), from a separate run.
+> **MuRIL is not a weak model, it is a Sinhala-blind one.** It has the best English (0.9095)
+> and the best Tamil (0.9120) of any model here, and still loses pooled to `tfidf-svm`
+> (0.8717 vs 0.8734) — because Sinhala collapses to 0.8072 while every classical baseline
+> holds 0.88. MuRIL's pretraining covers 17 Indian languages including Tamil; **Sinhala is
+> not among them.** The pooled figure averages that hole away and reads as mediocrity.
 >
-> **LaBSE loses to classical on Singlish** (0.8817 vs 0.8915) while winning the other four tracks —
-> the romanized give-back that also shows in the probe gaps (§4.3).
+> `tfidf-svm` also wins Singlish outright (0.8918). Romanized text is where character
+> n-grams stay competitive with subword encoders.
 
-### 2.2 Sentiment — Negative-F1 · v8 labels
+### 2.2 Sentiment — Negative-F1
 
-| model | family | english | sinhala | singlish | tamil | tamilish | **pooled** |
-|---|---|---:|---:|---:|---:|---:|---:|
-| `labse` | Encoder | 0.8032 | 0.7234 | 0.6757 | 0.7606 | 0.5948 | **0.7138** |
+| model | family | English | Sinhala | Singlish | Tamil | Tanglish | **pooled** | spread |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `labse` | encoder | 0.7550 | 0.7139 | 0.6402 | 0.7535 | 0.6185 | **0.7138** | 0.1365 |
+| `xlmr-base` | encoder | 0.7838 | 0.7215 | 0.6361 | 0.7473 | 0.5981 | **0.7007** | 0.1857 |
+| `mmbert` | encoder | 0.7723 | 0.6766 | 0.6905 | 0.7386 | 0.6159 | **0.7000** | 0.1564 |
+| `muril-base` | encoder | 0.7967 | 0.5577 | 0.6463 | 0.7465 | 0.6235 | **0.6790** | 0.2390 |
+| `tfidf-svm` | classical | 0.7198 | 0.6412 | 0.6633 | 0.7249 | 0.5722 | **0.6653** | 0.1527 |
+| `tfidf-logreg` | classical | 0.6995 | 0.6256 | 0.6545 | 0.6776 | 0.5074 | **0.6383** | 0.1921 |
+| `tfidf-sgd` | classical | 0.6842 | 0.5954 | 0.6218 | 0.6608 | 0.4577 | **0.6092** | 0.2265 |
+| `tfidf-cnb` | classical | 0.5139 | 0.5083 | 0.5302 | 0.5239 | 0.3738 | **0.4968** | 0.1564 |
 
-> Generated 2026-09-05 by re-scoring the v8 checkpoint on test; pooled reproduces the recorded
-> 0.7138 exactly (delta +0.00000). **The only per-language sentiment test row on v8 labels.**
+> The same MuRIL pattern, sharper: **best English of any model (0.7967) and worst Sinhala of
+> any model (0.5577)**, a 0.2390 within-model spread — the widest in the table. It beats
+> LaBSE on English by 4 points and loses to it on Sinhala by 16.
 >
-> The spread is wide — **English 0.8032 vs Tanglish 0.5948, a 21-point gap**, far larger than
-> priority's 11-point spread on the same model. Both romanized tracks are the weakest
-> (Singlish 0.6757, Tanglish 0.5948), and the ordering english > tamil > sinhala > singlish >
-> tanglish tracks script familiarity, not language family.
+> The ordering english > tamil > sinhala > singlish > tanglish holds for nearly every model,
+> which tracks **script familiarity, not language family** — the two romanized tracks are the
+> weakest even though their underlying languages are the strongest elsewhere.
 
-### 2.3 Sentiment — Negative-F1 · ⚠️ v5 labels (superseded)
+### 2.3 Intent — macro-F1
 
-**Every cell below is stale** — these predate v8 and are not comparable to §2.2 above.
+| model | family | English | Sinhala | Singlish | Tamil | Tanglish | **pooled** | spread |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `labse` | encoder | 0.9412 | 0.9319 | 0.9034 | 0.9329 | 0.6928 | **0.8835** | 0.2484 |
+| `xlmr-base` | encoder | 0.9402 | 0.9244 | 0.8987 | 0.9151 | 0.7067 | **0.8801** | 0.2335 |
+| `mmbert` | encoder | 0.9374 | 0.9123 | 0.9013 | 0.9147 | 0.6566 | **0.8680** | 0.2808 |
+| `gemma-3-1b` | decoder | 0.9358 | 0.9221 | 0.8962 | 0.9110 | 0.6281 | **0.8635** | 0.3077 |
+| `tfidf-svm` | classical | 0.9180 | 0.8666 | 0.8793 | 0.8528 | 0.6127 | **0.8308** | 0.3053 |
+| `gemma-3-270m` | decoder | 0.9209 | 0.8805 | 0.8539 | 0.8833 | 0.5909 | **0.8305** | 0.3300 |
+| `tfidf-logreg` | classical | 0.9096 | 0.8595 | 0.8751 | 0.8302 | 0.5854 | **0.8189** | 0.3242 |
+| `tfidf-sgd` | classical | 0.9079 | 0.8489 | 0.8646 | 0.8305 | 0.5669 | **0.8115** | 0.3410 |
+| `tfidf-cnb` | classical | 0.7772 | 0.6732 | 0.7194 | 0.7234 | 0.4925 | **0.6792** | 0.2847 |
 
-| model | family | english | sinhala | singlish | tamil | tamilish | **pooled** |
-|---|---|---:|---:|---:|---:|---:|---:|
-| `tfidf-svm` | Classical | 0.4582 | 0.4138 | 0.4615 | 0.5252 | 0.4229 | **0.4572** |
-| `tfidf-logreg` | Classical | 0.4361 | 0.3843 | 0.4170 | 0.5018 | 0.3523 | **0.4225** |
-
+> Tanglish is the floor for every model without exception, and the gap is enormous: LaBSE
+> scores 0.9412 on English and **0.6928 on Tanglish**. Intent has the widest spreads of the
+> three tasks (0.23–0.34 against sentiment's 0.14–0.24).
+>
+> **Pooled ranking is not per-track ranking.** `tfidf-svm` outranks `gemma-3-270m` pooled
+> (0.8308 vs 0.8305) while losing to it on English, Sinhala and Tamil — it wins only by
+> degrading less on the two romanized tracks. A pooled table alone would not show this.
 
 ---
 
