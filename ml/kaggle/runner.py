@@ -230,6 +230,7 @@ def write_kernel(args) -> Path:
         f"LORA_R = {args.lora_r}\n"
         f"LORA_ALPHA = {args.lora_alpha}\n"
         f"LORA_TARGETS = {args.lora_targets!r}\n"
+        f"SEED = {args.seed!r}\n"
         f"SMOKE = {bool(args.smoke)}\n"
         f"FIT_PORTION = {args.fit_portion!r}\n"
         f"EVAL_PORTION = {args.eval_portion!r}\n"
@@ -329,14 +330,49 @@ def fetch(args):
         "-p", str(OUT)])
     runs = REPO / "ml" / "reports" / "runs"
     runs.mkdir(parents=True, exist_ok=True)
-    moved = 0
+
+    # The split sha the local manifest holds. A record stamped with anything else was
+    # computed against a different split and must not enter the repo -- `load_all()`
+    # would drop it later anyway, but silently, after it had already overwritten a
+    # good record at the same filename.
+    local_sha = json.loads((REPO / "ml" / "splits" / "split_manifest.json").read_text())["sha"]
+
+    moved = skipped = 0
     for f in OUT.rglob("*.json"):
-        if f.name.endswith("__dev.json") or f.name.endswith("__test.json"):
-            shutil.copy2(f, runs / f.name)
-            moved += 1
+        if not (f.name.endswith("__dev.json") or f.name.endswith("__test.json")):
+            continue
+        rec = json.loads(f.read_text())
+        why = None
+        if rec.get("split_sha") != local_sha:
+            why = f"split_sha {rec.get('split_sha')} != {local_sha}"
+        elif rec.get("n_train_before_resample") in (1200, 600, 400):
+            # A smoke run writes a real record at a real run id and overwrites the
+            # genuine one. Its tell is the subsample size.
+            why = f"looks like a smoke run (n_train {rec.get('n_train_before_resample')})"
+        if why:
+            print(f"  SKIPPED {f.name}: {why}")
+            skipped += 1
+            continue
+        shutil.copy2(f, runs / f.name)
+        moved += 1
+
+    # Per-row predictions live under ml/predictions/runs/, not ml/reports/. Copying
+    # every csv flat into ml/reports/ put them somewhere nothing reads and left the
+    # paired significance tests with no input.
+    preds = REPO / "ml" / "predictions" / "runs"
+    preds.mkdir(parents=True, exist_ok=True)
+    pred_n = 0
     for f in OUT.rglob("*.csv"):
-        shutil.copy2(f, REPO / "ml" / "reports" / f.name)
-    print(f"pulled {moved} run file(s) into ml/reports/runs/")
+        if f.parent.name == "runs" and f.parent.parent.name == "predictions":
+            shutil.copy2(f, preds / f.name)
+            pred_n += 1
+        else:
+            shutil.copy2(f, REPO / "ml" / "reports" / f.name)
+
+    print(f"pulled {moved} run file(s) into ml/reports/runs/"
+          f"{f', skipped {skipped}' if skipped else ''}")
+    if pred_n:
+        print(f"pulled {pred_n} prediction file(s) into ml/predictions/runs/")
 
     models_out = REPO / "ml" / "models" / "encoders"
     saved = 0
@@ -406,6 +442,11 @@ def main():
                    help="'train' while selecting on dev; 'train+dev' for the final test fit")
     r.add_argument("--eval-portion", default="dev", choices=["dev", "test"],
                    help="'dev' for selection; 'test' only for the final, one-shot eval")
+    r.add_argument("--seed", type=int, default=None,
+                   help="training seed. Default (None) uses config.RANDOM_STATE and writes "
+                        "the usual filenames. Any other value suffixes the run id with "
+                        "'seed-N' so repeated-seed runs land as separate records instead "
+                        "of overwriting each other")
     r.add_argument("--smoke", action="store_true", help="1,200-row sanity run")
     r.add_argument("--save-models", action="store_true",
                    help="write best-epoch weights to /kaggle/working/models/ (downloadable "
