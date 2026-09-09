@@ -361,6 +361,7 @@ def fetch(args):
     local_sha = json.loads((REPO / "ml" / "splits" / "split_manifest.json").read_text())["sha"]
 
     moved = skipped = 0
+    smoke_records: set[str] = set()
     for f in OUT.rglob("*.json"):
         if not (f.name.endswith("__dev.json") or f.name.endswith("__test.json")):
             continue
@@ -374,6 +375,7 @@ def fetch(args):
             why = f"looks like a smoke run (n_train {rec.get('n_train_before_resample')})"
         if why:
             print(f"  SKIPPED {f.name}: {why}")
+            smoke_records.add(f.name.removesuffix(".json"))
             skipped += 1
             continue
         shutil.copy2(f, runs / f.name)
@@ -385,8 +387,19 @@ def fetch(args):
     preds = REPO / "ml" / "predictions" / "runs"
     preds.mkdir(parents=True, exist_ok=True)
     pred_n = 0
+    # The JSON loop above rejects smoke runs, but prediction CSVs carry no metadata to
+    # reject them by -- so a smoke run's predictions landed in ml/predictions/runs/ under
+    # exactly the filename a real run uses, where the paired significance tests read from.
+    # A 1,200-row file sitting where a 15,395-row one belongs is not obviously wrong from
+    # the path. Reject by the row count the skipped records name.
+    skipped_names = {n.rsplit("__", 1)[0] for n in smoke_records}
+    pred_skipped = 0
     for f in OUT.rglob("*.csv"):
         if f.parent.name == "runs" and f.parent.parent.name == "predictions":
+            if f.name.rsplit("__", 1)[0] in skipped_names:
+                print(f"  SKIPPED prediction {f.name}: from a run rejected above")
+                pred_skipped += 1
+                continue
             shutil.copy2(f, preds / f.name)
             pred_n += 1
         else:
@@ -394,8 +407,9 @@ def fetch(args):
 
     print(f"pulled {moved} run file(s) into ml/reports/runs/"
           f"{f', skipped {skipped}' if skipped else ''}")
-    if pred_n:
-        print(f"pulled {pred_n} prediction file(s) into ml/predictions/runs/")
+    if pred_n or pred_skipped:
+        print(f"pulled {pred_n} prediction file(s) into ml/predictions/runs/"
+              f"{f', skipped {pred_skipped}' if pred_skipped else ''}")
 
     models_out = REPO / "ml" / "models" / "encoders"
     saved = 0

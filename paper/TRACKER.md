@@ -1444,3 +1444,41 @@ Matched to gemma-3-1b per task so 270M-vs-1B stays a parameter-count comparison.
 gemma-3-270m already has **dev** records on both tasks; only test is missing.
 
 - [ ] Re-run the two above once the weekly GPU quota resets.
+
+## Session 5f — CPU fallback measured, and it does not fit
+
+GPU quota is exhausted, so the two outstanding gemma-3-270m test runs were tried on Kaggle's
+CPU quota, which is separate and was available (the push succeeded where the GPU push was
+refused). A 1,200-row `--smoke` measured the throughput rather than estimating it.
+
+**Measured: 2.3 rows/s on Kaggle CPU**, against ~70 rows/s on a T4 at the same batch size —
+**30× slower**. For the 49,990-row training set:
+
+| epochs | CPU time | vs Kaggle's 12h session cap |
+|---:|---:|---|
+| 1 | 6.0 h | fits |
+| 2 | 12.1 h | **exceeds** |
+| 3 | 18.1 h | **exceeds** |
+
+**So the run cannot be done on CPU as specified.** gemma-3-1b ran 3 epochs on both tasks, and
+only 1 epoch fits. §23 already established these models are still climbing at 3 epochs, so a
+1-epoch run would measure the budget rather than the model — the exact defect that
+disqualified sinbert-large, sinhalaberto and canine-c. It would produce a number that cannot
+be compared to gemma-3-1b, which is the only reason the run exists.
+
+- [ ] **Decision needed.** Options: (a) wait for the GPU weekly reset and run as specified;
+  (b) drop the two cells and report decoder scaling on **intent only**, where it is already
+  clean at +0.0221 with batch matched; (c) run 1 epoch on CPU and report it as undertrained,
+  which §23's own rule forbids using comparatively. Recommend (a), fall back to (b).
+
+### A second guard gap, found by the smoke run
+
+The smoke's 12 JSON records were correctly rejected — but its **prediction CSV was not**, and
+landed in `ml/predictions/runs/` under exactly the filename a real run uses. That directory is
+what the paired significance tests read, so a 1,200-row file was sitting where a 15,395-row
+one belongs, at a path that looks entirely legitimate.
+
+The JSON guard rejects on record metadata; prediction CSVs carry none. Fixed by having the
+JSON loop record which run ids it rejected and the prediction loop skip those ids. Verified:
+re-running the fetch now reports `pulled 0 prediction file(s), skipped 1`. The leaked file was
+deleted and never committed.
