@@ -5,7 +5,7 @@
 | intent    | macro-F1    | gemma-3-1b                       | decoder       | class_weight |  0.9358 |  0.9221 |   0.8962 |  0.911 |   0.6281 | 0.8635 |
 | intent    | macro-F1    | gemma-3-1b-multitask-shared3head | slm-multitask | class_weight |         |         |          |        |          | 0.8616 |
 | intent    | macro-F1    | gemma-3-1b-multitask-sharedhead  | slm-multitask | class_weight |         |         |          |        |          | 0.8673 |
-| intent    | macro-F1    | gemma-3-270m                     | decoder       | class_weight |  0.9209 |  0.8805 |   0.8539 | 0.8833 |   0.5909 | 0.8305 |
+| intent    | macro-F1    | gemma-3-270m                     | decoder       | class_weight |  0.9288 |  0.8874 |   0.8706 | 0.8907 |   0.6041 | 0.8414 |
 | intent    | macro-F1    | labse                            | encoder       | class_weight |  0.9412 |  0.9319 |   0.9034 | 0.9329 |   0.6928 | 0.8835 |
 | intent    | macro-F1    | labse-ft-priority-probe-cls      | probe         | class_weight |         |         |          |        |          | 0.7962 |
 | intent    | macro-F1    | labse-ft-priority-probe-mean     | probe         | class_weight |         |         |          |        |          | 0.7971 |
@@ -14,6 +14,7 @@
 | intent    | macro-F1    | labse-probe-cls                  | probe         | class_weight |         |         |          |        |          | 0.7773 |
 | intent    | macro-F1    | labse-probe-mean                 | probe         | class_weight |         |         |          |        |          | 0.7822 |
 | intent    | macro-F1    | mmbert                           | encoder       | class_weight |  0.9374 |  0.9123 |   0.9013 | 0.9147 |   0.6566 |  0.868 |
+| intent    | macro-F1    | muril-base                       | encoder       | class_weight |  0.9226 |  0.7224 |   0.8888 |  0.908 |   0.7824 | 0.8467 |
 | intent    | macro-F1    | tfidf-cnb                        | classical     | none         |  0.7772 |  0.6732 |   0.7194 | 0.7234 |   0.4925 | 0.6792 |
 | intent    | macro-F1    | tfidf-logreg                     | classical     | none         |  0.9096 |  0.8595 |   0.8751 | 0.8302 |   0.5854 | 0.8189 |
 | intent    | macro-F1    | tfidf-sgd                        | classical     | none         |  0.9079 |  0.8489 |   0.8646 | 0.8305 |   0.5669 | 0.8115 |

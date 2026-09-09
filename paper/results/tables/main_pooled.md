@@ -8,8 +8,9 @@
 | intent    | macro-F1    | gemma-3-1b-multitask-sharedhead  | slm-multitask | class_weight |   0.8673 |          |          |   0.8668 | 15395 |  149970 | train+dev   |               |               True |
 | intent    | macro-F1    | gemma-3-1b                       | decoder       | class_weight |   0.8635 |          |          |   0.8631 | 15395 |   49990 | train+dev   | v8            |               True |
 | intent    | macro-F1    | gemma-3-1b-multitask-shared3head | slm-multitask | class_weight |   0.8616 |          |          |   0.8609 | 15395 |   49990 | train+dev   |               |               True |
+| intent    | macro-F1    | muril-base                       | encoder       | class_weight |   0.8467 |          |          |   0.8459 | 15395 |   49990 | train+dev   | v8            |               True |
+| intent    | macro-F1    | gemma-3-270m                     | decoder       | class_weight |   0.8414 |          |          |    0.841 | 15395 |   49990 | train+dev   | v8            |               True |
 | intent    | macro-F1    | tfidf-svm                        | classical     | none         |   0.8308 |   0.8249 |   0.8359 |   0.8305 | 15395 |   49990 | train+dev   | v8            |               True |
-| intent    | macro-F1    | gemma-3-270m                     | decoder       | class_weight |   0.8305 |          |          |   0.8301 | 15395 |   49990 | train+dev   | v8            |               True |
 | intent    | macro-F1    | tfidf-logreg                     | classical     | none         |   0.8189 |   0.8126 |    0.824 |   0.8184 | 15395 |   49990 | train+dev   | v8            |               True |
 | intent    | macro-F1    | tfidf-sgd                        | classical     | none         |   0.8115 |   0.8053 |   0.8167 |   0.8092 | 15395 |   49990 | train+dev   | v8            |               True |
 | intent    | macro-F1    | labse-ft-priority-probe-mean     | probe         | class_weight |   0.7971 |          |          |   0.7962 | 15395 |   42500 | train       |               |               True |
