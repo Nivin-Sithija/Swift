@@ -20,10 +20,13 @@ sentiment,Negative-F1,gemma-3-1b,encoder,class_weight,,,,,,0.7126
 sentiment,Negative-F1,gemma-3-1b-multitask-shared3head,slm-multitask,class_weight,,,,,,0.7042
 sentiment,Negative-F1,gemma-3-1b-multitask-sharedhead,slm-multitask,class_weight,,,,,,0.7048
 sentiment,Negative-F1,labse,encoder,class_weight,0.755,0.7139,0.6402,0.7535,0.6185,0.6963
+sentiment,Negative-F1,mmbert,encoder,class_weight,0.7723,0.6766,0.6905,0.7386,0.6159,0.7
+sentiment,Negative-F1,muril-base,encoder,class_weight,0.7967,0.5577,0.6463,0.7465,0.6235,0.679
 sentiment,Negative-F1,tfidf-cnb,classical,ros,0.5139,0.5083,0.5302,0.5239,0.3738,0.4968
 sentiment,Negative-F1,tfidf-logreg,classical,ros,0.6995,0.6256,0.6545,0.6776,0.5074,0.6383
 sentiment,Negative-F1,tfidf-sgd,classical,ros,0.6842,0.5954,0.6218,0.6608,0.4577,0.6092
 sentiment,Negative-F1,tfidf-svm,classical,class_weight,0.7198,0.6412,0.6633,0.7249,0.5722,0.6653
+sentiment,Negative-F1,xlmr-base,encoder,class_weight,0.7838,0.7215,0.6361,0.7473,0.5981,0.7007
 priority,macro-F1,gemma-3-1b,encoder,class_weight,,,,,,0.8898
 priority,macro-F1,gemma-3-1b-multitask-shared3head,slm-multitask,class_weight,,,,,,0.8895
 priority,macro-F1,gemma-3-1b-multitask-sharedhead,slm-multitask,class_weight,,,,,,0.8904
