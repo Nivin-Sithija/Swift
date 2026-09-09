@@ -1380,3 +1380,29 @@ Prediction holds. Consequences:
   `paper/experiments/`. Decision recorded as "our own work, with references in the paper",
   which is an attribution policy rather than a licence. Suggest **MIT** (permissive, keeps
   your copyright, standard for research code) — one file at repo root, then D4 closes.
+
+## Session 5d — completing the roster
+
+Four runs close every remaining score gap. Two are in flight, two are queued behind them
+by `scratchpad/queue_270m.sh`, which **fetches each slot before reusing it** — relaunching a
+kernel replaces its stored output, so launching before fetching would destroy the results the
+job just spent hours producing. Fetches are serialised because `runner.py fetch` rmtree's a
+single shared `.output`.
+
+| slot | run | why |
+|---|---|---|
+| A (running) | muril-base, intent test | last task missing for muril-base |
+| B (running) | gemma-3-270m, intent test, **batch 8** | matches gemma-3-1b, removing the batch confound from the scaling claim |
+| A (queued) | gemma-3-270m, **sentiment** test | 3 ep, batch 16, LoRA all, r=8/α=16, lr 1e-4 |
+| B (queued) | gemma-3-270m, **priority** test | same |
+
+The queued pair is matched **to gemma-3-1b on each task** (which ran 3 epochs at batch 16 for
+both), not to the encoder roster. That is deliberate: the comparison these runs exist to serve
+is 270M vs 1B, and matching the sibling makes it a parameter-count comparison and nothing else.
+
+After all four land, **every fine-tuned model is scored on all three tasks.** The only
+remaining per-task hole is the six LaBSE probes, which were only ever run on intent and
+priority — a deliberate scope, not a gap.
+
+- [ ] Fetch the four runs, rebuild tables, re-verify §2/§23/§24 against the new rows.
+- [ ] Re-check the §23 epoch audit once gemma-3-270m has 3-epoch curves on all three tasks.
