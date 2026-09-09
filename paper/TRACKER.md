@@ -1172,3 +1172,73 @@ to all five v8 `test_labeled.csv` before launch, so no re-sync was needed.
   disk). Verified again this session. Still the top risk in the repo.
 - **D6 prose** — the outline maps every claim to its artifact; no prose written.
 - `you` · **B2** translation collection · **C2** annotators · **E10** simulation parameters.
+
+---
+
+# Session 5 — sentiment roster complete, and two defects in the policy bake-off
+
+## Sentiment test is closed on v8
+
+`train_encoders` COMPLETE. xlmr-base, mmbert, muril-base fetched, 36 run records, 3
+prediction files, posteriors rescued to `paper/results/posteriors/` before the fetch.
+`build_results_tables.py` rerun. Sentiment test now has **all 11 models on v8 labels**:
+
+| model | Negative-F1 |
+|---|---|
+| labse | 0.7138 |
+| gemma-3-1b | 0.7126 |
+| gemma-3-1b-multitask-sharedhead | 0.7048 |
+| gemma-3-1b-multitask-shared3head | 0.7042 |
+| xlmr-base | 0.7007 |
+| mmbert | 0.7000 |
+| muril-base | 0.6790 |
+| tfidf-svm | 0.6653 |
+| tfidf-logreg | 0.6383 |
+| tfidf-sgd | 0.6092 |
+| tfidf-cnb | 0.4968 |
+
+**Do not write "LaBSE is the best sentiment model."** The top four span 0.0096, and the one
+measured seed repeat moved labse by 0.0158 at matched budget. The top four are a tie at this
+resolution; the honest statement is that every encoder and decoder lands at 0.70 ± 0.01 and
+the classical bag-of-n-grams floor is 0.665.
+
+- [x] **Sentiment test roster** — complete, 11 models, v8.
+
+## Two defects found in the policy bake-off, both now fixed
+
+Found while re-running at 200 seeds. Both invalidated numbers already written down.
+
+**1. `log_loss` was scoring against permuted classes.** sklearn sorts the `labels` argument
+through `LabelBinarizer` and reads `y_prob` columns in *sorted* order. Our columns are
+Low, Medium, High; sorted, High, Low, Medium. Every probability was attributed to the wrong
+class. A perfect predictor scores **36.04** under the old call, **0.0** under the fixed one.
+Fixed in `run_policy_bakeoff.py` by reordering columns to the sorted labels.
+
+Effect: **the winning label model changed.** `stacked` (reported 1st) is 4th; `logpool`
+(reported 4th) is 1st. The claim that survives is the one that mattered — binary relevance
+is last — but the size is **27%**, not the 35% previously recorded. The old values
+(4.706 … 7.195) are void; do not quote them.
+
+**2. No policy was scored on the objective its theorem optimizes.** The table ranked by
+`rel_tardiness`, which counts only delay past the SLA. Cox–Smith and Argon & Ziya Thm 3 are
+stated over *linear* delay cost; Van Mieghem over a *convex* cost. Added `lin_cost` and
+`conv_cost` to `summarise()`.
+
+Effect: **cμ/HSF wins linear cost (0.121), Gcμ wins convex cost (0.064)** — each rule wins
+exactly where its theorem predicts. Under `rel_tardiness` alone, Argon & Ziya Thm 3 looked
+*false* (cmu-hsf 0.021 = static-tier 0.021); on linear cost it holds with no overlap
+(0.121–0.125 vs 0.161–0.168, a 25% reduction). The previous session's sentence "every
+posterior policy beat static-tier, confirming Theorem 3" was true by luck, not by measurement.
+
+Also recorded: the ordering rule dominates the label model under linear cost (3% spread
+across label models vs 3.1× across policies); dependence modelling only pays once the cost is
+convex (42% spread there). At ρ = 0.85 nothing separates — every claim is an overload claim.
+
+- [x] **Bake-off at 200 seeds** — done, both defects fixed, written up as results §22.
+- [ ] **§17 (Ticket Urgency Score) must be cut from the paper** — superseded by §22, which is
+  literature-only. §17's tables are still referenced by `outline.md`; that mapping needs redoing.
+
+## Still running
+
+`train_encoders_b` — gemma-3-1b intent test at batch 8, launched 09:52, still RUNNING at
+12:0x (~2h15m). Not matched on batch size against gemma-3-270m's batch 32; that caveat stands.

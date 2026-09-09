@@ -1603,3 +1603,118 @@ budget is not the driver. Consequences, kept separate because the metrics differ
 **Every confidence interval in this report is a within-fit bootstrap interval and excludes
 seed variance.** One repeat is not a variance estimate; the paper must say so rather than
 imply the intervals cover training noise.
+
+---
+
+## 22. Ordering the queue, from the literature only
+
+§17's Ticket Urgency Score was a scoring function we designed. It is withdrawn. Everything
+below is a published rule, applied unchanged, with the result that licenses it. Nothing here
+is fitted to make a number look good; the only estimated objects are the label models, and
+they are estimated on dev and applied once to test.
+
+Artifacts: `paper/experiments/policy_bakeoff.py`, `run_policy_bakeoff.py`,
+tables `bakeoff_label_models.csv`, `bakeoff_policies.csv`, `bakeoff_sample_set.csv`,
+`bakeoff_disagreements.csv`. 200 seeds, M/G/5, LogNormal service (mean 8 min, sigma 0.75).
+
+### 22.1 Why the three labels cannot be three additive terms
+
+Measured on train (english, n = 9,998), in nats:
+
+| quantity | value | as a share |
+|---|---|---|
+| H(priority) | 0.9333 | — |
+| I(intent; priority) | 0.7178 | 76.9% of H(priority) |
+| I(sentiment; priority) | 0.0172 | 1.8% of H(priority) |
+| I(sent; prio \| intent) | 0.0149 | 86.6% of the sentiment-priority association survives conditioning on intent |
+
+Intent nearly determines priority, so an additive score `w_P·(priority head) + w_I·(intent head)`
+adds two estimates of the same quantity and its fitted weight measures collinearity, not
+contribution. That is why §17's weight surface was flat. Sentiment is the mirror image: almost
+no information in absolute terms, but what it has is *not* redundant with intent. Neither fact
+is visible in a simplex weight, which is the argument for a joint model over an additive score.
+
+### 22.2 A defect in the label-model table, and what it changes
+
+The first version of this table called `log_loss(y, P, labels=["Low","Medium","High"])`.
+sklearn binarises `labels` through `LabelBinarizer`, which **sorts** them, and then reads the
+columns of `y_prob` in that sorted order regardless of the order `labels` was written in. Our
+columns are Low, Medium, High; sorted they are High, Low, Medium. Every probability was
+therefore scored against the wrong class. The tell was in the magnitudes — the reported values
+ran 4.7 to 7.2, when a three-class uniform predictor gives ln 3 = 1.0986, so every model was
+being scored as far worse than guessing. Measured directly: **a perfect predictor scores 36.04
+under the old call and 0.0 under the corrected one.**
+
+Corrected, on test:
+
+| label model | log_loss | macro_F1 | score_sd |
+|---|---|---|---|
+| **logpool** (log opinion pool) | **0.2683** | **0.8983** | 0.0086 |
+| chain-full (2-parent chain) | 0.3111 | 0.8749 | 0.0080 |
+| chain-intent (classifier chain) | 0.3160 | 0.8742 | 0.0080 |
+| stacked (Wolpert 1992) | 0.3333 | 0.8914 | 0.0087 |
+| marginal (binary relevance) | 0.3697 | 0.8901 | 0.0088 |
+
+The correction **changed the winner**: `stacked` was reported first and is now fourth;
+`logpool` was fourth and is now first. The one claim that survives unchanged is the one the
+section is actually about — **binary relevance is last**, and modelling label dependence cuts
+log-loss **27%** (0.3697 → 0.2683). The earlier "35%" figure was an artifact of the permutation
+and should not be quoted. Macro-F1 still barely moves (0.874–0.898), so the gain is in
+*calibration*, not in argmax accuracy — which is precisely what a scheduling index consumes.
+
+### 22.3 Each policy wins on the objective its own theorem optimizes
+
+The earlier run ranked policies by `rel_tardiness`, which counts only delay past the SLA. **No
+cited theorem optimizes that.** Cox & Smith (1961) and Argon & Ziya (2009) Thm 3 are stated over
+the *linear* delay cost Σ c_k·w, and Van Mieghem (1995) over a *convex* cost. Both are now
+measured directly (`lin_cost` = mean w/D_k, `conv_cost` = mean (w/D_k)^2). At ρ = 1.05:
+
+| objective | best policy | best value | runner-up family |
+|---|---|---|---|
+| linear (Cox–Smith, A&Z Thm 3) | **cmu-hsf** | 0.121 | edd/gcmu 0.146–0.158 |
+| convex (Van Mieghem) | **gcmu** | 0.064 | apq 0.099, edd 0.111 |
+
+**Each rule wins exactly where its theorem says it should, and loses elsewhere.** cμ/HSF sweeps
+the top five slots on linear cost (0.121–0.125) and is mid-table on convex; Gcμ sweeps convex
+(0.064–0.091) and is mid-table on linear. So the choice between them is **a choice of cost
+model, not an empirical horse race** — the desk decides whether lateness hurts linearly or
+super-linearly, and that decision picks the rule.
+
+**Argon & Ziya Theorem 3 holds, tested on its own metric.** Against the *same* label model,
+the posterior index beats the argmax tier every time on linear cost:
+
+| label model | cmu-hsf | static-tier |
+|---|---|---|
+| marginal | 0.121 | 0.163 |
+| logpool | 0.121 | 0.161 |
+| stacked | 0.123 | 0.168 |
+| chain-full | 0.124 | 0.165 |
+| chain-intent | 0.125 | 0.166 |
+
+The two ranges do not overlap — a 25% cost reduction from consuming the posterior instead of
+its argmax. On `rel_tardiness`, the metric the earlier run used, this comparison is a tie
+(0.021 vs 0.021) and the theorem appears to fail. It does not fail; it was being tested against
+an objective it says nothing about.
+
+**Argon & Ziya §9 on starvation also holds**, though modestly: cμ/HSF leaves Low waiting
+92–93 min, Gcμ 85–86 min.
+
+### 22.4 What actually matters, and what does not
+
+Under linear cost the five label models span 0.121–0.125 — **a 3% spread — while the policy
+spans 0.121 to 0.381 (fcfs), a 3.1× spread.** The ordering rule dominates the label model. Under
+convex cost the label model earns more: gcmu spans 0.064 (logpool) to 0.091 (stacked), a 42%
+spread. So dependence modelling pays only once the cost is convex.
+
+`logpool` is the one model that is best or near-best on all three views — log-loss, macro-F1,
+and convex cost under every policy — which makes it the defensible default.
+
+**At ρ = 0.85 none of this is visible**: lin_cost is 0.019–0.022 across every combination. With
+no queue there is nothing to order. Every claim above is an overload claim.
+
+### 22.5 What is still assumed
+
+The SLA windows D_k (30/120/480 min) are an assumption about the desk, not a measurement —
+tracker E10. Service times are LogNormal(mean 8 min, sigma 0.75), also assumed. The bake-off
+scores against *gold* priority, so it measures the ordering rule and not the classifier;
+the classifier's contribution enters only through the posterior it supplies.
