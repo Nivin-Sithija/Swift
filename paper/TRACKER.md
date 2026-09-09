@@ -1242,3 +1242,69 @@ convex (42% spread there). At ρ = 0.85 nothing separates — every claim is an 
 
 `train_encoders_b` — gemma-3-1b intent test at batch 8, launched 09:52, still RUNNING at
 12:0x (~2h15m). Not matched on batch size against gemma-3-270m's batch 32; that caveat stands.
+
+## Session 5b — both jobs fetched, and the roster is not hyperparameter-matched
+
+`train_encoders` (muril-base, priority test) and `train_encoders_b` (gemma-3-1b, intent
+test, batch 8) both COMPLETE and fetched. Posteriors rescued before each fetch. Intent and
+priority test are now **17 models each**.
+
+### muril-base priority: the Indic specialist loses to character n-grams
+
+| model | priority macro-F1 |
+|---|---|
+| tfidf-svm | 0.8734 |
+| **muril-base** | **0.8717** |
+| tfidf-logreg | 0.8706 |
+
+muril-base is now on all three tasks and is the weakest neural model on every one
+(sentiment 0.6790, priority 0.8717). On priority it is **beaten by a bag of character
+n-grams**. This is the same story as §19's tokenizer finding and is worth reporting as a
+result, not buried as an also-ran: an Indic-targeted encoder does not transfer to
+Sri Lankan code-mixed text.
+
+- [x] **muril-base** — sentiment and priority test done. Intent test launched (below).
+
+### A silent overwrite, and a confound it exposed
+
+The gemma-3-1b intent fetch **overwrote a valid August record in place**. Run ids encode
+model/task/split/arm but **not epochs or batch size**, so a rerun at different
+hyperparameters replaces the old record with no warning. The fetch guard catches wrong
+`split_sha` and smoke runs; it does not catch this.
+
+| | old (archived in git history) | new |
+|---|---|---|
+| recorded | 2026-08-20 | 2026-09-09 |
+| epochs / batch | 3 / 16 | 6 / 8 |
+| macro-F1 | 0.8586 | 0.8635 |
+
+Kept the new record: 6 epochs matches the encoders and gemma-3-270m, so it is the more
+comparable of the two. The +0.0049 is **not** attributable — epochs and batch both moved.
+
+The wider problem this surfaced: **the intent roster is not hyperparameter-matched.**
+
+| model | epochs | batch | LoRA |
+|---|---|---|---|
+| labse, xlmr-base, mmbert | 6 | 32 | no |
+| gemma-3-270m | 6 | 32 | yes |
+| gemma-3-1b | 6 | **8** | yes |
+| gemma-3-1b-multitask-{shared,shared3}head | **3** | **16** | yes |
+
+So two comparisons in the current draft are confounded and must not be stated as they are:
+
+1. **"1B beats 270M" (0.8635 vs 0.8305, +0.033)** mixes parameter count with a 4x batch-size
+   difference. Not a scaling result.
+2. **"multitask beats single-task" (0.8673 vs 0.8635)** mixes the objective with a 3-vs-6
+   epoch and 16-vs-8 batch difference. Not a multitask result.
+
+- [ ] The two multitask gemma variants need a 6-epoch rerun before claim 2 can be made at all.
+
+### Launched to fix claim 1
+
+| slot | job | why |
+|---|---|---|
+| `train_encoders` | muril-base, **intent** test | completes muril-base on all three tasks |
+| `train_encoders_b` | gemma-3-270m, intent test, **batch 8** | matches gemma-3-1b on every hyperparameter, leaving parameter count as the only difference — turns the confounded +0.033 into an actual scaling measurement |
+
+The batch-32 gemma-3-270m record will be overwritten by that rerun, so it is archived at
+`ml/reports/runs_archive/gemma-3-270m_intent_bs32/` with a README explaining why.
