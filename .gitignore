@@ -60,6 +60,9 @@ ml/cache/
 ml/kaggle/.stage/
 ml/kaggle/.stage_kernel/
 ml/kaggle/.output/
+# Timestamped fetch dumps: raw Kaggle output, each containing a full copy of the
+# synced repo payload. Regenerable by `runner.py fetch`; nothing canonical lives here.
+ml/kaggle/.output_*/
 
 # Transient per-run training scratch (regenerable; canonical results live in ml/reports/runs/*.json
 # and the findings notebooks). Keeps the results commit lean.
