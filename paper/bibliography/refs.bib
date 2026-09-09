@@ -522,6 +522,167 @@
 }
 
 % ======================================================================
+% SCHEDULING AND QUEUEING -- the ordering policies in results section 22
+% ======================================================================
+%
+% [TO VERIFY] Every entry in this block was added 2026-09-09 from working
+% knowledge and has NOT been checked against the publisher record. The rest of
+% this file is marked [VERIFIED] because it was; do not promote these until the
+% same check is done. Three of the previously verified entries carried real
+% errors, so this distinction is not a formality.
+
+@article{cobham1954priority,
+  author  = {Cobham, Alan},
+  title   = {Priority Assignment in Waiting Line Problems},
+  journal = {Journal of the Operations Research Society of America},
+  volume  = {2},
+  number  = {1},
+  pages   = {70--76},
+  year    = {1954},
+  doi     = {10.1287/opre.2.1.70},
+  note    = {[TO VERIFY] the original static priority-class analysis. Our
+             `static-tier' baseline is this rule applied to the argmax class}
+}
+
+@techreport{jackson1955scheduling,
+  author      = {Jackson, James R.},
+  title       = {Scheduling a Production Line to Minimize Maximum Tardiness},
+  institution = {Management Science Research Project, University of California,
+                 Los Angeles},
+  number      = {Research Report 43},
+  year        = {1955},
+  note        = {[TO VERIFY] earliest due date (EDD) minimises maximum lateness on
+                 a single machine. Our `edd' policy. Note this is a technical
+                 report, not a journal article -- do not cite it as one}
+}
+
+@article{kleinrock1964delay,
+  author  = {Kleinrock, Leonard},
+  title   = {A Delay Dependent Queue Discipline},
+  journal = {Naval Research Logistics Quarterly},
+  volume  = {11},
+  number  = {4},
+  pages   = {329--341},
+  year    = {1964},
+  doi     = {10.1002/nav.3800110401},
+  note    = {[TO VERIFY] delay-dependent priority: urgency accumulates with waiting
+             time at a class-specific rate. Our `apq' policy, and the source of the
+             c_k = 1/D_k cost convention -- the design intent was to hit targets
+             expressed as ratios of class waiting times}
+}
+
+@article{vanmieghem1995generalized,
+  author  = {Van Mieghem, Jan A.},
+  title   = {Dynamic Scheduling with Convex Delay Costs: The Generalized
+             c\,$\mu$ Rule},
+  journal = {The Annals of Applied Probability},
+  volume  = {5},
+  number  = {3},
+  pages   = {809--833},
+  year    = {1995},
+  doi     = {10.1214/aoap/1177004706},
+  note    = {[TO VERIFY] generalises c-mu to convex delay costs; the index becomes
+             C'_k(w) * mu. Our `gcmu' policy, and the winner on the convex
+             objective (conv_cost 0.064 vs c-mu's best 0.105)}
+}
+
+@article{argon2009priority,
+  author  = {Argon, Nilay Tan{\i}k and Ziya, Serhan},
+  title   = {Priority Assignment Under Imperfect Information on Customer Type
+             Identities},
+  journal = {Manufacturing \& Service Operations Management},
+  volume  = {11},
+  number  = {4},
+  pages   = {674--693},
+  year    = {2009},
+  doi     = {10.1287/msom.1080.0246},
+  note    = {[TO VERIFY] THE load-bearing citation for section 22. Theorem 3: the
+             Highest-Score-First rule on a posterior has long-run average cost no
+             worse than ANY finite-class priority policy -- this is what licenses
+             consuming the posterior instead of the argmax, and we confirm it
+             (0.121--0.125 vs 0.161--0.168, non-overlapping). Section 7 shows signals
+             larger in convex order lower cost, which explains why temperature
+             scaling hurt our queue. Section 9 shows HSF starves low-signal
+             customers under convex costs, which we also reproduce}
+}
+
+@article{stanford2014accumulating,
+  author  = {Stanford, David A. and Taylor, Peter and Ziedins, Ilze},
+  title   = {Waiting Time Distributions in the Accumulating Priority Queue},
+  journal = {Queueing Systems},
+  volume  = {77},
+  number  = {3},
+  pages   = {297--330},
+  year    = {2014},
+  doi     = {10.1007/s11134-013-9382-6},
+  note    = {[TO VERIFY] the modern treatment of Kleinrock's accumulating priority,
+             with the waiting-time distribution. Cite alongside kleinrock1964delay
+             for the `apq' policy}
+}
+
+% ======================================================================
+% MULTI-LABEL DEPENDENCE -- the label models in results section 22
+% ======================================================================
+
+@inproceedings{read2009classifierchains,
+  author    = {Read, Jesse and Pfahringer, Bernhard and Holmes, Geoff and
+               Frank, Eibe},
+  title     = {Classifier Chains for Multi-label Classification},
+  booktitle = {Machine Learning and Knowledge Discovery in Databases (ECML PKDD)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {5782},
+  pages     = {254--269},
+  year      = {2009},
+  publisher = {Springer},
+  doi       = {10.1007/978-3-642-04174-7_17},
+  note      = {[TO VERIFY] introduces classifier chains against the binary-relevance
+             baseline. Our `chain-intent' and `chain-full' models, and the source of
+             the argument that independent per-label models are wrong when labels
+             are dependent -- which we measure directly at I(intent;priority) = 76.9%
+             of H(priority). A 2011 Machine Learning journal version exists
+             (85(3):333--359); pick one and be consistent}
+}
+
+@inproceedings{dembczynski2010pcc,
+  author    = {Dembczy{\'n}ski, Krzysztof and Cheng, Weiwei and
+               H{\"u}llermeier, Eyke},
+  title     = {Bayes Optimal Multilabel Classification via Probabilistic
+               Classifier Chains},
+  booktitle = {Proceedings of the 27th International Conference on Machine
+               Learning (ICML)},
+  pages     = {279--286},
+  year      = {2010},
+  note      = {[TO VERIFY] the probabilistic form we actually use -- marginalise
+             over the parent posterior rather than committing to its argmax}
+}
+
+@article{wolpert1992stacked,
+  author  = {Wolpert, David H.},
+  title   = {Stacked Generalization},
+  journal = {Neural Networks},
+  volume  = {5},
+  number  = {2},
+  pages   = {241--259},
+  year    = {1992},
+  doi     = {10.1016/S0893-6080(05)80023-1},
+  note    = {[TO VERIFY] our `stacked' label model. Worth noting in the paper that
+             it came FOURTH of five on log-loss once the scoring defect was fixed,
+             despite being the only member able to express suppression via a
+             negative coefficient}
+}
+
+@misc{gemmateam2025gemma3,
+  author = {{Gemma Team}},
+  title  = {Gemma 3 Technical Report},
+  year   = {2025},
+  eprint = {2503.19786},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  note   = {[TO VERIFY] the decoder arm (gemma-3-270m, gemma-3-1b). A5 is now run,
+            so this is no longer a pending reference}
+}
+
+% ======================================================================
 % STILL TO SOURCE -- what remains
 % ======================================================================
 %
