@@ -3,8 +3,8 @@ intent,macro-F1,labse,encoder,class_weight,0.8835,,,0.883,15395,49990,train+dev,
 intent,macro-F1,xlmr-base,encoder,class_weight,0.8801,,,0.8801,15395,49990,train+dev,v8,True
 intent,macro-F1,mmbert,encoder,class_weight,0.868,,,0.8677,15395,49990,train+dev,v8,True
 intent,macro-F1,gemma-3-1b-multitask-sharedhead,slm-multitask,class_weight,0.8673,,,0.8668,15395,149970,train+dev,,True
+intent,macro-F1,gemma-3-1b,decoder,class_weight,0.8635,,,0.8631,15395,49990,train+dev,v8,True
 intent,macro-F1,gemma-3-1b-multitask-shared3head,slm-multitask,class_weight,0.8616,,,0.8609,15395,49990,train+dev,,True
-intent,macro-F1,gemma-3-1b,encoder,class_weight,0.8586,,,0.8581,15395,49990,train+dev,,True
 intent,macro-F1,tfidf-svm,classical,none,0.8308,0.8249,0.8359,0.8305,15395,49990,train+dev,v8,True
 intent,macro-F1,gemma-3-270m,decoder,class_weight,0.8305,,,0.8301,15395,49990,train+dev,v8,True
 intent,macro-F1,tfidf-logreg,classical,none,0.8189,0.8126,0.824,0.8184,15395,49990,train+dev,v8,True
@@ -36,9 +36,10 @@ priority,macro-F1,xlmr-base,encoder,class_weight,0.8872,,,0.8992,15395,49990,tra
 priority,macro-F1,labse-ft-priority-probe-cls,probe,class_weight,0.8825,,,0.8953,15395,42500,train,,True
 priority,macro-F1,labse-ft-priority-probe-mean,probe,class_weight,0.8816,,,0.8948,15395,42500,train,,True
 priority,macro-F1,tfidf-svm,classical,class_weight,0.8734,0.8669,0.8797,0.8879,15395,49990,train+dev,v8,True
+priority,macro-F1,muril-base,encoder,class_weight,0.8717,,,0.8859,15395,49990,train+dev,v8,True
 priority,macro-F1,tfidf-logreg,classical,ros,0.8706,0.8638,0.8771,0.8876,15395,79695,train+dev,v8,True
 priority,macro-F1,tfidf-sgd,classical,ros,0.8659,0.8594,0.8721,0.8824,15395,79695,train+dev,v8,True
-priority,macro-F1,tfidf-cnb,classical,none,0.8422,0.8352,0.8481,0.8588,15395,49990,train+dev,v8,True
+priority,macro-F1,tfidf-cnb,classical,class_weight,0.8422,0.8352,0.8481,0.8588,15395,49990,train+dev,v8,True
 priority,macro-F1,labse-ft-sentiment-probe-mean,probe,class_weight,0.804,,,0.8363,15395,42500,train,,True
 priority,macro-F1,labse-probe-mean,probe,class_weight,0.8015,,,0.8353,15395,42500,train,,True
 priority,macro-F1,labse-probe-cls,probe,class_weight,0.8008,,,0.8357,15395,42500,train,,True

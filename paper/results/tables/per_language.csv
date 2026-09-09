@@ -1,5 +1,5 @@
 task,metric,model,family,arm,english,sinhala,singlish,tamil,tamilish,all
-intent,macro-F1,gemma-3-1b,encoder,class_weight,,,,,,0.8586
+intent,macro-F1,gemma-3-1b,decoder,class_weight,0.9358,0.9221,0.8962,0.911,0.6281,0.8635
 intent,macro-F1,gemma-3-1b-multitask-shared3head,slm-multitask,class_weight,,,,,,0.8616
 intent,macro-F1,gemma-3-1b-multitask-sharedhead,slm-multitask,class_weight,,,,,,0.8673
 intent,macro-F1,gemma-3-270m,decoder,class_weight,0.9209,0.8805,0.8539,0.8833,0.5909,0.8305
@@ -38,6 +38,7 @@ priority,macro-F1,labse-ft-sentiment-probe-mean,probe,class_weight,,,,,,0.804
 priority,macro-F1,labse-probe-cls,probe,class_weight,,,,,,0.8008
 priority,macro-F1,labse-probe-mean,probe,class_weight,,,,,,0.8015
 priority,macro-F1,mmbert,encoder,class_weight,,,,,,0.8887
+priority,macro-F1,muril-base,encoder,class_weight,0.9095,0.8072,0.8861,0.912,0.8412,0.8717
 priority,macro-F1,tfidf-cnb,classical,class_weight,0.8643,0.8479,0.854,0.8653,0.7782,0.8422
 priority,macro-F1,tfidf-logreg,classical,ros,0.8987,0.881,0.8889,0.8849,0.7985,0.8706
 priority,macro-F1,tfidf-sgd,classical,ros,0.8953,0.8802,0.8831,0.8853,0.7805,0.8659

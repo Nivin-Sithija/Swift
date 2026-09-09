@@ -5,7 +5,7 @@
 | intent    | canine-c                         |               |          0 |           0 |                 0 |      0 |     0 |
 | intent    | canine-c-probe-cls               | probe         |          1 |           0 |                 0 |      0 |     0 |
 | intent    | canine-c-probe-mean              | probe         |          1 |           0 |                 0 |      0 |     0 |
-| intent    | gemma-3-1b                       | encoder       |          1 |           1 |                 0 |      0 |     0 |
+| intent    | gemma-3-1b                       | decoder       |          1 |           1 |                 5 |      0 |     1 |
 | intent    | gemma-3-1b-multitask-shared3head | slm-multitask |          1 |           1 |                 0 |      0 |     0 |
 | intent    | gemma-3-1b-multitask-sharedhead  | slm-multitask |          1 |           1 |                 0 |      0 |     0 |
 | intent    | gemma-3-1b-probe-last            | probe         |          1 |           0 |                 0 |      0 |     0 |
@@ -111,7 +111,7 @@
 | priority  | mmbert                           | encoder       |          1 |           1 |                 0 |      0 |     0 |
 | priority  | mmbert-probe-cls                 | probe         |          1 |           0 |                 0 |      0 |     0 |
 | priority  | mmbert-probe-mean                | probe         |          1 |           0 |                 0 |      0 |     0 |
-| priority  | muril-base                       | encoder       |          1 |           0 |                 0 |      0 |     0 |
+| priority  | muril-base                       | encoder       |          1 |           1 |                 5 |      0 |     1 |
 | priority  | sinbert-large                    | encoder       |          1 |           0 |                 0 |      0 |     0 |
 | priority  | sinbert-large-probe-cls          | probe         |          0 |           0 |                 0 |      0 |     0 |
 | priority  | sinbert-large-probe-mean         | probe         |          0 |           0 |                 0 |      0 |     0 |
