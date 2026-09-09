@@ -144,7 +144,7 @@ because they can be ranked against the v8 block.
 
 **This section was rewritten 2026-09-09.** It previously said per-language test coverage was
 thin and carried a single v8 sentiment row. The v8 roster runs each wrote six records (pooled
-plus all five tracks), so coverage is now 8 models on sentiment, 5 on priority, 9 on intent,
+plus all five tracks), so coverage is now 8 models on sentiment, 7 on priority, 9 on intent,
 with every track filled. The old §2.3 v5 table is deleted rather than kept as "superseded" —
 v8 rows now exist for the same models, so nothing depends on it.
 
@@ -154,22 +154,36 @@ languages, which pooled accuracy hides entirely.
 
 ### 2.1 Priority — macro-F1
 
-| model | family | English | Sinhala | Singlish | Tamil | Tanglish | **pooled** | spread |
-|---|---|---:|---:|---:|---:|---:|---:|---:|
-| `tfidf-svm` | classical | 0.9050 | 0.8848 | 0.8918 | 0.8854 | 0.7984 | **0.8734** | 0.1066 |
-| `muril-base` | encoder | 0.9095 | 0.8072 | 0.8861 | 0.9120 | 0.8412 | **0.8717** | 0.1048 |
-| `tfidf-logreg` | classical | 0.8987 | 0.8810 | 0.8889 | 0.8849 | 0.7985 | **0.8706** | 0.1002 |
-| `tfidf-sgd` | classical | 0.8953 | 0.8802 | 0.8831 | 0.8853 | 0.7805 | **0.8659** | 0.1148 |
-| `tfidf-cnb` | classical | 0.8643 | 0.8479 | 0.8540 | 0.8653 | 0.7782 | **0.8422** | 0.0871 |
+| model | family | English | Sinhala | Singlish | Tamil | Tanglish | **pooled** | spread | source |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---|
+| `labse` | encoder | 0.9229 | 0.9179 | 0.8817 | 0.9130 | 0.8142 | **0.8900** | 0.1087 | re-scored |
+| `xlmr-base` | encoder | 0.9234 | 0.9116 | 0.8780 | 0.8990 | 0.8229 | **0.8872** | 0.1005 | re-scored |
+| `tfidf-svm` | classical | 0.9050 | 0.8848 | 0.8918 | 0.8854 | 0.7984 | **0.8734** | 0.1066 | run record |
+| `muril-base` | encoder | 0.9095 | **0.8072** | 0.8861 | 0.9120 | 0.8412 | **0.8717** | 0.1048 | run record |
+| `tfidf-logreg` | classical | 0.8987 | 0.8810 | 0.8889 | 0.8849 | 0.7985 | **0.8706** | 0.1002 | run record |
+| `tfidf-sgd` | classical | 0.8953 | 0.8802 | 0.8831 | 0.8853 | 0.7805 | **0.8659** | 0.1148 | run record |
+| `tfidf-cnb` | classical | 0.8643 | 0.8479 | 0.8540 | 0.8653 | 0.7782 | **0.8422** | 0.0871 | run record |
 
-> **MuRIL is not a weak model, it is a Sinhala-blind one.** It has the best English (0.9095)
-> and the best Tamil (0.9120) of any model here, and still loses pooled to `tfidf-svm`
-> (0.8717 vs 0.8734) — because Sinhala collapses to 0.8072 while every classical baseline
-> holds 0.88. MuRIL's pretraining covers 17 Indian languages including Tamil; **Sinhala is
-> not among them.** The pooled figure averages that hole away and reads as mediocrity.
+> **Two provenances in one table, which is why the column is there.** The `run record` rows
+> come from `per_language.csv`, built from the per-track run JSONs. The `re-scored` rows were
+> generated 2026-09-05 by re-scoring saved checkpoints, because those two models were
+> originally scored pooled-only; LaBSE's re-scored pooled reproduces its recorded 0.8900 to
+> +0.00005, which is the check that licenses mixing them. Do not compare a `re-scored` cell
+> against a `run record` cell to three decimal places.
 >
-> `tfidf-svm` also wins Singlish outright (0.8918). Romanized text is where character
-> n-grams stay competitive with subword encoders.
+> **MuRIL's Sinhala is the outlier, and only its Sinhala.** At 0.8072 it sits **7 to 11 points
+> below every other model on that track** — even `tfidf-cnb`, the weakest model in the table,
+> holds 0.8479. Its other four tracks are unremarkable and competitive: English 0.9095 and
+> Tamil 0.9120 are within 1.4 and 0.1 points of the best. MuRIL's pretraining covers 17 Indian
+> languages **including Tamil and excluding Sinhala**, and that is exactly the shape of the
+> damage — the one track its pretraining never saw.
+>
+> This is why pooled accuracy is the wrong summary. MuRIL loses pooled to a bag of character
+> n-grams (0.8717 vs 0.8734) and reads as a mediocre model; it is a competent model with one
+> hole, and the hole is the language the pooled average dilutes to a fifth of its weight.
+>
+> `tfidf-svm` wins **Singlish** outright (0.8918, beating every encoder including LaBSE's
+> 0.8817). Romanized text is where character n-grams stay competitive with subword encoders.
 
 ### 2.2 Sentiment — Negative-F1
 
@@ -1847,13 +1861,17 @@ frustration is colloquially expressed and should not be.
 | task | mean Δ | Tamil higher in | Δ excluding muril-base |
 |---|---:|---:|---:|
 | **sentiment** | **+0.0666** | **8 of 8** | +0.0492 |
-| priority | +0.0264 | 5 of 5 | +0.0068 |
+| priority | +0.0163 | 5 of 7 | **+0.0016** |
 | intent | −0.0028 | 4 of 9 | −0.0028 |
 
-**The prediction holds.** Tamil beats Sinhala on sentiment for **every single model, without
-exception**, by about 5 points once MuRIL is set aside. On intent the difference vanishes
-(−0.003, and Tamil is higher in fewer than half the models). Priority sits between and is
-negligible once MuRIL is excluded (+0.007).
+**The prediction holds, and cleanly.** Tamil beats Sinhala on sentiment for **every single
+model, without exception**, by about 5 points once MuRIL is set aside. On intent the
+difference vanishes (−0.003, Tamil higher in fewer than half the models). On priority it is
+**+0.0016 excluding MuRIL — two orders of magnitude smaller than the sentiment effect** — and
+the sign is no longer consistent (LaBSE −0.0049, XLM-R −0.0126 both favour Sinhala).
+
+So the effect is not a general "Tamil is easier" advantage. It is **specific to sentiment**,
+which is the register-dependent label, and absent on the two labels that are not.
 
 MuRIL is excluded from the summary column because it is the §2 Sinhala-blind case
 (Δ +0.1888 sentiment, +0.1048 priority) and would otherwise carry the average on its own.
