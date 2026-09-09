@@ -1898,3 +1898,58 @@ track is easier because it is cleaner, not because Tamil is intrinsically easier
 **Not settled, and still needs a human record (tracker B5):** who performed the Sinhala pass,
 how many rows they touched, against what criteria, and what fraction changed. The analysis
 above establishes the *consequence* of the asymmetry; it cannot reconstruct the *process*.
+
+---
+
+## 25. Two runs that were worth the GPU time
+
+### 25.1 A third of the "scaling" gain was batch size
+
+gemma-3-1b's intent test record is at batch 8 (batch 32 OOM'd on a T4) while gemma-3-270m's
+was at batch 32. The 270M model was re-run at batch 8 so the pair differs in **parameter count
+and nothing else** — same 6 epochs, LoRA on all seven projections, r=8, α=16, lr 1e-4,
+fit on train+dev.
+
+| comparison | 1B | 270M | Δ |
+|---|---:|---:|---:|
+| as previously reported (bs 8 vs bs 32) | 0.8635 | 0.8305 | **+0.0330** |
+| **matched (both bs 8)** | 0.8635 | **0.8414** | **+0.0221** |
+
+Dropping the 270M from batch 32 to batch 8 is worth **+0.0109 on its own**. So **a third of the
+apparent scaling benefit was batch size**, not parameters. The corrected effect of a 3.7×
+parameter increase on intent macro-F1 is **+0.022**, and that is the number the paper should
+carry. The archived batch-32 record is kept at
+`ml/reports/runs_archive/gemma-3-270m_intent_bs32/`.
+
+### 25.2 MuRIL's failure is pretraining coverage, and it is now confirmed on all three tasks
+
+With intent complete, MuRIL is scored on every task, and the same track fails every time:
+
+| task | MuRIL Sinhala | best non-MuRIL Sinhala | worst non-MuRIL Sinhala | MuRIL's rank on Sinhala |
+|---|---:|---:|---:|---|
+| intent | **0.7224** | 0.9319 | 0.6732 (`tfidf-cnb`) | 9th of 10 |
+| sentiment | **0.5577** | 0.7215 | 0.5083 (`tfidf-cnb`) | 7th of 8 |
+| priority | **0.8072** | 0.9179 | 0.8479 (`tfidf-cnb`) | **last of 7** |
+
+On all three tasks MuRIL's Sinhala sits at or below the level of `tfidf-cnb`, the weakest model
+in the study — while MuRIL itself ranks mid-table overall. Its other tracks are healthy: intent
+English 0.9226, Tamil 0.9080.
+
+**And the positive half of the mechanism is now visible too.** On intent, MuRIL has the **best
+Tanglish score of any model, 0.7824** — ahead of XLM-R's 0.7067 and LaBSE's 0.6928, a margin of
+0.076 over the next best. That is not a coincidence: **MuRIL pretrains on its 17 Indian
+languages in native script *and* in transliteration.** Tamil is one of those 17, so romanized
+Tamil is inside its pretraining distribution, and it beats every other model there. Sinhala is
+not among the 17 in either script, and it is last or near-last on Sinhala on every task.
+
+So the model that is worst on one track is best on another, and a single fact predicts both:
+
+> **MuRIL is not a weak model. It is a model whose pretraining covers Tamil, romanized Tamil
+> and English, and does not cover Sinhala — and its per-track scores read that coverage back
+> almost exactly.**
+
+This sharpens §5's contribution. "Script, not language" is the observation; **pretraining
+coverage is the mechanism**, and MuRIL is the clean case because its coverage list is public
+and asymmetric across exactly the languages this corpus contains. A pooled leaderboard shows
+none of it — MuRIL's pooled intent 0.8467 sits unremarkably mid-table, averaging together the
+best Tanglish result in the study and a Sinhala score that loses to character n-grams.

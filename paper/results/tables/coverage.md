@@ -27,7 +27,7 @@
 | intent    | mmbert                           | encoder       |          1 |           1 |                 5 |      0 |     1 |
 | intent    | mmbert-probe-cls                 | probe         |          1 |           0 |                 0 |      0 |     0 |
 | intent    | mmbert-probe-mean                | probe         |          1 |           0 |                 0 |      0 |     0 |
-| intent    | muril-base                       | encoder       |          1 |           0 |                 0 |      0 |     0 |
+| intent    | muril-base                       | encoder       |          1 |           1 |                 5 |      0 |     1 |
 | intent    | sinbert-large                    |               |          0 |           0 |                 0 |      0 |     0 |
 | intent    | sinbert-large-probe-cls          | probe         |          0 |           0 |                 0 |      0 |     0 |
 | intent    | sinbert-large-probe-mean         | probe         |          0 |           0 |                 0 |      0 |     0 |
