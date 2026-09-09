@@ -525,11 +525,17 @@
 % SCHEDULING AND QUEUEING -- the ordering policies in results section 22
 % ======================================================================
 %
-% [TO VERIFY] Every entry in this block was added 2026-09-09 from working
-% knowledge and has NOT been checked against the publisher record. The rest of
-% this file is marked [VERIFIED] because it was; do not promote these until the
-% same check is done. Three of the previously verified entries carried real
-% errors, so this distinction is not a formality.
+% [VERIFIED] 2026-09-09 against the Crossref API (api.crossref.org/works/<doi>),
+% arXiv, and for the two grey-literature items a title/number search. Checking
+% found one real error: kleinrock1964delay carried DOI 10.1002/nav.3800110401,
+% which does not resolve -- the record is 10.1002/nav.3800110306, and the issue
+% is 11(3-4), not 11(4). Both corrected here.
+%
+% Publisher sites (INFORMS, Project Euclid) return 403/503 to automated fetches,
+% so Crossref is the record of reference; it is the registration authority for
+% these DOIs, so it is authoritative for title, authors, venue, volume, issue and
+% pages. Two fields it does not carry were confirmed separately: Van Mieghem's
+% page range (809--833) and the LNCS volume for Read et al. (5782).
 
 @article{cobham1954priority,
   author  = {Cobham, Alan},
@@ -540,7 +546,7 @@
   pages   = {70--76},
   year    = {1954},
   doi     = {10.1287/opre.2.1.70},
-  note    = {[TO VERIFY] the original static priority-class analysis. Our
+  note    = {[VERIFIED] the original static priority-class analysis. Our
              `static-tier' baseline is this rule applied to the argmax class}
 }
 
@@ -551,7 +557,7 @@
                  Los Angeles},
   number      = {Research Report 43},
   year        = {1955},
-  note        = {[TO VERIFY] earliest due date (EDD) minimises maximum lateness on
+  note        = {[VERIFIED] earliest due date (EDD) minimises maximum lateness on
                  a single machine. Our `edd' policy. Note this is a technical
                  report, not a journal article -- do not cite it as one}
 }
@@ -561,18 +567,18 @@
   title   = {A Delay Dependent Queue Discipline},
   journal = {Naval Research Logistics Quarterly},
   volume  = {11},
-  number  = {4},
+  number  = {3-4},
   pages   = {329--341},
   year    = {1964},
-  doi     = {10.1002/nav.3800110401},
-  note    = {[TO VERIFY] delay-dependent priority: urgency accumulates with waiting
+  doi     = {10.1002/nav.3800110306},
+  note    = {[VERIFIED] DOI and issue corrected 2026-09-09. Delay-dependent priority: urgency accumulates with waiting
              time at a class-specific rate. Our `apq' policy, and the source of the
              c_k = 1/D_k cost convention -- the design intent was to hit targets
              expressed as ratios of class waiting times}
 }
 
 @article{vanmieghem1995generalized,
-  author  = {Van Mieghem, Jan A.},
+  author  = {van Mieghem, Jan A.},
   title   = {Dynamic Scheduling with Convex Delay Costs: The Generalized
              c\,$\mu$ Rule},
   journal = {The Annals of Applied Probability},
@@ -581,7 +587,7 @@
   pages   = {809--833},
   year    = {1995},
   doi     = {10.1214/aoap/1177004706},
-  note    = {[TO VERIFY] generalises c-mu to convex delay costs; the index becomes
+  note    = {[VERIFIED] generalises c-mu to convex delay costs; the index becomes
              C'_k(w) * mu. Our `gcmu' policy, and the winner on the convex
              objective (conv_cost 0.064 vs c-mu's best 0.105)}
 }
@@ -596,7 +602,7 @@
   pages   = {674--693},
   year    = {2009},
   doi     = {10.1287/msom.1080.0246},
-  note    = {[TO VERIFY] THE load-bearing citation for section 22. Theorem 3: the
+  note    = {[VERIFIED] THE load-bearing citation for section 22. Theorem 3: the
              Highest-Score-First rule on a posterior has long-run average cost no
              worse than ANY finite-class priority policy -- this is what licenses
              consuming the posterior instead of the argmax, and we confirm it
@@ -615,7 +621,8 @@
   pages   = {297--330},
   year    = {2014},
   doi     = {10.1007/s11134-013-9382-6},
-  note    = {[TO VERIFY] the modern treatment of Kleinrock's accumulating priority,
+  note    = {[VERIFIED] print issue July 2014; Crossref `issued' is the 2013-12-07
+             online-first date. Cite 2014. The modern treatment of accumulating priority,
              with the waiting-time distribution. Cite alongside kleinrock1964delay
              for the `apq' policy}
 }
@@ -635,7 +642,7 @@
   year      = {2009},
   publisher = {Springer},
   doi       = {10.1007/978-3-642-04174-7_17},
-  note      = {[TO VERIFY] introduces classifier chains against the binary-relevance
+  note      = {[VERIFIED] introduces classifier chains against the binary-relevance
              baseline. Our `chain-intent' and `chain-full' models, and the source of
              the argument that independent per-label models are wrong when labels
              are dependent -- which we measure directly at I(intent;priority) = 76.9%
@@ -652,7 +659,7 @@
                Learning (ICML)},
   pages     = {279--286},
   year      = {2010},
-  note      = {[TO VERIFY] the probabilistic form we actually use -- marginalise
+  note      = {[VERIFIED] ICML 2010, pp. 279--286. The probabilistic form we actually use -- marginalise
              over the parent posterior rather than committing to its argmax}
 }
 
@@ -665,7 +672,7 @@
   pages   = {241--259},
   year    = {1992},
   doi     = {10.1016/S0893-6080(05)80023-1},
-  note    = {[TO VERIFY] our `stacked' label model. Worth noting in the paper that
+  note    = {[VERIFIED] our `stacked' label model. Worth noting in the paper that
              it came FOURTH of five on log-loss once the scoring defect was fixed,
              despite being the only member able to express suppression via a
              negative coefficient}
@@ -678,7 +685,7 @@
   eprint = {2503.19786},
   archivePrefix = {arXiv},
   primaryClass  = {cs.CL},
-  note   = {[TO VERIFY] the decoder arm (gemma-3-270m, gemma-3-1b). A5 is now run,
+  note   = {[VERIFIED] arXiv:2503.19786, submitted 2025-03-25. The decoder arm (gemma-3-270m, gemma-3-1b). A5 is now run,
             so this is no longer a pending reference}
 }
 
