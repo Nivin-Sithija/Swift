@@ -3,13 +3,8 @@
 **Generated file — do not edit.** Produced by `build_reference_list.py` from
 `refs.bib`; rerun that script after changing the bibliography.
 
-- ✅ **39** checked against the publisher record (`[VERIFIED]`)
-- ⚠️ **10** added from working knowledge, **not yet checked** (`[TO VERIFY]`)
-
-> The `[TO VERIFY]` entries must be confirmed against the publisher record
-> before submission. Of the entries checked in an earlier pass, three carried
-> real errors (a truncated title, an elided author list, missing pages), so
-> this is a live risk rather than a formality.
+- ✅ **49** checked against the publisher record (`[VERIFIED]`)
+- ⚠️ **0** added from working knowledge, **not yet checked** (`[TO VERIFY]`)
 
 ---
 
@@ -325,7 +320,7 @@ DOI: [10.1145/3297001.3297023](https://doi.org/10.1145/3297001.3297023)
 
 ## SCHEDULING AND QUEUEING -- the ordering policies in results section 22  (6)
 
-### ⚠️ `cobham1954priority`
+### ✅ `cobham1954priority`
 
 **Cobham (1954).** *Priority Assignment in Waiting Line Problems.*
 Journal of the Operations Research Society of America, vol. 2(1), pp. 70–76.
@@ -333,30 +328,30 @@ DOI: [10.1287/opre.2.1.70](https://doi.org/10.1287/opre.2.1.70)
 
 > **Cited for:** the original static priority-class analysis. Our `static-tier' baseline is this rule applied to the argmax class
 
-### ⚠️ `jackson1955scheduling`
+### ✅ `jackson1955scheduling`
 
 **Jackson (1955).** *Scheduling a Production Line to Minimize Maximum Tardiness.*
 Management Science Research Project, University of California, Los Angeles.
 
 > **Cited for:** earliest due date (EDD) minimises maximum lateness on a single machine. Our `edd' policy. Note this is a technical report, not a journal article -- do not cite it as one
 
-### ⚠️ `kleinrock1964delay`
+### ✅ `kleinrock1964delay`
 
 **Kleinrock (1964).** *A Delay Dependent Queue Discipline.*
-Naval Research Logistics Quarterly, vol. 11(4), pp. 329–341.
-DOI: [10.1002/nav.3800110401](https://doi.org/10.1002/nav.3800110401)
+Naval Research Logistics Quarterly, vol. 11(3-4), pp. 329–341.
+DOI: [10.1002/nav.3800110306](https://doi.org/10.1002/nav.3800110306)
 
-> **Cited for:** delay-dependent priority: urgency accumulates with waiting time at a class-specific rate. Our `apq' policy, and the source of the c_k = 1/D_k cost convention -- the design intent was to hit targets expressed as ratios of class waiting times
+> **Cited for:** DOI and issue corrected 2026-09-09. Delay-dependent priority: urgency accumulates with waiting time at a class-specific rate. Our `apq' policy, and the source of the c_k = 1/D_k cost convention -- the design intent was to hit targets expressed as ratios of class waiting times
 
-### ⚠️ `vanmieghem1995generalized`
+### ✅ `vanmieghem1995generalized`
 
-**Van Mieghem (1995).** *Dynamic Scheduling with Convex Delay Costs: The Generalized cμ Rule.*
+**van Mieghem (1995).** *Dynamic Scheduling with Convex Delay Costs: The Generalized cμ Rule.*
 The Annals of Applied Probability, vol. 5(3), pp. 809–833.
 DOI: [10.1214/aoap/1177004706](https://doi.org/10.1214/aoap/1177004706)
 
 > **Cited for:** generalises c-mu to convex delay costs; the index becomes C'_k(w) * mu. Our `gcmu' policy, and the winner on the convex objective (conv_cost 0.064 vs c-mu's best 0.105)
 
-### ⚠️ `argon2009priority`
+### ✅ `argon2009priority`
 
 **Argon & Ziya (2009).** *Priority Assignment Under Imperfect Information on Customer Type Identities.*
 Manufacturing & Service Operations Management, vol. 11(4), pp. 674–693.
@@ -364,19 +359,19 @@ DOI: [10.1287/msom.1080.0246](https://doi.org/10.1287/msom.1080.0246)
 
 > **Cited for:** THE load-bearing citation for section 22. Theorem 3: the Highest-Score-First rule on a posterior has long-run average cost no worse than ANY finite-class priority policy -- this is what licenses consuming the posterior instead of the argmax, and we confirm it (0.121--0.125 vs 0.161--0.168, non-overlapping). Section 7 shows signals larger in convex order lower cost, which explains why temperature scaling hurt our queue. Section 9 shows HSF starves low-signal customers under convex costs, which we also reproduce
 
-### ⚠️ `stanford2014accumulating`
+### ✅ `stanford2014accumulating`
 
 **Stanford et al. (2014).** *Waiting Time Distributions in the Accumulating Priority Queue.*
 Queueing Systems, vol. 77(3), pp. 297–330.
 DOI: [10.1007/s11134-013-9382-6](https://doi.org/10.1007/s11134-013-9382-6)
 
-> **Cited for:** the modern treatment of Kleinrock's accumulating priority, with the waiting-time distribution. Cite alongside kleinrock1964delay for the `apq' policy
+> **Cited for:** print issue July 2014; Crossref `issued' is the 2013-12-07 online-first date. Cite 2014. The modern treatment of accumulating priority, with the waiting-time distribution. Cite alongside kleinrock1964delay for the `apq' policy
 
 ---
 
 ## MULTI-LABEL DEPENDENCE -- the label models in results section 22  (4)
 
-### ⚠️ `wolpert1992stacked`
+### ✅ `wolpert1992stacked`
 
 **Wolpert (1992).** *Stacked Generalization.*
 Neural Networks, vol. 5(2), pp. 241–259.
@@ -384,7 +379,7 @@ DOI: [10.1016/S0893-6080(05)80023-1](https://doi.org/10.1016/S0893-6080(05)80023
 
 > **Cited for:** our `stacked' label model. Worth noting in the paper that it came FOURTH of five on log-loss once the scoring defect was fixed, despite being the only member able to express suppression via a negative coefficient
 
-### ⚠️ `read2009classifierchains`
+### ✅ `read2009classifierchains`
 
 **Read et al. (2009).** *Classifier Chains for Multi-label Classification.*
 Machine Learning and Knowledge Discovery in Databases (ECML PKDD), vol. 5782, pp. 254–269.
@@ -392,18 +387,18 @@ DOI: [10.1007/978-3-642-04174-7_17](https://doi.org/10.1007/978-3-642-04174-7_17
 
 > **Cited for:** introduces classifier chains against the binary-relevance baseline. Our `chain-intent' and `chain-full' models, and the source of the argument that independent per-label models are wrong when labels are dependent -- which we measure directly at I(intent;priority) = 76.9% of H(priority). A 2011 Machine Learning journal version exists (85(3):333--359); pick one and be consistent
 
-### ⚠️ `dembczynski2010pcc`
+### ✅ `dembczynski2010pcc`
 
 **Dembczynski et al. (2010).** *Bayes Optimal Multilabel Classification via Probabilistic Classifier Chains.*
 Proceedings of the 27th International Conference on Machine Learning (ICML), pp. 279–286.
 
-> **Cited for:** the probabilistic form we actually use -- marginalise over the parent posterior rather than committing to its argmax
+> **Cited for:** ICML 2010, pp. 279--286. The probabilistic form we actually use -- marginalise over the parent posterior rather than committing to its argmax
 
-### ⚠️ `gemmateam2025gemma3`
+### ✅ `gemmateam2025gemma3`
 
 **Team (2025).** *Gemma 3 Technical Report.*
 arXiv, arXiv:2503.19786.
 
-> **Cited for:** the decoder arm (gemma-3-270m, gemma-3-1b). A5 is now run, so this is no longer a pending reference
+> **Cited for:** arXiv:2503.19786, submitted 2025-03-25. The decoder arm (gemma-3-270m, gemma-3-1b). A5 is now run, so this is no longer a pending reference
 
 ---
