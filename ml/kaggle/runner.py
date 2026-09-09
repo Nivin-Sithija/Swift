@@ -246,12 +246,17 @@ def write_kernel(args) -> Path:
         "language": "python",
         "kernel_type": "script",
         "is_private": True,
-        "enable_gpu": True,
+        # CPU sessions draw on a separate, far larger quota than the 30 GPU-hours/week,
+        # so --cpu is the fallback when GPU quota is exhausted. It is only useful for
+        # models small enough to finish inside Kaggle's 12h session cap -- measure with
+        # --smoke first, because a transformer fine-tune on 4 vCPU is roughly 20-40x
+        # slower than the T4 and a full roster run will not fit.
+        "enable_gpu": not getattr(args, "cpu", False),
         # Pin the T4 explicitly. Without this Kaggle may assign a P100 (sm_60), and the current
         # Kaggle image ships torch built only for sm_70+ -- on a P100 every CUDA kernel fails with
         # "no kernel image is available for execution on the device". Kaggle's own kernel-metadata
         # docs flag P100 as incompatible with the default image and recommend NvidiaTeslaT4.
-        "machine_shape": "NvidiaTeslaT4",
+        **({} if getattr(args, "cpu", False) else {"machine_shape": "NvidiaTeslaT4"}),
         "enable_internet": True,          # needed to pull HF checkpoints
         "dataset_sources": [slug("payload")],
         "competition_sources": [],
@@ -466,6 +471,10 @@ def main():
                         "'seed-N' so repeated-seed runs land as separate records instead "
                         "of overwriting each other")
     r.add_argument("--smoke", action="store_true", help="1,200-row sanity run")
+    r.add_argument("--cpu", action="store_true",
+                   help="run on a CPU session instead of a T4. Separate quota from the "
+                        "30 GPU-hours/week, but roughly 20-40x slower -- only viable for "
+                        "small models, and measure with --smoke before committing to it")
     r.add_argument("--save-models", action="store_true",
                    help="write best-epoch weights to /kaggle/working/models/ (downloadable "
                         "kernel output) -- off by default, a full roster run would otherwise "
