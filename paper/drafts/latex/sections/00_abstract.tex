@@ -1,19 +1,26 @@
 \begin{abstract}
-Sri Lankan bank customers write support tickets in Sinhala, Tamil, and English,
-and they write the two local languages in Latin characters as readily as in
-their native scripts. We present a parallel corpus of 13{,}077 banking tickets
-rendered in five tracks, 65{,}385 rows, derived from BANKING77 and extended
-with sentiment and priority labels, and use its parallel structure to locate
-where multilingual pretraining stops transferring. Because the Sinhala and
-romanized Sinhala tracks hold the same tickets in the same language and differ
-only in orthography, the comparison isolates script from language. A LaBSE
-encoder gains 8.3 points of \negf{} over a character $n$-gram baseline on
-English and 8.2 on native Sinhala, and nothing measurable on either romanized
-track; as a difference-in-differences the gap is $+0.0698$ (95\% CI
-$[0.014, 0.128]$, $p=0.012$). The cause is tokenizer vocabulary coverage rather
-than sequence fragmentation: MuRIL maps 64.5\% of Sinhala characters to
-\texttt{[UNK]} and loses 23.4 points on that track alone, while its subword
-fertility is the lowest we measured. Applying published scheduling rules to the
-resulting posteriors, the ordering rule moves queueing cost by $3.1\times$ where
-the probability model moves it by 3\%.
+A bank's support desk does not need a label. It needs to know which ticket to
+open next. Published triage systems predict a per-ticket severity and report
+classification metrics, leaving the ordering question unanswered. We present a
+ticket ordering system for a trilingual Sri Lankan retail bank, where customers
+write in Sinhala, Tamil, and English and render the two local languages in Latin
+characters as readily as in their native scripts. The Ticket Urgency Score
+combines a priority posterior, a sentiment posterior, and a per-intent
+criticality prior estimated from training data, under multiplicative aging, with
+weights fitted on development data and applied unchanged to test. Evaluated in a
+discrete-event queue over 200 seeds, it attains 97--99\% of the reduction in
+urgent-ticket waiting time that a perfect classifier would deliver.
+
+The result that matters for deployment is a fairness one. Under a naive
+argmax-tier policy, a customer writing in romanized Tamil whose ticket is
+urgent waits \textbf{6.99 minutes longer} than an English-writing
+customer with the same problem (95\% CI $[5.76, 8.19]$), and one writing
+romanized Sinhala waits 4.07 minutes longer, while the two native-script tracks
+are indistinguishable from English. The gap is absent under first-come-first-
+served and absent under a gold-label control, so it is caused by the model
+rather than by the arrival process. Our score cuts it by an order of magnitude,
+to $+0.50$ and $+0.37$ minutes. We also show that classifier accuracy does not
+transfer to the queue: a 2-point macro-F\textsubscript{1} advantage buys nothing
+through the median and costs six hours in the tail, because the more accurate
+model makes fewer errors but $8.5\times$ more confident ones.
 \end{abstract}

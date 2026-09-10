@@ -1,47 +1,52 @@
 \section{Introduction}
 \label{sec:intro}
 
-A bank's support desk does not need a label. It needs to know which ticket to
-open next. Deployed triage systems predict an escalation risk, a component, or a
-severity tier and report accuracy against a held-out set
-\cite{montgomery2018escalation,mani2019deeptriage,lee2017industrialtriage}, and
-stop there. A classifier that makes fewer mistakes can still order a queue
-worse than one that makes more, and no F\textsubscript{1} table will say so.
+A support desk with five agents and a backlog does not consume labels. It
+consumes an order. Published work on automated ticket triage stops one step
+short of that: systems predict an escalation risk, a component, or a severity
+tier and report accuracy or recall against a held-out set
+\cite{montgomery2018escalation,mani2019deeptriage,lee2017industrialtriage}. What
+happens to the queue once those predictions are used is left to the reader.
 
-Sri Lankan retail banking adds a second problem that existing resources cover
-poorly. Customers write in Sinhala, Tamil, and English, and they write the two
-local languages in Latin characters at least as often as in the native abugidas.
-These romanized forms, Singlish and Tanglish, have no orthographic standard: one
-word admits several spellings, and English banking vocabulary is left
-untranslated mid-sentence. Multilingual encoders are pretrained on native-script
-web text. Whether their coverage of Sinhala and Tamil survives transliteration
-into Latin script has not, to our knowledge, been tested on parallel data.
+The gap matters because the two questions have different answers, and the
+mapping between them is not monotonic. A classifier that is three points better
+can produce a queue that is no better at all, because ordering depends on the
+classifier only where the queue is contended. We show a stronger version of the
+same point: the more accurate of two classifiers produces the \emph{worse} tail,
+serving its worst-treated urgent ticket six hours late against the weaker
+model's ninety-eight minutes.
 
-Our corpus makes that test available. The same 13{,}077 tickets appear in five
-renderings, so a comparison between the Sinhala track and the Singlish track
-holds language, topic, label, and ticket identifier fixed and varies only the
-orthography. Any difference between them is a script effect, which lets us state
-the result as a difference-in-differences with a confidence interval rather than
-as two separate leaderboard columns.
+Sri Lankan retail banking makes this concrete and adds a second dimension.
+Customers write in Sinhala, Tamil, and English, and they write the two local
+languages in Latin characters at least as often as in the native abugidas. Those
+romanized forms have no orthographic standard, and multilingual encoders,
+pretrained on native-script web text, are measurably worse on them. In a
+classification table that deficit is an abstraction. Once tickets are ordered it
+becomes something an operations owner can act on: \emph{customers who write in
+romanized script wait longer for the same urgent problem.}
 
-The answer is that script coverage governs transfer. An encoder beats a
-character $n$-gram baseline by 8.3 points on English and 8.2 on native Sinhala,
-and by an amount indistinguishable from zero on both romanized tracks. The same
-shape recurs between two encoders and on a second task, and it has a concrete
-cause: a tokenizer that has never seen the Sinhala block emits \texttt{[UNK]}
-for 64.5\% of its characters and collapses on that track alone. Subword
-fertility, the statistic tokenizer studies usually report, predicts none of it.
+That is this paper's central finding, and it is a scheduling property rather than
+a classification property. Under a naive deployment that takes the argmax of the
+priority head and serves tier by tier, a Tanglish-writing customer with an
+urgent ticket waits 6.99 minutes longer than an English-writing
+customer, and a Singlish-writing customer 4.07 minutes longer, while
+native-script Sinhala and Tamil are indistinguishable from English. Four nested
+controls establish that the model causes it: the gap is absent under
+first-come-first-served, absent under a gold-label oracle, present only under the
+predicted labels, and present only on the two romanized tracks.
 
-We then ask what the predictions are worth to a queue, applying published
-scheduling rules \cite{cox1961queues,vanmieghem1995generalized,argon2009priority}
-unmodified to the posteriors and scoring each on the cost function its own
-theorem is stated over.
+We then show it is fixable without touching the classifier. The Ticket Urgency
+Score consumes the same model's output differently, replacing the argmax with the
+posterior and backstopping it with a script-robust prior over intents, and cuts
+the gap by an order of magnitude.
 
-\textbf{Contributions.} (1) A parallel five-track corpus of Sri Lankan banking
-tickets with a frozen split and measured ceilings for its two generated label
-columns. (2) Evidence that the transfer boundary is orthographic rather than
-linguistic, tested on tickets differing only in script and reproduced across
-three comparisons. (3) A tokenizer-level mechanism, showing that
-out-of-vocabulary character rate predicts the downstream deficit where fertility
-does not. (4) A queue-level evaluation showing that the ordering rule dominates
-the classifier that feeds it.
+\textbf{Contributions.} (1) A ticket ordering score that turns three noisy
+classifier outputs into one ordering, fitted on development data and applied
+unchanged to test (Section~\ref{sec:score}). (2) A queue-level evaluation
+methodology, and evidence that rank correlation selects the wrong system for a
+queue (Sections~\ref{sec:eval} and \ref{sec:ordering}). (3) A measured
+cross-script service disparity in minutes of customer waiting time, with four
+nested controls, and its reduction by an order of magnitude
+(Section~\ref{sec:disparity}). (4) Evidence that classifier accuracy does not
+transfer to the queue, and a triage-specific error metric that explains why
+(Section~\ref{sec:accuracy}).
