@@ -46,6 +46,13 @@ TASK = "sentiment"
 ENCODER = "labse"
 CLASSICAL = "tfidf-svm"
 
+# Which fitted run to read. The published table is the default seed; a repeat was
+# later run at seed 43, and reading it by accident would silently recompute the
+# paper's headline on different weights. Override with --seed N.
+SEED = config.RANDOM_STATE
+if "--seed" in sys.argv:
+    SEED = int(sys.argv[sys.argv.index("--seed") + 1])
+
 # Which tracks were written in a script LaBSE saw during pretraining. The romanized tracks are
 # Latin characters, but they are not English -- they are Sinhala/Tamil transliterated, which no
 # pretraining corpus of consequence contains.
@@ -54,10 +61,35 @@ NATIVE_SCRIPT = {"english": True, "sinhala": True, "tamil": True,
 
 
 def load(model: str) -> pd.DataFrame:
+    """The one test prediction file for `model`, refusing to guess between several.
+
+    This used to read `sorted(hits)[0]`. That was safe only while exactly one file
+    matched. Seed-qualified runs write `..._seed-43__test.csv`, which sorts *before*
+    the unqualified seed-42 file, so once a repeat existed the glob silently switched
+    the whole analysis onto a different run -- and this script produces the paper's
+    headline difference-in-differences. Ambiguity now stops the run instead of picking
+    a file by alphabetical accident.
+    """
     hits = sorted(PRED_DIR.glob(f"{TASK}__{model}__*__ev-all__*__test.csv"))
     if not hits:
         sys.exit(f"no test predictions for {model} -- expected one in {PRED_DIR}")
-    df = pd.read_csv(hits[0])
+
+    # Seed-qualified runs are named `..._seed-<n>__test.csv`; the default seed's
+    # file carries no such tag, so it is the one with no `__seed-` segment.
+    if SEED == config.RANDOM_STATE:
+        wanted = [h for h in hits if "__seed-" not in h.name]
+    else:
+        wanted = [h for h in hits if f"__seed-{SEED}__" in h.name]
+
+    if len(wanted) != 1:
+        listing = "\n  ".join(h.name for h in hits)
+        sys.exit(
+            f"cannot identify a single seed-{SEED} test prediction file for {model}.\n"
+            f"candidates:\n  {listing}\n\n"
+            f"These are different runs and the choice changes the published result.\n"
+            f"Select one with --seed N."
+        )
+    df = pd.read_csv(wanted[0])
     if "language" not in df.columns:
         sys.exit(f"{hits[0].name} has no language column")
     return df

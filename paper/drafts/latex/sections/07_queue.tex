@@ -1,0 +1,77 @@
+\section{From Labels to a Queue}
+\label{sec:queue}
+
+A desk with five agents and a backlog consumes an order, not labels, and two
+systems with equal \macrof{} can produce very different orders. We therefore
+evaluate the predictions at the level they are used: rather than design a
+scoring function, we apply published scheduling rules unmodified and score each
+on the cost objective its own theorem is stated over. The simulator is an M/G/5
+queue with log-normal service times (mean 8 minutes, $\sigma=0.75$) at
+utilisation $\rho$, 200 seeds, with service windows of 30, 120, and 480 minutes
+for High, Medium, and Low.
+
+\textbf{The three labels are not three independent signals.} On the English
+training track, intent carries 0.7178 nats of mutual information with priority
+against priority's entropy of 0.9333 nats, 76.9\% of what there is to know, so
+an additive score over an intent head and a priority head adds two estimates of
+one quantity and its fitted weight measures collinearity. Sentiment is the
+mirror image: 0.0172 nats, of which 86.6\% survives conditioning on intent. It
+knows little, and what it knows is not already known. Neither fact is visible in
+a weight, which argues for modelling the joint distribution.
+
+Comparing five ways of forming a joint priority posterior, a log opinion pool
+reaches 0.2683 log-loss against binary relevance's 0.3697, a 27\% reduction,
+while \macrof{} moves across a range of 0.024 with no consistent ordering.
+Modelling label dependence improves calibration and not argmax accuracy, which
+is exactly the quantity a scheduling index consumes and an accuracy table cannot
+report. Classifier chains \cite{read2009classifierchains}, probabilistic chains
+\cite{dembczynski2010pcc}, and stacking \cite{wolpert1992stacked} fall between.
+
+\begin{table}[t]
+\caption{Published policies at $\rho=1.05$ under the best label model, 200
+seeds. Cost columns are mean delay cost, lower is better. Each rule wins on the
+objective its own theorem optimizes and is mid-table on the other.}
+\label{tab:policies}
+\centering
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Policy & Linear & Convex & High wait (min) \\
+\midrule
+$c\mu$ / HSF \cite{cox1961queues}        & \textbf{0.121} & 0.137 & 1.77 \\
+Generalised $c\mu$ \cite{vanmieghem1995generalized} & 0.149 & \textbf{0.064} & 3.29 \\
+Earliest due date                        & 0.146 & 0.111 & 4.78 \\
+Accumulating priority                    & 0.197 & 0.099 & 9.34 \\
+Static tier (argmax)                     & 0.161 & 0.163 & 6.70 \\
+First come, first served                 & 0.381 & 0.625 & 52.46 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Each rule wins on its own objective.} A bake-off ranking policies on
+some other quantity is not testing them. The $c\mu$ rule and Argon and Ziya's
+Theorem 3 are stated over linear delay cost and the generalised rule over convex
+cost; Table~\ref{tab:policies} measures both. The $c\mu$ rule sweeps linear cost
+and sits mid-table on convex, and the generalised rule does the reverse, so the
+choice between them is a choice of cost model rather than an empirical contest.
+
+Argon and Ziya's result holds when tested on the objective it is stated over:
+against the same label model the posterior index beats the static tier every
+time, 0.121--0.125 against 0.161--0.168, ranges that do not overlap, a 25\% cost
+reduction. Scored on relative tardiness, which no cited theorem mentions, the
+same comparison is a tie and the theorem appears to fail.
+
+\textbf{The ordering rule dominates the probability model.} Under linear cost
+the five label models span 3\% while the policies span a factor of $3.1$.
+Practitioners choosing where to spend effort should read that ordering. Under
+convex cost the label model earns more, spanning 42\%, so dependence modelling
+pays once the cost is convex. At $\rho=0.85$ nothing separates: linear cost runs
+0.019--0.022 across every combination. With no backlog there is nothing to
+order, and every claim here is an overload claim.
+
+\gap{Not in this paper: the cross-script service disparity, which would join
+Sections~\ref{sec:script} and \ref{sec:queue} by converting the accuracy gap
+into minutes of customer waiting time. The bake-off above scores against gold
+priority by design, so classifier error never enters the queue. Recovering it
+needs the queue driven by predicted priority with fixed per-track contrasts
+against English, plus FIFO and gold-label null controls.}

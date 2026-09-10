@@ -1,0 +1,19 @@
+\begin{abstract}
+Sri Lankan bank customers write support tickets in Sinhala, Tamil, and English,
+and they write the two local languages in Latin characters as readily as in
+their native scripts. We present a parallel corpus of 13{,}077 banking tickets
+rendered in five tracks, 65{,}385 rows, derived from BANKING77 and extended
+with sentiment and priority labels, and use its parallel structure to locate
+where multilingual pretraining stops transferring. Because the Sinhala and
+romanized Sinhala tracks hold the same tickets in the same language and differ
+only in orthography, the comparison isolates script from language. A LaBSE
+encoder gains 8.3 points of \negf{} over a character $n$-gram baseline on
+English and 8.2 on native Sinhala, and nothing measurable on either romanized
+track; as a difference-in-differences the gap is $+0.0698$ (95\% CI
+$[0.014, 0.128]$, $p=0.012$). The cause is tokenizer vocabulary coverage rather
+than sequence fragmentation: MuRIL maps 64.5\% of Sinhala characters to
+\texttt{[UNK]} and loses 23.4 points on that track alone, while its subword
+fertility is the lowest we measured. Applying published scheduling rules to the
+resulting posteriors, the ordering rule moves queueing cost by $3.1\times$ where
+the probability model moves it by 3\%.
+\end{abstract}
