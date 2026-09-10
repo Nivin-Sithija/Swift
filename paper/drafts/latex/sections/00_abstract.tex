@@ -12,14 +12,13 @@ discrete-event queue over 200 seeds, it attains 97--99\% of the reduction in
 urgent-ticket waiting time that a perfect classifier would deliver.
 
 The result that matters for deployment is a fairness one. Under a naive
-argmax-tier policy, a customer writing in romanized Tamil whose ticket is
-urgent waits \textbf{6.99 minutes longer} than an English-writing
-customer with the same problem (95\% CI $[5.76, 8.19]$), and one writing
-romanized Sinhala waits 4.07 minutes longer, while the two native-script tracks
-are indistinguishable from English. The gap is absent under first-come-first-
-served and absent under a gold-label control, so it is caused by the model
-rather than by the arrival process. Our score cuts it by an order of magnitude,
-to $+0.50$ and $+0.37$ minutes. We also show that classifier accuracy does not
+argmax-tier policy, a customer who writes an urgent ticket in romanized Sinhala
+waits \textbf{4.07 minutes longer} for a first response than one writing the
+same ticket in English (95\% CI $[2.96, 5.21]$), while the native-script tracks
+are indistinguishable from English. The comparison is controlled, the romanized
+track being a deterministic transliteration of the native one. The gap is absent
+under first-come-first-served and under a gold-label control, so the model causes
+it rather than the arrival process, and our score cuts it to $+0.37$ minutes. We also show that classifier accuracy does not
 transfer to the queue: a 2-point macro-F\textsubscript{1} advantage buys nothing
 through the median and costs six hours in the tail, because the more accurate
 model makes fewer errors but $8.5\times$ more confident ones.
