@@ -43,10 +43,23 @@ BLOCKS = {
 
 PROVENANCE = {
     "english":  "BANKING77 source, unmodified",
+    # Provenance decides which track pairs are controlled comparisons and which are
+    # not, so the wording here is load-bearing rather than descriptive.
+    #
+    # `singlish` is a deterministic rule-based romanisation OF the sinhala track, so
+    # sinhala/singlish hold the same content and differ only in script. That is the
+    # paper's controlled contrast.
+    #
+    # `tamilish` is NOT a romanisation of the tamil track. It was translated directly
+    # from the BANKING77 English source, so tamil and tamilish are two independent
+    # translations of one English original rather than one text in two scripts. They
+    # must not be read as a script pair, and this also explains tamilish's 60.3%
+    # out-of-vocabulary rate against its own train split and its high retention of
+    # English banking terms (0.73 against tamil's 0.06).
     "sinhala":  "machine-translated, hand-corrected to colloquial code-mixed",
     "singlish": "rule-based romanisation of the Sinhala track",
-    "tamil":    "machine-translated",
-    "tamilish": "machine-translated romanisation",
+    "tamil":    "machine-translated from the English source",
+    "tamilish": "machine-translated from the English source, romanised",
 }
 
 

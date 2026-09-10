@@ -1,40 +1,41 @@
 \section{Related Work}
 \label{sec:related}
 
-\textbf{Ticket triage.} Deployed systems predict a per-ticket label and report
-classification metrics: escalation risk over 2.5M IBM tickets
-\cite{montgomery2018escalation}, developer assignment for bug reports
-\cite{mani2019deeptriage}, and an industrial incident deployment
-\cite{lee2017industrialtriage}. None asks what the prediction is worth once
-tickets compete for a finite number of agents. BANKING77
-\cite{casanueva2020banking77} supplies our English track and its human intent
-labels.
+\textbf{Ticket triage stops at the label.} Montgomery et al.\
+\cite{montgomery2018escalation} model escalation risk over 2.5M IBM support
+tickets; DeepTriage \cite{mani2019deeptriage} assigns bug reports to developers;
+Lee et al.\ \cite{lee2017industrialtriage} report an industrial incident
+deployment. All three predict a per-ticket label and report classification
+metrics, and none asks what the prediction is worth once tickets compete for a
+finite number of agents. That question is this paper's subject.
 
-\textbf{Multilingual encoders.} XLM-R \cite{conneau2020xlmr} and LaBSE
-\cite{feng2022labse} transfer across many languages; MuRIL
-\cite{khanuja2021muril} and IndicBERT \cite{kakwani2020indicnlpsuite} narrow the
-target set to Indian languages, TwHIN-BERT \cite{zhang2023twhinbert} to social
-media, and mmBERT \cite{marone2025mmbert} widens it again. Transfer is almost
-always measured on native-script data, because that is what pretraining corpora
-and benchmarks contain, so the distinction we draw in Section~\ref{sec:script}
-is one these benchmarks cannot make. CANINE \cite{clark2022canine} removes the
-failure mode architecturally by operating on Unicode code points.
+\textbf{Scheduling answers the ordering question.} The $c\mu$ rule
+\cite{cox1961queues} is the classical result for linear delay cost, with
+Cobham's priority analysis \cite{cobham1954priority} and Kleinrock's
+delay-dependent priorities \cite{kleinrock1964delay} preceding and extending it,
+accumulating-priority queues adding aging \cite{stanford2014accumulating}, and
+the generalised $c\mu$ rule \cite{vanmieghem1995generalized} covering convex
+cost. Our score is best understood as a $c\mu$ rule whose cost term is
+\emph{learned} rather than assigned: the classical rule assumes a known per-class
+cost, and ours estimates it per ticket from a posterior. Argon and Ziya
+\cite{argon2009priority} give the result that licenses this directly, namely that
+ordering by a posterior index rather than by its argmax lowers long-run cost,
+with the gain growing in the variability of the index. We use
+\cite{pinedo2022scheduling} for objectives and nDCG \cite{jarvelin2002ndcg} for
+queue-head quality.
 
-\textbf{Romanized South Asian text.} Chakravarthi et al.\
-\cite{chakravarthi2020tamilmix} released human-typed Tanglish, the reference
-point that makes our synthetic romanization an optimistic bound. Sinhala
-resources are thinner \cite{desilva2019sinhalasurvey}: work covers
-back-transliteration \cite{sumanathilaka2026swabhasha}, Sinhala-specific
-pretraining \cite{aravinda2025sinllama}, and script effects in Sri Lankan text
-\cite{rajapakse2026script}. Parallel banking corpora across these renderings
-have not been released.
+\textbf{Fairness here is a scheduling property.} Our disparity result concerns
+groups of \emph{customers} and is denominated in waiting time, which
+distinguishes it from fairness in ranking \cite{singh2018fairexposure}, where
+the groups are ranked items and the currency is exposure.
 
-\textbf{Labels and scheduling.} Two of our label columns are model-generated, so
-we report measured ceilings, following the treatment of benchmark label error in
-\cite{northcutt2021labelerrors}. For ordering we apply the $c\mu$ rule
-\cite{cox1961queues}, its generalisation to convex cost
-\cite{vanmieghem1995generalized}, and Argon and Ziya's result that ordering by a
-posterior beats ordering by its argmax \cite{argon2009priority}. Because a
-ticket carries three labels, we compare binary relevance against classifier
-chains \cite{read2009classifierchains}, probabilistic chains
-\cite{dembczynski2010pcc}, and stacking \cite{wolpert1992stacked}.
+\textbf{Multilingual and romanized input.} The classifiers feeding our queue are
+multilingual encoders \cite{conneau2020xlmr,feng2022labse,marone2025mmbert} and
+Indic-targeted models \cite{khanuja2021muril}, evaluated on Sinhala and Tamil
+written in both native and Latin script. Human-typed romanized Tamil
+\cite{chakravarthi2020tamilmix} is the reference point that makes our
+synthetically romanized tracks an optimistic bound; Sinhala resources remain
+thin \cite{desilva2019sinhalasurvey,sumanathilaka2026swabhasha}. Intent labels
+come from BANKING77 \cite{casanueva2020banking77}. Because two of our three label
+columns are model-generated, we report measured ceilings throughout, following
+the treatment of benchmark label error in \cite{northcutt2021labelerrors}.

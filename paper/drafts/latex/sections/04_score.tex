@@ -1,0 +1,68 @@
+\section{The Ticket Urgency Score}
+\label{sec:score}
+
+\subsection{Definition}
+
+For a ticket $t$ evaluated at decision time $\tau$, the score is a static
+component under multiplicative aging:
+\begin{align}
+U(t,\tau) &= S(t)\,\bigl(1 + \alpha\, a(t,\tau)\bigr) \label{eq:tus}\\
+S(t) &= w_P\,\hat{\mathbb{E}}[\mathrm{sev}\mid t] + w_S\,\hat{P}(\mathrm{Neg}\mid t)
+        + w_I\,\kappa(\hat{\imath}(t)) \nonumber\\
+a(t,\tau) &= \bigl(\tau - \mathrm{arrival}(t)\bigr) / D \nonumber
+\end{align}
+with $w \ge 0$, $\sum w = 1$, $\alpha \ge 0$, and $D$ the service window of the
+ticket's class. Four numbers are fitted. Waiting tickets are served in
+decreasing $U$.
+
+\textbf{Expected severity, not the argmax.}
+$\hat{\mathbb{E}}[\mathrm{sev}\mid t] = \sum_k \hat{p}_k(t)\,\mathrm{sev}_k$ over
+$\mathrm{sev} = (0, \tfrac12, 1)$. Taking the argmax of the priority head and
+mapping it to a tier is what a naive deployment does, and it discards exactly
+what the queue needs: confidence. A confidently-Low ticket and a $0.49/0.51$
+coin flip both become "Low" and then sit in the same tier in arrival order. Our
+error analysis finds priority errors concentrate on the Low/Medium boundary,
+which is precisely where the argmax destroys the most information. Ordering by
+the posterior rather than its argmax is the property Argon and Ziya
+\cite{argon2009priority} prove lowers long-run cost, so this is a theorem rather
+than a preference.
+
+\textbf{Sentiment as a nudge, never a gate.} At 0.7138 \negf{} the sentiment head
+misses roughly a third of the negative tickets. A weak signal carrying a
+small fitted weight inside a score is useful; the same signal as a routing rule
+would be unsafe.
+
+\textbf{Learned per-intent criticality.} $\kappa(i) = \hat{P}(\text{High} \mid
+\text{intent}=i)$, 77 values estimated on training and development data only.
+This is the term that makes~\eqref{eq:tus} a $c\mu$ rule \cite{cox1961queues}
+with a \emph{learned} cost rather than an assigned one. It ranks
+\texttt{compromised\_card}, \texttt{lost\_or\_stolen\_card}, and
+\texttt{card\_payment\_not\_recognised} highest, which is the ordering a bank
+would choose by hand. It also matters for Section~\ref{sec:disparity}: intent is
+the most accurate of the three heads, so $\kappa$ acts as a script-robust prior
+that backstops the priority head where the text is degraded.
+
+\textbf{Aging is multiplicative}, so a stale Low climbs but still climbs more
+slowly than a stale High, which additive aging cannot express.
+
+\subsection{Fitting}
+
+Weights are fitted by grid search on development data over the 3-simplex at
+$0.05$ resolution with a grid on $\alpha$, then applied unchanged to test:
+$w = (0.80, 0.10, 0.10)$, $\alpha = 16$. Development posteriors come from a
+train-only fit, because the saved encoder checkpoints were fitted on training
+plus development and have memorised it.
+
+\textbf{The exact vector is not the finding, and we do not present it as one.}
+The surface is flat: 71 of 231 simplex points sit within 5\% of the optimum,
+spanning $w_P \in [0.10, 0.90]$. What the fit establishes is that priority
+dominates and that no corner of the simplex is competitive, not that $0.80$ beats
+$0.70$. We publish the whole surface rather than the argmin. Extending the
+$\alpha$ grid to 128 confirms the fitted value sits on a plateau, so aging is a
+policy dial rather than a fitted constant.
+
+An ablation at $\rho = 1.05$ shows the terms are not interchangeable. Priority
+alone reaches 2.15 minutes mean wait for urgent tickets against the full score's
+1.97, and priority with intent reaches 1.85; sentiment on its own degrades the
+head of the queue. Intent is what earns its place, and it does so through
+$\kappa$ rather than as a third severity estimate.

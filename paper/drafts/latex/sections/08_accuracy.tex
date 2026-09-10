@@ -1,0 +1,68 @@
+\section{Accuracy Does Not Transfer to the Queue}
+\label{sec:accuracy}
+
+Section~\ref{sec:ordering} found little headroom above the score. We test that
+directly by holding the score and its weights fixed and swapping the classifier
+underneath it, replacing the LaBSE priority and sentiment posteriors with those
+of the TF-IDF baseline (Table~\ref{tab:subst}).
+
+\begin{table}[!tb]
+\caption{Same score, same weights, posteriors swapped. $\rho=1.05$, 200 seeds,
+waits in minutes for gold-High tickets.}
+\label{tab:subst}
+\centering
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+ & LaBSE & TF-IDF \\
+\midrule
+priority \macrof{} (test) & \textbf{0.8901} & 0.8706 \\
+\midrule
+mean wait      & 1.98 & \textbf{1.80} \\
+median wait    & 1.11 & \textbf{1.10} \\
+p95 wait       & \textbf{5.32} & 5.42 \\
+worst-case wait & 362.1 & \textbf{97.9} \\
+\midrule
+gold-High missed & \textbf{165} & 193 \\
+\quad of which buried below 0.1 & 68 & \textbf{8} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Through the median and the 95th percentile the two are indistinguishable, at
+tenths of a minute and with the sign changing between rows. They separate in the
+tail, where the more accurate model's worst-served urgent ticket waits
+\textbf{six hours against the weaker model's ninety-eight minutes}.
+
+The claim is not that TF-IDF wins. It is that a two-point \macrof{} advantage
+buys nothing through the body of the queue and costs something at the extreme,
+which no classification table would report.
+
+\textbf{The mechanism is a metric F\textsubscript{1} cannot see.} LaBSE misses
+fewer urgent tickets than TF-IDF, 165 against 193, and buries far more of the
+ones it misses: 68 fall below a score of 0.1 against TF-IDF's 8. Fewer mistakes,
+$8.5\times$ more confident ones. A confidently-missed urgent ticket falls to the
+bottom of the queue and stays there, which is the six-hour worst case above,
+while a hedged miss lands mid-queue and is picked up soon. Macro-F\textsubscript{1}
+counts both as one error.
+
+We therefore propose \textbf{buried urgent tickets}, the count of gold-High
+tickets scored below a low threshold, as a triage-specific error metric worth
+reporting beside F\textsubscript{1}. It is what the queue actually feels.
+
+\subsection{A hypothesis we refuted}
+
+We expected calibration to explain the disparity and to fix it cheaply. The
+diagnosis supported it: LaBSE is more accurate than TF-IDF, $3.7\times$ worse
+calibrated (ECE 0.0658 against 0.0180), and worst calibrated on exactly the track
+it is least accurate on (Tanglish, 0.1071). That is a double penalty, and
+temperature scaling \cite{guo2017calibration} is the standard remedy.
+
+Fitting the temperature on a clean held-out development set fixed the
+calibration and made the queue \emph{worse}. Mean wait for urgent tickets rose
+from 1.98 to 2.65 minutes and the Tanglish-minus-English gap widened from $+0.50$
+to $+0.97$. The reason is that expected calibration error measures agreement
+between top-1 confidence and accuracy, while a queue needs posteriors that
+\emph{separate} tickets, and temperature scaling compresses exactly that
+separation. "Calibrate before you score" was wrong here, and we report it because
+the diagnosis is convincing enough that others will try it.
