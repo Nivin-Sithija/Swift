@@ -70,6 +70,33 @@ seed. The submitted paper cites only the pooled figure and the seed-42 gain
 table, so it is unaffected. Any future version quoting per-language sentiment
 must resolve this first.
 
+## Corpus facts settled this session
+
+**Tanglish is not a romanization of the Tamil track.** It was translated directly
+from the BANKING77 English source (author-confirmed). So `tamil`/`tamilish` are
+two independent translations of one English original, not one text in two
+scripts, and they are not a script pair. `sinhala`/`singlish` is the only
+controlled contrast, since Singlish is a deterministic rule-based romanization of
+the Sinhala track.
+
+This explains three things at once that were previously separate puzzles: the
+null `tamil - tamilish` difference-in-differences (expected, not a failure to
+replicate), Tanglish's 60.3% out-of-vocabulary rate against its own train split,
+and its 0.73 loanword retention against Tamil's 0.06. `corpus_stats.py` now
+records the corrected provenance.
+
+**Register, measured on all four non-English tracks** (`register_by_track.csv`,
+new): sinhala 0.6464, singlish 0.9641, tamil 0.0614, tamilish 0.7288. Only the
+two native tracks are comparable, because a romanized track is Latin by
+construction and the metric cannot separate a kept English word from a romanized
+native borrowing. The native contrast is the meaningful one: Sinhala keeps 65% of
+banking terms in English, Tamil 6%.
+
+The paper states this as design intent plus measurement, not as a finding about
+the two languages, for two reasons recorded in Section III: Tamil-English
+code-mixing is well attested in a work we cite, and only Sinhala received a hand
+pass, so register and treatment are confounded in our data.
+
 ## For the next version
 
 **1. The cross-script service disparity.** The result that would join Sections VI

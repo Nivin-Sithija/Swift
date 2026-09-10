@@ -1,0 +1,28 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We built a ticket ordering system for a trilingual bank support desk and
+evaluated it where it is used, in a queue, rather than where it is convenient to
+measure, in a classification table. The Ticket Urgency Score combines a priority
+posterior, a sentiment posterior, and a learned per-intent criticality under
+multiplicative aging, and attains 97--99\% of the reduction in urgent-ticket
+waiting time that a perfect classifier would deliver.
+
+The finding we would put in front of an operations owner is that triage fairness
+is a scheduling property. A naive argmax deployment makes customers who write
+romanized Sinhala or Tamil wait 4.07 and 6.99 minutes longer for the same urgent
+problem, with the gap absent under first-come-first-served, absent under a
+gold-label control, and absent on both native-script tracks. Reading the same
+model's posterior through our score cuts it to $+0.37$ and $+0.50$.
+
+Two negative results travel with it. Rank correlation selects the worst system
+in our comparison, because a queue is consumed from the top and $\tau$ averages
+over the whole list. And classifier accuracy does not transfer: a two-point
+macro-F\textsubscript{1} advantage leaves the median wait unchanged and produces
+a six-hour tail, because the stronger model makes fewer errors but
+$8.5\times$ more confident ones.
+
+The corpus, the frozen split, and the model checkpoints are publicly available
+under CC BY 4.0 with attribution to BANKING77.
+\ifblind\relax\note{Repository URLs withheld for double-blind review; add for
+camera-ready.}\fi
