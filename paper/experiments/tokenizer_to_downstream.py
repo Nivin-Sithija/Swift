@@ -94,7 +94,14 @@ def main() -> None:
           .sort_values(["language", "unk_pct"], ascending=[True, False])
           .to_string(index=False))
 
+    # These two coefficients are the paper's mechanism claim, so they are written to
+    # a table rather than only printed. A number that exists only in stdout gets
+    # recomputed by hand later, and the method drifts: Spearman over the non-English
+    # cells (what this reports) and Pearson over every row are different statistics
+    # that disagree in both magnitude and, for fertility, sign. The stored row names
+    # its own method and scope so the paper cannot quote it as something else.
     print("\ncorrelation with delta_vs_english across all model x non-English cells:")
+    corr_rows = []
     for col in ("unk_pct", "fertility"):
         r = non_eng[col].corr(non_eng["delta_vs_english"], method="spearman")
         n_nonzero = int((non_eng[col] > 0.001).sum())
@@ -103,6 +110,20 @@ def main() -> None:
             note = (f"  <- only {n_nonzero}/{len(non_eng)} cells are non-zero; "
                     "this rho is carried by them, not by a range")
         print(f"  {col:10s} spearman rho = {r:+.3f}{note}")
+        corr_rows.append({"predictor": col, "method": "spearman",
+                          "scope": "non-english cells", "rho": round(float(r), 4),
+                          "n_cells": int(len(non_eng)), "n_nonzero": n_nonzero})
+
+    corr = pd.DataFrame(corr_rows)
+    corr_path = OUT / f"tokenizer_correlations_{args.task}_{args.portion}.csv"
+    OUT.mkdir(parents=True, exist_ok=True)
+    with corr_path.open("w", encoding="utf-8") as fh:
+        fh.write("# Spearman rank correlation between each tokenizer statistic and the\n"
+                 "# per-language deficit vs english, over non-English cells only. Rank\n"
+                 "# correlation because unk_pct is zero for most cells and the claim is\n"
+                 "# monotone association, not linear fit. Do not requote as Pearson.\n")
+        corr.to_csv(fh, index=False)
+    print(f"\nwrote {corr_path.relative_to(REPO)}")
 
     hi = non_eng[non_eng["destroys_script"]]
     lo = non_eng[~non_eng["destroys_script"]]
