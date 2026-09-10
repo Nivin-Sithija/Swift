@@ -1,0 +1,595 @@
+% GENERATED FILE -- do not edit.
+% Source: paper/bibliography/refs.bib
+% Regenerate with: python3 make_refs.py
+
+% Swift paper bibliography
+%
+% TWO TIERS, AND THE DIFFERENCE MATTERS:
+%
+%   [VERIFIED]  transcribed from `research/README.md`, where the citation was
+%               recorded from the PDF actually held in `research/`. Safe to cite.
+%
+%   [VERIFIED] against ACL Anthology / publisher record, 2026-09-08. Every entry
+%               below now carries pages, DOI or URL checked against the real
+%               publication. Three had substantive errors, now corrected:
+%                 - zhang2023twhinbert: title was truncated (ends "at Twitter"),
+%                   author list was "and others"
+%                 - khanuja2021muril: 3 of 14 authors listed
+%                 - kakwani2020indicnlpsuite / casanueva2020banking77 / others:
+%                   no page numbers at all
+%
+%   NO UNVERIFIED ENTRIES REMAIN. Anything added later starts unverified
+%   and must be checked before it is cited.
+%
+% 39 entries as of 2026-09-09. Thirteen were added that day: six for the ordering
+% system in results.md section 17, whose queue-level methodology previously had
+% no citations behind it at all, and four closing gap areas flagged the day
+% before (mmBERT, CANINE, Dravidian code-mixed Tamil, label-error ceilings), and
+% three deployed triage systems -- the area section 17 has to position against.
+%
+% Areas: (1) intent detection & BANKING77 (2) multilingual encoders
+% (3) code-mixed / romanized Indic NLP (4) Sinhala & Tamil NLP resources
+% (5) MT quality estimation (6) evaluation methodology
+% (7) ranking & calibration metrics (8) queueing and scheduling
+% (9) fairness in ranking (10) label noise and annotation ceilings
+
+
+% ======================================================================
+% (4) Sinhala & Tamil NLP -- [VERIFIED], PDFs held in research/
+% ======================================================================
+
+@misc{desilva2019sinhalasurvey,
+  author = {de Silva, Nisansa},
+  title  = {Survey on Publicly Available Sinhala Natural Language Processing Tools and Research},
+  year   = {2019},
+}
+
+@mastersthesis{smith2020codemixed,
+  author = {Smith, J. R. I.},
+  title  = {Sinhala-English Language Detection in Code-Mixed Data},
+  school = {University of Moratuwa, Dept.\ of Computer Science and Engineering},
+  year   = {2020}
+}
+
+@article{rathnayake2022adapter,
+  author = {Rathnayake, Himashi and Sumanapala, Janani and Rukshani, Raveesha and Ranathunga, Surangika},
+  title  = {Adapter Based Fine-Tuning of Pre-Trained Multilingual Language Models for Code-Mixed and Code-Switched Text Classification},
+  year   = {2022},
+  doi    = {10.21203/rs.3.rs-1564359/v2},
+}
+
+@misc{rajapakse2026script,
+  author = {Rajapakse, M. and Weerasinghe, Ruvan},
+  title  = {Script Sensitivity: Benchmarking Language Models on Unicode, Romanized and Mixed-Script Sinhala},
+  year   = {2026},
+}
+
+@misc{senevirathna2025multilingual,
+  author = {Senevirathna, W. P. U. and Rizvi, F. A. and Adhikari, A. M. N. H. and Kasthurirathna, D. and Navojith, T. and Abeywardhana, L.},
+  title  = {Enhancing Multilingual Sentiment Analysis with Explainability for Sinhala, English, and Code-Mixed Content},
+  year   = {2025},
+}
+
+@misc{aravinda2025sinllama,
+  author = {Aravinda, H. W. K. and Sirajudeen, R. and Karunathilake, S. and de Silva, Nisansa and Kaur, R. and Bhankhar, A. S. and Ranathunga, Surangika},
+  title  = {{SinLlama}: A Large Language Model for Sinhala},
+  year   = {2025},
+}
+
+@inproceedings{bandaranayake2025sinhala,
+  author    = {Bandaranayake, Isuru and Usoof, Hakim},
+  title     = {Sentiment Analysis of Sinhala News Comments Using Transformers},
+  booktitle = {Proc.\ First Workshop on NLP for Indo-Aryan and Dravidian Languages (IndoNLP)},
+  pages     = {74--82},
+  year      = {2025}
+}
+
+% ======================================================================
+% (3) Romanized Sinhala / transliteration -- [VERIFIED]
+% ======================================================================
+
+@mastersthesis{sumanathilaka2022romanized,
+  author = {Sumanathilaka, T. G. D. K.},
+  title  = {Romanized Sinhala to Sinhala Reverse Transliteration using a Hybrid Approach},
+  school = {University of Colombo School of Computing},
+  year   = {2022}
+}
+
+@inproceedings{perera2025indonlp,
+  author    = {Perera, S. and Jayakodi, L. P. and Sumanathilaka, T. G. D. K. and Anuradha, I.},
+  title     = {{IndoNLP} 2025 Shared Task: Romanized Sinhala to Sinhala Reverse Transliteration Using {BERT}},
+  booktitle = {Proc.\ First Workshop on NLP for Indo-Aryan and Dravidian Languages (IndoNLP)},
+  pages     = {135--140},
+  year      = {2025}
+}
+
+@misc{sumanathilaka2026swabhasha,
+  author = {Sumanathilaka, D. and Perera, S. and Dharmasiri, S. and Athukorala, M. and Herath, A. D. and Dias, R. and Gamage, P. and Weerasinghe, Ruvan and Priyadarshana, Y. H. P. P.},
+  title  = {{Swa-bhasha} Resource Hub: Romanized Sinhala to Sinhala Transliteration Systems and Data Resources},
+  year   = {2026},
+}
+
+% ======================================================================
+% (1) Ticket / complaint classification -- [VERIFIED]
+% ======================================================================
+
+@article{arya2026bank,
+  author  = {Arya, S.},
+  title   = {Bank Customer Complaint Classification Using Machine Learning and Deep Learning Models},
+  journal = {International Journal for Research Trends and Innovation (IJRTI)},
+  volume  = {11},
+  number  = {2},
+  year    = {2026}
+}
+
+@inproceedings{deshmukh2020priority,
+  author = {Deshmukh, K. V. and Shiravale, S. S.},
+  title  = {Priority Based Sentiment Analysis for Quick Response to Citizen Complaints},
+}
+
+% ======================================================================
+% (1) BANKING77 and intent detection -- [VERIFIED] against ACL Anthology
+% ======================================================================
+
+@inproceedings{casanueva2020banking77,
+  author    = {Casanueva, I{\~n}igo and Tem{\v c}inas, Tadas and Gerz, Daniela and Henderson, Matthew and Vuli{\'c}, Ivan},
+  title     = {Efficient Intent Detection with Dual Sentence Encoders},
+  booktitle = {Proc.\ 2nd Workshop on Natural Language Processing for Conversational AI},
+  pages     = {38--45},
+  year      = {2020},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2020.nlp4convai-1.5},
+  url       = {https://aclanthology.org/2020.nlp4convai-1.5/},
+}
+
+% ======================================================================
+% (2) Multilingual encoders -- [VERIFIED] against ACL Anthology / arXiv
+% ======================================================================
+
+@inproceedings{conneau2020xlmr,
+  author    = {Conneau, Alexis and Khandelwal, Kartikay and Goyal, Naman and Chaudhary, Vishrav and Wenzek, Guillaume and Guzm{\'a}n, Francisco and Grave, Edouard and Ott, Myle and Zettlemoyer, Luke and Stoyanov, Veselin},
+  title     = {Unsupervised Cross-lingual Representation Learning at Scale},
+  booktitle = {Proc.\ 58th Annual Meeting of the Association for Computational Linguistics},
+  pages     = {8440--8451},
+  year      = {2020},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2020.acl-main.747},
+  url       = {https://aclanthology.org/2020.acl-main.747/},
+}
+
+@inproceedings{feng2022labse,
+  author    = {Feng, Fangxiaoyu and Yang, Yinfei and Cer, Daniel and Arivazhagan, Naveen and Wang, Wei},
+  title     = {Language-agnostic {BERT} Sentence Embedding},
+  booktitle = {Proc.\ 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages     = {878--891},
+  year      = {2022},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2022.acl-long.62},
+  url       = {https://aclanthology.org/2022.acl-long.62/},
+}
+
+@misc{khanuja2021muril,
+  author       = {Khanuja, Simran and Bansal, Diksha and Mehtani, Sarvesh and Khosla, Savya and Dey, Atreyee and Gopalan, Balaji and Margam, Dilip Kumar and Aggarwal, Pooja and Nagipogu, Rajiv Teja and Dave, Shachi and Gupta, Shruti and Gali, Subhash Chandra Bose and Subramanian, Vish and Talukdar, Partha},
+  title        = {{MuRIL}: Multilingual Representations for Indian Languages},
+  year         = {2021},
+  eprint       = {2103.10730},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.CL},
+  url          = {https://arxiv.org/abs/2103.10730},
+}
+
+@inproceedings{kakwani2020indicnlpsuite,
+  author    = {Kakwani, Divyanshu and Kunchukuttan, Anoop and Golla, Satish and Gokul, N. C. and Bhattacharyya, Avik and Khapra, Mitesh M. and Kumar, Pratyush},
+  title     = {{IndicNLPSuite}: Monolingual Corpora, Evaluation Benchmarks and Pre-trained Multilingual Language Models for {I}ndian Languages},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2020},
+  pages     = {4948--4961},
+  year      = {2020},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2020.findings-emnlp.445},
+  url       = {https://aclanthology.org/2020.findings-emnlp.445/},
+}
+
+@inproceedings{zhang2023twhinbert,
+  author    = {Zhang, Xinyang and Malkov, Yury and Florez, Omar and Park, Serim and McWilliams, Brian and Han, Jiawei and El-Kishky, Ahmed},
+  title     = {{TwHIN-BERT}: A Socially-Enriched Pre-trained Language Model for Multilingual Tweet Representations at {T}witter},
+  booktitle = {Proc.\ 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining},
+  pages     = {5597--5607},
+  year      = {2023},
+  publisher = {ACM},
+  doi       = {10.1145/3580305.3599921},
+}
+
+@inproceedings{hu2022lora,
+  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
+  title     = {{LoRA}: Low-Rank Adaptation of Large Language Models},
+  booktitle = {Proc.\ International Conference on Learning Representations (ICLR)},
+  year      = {2022},
+  url       = {https://openreview.net/forum?id=nZeVKeeFYf9},
+}
+
+% ======================================================================
+% (5) MT quality estimation -- [VERIFIED] against ACL Anthology
+% ======================================================================
+
+@inproceedings{rei2022cometkiwi,
+  author    = {Rei, Ricardo and Treviso, Marcos and Guerreiro, Nuno M. and Zerva, Chrysoula and Farinha, Ana C. and Maroti, Christine and de Souza, Jos{\'e} G. C. and Glushkova, Taisiya and Alves, Duarte and Coheur, Luisa and Lavie, Alon and Martins, Andr{\'e} F. T.},
+  title     = {{CometKiwi}: {IST}-{U}nbabel 2022 Submission for the Quality Estimation Shared Task},
+  booktitle = {Proc.\ Seventh Conference on Machine Translation (WMT)},
+  pages     = {634--645},
+  year      = {2022},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/2022.wmt-1.60/},
+}
+
+@inproceedings{popovic2015chrf,
+  author    = {Popovi{\'c}, Maja},
+  title     = {{chrF}: Character n-gram F-score for Automatic {MT} Evaluation},
+  booktitle = {Proc.\ Tenth Workshop on Statistical Machine Translation},
+  pages     = {392--395},
+  year      = {2015},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/W15-3049},
+  url       = {https://aclanthology.org/W15-3049/},
+}
+
+% ======================================================================
+% (6) Evaluation methodology -- [VERIFIED]
+% ======================================================================
+
+@inproceedings{koehn2004bootstrap,
+  author    = {Koehn, Philipp},
+  title     = {Statistical Significance Tests for Machine Translation Evaluation},
+  booktitle = {Proc.\ 2004 Conference on Empirical Methods in Natural Language Processing},
+  pages     = {388--395},
+  year      = {2004},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/W04-3250/},
+}
+
+@article{mcnemar1947,
+  author  = {McNemar, Quinn},
+  title   = {Note on the Sampling Error of the Difference Between Correlated Proportions or Percentages},
+  journal = {Psychometrika},
+  volume  = {12},
+  number  = {2},
+  pages   = {153--157},
+  year    = {1947},
+  doi     = {10.1007/BF02295996},
+}
+
+% ======================================================================
+% (6) Annotation reliability and documentation -- [VERIFIED]
+% ======================================================================
+
+@article{cohen1960kappa,
+  author  = {Cohen, Jacob},
+  title   = {A Coefficient of Agreement for Nominal Scales},
+  journal = {Educational and Psychological Measurement},
+  volume  = {20},
+  number  = {1},
+  pages   = {37--46},
+  year    = {1960},
+  doi     = {10.1177/001316446002000104},
+}
+
+@book{krippendorff2018content,
+  author    = {Krippendorff, Klaus},
+  title     = {Content Analysis: An Introduction to Its Methodology},
+  edition   = {4},
+  publisher = {SAGE Publications},
+  year      = {2018},
+  isbn      = {9781506395661},
+}
+
+@article{bender2018datastatements,
+  author  = {Bender, Emily M. and Friedman, Batya},
+  title   = {Data Statements for Natural Language Processing: Toward Mitigating System Bias and Enabling Better Science},
+  journal = {Transactions of the Association for Computational Linguistics},
+  volume  = {6},
+  pages   = {587--604},
+  year    = {2018},
+  doi     = {10.1162/tacl\_a\_00041},
+  url     = {https://aclanthology.org/Q18-1041/},
+}
+
+% ======================================================================
+% SECTION 17 -- the ordering system. Added 2026-09-09; the queue-level
+% methodology had no citations behind it at all before this.
+% ======================================================================
+
+@article{jarvelin2002ndcg,
+  author  = {J{\"a}rvelin, Kalervo and Kek{\"a}l{\"a}inen, Jaana},
+  title   = {Cumulated Gain-based Evaluation of {IR} Techniques},
+  journal = {ACM Transactions on Information Systems},
+  volume  = {20},
+  number  = {4},
+  pages   = {422--446},
+  year    = {2002},
+  doi     = {10.1145/582415.582418},
+}
+
+@inproceedings{guo2017calibration,
+  author    = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},
+  title     = {On Calibration of Modern Neural Networks},
+  booktitle = {Proceedings of the 34th International Conference on Machine Learning},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {70},
+  pages     = {1321--1330},
+  year      = {2017},
+  publisher = {PMLR},
+  url       = {https://proceedings.mlr.press/v70/guo17a.html},
+}
+
+@article{gelman2006significant,
+  author  = {Gelman, Andrew and Stern, Hal},
+  title   = {The Difference Between ``Significant'' and ``Not Significant'' is not Itself
+             Statistically Significant},
+  journal = {The American Statistician},
+  volume  = {60},
+  number  = {4},
+  pages   = {328--331},
+  year    = {2006},
+  doi     = {10.1198/000313006X152649},
+}
+
+@book{pinedo2022scheduling,
+  author    = {Pinedo, Michael L.},
+  title     = {Scheduling: Theory, Algorithms, and Systems},
+  edition   = {6},
+  publisher = {Springer},
+  year      = {2022},
+  isbn      = {9783031059230},
+  doi       = {10.1007/978-3-031-05921-6},
+}
+
+@book{cox1961queues,
+  author    = {Cox, D. R. and Smith, Walter L.},
+  title     = {Queues},
+  publisher = {Methuen / Chapman and Hall},
+  address   = {London},
+  year      = {1961},
+}
+
+@inproceedings{singh2018fairexposure,
+  author    = {Singh, Ashudeep and Joachims, Thorsten},
+  title     = {Fairness of Exposure in Rankings},
+  booktitle = {Proceedings of the 24th ACM SIGKDD International Conference on Knowledge
+               Discovery \& Data Mining},
+  pages     = {2219--2228},
+  year      = {2018},
+  publisher = {Association for Computing Machinery},
+  doi       = {10.1145/3219819.3220088},
+}
+
+% ======================================================================
+% Gap areas from the previous session, now sourced
+% ======================================================================
+
+@misc{marone2025mmbert,
+  author       = {Marone, Marc and Weller, Orion and Fleshman, William and Yang, Eugene
+                  and Lawrie, Dawn and Van Durme, Benjamin},
+  title        = {mmBERT: A Modern Multilingual Encoder with Annealed Language Learning},
+  year         = {2025},
+  eprint       = {2509.06888},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.CL},
+  url          = {https://arxiv.org/abs/2509.06888},
+}
+
+@article{clark2022canine,
+  author  = {Clark, Jonathan H. and Garrette, Dan and Turc, Iulia and Wieting, John},
+  title   = {Canine: Pre-training an Efficient Tokenization-Free Encoder for Language
+             Representation},
+  journal = {Transactions of the Association for Computational Linguistics},
+  volume  = {10},
+  pages   = {73--91},
+  year    = {2022},
+  doi     = {10.1162/tacl\_a\_00448},
+  url     = {https://aclanthology.org/2022.tacl-1.5/},
+}
+
+@inproceedings{chakravarthi2020tamilmix,
+  author    = {Chakravarthi, Bharathi Raja and Muralidaran, Vigneshwaran and
+               Priyadharshini, Ruba and McCrae, John P.},
+  title     = {Corpus Creation for Sentiment Analysis in Code-Mixed {T}amil-{E}nglish Text},
+  booktitle = {Proceedings of the 1st Joint Workshop on Spoken Language Technologies for
+               Under-resourced languages (SLTU) and Collaboration and Computing for
+               Under-Resourced Languages (CCURL)},
+  pages     = {202--210},
+  year      = {2020},
+  address   = {Marseille, France},
+  publisher = {European Language Resources Association},
+  url       = {https://aclanthology.org/2020.sltu-1.28/},
+}
+
+@inproceedings{northcutt2021labelerrors,
+  author    = {Northcutt, Curtis G. and Athalye, Anish and Mueller, Jonas},
+  title     = {Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks},
+  booktitle = {Proceedings of the Neural Information Processing Systems Track on Datasets
+               and Benchmarks},
+  year      = {2021},
+  eprint    = {2103.14749},
+  archivePrefix = {arXiv},
+  url       = {https://arxiv.org/abs/2103.14749},
+}
+
+% ======================================================================
+% (1) Deployed triage systems -- what section 17 positions against
+% ======================================================================
+
+@article{montgomery2018escalation,
+  author  = {Montgomery, Lloyd and Damian, Daniela and Bulmer, Tyson and Quader, Shaikh},
+  title   = {Customer Support Ticket Escalation Prediction using Feature Engineering},
+  journal = {Requirements Engineering},
+  volume  = {23},
+  number  = {3},
+  pages   = {333--355},
+  year    = {2018},
+  doi     = {10.1007/s00766-018-0292-3},
+  eprint  = {2010.06145},
+  archivePrefix = {arXiv},
+}
+
+@inproceedings{mani2019deeptriage,
+  author    = {Mani, Senthil and Sankaran, Anush and Aralikatte, Rahul},
+  title     = {{DeepTriage}: Exploring the Effectiveness of Deep Learning for Bug Triaging},
+  booktitle = {Proceedings of the ACM India Joint International Conference on Data Science
+               and Management of Data (CoDS-COMAD)},
+  pages     = {171--179},
+  year      = {2019},
+  publisher = {Association for Computing Machinery},
+  doi       = {10.1145/3297001.3297023},
+}
+
+@inproceedings{lee2017industrialtriage,
+  author    = {Lee, Sun-Ro and Heo, Min-Jae and Lee, Chan-Gun and Kim, Milhan and
+               Jeong, Gaeul},
+  title     = {Applying Deep Learning Based Automatic Bug Triager to Industrial Projects},
+  booktitle = {Proceedings of the 2017 11th Joint Meeting on Foundations of Software
+               Engineering (ESEC/FSE)},
+  pages     = {926--931},
+  year      = {2017},
+  publisher = {Association for Computing Machinery},
+  doi       = {10.1145/3106237.3117776},
+}
+
+% ======================================================================
+% SCHEDULING AND QUEUEING -- the ordering policies in results section 22
+% ======================================================================
+%
+% [VERIFIED] 2026-09-09 against the Crossref API (api.crossref.org/works/<doi>),
+% arXiv, and for the two grey-literature items a title/number search. Checking
+% found one real error: kleinrock1964delay carried DOI 10.1002/nav.3800110401,
+% which does not resolve -- the record is 10.1002/nav.3800110306, and the issue
+% is 11(3-4), not 11(4). Both corrected here.
+%
+% Publisher sites (INFORMS, Project Euclid) return 403/503 to automated fetches,
+% so Crossref is the record of reference; it is the registration authority for
+% these DOIs, so it is authoritative for title, authors, venue, volume, issue and
+% pages. Two fields it does not carry were confirmed separately: Van Mieghem's
+% page range (809--833) and the LNCS volume for Read et al. (5782).
+
+@article{cobham1954priority,
+  author  = {Cobham, Alan},
+  title   = {Priority Assignment in Waiting Line Problems},
+  journal = {Journal of the Operations Research Society of America},
+  volume  = {2},
+  number  = {1},
+  pages   = {70--76},
+  year    = {1954},
+  doi     = {10.1287/opre.2.1.70},
+}
+
+@techreport{jackson1955scheduling,
+  author      = {Jackson, James R.},
+  title       = {Scheduling a Production Line to Minimize Maximum Tardiness},
+  institution = {Management Science Research Project, University of California,
+                 Los Angeles},
+  number      = {Research Report 43},
+  year        = {1955},
+}
+
+@article{kleinrock1964delay,
+  author  = {Kleinrock, Leonard},
+  title   = {A Delay Dependent Queue Discipline},
+  journal = {Naval Research Logistics Quarterly},
+  volume  = {11},
+  number  = {3-4},
+  pages   = {329--341},
+  year    = {1964},
+  doi     = {10.1002/nav.3800110306},
+}
+
+@article{vanmieghem1995generalized,
+  author  = {van Mieghem, Jan A.},
+  title   = {Dynamic Scheduling with Convex Delay Costs: The Generalized
+             c\,$\mu$ Rule},
+  journal = {The Annals of Applied Probability},
+  volume  = {5},
+  number  = {3},
+  pages   = {809--833},
+  year    = {1995},
+  doi     = {10.1214/aoap/1177004706},
+}
+
+@article{argon2009priority,
+  author  = {Argon, Nilay Tan{\i}k and Ziya, Serhan},
+  title   = {Priority Assignment Under Imperfect Information on Customer Type
+             Identities},
+  journal = {Manufacturing \& Service Operations Management},
+  volume  = {11},
+  number  = {4},
+  pages   = {674--693},
+  year    = {2009},
+  doi     = {10.1287/msom.1080.0246},
+}
+
+@article{stanford2014accumulating,
+  author  = {Stanford, David A. and Taylor, Peter and Ziedins, Ilze},
+  title   = {Waiting Time Distributions in the Accumulating Priority Queue},
+  journal = {Queueing Systems},
+  volume  = {77},
+  number  = {3},
+  pages   = {297--330},
+  year    = {2014},
+  doi     = {10.1007/s11134-013-9382-6},
+}
+
+% ======================================================================
+% MULTI-LABEL DEPENDENCE -- the label models in results section 22
+% ======================================================================
+
+@inproceedings{read2009classifierchains,
+  author    = {Read, Jesse and Pfahringer, Bernhard and Holmes, Geoff and
+               Frank, Eibe},
+  title     = {Classifier Chains for Multi-label Classification},
+  booktitle = {Machine Learning and Knowledge Discovery in Databases (ECML PKDD)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {5782},
+  pages     = {254--269},
+  year      = {2009},
+  publisher = {Springer},
+  doi       = {10.1007/978-3-642-04174-7\_17},
+}
+
+@inproceedings{dembczynski2010pcc,
+  author    = {Dembczy{\'n}ski, Krzysztof and Cheng, Weiwei and
+               H{\"u}llermeier, Eyke},
+  title     = {Bayes Optimal Multilabel Classification via Probabilistic
+               Classifier Chains},
+  booktitle = {Proceedings of the 27th International Conference on Machine
+               Learning (ICML)},
+  pages     = {279--286},
+  year      = {2010},
+}
+
+@article{wolpert1992stacked,
+  author  = {Wolpert, David H.},
+  title   = {Stacked Generalization},
+  journal = {Neural Networks},
+  volume  = {5},
+  number  = {2},
+  pages   = {241--259},
+  year    = {1992},
+  doi     = {10.1016/S0893-6080(05)80023-1},
+}
+
+@misc{gemmateam2025gemma3,
+  author = {{Gemma Team}},
+  title  = {Gemma 3 Technical Report},
+  year   = {2025},
+  eprint = {2503.19786},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+}
+
+% ======================================================================
+% STILL TO SOURCE -- what remains
+% ======================================================================
+%
+%  - Gemma 3 technical report, for the decoder arm (A5, not yet run)
+%  - Class imbalance in text classification, for the balancing-arm result
+%  - Discrete-event simulation of helpdesk arrival/service processes, ideally with
+%    published parameters. Tracker E10 -- the study's largest threat to validity is
+%    that lambda, the service distribution and the agent count are assumed, and a
+%    citable parameterisation would remove it.

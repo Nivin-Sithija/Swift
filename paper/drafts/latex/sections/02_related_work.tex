@@ -1,0 +1,40 @@
+\section{Related Work}
+\label{sec:related}
+
+\textbf{Ticket triage.} Deployed systems predict a per-ticket label and report
+classification metrics: escalation risk over 2.5M IBM tickets
+\cite{montgomery2018escalation}, developer assignment for bug reports
+\cite{mani2019deeptriage}, and an industrial incident deployment
+\cite{lee2017industrialtriage}. None asks what the prediction is worth once
+tickets compete for a finite number of agents. BANKING77
+\cite{casanueva2020banking77} supplies our English track and its human intent
+labels.
+
+\textbf{Multilingual encoders.} XLM-R \cite{conneau2020xlmr} and LaBSE
+\cite{feng2022labse} transfer across many languages; MuRIL
+\cite{khanuja2021muril} and IndicBERT \cite{kakwani2020indicnlpsuite} narrow the
+target set to Indian languages, TwHIN-BERT \cite{zhang2023twhinbert} to social
+media, and mmBERT \cite{marone2025mmbert} widens it again. Transfer is almost
+always measured on native-script data, because that is what pretraining corpora
+and benchmarks contain, so the distinction we draw in Section~\ref{sec:script}
+is one these benchmarks cannot make. CANINE \cite{clark2022canine} removes the
+failure mode architecturally by operating on Unicode code points.
+
+\textbf{Romanized South Asian text.} Chakravarthi et al.\
+\cite{chakravarthi2020tamilmix} released human-typed Tanglish, the reference
+point that makes our synthetic romanization an optimistic bound. Sinhala
+resources are thinner \cite{desilva2019sinhalasurvey}: work covers
+back-transliteration \cite{sumanathilaka2026swabhasha}, Sinhala-specific
+pretraining \cite{aravinda2025sinllama}, and script effects in Sri Lankan text
+\cite{rajapakse2026script}. Parallel banking corpora across these renderings
+have not been released.
+
+\textbf{Labels and scheduling.} Two of our label columns are model-generated, so
+we report measured ceilings, following the treatment of benchmark label error in
+\cite{northcutt2021labelerrors}. For ordering we apply the $c\mu$ rule
+\cite{cox1961queues}, its generalisation to convex cost
+\cite{vanmieghem1995generalized}, and Argon and Ziya's result that ordering by a
+posterior beats ordering by its argmax \cite{argon2009priority}. Because a
+ticket carries three labels, we compare binary relevance against classifier
+chains \cite{read2009classifierchains}, probabilistic chains
+\cite{dembczynski2010pcc}, and stacking \cite{wolpert1992stacked}.

@@ -1,0 +1,55 @@
+\section{Roster Results}
+\label{sec:results}
+
+Table~\ref{tab:pooled} reports the roster on the frozen test set, fitted on
+training plus development and scored once.
+
+\begin{table}[t]
+\caption{Pooled test scores, best imbalance arm per model. Intent and priority
+are \macrof{}, sentiment \negf{}. Dashes mark cells not yet run.}
+\label{tab:pooled}
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+Model & Intent & Sentiment & Priority \\
+\midrule
+LaBSE                  & \textbf{0.8835} & \textbf{0.7138} & 0.8900 \\
+XLM-R base             & 0.8801 & 0.7007 & 0.8872 \\
+mmBERT                 & 0.8680 & 0.7000 & 0.8887 \\
+MuRIL                  & 0.8467 & 0.6790 & 0.8717 \\
+Gemma 3 1B             & 0.8635 & 0.7126 & 0.8898 \\
+Gemma 3 270M           & 0.8414 & --     & --     \\
+TF-IDF + linear SVM    & 0.8308 & 0.6653 & 0.8734 \\
+TF-IDF + logistic      & 0.8189 & 0.6383 & 0.8706 \\
+TF-IDF + complement NB & 0.6792 & 0.4968 & 0.8422 \\
+LaBSE frozen probe     & 0.7822 & --     & 0.8015 \\
+\midrule
+\emph{Label ceiling}   & n/a & \emph{0.7931} & \emph{0.7722} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three readings are supported and a fourth is not.
+
+\textbf{The encoder advantage is real on every task and largest on sentiment.}
+LaBSE beats the linear SVM by $+0.0485$ \negf{} (95\% CI $[0.026, 0.072]$,
+McNemar $p=1.4\times10^{-7}$) and by $+0.0526$ \macrof{} on intent (CI
+$[0.048, 0.058]$, $p=3.2\times10^{-87}$). Section~\ref{sec:script} shows this
+pooled figure hides where the gain lives.
+
+\textbf{Sentiment is a tie at the top and we name no winner.} LaBSE, Gemma 3 1B,
+and two multitask variants span 0.0096, while a single seed repeat of LaBSE moved
+it by 0.0158 at matched budget, larger than the spread it would decide. The
+defensible statement is that every encoder and decoder lands at $0.70\pm0.01$
+against a classical floor of 0.665, and that the best reaches 90.0\% of what the
+labels themselves support.
+
+\textbf{A 270M decoder buys nothing over character $n$-grams on intent},
+scoring 0.8414 against 0.8308 at far higher training cost, with both five points
+below LaBSE. At this corpus size, parameter count is not what separates systems.
+
+\textbf{What the table does not support} is a decoder scaling claim as
+originally run, since the 1B model fell back to batch 8 after an out-of-memory
+failure. Re-running the 270M model at batch 8 leaves parameter count as the only
+difference and gives $+0.0221$.
