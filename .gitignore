@@ -105,3 +105,48 @@ frontend/reports/
 frontend/coverage/
 .coverage
 coverage.xml
+
+# ---------------------------------------------------------------------------
+# Ticket corpus -- must never re-enter this public repo.
+#
+# The canonical copy is the Hub dataset Swift-Support/swift-support-tickets-1.0,
+# which is PRIVATE as of 2026-09-11. Everything below is the same ticket rows in
+# another shape: language splits, prediction dumps that carry the source `text`
+# column, prompt-labelling dumps, and the paper's annotation batches. They were
+# untracked (git rm --cached) on 2026-09-11; the files remain on disk and are
+# regenerable from the private Hub dataset.
+#
+# Rule of thumb when adding a new CSV: a `text` / `text_en` / `text_si` column
+# makes it corpus content, not a metric, so it does not belong in git.
+# Metric-only tables (id, language, y_true, y_pred) stay tracked.
+# ---------------------------------------------------------------------------
+datasets/english/*.csv
+datasets/original-dataset/*.csv
+datasets/singlish/*.csv
+datasets/sinhala/*.csv
+datasets/tamil/*.csv
+datasets/tamilish/*.csv
+datasets/*/gg-translate-sample/*.csv
+datasets/translation/baseline_sentiment_priority_*.csv
+datasets/localization/changes_review.csv
+
+# Prediction dumps that embed the ticket text (the runs/*.csv label-only
+# tables are id/language/y_true/y_pred and stay tracked).
+ml/predictions/*_predictions.csv
+
+# Corpus copies staged under ml/reports/ alongside the genuine metric tables.
+ml/reports/500_benchmarkset.csv
+ml/reports/baseline_sentiment_priority_*.csv
+ml/reports/changes_review.csv
+ml/reports/gold_benchmark_50.csv
+ml/reports/live_query_check.csv
+ml/reports/prompt_v*_labels.csv
+ml/reports/relabel_v*_staging.csv
+ml/reports/test.csv
+ml/reports/test_labeled.csv
+ml/reports/test_labeled.sample.csv
+ml/reports/train.csv
+ml/reports/train_labeled.csv
+
+# Corpus rows reproduced as notebook evidence.
+notebooks/data_preparation/cleaning_report/train_test_leakage.csv
