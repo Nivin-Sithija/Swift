@@ -1,0 +1,53 @@
+\section{Introduction}
+\label{sec:intro}
+
+A support desk with five agents and a backlog does not consume labels. It
+consumes an order. Published work on automated ticket triage stops one step
+short of that: systems predict an escalation risk, a component, or a severity
+tier and report accuracy or recall against a held-out set
+\cite{montgomery2018escalation,mani2019deeptriage,lee2017industrialtriage}. What
+happens to the queue once those predictions are used is left to the reader.
+
+The gap matters because the two questions have different answers, and the
+mapping between them is not monotonic. A classifier that is three points better
+can produce a queue that is no better at all, because ordering depends on the
+classifier only where the queue is contended. We show a stronger version of the
+same point: the more accurate of two classifiers produces the \emph{worse} tail,
+serving its worst-treated urgent ticket six hours late against the weaker
+model's ninety-eight minutes.
+
+Sri Lankan retail banking makes this concrete and adds a second dimension.
+Customers write in Sinhala, Tamil, and English, and they write the two local
+languages in Latin characters at least as often as in the native abugidas. Those
+romanized forms have no orthographic standard, and multilingual encoders,
+pretrained on native-script web text, are measurably worse on them. In a
+classification table that deficit is an abstraction. Once tickets are ordered it
+becomes something an operations owner can act on: \emph{customers who write in
+romanized script wait longer for the same urgent problem.}
+
+That is this paper's central finding, and it is a scheduling property rather than
+a classification property. Under a naive deployment that takes the argmax of the
+priority head and serves tier by tier, a Singlish-writing customer with an
+urgent ticket waits 4.07 minutes longer than an English-writing customer, while
+native-script Sinhala is indistinguishable from English. Those two tracks hold
+the same tickets and differ only in orthography, so the comparison is
+controlled. Four nested
+controls establish that the model causes it: the gap is absent under
+first-come-first-served, absent under a gold-label oracle, present only under the
+predicted labels, and present only on the two romanized tracks.
+
+We then show it is fixable without touching the classifier. The Ticket Urgency
+Score consumes the same model's output differently, replacing the argmax with the
+posterior and backstopping it with a script-robust prior over intents, and cuts
+the gap by an order of magnitude.
+
+\textbf{Contributions.} (1) A ticket ordering score that turns three noisy
+classifier outputs into one ordering, fitted on development data and applied
+unchanged to test (Section~\ref{sec:score}). (2) A queue-level evaluation
+methodology, and evidence that rank correlation selects the wrong system for a
+queue (Sections~\ref{sec:eval} and \ref{sec:ordering}). (3) A measured
+cross-script service disparity in minutes of customer waiting time, with four
+nested controls, and its reduction by an order of magnitude
+(Section~\ref{sec:disparity}). (4) Evidence that classifier accuracy does not
+transfer to the queue, and a triage-specific error metric that explains why
+(Section~\ref{sec:accuracy}).

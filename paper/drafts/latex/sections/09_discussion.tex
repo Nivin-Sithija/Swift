@@ -1,0 +1,50 @@
+\section{Discussion and Limitations}
+\label{sec:discussion}
+
+\subsection{What a support desk should take from this}
+
+\textbf{Consume the posterior, not the argmax.} The single largest effect we
+measure comes from changing how an existing model's output is read, at no
+training cost: the argmax-tier policy creates a seven-minute cross-script
+disparity that the same model's posterior largely removes.
+
+\textbf{Audit triage fairness in waiting time, not in F\textsubscript{1}.} A
+per-group accuracy table would have shown a few points of deficit on romanized
+tracks and given no sense of what it costs a customer. The same deficit,
+denominated in minutes and controlled against FIFO and a gold-label oracle,
+names both a cost and a cause.
+
+\textbf{Better classification is not the next thing to buy.} Our score attains
+99\% of what perfect labels would deliver, and substituting a weaker classifier
+leaves the median untouched. Effort is better spent on how predictions are
+consumed, and on the tail behaviour that F\textsubscript{1} hides.
+
+\subsection{Limitations}
+
+\textbf{The simulation parameters are assumed.} Arrival rate, service
+distribution, agent count, and the service windows are stated assumptions rather
+than measurements from a live desk. This is the largest threat to the paper. We
+mitigate it by sweeping utilisation and by reporting attainment, which is a ratio
+and so is less sensitive to the absolute scale than raw waiting times, but a
+parameterisation drawn from published helpdesk statistics would be stronger.
+\gap{Arrival and service statistics from a real or published helpdesk.}
+
+\textbf{The romanized tracks are synthetic}, generated from the native tracks
+rather than typed by people \cite{chakravarthi2020tamilmix}. Real romanized input
+is harder, so the disparity we measure is a conservative estimate.
+
+\textbf{The Tanglish rendering is defective}, at 60.3\% out-of-vocabulary against
+its own training split. Singlish carries the disparity result independently.
+
+\textbf{Two label columns are model-generated}, with ceilings of 0.7931 and
+0.7722 reported throughout, and the sentiment ceiling rests on one annotator and
+31 negative tickets.
+
+\textbf{Confidence intervals are within-fit.} Classification intervals resample
+the test set rather than the training run, and one seed repeat moved a sentiment
+headline by 0.0158. Queue intervals resample simulation seeds and are not subject
+to this.
+
+\textbf{The weight vector is not identified.} The development surface is flat
+across $w_P \in [0.10, 0.90]$; we claim only that priority dominates and that no
+corner is competitive.

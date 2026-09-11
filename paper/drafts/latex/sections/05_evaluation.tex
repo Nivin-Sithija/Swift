@@ -1,0 +1,47 @@
+\section{Queue-Level Evaluation}
+\label{sec:eval}
+
+Scoring a triage system on classification metrics answers a question the desk did
+not ask. We evaluate at three levels, each with its own control.
+
+\textbf{Simulator.} A discrete-event M/G/5 queue with log-normal service times
+(mean 8 minutes, $\sigma = 0.75$), 1{,}000 tickets per replication, 200 seeds,
+at utilisation $\rho \in \{0.85, 0.95, 1.05\}$. Service windows are 30, 120, and
+480 minutes for High, Medium, and Low. Every one of those is a stated assumption
+about the desk rather than a measurement from one, which
+Section~\ref{sec:discussion} returns to.
+
+\textbf{Policies compared.} \emph{FIFO} never reads the ticket and is the null.
+\emph{Tier} takes the argmax of the priority head and serves tier by tier in
+arrival order, which is what a naive deployment does and is the system our score
+must beat. \emph{TUS} is~\eqref{eq:tus}. \emph{Oracle} orders by gold tier, FIFO
+within tier, and is a true upper bound: it is the same policy as \emph{tier}
+with perfect labels, so the pair isolates classifier error, and no system under
+test can beat it.
+
+\textbf{Attainment.} We report
+\[
+\text{attainment} = \frac{\text{FIFO} - \text{TUS}}{\text{FIFO} - \text{oracle}}
+\]
+which separates two claims that a raw waiting time confounds: whether the scoring
+function is good, and whether the classifiers are. A score attaining 0.99 of what
+perfect labels would deliver leaves almost nothing for better classification to
+buy, and that conclusion is invisible in a classification table.
+
+\textbf{Statistics.} Contrasts are bootstrapped over simulation seeds. Per-track
+comparisons are reported as \emph{fixed contrasts against English}, never as
+max-minus-min spread across the five tracks. Spread selects the extreme of five
+noisy means and is upward-biased: FIFO scores a spread of 16.2 minutes while
+every one of its fixed contrasts is indistinguishable from zero.
+
+\subsection{An objective that selected a degenerate system}
+
+We record one design failure because any triage study can walk into it. Our first
+fitting objective was absolute tardiness weighted by class severity
+($0.5 / 1.0 / 1.5$). Against a $55/36/9$ class mix that gives Low $0.275$ of the
+objective's mass against High's $0.143$, so it rewarded not starving Low almost
+twice as much as serving High, and its argmin was $w = (0,0,1)$: intent
+criticality alone, which cannot separate Medium from Low at all. Denominating
+lateness in units of each class's own service window fixes it. An objective that
+looks reasonable can select a system that is obviously wrong, and the tell was in
+the fitted weights rather than in the objective's definition.

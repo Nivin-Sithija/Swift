@@ -29,7 +29,7 @@ class _TokenTypeSessionAdapter:
 class BGEM3Embedder:
     def __init__(self, model_name: str = "BAAI/bge-m3") -> None:
         try:
-            from FlagEmbedding import BGEM3FlagModel  # type: ignore[import-not-found]
+            from FlagEmbedding import BGEM3FlagModel
         except ImportError as exc:
             raise RuntimeError("Install Swift with the 'rag-local' extra to run BGE-M3 locally") from exc
         self._model: Any = BGEM3FlagModel(model_name, use_fp16=False)
@@ -115,7 +115,7 @@ def build_embedder(
 class FlashRankReranker:
     def __init__(self) -> None:
         try:
-            from flashrank import Ranker  # type: ignore[import-not-found]
+            from flashrank import Ranker
         except ImportError as exc:
             raise RuntimeError("Install Swift with the 'rag' extra to use FlashRank") from exc
         self._ranker: Any = Ranker()

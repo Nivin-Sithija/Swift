@@ -34,11 +34,13 @@ import importlib
 from typing import TYPE_CHECKING
 
 __all__ = ["baselines", "config", "data", "imbalance", "metrics", "models", "probe",
-           "results", "splits", "tokenize", "train_classical", "train_encoder", "tuning"]
+           "results", "splits", "tokenize", "train_classical", "train_encoder",
+           "train_multitask", "tuning"]
 
 if TYPE_CHECKING:  # pragma: no cover
     from . import (baselines, config, data, imbalance, metrics, models, probe,
-                   results, splits, tokenize, train_classical, train_encoder, tuning)
+                   results, splits, tokenize, train_classical, train_encoder,
+                   train_multitask, tuning)
 
 
 def __getattr__(name: str):

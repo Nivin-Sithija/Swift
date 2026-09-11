@@ -1,0 +1,68 @@
+\section{Does the Score Order the Queue?}
+\label{sec:ordering}
+
+\subsection{Attainment against a perfect classifier}
+
+Table~\ref{tab:attain} reports mean time-to-first-response for gold-High
+tickets. FIFO degrades sharply with load, as a queue with no triage must. The
+score tracks the oracle closely at every load, attaining 97.1\% of the achievable
+improvement at $\rho = 0.85$ and 99.0\% at $\rho = 1.05$.
+
+\begin{table}[!tb]
+\caption{Mean wait for gold-High tickets, minutes, 200 seeds. Attainment is
+$(\mathrm{FIFO}-\mathrm{TUS})/(\mathrm{FIFO}-\mathrm{oracle})$.}
+\label{tab:attain}
+\centering
+\small
+\begin{tabular}{@{}lrrrl@{}}
+\toprule
+$\rho$ & FIFO & TUS & Oracle & Attainment \\
+\midrule
+0.85 & 5.78  & 1.13 & 0.99 & \textbf{0.971} [0.966, 0.977] \\
+0.95 & 16.76 & 1.54 & 1.30 & \textbf{0.985} [0.982, 0.987] \\
+1.05 & 52.46 & 1.98 & 1.47 & \textbf{0.990} [0.988, 0.992] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The remaining headroom is about a tenth of a minute. Within this workload,
+\textbf{further classifier accuracy cannot buy much}, because the gap between our
+noisy labels and perfect ones is nearly closed already by consuming the noisy
+labels properly. Section~\ref{sec:accuracy} tests that directly by substituting a
+weaker classifier.
+
+\subsection{Rank correlation selects the wrong system}
+
+The obvious way to score an ordering is a rank correlation against the gold
+ordering. On our data it is actively misleading (Table~\ref{tab:rank}).
+
+\begin{table}[!tb]
+\caption{Ordering quality on test, ordered once. The argmax-tier policy has the
+best rank correlation and the worst queue head.}
+\label{tab:rank}
+\centering
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+System & Kendall $\tau_b$ & nDCG@10 & P(High)@10 \\
+\midrule
+Predicted tier (argmax)  & \textbf{0.822} & 0.351 & 0.50 \\
+TUS (LaBSE)              & 0.686 & \textbf{1.000} & \textbf{1.00} \\
+Priority posterior only  & 0.690 & \textbf{1.000} & \textbf{1.00} \\
+Oracle (gold tier)       & 1.000 & \textbf{1.000} & \textbf{1.00} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The argmax-tier policy has the highest $\tau_b$ of any system and the worst queue
+head: half of the first ten tickets an agent opens are not urgent, against a base
+rate of 9.5\%. The explanation is structural. Kendall's $\tau$ rewards getting
+the global ordering right, and a 3-valued tier score matches a 3-valued gold
+label well. But within the top tier every ticket ties, so the order an agent
+actually experiences is arbitrary.
+
+A queue is consumed from the top, and $\tau$ averages over the whole list.
+Selecting on it would have picked exactly the wrong system. This is the concrete
+justification for evaluating triage in queue terms rather than with a ranking
+correlation, and it is why we lead with Precision@$k$ over gold-High, which an
+operations owner can read without a statistics background.

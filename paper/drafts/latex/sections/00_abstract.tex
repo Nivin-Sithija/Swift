@@ -1,0 +1,25 @@
+\begin{abstract}
+A bank's support desk does not need a label. It needs to know which ticket to
+open next. Published triage systems predict a per-ticket severity and report
+classification metrics, leaving the ordering question unanswered. We present a
+ticket ordering system for a trilingual Sri Lankan retail bank, where customers
+write in Sinhala, Tamil, and English and render the two local languages in Latin
+characters as readily as in their native scripts. The Ticket Urgency Score
+combines a priority posterior, a sentiment posterior, and a per-intent
+criticality prior estimated from training data, under multiplicative aging, with
+weights fitted on development data and applied unchanged to test. Evaluated in a
+discrete-event queue over 200 seeds, it attains 97--99\% of the reduction in
+urgent-ticket waiting time that a perfect classifier would deliver.
+
+The result that matters for deployment is a fairness one. Under a naive
+argmax-tier policy, a customer who writes an urgent ticket in romanized Sinhala
+waits \textbf{4.07 minutes longer} for a first response than one writing the
+same ticket in English (95\% CI $[2.96, 5.21]$), while the native-script tracks
+are indistinguishable from English. The comparison is controlled, the romanized
+track being a deterministic transliteration of the native one. The gap is absent
+under first-come-first-served and under a gold-label control, so the model causes
+it rather than the arrival process, and our score cuts it to $+0.37$ minutes. We also show that classifier accuracy does not
+transfer to the queue: a 2-point macro-F\textsubscript{1} advantage buys nothing
+through the median and costs six hours in the tail, because the more accurate
+model makes fewer errors but $8.5\times$ more confident ones.
+\end{abstract}

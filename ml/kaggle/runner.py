@@ -230,6 +230,7 @@ def write_kernel(args) -> Path:
         f"LORA_R = {args.lora_r}\n"
         f"LORA_ALPHA = {args.lora_alpha}\n"
         f"LORA_TARGETS = {args.lora_targets!r}\n"
+        f"SEED = {args.seed!r}\n"
         f"SMOKE = {bool(args.smoke)}\n"
         f"FIT_PORTION = {args.fit_portion!r}\n"
         f"EVAL_PORTION = {args.eval_portion!r}\n"
@@ -245,12 +246,17 @@ def write_kernel(args) -> Path:
         "language": "python",
         "kernel_type": "script",
         "is_private": True,
-        "enable_gpu": True,
+        # CPU sessions draw on a separate, far larger quota than the 30 GPU-hours/week,
+        # so --cpu is the fallback when GPU quota is exhausted. It is only useful for
+        # models small enough to finish inside Kaggle's 12h session cap -- measure with
+        # --smoke first, because a transformer fine-tune on 4 vCPU is roughly 20-40x
+        # slower than the T4 and a full roster run will not fit.
+        "enable_gpu": not getattr(args, "cpu", False),
         # Pin the T4 explicitly. Without this Kaggle may assign a P100 (sm_60), and the current
         # Kaggle image ships torch built only for sm_70+ -- on a P100 every CUDA kernel fails with
         # "no kernel image is available for execution on the device". Kaggle's own kernel-metadata
         # docs flag P100 as incompatible with the default image and recommend NvidiaTeslaT4.
-        "machine_shape": "NvidiaTeslaT4",
+        **({} if getattr(args, "cpu", False) else {"machine_shape": "NvidiaTeslaT4"}),
         "enable_internet": True,          # needed to pull HF checkpoints
         "dataset_sources": [slug("payload")],
         "competition_sources": [],
@@ -262,7 +268,25 @@ def write_kernel(args) -> Path:
 def run(args):
     kdir = write_kernel(args)
     print(f"pushing kernel {slug(f'job-{args.job}')}  models={args.models} smoke={bool(args.smoke)}")
-    sh(["kaggle", "kernels", "push", "-p", str(kdir)])
+    r = sh(["kaggle", "kernels", "push", "-p", str(kdir)], check=False, capture=True)
+    out = f"{r.stdout or ''}{r.stderr or ''}".strip()
+    print(out)
+
+    # The Kaggle CLI reports a refused push on stdout and STILL EXITS 0, so neither
+    # check=True nor the return code catches it. It has to be read out of the text.
+    # This silently cost a run once: the GPU quota was exhausted, the push was refused,
+    # and the runner printed "Running. Poll with:" anyway -- so the old kernel was left
+    # in place, `status` reported the PREVIOUS run's COMPLETE, and a fetch returned that
+    # previous run's output looking entirely current.
+    if r.returncode != 0 or "error" in out.lower():
+        print("\nPUSH REFUSED -- the kernel was NOT started and the previous version is "
+              "still in place.\nAnything `status` or `fetch` reports for this job now "
+              "describes the PREVIOUS run.")
+        if "quota" in out.lower():
+            print("Weekly GPU quota is exhausted. Kaggle resets it on a rolling weekly "
+                  "basis; check kaggle.com/settings for the reset time.")
+        return 1
+
     print("\nRunning. Poll with:  python ml/kaggle/runner.py status")
     print("Kaggle kernels are capped at 12h; keep each job under that.")
     return 0
@@ -329,14 +353,63 @@ def fetch(args):
         "-p", str(OUT)])
     runs = REPO / "ml" / "reports" / "runs"
     runs.mkdir(parents=True, exist_ok=True)
-    moved = 0
+
+    # The split sha the local manifest holds. A record stamped with anything else was
+    # computed against a different split and must not enter the repo -- `load_all()`
+    # would drop it later anyway, but silently, after it had already overwritten a
+    # good record at the same filename.
+    local_sha = json.loads((REPO / "ml" / "splits" / "split_manifest.json").read_text())["sha"]
+
+    moved = skipped = 0
+    smoke_records: set[str] = set()
     for f in OUT.rglob("*.json"):
-        if f.name.endswith("__dev.json") or f.name.endswith("__test.json"):
-            shutil.copy2(f, runs / f.name)
-            moved += 1
+        if not (f.name.endswith("__dev.json") or f.name.endswith("__test.json")):
+            continue
+        rec = json.loads(f.read_text())
+        why = None
+        if rec.get("split_sha") != local_sha:
+            why = f"split_sha {rec.get('split_sha')} != {local_sha}"
+        elif rec.get("n_train_before_resample") in (1200, 600, 400):
+            # A smoke run writes a real record at a real run id and overwrites the
+            # genuine one. Its tell is the subsample size.
+            why = f"looks like a smoke run (n_train {rec.get('n_train_before_resample')})"
+        if why:
+            print(f"  SKIPPED {f.name}: {why}")
+            smoke_records.add(f.name.removesuffix(".json"))
+            skipped += 1
+            continue
+        shutil.copy2(f, runs / f.name)
+        moved += 1
+
+    # Per-row predictions live under ml/predictions/runs/, not ml/reports/. Copying
+    # every csv flat into ml/reports/ put them somewhere nothing reads and left the
+    # paired significance tests with no input.
+    preds = REPO / "ml" / "predictions" / "runs"
+    preds.mkdir(parents=True, exist_ok=True)
+    pred_n = 0
+    # The JSON loop above rejects smoke runs, but prediction CSVs carry no metadata to
+    # reject them by -- so a smoke run's predictions landed in ml/predictions/runs/ under
+    # exactly the filename a real run uses, where the paired significance tests read from.
+    # A 1,200-row file sitting where a 15,395-row one belongs is not obviously wrong from
+    # the path. Reject by the row count the skipped records name.
+    skipped_names = {n.rsplit("__", 1)[0] for n in smoke_records}
+    pred_skipped = 0
     for f in OUT.rglob("*.csv"):
-        shutil.copy2(f, REPO / "ml" / "reports" / f.name)
-    print(f"pulled {moved} run file(s) into ml/reports/runs/")
+        if f.parent.name == "runs" and f.parent.parent.name == "predictions":
+            if f.name.rsplit("__", 1)[0] in skipped_names:
+                print(f"  SKIPPED prediction {f.name}: from a run rejected above")
+                pred_skipped += 1
+                continue
+            shutil.copy2(f, preds / f.name)
+            pred_n += 1
+        else:
+            shutil.copy2(f, REPO / "ml" / "reports" / f.name)
+
+    print(f"pulled {moved} run file(s) into ml/reports/runs/"
+          f"{f', skipped {skipped}' if skipped else ''}")
+    if pred_n or pred_skipped:
+        print(f"pulled {pred_n} prediction file(s) into ml/predictions/runs/"
+              f"{f', skipped {pred_skipped}' if pred_skipped else ''}")
 
     models_out = REPO / "ml" / "models" / "encoders"
     saved = 0
@@ -406,7 +479,16 @@ def main():
                    help="'train' while selecting on dev; 'train+dev' for the final test fit")
     r.add_argument("--eval-portion", default="dev", choices=["dev", "test"],
                    help="'dev' for selection; 'test' only for the final, one-shot eval")
+    r.add_argument("--seed", type=int, default=None,
+                   help="training seed. Default (None) uses config.RANDOM_STATE and writes "
+                        "the usual filenames. Any other value suffixes the run id with "
+                        "'seed-N' so repeated-seed runs land as separate records instead "
+                        "of overwriting each other")
     r.add_argument("--smoke", action="store_true", help="1,200-row sanity run")
+    r.add_argument("--cpu", action="store_true",
+                   help="run on a CPU session instead of a T4. Separate quota from the "
+                        "30 GPU-hours/week, but roughly 20-40x slower -- only viable for "
+                        "small models, and measure with --smoke before committing to it")
     r.add_argument("--save-models", action="store_true",
                    help="write best-epoch weights to /kaggle/working/models/ (downloadable "
                         "kernel output) -- off by default, a full roster run would otherwise "

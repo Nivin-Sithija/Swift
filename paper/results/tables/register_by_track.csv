@@ -1,0 +1,11 @@
+# English banking-loanword retention over a 31-term lexicon,
+# full test split. Romanized tracks are Latin by construction, so their
+# retention cannot separate a kept English word from a romanized native
+# borrowing: read those as an upper bound, not against a native track.
+# The sinhala-vs-tamil contrast is the one that carries meaning.
+# generated_by=register_by_track.py
+track,native_script,loanword_retention,latin_char_fraction,comparable,n_rows
+sinhala,True,0.6464,0.3778,yes,3079
+singlish,False,0.9641,1.0,upper bound only,3079
+tamil,True,0.0614,0.0188,yes,3079
+tamilish,False,0.7288,1.0,upper bound only,3079

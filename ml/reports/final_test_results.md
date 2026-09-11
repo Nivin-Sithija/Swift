@@ -1,5 +1,12 @@
 # Sentiment & priority — final test results
 
+> **Every sentiment number in this report is stale as of the 2026-08-19 v8 relabel** (711/13,077
+> sentiment labels changed; priority and intent untouched). Classical test negative-F1 alone moved
+> **0.4572 → 0.6663**, and the label ceiling this report scores against moved with it — v5-vs-human
+> was 0.5769, v8-vs-human is **0.7812**. Current numbers for all five architectures on this same
+> frozen split: [`v8_relabel_slm_results.md`](v8_relabel_slm_results.md). Priority is unaffected;
+> §7's priority recommendation still holds.
+
 Split sha `e7b5934392cd` (8,500 train / 1,498 dev / 3,079 test). Test is the official BANKING77
 test file, opened once.
 
