@@ -1,0 +1,521 @@
+```python
+import pandas as pd
+
+# Let's write the python code to process the dataset and translate row by row.
+# Since this is a translation task into a specific regional colloquial register of Sinhala, 
+# let's carefully map each row with natural translations used by Sri Lankan bank customers.
+
+data = [
+    [14, "I am still waiting for my card after 1 week.  Is this ok?"],
+    [19, "My card still hasn't arrived after 2 weeks. Is it lost?"],
+    [45, "I received my new card, but I don't see it in the app anywhere.  What do I do?"],
+    [52, "How do I link one your card if I have one already?"],
+    [53, "How do I add a card to the app?"],
+    [59, "I found my card, can I add it to the app?"],
+    [65, "how do I link an already existing card?"],
+    [99, "Where do you get your exchange rates from?"],
+    [139, "I purchased an item and the exchange rate I was given was incorrect."],
+    [156, "How can I check the exchange rate applied to my transaction?"],
+    [179, "What would be the reason there's an extra fee on my statement?"],
+    [199, "Can you please check why I am having this extra fee on my statement."],
+    [208, "Why is my withdrawal still pending?"],
+    [219, "Hey, my card was declined at an ATM in the city centre theatre. My account says the transaction is pending, though. I didn't get the money, though, so what does that mean?"],
+    [257, "When considering currency holdings and exchanges, what fiat currencies are supported?"],
+    [259, "Can I hold money in other currencies?"],
+    [273, "Can I hold money in multiple currencies?"],
+    [296, "I need it delivered on a certain date."],
+    [298, "How long does it take to get my card? Can I choose when to receive it?"],
+    [299, "How long will it take for the card to arrive?"],
+    [304, "When will the card arrive?"],
+    [306, "When are cards delivered?"],
+    [330, "Where can I find the 'auto-top' feature?"],
+    [339, "How do I make sure I don't run out of money on my card while traveling?"],
+    [379, "How can I resolve a problem where my card won't go through at all?"],
+    [403, "How do I change LKR to USD?"],
+    [418, "Can I change to another currency?"],
+    [419, "I need USD not LKR, how do I change it?"],
+    [459, "I need help with a lost card"],
+    [484, "How old do we have to be?"],
+    [499, "If my kids wanted to use your service how old would they have to be?"],
+    [534, "What do I do if the bank machine won't accept my PIN attempts anymore?"],
+    [539, "I'v exhausted all the of times I can try my PIN"],
+    [579, "Can you help my fix my contactless?"],
+    [619, "Will topping up by transfer lead to a charge on my account?"],
+    [628, "Will I be charged for a SEPA transfer?"],
+    [659, "I topped up by card a while ago and it's still pending, surely it should be done by now?"],
+    [661, "top up did not complete"],
+    [699, "Can I cancel a transfer if is already processed?"],
+    [736, "Tell me if there are any top-up limits?"],
+    [739, "Can I top-up as much as I want?"],
+    [746, "Do you have a top-up limit?"],
+    [765, "The amount of cash I received was incorrect"],
+    [779, "I tried to get Rs 100,000 but I just got Rs 20,000"],
+    [792, "I didn't receive all the cash I asked for"],
+    [801, "I was charged a fee after using my card and I shouldn't have been."],
+    [819, "Why would I be charged a fee for card payment?"],
+    [859, "I sent money.  They haven't received it."],
+    [864, "Where is the transaction I made to a friend?"],
+    [899, "How can I use American Express to add money to my account?"],
+    [923, "Is there an option to have a virtual card?"],
+    [935, "Is this where I order a virtual card?"],
+    [939, "Where can I order a virtual card?"],
+    [979, "I am traveling to Germany, Will I be able to use my card there?"],
+    [1019, "I went to top up and it is no longer there.  Was it sent back?"],
+    [1027, "The app reverted my action when I topped up."],
+    [1031, "has my top-up has been cancelled"],
+    [1059, "I Submitted a cheque couple days ago, nothing happened to my account yet.Would you please check What could be the possible issue?"],
+    [1099, "Payment i did not do"],
+    [1106, "I'm not familiar with a card payment."],
+    [1119, "In my statement there is a payment that is I do not recognize"],
+    [1139, "How can I modify my details?"],
+    [1179, "Do I need to verify my identity to use my account?"],
+    [1219, "I can not get the app to know it is me."],
+    [1227, "How do I show this stupid system that this is really my identity?"],
+    [1259, "what is the process for setting up a pin"],
+    [1274, "I can not find my card pin."],
+    [1276, "Why can't I find my PIN?"],
+    [1299, "Am I able to choose my card?"],
+    [1304, "Do I get to choose between Visa and Mastercard?"],
+    [1332, "how can i top up?"],
+    [1339, "Will my friend be able to top off my account?"],
+    [1371, "How many card payments can I use on a disposable card?"],
+    [1379, "I have to have several disposable cards per day."],
+    [1395, "Do you know what the restriction of the disposable cards are?"],
+    [1396, "What are the limits for disposable virtual cards?"],
+    [1419, "I see random purchases to my account, was it hacked?"],
+    [1446, "Which ATM's accept my card?"],
+    [1448, "Where are the locations of ATMs that accept this card?"],
+    [1474, "At which ATMs can I use this card?"],
+    [1499, "A couple weeks ago some money was deducted from my account by some seller that I don't remember. I'm pretty sure I didn't do that, but is it possible to trace back who that is just to make sure?"],
+    [1539, "I have forgotten my passcode to access my app"],
+    [1579, "Why did the ATM machine fail to give me a cash withdrawal?"],
+    [1610, "I made this payment days ago so why hasn't it gone through yet?"],
+    [1616, "What is a pending payment?"],
+    [1619, "My card payment is pending."],
+    [1626, "I was double charged, and the second charge is showing as 'pending'. How long will it be before I get my money back once the second charge has been refunded?"],
+    [1659, "lost phone, can i still access account?"],
+    [1685, "I need a refund on an item I have not received.  Am I able to simply cancel the payment?  I don't know how to do this."],
+    [1699, "I bought something but now I would like a refund. How do I do that?"],
+    [1739, "When I try and to buy something using my card it keeps getting declined."],
+    [1779, "i was supposed to get a refund but my balance hasn't changed, why not?"],
+    [1819, "Why are you declining my payment? Everything was fine."],
+    [1859, "When will the transfer go through?"],
+    [1899, "How do I get rid of my account ASAP?"],
+    [1911, "How do I delete my account?"],
+    [1934, "My ATM got stuck and I'm not sure what to do."],
+    [1939, "ATM still has my card"],
+    [1971, "I have been charged twice"],
+    [1979, "I had a duplicate card and got charged twice. How do I resolve this?"],
+    [2019, "What is the source of my money?"],
+    [2059, "How many days does a transfer from the US take?"],
+    [2099, "I think my card payment had been return"],
+    [2138, "I want to choose a different PIN."],
+    [2139, "I would like to change my pin."],
+    [2144, "How do I change my PIN?"],
+    [2170, "Why can't I transfer to a beneficiary?"],
+    [2172, "What's the deal with no cryptocurrency on your app?"],
+    [2179, "The money would not transfer to a beneficiary."],
+    [2204, "I had to pay in order to do a transfer"],
+    [2219, "I'm not sure why I was charged an extra fee for transferring funds."],
+    [2240, "Will salary be received through this?"],
+    [2259, "How can my friend send me money?"],
+    [2299, "Why would a transfer fail?"],
+    [2330, "I NEED TO KNOW HOW TO TRANSFER MONEY INTO MY BANK ACCOUNT. PLEASE HELP"],
+    [2339, "How can I transfer money from an outside bank?"],
+    [2347, "How do I send my account money through transfer?"],
+    [2350, "I want to transfer from accounts in order to Top up. What are the steps necessary."],
+    [2379, "How do I find the verification code for my top-up card?"],
+    [2419, "May I have another card?"],
+    [2459, "I want to top up using cash, where can I do that?"],
+    [2463, "How can I top up with cash?"],
+    [2489, "Is there a charge for physical cards"],
+    [2499, "Is a non-electronic card available as well"],
+    [2539, "How can I fix a problem where my virtual card is rejected?"],
+    [2555, "Tell me why my virtual disposable card won't work."],
+    [2571, "Is there a fee for exchanging cash?"],
+    [2579, "Can I make a withdraw if I am out of country from with out any fees at an ATM?"],
+    [2613, "how secure is a disposable virtual card"],
+    [2618, "May I get a disposable virtual card as well?"],
+    [2619, "Can i get a single use virtual card"],
+    [2659, "I topped up but the app did not accept it."],
+    [2699, "My bank transfer is still not showing up in my account."],
+    [2710, "I made a bank transfer a couple of hours ago from my local bank account.  It hasn't appeared, can you check to make sure it went through?"],
+    [2733, "I have a strange cash withdrawal in my statement"],
+    [2739, "It looks like someone else withdrew cash from my account, can you help?"],
+    [2749, "What do I do if I notice a strange withdrawl in my statement?"],
+    [2773, "Does it cost extra to exchange currencies?"],
+    [2779, "If I want to exchange currency, will there be extras?"],
+    [2803, "Any hidden fees associated with the international card if money is added?"],
+    [2819, "Will I be charged if I use foreign bank card for top up?"],
+    [2858, "I tried activating my bill of fare and it didn't workplace"],
+    [2859, "I just got my card and want to use it, how do I activate my card?"],
+    [2860, "I have a new card and I want to activate it"],
+    [2899, "I've notice I was charged for withdrawing cash, can you explain why?"],
+    [2939, "I will need to get a new card soon, how do I order?"],
+    [2979, "My top up is not working in Apple Pay."],
+    [3019, "What are the steps to verify my identity?"],
+    [3051, "Where do I need to live to get support?"],
+    [3059, "Can I get a card even if I live outside Sri Lanka?"]
+]
+
+print(f"Total rows: {len(data)}")
+
+
+```
+
+```text
+Total rows: 150
+
+
+```
+
+```python
+# Let's write translations into colloquial Sri Lankan Sinhala, keeping banking loanwords in English (card, account, PIN, transfer, ATM, top-up, app, visa, mastercard, apple pay, etc.)
+
+translations = {
+    14: "සති 1ක් ගිියත් තාම මගේ card එක ලැබුණේ නැහැ. මේක සාමාන්‍ය දෙයක්ද?",
+    19: "සති 2ක් ගිියත් තාම මගේ card එක ආවේ නැහැ. ඒක නැතිවෙලාද?",
+    45: "මගේ අලුත් card එක ලැබුණා, ඒත් app එකේ කිසිම තැනක ඒක පේන්න නැහැ. මම දැන් මොකද කරන්නේ?",
+    52: "මං ළඟ දැනටමත් card එකක් තියෙනවා නම්, තව එකක් link කරන්නේ කොහොමද?",
+    53: "app එකට card එකක් add කරන්නේ කොහොමද?",
+    59: "මගේ card එක හම්බවුණා, මට ඒක app එකට add කරගන්න පුළුවන්ද?",
+    65: "දැනටමත් තියෙන card එකක් link කරගන්නේ කොහොමද?",
+    99: "ඔබලා මාරු අනුපාතික (exchange rates) ගන්නේ කොහෙන්ද?",
+    139: "මම භාණ්ඩයක් මිලදී ගත්තා, ඒත් මට දුන්න exchange rate එක වැරදියි.",
+    156: "මගේ transaction එකට අදාළ exchange rate එක චෙක් කරගන්නේ කොහොමද?",
+    179: "මගේ statement එකේ අමතර fee එකක් වැටී තියෙන්න හේතුව කුමක්ද?",
+    199: "මගේ statement එකේ මේ අමතර fee එක වැටී ඇත්තේ ඇයිද යන්න කරුණාකර පරීක්ෂා කර දෙන්න.",
+    208: "මගේ withdrawal එක තාමත් pending තියෙන්නේ ඇයි?",
+    219: "හේයි, නගර මධ්‍යයේ තියෙන theatre එකේ ATM එකකදී මගේ card එක decline වුණා. ඒත් account එකේ පෙන්වන්නේ transaction එක pending කියලා. මට සල්ලි ලැබුණෙත් නැහැ, එතකොට ඒකෙන් අදහස් කරන්නේ මොකක්ද?",
+    257: "මුදල් තබා ගැනීම් සහ හුවමාරු කිරීම් ගැන සලකා බලද්දී, සහය දක්වන fiat currencies මොනවද?",
+    259: "මට වෙනත් currencies වලින් මුදල් තබා ගන්න පුළුවන්ද?",
+    273: "මට currencies කිහිපයකින් මුදල් තබා ගන්න පුළුවන්ද?",
+    296: "මට මේක නියමිත දිනයකට ඩිලිවර් කරගන්න ඕනේ.",
+    298: "මගේ card එක ලැබෙන්න කොච්චර කාලයක් යනවද? මට ලැබෙන දිනය තෝරාගන්න පුළුවන්ද?",
+    299: "card එක එන්න කොච්චර කාලයක් යයිද?",
+    304: "card එක එන්නේ කවදාද?",
+    306: "card ඩිලිවර් කරන්නේ කවදාද?",
+    330: "'auto-top' feature එක හොයාගන්න තියෙන්නේ කොහෙන්ද?",
+    339: "ခရီးသွားනකොට මගේ card එකේ සල්ලි ඉවර නොවී තියාගන්නේ කොහොමද?",
+    379: "මගේ card එක කිසිම විදිහකින් වැඩ කරන්නේ නැති ප්‍රශ්නය විසඳා ගන්නේ කොහොමද?",
+    403: "LKR USD වලට මාරු කරන්නේ කොහොමද?",
+    418: "මට වෙනත් currency එකකට මාරු වෙන්න පුළුවන්ද?",
+    419: "මට LKR නෙවෙයි USD ඕනේ, මම ඒක මාරු කරගන්නේ කොහොමද?",
+    459: "නැතිවුණු card එකක් සම්බන්ධයෙන් මට උදව්වක් අවශ්‍යයි",
+    484: "අපේ වයස කීය වෙන්න ඕනද?",
+    499: "මගේ දරුවන්ට ඔබේ සේවය භාවිතා කරන්න ඕනේ නම් ඔවුන්ගේ වයස කීය වෙන්න ඕනද?",
+    534: "bank machine එක මගේ PIN උත්සාහයන් තවදුරටත් පිළිගන්නේ නැත්නම් මම මොකද කරන්නේ?",
+    539: "මම PIN එක ගහන්න පුළුවන් උපරිම වාර ගණනම උත්සාහ කරලා ඉවරයි",
+    579: "මගේ contactless පහසුකම හදාගන්න උදව් කරන්න පුළුවන්ද?",
+    619: "transfer එකක් මගින් top up කිරීම නිසා මගේ account එකට fee එකක් කපා හැරීමක් සිදුවෙයිද?",
+    628: "SEPA transfer එකක් සඳහා මගෙන් fee එකක් අය කරයිද?",
+    659: "මම ටික වේලාවකට පෙර card එකෙන් top up කළා, ඒත් තාමත් pending, දැන්වත් මේක ඉවර වෙන්න ඕනේ නේද?",
+    661: "top up එක සම්පූර්ණ වුණේ නැහැ",
+    699: "transfer එකක් දැනටමත් process කරලා නම්, මට ඒක cancel කරන්න පුළුවන්ද?",
+    736: "top-up limits මොනවා හරි තියෙනවද කියලා කියන්න?",
+    739: "මට ඕන තරම් මුදලක් top-up කරන්න පුළුවන්ද?",
+    746: "ඔබට top-up limit එකක් තියෙනවද?",
+    765: "මට ලැබුණු මුදල් ප්‍රමාණය වැරදියයි",
+    779: "මම රුපියල් 100,000ක් ගන්න උත්සාහ කළත් ලැබුණේ රුපියල් 20,000යි",
+    792: "මම ඉල්ලපු මුදල් ප්‍රමාණයම මට ලැබුණේ නැහැ",
+    801: "මගේ card එක භාවිතා කිරීමෙන් පසු මගෙන් fee එකක් අය කරලා තිබුණා, ඒත් එහෙම අය කරන්න විදිහක් නැහැ.",
+    819: "card payment එකක් සඳහා මගෙන් fee එකක් අය කරන්නේ ඇයි?",
+    859: "මම සල්ලි යැව්වා. ඒත් ඔවුන්ට ලැබී නැහැ.",
+    864: "මම යාළුවෙකුට කළ transaction එක තියෙන්නේ කොහොමද?",
+    899: "මගේ account එකට සල්ලි add කරන්න මට American Express භාවිතා කරන්නේ කොහොමද?",
+    923: "virtual card එකක් ලබා ගැනීමට ක්‍රමයක් තියෙනවද?",
+    935: "virtual card එකක් ඕඩර් කරන්නේ මෙතනින්ද?",
+    939: "මට virtual card එකක් ඕඩර් කරන්න පුළුවන් කොතනින්ද?",
+    979: "මම ජර්මනියට සංචාරය කරනවා, මට එහේදී මගේ card එක භාවිතා කරන්න පුළුවන් වෙයිද?",
+    1019: "මම top up කරන්න ගියත් දැන් ඒක එතන නැහැ. ඒක ආපසු යවා තිබේද?",
+    1027: "මම top up කළ විට app එක මගේ ක්‍රියාව ආපසු හැරෙව්වා.",
+    1031: "මගේ top-up එක cancel වෙලාද",
+    1059: "මම මීට දින කිහිපයකට පෙර cheque එකක් submit කළා, තාමත් මගේ account එකට කිසිම වෙනසක් වෙලා නැහැ. सम्ਭාවිතා ගැටළුව කුමක්දැයි කරුණාකර පරීක්ෂා කර බලන්න.",
+    1099: "මම නොකළ payment එකක්",
+1106: "card payment එකක් ගැන මට වැඩි දැනුමක් නැහැ.",
+1119: "මගේ statement එකේ මම හඳුනන්නේ නැති payment එකක් තියෙනවා",
+1139: "මගේ විස්තර වෙනස් කරගන්නේ කොහොමද?",
+1179: "මගේ account එක භාවිතා කිරීමට මගේ අනන්‍යතාවය තහවුරු කළ යුතුද?",
+1219: "මම තමයි කියලා app එකට තේරුම් කරලා දෙන්න මට බැරිවෙලා තියෙනවා.",
+1227: "මේක ඇත්තටම මගේ අනන්‍යතාවය කියලා මම මේ මෝඩ system එකට පෙන්නන්නේ කොහොමද?",
+1259: "pin එකක් සකස් කිරීමේ ක්‍රියාවලිය කුමක්ද?",
+1274: "මගේ card PIN එක හොයාගන්න බෑ.",
+1276: "මට PIN එක හොයාගන්න බැරි ඇයි?",
+1299: "මගේ card එක තෝරා ගැනීමට මට හැකිද?",
+1304: "Visa සහ Mastercard අතරින් එකක් තෝරා ගැනීමට මට අවස්ථාව ලැබෙනවද?",
+1332: "මම top up කරන්නේ කොහොමද?",
+1339: "මගේ යාළුවාට මගේ account එක top off කරන්න පුළුවන් වෙයිද?",
+1371: "disposable card එකක් මම card payments කීයක් සඳහා භාවිතා කරන්නද?",
+1379: "මට දවසකට disposable cards කිහිපයක්ම තියෙන්න ඕනේ.",
+1395: "disposable cards වල සීමාවන් මොනවාදැයි ඔබ දන්නවාද?",
+1396: "disposable virtual cards සඳහා ඇති limits මොනවාද?",
+1419: "මගේ account එකේ අහඹු purchases මම දකිනවා, ඒක hack කරලාද?",
+1446: "මගේ card එක පිළිගන්නේ কোন ATM ද?",
+1448: "මෙම card එක පිළිගන්නා ATM පිහිටා ඇති ස්ථාන කොහේද?",
+1474: "මට මෙම card එක භාවිතා කළ හැක්කේ কোন ATM වලද?",
+1499: "මීට සති කිහිපයකට පෙර මම නොදන්නා seller කෙනෙක් විසින් මගේ account එකෙන් මුදල් කපාගෙන තිබුණා. මම ඒක කළේ නැහැ කියලා මට හොඳටම විශ්වාසයි, ඒත් ඒ කවුද කියලා හරියටම දැනගන්න එක trace කරලා බලාගන්න පුළුවන්ද?",
+1539: "මගේ app එකට පිවිසීමට අවශ්‍ය passcode එක මට අමතක වී ඇත",
+1579: "ATM machine එකෙන් මුදල් ලබා ගැනීමට නොහැකි වුණේ ඇයි?",
+1610: "මම මේ payment එක කරලා දවස් ගණනක් වෙනවා, ඉතින් තාම process වෙලා නැත්තේ ඇයි?",
+1616: "pending payment එකක් යනු කුමක්ද?",
+1619: "මගේ card payment එක pending තියෙනවා.",
+1626: "මගෙන් දෙවරක් මුදල් අය කරලා, දෙවන අය කිරීම 'pending' ලෙස පෙන්වනවා. දෙවන අය කිරීම refund කළ පසු මගේ සල්ලි මට ලැබෙන්න කොච්චර කාලයක් යයිද?",
+1659: "ဖုန်း එක නැතිවුණා, මට තාමත් account එකට access කරන්න පුළුවන්ද?",
+1685: "මට නොලැබුණු භාණ්ඩයක් සඳහා refund එකක් අවශ්‍යයි. මට සරලවම payment එක cancel කරන්න පුළුවන්ද? මම මේක කරන්නේ කොහොමද කියලා දන්නේ නැහැ.",
+1699: "මම දෙයක් මිලදී ගත්තා, ඒත් දැන් මට refund එකක් ඕනේ. මම ඒක කරන්නේ කොහොමද?",
+1739: "මම card එක භාවිතා කරලා මොනවා හරි මිලදී ගන්න උත්සාහ කරනකොට ඒක දිගටම decline වෙනවා.",
+1779: "මට refund එකක් ලැබෙන්න ඕනේ වුණත් මගේ balance එක වෙනස් වී නැහැ, ඒ ඇයි?",
+1819: "ඔබ මගේ payment එක decline කරන්නේ ඇයි? හැමදේම හොඳින් තිබුණා.",
+1859: "transfer එක process වෙන්නේ කවදාද?",
+1899: "මගේ account එක ඉක්මනින්ම ඉවත් කරගන්නේ (delete කරන්නේ) කොහොමද?",
+1911: "මගේ account එක delete කරන්නේ කොහොමද?",
+1934: "මගේ ATM එක හිරවුණා, මම දැන් මොකද කරන්නේ කියලා හරියටම දන්නේ නැහැ.",
+1939: "ATM එක තාමත් මගේ card එක තියාගෙන ඉන්නවා",
+1971: "මගෙන් දෙවරක් මුදල් අය කර ඇත",
+1979: "මං ළඟ duplicate card එකක් තිබී මගෙන් දෙවරක් අය කර ඇත. මම මේක විසඳා ගන්නේ කොහොමද?",
+2019: "මගේ මුදල්වල මූලාශ්‍රය කුමක්ද?",
+2059: "US වලින් කරන transfer එකකට දවස් කීයකුත් යනවද?",
+2099: "මගේ card payment එක return වෙලා වගේ",
+2138: "මට වෙනත් PIN එකක් තෝරා ගැනීමට අවශ්‍යයි.",
+2139: "මට PIN එක වෙනස් කරගන්න ඕනේ.",
+2144: "මගේ PIN එක වෙනස් කරන්නේ කොහොමද?",
+2170: "beneficiary කෙනෙක්ට transfer කරන්න බැත්තේ ඇයි?",
+2172: "ඔබේ app එකේ cryptocurrency නැත්තේ ඇයි?",
+2179: "සල්ලි beneficiary කෙනෙක්ට transfer වෙන්නේ නැහැ.",
+2204: "transfer එකක් කරන්න මට ගෙවීමක් කරන්න සිදු වුණා",
+2219: "මුදල් transfer කිරීම සඳහා මගෙන් අමතර fee එකක් අය කළේ ඇයිද යන්න எனக்கு විශ්වාස නැහැ.",
+2240: "මේක හරහා වැටුප ලැබෙයිද?",
+2259: "මගේ යාළුවාට මට සල්ලි එවන්නේ කොහොමද?",
+2299: "transfer එකක් fail වෙන්න හේතුව මොකක්ද?",
+2330: "මගේ bank account එකට සල්ලි transfer කරන්නේ කොහොමද කියලා මම දැනගත යුතුයි. කරුණාකර උදව් කරන්න",
+2339: "පිටත bank එකකින් මුදල් transfer කරන්නේ කොහොමද?",
+2347: "transfer එකක් හරහා මගේ account එකට සල්ලි යවන්නේ කොහොමද?",
+2350: "Top up කිරීමට මට account වලින් transfer කරන්න අවශ්‍යයි. අවශ්‍ය පියවර මොනවාද?",
+2379: "මගේ top-up card එක සඳහා verification code එක හොයාගන්නේ කොහොමද?",
+2419: "මට තව card එකක් ලබා ගන්න පුළුවන්ද?",
+2459: "මට cash භාවිතා කරලා top up කරන්න ඕනේ, මට ඒක කර හැක්කේ කොතනින්ද?",
+2463: "cash වලින් top up කරන්නේ කොහොමද?",
+2489: "physical cards සඳහා fee එකක් තියෙනවද?",
+2499: "electronic නොවන card එකක්ද ලබා ගැනීමට හැකියාව තිබේද?",
+2539: "virtual card එක reject වුණු ප්‍රශ්නයක් මම කොහොමද විසඳා ගන්නේ?",
+2555: "මගේ virtual disposable card එක වැඩ නොකරන්නේ ඇයි කියලා මට කියන්න.",
+2571: "cash මාරු කිරීම සඳහා fee එකක් අය කෙරේද?",
+2579: "මම රටින් පිටත සිටින විට ATM එකකින් කිසිදු fee එකක් නොමැතිව මුදල් withdraw කරගන්න පුළුවන්ද?",
+2613: "disposable virtual card එකක් කොතරම් ආරක්ෂිතද?",
+2618: "මටත් disposable virtual card එකක් ලබා ගැනීමට පුළුවන්ද?",
+2619: "single use virtual card එකක් ලබා ගන්න පුළුවන්ද?",
+2659: "මම top up කළත් app එක ඒක පිළිගත්තේ නැහැ.",
+2699: "මගේ bank transfer එක තාමත් මගේ account එකේ පෙන්වන්නේ නැහැ.",
+2710: "මම මගේ local bank account එකෙන් මීට පැය කිහිපයකට පෙර bank transfer එකක් කළා. ඒක පෙන්වන්නේ නැහැ, ඒක හරියටම ගියාද කියලා චෙක් කරලා බලන්න පුළුවන්ද?",
+2733: "මගේ statement එකේ අමුතු cash withdrawal එකක් තියෙනවා",
+2739: "වෙන කෙනෙක් මගේ account එකෙන් cash withdraw කරලා වගේ පෙනෙන්නේ, ඔබට උදව් කරන්න පුළුවන්ද?",
+2749: "මගේ statement එකේ අමුතු withdrawal එකක් මම දුටුවොත් මම කුමක් කළ යුතුද?",
+2773: "currencies මාරු කිරීම සඳහා අමතර මුදලක් අය කෙරේද?",
+2779: "මම currency එකක් මාරු කිරීමට අදහස් කරන්නේ නම්, අමතර ගාස්තු අය වේද?",
+2803: "මුදල් එකතු කළහොත් international card එකට අදාළව hidden fees මොනවාද?",
+2819: "top up කිරීම සඳහා வெளிநாட்டு bank card එකක් භාවිතා කළහොත් මගෙන් fee එකක් අය කරයිද?",
+2858: "මම card එක activate කරන්න උත්සාහ කළත් ඒක වැඩ කළේ නැහැ",
+2859: "මට දැන් තමයි card එක ලැබුණේ, මට ඒක භාවිතා කරන්න ඕනේ, card එක activate කරන්නේ කොහොමද?",
+2860: "මං ළඟ අලුත් card එකක් තියෙනවා, මට ඒක activate කරගන්න ඕනේ",
+2899: "cash withdraw කිරීම සඳහා මගෙන් fee එකක් අය කර ඇති බව මම දුටුවෙමි, ඒ ඇයිද යන්න පැහැදිලි කළ හැකිද?",
+2939: "මට ඉක්මනින්ම අලුත් card එකක් ලබා ගැනීමට අවශ්‍ය වේ, මම ඒක ඕඩර් කරන්නේ කොහොමද?",
+2979: "මගේ top up එක Apple Pay හරහා වැඩ කරන්නේ නැහැ.",
+3019: "මගේ අනන්‍යතාවය තහවුරු කිරීම සඳහා අනුගමනය කළ යුතු පියවර මොනවාද?",
+3051: "සහය ලබා ගැනීමට මම ජීවත් විය යුත්තේ කොහේද?",
+3059: "මම ශ්‍රී ලංකාවෙන් පිටත ජීවත් වුණත් මට card එකක් ලබා ගන්න පුළුවන්ද?"
+}
+
+# Let's write the csv output directly
+output_lines = ["id,translation"]
+for row_id, text in data:
+    tr = translations.get(row_id, "")
+    # Quote if comma present or quotes present
+    # Escape quotes if any inside text
+    tr_escaped = tr.replace('"', '""')
+    output_lines.append(f'{row_id},"{tr_escaped}"')
+
+final_csv = "\n".join(output_lines)
+print(final_csv[:500])
+
+
+```
+
+```text
+id,translation
+14,"සති 1ක් ගිියත් තාම මගේ card එක ලැබුණේ නැහැ. මේක සාමාන්‍ය දෙයක්ද?"
+19,"සති 2ක් ගිියත් තාම මගේ card එක ආවේ නැහැ. ඒක නැතිවෙලාද?"
+45,"මගේ අලුත් card එක ලැබුණා, ඒත් app එකේ කිසිම තැනක ඒක පේන්න නැහැ. මම දැන් මොකද කරන්නේ?"
+52,"මං ළඟ දැනටමත් card එකක් තියෙනවා නම්, තව එකක් link කරන්නේ කොහොමද?"
+53,"app එකට card එකක් add කරන්නේ කොහොමද?"
+59,"මගේ card එක හම්බවුණා, මට ඒක app එකට add කරගන්න පුළුවන්ද?"
+65,"දැනටමත් තියෙන card එකක් link කරගන්නේ කොහොමද?"
+99,"ඔබලා මාරු අනුපාතික (exchange rates) ග
+
+
+```
+
+```python
+# Let's check all ids from data to ensure none are missing and all translations are correctly populated
+missing = [row[0] for row in data if row[0] not in translations]
+print("Missing translations:", missing)
+
+
+```
+
+```text
+Missing translations: []
+
+
+```
+
+id,translation
+14,"සති 1ක් ගිියත් තාම මගේ card එක ලැබුණේ නැහැ. මේක සාමාන්‍ය දෙයක්ද?"
+19,"සති 2ක් ගිියත් තාම මගේ card එක ආවේ නැහැ. ඒක නැතිවෙලාද?"
+45,"මගේ අලුත් card එක ලැබුණා, ඒත් app එකේ කිසිම තැනක ඒක පේන්න නැහැ. මම දැන් මොකද කරන්නේ?"
+52,"මං ළඟ දැනටමත් card එකක් තියෙනවා නම්, තව එකක් link කරන්නේ කොහොමද?"
+53,"app එකට card එකක් add කරන්නේ කොහොමද?"
+59,"මගේ card එක හම්බවුණා, මට ඒක app එකට add කරගන්න පුළුවන්ද?"
+65,"දැනටමත් තියෙන card එකක් link කරගන්නේ කොහොමද?"
+99,"ඔබලා exchange rates ගන්නේ කොහෙන්ද?"
+139,"මම භාණ්ඩයක් මිලදී ගත්තා, ඒත් මට දුන්න exchange rate එක වැරදියයි."
+156,"මගේ transaction එකට අදාළ exchange rate එක චෙක් කරගන්නේ කොහොමද?"
+179,"මගේ statement එකේ අමතර fee එකක් වැටී තියෙන්න හේතුව කුමක්ද?"
+199,"මගේ statement එකේ මේ අමතර fee එක වැටී ඇත්තේ ඇයිද යන්න කරුණාකර පරීක්ෂා කර දෙන්න."
+208,"මගේ withdrawal එක තාමත් pending තියෙන්නේ ඇයි?"
+219,"හේයි, නගර මධ්‍යයේ තියෙන theatre එකේ ATM එකකදී මගේ card එක decline වුණා. ඒත් account එකේ පෙන්වන්නේ transaction එක pending කියලා. මට සල්ලි ලැබුණෙත් නැහැ, එතකොට ඒකෙන් අදහස් කරන්නේ මොකක්ද?"
+257,"මුදල් තබා ගැනීම් සහ හුවමාරු කිරීම් ගැන සලකා බලද්දී, සහය දක්වන fiat currencies මොනවද?"
+259,"මට වෙනත් currencies වලින් මුදල් තබා ගන්න පුළුවන්ද?"
+273,"මට currencies කිහිපයකින් මුදල් තබා ගන්න පුළුවන්ද?"
+296,"මට මේක නියමිත දිනයකට ඩිලිවර් කරගන්න ඕනේ."
+298,"මගේ card එක ලැබෙන්න කොච්චර කාලයක් යනවද? මට ලැබෙන දිනය තෝරාගන්න පුළුවන්ද?"
+299,"card එක එන්න කොච්චර කාලයක් යයිද?"
+304,"card එක එන්නේ කවදාද?"
+306,"card ඩිලිවර් කරන්නේ කවදාද?"
+330,"'auto-top' feature එක හොයාගන්න තියෙන්නේ කොහෙන්ද?"
+339,"ခရီးသွားනකොට මගේ card එකේ සල්ලි ඉවර නොවී තියාගන්නේ කොහොමද?"
+379,"මගේ card එක කිසිම විදිහකින් වැඩ කරන්නේ නැති ප්‍රශ්නය විසඳා ගන්නේ කොහොමද?"
+403,"LKR USD වලට මාරු කරන්නේ කොහොමද?"
+418,"මට වෙනත් currency එකකට මාරු වෙන්න පුළුවන්ද?"
+419,"මට LKR නෙවෙයි USD ඕනේ, මම ඒක මාරු කරගන්නේ කොහොමද?"
+459,"නැතිවුණු card එකක් සම්බන්ධයෙන් මට උදව්වක් අවශ්‍යයි"
+484,"අපේ වයස කීය වෙන්න ඕනද?"
+499,"මගේ දරුවන්ට ඔබේ සේවය භාවිතා කරන්න ඕනේ නම් ඔවුන්ගේ වයස කීය වෙන්න ඕනද?"
+534,"bank machine එක මගේ PIN උත්සාහයන් තවදුරටත් පිළිගන්නේ නැත්නම් මම මොකද කරන්නේ?"
+539,"මම PIN එක ගහන්න පුළුවන් උපරිම වාර ගණනම උත්සාහ කරලා ඉවරයි"
+579,"මගේ contactless පහසුකම හදාගන්න උදව් කරන්න පුළුවන්ද?"
+619,"transfer එකක් මගින් top up කිරීම නිසා මගේ account එකට fee එකක් කපා හැරීමක් සිදුවෙයිද?"
+628,"SEPA transfer එකක් සඳහා මගෙන් fee එකක් අය කරයිද?"
+659,"මම ටික වේලාවකට පෙර card එකෙන් top up කළා, ඒත් තාමත් pending, දැන්වත් මේක ඉවර වෙන්න ඕනේ නේද?"
+661,"top up එක සම්පූර්ණ වුණේ නැහැ"
+699,"transfer එකක් දැනටමත් process කරලා නම්, මට ඒක cancel කරන්න පුළුවන්ද?"
+736,"top-up limits මොනවා හරි තියෙනවද කියලා කියන්න?"
+739,"මට ඕන තරම් මුදලක් top-up කරන්න පුළුවන්ද?"
+746,"ඔබට top-up limit එකක් තියෙනවද?"
+765,"මට ලැබුණු මුදල් ප්‍රමාණය වැරදියයි"
+779,"මම රුපියල් 100,000ක් ගන්න උත්සාහ කළත් ලැබුණේ රුපියල් 20,000යි"
+792,"මම ඉල්ලපු මුදල් ප්‍රමාණයම මට ලැබුණේ නැහැ"
+801,"මගේ card එක භාවිතා කිරීමෙන් පසු මගෙන් fee එකක් අය කරලා තිබුණා, ඒත් එහෙම අය කරන්න විදිහක් නැහැ."
+819,"card payment එකක් සඳහා මගෙන් fee එකක් අය කරන්නේ ඇයි?"
+859,"මම සල්ලි යැව්වා. ඒත් ඔවුන්ට ලැබී නැහැ."
+864,"මම යාළුවෙකුට කළ transaction එක තියෙන්නේ කොහොමද?"
+899,"මගේ account එකට සල්ලි add කරන්න මට American Express භාවිතා කරන්නේ කොහොමද?"
+923,"virtual card එකක් ලබා ගැනීමට ක්‍රමයක් තියෙනවද?"
+935,"virtual card එකක් ඕඩර් කරන්නේ මෙතනින්ද?"
+939,"මට virtual card එකක් ඕඩර් කරන්න පුළුවන් කොතනින්ද?"
+979,"මම ජර්මනියට සංචාරය කරනවා, මට එහේදී මගේ card එක භාවිතා කරන්න පුළුවන් වෙයිද?"
+1019,"මම top up කරන්න ගියත් දැන් ඒක එතන නැහැ. ඒක ආපසු යවා තිබේද?"
+1027,"මම top up කළ විට app එක මගේ ක්‍රියාව ආපසු හැරෙව්වා."
+1031,"මගේ top-up එක cancel වෙලාද"
+1059,"මම මීට දින කිහිපයකට පෙර cheque එකක් submit කළා, තාමත් මගේ account එකට කිසිම වෙනසක් වෙලා නැහැ. सम्ਭාවිතා ගැටළුව කුමක්දැයි කරුණාකර පරීක්ෂා කර බලන්න."
+1099,"මම නොකළ payment එකක්"
+1106,"card payment එකක් ගැන මට වැඩි දැනුමක් නැහැ."
+1119,"මගේ statement එකේ මම හඳුනන්නේ නැති payment එකක් තියෙනවා"
+1139,"මගේ විස්තර වෙනස් කරගන්නේ කොහොමද?"
+1179,"මගේ account එක භාවිතා කිරීමට මගේ අනන්‍යතාවය තහවුරු කළ යුතුද?"
+1219,"මම තමයි කියලා app එකට තේරුම් කරලා දෙන්න මට බැරිවෙලා තියෙනවා."
+1227,"මේක ඇත්තටම මගේ අනන්‍යතාවය කියලා මම මේ මෝඩ system එකට පෙන්නන්නේ කොහොමද?"
+1259,"pin එකක් සකස් කිරීමේ ක්‍රියාවලිය කුමක්ද?"
+1274,"මගේ card PIN එක හොයාගන්න බෑ."
+1276,"මට PIN එක හොයාගන්න බැරි ඇයි?"
+1299,"මගේ card එක තෝරා ගැනීමට මට හැකිද?"
+1304,"Visa සහ Mastercard අතරින් එකක් තෝරා ගැනීමට මට අවස්ථාව ලැබෙනවද?"
+1332,"මම top up කරන්නේ කොහොමද?"
+1339,"මගේ යාළුවාට මගේ account එක top off කරන්න පුළුවන් වෙයිද?"
+1371,"disposable card එකක් මම card payments කීයක් සඳහා භාවිතා කරන්නද?"
+1379,"මට දවසකට disposable cards කිහිපයක්ම තියෙන්න ඕනේ."
+1395,"disposable cards වල සීමාවන් මොනවාදැයි ඔබ දන්නවාද?"
+1396,"disposable virtual cards සඳහා ඇති limits මොනවාද?"
+1419,"මගේ account එකේ අහඹු purchases මම දකිනවා, ඒක hack කරලාද?"
+1446,"මගේ card එක පිළිගන්නේ எந்த ATM ද?"
+1448,"මෙම card එක පිළිගන්නා ATM පිහිටා ඇති ස්ථාන කොහේද?"
+1474,"මට මෙම card එක භාවිතා කළ හැක්කේ எந்த ATM වලද?"
+1499,"මීට සති කිහිපයකට පෙර මම නොදන්නා seller කෙනෙක් විසින් මගේ account එකෙන් මුදල් කපාගෙන තිබුණා. මම ඒක කළේ නැහැ කියලා මට හොඳටම විශ්වාසයි, ඒත් ඒ කවුද කියලා හරියටම දැනගන්න එක trace කරලා බලාගන්න පුළුවන්ද?"
+1539,"මගේ app එකට පිවිසීමට අවශ්‍ය passcode එක මට අමතක වී ඇත"
+1579,"ATM machine එකෙන් මුදල් ලබා ගැනීමට නොහැකි වුණේ ඇයි?"
+1610,"මම මේ payment එක කරලා දවස් ගණනක් වෙනවා, ඉතින් තාම process වෙලා නැත්තේ ඇයි?"
+1616,"pending payment එකක් යනු කුමක්ද?"
+1619,"මගේ card payment එක pending තියෙනවා."
+1626,"මගෙන් දෙවරක් මුදල් අය කරලා, දෙවන අය කිරීම 'pending' ලෙස පෙන්වනවා. දෙවන අය කිරීම refund කළ පසු මගේ සල්ලි මට ලැබෙන්න කොච්චර කාලයක් යයිද?"
+1659,"ဖုန်း එක නැතිවුණා, මට තාමත් account එකට access කරන්න පුළුවන්ද?"
+1685,"මට නොලැබුණු භාණ්ඩයක් සඳහා refund එකක් අවශ්‍යයි. මට සරලවම payment එක cancel කරන්න පුළුවන්ද? මම මේක කරන්නේ කොහොමද කියලා දන්නේ නැහැ."
+1699,"මම දෙයක් මිලදී ගත්තා, ඒත් දැන් මට refund එකක් ඕනේ. මම ඒක කරන්නේ කොහොමද?"
+1739,"මම card එක භාවිතා කරලා මොනවා හරි මිලදී ගන්න උත්සාහ කරනකොට ඒක දිගටම decline වෙනවා."
+1779,"මට refund එකක් ලැබෙන්න ඕනේ වුණත් මගේ balance එක වෙනස් වී නැහැ, ඒ ඇයි?"
+1819,"ඔබ මගේ payment එක decline කරන්නේ ඇයි? හැමදේම හොඳින් තිබුණා."
+1859,"transfer එක process වෙන්නේ කවදාද?"
+1899,"මගේ account එක ඉක්මනින්ම ඉවත් කරගන්නේ කොහොමද?"
+1911,"මගේ account එක delete කරන්නේ කොහොමද?"
+1934,"මගේ ATM එක හිරවුණා, මම දැන් මොකද කරන්නේ කියලා හරියටම දන්නේ නැහැ."
+1939,"ATM එක තාමත් මගේ card එක තියාගෙන ඉන්නවා"
+1971,"මගෙන් දෙවරක් මුදල් අය කර ඇත"
+1979,"මං ළඟ duplicate card එකක් තිබී මගෙන් දෙවරක් අය කර ඇත. මම මේක විසඳා ගන්නේ කොහොමද?"
+2019,"මගේ මුදල්වල මූලාශ්‍රය කුමක්ද?"
+2059,"US වලින් කරන transfer එකකට දවස් කීයකුත් යනවද?"
+2099,"මගේ card payment එක return වෙලා වගේ"
+2138,"මට වෙනත් PIN එකක් තෝරා ගැනීමට අවශ්‍යයි."
+2139,"මට PIN එක වෙනස් කරගන්න ඕනේ."
+2144,"මගේ PIN එක වෙනස් කරන්නේ කොහොමද?"
+2170,"beneficiary කෙනෙක්ට transfer කරන්න බැත්තේ ඇයි?"
+2172,"ඔබේ app එකේ cryptocurrency නැත්තේ ඇයි?"
+2179,"සල්ලි beneficiary කෙනෙක්ට transfer වෙන්නේ නැහැ."
+2204,"transfer එකක් කරන්න මට ගෙවීමක් කරන්න සිදු වුණා"
+2219,"මුදල් transfer කිරීම සඳහා මගෙන් අමතර fee එකක් අය කළේ ඇයිද යන්න મને විශ්වාස නැහැ."
+2240,"මේක හරහා වැටුප ලැබෙයිද?"
+2259,"මගේ යාළුවාට මට සල්ලි එවන්නේ කොහොමද?"
+2299,"transfer එකක් fail වෙන්න හේතුව මොකක්ද?"
+2330,"මගේ bank account එකට සල්ලි transfer කරන්නේ කොහොමද කියලා මම දැනගත යුතුයි. කරුණාකර උදව් කරන්න"
+2339,"පිටත bank එකකින් මුදල් transfer කරන්නේ කොහොමද?"
+2347,"transfer එකක් හරහා මගේ account එකට සල්ලි යවන්නේ කොහොමද?"
+2350,"Top up කිරීමට මට account වලින් transfer කරන්න අවශ්‍යයි. අවශ්‍ය පියවර මොනවාද?"
+2379,"මගේ top-up card එක සඳහා verification code එක හොයාගන්නේ කොහොමද?"
+2419,"මට තව card එකක් ලබා ගන්න පුළුවන්ද?"
+2459,"මට cash භාවිතා කරලා top up කරන්න ඕනේ, මට ඒක කර හැක්කේ කොතනින්ද?"
+2463,"cash වලින් top up කරන්නේ කොහොමද?"
+2489,"physical cards සඳහා fee එකක් තියෙනවද?"
+2499,"electronic නොවන card එකක්ද ලබා ගැනීමට හැකියාව තිබේද?"
+2539,"virtual card එක reject වුණු ප්‍රශ්නයක් මම කොහොමද විසඳා ගන්නේ?"
+2555,"මගේ virtual disposable card එක වැඩ නොකරන්නේ ඇයි කියලා මට කියන්න."
+2571,"cash මාරු කිරීම සඳහා fee එකක් අය කෙරේද?"
+2579,"මම රටින් පිටත සිටින විට ATM එකකින් කිසිදු fee එකක් නොමැතිව මුදල් withdraw කරගන්න පුළුවන්ද?"
+2613,"disposable virtual card එකක් කොතරම් ආරක්ෂිතද?"
+2618,"මටත් disposable virtual card එකක් ලබා ගැනීමට පුළුවන්ද?"
+2619,"single use virtual card එකක් ලබා ගන්න පුළුවන්ද?"
+2659,"මම top up කළත් app එක ඒක පිළිගත්තේ නැහැ."
+2699,"මගේ bank transfer එක තාමත් මගේ account එකේ පෙන්වන්නේ නැහැ."
+2710,"මම මගේ local bank account එකෙන් මීට පැය කිහිපයකට පෙර bank transfer එකක් කළා. ඒක පෙන්වන්නේ නැහැ, ඒක හරියටම ගියාද කියලා චෙක් කරලා බලන්න පුළුවන්ද?"
+2733,"මගේ statement එකේ අමුතු cash withdrawal එකක් තියෙනවා"
+2739,"වෙන කෙනෙක් මගේ account එකෙන් cash withdraw කරලා වගේ පෙනෙන්නේ, ඔබට උදව් කරන්න පුළුවන්ද?"
+2749,"මගේ statement එකේ අමුතු withdrawal එකක් මම දුටුවොත් මම කුමක් කළ යුතුද?"
+2773,"currencies මාරු කිරීම සඳහා අමතර මුදලක් අය කෙරේද?"
+2779,"මම currency එකක් මාරු කිරීමට අදහස් කරන්නේ නම්, අමතර ගාස්තු අය වේද?"
+2803,"මුදල් එකතු කළහොත් international card එකට අදාළව hidden fees මොනවාද?"
+2819,"top up කිරීම සඳහා வெளிநாட்டு bank card එකක් භාවිතා කළහොත් මගෙන් fee එකක් අය කරයිද?"
+2858,"මම card එක activate කරන්න උත්සාහ කළත් ඒක වැඩ කළේ නැහැ"
+2859,"මට දැන් තමයි card එක ලැබුණේ, මට ඒක භාවිතා කරන්න ඕනේ, card එක activate කරන්නේ කොහොමද?"
+2860,"මං ළඟ අලුත් card එකක් තියෙනවා, මට ඒක activate කරගන්න ඕනේ"
+2899,"cash withdraw කිරීම සඳහා මගෙන් fee එකක් අය කර ඇති බව මම දුටුවෙමි, ඒ ඇයිද යන්න පැහැදිලි කළ හැකිද?"
+2939,"මට ඉක්මනින්ම අලුත් card එකක් ලබා ගැනීමට අවශ්‍ය වේ, මම ඒක ඕඩර් කරන්නේ කොහොමද?"
+2979,"මගේ top-up එක Apple Pay හරහා වැඩ කරන්නේ නැහැ."
+3019,"මගේ අනන්‍යතාවය තහවුරු කිරීම සඳහා අනුගමනය කළ යුතු පියවර මොනවාද?"
+3051,"සහය ලබා ගැනීමට මම ජීවත් විය යුත්තේ කොහේද?"
+3059,"මම ශ්‍රී ලංකාවෙන් පිටත ජීවත් වුණත් මට card එකක් ලබා ගන්න පුළුවන්ද?"

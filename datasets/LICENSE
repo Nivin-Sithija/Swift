@@ -1,0 +1,43 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+The Swift multilingual support-ticket corpus (the five language tracks in this
+directory, with their intent, sentiment and priority labels) is licensed under the
+Creative Commons Attribution 4.0 International License.
+
+Full licence text: https://creativecommons.org/licenses/by/4.0/legalcode
+Summary:          https://creativecommons.org/licenses/by/4.0/
+
+ATTRIBUTION AND PROVENANCE
+--------------------------
+This corpus is DERIVED FROM BANKING77:
+
+    Casanueva, I., Temcinas, T., Gerz, D., Henderson, M., and Vulic, I. (2020).
+    Efficient Intent Detection with Dual Sentence Encoders.
+    Proceedings of the 2nd Workshop on Natural Language Processing for
+    Conversational AI, pages 38-45.
+    https://huggingface.co/datasets/PolyAI/banking77
+
+BANKING77 is itself released under CC BY 4.0. This corpus is redistributed under
+the same licence, as that licence requires.
+
+WHAT IS INHERITED AND WHAT IS NEW
+---------------------------------
+Inherited from BANKING77:
+  - the English ticket text
+  - the 77-way intent taxonomy and its human gold labels
+
+Added by this work:
+  - Sinhala, Tamil and romanized (Singlish / Tanglish) renderings of each ticket
+  - sentiment and priority labels, which are LLM-generated from a documented
+    prompt pipeline and are NOT human gold; see paper/drafts/data_statement.md
+  - the frozen train/dev/test split, drawn on ticket id so that the five renderings
+    of one ticket never straddle the split
+
+CITING THIS CORPUS
+------------------
+Citing BANKING77 alone is not sufficient attribution. Of 65,385 rows, 52,308 (80%)
+carry text this project produced, and two of the three label columns are this
+project's. See CITATION.cff at the repository root for BibTeX, or the dataset card
+at https://huggingface.co/datasets/Swift-Support/swift-support-tickets-1.0
+
+Users redistributing this corpus must carry both attributions.

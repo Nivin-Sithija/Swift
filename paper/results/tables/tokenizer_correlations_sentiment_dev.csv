@@ -1,0 +1,7 @@
+# Spearman rank correlation between each tokenizer statistic and the
+# per-language deficit vs english, over non-English cells only. Rank
+# correlation because unk_pct is zero for most cells and the claim is
+# monotone association, not linear fit. Do not requote as Pearson.
+predictor,method,scope,rho,n_cells,n_nonzero
+unk_pct,spearman,non-english cells,-0.521,20,2
+fertility,spearman,non-english cells,-0.0346,20,20

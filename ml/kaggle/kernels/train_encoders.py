@@ -198,6 +198,9 @@ for name in models:
             subsample=1200 if SMOKE else None,            # noqa: F821
             lora=LORA, lora_r=LORA_R, lora_alpha=LORA_ALPHA, lora_targets=LORA_TARGETS,
             **({"lr": LR} if LR else {}),
+            # None means "leave train_encoder's default", so the existing runs keep
+            # their exact filenames; an explicit --seed widens the run id instead.
+            **({"seed": SEED} if SEED is not None else {}),               # noqa: F821
             author="kaggle",
             save=True,
             verbose=True,
@@ -205,7 +208,12 @@ for name in models:
         )
         row = {"model": name, "status": "ok",
                **{k: v for k, v in run.scores.items() if not isinstance(v, (list, dict))}}
-        run.history.to_csv(WORK / f"history_{name}.csv", index=False)
+        # Qualified by task and portion: `history_{name}.csv` is one filename per model,
+        # so a later job for the same model silently replaced the earlier curve --
+        # labse's intent-dev curve was lost to its sentiment-test run that way, and the
+        # per-epoch evidence for the budget choice went with it.
+        run.history.to_csv(
+            WORK / f"history_{TASK}_{name}_{EVAL_PORTION}.csv", index=False)
 
         # per-language breakdown, so the leaderboard does not need a refit to get it
         ev = run.eval_frame.copy()
@@ -217,6 +225,18 @@ for name in models:
             per_lang.append({"model": name, "language": lang,
                              **{k: v for k, v in s.items() if not isinstance(v, str)}})
         pd.DataFrame(per_lang).to_csv(WORK / f"per_language_{name}.csv", index=False)
+
+        # Full posteriors. The Ticket Urgency Score ranks on E[severity] over the whole
+        # distribution, so the argmax and the per-row prediction files are not enough;
+        # and a checkpoint fit on train+dev has no clean dev to calibrate against, which
+        # is why a train-only run has to emit these at the time it runs.
+        post = pd.DataFrame({"id": ev["id"].to_numpy(),
+                             "language": ev["language"].to_numpy(),
+                             "y_true": ev[sb.data.label_column(TASK)].to_numpy()})  # noqa: F821
+        for j, lab in enumerate(run.label_order):
+            post[f"p_{lab}"] = run.posteriors[:, j]
+        post["y_pred"] = run.predictions
+        post.to_csv(WORK / f"posteriors_{TASK}_{name}_{EVAL_PORTION}.csv", index=False)
 
     except Exception:
         traceback.print_exc()
