@@ -1,5 +1,12 @@
 # SLMs for Swift classification — literature review & experiment plan
 
+> **§0's sentiment row and the v6-pilot number in point 2 predate the 2026-08-19 v8 relabel.**
+> LaBSE sentiment moved 0.566 → **0.7138** test Negative-F1, and its ceiling moved 0.577 → **0.7812**
+> human agreement (500-row gold set, not the 250-row holdout v6-pilot cited below). The *conclusion*
+> in point 2 — relabelling beats remodelling — is strengthened, not reversed, by the full v8 rollout:
+> [`v8_relabel_slm_results.md`](v8_relabel_slm_results.md) has the current cross-model table,
+> including the joint multi-task Gemma-3-1B experiments this file's "what to run" section proposed.
+
 Desk research, August 2026. Written after `ENCODER_FINDINGS.md` settled the encoder question
 (**champion = multilingually fine-tuned LaBSE**) and asks the next one: *does a small decoder
 language model (0.3–4B) beat it on intent / sentiment / priority, and if so which one?*

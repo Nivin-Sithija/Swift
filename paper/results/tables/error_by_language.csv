@@ -1,0 +1,16 @@
+task,language,n,errors,error_rate,vs_english
+intent,english,3079,253,0.0822,0.0
+intent,sinhala,3079,406,0.1319,0.0497
+intent,singlish,3079,370,0.1202,0.038
+intent,tamil,3079,438,0.1423,0.0601
+intent,tamilish,3079,1143,0.3712,0.289
+sentiment,english,3079,109,0.0354,0.0
+sentiment,sinhala,3079,141,0.0458,0.0104
+sentiment,singlish,3079,135,0.0438,0.0084
+sentiment,tamil,3079,107,0.0348,-0.0006
+sentiment,tamilish,3079,157,0.051,0.0156
+priority,english,3079,278,0.0903,0.0
+priority,sinhala,3079,322,0.1046,0.0143
+priority,singlish,3079,301,0.0978,0.0075
+priority,tamil,3079,328,0.1065,0.0162
+priority,tamilish,3079,497,0.1614,0.0711

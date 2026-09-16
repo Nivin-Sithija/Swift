@@ -31,6 +31,12 @@ import pandas as pd
 
 from . import config, data, imbalance, metrics, results, splits
 
+# Which sentiment label set the CSVs on disk carry. Stamped into every record so
+# a v5 number can never again be tabled against a v8 one without it being
+# visible -- the mix went unnoticed precisely because nothing recorded this.
+# Intent and priority were untouched by the relabel.
+LABEL_VERSION = "v8"
+
 # name -> (hf checkpoint, max_length). Lengths are the p99 tokenised length measured per
 # tokenizer in `07_encoder_bakeoff.ipynb`, rounded up -- not a shared guess.
 #
@@ -46,6 +52,18 @@ ENCODERS: dict[str, tuple[str, int]] = {
     # Code-mix-aware. model-research.md §5 names TwHIN-BERT as the "process romanized directly"
     # (Strategy B) model -- Twitter multilingual, trained on the code-switched register.
     "twhin-bert":    ("Twitter/twhin-bert-base",         128),
+
+    # Indic specialists. The finding that these lose to general multilingual encoders on
+    # mixed-script text (MuRIL 62.10%, IndicBERT 76.24%, both below the 83.18% classical
+    # baseline) is one of the paper's headline claims, but it was measured by
+    # `ml/scripts/train_transformer.py` on the **official** BANKING77 split and has no
+    # `runs/*.json` record, so it cannot be tabled against anything else in the project.
+    # Registered here so the claim can be re-measured inside the harness, on the frozen
+    # split, with the same epochs/lr/batch as every other encoder.
+    # MuRIL's 36k WordPiece vocabulary maps ~2/3 of Sinhala to [UNK] (§7.2) -- that is the
+    # mechanism under the result, not a configuration error to fix.
+    "muril-base":    ("google/muril-base-cased",         128),
+    "indicbert":     ("ai4bharat/IndicBERTv2-MLM-only",  128),
 
     # Decoder SLMs (`ml/reports/SLM_RESEARCH.md`). They run through this same function rather than
     # a parallel one: a causal LM with a sequence-classification head is the *same* fit/score loop,
@@ -91,6 +109,10 @@ class EncoderRun:
     history: pd.DataFrame
     predictions: np.ndarray
     scores_positive: np.ndarray          # raw P(Negative) / logit margin, for threshold work
+    # Full softmax over every class, columns in `label_order`. The scoring function in
+    # paper/experiments/ ranks on E[severity] = sum_k p_k sev_k, so it needs the whole
+    # distribution, not the argmax and not one class's probability.
+    posteriors: np.ndarray
     eval_frame: pd.DataFrame
     label_order: list[str] = field(default_factory=list)
     seconds: float = 0.0
@@ -130,6 +152,7 @@ def run(
     lora_alpha: int = 16,
     lora_targets: str = "attn",
     save_dir: str | None = None,
+    select_on_eval: bool | None = None,
 ) -> EncoderRun:
     """Fine-tune `model` on `train_langs`, score on `eval_lang`/`portion`.
 
@@ -199,6 +222,11 @@ def run(
     if subsample:                                   # smoke tests only
         train_df = train_df.sample(min(subsample, len(train_df)), random_state=seed)
         eval_df = eval_df.sample(min(subsample, len(eval_df)), random_state=seed)
+
+    # Epoch selection is legitimate on dev and is selection-on-test anywhere else.
+    # Explicit override exists only for reproducing an older run.
+    if select_on_eval is None:
+        select_on_eval = portion == "dev"
 
     n_before = len(train_df)
     train_df = imbalance.resample(train_df, label_col, arm)
@@ -346,8 +374,19 @@ def run(
             print(f"  epoch {epoch+1}: train_loss {history[-1]['train_loss']:.4f}  "
                   f"{sc['headline_metric']} {sc['headline']:.4f}  acc {sc['accuracy']:.4f}",
                   flush=True)
-        # select on the headline metric, never on loss
-        if best is None or sc["headline"] > best[0]:
+        # Select on the headline metric, never on loss -- but only when the evaluation
+        # portion is dev.
+        #
+        # On a test run `eval_df` IS the test set, so picking the best-scoring epoch
+        # from it is selection on test: the reported number becomes a maximum over
+        # `epochs` draws rather than a held-out estimate, and the bias grows with the
+        # epoch budget. Every previously recorded test number in this project was
+        # produced that way; at 3 epochs the effect is small, at 6+ it is not.
+        # For test, keep the final epoch and let `epochs` be the hyperparameter that
+        # dev already chose.
+        take = (sc["headline"] > best[0]) if (best is not None and select_on_eval) else \
+               (best is None or not select_on_eval)
+        if take:
             best = (sc["headline"], epoch + 1, sc, pred, logits)
             if save_dir:
                 # Snapshotted to CPU so the next epoch's forward/backward has the GPU memory
@@ -357,10 +396,13 @@ def run(
     seconds = time.time() - started
     _, best_epoch, scores, pred, logits = best
 
+    # Softmax once, reused for both the positive-class score and the full posterior.
+    e = np.exp(logits - logits.max(1, keepdims=True))
+    posteriors = e / e.sum(1, keepdims=True)
+
     # raw positive-class score, for threshold tuning downstream
     if task == "sentiment":
-        e = np.exp(logits - logits.max(1, keepdims=True))
-        pos = (e / e.sum(1, keepdims=True))[:, labels.index(config.SENTIMENT_POSITIVE_CLASS)]
+        pos = posteriors[:, labels.index(config.SENTIMENT_POSITIVE_CLASS)]
     else:
         pos = logits.max(1)
 
@@ -378,6 +420,9 @@ def run(
             "lora_targets": lora_targets,
             "lora_modules": ",".join(targets)} if lora else {}),
         "fit_portion": fit_portion, "device": dev_name, "fp16": bool(use_amp),
+        # Which epoch the reported number comes from, and how it was picked. A test
+        # run reports its final epoch; only a dev run may pick its best.
+        "epoch_selection": "best-on-dev" if select_on_eval else "final-epoch",
         "rows_per_second": round(len(y_train) * epochs / max(seconds, 1e-9), 1),
     })
 
@@ -386,9 +431,53 @@ def run(
               f"   [{seconds/60:.1f} min]")
 
     if save:
+        base_extra = {"regime": "multi" if len(train_langs) > 1 else "mono",
+                      "family": "decoder" if model in DECODERS else "encoder",
+                      "seed": seed,
+                      "label_version": LABEL_VERSION}
+        # Only a non-default seed widens the filename, so the default-seed records
+        # keep the names every existing report already points at.
+        variant = "" if seed == config.RANDOM_STATE else f"seed-{seed}"
+
         results.save(task, model, train_langs, eval_lang, arm, portion, scores,
-                     author=author, extra={"regime": "multi" if len(train_langs) > 1 else "mono",
-                                           "family": "encoder"})
+                     author=author, extra=base_extra, variant=variant)
+
+        # Per-row predictions, without which no paired significance test against
+        # another system is possible.
+        results.save_predictions(task, model, train_langs, eval_lang, arm, portion,
+                                 ids=eval_df["id"].to_numpy(),
+                                 languages=eval_df["language"].to_numpy()
+                                 if "language" in eval_df.columns else [eval_lang] * len(eval_df),
+                                 y_true=eval_df[label_col].to_numpy(), y_pred=pred,
+                                 variant=variant)
+
+        # Per-language records, sliced out of the predictions we already have.
+        #
+        # Per-language *test* coverage is the largest documented gap in the project, and it
+        # costs nothing to close: the model has already predicted over the pooled evaluation
+        # frame, so a language slice is an indexing operation, not another fine-tune. Saving
+        # only the pooled row is what left the gap open through every previous Kaggle batch.
+        if eval_lang == "all" and "language" in eval_df.columns:
+            y_true_all = eval_df[label_col].to_numpy()
+            lang_all = eval_df["language"].to_numpy()
+            for lang in config.LANGUAGES:
+                mask = lang_all == lang
+                if not mask.any():
+                    continue
+                lang_scores = metrics.score(y_true_all[mask], pred[mask], task)
+                # `epoch_selection` must ride along: a per-language record is a slice of
+                # the pooled predictions and inherits exactly the same discipline. Omitting
+                # it left 5 of every 6 test records unstamped, which the results-table
+                # generator reads as "not final-epoch" and flags as biased -- a false
+                # positive on records that are by construction as clean as the pooled one.
+                lang_scores.update({k: scores[k] for k in
+                                    ("n_train", "n_train_before_resample", "best_epoch",
+                                     "epochs", "lr", "batch_size", "max_length", "hf_name",
+                                     "fit_portion", "device", "fp16", "lora",
+                                     "epoch_selection", "label_version")
+                                    if k in scores})
+                results.save(task, model, train_langs, lang, arm, portion, lang_scores,
+                             author=author, extra=base_extra, variant=variant)
 
     if save_dir:
         net.load_state_dict(best_state)
@@ -413,8 +502,8 @@ def run(
             print(f"  saved best-epoch ({best_epoch}) weights -> {out}")
 
     return EncoderRun(scores=scores, history=pd.DataFrame(history), predictions=pred,
-                      scores_positive=pos, eval_frame=eval_df, label_order=list(labels),
-                      seconds=seconds)
+                      scores_positive=pos, posteriors=posteriors, eval_frame=eval_df,
+                      label_order=list(labels), seconds=seconds)
 
 
 def _infer(net, enc, y, batch_size, dev_name, rows, use_amp=False) -> np.ndarray:

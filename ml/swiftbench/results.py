@@ -35,10 +35,22 @@ def run_id(task: str, model: str, train_langs, eval_lang: str, arm: str) -> str:
 
 
 def save(task: str, model: str, train_langs, eval_lang: str, arm: str,
-         portion: str, scores: dict, author: str = "", extra: dict | None = None) -> str:
-    """Write one run's result. Returns the path written."""
+         portion: str, scores: dict, author: str = "", extra: dict | None = None,
+         variant: str = "") -> str:
+    """Write one run's result. Returns the path written.
+
+    `variant` widens the run's identity. Run identity is otherwise
+    task/model/train_langs/eval_lang/arm, which deliberately makes a re-run
+    overwrite rather than duplicate -- but that is wrong for a repeated-seed
+    study, where five runs differing only in seed would collapse onto one file
+    and four of them would vanish with no error. Pass `variant="seed-43"` and
+    each lands separately. Leave it empty and filenames are byte-identical to
+    every record written before this parameter existed.
+    """
     manifest = splits.ensure()
     rid = run_id(task, model, train_langs, eval_lang, arm)
+    if variant:
+        rid = f"{rid}__{_slug(variant)}"
 
     record = {
         "run_id": rid,
@@ -62,6 +74,37 @@ def save(task: str, model: str, train_langs, eval_lang: str, arm: str,
     path = out_dir / f"{rid}__{portion}.json"
     path.write_text(json.dumps(record, indent=2))
     return str(path)
+
+
+def save_predictions(task: str, model: str, train_langs, eval_lang: str, arm: str,
+                     portion: str, ids, languages, y_true, y_pred,
+                     variant: str = "") -> str:
+    """Persist one run's per-row predictions alongside its scores.
+
+    Scores alone cannot support a paired significance test: comparing two systems
+    properly needs to know which *rows* each got right, not just how many. Nothing
+    in this project stored that, which is why no comparison in it carries a p-value.
+    One CSV per run, named like the score record so the two are trivially joined.
+    """
+    rid = run_id(task, model, train_langs, eval_lang, arm)
+    if variant:
+        rid = f"{rid}__{_slug(variant)}"
+
+    out_dir = config.PREDICTIONS_DIR / "runs"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / f"{rid}__{portion}.csv"
+    pd.DataFrame({"id": list(ids), "language": list(languages),
+                  "y_true": list(y_true), "y_pred": list(y_pred)}).to_csv(path, index=False)
+    return str(path)
+
+
+def load_predictions(task: str, model: str, train_langs, eval_lang: str, arm: str,
+                     portion: str, variant: str = "") -> pd.DataFrame | None:
+    rid = run_id(task, model, train_langs, eval_lang, arm)
+    if variant:
+        rid = f"{rid}__{_slug(variant)}"
+    path = config.PREDICTIONS_DIR / "runs" / f"{rid}__{portion}.csv"
+    return pd.read_csv(path) if path.exists() else None
 
 
 def load_all(portion: str | None = None) -> pd.DataFrame:

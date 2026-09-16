@@ -8,15 +8,17 @@ branch_labels = None
 depends_on = None
 
 def upgrade() -> None:
-    op.create_table(
-        "system_settings",
-        sa.Column("key", sa.String(100), primary_key=True),
-        sa.Column("value", sa.Text(), nullable=False),
-        sa.Column("value_type", sa.String(20), nullable=False),
-        sa.Column("description", sa.Text(), nullable=False),
-        sa.Column("updated_by", sa.Uuid(), sa.ForeignKey("users.id")),
-        sa.Column("updated_at", sa.DateTime(timezone=True), nullable=False),
-    )
+    inspector = sa.inspect(op.get_bind())
+    if "system_settings" not in inspector.get_table_names():
+        op.create_table(
+            "system_settings",
+            sa.Column("key", sa.String(100), primary_key=True),
+            sa.Column("value", sa.Text(), nullable=False),
+            sa.Column("value_type", sa.String(20), nullable=False),
+            sa.Column("description", sa.Text(), nullable=False),
+            sa.Column("updated_by", sa.Uuid(), sa.ForeignKey("users.id")),
+            sa.Column("updated_at", sa.DateTime(timezone=True), nullable=False),
+        )
     op.execute('ALTER TABLE "system_settings" ENABLE ROW LEVEL SECURITY')
     op.create_index("ix_audit_logs_created_at", "audit_logs", ["created_at"])
     op.create_index("ix_audit_logs_action", "audit_logs", ["action"])
