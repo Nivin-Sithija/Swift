@@ -23,11 +23,7 @@ jobs:
           # Matches backend/Dockerfile. If that image moves, move this with it.
           python-version: "3.12"
           cache: pip
-      # `inference` is not optional in practice: tests/conftest.py imports
-      # app.inference.services, which imports torch and transformers, so the suite
-      # cannot even be collected without it. It pulls a large PyTorch stack; if CI
-      # time becomes a problem the fix is to make that import lazy, not to drop this.
-      - run: pip install -e '.[dev,rag,inference]'
+      - run: pip install -e '.[dev,rag]'
       - name: Lint
         run: ruff check app tests
       - name: Types
@@ -55,8 +51,7 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-      # Same reason as the backend job: this one runs pytest too.
-      - run: pip install -e '.[dev,rag,security,inference]'
+      - run: pip install -e '.[dev,rag,security]'
       - name: Static analysis
         run: bandit -q -r app -ll
       - name: Dependency advisories
