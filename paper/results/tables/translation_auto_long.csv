@@ -1,0 +1,1201 @@
+id,source_en,system,translation,language,script_fidelity,empty,labse_cosine
+14,I am still waiting for my card after 1 week.  Is this ok?,swift,සතියක් ගියත් තාම මම කාඩ් එක බලාගෙන ඉන්නවා. මේක හරිද?,sinhala,1.0,False,0.8356229
+19,My card still hasn't arrived after 2 weeks. Is it lost?,swift,සති 2ක් ගියත් මගේ කාඩ් එක තාම ආවේ නෑ. ඒක නැති වෙලාද?,sinhala,1.0,False,0.89904225
+45,"I received my new card, but I don't see it in the app anywhere.  What do I do?",swift,"මට අලුත් කාඩ් එක ලැබුනා, ඒත් ඇප් එකේ කොහෙවත් පේන්නේ නෑ. මම මොකද කරන්න ඕනේ?",sinhala,1.0,False,0.87760454
+52,How do I link one your card if I have one already?,swift,මට දැනටමත් ඔයාලගේ කාඩ් එකක් තියෙනවා නම් ඒක ලින්ක් කරන්නේ කොහොමද?,sinhala,1.0,False,0.89794976
+53,How do I add a card to the app?,swift,කාඩ් එකක් ඇප් එකට දාන්නේ කොහොමද?,sinhala,1.0,False,0.9081616
+59,"I found my card, can I add it to the app?",swift,"මගේ කාඩ් එක හම්බුනා, ඒක ඇප් එකට දාන්න පුළුවන්ද?",sinhala,1.0,False,0.8920469
+65,how do I link an already existing card?,swift,දැනටමත් තියෙන කාඩ් එකක් ලින්ක් කරන්නේ කොහොමද?,sinhala,1.0,False,0.9301435
+99,Where do you get your exchange rates from?,swift,ඔයාලගේ එක්ස්චේන්ජ් රේට් ගන්නේ කොහෙන්ද?,sinhala,1.0,False,0.804044
+139,I purchased an item and the exchange rate I was given was incorrect.,swift,"මම බඩුවක් ගත්තා, මට දුන්න එක්ස්චේන්ජ් රේට් එක වැරදියි.",sinhala,1.0,False,0.80958086
+156,How can I check the exchange rate applied to my transaction?,swift,මගේ ට්‍රැන්සැක්ෂන් එකට apply කරපු එක්ස්චේන්ජ් රේට් එක check කරන්නේ කොහොමද?,sinhala,0.8387096774193549,False,0.78447163
+179,What would be the reason there's an extra fee on my statement?,swift,මගේ statement එකේ අමතර ෆී එකක් තියෙන්න හේතුව මොකක්ද?,sinhala,0.7906976744186046,False,0.8149826
+199,Can you please check why I am having this extra fee on my statement.,swift,මට මගේ statement එකේ මේ අමතර ෆී එක තියෙන්නේ ඇයි කියලා check කරන්නකෝ.,sinhala,0.7454545454545455,False,0.8180859
+208,Why is my withdrawal still pending?,swift,මගේ withdrawal එක තාම pending ඇයි?,sinhala,0.39285714285714285,False,0.93524176
+219,"Hey, my card was declined at an ATM in the city centre theatre. My account says the transaction is pending, though. I didn't get the money, though, so what does that mean?",swift,"හෙයි, city centre theatre එකේ ATM එකේදි මගේ කාඩ් එක decline වුනා. ඒත් මගේ account එකේ ට්‍රැන්සැක්ෂන් එක pending කියලා තියෙනවා. මට සල්ලි ලැබුනේ නෑ, එතකොට ඒකේ තේරුම මොකක්ද?",sinhala,0.6985294117647058,False,0.9205103
+257,"When considering currency holdings and exchanges, what fiat currencies are supported?",swift,"කරන්සි holdings සහ exchanges ගැන හිතද්දි, support කරන fiat කරන්සි මොනවද?",sinhala,0.5333333333333333,False,0.8510313
+259,Can I hold money in other currencies?,swift,මට වෙනත් කරන්සි වලින් සල්ලි තියාගන්න පුළුවන්ද?,sinhala,1.0,False,0.8839301
+273,Can I hold money in multiple currencies?,swift,මට කරන්සි කීපයකින් සල්ලි තියාගන්න පුළුවන්ද?,sinhala,1.0,False,0.81235015
+296,I need it delivered on a certain date.,swift,මට ඒක නිශ්චිත දිනයකට ඩිලිවර් කරන්න ඕනේ.,sinhala,1.0,False,0.8622078
+298,How long does it take to get my card? Can I choose when to receive it?,swift,මගේ කාඩ් එක ලැබෙන්න කොච්චර වෙලා යනවද? ඒක ලැබෙන වෙලාව මට තෝරගන්න පුළුවන්ද?,sinhala,1.0,False,0.8737619
+299,How long will it take for the card to arrive?,swift,කාඩ් එක එන්න කොච්චර වෙලා යනවද?,sinhala,1.0,False,0.91270983
+304,When will the card arrive?,swift,කාඩ් එක එන්නේ කවදද?,sinhala,1.0,False,0.91148204
+306,When are cards delivered?,swift,කාඩ් ඩිලිවර් කරන්නේ කවදද?,sinhala,1.0,False,0.8324053
+330,"Where can I find the ""auto-top"" feature?",swift,"""auto-top"" feature එක හොයාගන්නේ කොහෙද?",sinhala,0.5333333333333333,False,0.91776955
+339,How do I make sure I don't run out of money on my card while traveling?,swift,ට්‍රැවල් කරද්දි මගේ කාඩ් එකේ සල්ලි ඉවර නොවෙන බව confirm කරගන්නේ කොහොමද?,sinhala,0.8793103448275862,False,0.8267163
+379,How can I resolve a problem where my card won't go through at all?,swift,මගේ කාඩ් එක කිසිසේත් go through නොවෙන ප්‍රොබ්ලම් එක resolve කරන්නේ කොහොමද?,sinhala,0.7377049180327869,False,0.9114037
+403,How do I change LKR to USD?,swift,LKR එක USD එකට මාරු කරන්නේ කොහොමද?,sinhala,0.7777777777777778,False,0.9530341
+418,Can I change to another currency?,swift,මට වෙනත් කරන්සියකට මාරු වෙන්න පුළුවන්ද?,sinhala,1.0,False,0.83395386
+419,"I need USD not LKR, how do I change it?",swift,"මට ඕනේ USD, LKR නෙවෙයි, ඒක මාරු කරන්නේ කොහොමද?",sinhala,0.8285714285714286,False,0.9309306
+459,I need help with a lost card,swift,නැති වුන කාඩ් එකකට මට උදව් ඕනේ,sinhala,1.0,False,0.94513905
+484,How old do we have to be?,swift,අපිට කොච්චර වයසක් ඉන්න ඕනේද?,sinhala,1.0,False,0.8856424
+499,If my kids wanted to use your service how old would they have to be?,swift,මගේ ළමයින්ට ඔයාලගේ service එක පාවිච්චි කරන්න ඕනේ නම් ඒගොල්ලන්ට කොච්චර වයසක් ඉන්න ඕනේද?,sinhala,0.9027777777777778,False,0.92052674
+534,What do I do if the bank machine won't accept my PIN attempts anymore?,swift,bank machine එක මගේ PIN attempts accept නොකළොත් මම මොකද කරන්න ඕනේ?,sinhala,0.48148148148148145,False,0.8880345
+539,I'v exhausted all the of times I can try my PIN,swift,මට PIN එක try කරන්න පුළුවන් වතාවන් ඔක්කොම ඉවර වෙලා,sinhala,0.8536585365853658,False,0.9236961
+579,Can you help my fix my contactless?,swift,මගේ contactless එක fix කරන්න උදව් කරන්නද?,sinhala,0.5882352941176471,False,0.90875846
+619,Will topping up by transfer lead to a charge on my account?,swift,transfer එකෙන් top up කිරීම මගේ account එකට charge එකකට හේතු වෙනවද?,sinhala,0.5272727272727272,False,0.91715
+628,Will I be charged for a SEPA transfer?,swift,SEPA transfer එකකට මට charge කරයිද?,sinhala,0.3793103448275862,False,0.9333632
+659,"I topped up by card a while ago and it's still pending, surely it should be done by now?",swift,"මම ටිකකට කලින් කාඩ් එකෙන් top up කළා, තාම pending, දැනට වෙලා ඉවර වෙන්න ඕනේ නේද?",sinhala,0.8032786885245902,False,0.86849177
+661,top up did not complete,swift,top up එක complete වුනේ නෑ,sinhala,0.38095238095238093,False,0.9618174
+699,Can I cancel a transfer if is already processed?,swift,දැනටමත් process වුන transfer එකක් cancel කරන්න පුළුවන්ද?,sinhala,0.5625,False,0.8637503
+736,Tell me if there are any top-up limits?,swift,top-up limits තියෙනවද කියලා කියන්නකෝ?,sinhala,0.6451612903225806,False,0.8876266
+739,Can I top-up as much as I want?,swift,මට ඕන ගාණකට top-up කරන්න පුළුවන්ද?,sinhala,0.8148148148148148,False,0.88551825
+746,Do you have a top-up limit?,swift,ඔයාලා ළඟ top-up limit එකක් තියෙනවද?,sinhala,0.6428571428571429,False,0.9077922
+765,The amount of cash I received was incorrect,swift,මට ලැබුන cash amount එක වැරදියි,sinhala,0.6153846153846154,False,0.8946836
+779,"I tried to get Rs 100,000 but I just got Rs 20,000",swift,"මම Rs 100,000 ගන්න try කළා ඒත් ලැබුනේ Rs 20,000 විතරයි",sinhala,0.7741935483870968,False,0.9053848
+792,I didn't receive all the cash I asked for,swift,මම ඉල්ලුව cash එක ඔක්කොම ලැබුනේ නෑ,sinhala,0.8571428571428571,False,0.9429079
+801,I was charged a fee after using my card and I shouldn't have been.,swift,"මම කාඩ් එක පාවිච්චි කළාට පස්සේ ෆී එකක් අයකළා, ඒ වෙන්න ඕනේ නෑ.",sinhala,1.0,False,0.813087
+819,Why would I be charged a fee for card payment?,swift,කාඩ් payment එකකට මට ෆී එකක් අයවෙන්නේ ඇයි?,sinhala,0.7941176470588235,False,0.8685783
+859,I sent money.  They haven't received it.,swift,මම සල්ලි එව්වා. ඒගොල්ලන්ට ලැබුනේ නෑ.,sinhala,1.0,False,0.93834627
+864,Where is the transaction I made to a friend?,swift,මම යාළුවෙක්ට කරපු ට්‍රැන්සැක්ෂන් එක කොහෙද?,sinhala,1.0,False,0.84606624
+899,How can I use American Express to add money to my account?,swift,account එකට සල්ලි add කරන්න American Express පාවිච්චි කරන්නේ කොහොමද?,sinhala,0.5689655172413793,False,0.88159084
+923,Is there an option to have a virtual card?,swift,virtual card එකක් තියාගන්න option එකක් තියෙනවද?,sinhala,0.575,False,0.90101284
+935,Is this where I order a virtual card?,swift,මේකෙන්ද virtual card එකක් ඕඩර් කරන්නේ?,sinhala,0.65625,False,0.8510859
+939,Where can I order a virtual card?,swift,virtual card එකක් ඕඩර් කරන්නේ කොහෙද?,sinhala,0.6333333333333333,False,0.8913549
+979,"I am traveling to Germany, Will I be able to use my card there?",swift,"මම Germany එකට ට්‍රැවල් කරනවා, එතන මගේ කාඩ් එක පාවිච්චි කරන්න පුළුවන්ද?",sinhala,0.8771929824561403,False,0.8593716
+1019,I went to top up and it is no longer there.  Was it sent back?,swift,"මම top up කරන්න ගියා, ඒක දැන් නෑ. ඒක ආපහු එව්වාද?",sinhala,0.8611111111111112,False,0.85048306
+1027,The app reverted my action when I topped up.,swift,මම top up කරද්දි ඇප් එක මගේ action එක revert කළා.,sinhala,0.5526315789473685,False,0.88870347
+1031,has my top-up has been cancelled,swift,මගේ top-up එක cancel වෙලාද,sinhala,0.47619047619047616,False,0.91040283
+1059,"I Submitted a cheque couple days ago, nothing happened to my account yet.Would you please check What could be the possible issue?",swift,"දවස් කීපයකට කලින් මම cheque එකක් submit කළා, මගේ account එකට තාම මොකුත් වුනේ නෑ. ප්‍රොබ්ලම් එක මොකක්ද කියලා check කරන්නකෝ?",sinhala,0.7551020408163265,False,0.8459201
+1099,Payment i did not do,swift,මම නොකළ payment එක,sinhala,0.5333333333333333,False,0.9091501
+1106,I'm not familiar with a card payment.,swift,මට කාඩ් payment එකක් ගැන දන්නේ නෑ.,sinhala,0.7407407407407407,False,0.87442166
+1119,In my statement there is a payment that is I do not recognize,swift,මගේ statement එකේ මම හඳුනන්නේ නැති payment එකක් තියෙනවා,sinhala,0.6595744680851063,False,0.89390504
+1139,How can I modify my details?,swift,මගේ details modify කරන්නේ කොහොමද?,sinhala,0.5357142857142857,False,0.937598
+1179,Do I need to verify my identity to use my account?,swift,account එක පාවිච්චි කරන්න මගේ identity එක verify කරන්න ඕනේද?,sinhala,0.58,False,0.9078259
+1219,I can not get the app to know it is me.,swift,මාව මම කියලා ඇප් එකට දැනගන්න කරන්න බෑ.,sinhala,1.0,False,0.86739004
+1227,How do I show this stupid system that this is really my identity?,swift,මේක ඇත්තටම මගේ identity එක කියලා මේ මෝඩ සිස්ටම් එකට පෙන්නන්නේ කොහොමද?,sinhala,0.8596491228070176,False,0.89005077
+1259,what is the process for setting up a pin,swift,pin එකක් set කරන process එක මොකක්ද,sinhala,0.5357142857142857,False,0.92887485
+1274,I can not find my card pin.,swift,මට මගේ කාඩ් pin එක හොයාගන්න බෑ.,sinhala,0.875,False,0.8763968
+1276,Why can't I find my PIN?,swift,මගේ PIN එක හොයාගන්න බැරි ඇයි?,sinhala,0.8695652173913043,False,0.93640155
+1299,Am I able to choose my card?,swift,මගේ කාඩ් එක තෝරගන්න මට පුළුවන්ද?,sinhala,1.0,False,0.88676965
+1304,Do I get to choose between Visa and Mastercard?,swift,Visa සහ Mastercard අතර මට තෝරගන්න ලැබෙයිද?,sinhala,0.6,False,0.9359002
+1332,how can i top up?,swift,top up කරන්නේ කොහොමද?,sinhala,0.7058823529411765,False,0.85572904
+1339,Will my friend be able to top off my account?,swift,මගේ යාළුවට මගේ account එක top off කරන්න පුළුවන්ද?,sinhala,0.675,False,0.87332314
+1371,How many card payments can I use on a disposable card?,swift,disposable card එකකට මට කීයක් card payments පාවිච්චි කරන්න පුළුවන්ද?,sinhala,0.5517241379310345,False,0.90968263
+1379,I have to have several disposable cards per day.,swift,මට දවසකට disposable cards කීපයක් තියෙන්න ඕනේ.,sinhala,0.6052631578947368,False,0.89693016
+1395,Do you know what the restriction of the disposable cards are?,swift,disposable cards වල restriction එක මොකක්ද කියලා ඔයාලා දන්නවද?,sinhala,0.5,False,0.9112232
+1396,What are the limits for disposable virtual cards?,swift,disposable virtual cards වලට limits මොනවද?,sinhala,0.2222222222222222,False,0.94371736
+1419,"I see random purchases to my account, was it hacked?",swift,"මගේ account එකේ අහම්බෙන් purchases පේනවා, ඒක hack වුනාද?",sinhala,0.5652173913043478,False,0.8761786
+1446,Which ATM's accept my card?,swift,මොන ATM's ද මගේ කාඩ් එක accept කරන්නේ?,sinhala,0.6551724137931034,False,0.90587014
+1448,Where are the locations of ATMs that accept this card?,swift,මේ කාඩ් එක accept කරන ATMs locations මොනවද?,sinhala,0.45714285714285713,False,0.8742153
+1474,At which ATMs can I use this card?,swift,මොන ATMs වලදි මට මේ කාඩ් එක පාවිච්චි කරන්න පුළුවන්ද?,sinhala,0.9047619047619048,False,0.9151895
+1499,"A couple weeks ago some money was deducted from my account by some seller that I don't remember. I'm pretty sure I didn't do that, but is it possible to trace back who that is just to make sure?",swift,"සති කීපයකට කලින් මම මතක නැති seller කෙනෙක් මගේ account එකෙන් සල්ලි deduct කළා. මම ඒක කළේ නෑ කියලා හරියටම හිතන්නේ, ඒත් confirm කරගන්න ඒ කෙනා trace back කරන්න පුළුවන්ද?",sinhala,0.7388059701492538,False,0.8939289
+1539,I have forgotten my passcode to access my app,swift,ඇප් එකට enter වෙන්න මගේ passcode එක අමතක වෙලා,sinhala,0.6486486486486487,False,0.9055203
+1579,Why did the ATM machine fail to give me a cash withdrawal?,swift,ATM machine එකට මට cash withdrawal එකක් දෙන්න බැරි වුනේ ඇයි?,sinhala,0.5102040816326531,False,0.814535
+1610,I made this payment days ago so why hasn't it gone through yet?,swift,"මම මේ payment එක දවස් ගානකට කලින් කළා, එතකොට ඒක තාම go through වුනේ නැත්තේ ඇයි?",sinhala,0.7419354838709677,False,0.93719935
+1616,What is a pending payment?,swift,pending payment එකක් කියන්නෙ මොකක්ද කියලා දැනගන්න ඕනේ,sinhala,0.6956521739130435,False,0.7456356
+1619,My card payment is pending.,swift,මගේ කාඩ් payment එක pending.,sinhala,0.391304347826087,False,0.9007281
+1626,"I was double charged, and the second charge is showing as ""pending"". How long will it be before I get my money back once the second charge has been refunded?",swift,"මට දෙපාරක් charge කළා, දෙවෙනි charge එක ""pending"" විදියට තියෙනවා. දෙවෙනි charge එක refund වුනාට පස්සේ මගේ සල්ලි ආපහු ලැබෙන්නේ කොච්චර වෙලාවකින්ද?",sinhala,0.7372881355932204,False,0.8910591
+1659,"lost phone, can i still access account?",swift,"phone එක නැති කළා, තාම account එකට access වෙන්න පුළුවන්ද?",sinhala,0.6086956521739131,False,0.9464898
+1685,I need a refund on an item I have not received.  Am I able to simply cancel the payment?  I don't know how to do this.,swift,මට ලැබුනේ නැති item එකකට refund එකක් ඕනේ. payment එක simple ව cancel කරගන්න පුළුවන්ද? ඒක කරන්නේ කොහොමද කියලා දන්නේ නෑ.,sinhala,0.6947368421052632,False,0.913151
+1699,I bought something but now I would like a refund. How do I do that?,swift,මම මොකක් හරි ගත්තා ඒත් දැන් refund එකක් ඕනේ. ඒක කරන්නේ කොහොමද?,sinhala,0.8775510204081632,False,0.89291894
+1739,When I try and to buy something using my card it keeps getting declined.,swift,මම මගේ කාඩ් එකෙන් මොකක් හරි ගන්න try කරද්දි ඒක decline වෙනවා.,sinhala,0.7959183673469388,False,0.8001125
+1779,"i was supposed to get a refund but my balance hasn't changed, why not?",swift,"මට refund එකක් ලැබෙන්න ඕනේ වුනා ඒත් මගේ balance එක වෙනස් වුනේ නෑ, ඇයි?",sinhala,0.7636363636363637,False,0.9047127
+1819,Why are you declining my payment? Everything was fine.,swift,ඔයාලා මගේ payment එක decline කරන්නේ ඇයි? ඔක්කොම හරි තිබුනා.,sinhala,0.7083333333333334,False,0.84433883
+1859,When will the transfer go through?,swift,transfer එක go through වෙන්නේ කවදද?,sinhala,0.41379310344827586,False,0.93490136
+1899,How do I get rid of my account ASAP?,swift,මගේ account එක ASAP ඉවත් කරගන්නේ කොහොමද?,sinhala,0.6666666666666666,False,0.87893355
+1911,How do I delete my account?,swift,මගේ account එක delete කරන්නේ කොහොමද?,sinhala,0.5666666666666667,False,0.9220849
+1934,My ATM got stuck and I'm not sure what to do.,swift,"මගේ ATM එක stuck වුනා, මම මොකද කරන්නද කියලා දන්නේ නෑ.",sinhala,0.8048780487804879,False,0.81394464
+1939,ATM still has my card,swift,ATM එකේ තාම මගේ කාඩ් එක තියෙනවා,sinhala,0.88,False,0.8997046
+1971,I have been charged twice,swift,මට දෙපාරක් charge කරලා,sinhala,0.6842105263157895,False,0.91539747
+1979,I had a duplicate card and got charged twice. How do I resolve this?,swift,මට duplicate කාඩ් එකක් තිබුනා දෙපාරක් charge කළා. මේක resolve කරන්නේ කොහොමද?,sinhala,0.6507936507936508,False,0.90416926
+2019,What is the source of my money?,swift,මගේ සල්ලි වල source එක මොකක්ද?,sinhala,0.75,False,0.8381809
+2059,How many days does a transfer from the US take?,swift,US එකෙන් transfer එකකට දවස් කීයක් යනවද?,sinhala,0.6875,False,0.9340734
+2099,I think my card payment had been return,swift,මගේ කාඩ් payment එක return වෙලා ඇති කියලා මම හිතනවා,sinhala,0.6904761904761905,False,0.9311604
+2138,I want to choose a different PIN.,swift,මට වෙනස් PIN එකක් තෝරගන්න ඕනේ.,sinhala,0.875,False,0.8966093
+2139,I would like to change my pin.,swift,මට මගේ pin එක වෙනස් කරගන්න ඕනේ.,sinhala,0.875,False,0.7619122
+2144,How do I change my PIN?,swift,මගේ PIN එක වෙනස් කරන්නේ කොහොමද?,sinhala,0.88,False,0.9333863
+2170,Why can't I transfer to a beneficiary?,swift,beneficiary කෙනෙකුට transfer කරන්න බැරි ඇයි?,sinhala,0.5,False,0.8613527
+2172,What's the deal with no cryptocurrency on your app?,swift,ඔයාලගේ ඇප් එකේ cryptocurrency නැති එකේ deal එක මොකක්ද?,sinhala,0.6,False,0.93304694
+2179,The money would not transfer to a beneficiary.,swift,beneficiary කෙනෙකුට සල්ලි transfer වුනේ නෑ.,sinhala,0.4864864864864865,False,0.85763127
+2204,I had to pay in order to do a transfer,swift,transfer එකක් කරන්න මට ගෙවන්න ඕනේ වුනා,sinhala,0.75,False,0.9131864
+2219,I'm not sure why I was charged an extra fee for transferring funds.,swift,funds transfer කරන්න මට අමතර ෆී එකක් අයකළේ ඇයි කියලා දන්නේ නෑ.,sinhala,0.74,False,0.8564624
+2240,Will salary be received through this?,swift,මේකෙන් salary එක ලැබෙනවද?,sinhala,0.7142857142857143,False,0.8367859
+2259,How can my friend send me money?,swift,මගේ යාළුවට මට සල්ලි එවන්නේ කොහොමද?,sinhala,1.0,False,0.9010532
+2299,Why would a transfer fail?,swift,transfer එකක් fail වෙන්නේ ඇයි?,sinhala,0.52,False,0.9041467
+2330,I NEED TO KNOW HOW TO TRANSFER MONEY INTO MY BANK ACCOUNT. PLEASE HELP,swift,මට BANK ACCOUNT එකට සල්ලි TRANSFER කරන්නේ කොහොමද කියලා දැනගන්න ඕනේ. ප්ලීස් උදව් කරන්න,sinhala,0.7323943661971831,False,0.8640166
+2339,How can I transfer money from an outside bank?,swift,පිටත bank එකකින් සල්ලි transfer කරන්නේ කොහොමද?,sinhala,0.6923076923076923,False,0.9060201
+2347,How do I send my account money through transfer?,swift,මගේ account එකට transfer හරහා සල්ලි යවන්නේ කොහොමද?,sinhala,0.6428571428571429,False,0.9117626
+2350,I want to transfer from accounts in order to Top up. What are the steps necessary.,swift,Top up කරන්න මට accounts වලින් transfer කරන්න ඕනේ. ඕනේ steps මොනවද.,sinhala,0.5185185185185185,False,0.84681934
+2379,How do I find the verification code for my top-up card?,swift,මගේ top-up card එකට verification code එක හොයාගන්නේ කොහොමද?,sinhala,0.4791666666666667,False,0.9123603
+2419,May I have another card?,swift,මට තව කාඩ් එකක් තියාගන්න පුළුවන්ද?,sinhala,1.0,False,0.90642893
+2459,"I want to top up using cash, where can I do that?",swift,"cash එකෙන් top up කරන්න ඕනේ, කොහෙදි ඒක කරන්නද?",sinhala,0.75,False,0.8482213
+2463,How can I top up with cash?,swift,cash එකෙන් top up කරන්නේ කොහොමද?,sinhala,0.6538461538461539,False,0.8574992
+2489,Is there a charge for physical cards,swift,physical cards වලට charge එකක් තියෙනවද,sinhala,0.42424242424242425,False,0.89217293
+2499,Is a non-electronic card available as well,swift,non-electronic card එකකුත් available ද,sinhala,0.21212121212121213,False,0.8839342
+2539,How can I fix a problem where my virtual card is rejected?,swift,මගේ virtual card එක reject වෙන ප්‍රොබ්ලම් එක fix කරන්නේ කොහොමද?,sinhala,0.6078431372549019,False,0.88934577
+2555,Tell me why my virtual disposable card won't work.,swift,මගේ virtual disposable card එක වැඩ නොකරන්නේ ඇයි කියලා කියන්නද.,sinhala,0.5961538461538461,False,0.87903863
+2571,Is there a fee for exchanging cash?,swift,cash exchange කරන්න ෆී එකක් තියෙනවද?,sinhala,0.6,False,0.82782865
+2579,Can I make a withdraw if I am out of country from with out any fees at an ATM?,swift,මම රටින් එළියේ ඉන්නකොට fees නැතුව ATM එකකින් withdraw කරන්න පුළුවන්ද?,sinhala,0.7413793103448276,False,0.9113668
+2613,how secure is a disposable virtual card,swift,disposable virtual card එකක් කොච්චර secure ද,sinhala,0.2894736842105263,False,0.92280865
+2618,May I get a disposable virtual card as well?,swift,මටත් disposable virtual card එකක් ලබාගන්න පුළුවන්ද?,sinhala,0.5227272727272727,False,0.91320056
+2619,Can i get a single use virtual card,swift,single use virtual card එකක් ලබාගන්න පුළුවන්ද,sinhala,0.48717948717948717,False,0.94012845
+2659,I topped up but the app did not accept it.,swift,මම top up කළා ඇප් එක accept කළේ නෑ.,sinhala,0.5769230769230769,False,0.83111215
+2699,My bank transfer is still not showing up in my account.,swift,මගේ bank transfer එක තාම මගේ account එකේ පේන්නේ නෑ.,sinhala,0.5365853658536586,False,0.8961282
+2710,"I made a bank transfer a couple of hours ago from my local bank account.  It hasn't appeared, can you check to make sure it went through?",swift,"පැය කීපයකට කලින් මම local bank account එකෙන් bank transfer එකක් කළා. එය තාම පේන්නේ නෑ, ඒක go through වුනාද කියලා check කරන්නද?",sinhala,0.5841584158415841,False,0.89119625
+2733,I have a strange cash withdrawal in my statement,swift,මගේ statement එකේ අමතක cash withdrawal එකක් තියෙනවා,sinhala,0.4772727272727273,False,0.7993586
+2739,"It looks like someone else withdrew cash from my account, can you help?",swift,"වෙන කවුරු හරි මගේ account එකෙන් cash withdraw කළා වගේ, උදව් කරන්නද?",sinhala,0.6481481481481481,False,0.8699113
+2749,What do I do if I notice a strange withdrawl in my statement?,swift,මගේ statement එකේ අමතක withdrawl එකක් දැක්කොත් මම මොකද කරන්නේ?,sinhala,0.6538461538461539,False,0.81194335
+2773,Does it cost extra to exchange currencies?,swift,currencies exchange කරන්න අමතර cost එකක් යනවද?,sinhala,0.4358974358974359,False,0.9288452
+2779,"If I want to exchange currency, will there be extras?",swift,"මට currency exchange කරන්න ඕනේ නම්, extras තියෙනවද?",sinhala,0.47619047619047616,False,0.87507623
+2803,Any hidden fees associated with the international card if money is added?,swift,සල්ලි add කළොත් international card එකට hidden fees තියෙනවද?,sinhala,0.4,False,0.87962496
+2819,Will I be charged if I use foreign bank card for top up?,swift,top up එකකට විදේශ bank card එකක් පාවිච්චි කළොත් මට charge කරයිද?,sinhala,0.6346153846153846,False,0.9106238
+2858,I tried activating my bill of fare and it didn't workplace,swift,මගේ කාඩ් එක activate කරන්න try කළා වැඩ කළේ නෑ,sinhala,0.6944444444444444,False,0.71814424
+2859,"I just got my card and want to use it, how do I activate my card?",swift,"මට දැන් තමයි කාඩ් එක ලැබුනේ, ඒක පාවිච්චි කරන්න ඕනේ, මගේ කාඩ් එක activate කරන්නේ කොහොමද?",sinhala,0.8840579710144928,False,0.8808824
+2860,I have a new card and I want to activate it,swift,"මට අලුත් කාඩ් එකක් තියෙනවා, ඒක activate කරගන්න ඕනේ",sinhala,0.8048780487804879,False,0.9077602
+2899,"I've notice I was charged for withdrawing cash, can you explain why?",swift,"cash withdraw කරද්දි මට charge කළා, ඇයි කියලා පැහැදිලි කරන්නද?",sinhala,0.6470588235294118,False,0.8046003
+2939,"I will need to get a new card soon, how do I order?",swift,"අලුත් කාඩ් එකක් ඕනේ, fees සහ කොච්චර වෙලාවක් යනවද",sinhala,0.8974358974358975,False,0.67304945
+2979,My top up is not working in Apple Pay.,swift,මගේ top up එක Apple Pay එකේ වැඩ කරන්නේ නෑ.,sinhala,0.59375,False,0.9233688
+3019,What are the steps to verify my identity?,swift,මගේ identity එක verify කරන්න steps මොනවද?,sinhala,0.4411764705882353,False,0.9448197
+3051,Where do I need to live to get support?,swift,support ලබාගන්න මම ජීවත් වෙන්න ඕනේ කොහෙද?,sinhala,0.7941176470588235,False,0.912254
+3059,Can I get a card even if I live outside Sri Lanka?,swift,මම Sri Lanka එකෙන් එළියේ ජීවත් වුනත් කාඩ් එකක් ලබාගන්න පුළුවන්ද?,sinhala,0.8490566037735849,False,0.87242615
+14,I am still waiting for my card after 1 week.  Is this ok?,gemini,සති 1ක් ගිියත් තාම මගේ card එක ලැබුණේ නැහැ. මේක සාමාන්‍ය දෙයක්ද?,sinhala,0.9183673469387755,False,0.753462
+19,My card still hasn't arrived after 2 weeks. Is it lost?,gemini,සති 2ක් ගිියත් තාම මගේ card එක ආවේ නැහැ. ඒක නැතිවෙලාද?,sinhala,0.9024390243902439,False,0.90698075
+45,"I received my new card, but I don't see it in the app anywhere.  What do I do?",gemini,"මගේ අලුත් card එක ලැබුණා, ඒත් app එකේ කිසිම තැනක ඒක පේන්න නැහැ. මම දැන් මොකද කරන්නේ?",sinhala,0.8923076923076924,False,0.87910146
+52,How do I link one your card if I have one already?,gemini,"මං ළඟ දැනටමත් card එකක් තියෙනවා නම්, තව එකක් link කරන්නේ කොහොමද?",sinhala,0.8431372549019608,False,0.86800605
+53,How do I add a card to the app?,gemini,app එකට card එකක් add කරන්නේ කොහොමද?,sinhala,0.6551724137931034,False,0.92407763
+59,"I found my card, can I add it to the app?",gemini,"මගේ card එක හම්බවුණා, මට ඒක app එකට add කරගන්න පුළුවන්ද?",sinhala,0.7727272727272727,False,0.8917334
+65,how do I link an already existing card?,gemini,දැනටමත් තියෙන card එකක් link කරගන්නේ කොහොමද?,sinhala,0.7837837837837838,False,0.9276707
+99,Where do you get your exchange rates from?,gemini,ඔබලා exchange rates ගන්නේ කොහෙන්ද?,sinhala,0.5517241379310345,False,0.9146469
+139,I purchased an item and the exchange rate I was given was incorrect.,gemini,"මම භාණ්ඩයක් මිලදී ගත්තා, ඒත් මට දුන්න exchange rate එක වැරදියයි.",sinhala,0.7692307692307693,False,0.84903187
+156,How can I check the exchange rate applied to my transaction?,gemini,මගේ transaction එකට අදාළ exchange rate එක චෙක් කරගන්නේ කොහොමද?,sinhala,0.5576923076923077,False,0.88534105
+179,What would be the reason there's an extra fee on my statement?,gemini,මගේ statement එකේ අමතර fee එකක් වැටී තියෙන්න හේතුව කුමක්ද?,sinhala,0.75,False,0.8932073
+199,Can you please check why I am having this extra fee on my statement.,gemini,මගේ statement එකේ මේ අමතර fee එක වැටී ඇත්තේ ඇයිද යන්න කරුණාකර පරීක්ෂා කර දෙන්න.,sinhala,0.8125,False,0.8651125
+208,Why is my withdrawal still pending?,gemini,මගේ withdrawal එක තාමත් pending තියෙන්නේ ඇයි?,sinhala,0.5526315789473685,False,0.9352198
+219,"Hey, my card was declined at an ATM in the city centre theatre. My account says the transaction is pending, though. I didn't get the money, though, so what does that mean?",gemini,"හේයි, නගර මධ්‍යයේ තියෙන theatre එකේ ATM එකකදී මගේ card එක decline වුණා. ඒත් account එකේ පෙන්වන්නේ transaction එක pending කියලා. මට සල්ලි ලැබුණෙත් නැහැ, එතකොට ඒකෙන් අදහස් කරන්නේ මොකක්ද?",sinhala,0.6912751677852349,False,0.91585946
+257,"When considering currency holdings and exchanges, what fiat currencies are supported?",gemini,"මුදල් තබා ගැනීම් සහ හුවමාරු කිරීම් ගැන සලකා බලද්දී, සහය දක්වන fiat currencies මොනවද?",sinhala,0.7971014492753623,False,0.8931415
+259,Can I hold money in other currencies?,gemini,මට වෙනත් currencies වලින් මුදල් තබා ගන්න පුළුවන්ද?,sinhala,0.7619047619047619,False,0.91799515
+273,Can I hold money in multiple currencies?,gemini,මට currencies කිහිපයකින් මුදල් තබා ගන්න පුළුවන්ද?,sinhala,0.7619047619047619,False,0.9118802
+296,I need it delivered on a certain date.,gemini,මට මේක නියමිත දිනයකට ඩිලිවර් කරගන්න ඕනේ.,sinhala,1.0,False,0.82463706
+298,How long does it take to get my card? Can I choose when to receive it?,gemini,මගේ card එක ලැබෙන්න කොච්චර කාලයක් යනවද? මට ලැබෙන දිනය තෝරාගන්න පුළුවන්ද?,sinhala,0.9322033898305084,False,0.85304105
+299,How long will it take for the card to arrive?,gemini,card එක එන්න කොච්චර කාලයක් යයිද?,sinhala,0.8461538461538461,False,0.9078541
+304,When will the card arrive?,gemini,card එක එන්නේ කවදාද?,sinhala,0.75,False,0.8810871
+306,When are cards delivered?,gemini,card ඩිලිවර් කරන්නේ කවදාද?,sinhala,0.8181818181818182,False,0.7864994
+330,"Where can I find the ""auto-top"" feature?",gemini,'auto-top' feature එක හොයාගන්න තියෙන්නේ කොහෙන්ද?,sinhala,0.6410256410256411,False,0.9086056
+339,How do I make sure I don't run out of money on my card while traveling?,gemini,ခရီးသွားනකොට මගේ card එකේ සල්ලි ඉවර නොවී තියාගන්නේ කොහොමද?,sinhala,0.7551020408163265,False,0.86221766
+379,How can I resolve a problem where my card won't go through at all?,gemini,මගේ card එක කිසිම විදිහකින් වැඩ කරන්නේ නැති ප්‍රශ්නය විසඳා ගන්නේ කොහොමද?,sinhala,0.9322033898305084,False,0.8827126
+403,How do I change LKR to USD?,gemini,LKR USD වලට මාරු කරන්නේ කොහොමද?,sinhala,0.76,False,0.9517699
+418,Can I change to another currency?,gemini,මට වෙනත් currency එකකට මාරු වෙන්න පුළුවන්ද?,sinhala,0.7777777777777778,False,0.9280442
+419,"I need USD not LKR, how do I change it?",gemini,"මට LKR නෙවෙයි USD ඕනේ, මම ඒක මාරු කරගන්නේ කොහොමද?",sinhala,0.8421052631578947,False,0.94345415
+459,I need help with a lost card,gemini,නැතිවුණු card එකක් සම්බන්ධයෙන් මට උදව්වක් අවශ්‍යයි,sinhala,0.9069767441860465,False,0.90513897
+484,How old do we have to be?,gemini,අපේ වයස කීය වෙන්න ඕනද?,sinhala,1.0,False,0.8858646
+499,If my kids wanted to use your service how old would they have to be?,gemini,මගේ දරුවන්ට ඔබේ සේවය භාවිතා කරන්න ඕනේ නම් ඔවුන්ගේ වයස කීය වෙන්න ඕනද?,sinhala,1.0,False,0.9092886
+534,What do I do if the bank machine won't accept my PIN attempts anymore?,gemini,bank machine එක මගේ PIN උත්සාහයන් තවදුරටත් පිළිගන්නේ නැත්නම් මම මොකද කරන්නේ?,sinhala,0.78125,False,0.9061696
+539,I'v exhausted all the of times I can try my PIN,gemini,මම PIN එක ගහන්න පුළුවන් උපරිම වාර ගණනම උත්සාහ කරලා ඉවරයි,sinhala,0.9347826086956522,False,0.84281033
+579,Can you help my fix my contactless?,gemini,මගේ contactless පහසුකම හදාගන්න උදව් කරන්න පුළුවන්ද?,sinhala,0.75,False,0.8637248
+619,Will topping up by transfer lead to a charge on my account?,gemini,transfer එකක් මගින් top up කිරීම නිසා මගේ account එකට fee එකක් කපා හැරීමක් සිදුවෙයිද?,sinhala,0.6714285714285714,False,0.8823067
+628,Will I be charged for a SEPA transfer?,gemini,SEPA transfer එකක් සඳහා මගෙන් fee එකක් අය කරයිද?,sinhala,0.6153846153846154,False,0.90825284
+659,"I topped up by card a while ago and it's still pending, surely it should be done by now?",gemini,"මම ටික වේලාවකට පෙර card එකෙන් top up කළා, ඒත් තාමත් pending, දැන්වත් මේක ඉවර වෙන්න ඕනේ නේද?",sinhala,0.7746478873239436,False,0.85216475
+661,top up did not complete,gemini,top up එක සම්පූර්ණ වුණේ නැහැ,sinhala,0.782608695652174,False,0.95728636
+699,Can I cancel a transfer if is already processed?,gemini,"transfer එකක් දැනටමත් process කරලා නම්, මට ඒක cancel කරන්න පුළුවන්ද?",sinhala,0.625,False,0.90025073
+736,Tell me if there are any top-up limits?,gemini,top-up limits මොනවා හරි තියෙනවද කියලා කියන්න?,sinhala,0.7027027027027027,False,0.8850193
+739,Can I top-up as much as I want?,gemini,මට ඕන තරම් මුදලක් top-up කරන්න පුළුවන්ද?,sinhala,0.84375,False,0.8100437
+746,Do you have a top-up limit?,gemini,ඔබට top-up limit එකක් තියෙනවද?,sinhala,0.5833333333333334,False,0.905329
+765,The amount of cash I received was incorrect,gemini,මට ලැබුණු මුදල් ප්‍රමාණය වැරදියයි,sinhala,1.0,False,0.9218348
+779,"I tried to get Rs 100,000 but I just got Rs 20,000",gemini,"මම රුපියල් 100,000ක් ගන්න උත්සාහ කළත් ලැබුණේ රුපියල් 20,000යි",sinhala,1.0,False,0.9343829
+792,I didn't receive all the cash I asked for,gemini,මම ඉල්ලපු මුදල් ප්‍රමාණයම මට ලැබුණේ නැහැ,sinhala,1.0,False,0.89566433
+801,I was charged a fee after using my card and I shouldn't have been.,gemini,"මගේ card එක භාවිතා කිරීමෙන් පසු මගෙන් fee එකක් අය කරලා තිබුණා, ඒත් එහෙම අය කරන්න විදිහක් නැහැ.",sinhala,0.9066666666666666,False,0.7538671
+819,Why would I be charged a fee for card payment?,gemini,card payment එකක් සඳහා මගෙන් fee එකක් අය කරන්නේ ඇයි?,sinhala,0.6666666666666666,False,0.8564848
+859,I sent money.  They haven't received it.,gemini,මම සල්ලි යැව්වා. ඒත් ඔවුන්ට ලැබී නැහැ.,sinhala,1.0,False,0.93114185
+864,Where is the transaction I made to a friend?,gemini,මම යාළුවෙකුට කළ transaction එක තියෙන්නේ කොහොමද?,sinhala,0.725,False,0.79482543
+899,How can I use American Express to add money to my account?,gemini,මගේ account එකට සල්ලි add කරන්න මට American Express භාවිතා කරන්නේ කොහොමද?,sinhala,0.5901639344262295,False,0.89188075
+923,Is there an option to have a virtual card?,gemini,virtual card එකක් ලබා ගැනීමට ක්‍රමයක් තියෙනවද?,sinhala,0.7105263157894737,False,0.83543277
+935,Is this where I order a virtual card?,gemini,virtual card එකක් ඕඩර් කරන්නේ මෙතනින්ද?,sinhala,0.6666666666666666,False,0.8731288
+939,Where can I order a virtual card?,gemini,මට virtual card එකක් ඕඩර් කරන්න පුළුවන් කොතනින්ද?,sinhala,0.7317073170731707,False,0.9064323
+979,"I am traveling to Germany, Will I be able to use my card there?",gemini,"මම ජර්මනියට සංචාරය කරනවා, මට එහේදී මගේ card එක භාවිතා කරන්න පුළුවන් වෙයිද?",sinhala,0.9333333333333333,False,0.8401949
+1019,I went to top up and it is no longer there.  Was it sent back?,gemini,මම top up කරන්න ගියත් දැන් ඒක එතන නැහැ. ඒක ආපසු යවා තිබේද?,sinhala,0.8863636363636364,False,0.8502758
+1027,The app reverted my action when I topped up.,gemini,මම top up කළ විට app එක මගේ ක්‍රියාව ආපසු හැරෙව්වා.,sinhala,0.7948717948717948,False,0.86960906
+1031,has my top-up has been cancelled,gemini,මගේ top-up එක cancel වෙලාද,sinhala,0.47619047619047616,False,0.91040283
+1059,"I Submitted a cheque couple days ago, nothing happened to my account yet.Would you please check What could be the possible issue?",gemini,"මම මීට දින කිහිපයකට පෙර cheque එකක් submit කළා, තාමත් මගේ account එකට කිසිම වෙනසක් වෙලා නැහැ. सम्ਭාවිතා ගැටළුව කුමක්දැයි කරුණාකර පරීක්ෂා කර බලන්න.",sinhala,0.8083333333333333,False,0.81980246
+1099,Payment i did not do,gemini,මම නොකළ payment එකක්,sinhala,0.5882352941176471,False,0.8706534
+1106,I'm not familiar with a card payment.,gemini,card payment එකක් ගැන මට වැඩි දැනුමක් නැහැ.,sinhala,0.6857142857142857,False,0.87121177
+1119,In my statement there is a payment that is I do not recognize,gemini,මගේ statement එකේ මම හඳුනන්නේ නැති payment එකක් තියෙනවා,sinhala,0.6595744680851063,False,0.89390504
+1139,How can I modify my details?,gemini,මගේ විස්තර වෙනස් කරගන්නේ කොහොමද?,sinhala,1.0,False,0.93297464
+1179,Do I need to verify my identity to use my account?,gemini,මගේ account එක භාවිතා කිරීමට මගේ අනන්‍යතාවය තහවුරු කළ යුතුද?,sinhala,0.8571428571428571,False,0.898988
+1219,I can not get the app to know it is me.,gemini,මම තමයි කියලා app එකට තේරුම් කරලා දෙන්න මට බැරිවෙලා තියෙනවා.,sinhala,0.9387755102040817,False,0.8159571
+1227,How do I show this stupid system that this is really my identity?,gemini,මේක ඇත්තටම මගේ අනන්‍යතාවය කියලා මම මේ මෝඩ system එකට පෙන්නන්නේ කොහොමද?,sinhala,0.8947368421052632,False,0.90771735
+1259,what is the process for setting up a pin,gemini,pin එකක් සකස් කිරීමේ ක්‍රියාවලිය කුමක්ද?,sinhala,0.9090909090909091,False,0.8879881
+1274,I can not find my card pin.,gemini,මගේ card PIN එක හොයාගන්න බෑ.,sinhala,0.6818181818181818,False,0.8262081
+1276,Why can't I find my PIN?,gemini,මට PIN එක හොයාගන්න බැරි ඇයි?,sinhala,0.8636363636363636,False,0.92342716
+1299,Am I able to choose my card?,gemini,මගේ card එක තෝරා ගැනීමට මට හැකිද?,sinhala,0.8461538461538461,False,0.87821984
+1304,Do I get to choose between Visa and Mastercard?,gemini,Visa සහ Mastercard අතරින් එකක් තෝරා ගැනීමට මට අවස්ථාව ලැබෙනවද?,sinhala,0.7307692307692307,False,0.9063724
+1332,how can i top up?,gemini,මම top up කරන්නේ කොහොමද?,sinhala,0.7368421052631579,False,0.90904355
+1339,Will my friend be able to top off my account?,gemini,මගේ යාළුවාට මගේ account එක top off කරන්න පුළුවන් වෙයිද?,sinhala,0.7111111111111111,False,0.8881509
+1371,How many card payments can I use on a disposable card?,gemini,disposable card එකක් මම card payments කීයක් සඳහා භාවිතා කරන්නද?,sinhala,0.5094339622641509,False,0.8753288
+1379,I have to have several disposable cards per day.,gemini,මට දවසකට disposable cards කිහිපයක්ම තියෙන්න ඕනේ.,sinhala,0.6341463414634146,False,0.90604824
+1395,Do you know what the restriction of the disposable cards are?,gemini,disposable cards වල සීමාවන් මොනවාදැයි ඔබ දන්නවාද?,sinhala,0.6428571428571429,False,0.8604295
+1396,What are the limits for disposable virtual cards?,gemini,disposable virtual cards සඳහා ඇති limits මොනවාද?,sinhala,0.3170731707317073,False,0.9481966
+1419,"I see random purchases to my account, was it hacked?",gemini,"මගේ account එකේ අහඹු purchases මම දකිනවා, ඒක hack කරලාද?",sinhala,0.5555555555555556,False,0.8837334
+1446,Which ATM's accept my card?,gemini,මගේ card එක පිළිගන්නේ எந்த ATM ද?,sinhala,0.5769230769230769,False,0.8983909
+1448,Where are the locations of ATMs that accept this card?,gemini,මෙම card එක පිළිගන්නා ATM පිහිටා ඇති ස්ථාන කොහේද?,sinhala,0.825,False,0.9218894
+1474,At which ATMs can I use this card?,gemini,මට මෙම card එක භාවිතා කළ හැක්කේ எந்த ATM වලද?,sinhala,0.6857142857142857,False,0.9101061
+1499,"A couple weeks ago some money was deducted from my account by some seller that I don't remember. I'm pretty sure I didn't do that, but is it possible to trace back who that is just to make sure?",gemini,"මීට සති කිහිපයකට පෙර මම නොදන්නා seller කෙනෙක් විසින් මගේ account එකෙන් මුදල් කපාගෙන තිබුණා. මම ඒක කළේ නැහැ කියලා මට හොඳටම විශ්වාසයි, ඒත් ඒ කවුද කියලා හරියටම දැනගන්න එක trace කරලා බලාගන්න පුළුවන්ද?",sinhala,0.8875,False,0.87752706
+1539,I have forgotten my passcode to access my app,gemini,මගේ app එකට පිවිසීමට අවශ්‍ය passcode එක මට අමතක වී ඇත,sinhala,0.7380952380952381,False,0.91835684
+1579,Why did the ATM machine fail to give me a cash withdrawal?,gemini,ATM machine එකෙන් මුදල් ලබා ගැනීමට නොහැකි වුණේ ඇයි?,sinhala,0.7619047619047619,False,0.7769608
+1610,I made this payment days ago so why hasn't it gone through yet?,gemini,"මම මේ payment එක කරලා දවස් ගණනක් වෙනවා, ඉතින් තාම process වෙලා නැත්තේ ඇයි?",sinhala,0.7627118644067796,False,0.8920574
+1616,What is a pending payment?,gemini,pending payment එකක් යනු කුමක්ද?,sinhala,0.48148148148148145,False,0.88204026
+1619,My card payment is pending.,gemini,මගේ card payment එක pending තියෙනවා.,sinhala,0.4,False,0.91557276
+1626,"I was double charged, and the second charge is showing as ""pending"". How long will it be before I get my money back once the second charge has been refunded?",gemini,"මගෙන් දෙවරක් මුදල් අය කරලා, දෙවන අය කිරීම 'pending' ලෙස පෙන්වනවා. දෙවන අය කිරීම refund කළ පසු මගේ සල්ලි මට ලැබෙන්න කොච්චර කාලයක් යයිද?",sinhala,0.8773584905660378,False,0.8880279
+1659,"lost phone, can i still access account?",gemini,"ဖုန်း එක නැතිවුණා, මට තාමත් account එකට access කරන්න පුළුවන්ද?",sinhala,0.6470588235294118,False,0.93526417
+1685,I need a refund on an item I have not received.  Am I able to simply cancel the payment?  I don't know how to do this.,gemini,මට නොලැබුණු භාණ්ඩයක් සඳහා refund එකක් අවශ්‍යයි. මට සරලවම payment එක cancel කරන්න පුළුවන්ද? මම මේක කරන්නේ කොහොමද කියලා දන්නේ නැහැ.,sinhala,0.819047619047619,False,0.90628326
+1699,I bought something but now I would like a refund. How do I do that?,gemini,"මම දෙයක් මිලදී ගත්තා, ඒත් දැන් මට refund එකක් ඕනේ. මම ඒක කරන්නේ කොහොමද?",sinhala,0.8909090909090909,False,0.9090713
+1739,When I try and to buy something using my card it keeps getting declined.,gemini,මම card එක භාවිතා කරලා මොනවා හරි මිලදී ගන්න උත්සාහ කරනකොට ඒක දිගටම decline වෙනවා.,sinhala,0.8333333333333334,False,0.8985574
+1779,"i was supposed to get a refund but my balance hasn't changed, why not?",gemini,"මට refund එකක් ලැබෙන්න ඕනේ වුණත් මගේ balance එක වෙනස් වී නැහැ, ඒ ඇයි?",sinhala,0.7592592592592593,False,0.8898573
+1819,Why are you declining my payment? Everything was fine.,gemini,ඔබ මගේ payment එක decline කරන්නේ ඇයි? හැමදේම හොඳින් තිබුණා.,sinhala,0.7083333333333334,False,0.87831897
+1859,When will the transfer go through?,gemini,transfer එක process වෙන්නේ කවදාද?,sinhala,0.4642857142857143,False,0.85796744
+1899,How do I get rid of my account ASAP?,gemini,මගේ account එක ඉක්මනින්ම ඉවත් කරගන්නේ කොහොමද?,sinhala,0.8157894736842105,False,0.83582044
+1911,How do I delete my account?,gemini,මගේ account එක delete කරන්නේ කොහොමද?,sinhala,0.5666666666666667,False,0.9220849
+1934,My ATM got stuck and I'm not sure what to do.,gemini,"මගේ ATM එක හිරවුණා, මම දැන් මොකද කරන්නේ කියලා හරියටම දන්නේ නැහැ.",sinhala,0.9411764705882353,False,0.77220696
+1939,ATM still has my card,gemini,ATM එක තාමත් මගේ card එක තියාගෙන ඉන්නවා,sinhala,0.78125,False,0.879655
+1971,I have been charged twice,gemini,මගෙන් දෙවරක් මුදල් අය කර ඇත,sinhala,1.0,False,0.85539246
+1979,I had a duplicate card and got charged twice. How do I resolve this?,gemini,මං ළඟ duplicate card එකක් තිබී මගෙන් දෙවරක් අය කර ඇත. මම මේක විසඳා ගන්නේ කොහොමද?,sinhala,0.7936507936507936,False,0.9034734
+2019,What is the source of my money?,gemini,මගේ මුදල්වල මූලාශ්‍රය කුමක්ද?,sinhala,1.0,False,0.8504559
+2059,How many days does a transfer from the US take?,gemini,US වලින් කරන transfer එකකට දවස් කීයකුත් යනවද?,sinhala,0.7297297297297297,False,0.94334483
+2099,I think my card payment had been return,gemini,මගේ card payment එක return වෙලා වගේ,sinhala,0.41379310344827586,False,0.86433876
+2138,I want to choose a different PIN.,gemini,මට වෙනත් PIN එකක් තෝරා ගැනීමට අවශ්‍යයි.,sinhala,0.9032258064516129,False,0.8874613
+2139,I would like to change my pin.,gemini,මට PIN එක වෙනස් කරගන්න ඕනේ.,sinhala,0.8571428571428571,False,0.69403493
+2144,How do I change my PIN?,gemini,මගේ PIN එක වෙනස් කරන්නේ කොහොමද?,sinhala,0.88,False,0.9333863
+2170,Why can't I transfer to a beneficiary?,gemini,beneficiary කෙනෙක්ට transfer කරන්න බැත්තේ ඇයි?,sinhala,0.525,False,0.8224901
+2172,What's the deal with no cryptocurrency on your app?,gemini,ඔබේ app එකේ cryptocurrency නැත්තේ ඇයි?,sinhala,0.46875,False,0.8127397
+2179,The money would not transfer to a beneficiary.,gemini,සල්ලි beneficiary කෙනෙක්ට transfer වෙන්නේ නැහැ.,sinhala,0.5365853658536586,False,0.87061477
+2204,I had to pay in order to do a transfer,gemini,transfer එකක් කරන්න මට ගෙවීමක් කරන්න සිදු වුණා,sinhala,0.7948717948717948,False,0.9240564
+2219,I'm not sure why I was charged an extra fee for transferring funds.,gemini,මුදල් transfer කිරීම සඳහා මගෙන් අමතර fee එකක් අය කළේ ඇයිද යන්න મને විශ්වාස නැහැ.,sinhala,0.7846153846153846,False,0.84279406
+2240,Will salary be received through this?,gemini,මේක හරහා වැටුප ලැබෙයිද?,sinhala,1.0,False,0.91240466
+2259,How can my friend send me money?,gemini,මගේ යාළුවාට මට සල්ලි එවන්නේ කොහොමද?,sinhala,1.0,False,0.90457886
+2299,Why would a transfer fail?,gemini,transfer එකක් fail වෙන්න හේතුව මොකක්ද?,sinhala,0.625,False,0.880723
+2330,I NEED TO KNOW HOW TO TRANSFER MONEY INTO MY BANK ACCOUNT. PLEASE HELP,gemini,මගේ bank account එකට සල්ලි transfer කරන්නේ කොහොමද කියලා මම දැනගත යුතුයි. කරුණාකර උදව් කරන්න,sinhala,0.75,False,0.85111016
+2339,How can I transfer money from an outside bank?,gemini,පිටත bank එකකින් මුදල් transfer කරන්නේ කොහොමද?,sinhala,0.6923076923076923,False,0.90484613
+2347,How do I send my account money through transfer?,gemini,transfer එකක් හරහා මගේ account එකට සල්ලි යවන්නේ කොහොමද?,sinhala,0.6739130434782609,False,0.9073742
+2350,I want to transfer from accounts in order to Top up. What are the steps necessary.,gemini,Top up කිරීමට මට account වලින් transfer කරන්න අවශ්‍යයි. අවශ්‍ය පියවර මොනවාද?,sinhala,0.6721311475409836,False,0.8468037
+2379,How do I find the verification code for my top-up card?,gemini,මගේ top-up card එක සඳහා verification code එක හොයාගන්නේ කොහොමද?,sinhala,0.5098039215686274,False,0.90944386
+2419,May I have another card?,gemini,මට තව card එකක් ලබා ගන්න පුළුවන්ද?,sinhala,0.8518518518518519,False,0.9084449
+2459,"I want to top up using cash, where can I do that?",gemini,"මට cash භාවිතා කරලා top up කරන්න ඕනේ, මට ඒක කර හැක්කේ කොතනින්ද?",sinhala,0.8163265306122449,False,0.89693666
+2463,How can I top up with cash?,gemini,cash වලින් top up කරන්නේ කොහොමද?,sinhala,0.6538461538461539,False,0.8464602
+2489,Is there a charge for physical cards,gemini,physical cards සඳහා fee එකක් තියෙනවද?,sinhala,0.4838709677419355,False,0.86707675
+2499,Is a non-electronic card available as well,gemini,electronic නොවන card එකක්ද ලබා ගැනීමට හැකියාව තිබේද?,sinhala,0.6818181818181818,False,0.800294
+2539,How can I fix a problem where my virtual card is rejected?,gemini,virtual card එක reject වුණු ප්‍රශ්නයක් මම කොහොමද විසඳා ගන්නේ?,sinhala,0.66,False,0.88230157
+2555,Tell me why my virtual disposable card won't work.,gemini,මගේ virtual disposable card එක වැඩ නොකරන්නේ ඇයි කියලා මට කියන්න.,sinhala,0.6037735849056604,False,0.8778883
+2571,Is there a fee for exchanging cash?,gemini,cash මාරු කිරීම සඳහා fee එකක් අය කෙරේද?,sinhala,0.7741935483870968,False,0.8245579
+2579,Can I make a withdraw if I am out of country from with out any fees at an ATM?,gemini,මම රටින් පිටත සිටින විට ATM එකකින් කිසිදු fee එකක් නොමැතිව මුදල් withdraw කරගන්න පුළුවන්ද?,sinhala,0.8133333333333334,False,0.8700739
+2613,how secure is a disposable virtual card,gemini,disposable virtual card එකක් කොතරම් ආරක්ෂිතද?,sinhala,0.46153846153846156,False,0.8972888
+2618,May I get a disposable virtual card as well?,gemini,මටත් disposable virtual card එකක් ලබා ගැනීමට පුළුවන්ද?,sinhala,0.5434782608695652,False,0.90655494
+2619,Can i get a single use virtual card,gemini,single use virtual card එකක් ලබා ගන්න පුළුවන්ද?,sinhala,0.48717948717948717,False,0.91990286
+2659,I topped up but the app did not accept it.,gemini,මම top up කළත් app එක ඒක පිළිගත්තේ නැහැ.,sinhala,0.7419354838709677,False,0.87081134
+2699,My bank transfer is still not showing up in my account.,gemini,මගේ bank transfer එක තාමත් මගේ account එකේ පෙන්වන්නේ නැහැ.,sinhala,0.6041666666666666,False,0.907581
+2710,"I made a bank transfer a couple of hours ago from my local bank account.  It hasn't appeared, can you check to make sure it went through?",gemini,"මම මගේ local bank account එකෙන් මීට පැය කිහිපයකට පෙර bank transfer එකක් කළා. ඒක පෙන්වන්නේ නැහැ, ඒක හරියටම ගියාද කියලා චෙක් කරලා බලන්න පුළුවන්ද?",sinhala,0.7586206896551724,False,0.8939121
+2733,I have a strange cash withdrawal in my statement,gemini,මගේ statement එකේ අමුතු cash withdrawal එකක් තියෙනවා,sinhala,0.4888888888888889,False,0.8864738
+2739,"It looks like someone else withdrew cash from my account, can you help?",gemini,"වෙන කෙනෙක් මගේ account එකෙන් cash withdraw කරලා වගේ පෙනෙන්නේ, ඔබට උදව් කරන්න පුළුවන්ද?",sinhala,0.7323943661971831,False,0.88335353
+2749,What do I do if I notice a strange withdrawl in my statement?,gemini,මගේ statement එකේ අමුතු withdrawal එකක් මම දුටුවොත් මම කුමක් කළ යුතුද?,sinhala,0.6724137931034483,False,0.8991878
+2773,Does it cost extra to exchange currencies?,gemini,currencies මාරු කිරීම සඳහා අමතර මුදලක් අය කෙරේද?,sinhala,0.75,False,0.8740938
+2779,"If I want to exchange currency, will there be extras?",gemini,"මම currency එකක් මාරු කිරීමට අදහස් කරන්නේ නම්, අමතර ගාස්තු අය වේද?",sinhala,0.8490566037735849,False,0.77007854
+2803,Any hidden fees associated with the international card if money is added?,gemini,මුදල් එකතු කළහොත් international card එකට අදාළව hidden fees මොනවාද?,sinhala,0.5178571428571429,False,0.8763963
+2819,Will I be charged if I use foreign bank card for top up?,gemini,top up කිරීම සඳහා வெளிநாட்டு bank card එකක් භාවිතා කළහොත් මගෙන් fee එකක් අය කරයිද?,sinhala,0.6119402985074627,False,0.88210297
+2858,I tried activating my bill of fare and it didn't workplace,gemini,මම card එක activate කරන්න උත්සාහ කළත් ඒක වැඩ කළේ නැහැ,sinhala,0.7209302325581395,False,0.70792043
+2859,"I just got my card and want to use it, how do I activate my card?",gemini,"මට දැන් තමයි card එක ලැබුණේ, මට ඒක භාවිතා කරන්න ඕනේ, card එක activate කරන්නේ කොහොමද?",sinhala,0.7575757575757576,False,0.8618178
+2860,I have a new card and I want to activate it,gemini,"මං ළඟ අලුත් card එකක් තියෙනවා, මට ඒක activate කරගන්න ඕනේ",sinhala,0.7333333333333333,False,0.91120684
+2899,"I've notice I was charged for withdrawing cash, can you explain why?",gemini,"cash withdraw කිරීම සඳහා මගෙන් fee එකක් අය කර ඇති බව මම දුටුවෙමි, ඒ ඇයිද යන්න පැහැදිලි කළ හැකිද?",sinhala,0.8026315789473685,False,0.8221759
+2939,"I will need to get a new card soon, how do I order?",gemini,"මට ඉක්මනින්ම අලුත් card එකක් ලබා ගැනීමට අවශ්‍ය වේ, මම ඒක ඕඩර් කරන්නේ කොහොමද?",sinhala,0.9333333333333333,False,0.89798045
+2979,My top up is not working in Apple Pay.,gemini,මගේ top-up එක Apple Pay හරහා වැඩ කරන්නේ නැහැ.,sinhala,0.6285714285714286,False,0.90502024
+3019,What are the steps to verify my identity?,gemini,මගේ අනන්‍යතාවය තහවුරු කිරීම සඳහා අනුගමනය කළ යුතු පියවර මොනවාද?,sinhala,1.0,False,0.9261884
+3051,Where do I need to live to get support?,gemini,සහය ලබා ගැනීමට මම ජීවත් විය යුත්තේ කොහේද?,sinhala,1.0,False,0.9141077
+3059,Can I get a card even if I live outside Sri Lanka?,gemini,මම ශ්‍රී ලංකාවෙන් පිටත ජීවත් වුණත් මට card එකක් ලබා ගන්න පුළුවන්ද?,sinhala,0.9245283018867925,False,0.86410123
+14,I am still waiting for my card after 1 week.  Is this ok?,openai,සතියක් ගත වෙලාත් මගේ card එක තාම ලැබුණේ නැහැ. මේක හරිද?,sinhala,0.9069767441860465,False,0.72604924
+19,My card still hasn't arrived after 2 weeks. Is it lost?,openai,සති 2ක් ගත වෙලාත් මගේ card එක තාම ආවේ නැහැ. ඒක නැති වෙලාද?,sinhala,0.9069767441860465,False,0.9075791
+45,"I received my new card, but I don't see it in the app anywhere.  What do I do?",openai,"මගේ අලුත් card එක ලැබුණා, ඒත් app එකේ කොහෙවත් ඒක පෙන්නන්නේ නැහැ. මම මොකද කරන්නේ?",sinhala,0.8888888888888888,False,0.8803605
+52,How do I link one your card if I have one already?,openai,"මට දැනටමත් එකක් තියෙනවා නම්, ඔයාලගේ card එකක් link කරන්නේ කොහොමද?",sinhala,0.8490566037735849,False,0.9022534
+53,How do I add a card to the app?,openai,app එකට card එකක් add කරන්නේ කොහොමද?,sinhala,0.6551724137931034,False,0.92407763
+59,"I found my card, can I add it to the app?",openai,"මගේ card එක හම්බුණා, ඒක app එකට add කරන්න පුළුවන්ද?",sinhala,0.75,False,0.8968159
+65,how do I link an already existing card?,openai,දැනටමත් තියෙන card එකක් link කරන්නේ කොහොමද?,sinhala,0.7777777777777778,False,0.92922986
+99,Where do you get your exchange rates from?,openai,ඔයාලගේ exchange rates එන්නේ කොහෙන්ද?,sinhala,0.5806451612903226,False,0.8856086
+139,I purchased an item and the exchange rate I was given was incorrect.,openai,"මම item එකක් ගත්තා, ඒකට දීලා තිබුණු exchange rate එක වැරදියි.",sinhala,0.673469387755102,False,0.8663718
+156,How can I check the exchange rate applied to my transaction?,openai,මගේ transaction එකට apply වෙලා තියෙන exchange rate එක බලන්නේ කොහොමද?,sinhala,0.5087719298245614,False,0.8891001
+179,What would be the reason there's an extra fee on my statement?,openai,මගේ statement එකේ extra fee එකක් තියෙන්නේ ඇයි?,sinhala,0.5526315789473685,False,0.842674
+199,Can you please check why I am having this extra fee on my statement.,openai,මගේ statement එකේ මේ extra fee එකක් තියෙන්නේ ඇයි කියලා check කරලා දෙන්න පුළුවන්ද?,sinhala,0.6716417910447762,False,0.87464243
+208,Why is my withdrawal still pending?,openai,මගේ withdrawal එක තාම pending වෙලා තියෙන්නේ ඇයි?,sinhala,0.575,False,0.93845296
+219,"Hey, my card was declined at an ATM in the city centre theatre. My account says the transaction is pending, though. I didn't get the money, though, so what does that mean?",openai,"මගේ card එක city centre theatre එකේ ATM එකකදී decline වුණා. ඒත් account එකේ transaction එක pending කියලා තියෙනවා. මට සල්ලිත් ලැබුණේ නැහැ, ඒකෙන් අදහස් වෙන්නේ මොකක්ද?",sinhala,0.582089552238806,False,0.9086868
+257,"When considering currency holdings and exchanges, what fiat currencies are supported?",openai,"currency holdings සහ exchanges ගැන බලද්දි, මොන fiat currencies support කරනවද?",sinhala,0.2923076923076923,False,0.9092839
+259,Can I hold money in other currencies?,openai,වෙනත් currencies වලින් සල්ලි තියාගන්න පුළුවන්ද?,sinhala,0.7560975609756098,False,0.915871
+273,Can I hold money in multiple currencies?,openai,currencies කිහිපයකින් සල්ලි තියාගන්න පුළුවන්ද?,sinhala,0.7560975609756098,False,0.9077223
+296,I need it delivered on a certain date.,openai,මට ඒක නිශ්චිත date එකකට deliver කරගන්න ඕනේ.,sinhala,0.6857142857142857,False,0.90137243
+298,How long does it take to get my card? Can I choose when to receive it?,openai,card එක ලැබෙන්න කොච්චර කල් යනවද? මට ඒක ලැබෙන දවස තෝරන්න පුළුවන්ද?,sinhala,0.9230769230769231,False,0.8449751
+299,How long will it take for the card to arrive?,openai,card එක එන්න කොච්චර කල් යනවද?,sinhala,0.8260869565217391,False,0.9058168
+304,When will the card arrive?,openai,card එක එන්නේ කවද්ද?,sinhala,0.75,False,0.8932568
+306,When are cards delivered?,openai,cards deliver කරන්නේ කවද්ද?,sinhala,0.4782608695652174,False,0.9369242
+330,"Where can I find the ""auto-top"" feature?",openai,'auto-top' feature එක හොයාගන්නේ කොහෙන්ද?,sinhala,0.5625,False,0.89486194
+339,How do I make sure I don't run out of money on my card while traveling?,openai,travel කරනකොට මගේ card එකේ සල්ලි ඉවර නොවෙන්න මම කොහොමද බලාගන්නේ?,sinhala,0.8113207547169812,False,0.8855916
+379,How can I resolve a problem where my card won't go through at all?,openai,"මගේ card එක කිසිම තැනක වැඩ නොකරන ප්‍රශ්නයක් තියෙනවා, ඒක හදාගන්නේ කොහොමද?",sinhala,0.9310344827586207,False,0.7977772
+403,How do I change LKR to USD?,openai,LKR USD වලට change කරන්නේ කොහොමද?,sinhala,0.5555555555555556,False,0.95894045
+418,Can I change to another currency?,openai,වෙනත් currency එකකට change කරන්න පුළුවන්ද?,sinhala,0.6111111111111112,False,0.93789107
+419,"I need USD not LKR, how do I change it?",openai,"මට LKR නෙමෙයි USD ඕනේ, ඒක change කරන්නේ කොහොමද?",sinhala,0.6756756756756757,False,0.9471947
+459,I need help with a lost card,openai,නැතිවුණු card එකක් ගැන මට help එකක් ඕනේ,sinhala,0.75,False,0.9328815
+484,How old do we have to be?,openai,අපිට වයස කීය වෙන්න ඕනෙද?,sinhala,1.0,False,0.8944417
+499,If my kids wanted to use your service how old would they have to be?,openai,"මගේ ළමයින්ට ඔයාලගේ service එක use කරන්න ඕනේ නම්, එයාලට වයස කීය වෙන්න ඕනෙද?",sinhala,0.8305084745762712,False,0.92191124
+534,What do I do if the bank machine won't accept my PIN attempts anymore?,openai,ATM එක මගේ PIN එකේ attempts තවදුරටත් accept කරන්නේ නැත්නම් මම මොකද කරන්නේ?,sinhala,0.6721311475409836,False,0.83997834
+539,I'v exhausted all the of times I can try my PIN,openai,මගේ PIN එක try කරන්න තිබුණු අවස්ථා ඔක්කොම ඉවරයි,sinhala,0.8461538461538461,False,0.86924565
+579,Can you help my fix my contactless?,openai,මගේ contactless එක හදාගන්න උදව් කරන්න පුළුවන්ද?,sinhala,0.725,False,0.9028273
+619,Will topping up by transfer lead to a charge on my account?,openai,transfer එකකින් top up කළොත් මගේ account එකට charge එකක් එනවද?,sinhala,0.49019607843137253,False,0.8656461
+628,Will I be charged for a SEPA transfer?,openai,SEPA transfer එකකට මගෙන් charge කරනවද?,sinhala,0.4375,False,0.92835563
+659,"I topped up by card a while ago and it's still pending, surely it should be done by now?",openai,"මම ටික වෙලාවකට කලින් card එකෙන් top up කළා, තාම pending. දැන් වෙනකොට ඒක complete වෙලා තියෙන්න ඕනේ නේද?",sinhala,0.7037037037037037,False,0.8715187
+661,top up did not complete,openai,top up එක complete වුණේ නැහැ,sinhala,0.43478260869565216,False,0.9583676
+699,Can I cancel a transfer if is already processed?,openai,transfer එක process වෙලා ඉවර නම් ඒක cancel කරන්න පුළුවන්ද?,sinhala,0.5625,False,0.87615204
+736,Tell me if there are any top-up limits?,openai,top-up limits තියෙනවද කියලා කියන්න.,sinhala,0.6206896551724138,False,0.8639785
+739,Can I top-up as much as I want?,openai,මට ඕන තරම් top-up කරන්න පුළුවන්ද?,sinhala,0.8076923076923077,False,0.8449721
+746,Do you have a top-up limit?,openai,top-up limit එකක් තියෙනවද?,sinhala,0.5238095238095238,False,0.89065063
+765,The amount of cash I received was incorrect,openai,මට ලැබුණු cash amount එක වැරදියි,sinhala,0.6296296296296297,False,0.8997881
+779,"I tried to get Rs 100,000 but I just got Rs 20,000",openai,"මම Rs 100,000 ගන්න try කළා, ඒත් ලැබුණේ Rs 20,000 විතරයි",sinhala,0.7741935483870968,False,0.9162439
+792,I didn't receive all the cash I asked for,openai,මම ඉල්ලපු cash ඔක්කොම ලැබුණේ නැහැ,sinhala,0.8571428571428571,False,0.9492424
+801,I was charged a fee after using my card and I shouldn't have been.,openai,"card එක use කළාට පස්සේ fee එකක් charge කරලා තියෙනවා, ඒක charge කරන්න ඕනේ නැහැ.",sinhala,0.6451612903225806,False,0.76430774
+819,Why would I be charged a fee for card payment?,openai,card payment එකකට මගෙන් fee එකක් charge කරන්නේ ඇයි?,sinhala,0.5238095238095238,False,0.8636688
+859,I sent money.  They haven't received it.,openai,මම සල්ලි යැව්වා. එයාට තාම ලැබිලා නැහැ.,sinhala,1.0,False,0.88550055
+864,Where is the transaction I made to a friend?,openai,මම යාළුවෙකුට කරපු transaction එක කොහෙද?,sinhala,0.6666666666666666,False,0.9195726
+899,How can I use American Express to add money to my account?,openai,American Express එකෙන් මගේ account එකට සල්ලි add කරන්නේ කොහොමද?,sinhala,0.5283018867924528,False,0.88151
+923,Is there an option to have a virtual card?,openai,virtual card එකක් ගන්න option එකක් තියෙනවද?,sinhala,0.5277777777777778,False,0.9032026
+935,Is this where I order a virtual card?,openai,virtual card එකක් order කරන්නේ මෙතනින්ද?,sinhala,0.5294117647058824,False,0.88353205
+939,Where can I order a virtual card?,openai,virtual card එකක් order කරන්නේ කොහෙන්ද?,sinhala,0.5151515151515151,False,0.8931001
+979,"I am traveling to Germany, Will I be able to use my card there?",openai,මම Germany වලට travel කරනවා. එහේ මගේ card එක use කරන්න පුළුවන්ද?,sinhala,0.6078431372549019,False,0.8322573
+1019,I went to top up and it is no longer there.  Was it sent back?,openai,"මම top up කරන්න ගියා, දැන් ඒක නැහැ. ඒක ආපහු යවලාද?",sinhala,0.8648648648648649,False,0.8584212
+1027,The app reverted my action when I topped up.,openai,මම top up කළාම app එක මගේ action එක revert කළා.,sinhala,0.4444444444444444,False,0.86743486
+1031,has my top-up has been cancelled,openai,මගේ top-up එක cancel වෙලාද?,sinhala,0.47619047619047616,False,0.84506655
+1059,"I Submitted a cheque couple days ago, nothing happened to my account yet.Would you please check What could be the possible issue?",openai,"මම දවස් දෙකකට කලින් cheque එකක් submit කළා, ඒත් තාම මගේ account එකේ කිසිම දෙයක් වෙලා නැහැ. කරුණාකර check කරලා ප්‍රශ්නය මොකක්ද කියලා බලන්න පුළුවන්ද?",sinhala,0.7983193277310925,False,0.84465045
+1099,Payment i did not do,openai,මම නොකළ payment එකක්,sinhala,0.5882352941176471,False,0.8706534
+1106,I'm not familiar with a card payment.,openai,card payment එකක් ගැන මට හඳුනන්නේ නැහැ.,sinhala,0.65625,False,0.89042497
+1119,In my statement there is a payment that is I do not recognize,openai,මගේ statement එකේ මම හඳුනාගන්නෙ නැති payment එකක් තියෙනවා,sinhala,0.673469387755102,False,0.90268683
+1139,How can I modify my details?,openai,මගේ details වෙනස් කරන්නේ කොහොමද?,sinhala,0.7407407407407407,False,0.92494607
+1179,Do I need to verify my identity to use my account?,openai,මගේ account එක use කරන්න identity verify කරන්න ඕනෙද?,sinhala,0.4418604651162791,False,0.8945757
+1219,I can not get the app to know it is me.,openai,app එකට මම තමයි කියලා verify කරගන්න බැහැ.,sinhala,0.7272727272727273,False,0.7444946
+1227,How do I show this stupid system that this is really my identity?,openai,මේක ඇත්තටම මගේ identity එක කියලා මේ මෝඩ system එකට පෙන්නන්නේ කොහොමද?,sinhala,0.75,False,0.89194345
+1259,what is the process for setting up a pin,openai,PIN එකක් set up කරන්නේ කොහොමද?,sinhala,0.6666666666666666,False,0.7086558
+1274,I can not find my card pin.,openai,මගේ card PIN එක හොයාගන්න බැහැ.,sinhala,0.7083333333333334,False,0.82678384
+1276,Why can't I find my PIN?,openai,මගේ PIN එක හොයාගන්න බැරි ඇයි?,sinhala,0.8695652173913043,False,0.93640155
+1299,Am I able to choose my card?,openai,මට මගේ card එක තෝරගන්න පුළුවන්ද?,sinhala,0.8461538461538461,False,0.8885232
+1304,Do I get to choose between Visa and Mastercard?,openai,Visa සහ Mastercard අතරින් මට තෝරගන්න පුළුවන්ද?,sinhala,0.6410256410256411,False,0.9174405
+1332,how can i top up?,openai,top up කරන්නේ කොහොමද?,sinhala,0.7058823529411765,False,0.85572904
+1339,Will my friend be able to top off my account?,openai,මගේ යාළුවාට මගේ account එක top up කරන්න පුළුවන්ද?,sinhala,0.7,False,0.85373926
+1371,How many card payments can I use on a disposable card?,openai,disposable card එකකින් card payments කීයක් කරන්න පුළුවන්ද?,sinhala,0.48,False,0.90665007
+1379,I have to have several disposable cards per day.,openai,මට දවසකට disposable cards කිහිපයක් ඕනේ.,sinhala,0.5454545454545454,False,0.8617075
+1395,Do you know what the restriction of the disposable cards are?,openai,disposable cards වල restrictions මොනවද කියලා දන්නවද?,sinhala,0.4,False,0.9036256
+1396,What are the limits for disposable virtual cards?,openai,disposable virtual cards වල limits මොනවද?,sinhala,0.2,False,0.93238986
+1419,"I see random purchases to my account, was it hacked?",openai,"මගේ account එකේ අහඹු purchases පේනවා, ඒක hacked වෙලාද?",sinhala,0.5,False,0.8842819
+1446,Which ATM's accept my card?,openai,මගේ card එක accept කරන ATMs මොනවද?,sinhala,0.48148148148148145,False,0.8801249
+1448,Where are the locations of ATMs that accept this card?,openai,මේ card එක accept කරන ATMs තියෙන locations කොහෙද?,sinhala,0.425,False,0.91586316
+1474,At which ATMs can I use this card?,openai,මට මේ card එක use කරන්න පුළුවන් ATMs මොනවද?,sinhala,0.6764705882352942,False,0.8856042
+1499,"A couple weeks ago some money was deducted from my account by some seller that I don't remember. I'm pretty sure I didn't do that, but is it possible to trace back who that is just to make sure?",openai,"සති දෙකකට විතර කලින් මම මතක නැති seller කෙනෙක් මගේ account එකෙන් සල්ලි අඩු කරලා තියෙනවා. මම ඒක කළේ නැහැ කියලා මට හොඳටම විශ්වාසයි, ඒත් ඒ seller කවුද කියලා trace කරලා බලන්න පුළුවන්ද?",sinhala,0.8344827586206897,False,0.8593491
+1539,I have forgotten my passcode to access my app,openai,මගේ app එකට access වෙන්න ඕන passcode එක මට අමතක වෙලා.,sinhala,0.5952380952380952,False,0.9033552
+1579,Why did the ATM machine fail to give me a cash withdrawal?,openai,ATM machine එක cash withdrawal එකක් දෙන්නේ නැත්තේ ඇයි?,sinhala,0.4666666666666667,False,0.8152152
+1610,I made this payment days ago so why hasn't it gone through yet?,openai,"මම මේ payment එක දවස් ගාණකට කලින් කළා, එහෙනම් තාම ඒක go through වෙලා නැත්තේ ඇයි?",sinhala,0.746031746031746,False,0.95136636
+1616,What is a pending payment?,openai,pending payment කියන්නේ මොකක්ද?,sinhala,0.48148148148148145,False,0.9105128
+1619,My card payment is pending.,openai,මගේ card payment එක pending.,sinhala,0.21739130434782608,False,0.9083061
+1626,"I was double charged, and the second charge is showing as ""pending"". How long will it be before I get my money back once the second charge has been refunded?",openai,"මගෙන් දෙපාරක් charge කරලා, දෙවැනි charge එක 'pending' කියලා පෙන්නනවා. දෙවැනි charge එක refund කළාට පස්සේ මගේ සල්ලි ආපහු ලැබෙන්න කොච්චර කල් යනවද?",sinhala,0.7350427350427351,False,0.901568
+1659,"lost phone, can i still access account?",openai,"phone එක නැති වුණා, මට තාම account එකට access වෙන්න පුළුවන්ද?",sinhala,0.6326530612244898,False,0.9490149
+1685,I need a refund on an item I have not received.  Am I able to simply cancel the payment?  I don't know how to do this.,openai,මට නොලැබුණු item එකකට refund එකක් ඕනේ. Payment එක cancel කරලා විතරක් මේක කරන්න පුළුවන්ද? ඒක කරන්නේ කොහොමද කියලා දන්නේ නැහැ.,sinhala,0.77,False,0.92154926
+1699,I bought something but now I would like a refund. How do I do that?,openai,"මම දෙයක් ගත්තා, ඒත් දැන් refund එකක් ඕනේ. ඒක කරන්නේ කොහොමද?",sinhala,0.8695652173913043,False,0.89974153
+1739,When I try and to buy something using my card it keeps getting declined.,openai,මගේ card එකෙන් දෙයක් ගන්න try කරන හැම වෙලාවෙම ඒක decline වෙනවා.,sinhala,0.7254901960784313,False,0.7979237
+1779,"i was supposed to get a refund but my balance hasn't changed, why not?",openai,"මට refund එකක් ලැබෙන්න තිබුණා, ඒත් මගේ balance එක වෙනස් වෙලා නැහැ, ඇයි?",sinhala,0.7678571428571429,False,0.91612417
+1819,Why are you declining my payment? Everything was fine.,openai,මගේ payment එක decline කරන්නේ ඇයි? හැම දෙයක්ම හොඳින් තිබුණා.,sinhala,0.7142857142857143,False,0.89585376
+1859,When will the transfer go through?,openai,transfer එක go through වෙන්නේ කවද්ද?,sinhala,0.43333333333333335,False,0.9362782
+1899,How do I get rid of my account ASAP?,openai,මගේ account එක ASAP close කරන්නේ කොහොමද?,sinhala,0.5151515151515151,False,0.82815784
+1911,How do I delete my account?,openai,මගේ account එක delete කරන්නේ කොහොමද?,sinhala,0.5666666666666667,False,0.9220849
+1934,My ATM got stuck and I'm not sure what to do.,openai,"මගේ card එක ATM එකේ හිරවෙලා, මම මොකද කරන්න ඕනේ කියලා sure නැහැ.",sinhala,0.7755102040816326,False,0.7545198
+1939,ATM still has my card,openai,ATM එක තාම මගේ card එක තියාගෙන ඉන්නවා,sinhala,0.7666666666666667,False,0.89579093
+1971,I have been charged twice,openai,මගෙන් දෙපාරක් charge කරලා තියෙනවා,sinhala,0.7931034482758621,False,0.9021965
+1979,I had a duplicate card and got charged twice. How do I resolve this?,openai,මගේ card එක duplicate වෙලා දෙපාරක් charge වෙලා තියෙනවා. මේක resolve කරන්නේ කොහොමද?,sinhala,0.6176470588235294,False,0.8604615
+2019,What is the source of my money?,openai,මගේ සල්ලි ආවේ කොහෙන්ද?,sinhala,1.0,False,0.71958065
+2059,How many days does a transfer from the US take?,openai,US එකෙන් transfer එකක් එන්න දවස් කීයක් යනවද?,sinhala,0.7222222222222222,False,0.9405389
+2099,I think my card payment had been return,openai,මගේ card payment එක return වෙලා වගේ.,sinhala,0.41379310344827586,False,0.81940687
+2138,I want to choose a different PIN.,openai,මට වෙන PIN එකක් තෝරගන්න ඕනේ.,sinhala,0.8636363636363636,False,0.87835836
+2139,I would like to change my pin.,openai,මගේ PIN එක වෙනස් කරන්න ඕනේ.,sinhala,0.8571428571428571,False,0.6826056
+2144,How do I change my PIN?,openai,මගේ PIN එක වෙනස් කරන්නේ කොහොමද?,sinhala,0.88,False,0.9333863
+2170,Why can't I transfer to a beneficiary?,openai,beneficiary කෙනෙක්ට transfer කරන්න බැරි ඇයි?,sinhala,0.5,False,0.8617527
+2172,What's the deal with no cryptocurrency on your app?,openai,ඔයාලගේ app එකේ cryptocurrency නැත්තේ මොකක්ද?,sinhala,0.5526315789473685,False,0.888161
+2179,The money would not transfer to a beneficiary.,openai,beneficiary කෙනෙක්ට සල්ලි transfer වෙන්නේ නැහැ.,sinhala,0.5365853658536586,False,0.8469194
+2204,I had to pay in order to do a transfer,openai,transfer එකක් කරන්න මට ගෙවීමක් කරන්න සිද්ධ වුණා,sinhala,0.8,False,0.9250196
+2219,I'm not sure why I was charged an extra fee for transferring funds.,openai,funds transfer කළාට extra fee එකක් charge කරලා තියෙන්නේ ඇයි කියලා මට තේරෙන්නේ නැහැ.,sinhala,0.6086956521739131,False,0.8481295
+2240,Will salary be received through this?,openai,මේක හරහා salary එක receive කරන්න පුළුවන්ද?,sinhala,0.6285714285714286,False,0.85394186
+2259,How can my friend send me money?,openai,මගේ යාළුවාට මට සල්ලි එවන්න පුළුවන්ද?,sinhala,1.0,False,0.80513555
+2299,Why would a transfer fail?,openai,transfer එකක් fail වෙන්නේ ඇයි?,sinhala,0.52,False,0.9041467
+2330,I NEED TO KNOW HOW TO TRANSFER MONEY INTO MY BANK ACCOUNT. PLEASE HELP,openai,මගේ bank account එකට සල්ලි transfer කරන්නේ කොහොමද කියලා දැනගන්න ඕනේ. PLEASE HELP,sinhala,0.5671641791044776,False,0.8675688
+2339,How can I transfer money from an outside bank?,openai,පිටත bank එකකින් සල්ලි transfer කරන්නේ කොහොමද?,sinhala,0.6923076923076923,False,0.9060201
+2347,How do I send my account money through transfer?,openai,transfer එකක් හරහා මගේ account එකේ සල්ලි යවන්නේ කොහොමද?,sinhala,0.6739130434782609,False,0.91086435
+2350,I want to transfer from accounts in order to Top up. What are the steps necessary.,openai,accounts වලින් transfer කරලා Top up කරන්න ඕනේ. ඒකට කරන්න ඕන steps මොනවද?,sinhala,0.5517241379310345,False,0.82612383
+2379,How do I find the verification code for my top-up card?,openai,මගේ top-up card එකේ verification code එක හොයාගන්නේ කොහොමද?,sinhala,0.4791666666666667,False,0.9071167
+2419,May I have another card?,openai,මට තවත් card එකක් ගන්න පුළුවන්ද?,sinhala,0.8461538461538461,False,0.9113603
+2459,"I want to top up using cash, where can I do that?",openai,"cash use කරලා top up කරන්න ඕනේ, ඒක කරන්න පුළුවන් කොහෙද?",sinhala,0.7209302325581395,False,0.8858052
+2463,How can I top up with cash?,openai,cash වලින් top up කරන්නේ කොහොමද?,sinhala,0.6538461538461539,False,0.8464602
+2489,Is there a charge for physical cards,openai,physical cards වලට charge එකක් තියෙනවද?,sinhala,0.42424242424242425,False,0.8669998
+2499,Is a non-electronic card available as well,openai,electronic නොවන card එකක්ත් available ද?,sinhala,0.3235294117647059,False,0.8215797
+2539,How can I fix a problem where my virtual card is rejected?,openai,මගේ virtual card එක reject වෙන ප්‍රශ්නය හදාගන්නේ කොහොමද?,sinhala,0.6304347826086957,False,0.851995
+2555,Tell me why my virtual disposable card won't work.,openai,මගේ virtual disposable card එක වැඩ නොකරන්නේ ඇයි කියලා කියන්න.,sinhala,0.5882352941176471,False,0.8904116
+2571,Is there a fee for exchanging cash?,openai,cash exchange කරන්න fee එකක් තියෙනවද?,sinhala,0.5161290322580645,False,0.8990059
+2579,Can I make a withdraw if I am out of country from with out any fees at an ATM?,openai,රටින් පිට ඉන්නකොට ATM එකකින් කිසිම fee එකක් නැතුව withdraw කරන්න පුළුවන්ද?,sinhala,0.7741935483870968,False,0.8849825
+2613,how secure is a disposable virtual card,openai,disposable virtual card එක කොච්චර secure ද?,sinhala,0.25,False,0.9045106
+2618,May I get a disposable virtual card as well?,openai,මට disposable virtual card එකකුත් ගන්න පුළුවන්ද?,sinhala,0.4878048780487805,False,0.9119009
+2619,Can i get a single use virtual card,openai,single-use virtual card එකක් ගන්න පුළුවන්ද?,sinhala,0.4444444444444444,False,0.9135136
+2659,I topped up but the app did not accept it.,openai,"මම top up කළා, ඒත් app එක ඒක accept කළේ නැහැ.",sinhala,0.5757575757575758,False,0.8980803
+2699,My bank transfer is still not showing up in my account.,openai,මගේ bank transfer එක තාම මගේ account එකේ පෙන්නන්නේ නැහැ.,sinhala,0.5869565217391305,False,0.91148144
+2710,"I made a bank transfer a couple of hours ago from my local bank account.  It hasn't appeared, can you check to make sure it went through?",openai,"මම පැය දෙකකට විතර කලින් මගේ local bank account එකෙන් bank transfer එකක් කළා. ඒක තාම පෙන්නන්නේ නැහැ, ඒක ගිහින්ද කියලා check කරලා දෙන්න පුළුවන්ද?",sinhala,0.7155172413793104,False,0.8821958
+2733,I have a strange cash withdrawal in my statement,openai,මගේ statement එකේ අමුතු cash withdrawal එකක් තියෙනවා,sinhala,0.4888888888888889,False,0.8864738
+2739,"It looks like someone else withdrew cash from my account, can you help?",openai,"වෙන කෙනෙක් මගේ account එකෙන් cash withdraw කරලා වගේ, මට උදව් කරන්න පුළුවන්ද?",sinhala,0.6935483870967742,False,0.8395364
+2749,What do I do if I notice a strange withdrawl in my statement?,openai,මගේ statement එකේ අමුතු withdrawal එකක් දැක්කොත් මම මොකද කරන්නේ?,sinhala,0.6481481481481481,False,0.91105497
+2773,Does it cost extra to exchange currencies?,openai,currencies exchange කරන්න extra cost එකක් තියෙනවද?,sinhala,0.37209302325581395,False,0.90526634
+2779,"If I want to exchange currency, will there be extras?",openai,මට currency exchange කරන්න ඕනේ නම් extra charges තියෙනවද?,sinhala,0.4166666666666667,False,0.81428486
+2803,Any hidden fees associated with the international card if money is added?,openai,international card එකට සල්ලි add කළාම hidden fees තියෙනවද?,sinhala,0.3877551020408163,False,0.87769955
+2819,Will I be charged if I use foreign bank card for top up?,openai,foreign bank card එකකින් top up කළොත් මගෙන් charge කරනවද?,sinhala,0.44680851063829785,False,0.8749164
+2858,I tried activating my bill of fare and it didn't workplace,openai,"මගේ card එක activate කරන්න try කළා, ඒත් ඒක වැඩ කළේ නැහැ",sinhala,0.6511627906976745,False,0.738521
+2859,"I just got my card and want to use it, how do I activate my card?",openai,"මට දැන් card එක ලැබුණා, ඒක use කරන්න ඕනේ. card එක activate කරන්නේ කොහොමද?",sinhala,0.6666666666666666,False,0.84101504
+2860,I have a new card and I want to activate it,openai,"මට අලුත් card එකක් තියෙනවා, ඒක activate කරන්න ඕනේ",sinhala,0.7,False,0.9060254
+2899,"I've notice I was charged for withdrawing cash, can you explain why?",openai,cash withdraw කළාට මගෙන් charge කරලා තියෙනවා. ඇයි කියලා පැහැදිලි කරන්න පුළුවන්ද?,sinhala,0.7313432835820896,False,0.851673
+2939,"I will need to get a new card soon, how do I order?",openai,"මට ඉක්මනින් අලුත් card එකක් ගන්න ඕනේ, ඒක order කරන්නේ කොහොමද?",sinhala,0.8163265306122449,False,0.91012096
+2979,My top up is not working in Apple Pay.,openai,මගේ top up එක Apple Pay එකෙන් වැඩ කරන්නේ නැහැ.,sinhala,0.6388888888888888,False,0.91575646
+3019,What are the steps to verify my identity?,openai,මගේ identity එක verify කරන්න තියෙන steps මොනවද?,sinhala,0.5128205128205128,False,0.94886714
+3051,Where do I need to live to get support?,openai,support ගන්න මම ජීවත් වෙන්න ඕනේ කොහෙද?,sinhala,0.7741935483870968,False,0.902653
+3059,Can I get a card even if I live outside Sri Lanka?,openai,මම Sri Lanka වලින් පිට ජීවත් වුණත් card එකක් ගන්න පුළුවන්ද?,sinhala,0.75,False,0.8729551
+14,I am still waiting for my card after 1 week.  Is this ok?,gptoss,මට තවදුරටත් 1 සතියක් පසු කාඩ් එක ලැබෙන්නේ නැහැ. මේක හරිද?,sinhala,1.0,False,0.8018915
+19,My card still hasn't arrived after 2 weeks. Is it lost?,gptoss,මගේ කාඩ් එක 2 සතියක් පසුදත් ලැබෙන්නේ නැහැ. අහිමිද?,sinhala,1.0,False,0.8876178
+45,"I received my new card, but I don't see it in the app anywhere.  What do I do?",gptoss,"මට නවීන කාඩ් එක ලැබුණා, නමුත් ඇප් එකේ එය හොඳුනෙයි. මට කුමක් කරන්න ඕ?",sinhala,1.0,False,0.75492287
+52,How do I link one your card if I have one already?,gptoss,"මට දැනටම එකක් තියෙන්නේ නම්, ඔබේ කාඩ් එකක් link කරන්නේ කොහොමද?",sinhala,0.9183673469387755,False,0.91274786
+53,How do I add a card to the app?,gptoss,කාඩ් එක ඇප් එකට add කරන්නේ කොහොමද?,sinhala,0.8888888888888888,False,0.92613953
+59,"I found my card, can I add it to the app?",gptoss,"මට කාඩ් එක හමුනා, ඇප් එකට add කරගන්න පුළුවද?",sinhala,0.9117647058823529,False,0.8801663
+65,how do I link an already existing card?,gptoss,දැනටම තියෙන කාඩ් එක link කරන්නේ කොහොමද?,sinhala,0.875,False,0.9245461
+99,Where do you get your exchange rates from?,gptoss,ඔබගේ exchange rates කොහොමද ලැබෙන්නේ?,sinhala,0.5806451612903226,False,0.83642215
+139,I purchased an item and the exchange rate I was given was incorrect.,gptoss,"මට එකක් මිලදීලා, මට දීපු exchange rate වැරදියි.",sinhala,0.6842105263157895,False,0.84999615
+156,How can I check the exchange rate applied to my transaction?,gptoss,මගේ transaction එකට යෙදු exchange rate එක check කරන්නේ කොහොමද?,sinhala,0.46153846153846156,False,0.8865112
+179,What would be the reason there's an extra fee on my statement?,gptoss,statement එකේ extra fee එකක් තියෙන්නේ ඇයි?,sinhala,0.5142857142857142,False,0.7737956
+199,Can you please check why I am having this extra fee on my statement.,gptoss,statement එකේ extra fee එක ඇයි කියලා බලලා දෙන්න.,sinhala,0.5641025641025641,False,0.6969763
+208,Why is my withdrawal still pending?,gptoss,withdrawal එක pending එකක් තියෙන්නේ ඇයි?,sinhala,0.5,False,0.8170026
+219,"Hey, my card was declined at an ATM in the city centre theatre. My account says the transaction is pending, though. I didn't get the money, though, so what does that mean?",gptoss,"හෙයි, city centre theatre එකේ ATM එකේ card එක declined වුණා. account එක transaction pending කියනවා. මට මුදල් ලැබුනේ නැහැ. ඒක කියන්නේ මොකද?",sinhala,0.4864864864864865,False,0.893356
+257,"When considering currency holdings and exchanges, what fiat currencies are supported?",gptoss,"currency holdings සහ exchanges ගැන සිතනොත්, supported fiat currencies කොයි?",sinhala,0.25,False,0.89473504
+259,Can I hold money in other currencies?,gptoss,මට වෙනත් currency එකේ මුදල් hold කරගන්න පුළුවද?,sinhala,0.6923076923076923,False,0.92676747
+273,Can I hold money in multiple currencies?,gptoss,මට multiple currencies එකේ මුදල් hold කරගන්න පුළුවද?,sinhala,0.5,False,0.93963134
+296,I need it delivered on a certain date.,gptoss,මට ඒක එක දිනයට delivered කරලා දෙන්න.,sinhala,0.6896551724137931,False,0.74382496
+298,How long does it take to get my card? Can I choose when to receive it?,gptoss,කාඩ් එක ලැබෙන්න කොච්චරක් ගනී? මට receive කරන දිනය choose කරගන්න පුළුවද?,sinhala,0.7758620689655172,False,0.8431932
+299,How long will it take for the card to arrive?,gptoss,කාඩ් එක arrive වීමට කොච්චරක් ගනී?,sinhala,0.7777777777777778,False,0.8951235
+304,When will the card arrive?,gptoss,කාඩ් එක arrive වන්නේ කවදා?,sinhala,0.7142857142857143,False,0.8944692
+306,When are cards delivered?,gptoss,කාඩ් එක deliver වන්නේ කවදා?,sinhala,0.6818181818181818,False,0.8942094
+330,"Where can I find the ""auto-top"" feature?",gptoss,auto-top feature එක කොහොමද හොයාගන්න පුළුවද?,sinhala,0.6111111111111112,False,0.82546705
+339,How do I make sure I don't run out of money on my card while traveling?,gptoss,traveling කරන විට card එකේ මුදල් run out වන්නේ නැහැ කියලා බලන්නේ කොහොමද?,sinhala,0.6779661016949152,False,0.8407679
+379,How can I resolve a problem where my card won't go through at all?,gptoss,card එක through වන්නේ නැහැ කියලා problem එක resolve කරන්නේ කොහොමද?,sinhala,0.5454545454545454,False,0.8384706
+403,How do I change LKR to USD?,gptoss,LKR to USD change කරන්නේ කොහොමද?,sinhala,0.46153846153846156,False,0.9660497
+418,Can I change to another currency?,gptoss,මට වෙනත් currency එකට change කරගන්න පුළුවද?,sinhala,0.6111111111111112,False,0.9405341
+419,"I need USD not LKR, how do I change it?",gptoss,"USD අවශ්‍යයි, LKR නැහැ. change කරන්නේ කොහොමද?",sinhala,0.6571428571428571,False,0.93006206
+459,I need help with a lost card,gptoss,lost card එකට help එකක් අවශ්‍යයි,sinhala,0.5384615384615384,False,0.89360136
+484,How old do we have to be?,gptoss,අපි කොච්චරක් වයස තියෙන්නේ?,sinhala,1.0,False,0.8139336
+499,If my kids wanted to use your service how old would they have to be?,gptoss,"මගේ kids ඔබේ service භාවිතා කිරීමට අවශ්‍ය වන්නේ නම්, ඔවුන්ට කොච්චර වයස කුමක් විය යුතුද?",sinhala,0.8428571428571429,False,0.9005197
+534,What do I do if the bank machine won't accept my PIN attempts anymore?,gptoss,බැංකු මැෂින් එකට මගේ PIN උත්සාහයන් තවදුරටත් පිළිගන්නෙ නැත්නම් මට මොකද කරන්න ඕ?,sinhala,0.9538461538461539,False,0.9083533
+539,I'v exhausted all the of times I can try my PIN,gptoss,මට PIN එක උත්තරය ලබාගන්නට හැකි වාර ගණන් ඉවරා කරලා තියෙයි,sinhala,0.9347826086956522,False,0.76525533
+579,Can you help my fix my contactless?,gptoss,ඔබට මට contactless card එක fix කිරීමට උදව් කරන්න පුළුවද?,sinhala,0.6086956521739131,False,0.831631
+619,Will topping up by transfer lead to a charge on my account?,gptoss,Transfer එකෙන් topping up කිරීම account එකට charge එකක් ලැබෙනද?,sinhala,0.4339622641509434,False,0.8258698
+628,Will I be charged for a SEPA transfer?,gptoss,SEPA transfer එකට ගාස් එකක් ගෙවෙනද?,sinhala,0.5862068965517241,False,0.9002601
+659,"I topped up by card a while ago and it's still pending, surely it should be done by now?",gptoss,"මට කාඩ් එකෙන් ටොප්‑අප් කරලා තියෙන්නේ කාලයක්, නමුත් තවද pending එකයි, දැන් හොඳටම විය යුතුයි",sinhala,0.9041095890410958,False,0.7756211
+661,top up did not complete,gptoss,top up සම්පූර්ණ වුනේ නැහැ,sinhala,0.7619047619047619,False,0.95917916
+699,Can I cancel a transfer if is already processed?,gptoss,"මට transfer එක cancel කරගන්න පුළුවද, එය already processed වුනාද?",sinhala,0.4339622641509434,False,0.87406975
+736,Tell me if there are any top-up limits?,gptoss,ඔබට top‑up සීමා තියෙනවාද කියලා දන්වන්න,sinhala,0.84375,False,0.7717402
+739,Can I top-up as much as I want?,gptoss,මට අවශ්‍ය පරිමාණයක් top-up කරගන්න පුළුවද?,sinhala,0.8484848484848485,False,0.8445677
+746,Do you have a top-up limit?,gptoss,ඔබට top‑up සීමාවක් තියෙනද?,sinhala,0.7619047619047619,False,0.91247976
+765,The amount of cash I received was incorrect,gptoss,මට ලැබුන cash එකේ amount වැරදි විය,sinhala,0.6428571428571429,False,0.90341574
+779,"I tried to get Rs 100,000 but I just got Rs 20,000",gptoss,"මට රු 100,000 ලබාගන්න උත්සාහය කළෙමි, නමුත් මට රු 20,000 පමණක් ලැබුණි",sinhala,1.0,False,0.89878255
+792,I didn't receive all the cash I asked for,gptoss,මට ඉල්ලූ cash සෑමක් ලැබුනොත් නැහැ,sinhala,0.8571428571428571,False,0.8563623
+801,I was charged a fee after using my card and I shouldn't have been.,gptoss,"card එක භාවිතා කරලා fee එකක් ගෙවී, මට එය අය නොවිය යුතුයි.",sinhala,0.8409090909090909,False,0.789827
+819,Why would I be charged a fee for card payment?,gptoss,Card payment එකට මට fee එකක් ගෙවෙනුත් ඇයි?,sinhala,0.5882352941176471,False,0.8912797
+859,I sent money.  They haven't received it.,gptoss,මට මුදල් transfer කරලා තියෙයි. ඔවුන්ට එය ලැබෙලා නැහැ.,sinhala,0.813953488372093,False,0.87096035
+864,Where is the transaction I made to a friend?,gptoss,මට මිතුරෙකුට කළ transaction කොහොමද?,sinhala,0.6333333333333333,False,0.7593274
+899,How can I use American Express to add money to my account?,gptoss,American Express භාවිතා කරලා මගේ account එකට මුදල් එකතුළන හැටිද?,sinhala,0.5925925925925926,False,0.9053823
+923,Is there an option to have a virtual card?,gptoss,වෙරුවල් කාඩ් එකක් ලබාගන්න විකල්පයක් තියෙනද?,sinhala,1.0,False,0.87701035
+935,Is this where I order a virtual card?,gptoss,මෙහි virtual card එක order කරන එකද?,sinhala,0.42857142857142855,False,0.8891599
+939,Where can I order a virtual card?,gptoss,වෙබ් අඩ්‍රස් එකෙන් virtual card එකක් ඇනවුම් කරගන්න පුළුවා?,sinhala,0.7708333333333334,False,0.8163264
+979,"I am traveling to Germany, Will I be able to use my card there?",gptoss,"මම ගමන් කරනවා ජර්මනියට, එතැන card භාවිතා කරගන්න පුළුවද?",sinhala,0.9111111111111111,False,0.83337426
+1019,I went to top up and it is no longer there.  Was it sent back?,gptoss,"මට top up යන එකට ගියාම, ඒක දැන් නැහැ. එය ආපසු යවලාද?",sinhala,0.868421052631579,False,0.81996727
+1027,The app reverted my action when I topped up.,gptoss,මට top-up කිරීමේදී app එක මගේ ක්‍රියාව revert කරලා.,sinhala,0.65,False,0.88962156
+1031,has my top-up has been cancelled,gptoss,මගේ top-up එක අවලංගු වුණාද?,sinhala,0.7619047619047619,False,0.8403721
+1059,"I Submitted a cheque couple days ago, nothing happened to my account yet.Would you please check What could be the possible issue?",gptoss,"මට කිහිප දිනකට පෙර cheque එකක් යවලා තියෙයි, account එකට තවදක් කිසිවක් වෙලා නැහැ. කරුණාකර බලලා දෙන්න. කුමක් issue එකක් විය හැක?",sinhala,0.8217821782178217,False,0.8945191
+1099,Payment i did not do,gptoss,මෙම payment එක මට කරලා නැහැ,sinhala,0.6818181818181818,False,0.82820237
+1106,I'm not familiar with a card payment.,gptoss,මට card payment එක හොඳින් හඳුනෙ නැහැ.,sinhala,0.6333333333333333,False,0.87757534
+1119,In my statement there is a payment that is I do not recognize,gptoss,"මගේ statement එකේ එක payment එකක් තියෙන්නේ, මට ඒක හඳුනාගන්නෙ නැහැ",sinhala,0.7037037037037037,False,0.87336415
+1139,How can I modify my details?,gptoss,මගේ විස්තරයන් වෙනස් කරන්න පුළුවද?,sinhala,1.0,False,0.8010657
+1179,Do I need to verify my identity to use my account?,gptoss,"මට මගේ identity verify කරන්න ඕනද, account එක use කරන්න?",sinhala,0.45454545454545453,False,0.8926421
+1219,I can not get the app to know it is me.,gptoss,මට ඇප් එකට මටමයි කියලා හඳුනාගන්න බැහැ.,sinhala,1.0,False,0.8260987
+1227,How do I show this stupid system that this is really my identity?,gptoss,මෙම මූर्खා සමග මගේ පරිච්ඡය ඇත්තේ නැයි දැක්කාද?,sinhala,0.9210526315789473,False,0.32290047
+1259,what is the process for setting up a pin,gptoss,PIN සකස් කිරීමේ ක්‍රියාව කුමක්ද?,sinhala,0.8846153846153846,False,0.773334
+1274,I can not find my card pin.,gptoss,මට card PIN එක සොයාගන්න බැරිලා.,sinhala,0.72,False,0.8212807
+1276,Why can't I find my PIN?,gptoss,PIN එක හොයාගන්න බැරින්නේ ඇයි?,sinhala,0.875,False,0.899432
+1299,Am I able to choose my card?,gptoss,මට card එක තෝරාගන්න පුළුවද?,sinhala,0.8181818181818182,False,0.8830927
+1304,Do I get to choose between Visa and Mastercard?,gptoss,Visa සහ Mastercard අතර තෝරාගන්න පුළුවද?,sinhala,0.5757575757575758,False,0.920969
+1332,how can i top up?,gptoss,top-up කරන්න කොහොමද?,sinhala,0.6875,False,0.82310605
+1339,Will my friend be able to top off my account?,gptoss,මගේ මිතුරට මගේ ගිණුමට top-up කරන්න පුළුවද?,sinhala,0.8529411764705882,False,0.8623856
+1371,How many card payments can I use on a disposable card?,gptoss,disposable card එකේ card payments කොපම භාවිතා කරගන්න පුළුවද?,sinhala,0.49019607843137253,False,0.88886595
+1379,I have to have several disposable cards per day.,gptoss,මට දිනකට කිහිප disposable card ගන්න තියෙන්නේ.,sinhala,0.631578947368421,False,0.8964765
+1395,Do you know what the restriction of the disposable cards are?,gptoss,ඔබට disposable card වල restriction කුමක්ද කියලා දන්නද?,sinhala,0.45652173913043476,False,0.8976548
+1396,What are the limits for disposable virtual cards?,gptoss,disposable virtual cards සඳහා සීමා මොනවාද?,sinhala,0.3888888888888889,False,0.9245185
+1419,"I see random purchases to my account, was it hacked?",gptoss,"මට මගේ ගිණුමට අහඹු ගනුදෙනුම් දැකෙයි, ඒක හෑක් කරලාද?",sinhala,1.0,False,0.85130465
+1446,Which ATM's accept my card?,gptoss,මගේ card එක accept කරන ATM කවද?,sinhala,0.4583333333333333,False,0.8518582
+1448,Where are the locations of ATMs that accept this card?,gptoss,මෙම කාඩ් එක භාවිතා කරන ATM ස්ථාන කොහොමද?,sinhala,0.90625,False,0.7638495
+1474,At which ATMs can I use this card?,gptoss,මෙම card එක භාවිතා කරගන්න පුළුවන් ATM කුමක්ද?,sinhala,0.8108108108108109,False,0.86190116
+1499,"A couple weeks ago some money was deducted from my account by some seller that I don't remember. I'm pretty sure I didn't do that, but is it possible to trace back who that is just to make sure?",gptoss,"අපට කිසිදා මට මතක නැති seller එකකෙන් මගේ account එකෙන් මුදල් කිහිපයක් අඩු වුනා. මට ඒක සිදු කරලා නැහැ කියලා හොඳින් හිතනවා, නමුත් ඒ seller එක කවුරුද කියලා trace back කරලා බලන්න පුළුවද just to make sure?",sinhala,0.7391304347826086,False,0.817516
+1539,I have forgotten my passcode to access my app,gptoss,මට මගේ ඇප් එකට ඇතුල් වීමට passcode එක අමතලා තියෙන්නේ.,sinhala,0.813953488372093,False,0.85792184
+1579,Why did the ATM machine fail to give me a cash withdrawal?,gptoss,ATM එක මට cash withdrawal ලබා දීමට අසමත් වුනාද?,sinhala,0.5526315789473685,False,0.753049
+1610,I made this payment days ago so why hasn't it gone through yet?,gptoss,"මට මේ ගෙවීම් දිනකට පෙරට කරලා තියෙන්නේ, ඒත් ඇයි තවදත් යනවා නෑ?",sinhala,1.0,False,0.90929234
+1616,What is a pending payment?,gptoss,Pending payment එක කියන්නේ කුමක්ද?,sinhala,0.5172413793103449,False,0.90485257
+1619,My card payment is pending.,gptoss,මගේ card ගෙවීම pending වුණා.,sinhala,0.5217391304347826,False,0.86671215
+1626,"I was double charged, and the second charge is showing as ""pending"". How long will it be before I get my money back once the second charge has been refunded?",gptoss,"මට දෙවරක් ගෙවී තිබුණා, දෙවන ගෙවීම 'pending' ලෙස පෙන්වෙයි. දෙවන ගෙවීම ආපසු ලැබුනොත් මුදල් නැවතී ලැබීමට කොපම කාලයක් ගතවෙයි?",sinhala,0.9285714285714286,False,0.8816087
+1659,"lost phone, can i still access account?",gptoss,"phone එක අහිමිවී, account එකට තවදුරට යාවත් හැකද?",sinhala,0.6923076923076923,False,0.8851548
+1685,I need a refund on an item I have not received.  Am I able to simply cancel the payment?  I don't know how to do this.,gptoss,මට ලැබෙන්නෙ නැතිවූ භාණ්ඩයක් සඳහා refund එකක් අවශ්‍යයි.  payment එක cancel කරගන්න පුළුවද?  මෙය කොහොම කරන්නෙද කියලා මට හිතෙන්නේ නැහැ.,sinhala,0.8207547169811321,False,0.86860824
+1699,I bought something but now I would like a refund. How do I do that?,gptoss,"මට එකක් මිලදී, දැන් මට refund එකක් අවශ්‍යයි. කොහොම කරන්නෙ?",sinhala,0.8666666666666667,False,0.8397939
+1739,When I try and to buy something using my card it keeps getting declined.,gptoss,"මට කාඩ් එකෙන් එකක් මිලදී බලන විට, හැමවිටම declined වනවා",sinhala,0.8222222222222222,False,0.7071461
+1779,"i was supposed to get a refund but my balance hasn't changed, why not?",gptoss,"මට refund එකක් ලැබිය යුතු වුණා, නමුත් balance එක වෙනස් වෙලා නෑ, ඒක ඇයි?",sinhala,0.7636363636363637,False,0.8995413
+1819,Why are you declining my payment? Everything was fine.,gptoss,ඔබට මගේ payment එක declined කරන එක ඇයි? සෑමදේම හොඳයි,sinhala,0.6428571428571429,False,0.82695735
+1859,When will the transfer go through?,gptoss,transfer එක go through වන්නේ කවදා?,sinhala,0.39285714285714285,False,0.92231715
+1899,How do I get rid of my account ASAP?,gptoss,මගේ account එක ASAP එකෙන් delete කරනවද?,sinhala,0.46875,False,0.79515564
+1911,How do I delete my account?,gptoss,මගේ account එක delete කරනවද?,sinhala,0.43478260869565216,False,0.8139397
+1934,My ATM got stuck and I'm not sure what to do.,gptoss,"මගේ ATM stuck වුණා, මට මොකද කරන්නද කියලා හොඳයි",sinhala,0.7837837837837838,False,0.71673524
+1939,ATM still has my card,gptoss,ATM එකේ card එක තවද තියෙනවා,sinhala,0.6818181818181818,False,0.8298105
+1971,I have been charged twice,gptoss,මට දෙවරක් charge වුණා,sinhala,0.6666666666666666,False,0.9148318
+1979,I had a duplicate card and got charged twice. How do I resolve this?,gptoss,duplicate card එකක් තියෙලා double charge වුණා. ඒක resolve කරනවද?,sinhala,0.39622641509433965,False,0.8371123
+2019,What is the source of my money?,gptoss,මගේ මුදල් source එක කුයි?,sinhala,0.7,False,0.8583318
+2059,How many days does a transfer from the US take?,gptoss,US එකෙන් transfer එකට කොච්චර දින ගනනවා?,sinhala,0.6875,False,0.92674166
+2099,I think my card payment had been return,gptoss,මට card payment එක return වුණා වගේ හිතනවා,sinhala,0.5,False,0.93522954
+2138,I want to choose a different PIN.,gptoss,මට වෙනත් PIN එකක් choose කරනවද?,sinhala,0.64,False,0.7773557
+2139,I would like to change my pin.,gptoss,pin එක change කරනවද,sinhala,0.4375,False,0.5392044
+2144,How do I change my PIN?,gptoss,PIN එක change කරනවද?,sinhala,0.4375,False,0.79535854
+2170,Why can't I transfer to a beneficiary?,gptoss,beneficiary එකට transfer කරනවට ඇයි බැහැ?,sinhala,0.4411764705882353,False,0.8875754
+2172,What's the deal with no cryptocurrency on your app?,gptoss,ඔබේ app එකේ cryptocurrency එකක් නැත්තේ deal එක කුයි?,sinhala,0.5116279069767442,False,0.92358905
+2179,The money would not transfer to a beneficiary.,gptoss,මුදල් beneficiary එකට transfer වන්නේ නැහැ,sinhala,0.4722222222222222,False,0.7860404
+2204,I had to pay in order to do a transfer,gptoss,transfer එකක් කරන්න order එකට pay විය,sinhala,0.4838709677419355,False,0.7853585
+2219,I'm not sure why I was charged an extra fee for transferring funds.,gptoss,funds transfer කරනවට extra fee charged වුණා ඇයි කියලා මට හොඳයි,sinhala,0.46153846153846156,False,0.76397383
+2240,Will salary be received through this?,gptoss,salary එක මේකෙන් receive වන්නේද?,sinhala,0.5185185185185185,False,0.8453443
+2259,How can my friend send me money?,gptoss,මගේ friend එකට මට money send කරනවද?,sinhala,0.4642857142857143,False,0.783242
+2299,Why would a transfer fail?,gptoss,transfer එක fail වන්නේ ඇයි?,sinhala,0.45454545454545453,False,0.8850434
+2330,I NEED TO KNOW HOW TO TRANSFER MONEY INTO MY BANK ACCOUNT. PLEASE HELP,gptoss,මට bank account එකට money transfer කරනවද කියලා දැනගන්න ඕනේ. HELP කරලා,sinhala,0.5087719298245614,False,0.7927058
+2339,How can I transfer money from an outside bank?,gptoss,outside bank එකෙන් money transfer කරනවද?,sinhala,0.29411764705882354,False,0.7915949
+2347,How do I send my account money through transfer?,gptoss,account එකේ money transfer එකෙන් send කරනවද?,sinhala,0.35135135135135137,False,0.77208865
+2350,I want to transfer from accounts in order to Top up. What are the steps necessary.,gptoss,accounts එකෙන් order එකට Top up transfer කරනවද. අවශ්‍ය steps කුයි?,sinhala,0.41509433962264153,False,0.72784555
+2379,How do I find the verification code for my top-up card?,gptoss,top-up card එකේ verification code එක find කරනවද?,sinhala,0.2564102564102564,False,0.7901453
+2419,May I have another card?,gptoss,මට තවත් card එකක් දෙනවද?,sinhala,0.7894736842105263,False,0.889769
+2459,"I want to top up using cash, where can I do that?",gptoss,"මට cash භාවිතයෙන් top up කරන්න ඕනයි, කොහොමද කරන්න පුළුව?",sinhala,0.8,False,0.86338115
+2463,How can I top up with cash?,gptoss,Cash එකෙන් top-up කරන්න පුළුවද?,sinhala,0.64,False,0.7829161
+2489,Is there a charge for physical cards,gptoss,භෞතික කාඩ් සඳහා ගාස් එකක් තියෙනද?,sinhala,1.0,False,0.8135563
+2499,Is a non-electronic card available as well,gptoss,non-electronic card එකද ලබාගන්න පුළුවද?,sinhala,0.48484848484848486,False,0.7821382
+2539,How can I fix a problem where my virtual card is rejected?,gptoss,"මගේ virtual card එක reject වන්නේ, ඒ fix කරගන්න මට කොහොමද?",sinhala,0.5555555555555556,False,0.80652153
+2555,Tell me why my virtual disposable card won't work.,gptoss,මගේ virtual disposable card එක ක්‍රියා නොකරන්නේ ඇයි?,sinhala,0.5116279069767442,False,0.7475901
+2571,Is there a fee for exchanging cash?,gptoss,cash exchange එකට ගාස් එකක් තියෙනද?,sinhala,0.5862068965517241,False,0.839193
+2579,Can I make a withdraw if I am out of country from with out any fees at an ATM?,gptoss,ATM එකක withdraw කරන්න පුළුවද? මට විදේශයේ සිටින විට fees නොගන්න පුළුවද?,sinhala,0.7413793103448276,False,0.88461304
+2613,how secure is a disposable virtual card,gptoss,disposable virtual card එක කොපම ආරක්ෂිතද?,sinhala,0.4,False,0.90576404
+2618,May I get a disposable virtual card as well?,gptoss,මට disposable virtual card එකත් ලබාගන්න පුළුවද?,sinhala,0.475,False,0.91042894
+2619,Can i get a single use virtual card,gptoss,මට single use virtual card එකක් ලබාගන්න පුළුවද?,sinhala,0.48717948717948717,False,0.9203706
+2659,I topped up but the app did not accept it.,gptoss,"මට top‑up කරලා තියෙන්නේ, නමුත් app එක accept කරලා නැහැ.",sinhala,0.6744186046511628,False,0.8809085
+2699,My bank transfer is still not showing up in my account.,gptoss,මගේ බැංක transfer එක account එකේ තවද show වෙලා නෑ.,sinhala,0.525,False,0.8974658
+2710,"I made a bank transfer a couple of hours ago from my local bank account.  It hasn't appeared, can you check to make sure it went through?",gptoss,"මට මගේ දේශීය බැංක ගිණුකාරකාරයෙන් කිහිප පැයකට පෙරට බැංක transfer එකක් කරලා තියෙයි. ඒක දැන් දක්නෙ නැහැ, ඔබට බලලා බලන්න පුළුවද එය සාර්ථකව ගමන් කරලාද?",sinhala,0.9327731092436975,False,0.7853483
+2733,I have a strange cash withdrawal in my statement,gptoss,මගේ statement එකේ cash withdrawal එක අමුතුයි,sinhala,0.39473684210526316,False,0.83992004
+2739,"It looks like someone else withdrew cash from my account, can you help?",gptoss,මගේ ගිණුකාරක ගිණුකාරක? මට උදව් කරන්න පුළුවද?,sinhala,1.0,False,0.434544
+2749,What do I do if I notice a strange withdrawl in my statement?,gptoss,මගේ statement එකේ අමුතු withdrawl එකක් දැකලා තියෙන්නේ නම් මට මොකද කරන්න ඕ?,sinhala,0.7049180327868853,False,0.90161467
+2773,Does it cost extra to exchange currencies?,gptoss,exchange කිරීමේදී අමතර වියදියක් තියෙනද?,sinhala,0.7647058823529411,False,0.7737197
+2779,"If I want to exchange currency, will there be extras?",gptoss,"මට currency exchange කරන්න ඕනේ නම්, extras තියෙනද?",sinhala,0.4634146341463415,False,0.88209236
+2803,Any hidden fees associated with the international card if money is added?,gptoss,,sinhala,0.0,True,0.16254774
+2819,Will I be charged if I use foreign bank card for top up?,gptoss,වෙනස් බැංකු කාඩ් එකක් භාවිතා කර top-up කිරීමේදී මට ගාස් ලැබෙනද?,sinhala,0.9019607843137255,False,0.7752633
+2858,I tried activating my bill of fare and it didn't workplace,gptoss,"මට මගේ bill of fare activate කිරීමට උත්සාහය කළා, නමුත් එය workplace එකක් වගේ වැඩ කරන්නේ නැහැ.",sinhala,0.64,False,0.8080016
+2859,"I just got my card and want to use it, how do I activate my card?",gptoss,"මට නවීනවම card එක ලැබුණා, භාවිතා කරන්න ඕනේ, activate කරන්නේ කොහොමද?",sinhala,0.7777777777777778,False,0.8286416
+2860,I have a new card and I want to activate it,gptoss,"මට නවීන card එකක් තියෙයි, activate කරගන්න ඕනේ.",sinhala,0.6756756756756757,False,0.80390584
+2899,"I've notice I was charged for withdrawing cash, can you explain why?",gptoss,"withdraw cash charged ""why?""",sinhala,0.0,False,0.55555683
+2939,"I will need to get a new card soon, how do I order?",gptoss,"මට ඉක්කම නවීන card එකක් ලබාගන්න ඕනයි, කොහොම order කරන්නේ?",sinhala,0.8043478260869565,False,0.8559687
+2979,My top up is not working in Apple Pay.,gptoss,Apple Pay එකෙන් මගේ top up ක්‍රියා නොකරයි.,sinhala,0.6060606060606061,False,0.9134406
+3019,What are the steps to verify my identity?,gptoss,මගේ identity එක verify කිරීමේ පියවර මොනවාද?,sinhala,0.6111111111111112,False,0.93094313
+3051,Where do I need to live to get support?,gptoss,support ලබාගැනීමට මට කොහොමද ඉන්න ඕනයි?,sinhala,0.78125,False,0.799865
+3059,Can I get a card even if I live outside Sri Lanka?,gptoss,"ශ්‍රී ලංකාවෙන් පිටු වාසියෙහි සිටිනවාද, මට card එකක් ලබාගත හැකිද?",sinhala,0.9230769230769231,False,0.7483492
+14,I am still waiting for my card after 1 week.  Is this ok?,swift,1 வாரம் ஆகியும் எனது அட்டைக்காக இன்னும் காத்துக்கொண்டிருக்கிறேன். இது பரவாயில்லையா?,tamil,1.0,False,0.88070035
+19,My card still hasn't arrived after 2 weeks. Is it lost?,swift,2 வாரங்கள் ஆகியும் எனது அட்டை இன்னும் வரவில்லை. அது தொலைந்துவிட்டதா?,tamil,1.0,False,0.9052276
+45,"I received my new card, but I don't see it in the app anywhere.  What do I do?",swift,"எனது புதிய அட்டை எனக்குக் கிடைத்துவிட்டது, ஆனால் செயலியில் அது எங்குமே தெரியவில்லை. நான் என்ன செய்ய வேண்டும்?",tamil,1.0,False,0.8066455
+52,How do I link one your card if I have one already?,swift,"உங்களுடைய அட்டை ஏற்கனவே என்னிடம் இருந்தால், அதை நான் எவ்வாறு இணைப்பது?",tamil,1.0,False,0.8552626
+53,How do I add a card to the app?,swift,செயலியில் ஒரு அட்டையை எவ்வாறு சேர்ப்பது?,tamil,1.0,False,0.85521245
+59,"I found my card, can I add it to the app?",swift,"எனது அட்டையைக் கண்டெடுத்துவிட்டேன், அதைச் செயலியில் சேர்க்க முடியுமா?",tamil,1.0,False,0.86725307
+65,how do I link an already existing card?,swift,ஏற்கனவே உள்ள அட்டையை நான் எவ்வாறு இணைப்பது?,tamil,1.0,False,0.938051
+99,Where do you get your exchange rates from?,swift,உங்கள் நாணய மாற்று விகிதங்களை எங்கிருந்து பெறுகிறீர்கள்?,tamil,1.0,False,0.90002644
+139,I purchased an item and the exchange rate I was given was incorrect.,swift,"நான் ஒரு பொருளை வாங்கினேன், எனக்கு வழங்கப்பட்ட மாற்று விகிதம் தவறானது.",tamil,1.0,False,0.88876474
+156,How can I check the exchange rate applied to my transaction?,swift,எனது பரிவர்த்தனைக்கு பயன்படுத்தப்பட்ட மாற்று விகிதத்தை நான் எவ்வாறு சரிபார்க்கலாம்?,tamil,1.0,False,0.87829983
+179,What would be the reason there's an extra fee on my statement?,swift,எனது கணக்கு அறிக்கையில் மேலதிக கட்டணம் இருப்பதற்கான காரணம் என்னவாக இருக்கும்?,tamil,1.0,False,0.83730876
+199,Can you please check why I am having this extra fee on my statement.,swift,எனது ஸ்டேட்மென்டில் இந்த மேலதிக கட்டணம் ஏன் உள்ளது என்பதை தயவுசெய்து சரிபார்க்க முடியுமா?,tamil,1.0,False,0.8073395
+208,Why is my withdrawal still pending?,swift,எனது பணப் பரிவர்த்தனை ஏன் இன்னும் நிலுவையில் உள்ளது?,tamil,1.0,False,0.838447
+219,"Hey, my card was declined at an ATM in the city centre theatre. My account says the transaction is pending, though. I didn't get the money, though, so what does that mean?",swift,"ஹே, நகரின் மையப்பகுதியில் உள்ள திரையரங்கு ஏடிஎம்-ல் எனது அட்டை நிராகரிக்கப்பட்டது. ஆனால், எனது கணக்கில் பரிவர்த்தனை நிலுவையில் உள்ளதாகக் கூறுகிறது. எனக்குப் பணம் கிடைக்கவில்லை, அப்படியென்றால் அதன் அர்த்தம் என்ன?",tamil,1.0,False,0.9054655
+257,"When considering currency holdings and exchanges, what fiat currencies are supported?",swift,"நாணய இருப்புக்கள் மற்றும் பரிமாற்றங்களைக் கருத்தில் கொள்ளும்போது, எந்த ஃபியட் நாணயங்கள் ஆதரிக்கப்படுகின்றன?",tamil,1.0,False,0.87454164
+259,Can I hold money in other currencies?,swift,நான் பிற நாணயங்களில் பணத்தை வைத்திருக்க முடியுமா?,tamil,1.0,False,0.9127627
+273,Can I hold money in multiple currencies?,swift,நான் பல நாணயங்களில் பணத்தை வைத்திருக்க முடியுமா?,tamil,1.0,False,0.89445317
+296,I need it delivered on a certain date.,swift,எனக்கு அது ஒரு குறிப்பிட்ட தேதியில் விநியோகிக்கப்பட வேண்டும்.,tamil,1.0,False,0.8824862
+298,How long does it take to get my card? Can I choose when to receive it?,swift,எனது அட்டையைப் பெற எவ்வளவு காலம் எடுக்கும்? அதை எப்போது பெறுவது என்பதை நான் தேர்வு செய்யலாமா?,tamil,1.0,False,0.87018096
+299,How long will it take for the card to arrive?,swift,அட்டை வந்து சேர எவ்வளவு காலம் எடுக்கும்?,tamil,1.0,False,0.9412166
+304,When will the card arrive?,swift,அட்டை எப்போது வந்து சேரும்?,tamil,1.0,False,0.9443937
+306,When are cards delivered?,swift,அட்டைகள் எப்போது விநியோகிக்கப்படும்?,tamil,1.0,False,0.9101852
+330,"Where can I find the ""auto-top"" feature?",swift,"""auto-top"" வசதியை நான் எங்கே காணலாம்?",tamil,0.7586206896551724,False,0.9226064
+339,How do I make sure I don't run out of money on my card while traveling?,swift,நான் பயணம் செய்யும்போது எனது அட்டையில் பணம் தீர்ந்துபோகாமல் இருப்பதை எவ்வாறு உறுதிப்படுத்துவது?,tamil,1.0,False,0.8747723
+379,How can I resolve a problem where my card won't go through at all?,swift,என் கார்டு முற்றிலும் வேலை செய்யாத சிக்கலை நான் எவ்வாறு தீர்ப்பது?,tamil,1.0,False,0.8397369
+403,How do I change LKR to USD?,swift,நான் எவ்வாறு எல்.கே.ஆர் (LKR) ஐ யு.எஸ்.டி (USD) ஆக மாற்றுவது?,tamil,0.8636363636363636,False,0.9169226
+418,Can I change to another currency?,swift,நான் மற்றொரு நாணயத்திற்கு மாற்ற முடியுமா?,tamil,1.0,False,0.91516197
+419,"I need USD not LKR, how do I change it?",swift,"எனக்கு யு.எஸ்.டி (USD) தான் தேவை, எல்.கே.ஆர் (LKR) அல்ல, அதை நான் எவ்வாறு மாற்றுவது?",tamil,0.9032258064516129,False,0.8872248
+459,I need help with a lost card,swift,தொலைந்த கார்ட் தொடர்பாக எனக்கு உதவி தேவை.,tamil,1.0,False,0.8759547
+484,How old do we have to be?,swift,எங்களுக்கு எத்தனை வயதாக இருக்க வேண்டும்?,tamil,1.0,False,0.87199473
+499,If my kids wanted to use your service how old would they have to be?,swift,"எனது பிள்ளைகள் உங்கள் சேவையைப் பயன்படுத்த விரும்பினால், அவர்களுக்கு எத்தனை வயதாக இருக்க வேண்டும்?",tamil,1.0,False,0.89058614
+534,What do I do if the bank machine won't accept my PIN attempts anymore?,swift,வங்கியின் ஏடிஎம் இயந்திரம் எனது PIN முயற்சிகளை இனிமேல் ஏற்காவிட்டால் நான் என்ன செய்வது?,tamil,0.9605263157894737,False,0.8600984
+539,I'v exhausted all the of times I can try my PIN,swift,எனது PIN ஐ முயற்சிப்பதற்கான அனைத்து வாய்ப்புகளையும் நான் பயன்படுத்தி முடித்துவிட்டேன்,tamil,0.961038961038961,False,0.84969836
+579,Can you help my fix my contactless?,swift,எனது காண்டாக்ட்லெஸ்ஸை சரிசெய்ய எனக்கு உதவ முடியுமா?,tamil,1.0,False,0.81361645
+619,Will topping up by transfer lead to a charge on my account?,swift,பரிமாற்றம் மூலம் டாப்-அப் செய்வது எனது கணக்கில் கட்டணத்தை ஏற்படுத்துமா?,tamil,1.0,False,0.9018401
+628,Will I be charged for a SEPA transfer?,swift,SEPA பரிமாற்றத்திற்கு எனக்கு கட்டணம் விதிக்கப்படுமா?,tamil,0.9148936170212766,False,0.9387283
+659,"I topped up by card a while ago and it's still pending, surely it should be done by now?",swift,"நான் சிறிது நேரத்திற்கு முன்பு கார்டு மூலம் டாப்-அப் செய்தேன், அது இன்னும் நிலுவையில் உள்ளது, நிச்சயமாக இந்நேரம் முடிந்திருக்க வேண்டுமல்லவா?",tamil,1.0,False,0.8920698
+661,top up did not complete,swift,டொப்-அப் பூர்த்தியாகவில்லை.,tamil,1.0,False,0.7445871
+699,Can I cancel a transfer if is already processed?,swift,பணப் பரிமாற்றம் ஏற்கனவே செயலாக்கப்பட்டிருந்தால் அதை ரத்து செய்ய முடியுமா?,tamil,1.0,False,0.8560838
+736,Tell me if there are any top-up limits?,swift,டாப்-அப் எல்லைகள் ஏதேனும் இருந்தால் எனக்குச் சொல்லுங்கள்?,tamil,1.0,False,0.8660108
+739,Can I top-up as much as I want?,swift,நான் விரும்பிய அளவு டாப்-அப் செய்ய முடியுமா?,tamil,1.0,False,0.8885473
+746,Do you have a top-up limit?,swift,உங்களிடம் டாப்-அப் எல்லை ஏதும் உள்ளதா?,tamil,1.0,False,0.86899686
+765,The amount of cash I received was incorrect,swift,எனக்குக் கிடைத்த பணத்தின் அளவு தவறானது.,tamil,1.0,False,0.84393394
+779,"I tried to get Rs 100,000 but I just got Rs 20,000",swift,"நான் ரூ. 100,000 எடுக்க முயன்றேன் ஆனால் எனக்கு ரூ. 20,000 மட்டுமே கிடைத்தது.",tamil,1.0,False,0.8548727
+792,I didn't receive all the cash I asked for,swift,நான் கேட்ட முழுப் பணமும் எனக்குக் கிடைக்கவில்லை.,tamil,1.0,False,0.86573833
+801,I was charged a fee after using my card and I shouldn't have been.,swift,"எனது அட்டையைப் பயன்படுத்திய பிறகு என்னிடம் கட்டணம் வசூலிக்கப்பட்டது, ஆனால் அப்படி வசூலித்திருக்கக் கூடாது.",tamil,1.0,False,0.8227598
+819,Why would I be charged a fee for card payment?,swift,அட்டைப் பணம் செலுத்தலுக்கு எனக்கு ஏன் கட்டணம் வசூலிக்கப்பட வேண்டும்?,tamil,1.0,False,0.8933381
+859,I sent money.  They haven't received it.,swift,நான் பணம் அனுப்பினேன். அவர்களுக்கு அது கிடைக்கவில்லை.,tamil,1.0,False,0.89418983
+864,Where is the transaction I made to a friend?,swift,ஒரு நண்பருக்கு நான் செய்த பணப்பரிமாற்றம் எங்கே இருக்கிறது?,tamil,1.0,False,0.8851335
+899,How can I use American Express to add money to my account?,swift,எனது கணக்கில் பணம் சேர்ப்பதற்கு நான் அமெரிக்கன் எக்ஸ்பிரஸ் அட்டையை எவ்வாறு பயன்படுத்தலாம்?,tamil,1.0,False,0.83659166
+923,Is there an option to have a virtual card?,swift,மெய்நிகர் அட்டை ஒன்றைப் பெறுவதற்கான விருப்பம் உள்ளதா?,tamil,1.0,False,0.83562845
+935,Is this where I order a virtual card?,swift,நான் விர்ச்சுவல் கார்ட் ஆர்டர் செய்யும் இடம் இதுதானா?,tamil,1.0,False,0.88453317
+939,Where can I order a virtual card?,swift,நான் எங்கே ஒரு விர்ச்சுவல் கார்ட்டை ஆர்டர் செய்யலாம்?,tamil,1.0,False,0.8748002
+979,"I am traveling to Germany, Will I be able to use my card there?",swift,"நான் ஜெர்மனிக்கு பயணம் செய்கிறேன், அங்கே எனது அட்டையைப் பயன்படுத்த முடியுமா?",tamil,1.0,False,0.83635783
+1019,I went to top up and it is no longer there.  Was it sent back?,swift,"நான் டொப்-அப் செய்யச் சென்றேன், ஆனால் அது இப்போது அங்கே இல்லை. அது திருப்பி அனுப்பப்பட்டுவிட்டதா?",tamil,1.0,False,0.8356892
+1027,The app reverted my action when I topped up.,swift,நான் டொப்-அப் செய்தபோது செயலி எனது செயல்பாட்டைத் திரும்பப் பெற்றது.,tamil,1.0,False,0.7556378
+1031,has my top-up has been cancelled,swift,எனது டொப்-அப் ரத்து செய்யப்பட்டுள்ளதா?,tamil,1.0,False,0.79552567
+1059,"I Submitted a cheque couple days ago, nothing happened to my account yet.Would you please check What could be the possible issue?",swift,"நான் சில நாட்களுக்கு முன்பு ஒரு காசோலையைச் சமர்ப்பித்தேன், எனது கணக்கில் இன்னும் எதுவும் நடக்கவில்லை. சாத்தியமான பிரச்சினை என்னவென்று தயவுசெய்து சரிபார்க்க முடியுமா?",tamil,1.0,False,0.91036105
+1099,Payment i did not do,swift,நான் செய்யாத கொடுப்பனவு,tamil,1.0,False,0.85652155
+1106,I'm not familiar with a card payment.,swift,ஒரு அட்டை கொடுப்பனவு எனக்குப் பரிச்சயமானதாக இல்லை.,tamil,1.0,False,0.8558133
+1119,In my statement there is a payment that is I do not recognize,swift,எனது கணக்கு அறிக்கையில் எனக்கு அடையாளம் தெரியாத ஒரு செலுத்தல் உள்ளது.,tamil,1.0,False,0.7912743
+1139,How can I modify my details?,swift,எனது விபரங்களை நான் எவ்வாறு மாற்றலாம்?,tamil,1.0,False,0.9297693
+1179,Do I need to verify my identity to use my account?,swift,எனது கணக்கைப் பயன்படுத்த நான் எனது அடையாளத்தை உறுதிப்படுத்த வேண்டுமா?,tamil,1.0,False,0.9076922
+1219,I can not get the app to know it is me.,swift,இது நான்தான் என்பதை இந்தச் செயலிக்கு என்னால் புரிய வைக்க முடியவில்லை.,tamil,1.0,False,0.60730934
+1227,How do I show this stupid system that this is really my identity?,swift,இதுதான் எனது உண்மையான அடையாளம் என்பதை இந்த முட்டாள் முறைமைக்கு நான் எவ்வாறு காட்டுவது?,tamil,1.0,False,0.8419291
+1259,what is the process for setting up a pin,swift,பின் (PIN) இலக்கத்தை அமைப்பதற்கான வழிமுறை என்ன?,tamil,0.9230769230769231,False,0.6678889
+1274,I can not find my card pin.,swift,எனது அட்டையின் பின் (PIN) இலக்கத்தை என்னால் கண்டறிய முடியவில்லை.,tamil,0.9444444444444444,False,0.73570585
+1276,Why can't I find my PIN?,swift,எனது பின் (PIN) இலக்கத்தை என்னால் ஏன் கண்டறிய முடியவில்லை?,tamil,0.9375,False,0.8732245
+1299,Am I able to choose my card?,swift,என்னால் எனது அட்டையைத் தெரிவு செய்ய முடியுமா?,tamil,1.0,False,0.8858141
+1304,Do I get to choose between Visa and Mastercard?,swift,விசா மற்றும் மாஸ்டர்கார்ட் ஆகியவற்றிற்கு இடையே தெரிவு செய்யும் வாய்ப்பு எனக்குக் கிடைக்குமா?,tamil,1.0,False,0.8638809
+1332,how can i top up?,swift,நான் எவ்வாறு டொப்-அப் செய்வது?,tamil,1.0,False,0.8434453
+1339,Will my friend be able to top off my account?,swift,எனது நண்பரால் எனது கணக்கை டொப்-அப் செய்ய முடியுமா?,tamil,1.0,False,0.8491811
+1371,How many card payments can I use on a disposable card?,swift,ஒருமுறை பயன்படுத்தும் அட்டையில் நான் எத்தனை அட்டைப் கொடுப்பனவுகளைப் பயன்படுத்தலாம்?,tamil,1.0,False,0.8849127
+1379,I have to have several disposable cards per day.,swift,எனக்கு ஒரு நாளைக்கு பல ஒருமுறை பயன்படுத்தும் அட்டைகள் தேவைப்படுகின்றன.,tamil,1.0,False,0.8237934
+1395,Do you know what the restriction of the disposable cards are?,swift,ஒருமுறை பயன்படுத்தும் அட்டைகளுக்கான கட்டுப்பாடுகள் என்னவென்று உங்களுக்குத் தெரியுமா?,tamil,1.0,False,0.8112423
+1396,What are the limits for disposable virtual cards?,swift,ஒருமுறை பயன்படுத்தும் மெய்நிகர் அட்டைகளுக்கான எல்லைகள் யாவை?,tamil,1.0,False,0.8551468
+1419,"I see random purchases to my account, was it hacked?",swift,"எனது கணக்கில் தொடர்பில்லாத கொள்வனவுகள் செய்யப்பட்டுள்ளதை நான் காண்கிறேன், அது ஹேக் செய்யப்பட்டுள்ளதா?",tamil,1.0,False,0.81190795
+1446,Which ATM's accept my card?,swift,எந்த ஏடிஎம் இயந்திரங்கள் எனது அட்டையை ஏற்றுக்கொள்ளும்?,tamil,1.0,False,0.8499306
+1448,Where are the locations of ATMs that accept this card?,swift,இந்த அட்டையை ஏற்றுக்கொள்ளும் ஏடிஎம் இயந்திரங்கள் எங்கு அமைந்துள்ளன?,tamil,1.0,False,0.8642224
+1474,At which ATMs can I use this card?,swift,எந்த ஏடிஎம்களில் நான் இந்த அட்டையைப் பயன்படுத்தலாம்?,tamil,1.0,False,0.89216024
+1499,"A couple weeks ago some money was deducted from my account by some seller that I don't remember. I'm pretty sure I didn't do that, but is it possible to trace back who that is just to make sure?",swift,"சில வாரங்களுக்கு முன்பு எனக்கு நினைவில் இல்லாத ஒரு விற்பனையாளரால் எனது கணக்கில் இருந்து சிறிது பணம் கழிக்கப்பட்டது. நான் அதைச் செய்யவில்லை என்பதில் எனக்கு உறுதியாகத் தெரியும், ஆனால் அது யார் என்பதை உறுதிப்படுத்திக் கொள்ள அதைக் கண்டறிய முடியுமா?",tamil,1.0,False,0.8706496
+1539,I have forgotten my passcode to access my app,swift,எனது செயலியை அணுகுவதற்கான எனது கடவுச்சொல்லை நான் மறந்துவிட்டேன்.,tamil,1.0,False,0.7651172
+1579,Why did the ATM machine fail to give me a cash withdrawal?,swift,ஏடிஎம் (ATM) இயந்திரம் எனக்கு ஏன் பணம் தரத் தவறியது?,tamil,0.9285714285714286,False,0.83539826
+1610,I made this payment days ago so why hasn't it gone through yet?,swift,"நான் இந்த கொடுப்பனவை சில நாட்களுக்கு முன்பு செய்தேன், ஏன் அது இன்னும் நிறைவேறவில்லை?",tamil,1.0,False,0.8890922
+1616,What is a pending payment?,swift,நிலுவையில் உள்ள கொடுப்பனவு என்றால் என்ன?,tamil,1.0,False,0.9122182
+1619,My card payment is pending.,swift,எனது அட்டை கொடுப்பனவு நிலுவையில் உள்ளது.,tamil,1.0,False,0.9120012
+1626,"I was double charged, and the second charge is showing as ""pending"". How long will it be before I get my money back once the second charge has been refunded?",swift,"என்னிடம் இரண்டு முறை கட்டணம் வசூலிக்கப்பட்டுள்ளது, இரண்டாவது கட்டணம் ""நிலுவையில்"" உள்ளதாகக் காட்டுகிறது. இரண்டாவது கட்டணம் திரும்பப் பெறப்பட்டதும் எனது பணம் எனக்குக் கிடைக்க எவ்வளவு காலம் ஆகும்?",tamil,1.0,False,0.8744128
+1659,"lost phone, can i still access account?",swift,"போன் தொலைந்துவிட்டது, என்னால் இன்னும் கணக்கை அணுக முடியுமா?",tamil,1.0,False,0.9148357
+1685,I need a refund on an item I have not received.  Am I able to simply cancel the payment?  I don't know how to do this.,swift,எனக்குக் கிடைக்காத ஒரு பொருளுக்கு நான் பணத்தைத் திரும்பப் பெற வேண்டும். நான் வெறுமனே கொடுப்பனவை ரத்து செய்ய முடியுமா? இதை எப்படி செய்வது என்று எனக்குத் தெரியவில்லை.,tamil,1.0,False,0.8714465
+1699,I bought something but now I would like a refund. How do I do that?,swift,"நான் ஒன்றை வாங்கினேன், ஆனால் இப்போது நான் பணத்தைத் திரும்பப் பெற விரும்புகிறேன். அதை நான் எப்படிச் செய்வது?",tamil,1.0,False,0.88350326
+1739,When I try and to buy something using my card it keeps getting declined.,swift,எனது அட்டையைப் பயன்படுத்தி ஏதேனும் வாங்க முயலும்போது அது தொடர்ந்து நிராகரிக்கப்படுகிறது.,tamil,1.0,False,0.85306877
+1779,"i was supposed to get a refund but my balance hasn't changed, why not?",swift,"எனக்குப் பணம் திரும்பக் கிடைத்திருக்க வேண்டும், ஆனால் எனது கணக்கு மீதி மாறவில்லை, ஏன்?",tamil,1.0,False,0.86416775
+1819,Why are you declining my payment? Everything was fine.,swift,எனது கட்டணத்தை ஏன் நிராகரிக்கிறீர்கள்? எல்லாம் சரியாகத்தான் இருந்தது.,tamil,1.0,False,0.8697125
+1859,When will the transfer go through?,swift,பணப்பரிமாற்றம் எப்போது வெற்றிகரமாக முடியும்?,tamil,1.0,False,0.69937015
+1899,How do I get rid of my account ASAP?,swift,எனது கணக்கை எவ்வளவு சீக்கிரம் முடியுமோ அவ்வளவு சீக்கிரம் எவ்வாறு நீக்குவது?,tamil,1.0,False,0.83779824
+1911,How do I delete my account?,swift,எனது கணக்கை நான் எவ்வாறு நீக்குவது?,tamil,1.0,False,0.9182831
+1934,My ATM got stuck and I'm not sure what to do.,swift,"எனது ஏடிஎம் அட்டை மாட்டிக்கொண்டது, என்ன செய்வது என்று எனக்குத் தெரியவில்லை.",tamil,1.0,False,0.7405077
+1939,ATM still has my card,swift,ஏடிஎம்மில் இன்னும் எனது அட்டை இருக்கிறது.,tamil,1.0,False,0.83262604
+1971,I have been charged twice,swift,என்னிடம் இரண்டு முறை கட்டணம் வசூலிக்கப்பட்டுள்ளது.,tamil,1.0,False,0.8383478
+1979,I had a duplicate card and got charged twice. How do I resolve this?,swift,"என்னிடம் ஒரு நகல் அட்டை இருந்தது, இரண்டு முறை கட்டணம் வசூலிக்கப்பட்டது. இதை நான் எவ்வாறு தீர்ப்பது?",tamil,1.0,False,0.8686272
+2019,What is the source of my money?,swift,எனது பணத்தின் ஆதாரம் என்ன?,tamil,1.0,False,0.8345959
+2059,How many days does a transfer from the US take?,swift,அமெரிக்காவிலிருந்து ஒரு பணப் பரிமாற்றத்திற்கு எத்தனை நாட்கள் ஆகும்?,tamil,1.0,False,0.890595
+2099,I think my card payment had been return,swift,எனது அட்டை மூலமான கொடுப்பனவு திரும்பப் பெறப்பட்டுள்ளது என்று நினைக்கிறேன்.,tamil,1.0,False,0.842227
+2138,I want to choose a different PIN.,swift,நான் வேறு ஒரு பின் (PIN) இலக்கத்தைத் தெரிவு செய்ய விரும்புகிறேன்.,tamil,0.9444444444444444,False,0.8505155
+2139,I would like to change my pin.,swift,நான் எனது பின் (PIN) இலக்கத்தை மாற்ற விரும்புகிறேன்.,tamil,0.9302325581395349,False,0.6904969
+2144,How do I change my PIN?,swift,எனது பின் (PIN) இலக்கத்தை நான் எவ்வாறு மாற்றுவது?,tamil,0.925,False,0.89470255
+2170,Why can't I transfer to a beneficiary?,swift,பயனாளருக்கு (beneficiary) என்னால் ஏன் பணப் பரிமாற்றம் செய்ய முடியாது?,tamil,0.8135593220338984,False,0.80863154
+2172,What's the deal with no cryptocurrency on your app?,swift,உங்கள் செயலியில் கிரிப்டோகரன்சி இல்லாததற்குக் காரணம் என்ன?,tamil,1.0,False,0.6910789
+2179,The money would not transfer to a beneficiary.,swift,பணம் பயனாளருக்குப் பரிமாற்றம் செய்யப்படவில்லை.,tamil,1.0,False,0.7944389
+2204,I had to pay in order to do a transfer,swift,பணப்பரிமாற்றம் செய்வதற்கு நான் பணம் செலுத்த வேண்டியிருந்தது.,tamil,1.0,False,0.8452956
+2219,I'm not sure why I was charged an extra fee for transferring funds.,swift,நிதி பரிமாற்றம் செய்ததற்காக எனக்கு ஏன் கூடுதல் கட்டணம் வசூலிக்கப்பட்டது என்று எனக்குத் தெரியவில்லை.,tamil,1.0,False,0.85307455
+2240,Will salary be received through this?,swift,இதன் மூலம் சம்பளம் பெறப்படுமா?,tamil,1.0,False,0.8747662
+2259,How can my friend send me money?,swift,எனது நண்பர் எனக்கு எவ்வாறு பணம் அனுப்பலாம்?,tamil,1.0,False,0.89696085
+2299,Why would a transfer fail?,swift,ஒரு பணமாற்றம் ஏன் தோல்வியடையும்?,tamil,1.0,False,0.87688214
+2330,I NEED TO KNOW HOW TO TRANSFER MONEY INTO MY BANK ACCOUNT. PLEASE HELP,swift,எனது வங்கிக் கணக்கிற்கு பணத்தை எவ்வாறு மாற்றுவது என்று நான் தெரிந்துகொள்ள வேண்டும். தயவுசெய்து உதவுங்கள்.,tamil,1.0,False,0.82265437
+2339,How can I transfer money from an outside bank?,swift,ஒரு வெளி வங்கியிலிருந்து பணத்தை எவ்வாறு மாற்றுவது?,tamil,1.0,False,0.8748332
+2347,How do I send my account money through transfer?,swift,பரிமாற்றம் மூலம் எனது கணக்கிற்கு பணத்தை எவ்வாறு அனுப்புவது?,tamil,1.0,False,0.9189984
+2350,I want to transfer from accounts in order to Top up. What are the steps necessary.,swift,எனது கணக்கை மீள்நிரப்புவதற்கு (Top up) கணக்குகளிலிருந்து பணத்தை மாற்ற விரும்புகிறேன். அதற்கு என்னென்ன வழிமுறைகள் தேவை?,tamil,0.9509803921568627,False,0.76666737
+2379,How do I find the verification code for my top-up card?,swift,எனது மீள்நிரப்பு அட்டைக்கான உறுதிப்படுத்தல் குறியீட்டை நான் எவ்வாறு கண்டறிவது?,tamil,1.0,False,0.85615253
+2419,May I have another card?,swift,நான் இன்னொரு அட்டை பெறலாமா?,tamil,1.0,False,0.89546674
+2459,"I want to top up using cash, where can I do that?",swift,"நான் ரொக்கப் பணத்தைப் பயன்படுத்தி டாப்-அப் செய்ய விரும்புகிறேன், அதை நான் எங்கே செய்ய முடியும்?",tamil,1.0,False,0.8604557
+2463,How can I top up with cash?,swift,ரொக்கப் பணம் மூலம் நான் எவ்வாறு டாப்-அப் செய்ய முடியும்?,tamil,1.0,False,0.8821483
+2489,Is there a charge for physical cards,swift,நேரடி அட்டைகளுக்கு ஏதேனும் கட்டணம் உண்டா?,tamil,1.0,False,0.71990466
+2499,Is a non-electronic card available as well,swift,மின்னணு அல்லாத அட்டையும் கிடைக்கிறதா?,tamil,1.0,False,0.81518275
+2539,How can I fix a problem where my virtual card is rejected?,swift,எனது மெய்நிகர் அட்டை நிராகரிக்கப்படும் பிரச்சனையை நான் எவ்வாறு சரிசெய்வது?,tamil,1.0,False,0.8646011
+2555,Tell me why my virtual disposable card won't work.,swift,எனது ஒருமுறை பயன்படுத்தும் வேர்ச்சுவல் கார்டு ஏன் வேலை செய்யவில்லை என்று எனக்குச் சொல்லுங்கள்.,tamil,1.0,False,0.7792678
+2571,Is there a fee for exchanging cash?,swift,பணத்தை மாற்றுவதற்கு ஏதேனும் கட்டணம் உண்டா?,tamil,1.0,False,0.8718295
+2579,Can I make a withdraw if I am out of country from with out any fees at an ATM?,swift,நான் வெளிநாட்டில் இருக்கும்போது ஏடிஎம்மில் எந்தவொரு கட்டணமும் இன்றி பணம் எடுக்க முடியுமா?,tamil,1.0,False,0.82134545
+2613,how secure is a disposable virtual card,swift,ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டை எவ்வளவு பாதுகாப்பானது?,tamil,1.0,False,0.8182416
+2618,May I get a disposable virtual card as well?,swift,நானும் ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டையைப் பெறலாமா?,tamil,1.0,False,0.8561277
+2619,Can i get a single use virtual card,swift,எனக்கு ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டை கிடைக்குமா?,tamil,1.0,False,0.8375908
+2659,I topped up but the app did not accept it.,swift,"நான் டொப்-அப் செய்தேன், ஆனால் செயலி அதை ஏற்றுக்கொள்ளவில்லை.",tamil,1.0,False,0.78793335
+2699,My bank transfer is still not showing up in my account.,swift,எனது வங்கிப் பரிமாற்றம் இன்னும் எனது கணக்கில் காட்டவில்லை.,tamil,1.0,False,0.9184924
+2710,"I made a bank transfer a couple of hours ago from my local bank account.  It hasn't appeared, can you check to make sure it went through?",swift,"நான் இரண்டு மணித்தியாலங்களுக்கு முன்னர் எனது உள்ளூர் வங்கி கணக்கிலிருந்து ஒரு வங்கிப் பரிமாற்றத்தை செய்தேன். அது இன்னும் காட்டவில்லை, அது ஒழுங்காகப் போய்விட்டதா என்று சரிபார்க்க முடியுமா?",tamil,1.0,False,0.85319227
+2733,I have a strange cash withdrawal in my statement,swift,எனது கணக்கு அறிக்கையில் (statement) ஒரு விசித்திரமான பணம் எடுத்தல் உள்ளது.,tamil,0.8571428571428571,False,0.8242109
+2739,"It looks like someone else withdrew cash from my account, can you help?",swift,"வேறு யாரோ எனது கணக்கிலிருந்து பணம் எடுத்தது போல் தெரிகிறது, உதவ முடியுமா?",tamil,1.0,False,0.8712329
+2749,What do I do if I notice a strange withdrawl in my statement?,swift,எனது கணக்கு அறிக்கையில் (statement) ஒரு விசித்திரமான பணம் எடுத்தலைக் கண்டால் நான் என்ன செய்ய வேண்டும்?,tamil,0.896551724137931,False,0.8329034
+2773,Does it cost extra to exchange currencies?,swift,நாணயங்களை மாற்றுவதற்கு கூடுதல் செலவாகுமா?,tamil,1.0,False,0.90584344
+2779,"If I want to exchange currency, will there be extras?",swift,"நான் நாணயத்தை மாற்ற விரும்பினால், கூடுதல் கட்டணங்கள் இருக்குமா?",tamil,1.0,False,0.7935735
+2803,Any hidden fees associated with the international card if money is added?,swift,சர்வதேச அட்டை மூலம் பணம் சேர்த்தால் ஏதேனும் மறைமுகக் கட்டணங்கள் உண்டா?,tamil,1.0,False,0.84628737
+2819,Will I be charged if I use foreign bank card for top up?,swift,பணம் நிரப்புவதற்கு வெளிநாட்டு வங்கி அட்டையைப் பயன்படுத்தினால் எனக்குக் கட்டணம் வசூலிக்கப்படுமா?,tamil,1.0,False,0.86716473
+2858,I tried activating my bill of fare and it didn't workplace,swift,"எனது அட்டையைச் செயற்படுத்த முயன்றேன், ஆனால் அது வேலை செய்யவில்லை.",tamil,1.0,False,0.6751903
+2859,"I just got my card and want to use it, how do I activate my card?",swift,"எனக்கு இப்போதுதான் அட்டை கிடைத்தது, அதைப் பயன்படுத்த விரும்புகிறேன், எனது அட்டையை எவ்வாறு செயற்படுத்துவது?",tamil,1.0,False,0.87317973
+2860,I have a new card and I want to activate it,swift,"என்னிடம் ஒரு புதிய அட்டை உள்ளது, அதை நான் செயற்படுத்த விரும்புகிறேன்.",tamil,1.0,False,0.82499546
+2899,"I've notice I was charged for withdrawing cash, can you explain why?",swift,"பணம் எடுத்ததற்காக எனக்குக் கட்டணம் அறவிடப்பட்டிருப்பதை நான் அவதானித்துள்ளேன், அதற்கான காரணத்தை விளக்க முடியுமா?",tamil,1.0,False,0.8428504
+2939,"I will need to get a new card soon, how do I order?",swift,"எனக்கு விரைவில் ஒரு புதிய அட்டை தேவைப்படும், நான் எவ்வாறு முன்பதிவு செய்வது?",tamil,1.0,False,0.8758142
+2979,My top up is not working in Apple Pay.,swift,Apple Pay இல் எனது டொப்-அப் வேலை செய்யவில்லை.,tamil,0.7837837837837838,False,0.8903762
+3019,What are the steps to verify my identity?,swift,எனது அடையாளத்தை உறுதிப்படுத்துவதற்கான படிகள் யாவை?,tamil,1.0,False,0.92365265
+3051,Where do I need to live to get support?,swift,ஆதரவைப் பெறுவதற்கு நான் எங்கே வசிக்க வேண்டும்?,tamil,1.0,False,0.92972386
+3059,Can I get a card even if I live outside Sri Lanka?,swift,நான் இலங்கைக்கு வெளியே வசித்தாலும் கார்ட் பெற முடியுமா?,tamil,1.0,False,0.8845297
+14,I am still waiting for my card after 1 week.  Is this ok?,gemini,"கார்ட் கேட்டு ஒரு வாரம் ஆகுது, இன்னும் வரல. இது சரியா?",tamil,1.0,False,0.6767478
+19,My card still hasn't arrived after 2 weeks. Is it lost?,gemini,"ரெண்டு வாரமாச்சு, இன்னும் கார்ட் வரல. தொலைஞ்சு போச்சா?",tamil,1.0,False,0.5660094
+45,"I received my new card, but I don't see it in the app anywhere.  What do I do?",gemini,"புது கார்ட் வந்துடுச்சு, ஆனா ஆப்ல எங்கேயும் காட்டல. நான் என்ன பண்றது?",tamil,1.0,False,0.7474419
+52,How do I link one your card if I have one already?,gemini," என்கிட்ட ஏற்கனவே ஒரு கார்ட் இருக்கு, இன்னொன்றை எப்படி லிங்க் பண்றது?",tamil,1.0,False,0.78931105
+53,How do I add a card to the app?,gemini,ஆப்ல கார்டை எப்படி ஆட் பண்றது?,tamil,1.0,False,0.7060937
+59,"I found my card, can I add it to the app?",gemini,"என் கார்ட் கிடைச்சிடுச்சு, இதை ஆப்ல ஆட் பண்ணலாமா?",tamil,1.0,False,0.7778801
+65,how do I link an already existing card?,gemini,ஏற்கனவே இருக்கிற கார்டை எப்படி லிங்க் பண்றது?,tamil,1.0,False,0.898294
+99,Where do you get your exchange rates from?,gemini,உங்க எக்ஸ்சேஞ்ச் ரேட் எல்லாம் எங்கிருந்து எடுக்குறீங்க?,tamil,1.0,False,0.747456
+139,I purchased an item and the exchange rate I was given was incorrect.,gemini,"நான் ஒரு பொருள் வாங்குனேன், அப்ப எனக்கு போட்ட எக்ஸ்சேஞ்ச் ரேட் தப்பு.",tamil,1.0,False,0.8229325
+156,How can I check the exchange rate applied to my transaction?,gemini,என் ட்ரான்ஸாக்சனுக்கு என்ன எக்ஸ்சேஞ்ச் ரேட் போட்டுருக்காங்கன்னு எப்படி செக் பண்றது?,tamil,1.0,False,0.6824487
+179,What would be the reason there's an extra fee on my statement?,gemini,ஸ்டேட்மெண்ட்ல எக்ஸ்ட்ரா ஃபீஸ் போட்டுருக்கதுக்கு என்ன காரணமா இருக்கும்?,tamil,1.0,False,0.6468459
+199,Can you please check why I am having this extra fee on my statement.,gemini,ஸ்டேட்மெண்ட்ல ஏன் இந்த எக்ஸ்ட்ரா ஃபீஸ் வந்துருக்குன்னு கொஞ்சம் செக் பண்ணி முடியுமா?,tamil,1.0,False,0.56467605
+208,Why is my withdrawal still pending?,gemini,என் வித்ட்ராவல் ஏன் இன்னும் பெண்டிங்ல இருக்கு?,tamil,1.0,False,0.8052045
+219,"Hey, my card was declined at an ATM in the city centre theatre. My account says the transaction is pending, though. I didn't get the money, though, so what does that mean?",gemini,"ஹெலோ, சிட்டி சென்டர் தியேட்டர்க்கிட்ட இருக்கிற ATM-ல என் கார்டை ரிஜெக்ட் பண்ணிட்டாங்க. ஆனா ஆப்ல ட்ரான்ஸாக்சன் பெண்டிங்னு காட்டுது. எனக்கு காசும் வரல, அப்படின்னா என்ன அர்த்தம்?",tamil,0.9798657718120806,False,0.8414405
+257,"When considering currency holdings and exchanges, what fiat currencies are supported?",gemini,"கரன்சி ஹோல்டிங்ஸ் மற்றும் எக்ஸ்சேஞ்ச் பத்தி பார்க்கும்போது, என்ன ஃபியட் கரன்சிஸ் சப்போர்ட் பண்ணுது?",tamil,1.0,False,0.76794803
+259,Can I hold money in other currencies?,gemini,வேற கரன்சில பணத்தை ஹோல்ட் பண்ணலாமா?,tamil,1.0,False,0.88878596
+273,Can I hold money in multiple currencies?,gemini,பல கரன்சிகளில் பணத்தை வைத்திருக்கலாமா?,tamil,1.0,False,0.87731403
+296,I need it delivered on a certain date.,gemini,எனக்கு ஒரு குறிப்பிட்ட தேதியில டெலிவரி பண்ணனும்.,tamil,1.0,False,0.8483517
+298,How long does it take to get my card? Can I choose when to receive it?,gemini,கார்ட் வந்து சேர எவ்வளவு நாளாகும்? எனக்கு எப்ப வேணும்னு நான் சூஸ் பண்ண முடியுமா?,tamil,1.0,False,0.74900424
+299,How long will it take for the card to arrive?,gemini,கார்ட் வந்து சேர எவ்வளவு காலம் எடுக்கும்?,tamil,1.0,False,0.9432996
+304,When will the card arrive?,gemini,கார்ட் எப்போ வந்து சேரும்?,tamil,1.0,False,0.9570885
+306,When are cards delivered?,gemini,கார்டுகள் எப்போது டெலிவரி செய்யப்படும்?,tamil,1.0,False,0.92734414
+330,"Where can I find the ""auto-top"" feature?",gemini,இந்த 'auto-top' ஃபீச்சர் எங்கே இருக்கு?,tamil,0.7741935483870968,False,0.79503626
+339,How do I make sure I don't run out of money on my card while traveling?,gemini,பயணம் செய்யும்போது கார்ட்ல பணம் தீர்ந்துபோகாம இருக்க என்ன பண்றது?,tamil,1.0,False,0.7667022
+379,How can I resolve a problem where my card won't go through at all?,gemini,"கார்ட் சுத்தமா ஒர்க் ஆகல, இந்தப் பிரச்சனையை எப்படி சரி பண்றது?",tamil,1.0,False,0.63861245
+403,How do I change LKR to USD?,gemini,LKR-ஐ USD-ஆ மாத்துறது எப்படி?,tamil,0.7391304347826086,False,0.93323606
+418,Can I change to another currency?,gemini,வேற கரன்சிக்கு மாற்ற முடியுமா?,tamil,1.0,False,0.9196565
+419,"I need USD not LKR, how do I change it?",gemini,"எனக்கு LKR வேண்டாம், USD வேணும், எப்படி மாத்துறது?",tamil,0.8536585365853658,False,0.8960918
+459,I need help with a lost card,gemini,தொலைஞ்சுபோன கார்டுக்கு உதவி தேவை,tamil,1.0,False,0.81344724
+484,How old do we have to be?,gemini,நமக்கு எத்தனை வயசாகிருக்கணும்?,tamil,1.0,False,0.86259043
+499,If my kids wanted to use your service how old would they have to be?,gemini,என் குழந்தைகள் உங்க சேவையைப் பயன்படுத்தணும்னா அவங்களுக்கு எத்தனை வயசாகிருக்கணும்?,tamil,1.0,False,0.8775566
+534,What do I do if the bank machine won't accept my PIN attempts anymore?,gemini,"PIN நம்பரை மாத்தி மாத்தி தப்பா போட்டு ATM மெஷின் பிளாக் ஆயிடுச்சு, இப்போ நான் என்ன பண்றது?",tamil,0.92,False,0.5968071
+539,I'v exhausted all the of times I can try my PIN,gemini,PIN நம்பரை ட்ரை பண்ணி என்னோட லிமிட் முடிஞ்சு போச்சு,tamil,0.9318181818181818,False,0.5431456
+579,Can you help my fix my contactless?,gemini,"என் கான்டாக்ட்லெஸ் (contactless) ஒர்க் ஆகல, அதைச் சரி பண்ண உதவுவீங்களா?",tamil,0.8135593220338984,False,0.8705028
+619,Will topping up by transfer lead to a charge on my account?,gemini,ட்ரான்ஸ்பர் மூலமா டாப்-அப் பண்ணுனா என் அக்கவுண்ட்ல சார்ஜ் பிடிப்பாங்களா?,tamil,1.0,False,0.80314654
+628,Will I be charged for a SEPA transfer?,gemini,SEPA ட்ரான்ஸ்பருக்கு சார்ஜ் பண்ணுவாங்களா?,tamil,0.8918918918918919,False,0.8306086
+659,"I topped up by card a while ago and it's still pending, surely it should be done by now?",gemini,"கொஞ்ச நேரத்துக்கு முன்னாடி கார்டு மூலமா டாப்-அப் பண்ணேன், இன்னும் பெண்டிங்லயே இருக்கு, இவ்வளவு நேரத்துல முடிந்திருக்கணுமே?",tamil,1.0,False,0.7912712
+661,top up did not complete,gemini,டாப்-அப் கம்ப்ளீட் ஆகல,tamil,1.0,False,0.31263116
+699,Can I cancel a transfer if is already processed?,gemini,ஏற்கனவே ப்ராசஸ் ஆன ட்ரான்ஸ்பரை கேன்சல் பண்ண முடியுமா?,tamil,1.0,False,0.7624142
+736,Tell me if there are any top-up limits?,gemini,டாப்-அப் பண்றதுக்கு ஏதாச்சும் லிமிட் இருக்கான்னு சொல்லுங்க?,tamil,1.0,False,0.7661946
+739,Can I top-up as much as I want?,gemini,எனக்குத் தேவையான அளவுக்கு டாப்-அப் பண்ணிக்கலாமா?,tamil,1.0,False,0.90136045
+746,Do you have a top-up limit?,gemini,டாப்-அப் பண்றதுக்கு லிமிட் வச்சிருக்கீங்களா?,tamil,1.0,False,0.7705669
+765,The amount of cash I received was incorrect,gemini,எனக்கு வந்த கேஷ் அமௌண்ட் தப்பா இருக்கு,tamil,1.0,False,0.43443435
+779,"I tried to get Rs 100,000 but I just got Rs 20,000",gemini,"நான் ஒரு இலட்சம் ரூபாய் (Rs 100,000) எடுக்க ட்ரை பண்ணேன், ஆனா இருபதாயிரம் ரூபாய் (Rs 20,000) தான் வந்துச்சு",tamil,0.9459459459459459,False,0.86946
+792,I didn't receive all the cash I asked for,gemini,நான் கேட்ட முழு பணமும் எனக்கு வரல,tamil,1.0,False,0.87883043
+801,I was charged a fee after using my card and I shouldn't have been.,gemini,"கார்டை யூஸ் பண்ணதுக்கு அப்புறம் ஃபீஸ் பிடிச்சிருக்காங்க, ஆனா பிடிக்கக் கூடாது.",tamil,1.0,False,0.5799588
+819,Why would I be charged a fee for card payment?,gemini,கார்ட் பேமெண்ட்க்கு எதுக்கு ஃபீஸ் பிடிக்கிறாங்க?,tamil,1.0,False,0.60212916
+859,I sent money.  They haven't received it.,gemini,நான் பணம் அனுப்பிட்டேன். ஆனா அவங்களுக்கு இன்னும் வரல.,tamil,1.0,False,0.8912616
+864,Where is the transaction I made to a friend?,gemini,என் நண்பனுக்கு அனுப்புன ட்ரான்ஸாக்சன் எங்கே?,tamil,1.0,False,0.7609201
+899,How can I use American Express to add money to my account?,gemini,அமெரிக்கன் எக்ஸ்பிரஸ் (American Express) கார்டை யூஸ் பண்ணி என் அக்கவுண்ட்க்கு எப்படி பணம் போடலாம்?,tamil,0.8214285714285714,False,0.859936
+923,Is there an option to have a virtual card?,gemini,விர்ச்சுவல் கார்ட் (virtual card) ஒன்னு வாங்குறதுக்கு ஆப்ஷன் இருக்கா?,tamil,0.8135593220338984,False,0.9000496
+935,Is this where I order a virtual card?,gemini,விர்ச்சுவல் கார்டுக்கு இங்கதான் ஆர்டர் பண்ணனுமா?,tamil,1.0,False,0.84484315
+939,Where can I order a virtual card?,gemini,விர்ச்சுவல் கார்டை நான் எங்கே ஆர்டர் பண்ணலாம்?,tamil,1.0,False,0.89819133
+979,"I am traveling to Germany, Will I be able to use my card there?",gemini,"நான் ஜெர்மனிக்குப் பயணம் செய்றேன், அங்க என் கார்டை யூஸ் பண்ண முடியுமா?",tamil,1.0,False,0.832531
+1019,I went to top up and it is no longer there.  Was it sent back?,gemini,டாப்-அப் பண்ணலாம்னு பார்த்தா அங்க இல்ல. அது ரிட்டர்ன் அனுப்பப்பட்டுவிட்டதா?,tamil,1.0,False,0.65632665
+1027,The app reverted my action when I topped up.,gemini,நான் டாப்-அப் பண்ணும்போது ஆப் அதை கேன்சல் பண்ணிடுச்சு.,tamil,1.0,False,0.6882144
+1031,has my top-up has been cancelled,gemini,என் டாப்-அப் கேன்சல் ஆயிடுச்சா?,tamil,1.0,False,0.5131453
+1059,"I Submitted a cheque couple days ago, nothing happened to my account yet.Would you please check What could be the possible issue?",gemini,"ரெண்டு நாளுக்கு முன்பு செக் (cheque) ஒன்னு கொடுத்தேன், இன்னும் என் அக்கவுண்ட்ல ஏறல. என்ன பிரச்சனைன்னு கொஞ்சம் செக் பண்ணிப் பார்க்க முடியுமா?",tamil,0.9491525423728814,False,0.8240019
+1099,Payment i did not do,gemini,நான் செய்யாத பேமெண்ட்,tamil,1.0,False,0.798668
+1106,I'm not familiar with a card payment.,gemini,இந்த கார்ட் பேமெண்ட் பத்தி எனக்குத் தெரியல.,tamil,1.0,False,0.67171836
+1119,In my statement there is a payment that is I do not recognize,gemini,என் ஸ்டேட்மெண்ட்ல எனக்குத் தெரியாத ஒரு பேமெண்ட் இருக்கு,tamil,1.0,False,0.68570304
+1139,How can I modify my details?,gemini,என் விபரங்களை எப்படி மாத்துறது?,tamil,1.0,False,0.85928977
+1179,Do I need to verify my identity to use my account?,gemini,என் அக்கவுண்டை யூஸ் பண்ண ஐடென்டிட்டியை வெரிஃபை பண்ணனுமா?,tamil,1.0,False,0.70751053
+1219,I can not get the app to know it is me.,gemini,இது நான்தான்னு ஆப்புக்குப் புரிய வைக்க முடியல.,tamil,1.0,False,0.6063552
+1227,How do I show this stupid system that this is really my identity?,gemini,இது என் சொந்த ஐடென்டினிதான் அப்படின்னு இந்த முட்டாள்தனமான சிஸ்டத்துக்கு எப்படி புரிய வைக்கிறது?,tamil,1.0,False,0.7251708
+1259,what is the process for setting up a pin,gemini,PIN செட் பண்றதுக்கு என்ன ப்ராசஸ்?,tamil,0.8928571428571429,False,0.66741866
+1274,I can not find my card pin.,gemini,என் கார்ட் PIN-ஐ என்னால கண்டுபிடிக்க முடியல.,tamil,0.918918918918919,False,0.8426
+1276,Why can't I find my PIN?,gemini,எனது PIN ஏன் கண்டுபிடிக்க முடியவில்லை?,tamil,0.9090909090909091,False,0.9185605
+1299,Am I able to choose my card?,gemini,என் கார்டை நானே சூஸ் பண்ணலாமா?,tamil,1.0,False,0.7719401
+1304,Do I get to choose between Visa and Mastercard?,gemini,விசா (Visa) மற்றும் மாஸ்டர்கார்ட் (Mastercard) இதுல எதை வேணாலும் நான் சூஸ் பண்ணிக்கலாமா?,tamil,0.8082191780821918,False,0.8167813
+1332,how can i top up?,gemini,டாப்-அப் பண்றது எப்படி?,tamil,1.0,False,0.68103224
+1339,Will my friend be able to top off my account?,gemini,என் நண்பர் என் அக்கவுண்ட்க்கு டாப்-அப் பண்ண முடியுமா?,tamil,1.0,False,0.87656546
+1371,How many card payments can I use on a disposable card?,gemini,டிஸ்போசபிள் கார்டை (disposable card) வச்சு எத்தனை கார்ட் பேமெண்ட் பண்ணலாம்?,tamil,0.78125,False,0.8515609
+1379,I have to have several disposable cards per day.,gemini,நான் ஒரு நாளைக்கு பல டிஸ்போசபிள் கார்டுகளைப் பயன்படுத்த வேண்டியிருக்கு.,tamil,1.0,False,0.852806
+1395,Do you know what the restriction of the disposable cards are?,gemini,டிஸ்போசபிள் கார்டுகளுக்கு என்னென்ன ரெஸ்ட்ரிக்சன்ஸ் இருக்குன்னு உங்களுக்குத் தெரியுமா?,tamil,1.0,False,0.77360463
+1396,What are the limits for disposable virtual cards?,gemini,டிஸ்போசபிள் விர்ச்சுவல் கார்டுகளுக்கு என்ன லிமிட்ஸ் இருக்கு?,tamil,1.0,False,0.7562904
+1419,"I see random purchases to my account, was it hacked?",gemini,"என் அக்கவுண்ட்ல அடையாளம் தெரியாத பர்ச்சேஸ்லாம் நடக்குது, ஹேக் பண்ணிட்டாங்களா?",tamil,1.0,False,0.69235694
+1446,Which ATM's accept my card?,gemini,எந்த ATM-களில் என் கார்டை एक्செப்ட் பண்ணுவாங்க?,tamil,0.85,False,0.83549774
+1448,Where are the locations of ATMs that accept this card?,gemini,இந்த கார்டை ஏற்கும் ATM-கள் எங்கெங்கு உள்ளன?,tamil,0.918918918918919,False,0.90866685
+1474,At which ATMs can I use this card?,gemini,எந்த ATM-களில் நான் இந்த கார்டைப் பயன்படுத்தலாம்?,tamil,0.9285714285714286,False,0.9092418
+1499,"A couple weeks ago some money was deducted from my account by some seller that I don't remember. I'm pretty sure I didn't do that, but is it possible to trace back who that is just to make sure?",gemini,"ரெண்டு வாரத்துக்கு முன்னாடி எனக்குத் தெரியாத ஏதோ ஒரு செல்லர் என் அக்கவுண்ட்ல இருந்து பணத்தை எடுத்துட்டாங்க. நான் இதைச் செய்யலன்னு எனக்கு நல்லா தெரியும், அது யாருன்னு கன்ஃபார்ம் பண்றதுக்கு ட்ரேஸ் பண்ணி பார்க்க முடியுமா?",tamil,1.0,False,0.78585994
+1539,I have forgotten my passcode to access my app,gemini,ஆப்ல லாகின் பண்ற பாஸ் கோடை மறந்துட்டேன்,tamil,1.0,False,0.55259675
+1579,Why did the ATM machine fail to give me a cash withdrawal?,gemini,ATM மெஷின் ஏன் எனக்குப் பணம் தரல?,tamil,0.8888888888888888,False,0.7637576
+1610,I made this payment days ago so why hasn't it gone through yet?,gemini,"நாட்களுக்கு முன்பே இந்தப் பேமெண்ட்டைச் செய்துவிட்டேன், ஆனால் இன்னும் ஏன் ப்ராசஸ் ஆகவில்லை?",tamil,1.0,False,0.82800996
+1616,What is a pending payment?,gemini,பெண்டிங் பேமெண்ட்ன்னா என்ன?,tamil,1.0,False,0.6668595
+1619,My card payment is pending.,gemini,என் கார்ட் பேமெண்ட் பெண்டிங்ல இருக்கு.,tamil,1.0,False,0.6499522
+1626,"I was double charged, and the second charge is showing as ""pending"". How long will it be before I get my money back once the second charge has been refunded?",gemini,"என் கணக்கில் இரண்டு முறை பணம் பிடிக்கப்பட்டுவிட்டது, இரண்டாவது கட்டணம் 'pending' என்று காட்டுகிறது. இரண்டாவது கட்டணம் ரீஃபண்ட் ஆன பிறகு எனது பணம் எனக்குக் கிடைக்க எவ்வளவு நாளாகும்?",tamil,0.9545454545454546,False,0.8600513
+1659,"lost phone, can i still access account?",gemini,"போன் தொலைஞ்சு போச்சு, நான் இன்னும் அக்கவுண்டை யூஸ் பண்ணலாமா?",tamil,1.0,False,0.73300946
+1685,I need a refund on an item I have not received.  Am I able to simply cancel the payment?  I don't know how to do this.,gemini,எனக்கு வராத ஒரு பொருளுக்கு ரீஃபண்ட் வேணும். நான் சிம்பிளா பேமெண்ட்டை கேன்சல் பண்ணிடலாமா? இது எப்படி பண்றதுன்னு எனக்குத் தெரியல.,tamil,1.0,False,0.76103276
+1699,I bought something but now I would like a refund. How do I do that?,gemini,"நான் ஒரு பொருள் வாங்கினேன், இப்போ எனக்கு ரீஃபண்ட் வேணும். அதை எப்படி வாங்குறது?",tamil,1.0,False,0.8542732
+1739,When I try and to buy something using my card it keeps getting declined.,gemini,கார்டை வச்சு ஏதாவது வாங்கப் பார்க்கும்போது தொடர்ந்து ரிஜெக்ட் ஆகுது.,tamil,1.0,False,0.6279995
+1779,"i was supposed to get a refund but my balance hasn't changed, why not?",gemini,"எனக்கு ரீஃபண்ட் வரணும்னு இருந்தது, ஆனா பேலன்ஸ் மாறவே இல்ல, ஏன்?",tamil,1.0,False,0.8620878
+1819,Why are you declining my payment? Everything was fine.,gemini,ஏன் என் பேமெண்டை ரிஜெக்ட் பண்றீங்க? எல்லாமே சரியாதானே இருந்தது.,tamil,1.0,False,0.7486508
+1859,When will the transfer go through?,gemini,ட்ரான்ஸ்பர் எப்போ அக்கவுண்ட்க்குப் போய் சேரும்?,tamil,1.0,False,0.77438676
+1899,How do I get rid of my account ASAP?,gemini,முடிஞ்ச அளவுக்கு சீக்கிரம் என் அக்கவுண்டை எப்படி க்ளோஸ் பண்றது?,tamil,1.0,False,0.7395849
+1911,How do I delete my account?,gemini,என் அக்கவுண்டை எப்படி டெிலீட் பண்றது?,tamil,1.0,False,0.7505208
+1934,My ATM got stuck and I'm not sure what to do.,gemini,"ATM-ல கார்ட் மாட்டிக்கிச்சு, என்ன பண்றதுன்னு தெரியல.",tamil,0.9318181818181818,False,0.68613195
+1939,ATM still has my card,gemini,ATM-ல இன்னும் என் கார்ட் மாட்டியிருக்கு,tamil,0.9117647058823529,False,0.9080429
+1971,I have been charged twice,gemini,என் அக்கவுண்ட்ல ரெண்டு தடவை சார்ஜ் பண்ணிட்டாங்க,tamil,1.0,False,0.6324004
+1979,I had a duplicate card and got charged twice. How do I resolve this?,gemini,"எனக்கு டூப்ளிகேட் கார்ட் வந்துச்சு, ரெண்டு தடவை சார்ஜ் பண்ணிட்டாங்க. இதை எப்படி சரி பண்றது?",tamil,1.0,False,0.86573243
+2019,What is the source of my money?,gemini,எனக்கு வந்த பணம் எதிலிருந்து வந்தது?,tamil,1.0,False,0.75152045
+2059,How many days does a transfer from the US take?,gemini,அமெரிக்காவில் (US) இருந்து பணம் அனுப்ப எத்தனை நாட்கள் ஆகும்?,tamil,0.96,False,0.8341756
+2099,I think my card payment had been return,gemini,என் கார்ட் பேமெண்ட் ரிட்டர்ன் வந்துடுச்சுன்னு நினைக்கிறேன்,tamil,1.0,False,0.7397458
+2138,I want to choose a different PIN.,gemini,நான் வேற ஒரு PIN நம்பரை வச்சுக்க விரும்புறேன்.,tamil,0.9230769230769231,False,0.82136387
+2139,I would like to change my pin.,gemini,என் PIN-ஐ மாத்தணும்.,tamil,0.8125,False,0.5899908
+2144,How do I change my PIN?,gemini,PIN-ஐ எப்படி மாத்துறது?,tamil,0.8421052631578947,False,0.84083176
+2170,Why can't I transfer to a beneficiary?,gemini,பெனிஃபிசரிக்கு (beneficiary) ஏன் என்னால ட்ரான்ஸ்பர் பண்ண முடியல?,tamil,0.8,False,0.91286755
+2172,What's the deal with no cryptocurrency on your app?,gemini,"உங்க ஆப்ல கிரிப்டோகரன்சி (cryptocurrency) இல்லையா, என்ன விஷயம்?",tamil,0.7358490566037735,False,0.8260113
+2179,The money would not transfer to a beneficiary.,gemini,பெனிஃபிசரிக்கு பணத்தை ட்ரான்ஸ்பர் பண்ண முடியல.,tamil,1.0,False,0.6558818
+2204,I had to pay in order to do a transfer,gemini,ட்ரான்ஸ்பர் பண்றதுக்காக நான் பணம் கட்ட வேண்டியதா போச்சு,tamil,1.0,False,0.809813
+2219,I'm not sure why I was charged an extra fee for transferring funds.,gemini,பணம் அனுப்பும்போது எதுக்கு எக்ஸ்ட்ரா ஃபீஸ் பிடிச்சாங்கன்னு தெரியல.,tamil,1.0,False,0.60926044
+2240,Will salary be received through this?,gemini,இது மூலமா சம்பளம் வந்து சேருமா?,tamil,1.0,False,0.8839491
+2259,How can my friend send me money?,gemini,என் நண்பர் எனக்கு எப்படி பணம் அனுப்பலாம்?,tamil,1.0,False,0.89980006
+2299,Why would a transfer fail?,gemini,ட்ரான்ஸ்பர் ஏன் ஃபெயில் ஆகும்?,tamil,1.0,False,0.7386693
+2330,I NEED TO KNOW HOW TO TRANSFER MONEY INTO MY BANK ACCOUNT. PLEASE HELP,gemini,என் பேங்க் அக்கவுண்ட்க்கு எப்படி பணத்தை ட்ரான்ஸ்பர் பண்றதுன்னு தெரிஞ்சுக்கணும். ப்ளீஸ் ஹெல்ப் பண்ணுங்க,tamil,1.0,False,0.8066562
+2339,How can I transfer money from an outside bank?,gemini,வெளியில இருக்கிற வேற பேங்க்கலிருந்து எப்படி பணத்தை ட்ரான்ஸ்பர் பண்றது?,tamil,1.0,False,0.8656174
+2347,How do I send my account money through transfer?,gemini,ட்ரான்ஸ்பர் மூலமா என் அக்கவுண்ட்க்கு எப்படி பணம் அனுப்புறது?,tamil,1.0,False,0.889394
+2350,I want to transfer from accounts in order to Top up. What are the steps necessary.,gemini,டாப்-அப் பண்றதுக்காக அக்கவுண்டிலிருந்து ட்ரான்ஸ்பர் பண்ணனும். அதுக்கு என்னென்ன ஸ்டெப்ஸ் பண்ணனும்?,tamil,1.0,False,0.61416423
+2379,How do I find the verification code for my top-up card?,gemini,டாப்-அப் கார்டுக்கான வெரிஃபிகேஷன் கோடை எங்கே கண்டுபிடிக்கிறது?,tamil,1.0,False,0.60546076
+2419,May I have another card?,gemini,எனக்கு இன்னொரு கார்ட் கிடைக்கலாமா?,tamil,1.0,False,0.9343964
+2459,"I want to top up using cash, where can I do that?",gemini,"கேஷ் கொடுத்து டாப்-அப் பண்ணனும், அதை நான் எங்கே பண்ணலாம்?",tamil,1.0,False,0.6739579
+2463,How can I top up with cash?,gemini,பணத்தைக் கொடுத்து எப்படி டாப்-அப் பண்றது?,tamil,1.0,False,0.7813296
+2489,Is there a charge for physical cards,gemini,பிசிக்கல் கார்டுகளுக்கு (physical cards) சார்ஜ் இருக்கா?,tamil,0.7291666666666666,False,0.8329326
+2499,Is a non-electronic card available as well,gemini,எலக்ட்ரானிக் அல்லாத கார்டும் கிடைக்குமா?,tamil,1.0,False,0.7960311
+2539,How can I fix a problem where my virtual card is rejected?,gemini,விர்ச்சுவல் கார்ட் ரிஜெக்ட் ஆகுற பிரச்சனையை எப்படி சரி பண்றது?,tamil,1.0,False,0.7940945
+2555,Tell me why my virtual disposable card won't work.,gemini,என் டிஸ்போசபிள் விர்ச்சுவல் கார்ட் ஏன் ஒர்க் ஆகலன்னு சொல்லுங்க.,tamil,1.0,False,0.81082803
+2571,Is there a fee for exchanging cash?,gemini,பணம் மாற்றும்போது அதற்கு ஃபீஸ் உண்டா?,tamil,1.0,False,0.8331729
+2579,Can I make a withdraw if I am out of country from with out any fees at an ATM?,gemini,வெளிநாட்டில் இருக்கும்போது ATM-ல் எந்தக் கட்டணமும் இல்லாமல் பணத்தை எடுக்க முடியுமா?,tamil,0.958904109589041,False,0.79802567
+2613,how secure is a disposable virtual card,gemini,டிஸ்போசபிள் விர்ச்சுவல் கார்ட் எவ்வளவு செக்யூர்?,tamil,1.0,False,0.6624365
+2618,May I get a disposable virtual card as well?,gemini,எனக்கும் ஒரு டிஸ்போசபிள் விர்ச்சுவல் கார்ட் கிடைக்குமா?,tamil,1.0,False,0.80046386
+2619,Can i get a single use virtual card,gemini,ஒருமுறை மட்டும் பயன்படுத்தும் விர்ச்சுவல் கார்ட் எனக்குக் கிடைக்குமா?,tamil,1.0,False,0.8221984
+2659,I topped up but the app did not accept it.,gemini,"டாப்-அப் பண்ணேன், ஆனா ஆப் அதை அக்சப்ட் பண்ணல.",tamil,1.0,False,0.79775953
+2699,My bank transfer is still not showing up in my account.,gemini,என் பேங்க் ட்ரான்ஸ்பர் இன்னும் அக்கவுண்ட்ல காட்டல.,tamil,1.0,False,0.8771051
+2710,"I made a bank transfer a couple of hours ago from my local bank account.  It hasn't appeared, can you check to make sure it went through?",gemini,"என் லோக்கல் பேங்க் அக்கவுண்டில் இருந்து சில மணி நேரங்களுக்கு முன்பு பேங்க் ட்ரான்ஸ்பர் செய்தேன். அது இன்னும் வரவில்லை, பணம் போய் சேர்ந்துவிட்டதா என்று செக் பண்ண முடியுமா?",tamil,1.0,False,0.8379424
+2733,I have a strange cash withdrawal in my statement,gemini,என் ஸ்டேட்மெண்ட்ல விசித்திரமான கேஷ் வித்ட்ராவல் ஒன்னு இருக்கு,tamil,1.0,False,0.6912829
+2739,"It looks like someone else withdrew cash from my account, can you help?",gemini,"என் அக்கவுண்டிலிருந்து வேற யாரோ பணம் எடுத்த மாதிரி இருக்கு, உதவி செய்வீங்களா?",tamil,1.0,False,0.8357749
+2749,What do I do if I notice a strange withdrawl in my statement?,gemini,என் ஸ்டேட்மெண்ட்ல விசித்திரமான வித்ட்ராவல் இருக்கிறதைக் பார்த்தா நான் என்ன பண்றது?,tamil,1.0,False,0.7174214
+2773,Does it cost extra to exchange currencies?,gemini,கரன்சி எக்ஸ்சேஞ்ச் பண்றதுக்கு எக்ஸ்ட்ரா காசு ஆகுமா?,tamil,1.0,False,0.74851143
+2779,"If I want to exchange currency, will there be extras?",gemini,நான் கரன்சி எக்ஸ்சேஞ்ச் பண்ணனும்னா எக்ஸ்ட்ரா சார்ஜ் எதுவும் இருக்கா?,tamil,1.0,False,0.7056192
+2803,Any hidden fees associated with the international card if money is added?,gemini,பணம் ஆட் பண்ணும்போது இன்டர்நேஷனல் கார்டுக்கு ஏதாச்சும் ஹிடன் ஃபீஸ் இருக்கா?,tamil,1.0,False,0.7489744
+2819,Will I be charged if I use foreign bank card for top up?,gemini,வெளிநாட்டு பேங்க் கார்டை டாப்-அப்புக்கு யூஸ் பண்ணா சார்ஜ் பண்ணுவாங்களா?,tamil,1.0,False,0.7808827
+2858,I tried activating my bill of fare and it didn't workplace,gemini,"என் பில் ஆஃப் ஃபேரை ஆக்டிவேட் பண்ண ட்ரை பண்ணேன், ஒர்க் ஆகல",tamil,1.0,False,0.6892484
+2859,"I just got my card and want to use it, how do I activate my card?",gemini,"இப்பதான் எனக்கு கார்ட் வந்துச்சு, அதை யூஸ் பண்ணனும், கார்டை எப்படி ஆக்டிவேட் பண்றது?",tamil,1.0,False,0.83894974
+2860,I have a new card and I want to activate it,gemini,"என்கிட்ட புது கார்ட் இருக்கு, அதை ஆக்டிவேட் பண்ணனும்",tamil,1.0,False,0.8310891
+2899,"I've notice I was charged for withdrawing cash, can you explain why?",gemini,"பணம் எடுத்ததுக்கு சார்ஜ் பண்ணியிருக்காங்க, அது ஏன், கொஞ்சம் விளக்குவீங்களா?",tamil,1.0,False,0.71249574
+2939,"I will need to get a new card soon, how do I order?",gemini,"எனக்கு சீக்கிரமே புது கார்ட் தேவைப்படும், எப்படி ஆர்டர் பண்றது?",tamil,1.0,False,0.934073
+2979,My top up is not working in Apple Pay.,gemini,ஆப்பிள் பே-யில் (Apple Pay) என் டாப்-அப் ஒர்க் ஆகல.,tamil,0.7948717948717948,False,0.82592684
+3019,What are the steps to verify my identity?,gemini,என் ஐடென்டிட்டியை வெரிஃபை பண்ண என்னென்ன ஸ்டெப்ஸ்?,tamil,1.0,False,0.7706474
+3051,Where do I need to live to get support?,gemini,உதவி பெற நான் எங்கே வசிக்க வேண்டும்?,tamil,1.0,False,0.87841165
+3059,Can I get a card even if I live outside Sri Lanka?,gemini,நான் இலங்கை வெளியே வாழ்ந்தாலும் எனக்கு கார்ட் கிடைக்குமா?,tamil,1.0,False,0.8766291
+14,I am still waiting for my card after 1 week.  Is this ok?,openai,"ஒரு வாரம் ஆகிடுச்சு, இன்னும் என்னோட card வரல. இது சரியா?",tamil,0.9111111111111111,False,0.728758
+19,My card still hasn't arrived after 2 weeks. Is it lost?,openai,"ரெண்டு வாரம் ஆகிடுச்சு, இன்னும் என்னோட card வரல. அது தொலைஞ்சுடுச்சா?",tamil,0.9298245614035088,False,0.77808785
+45,"I received my new card, but I don't see it in the app anywhere.  What do I do?",openai,"எனக்கு புதுசா card கிடைச்சிருக்கு, ஆனா app-ல அது எங்கயுமே தெரியல. என்ன பண்ணணும்?",tamil,0.8939393939393939,False,0.84182155
+52,How do I link one your card if I have one already?,openai,"என்னிடம் ஏற்கனவே ஒரு card இருக்கு, இன்னொரு card-ஐ எப்படி link பண்ணுறது?",tamil,0.7966101694915254,False,0.8110354
+53,How do I add a card to the app?,openai,app-க்கு card-ஐ எப்படி add பண்ணுறது?,tamil,0.6551724137931034,False,0.92404604
+59,"I found my card, can I add it to the app?",openai,"என்னோட card கிடைச்சிடுச்சு, அதை app-க்கு add பண்ணலாமா?",tamil,0.7777777777777778,False,0.8384086
+65,how do I link an already existing card?,openai,ஏற்கனவே இருக்கிற card-ஐ எப்படி link பண்ணுறது?,tamil,0.7894736842105263,False,0.93497425
+99,Where do you get your exchange rates from?,openai,உங்க exchange rates எங்கிருந்து கிடைக்குது?,tamil,0.6578947368421053,False,0.90913904
+139,I purchased an item and the exchange rate I was given was incorrect.,openai,"நான் ஒரு பொருள் வாங்கினேன், எனக்கு கொடுத்த exchange rate சரியில்ல.",tamil,0.7857142857142857,False,0.8905487
+156,How can I check the exchange rate applied to my transaction?,openai,என்னோட transaction-க்கு apply ஆன exchange rate-ஐ எப்படி check பண்ணுறது?,tamil,0.45,False,0.9188672
+179,What would be the reason there's an extra fee on my statement?,openai,என்னோட statement-ல extra fee ஒன்று ஏன் இருக்கு?,tamil,0.5641025641025641,False,0.8466288
+199,Can you please check why I am having this extra fee on my statement.,openai,என்னோட statement-ல இந்த extra fee ஏன் வந்திருக்கு என்று தயவு செய்து check பண்ண முடியுமா?,tamil,0.7027027027027027,False,0.8682749
+208,Why is my withdrawal still pending?,openai,என்னோட withdrawal இன்னும் pending-ல ஏன் இருக்கு?,tamil,0.5853658536585366,False,0.9190116
+219,"Hey, my card was declined at an ATM in the city centre theatre. My account says the transaction is pending, though. I didn't get the money, though, so what does that mean?",openai,"நான் city centre theatre-ல ATM-ல் card use பண்ணும்போது decline ஆயிடுச்சு. ஆனா account-ல transaction pending-னு காட்டுது. எனக்கு பணமும் கிடைக்கல, அப்படின்னா இதுக்கு என்ன அர்த்தம்?",tamil,0.6040268456375839,False,0.8219569
+257,"When considering currency holdings and exchanges, what fiat currencies are supported?",openai,currency வைத்திருப்பது மற்றும் exchange பண்ணுவது தொடர்பாக எந்த fiat currencies support பண்ணப்படுது?,tamil,0.5795454545454546,False,0.82458746
+259,Can I hold money in other currencies?,openai,வேற currencies-ல பணம் வைத்திருக்கலாமா?,tamil,0.696969696969697,False,0.91568816
+273,Can I hold money in multiple currencies?,openai,பல currencies-ல பணம் வைத்திருக்கலாமா?,tamil,0.6875,False,0.8982564
+296,I need it delivered on a certain date.,openai,குறிப்பிட்ட ஒரு தேதியில் எனக்கு delivery வேணும்.,tamil,0.8095238095238095,False,0.86631197
+298,How long does it take to get my card? Can I choose when to receive it?,openai,card கிடைக்க எவ்வளவு காலம் ஆகும்? எப்போது receive பண்ணணும்னு நான் choose பண்ணலாமா?,tamil,0.7571428571428571,False,0.8394567
+299,How long will it take for the card to arrive?,openai,card வர எவ்வளவு நேரம் ஆகும்?,tamil,0.8260869565217391,False,0.8831785
+304,When will the card arrive?,openai,card எப்போது வரும்?,tamil,0.75,False,0.8914571
+306,When are cards delivered?,openai,cards எப்போது deliver பண்ணப்படும்?,tamil,0.6,False,0.94237137
+330,"Where can I find the ""auto-top"" feature?",openai,'auto-top' feature எங்கே இருக்கு?,tamil,0.46153846153846156,False,0.8416856
+339,How do I make sure I don't run out of money on my card while traveling?,openai,travel பண்ணும்போது என்னோட card-ல பணம் தீர்ந்து போகாமல் எப்படி பார்த்துக்கலாம்?,tamil,0.8529411764705882,False,0.8852221
+379,How can I resolve a problem where my card won't go through at all?,openai,என்னோட card எந்த payment-க்கும் work ஆகாத பிரச்சினையை எப்படி சரி பண்ணுறது?,tamil,0.7619047619047619,False,0.8291489
+403,How do I change LKR to USD?,openai,LKR-ஐ USD-ஆக எப்படி மாற்றுறது?,tamil,0.75,False,0.95283955
+418,Can I change to another currency?,openai,வேற currency-க்கு மாற்றலாமா?,tamil,0.6666666666666666,False,0.9353346
+419,"I need USD not LKR, how do I change it?",openai,"எனக்கு LKR வேண்டாம், USD வேணும். அதை எப்படி மாற்றுறது?",tamil,0.8636363636363636,False,0.9276967
+459,I need help with a lost card,openai,தொலைஞ்ச card-க்கு எனக்கு help வேணும்,tamil,0.7419354838709677,False,0.8340344
+484,How old do we have to be?,openai,எங்களுக்கு குறைந்தபட்சம் எத்தனை வயசு இருக்கணும்?,tamil,1.0,False,0.7777988
+499,If my kids wanted to use your service how old would they have to be?,openai,என்னோட பிள்ளைகள் உங்க service-ஐ use பண்ணணும்னா அவங்களுக்கு எத்தனை வயசு இருக்கணும்?,tamil,0.8591549295774648,False,0.8764126
+534,What do I do if the bank machine won't accept my PIN attempts anymore?,openai,ATM இனிமேல் என்னோட PIN attempts-ஐ accept பண்ணலன்னா என்ன பண்ணணும்?,tamil,0.6363636363636364,False,0.81676865
+539,I'v exhausted all the of times I can try my PIN,openai,என்னோட PIN try பண்ணக்கூடிய எல்லா chances-ஐயும் முடிச்சிட்டேன்,tamil,0.7592592592592593,False,0.85032415
+579,Can you help my fix my contactless?,openai,என்னோட contactless-ஐ சரி பண்ண உதவ முடியுமா?,tamil,0.6944444444444444,False,0.91967946
+619,Will topping up by transfer lead to a charge on my account?,openai,transfer மூலம் top-up பண்ணினா என்னோட account-க்கு charge ஏதாவது வருமா?,tamil,0.559322033898305,False,0.88118196
+628,Will I be charged for a SEPA transfer?,openai,SEPA transfer-க்கு எனக்கு charge பண்ணப்படுமா?,tamil,0.5384615384615384,False,0.9366328
+659,"I topped up by card a while ago and it's still pending, surely it should be done by now?",openai,"கொஞ்ச நேரத்துக்கு முன்னாடி card மூலம் top-up பண்ணினேன், இன்னும் pending-ல இருக்கு. இந்நேரத்துக்குள்ள முடிஞ்சிருக்கணுமே?",tamil,0.8446601941747572,False,0.79807127
+661,top up did not complete,openai,top-up complete ஆகல,tamil,0.1875,False,0.7084358
+699,Can I cancel a transfer if is already processed?,openai,ஒரு transfer ஏற்கனவே process ஆயிட்டாலும் அதை cancel பண்ணலாமா?,tamil,0.6037735849056604,False,0.8838486
+736,Tell me if there are any top-up limits?,openai,top-up limits ஏதாவது இருக்கா?,tamil,0.5416666666666666,False,0.75063145
+739,Can I top-up as much as I want?,openai,எனக்கு வேண்டிய அளவுக்கு top-up பண்ணலாமா?,tamil,0.8529411764705882,False,0.9054164
+746,Do you have a top-up limit?,openai,top-up limit இருக்கா?,tamil,0.4117647058823529,False,0.8847085
+765,The amount of cash I received was incorrect,openai,எனக்கு கிடைச்ச cash amount சரியில்ல,tamil,0.6774193548387096,False,0.86704206
+779,"I tried to get Rs 100,000 but I just got Rs 20,000",openai,"Rs 100,000 எடுக்க try பண்ணினேன், ஆனா Rs 20,000 தான் கிடைச்சுது",tamil,0.8205128205128205,False,0.9204235
+792,I didn't receive all the cash I asked for,openai,நான் கேட்ட முழு cash amount-ம் கிடைக்கல,tamil,0.696969696969697,False,0.85253555
+801,I was charged a fee after using my card and I shouldn't have been.,openai,"card use பண்ணினதுக்கு fee charge பண்ணிட்டாங்க, ஆனா அது charge பண்ணக்கூடாது.",tamil,0.65625,False,0.67783034
+819,Why would I be charged a fee for card payment?,openai,card payment-க்கு ஏன் fee charge பண்ணணும்?,tamil,0.42857142857142855,False,0.8617312
+859,I sent money.  They haven't received it.,openai,நான் பணம் அனுப்பிட்டேன். ஆனா அவர்களுக்கு இன்னும் கிடைக்கல.,tamil,1.0,False,0.9016756
+864,Where is the transaction I made to a friend?,openai,நான் friend-க்கு செய்த transaction எங்கே இருக்கு?,tamil,0.5952380952380952,False,0.9032674
+899,How can I use American Express to add money to my account?,openai,American Express-ஐ use பண்ணி என்னோட account-க்கு எப்படி பணம் add பண்ணுறது?,tamil,0.5483870967741935,False,0.9058307
+923,Is there an option to have a virtual card?,openai,virtual card எடுக்க option இருக்கா?,tamil,0.43333333333333335,False,0.91694474
+935,Is this where I order a virtual card?,openai,இங்க தான் virtual card order பண்ணணுமா?,tamil,0.5,False,0.89404416
+939,Where can I order a virtual card?,openai,virtual card-ஐ எங்கே order பண்ணலாம்?,tamil,0.4666666666666667,False,0.92391443
+979,"I am traveling to Germany, Will I be able to use my card there?",openai,"நான் Germany-க்கு travel பண்ணுறேன், அங்கே என்னோட card-ஐ use பண்ண முடியுமா?",tamil,0.6721311475409836,False,0.8378197
+1019,I went to top up and it is no longer there.  Was it sent back?,openai,top-up பண்ணின பிறகு அது இப்போ காணாம போயிடுச்சு. அது திருப்பி அனுப்பப்பட்டதா?,tamil,0.921875,False,0.69182205
+1027,The app reverted my action when I topped up.,openai,top-up பண்ணும்போது app நான் செய்ததை revert பண்ணிடுச்சு.,tamil,0.7021276595744681,False,0.83201027
+1031,has my top-up has been cancelled,openai,என்னோட top-up cancel ஆயிடுச்சா?,tamil,0.5769230769230769,False,0.676
+1059,"I Submitted a cheque couple days ago, nothing happened to my account yet.Would you please check What could be the possible issue?",openai,"ரெண்டு நாளைக்கு முன்னாடி cheque submit பண்ணினேன், இன்னும் என்னோட account-ல எதுவும் நடக்கல. தயவு செய்து என்ன பிரச்சினை இருக்கலாம் என்று check பண்ண முடியுமா?",tamil,0.8181818181818182,False,0.9047143
+1099,Payment i did not do,openai,நான் செய்யாத payment,tamil,0.6111111111111112,False,0.92083305
+1106,I'm not familiar with a card payment.,openai,எனக்கு இந்த card payment பற்றி தெரியல.,tamil,0.65625,False,0.80539834
+1119,In my statement there is a payment that is I do not recognize,openai,என்னோட statement-ல எனக்கு தெரியாத payment ஒன்று இருக்கு,tamil,0.6666666666666666,False,0.8638525
+1139,How can I modify my details?,openai,என்னோட details-ஐ எப்படி மாற்றுறது?,tamil,0.7586206896551724,False,0.9100505
+1179,Do I need to verify my identity to use my account?,openai,என்னோட account-ஐ use பண்ண identity verify பண்ணணுமா?,tamil,0.4418604651162791,False,0.8726189
+1219,I can not get the app to know it is me.,openai,app-க்கு நான் தான் என்று verify பண்ண முடியல.,tamil,0.75,False,0.75226235
+1227,How do I show this stupid system that this is really my identity?,openai,இந்த stupid system-க்கு இது உண்மையிலேயே என்னோட identity தான் என்று எப்படி காட்டுறது?,tamil,0.7222222222222222,False,0.894374
+1259,what is the process for setting up a pin,openai,PIN set பண்ணுற process என்ன?,tamil,0.43478260869565216,False,0.82752013
+1274,I can not find my card pin.,openai,என்னோட card PIN-ஐ கண்டுபிடிக்க முடியல.,tamil,0.78125,False,0.8462938
+1276,Why can't I find my PIN?,openai,என்னோட PIN ஏன் கிடைக்கல?,tamil,0.85,False,0.881867
+1299,Am I able to choose my card?,openai,எனக்கு card-ஐ choose பண்ண முடியுமா?,tamil,0.6551724137931034,False,0.8590733
+1304,Do I get to choose between Visa and Mastercard?,openai,"Visa, Mastercard இரண்டில் எனக்கு choose பண்ண முடியுமா?",tamil,0.5652173913043478,False,0.8956797
+1332,how can i top up?,openai,எப்படி top-up பண்ணுறது?,tamil,0.7368421052631579,False,0.77758694
+1339,Will my friend be able to top off my account?,openai,என்னோட friend என்னோட account-க்கு top-up பண்ண முடியுமா?,tamil,0.6086956521739131,False,0.83087385
+1371,How many card payments can I use on a disposable card?,openai,disposable card-ஐ use பண்ணி ஒரு நாளைக்கு எத்தனை card payments பண்ணலாம்?,tamil,0.5166666666666667,False,0.8631276
+1379,I have to have several disposable cards per day.,openai,ஒரு நாளைக்கு பல disposable cards வேணும்.,tamil,0.5588235294117647,False,0.8495607
+1395,Do you know what the restriction of the disposable cards are?,openai,disposable cards-க்கு என்ன restrictions இருக்குன்னு தெரியுமா?,tamil,0.5,False,0.8838683
+1396,What are the limits for disposable virtual cards?,openai,disposable virtual cards-க்கு என்ன limits இருக்கு?,tamil,0.3488372093023256,False,0.9404854
+1419,"I see random purchases to my account, was it hacked?",openai,"என்னோட account-ல random purchases தெரியுது, account hack ஆயிடுச்சா?",tamil,0.42105263157894735,False,0.8387178
+1446,Which ATM's accept my card?,openai,எந்த ATM-களில் என்னோட card accept ஆகும்?,tamil,0.6060606060606061,False,0.9157893
+1448,Where are the locations of ATMs that accept this card?,openai,இந்த card accept பண்ணும் ATMs எங்கே இருக்கு?,tamil,0.6216216216216216,False,0.8826544
+1474,At which ATMs can I use this card?,openai,இந்த card-ஐ எந்த ATMs-ல் use பண்ணலாம்?,tamil,0.6333333333333333,False,0.90691185
+1499,"A couple weeks ago some money was deducted from my account by some seller that I don't remember. I'm pretty sure I didn't do that, but is it possible to trace back who that is just to make sure?",openai,"ரெண்டு வாரத்துக்கு முன்னாடி எனக்கு தெரியாத ஒரு seller என்னோட account-லிருந்து பணம் deduct பண்ணியிருக்காங்க. நான் இதை செய்யலன்னு எனக்கு கிட்டத்தட்ட உறுதியா தெரியும், ஆனா யார் என்று trace பண்ணி confirm பண்ண முடியுமா?",tamil,0.8315217391304348,False,0.83878195
+1539,I have forgotten my passcode to access my app,openai,app-ஐ access பண்ணுற passcode-ஐ மறந்துட்டேன்,tamil,0.5405405405405406,False,0.90612966
+1579,Why did the ATM machine fail to give me a cash withdrawal?,openai,ATM machine ஏன் cash withdrawal கொடுக்கல?,tamil,0.3142857142857143,False,0.82550323
+1610,I made this payment days ago so why hasn't it gone through yet?,openai,"இந்த payment-ஐ சில நாட்களுக்கு முன்னாடியே செய்தேன், இன்னும் ஏன் go through ஆகல?",tamil,0.7575757575757576,False,0.900298
+1616,What is a pending payment?,openai,pending payment என்றால் என்ன?,tamil,0.44,False,0.90800774
+1619,My card payment is pending.,openai,என்னோட card payment pending-ல இருக்கு.,tamil,0.4375,False,0.90692085
+1626,"I was double charged, and the second charge is showing as ""pending"". How long will it be before I get my money back once the second charge has been refunded?",openai,"எனக்கு இரண்டு தடவை charge பண்ணிட்டாங்க, இரண்டாவது charge 'pending'னு காட்டுது. அந்த இரண்டாவது charge refund ஆன பிறகு என்னோட பணம் திரும்ப கிடைக்க எவ்வளவு நேரம் ஆகும்?",tamil,0.7769784172661871,False,0.87814724
+1659,"lost phone, can i still access account?",openai,"phone தொலைஞ்சுடுச்சு, இன்னும் account-ஐ access பண்ண முடியுமா?",tamil,0.6538461538461539,False,0.9186437
+1685,I need a refund on an item I have not received.  Am I able to simply cancel the payment?  I don't know how to do this.,openai,எனக்கு கிடைக்காத பொருளுக்கு refund வேணும். payment-ஐ cancel பண்ணினாலே போதுமா? அதை எப்படி பண்ணுறதுன்னு தெரியல.,tamil,0.7956989247311828,False,0.8356007
+1699,I bought something but now I would like a refund. How do I do that?,openai,"நான் ஒரு பொருள் வாங்கினேன், ஆனா இப்போ refund வேணும். அதை எப்படி பண்ணுறது?",tamil,0.9,False,0.897699
+1739,When I try and to buy something using my card it keeps getting declined.,openai,card use பண்ணி ஏதாவது வாங்க try பண்ணும்போது தொடர்ந்து decline ஆகுது.,tamil,0.7068965517241379,False,0.85063523
+1779,"i was supposed to get a refund but my balance hasn't changed, why not?",openai,"எனக்கு refund வரணும், ஆனா balance இன்னும் change ஆகல. ஏன்?",tamil,0.5957446808510638,False,0.81545883
+1819,Why are you declining my payment? Everything was fine.,openai,என்னோட payment-ஐ ஏன் decline பண்ணுறீங்க? எல்லாமே சரியாகத்தானே இருந்தது.,tamil,0.7704918032786885,False,0.8709146
+1859,When will the transfer go through?,openai,transfer எப்போது go through ஆகும்?,tamil,0.41379310344827586,False,0.93724024
+1899,How do I get rid of my account ASAP?,openai,என்னோட account-ஐ ASAP எப்படி close பண்ணுறது?,tamil,0.5675675675675675,False,0.86735505
+1911,How do I delete my account?,openai,என்னோட account-ஐ எப்படி delete பண்ணுறது?,tamil,0.6176470588235294,False,0.9368917
+1934,My ATM got stuck and I'm not sure what to do.,openai,"என்னோட ATM card-ஐ உள்ளே சிக்க வச்சிடுச்சு, என்ன பண்ணணும்னு தெரியல.",tamil,0.8727272727272727,False,0.7146774
+1939,ATM still has my card,openai,ATM இன்னும் என்னோட card-ஐ வைத்திருக்கு,tamil,0.7878787878787878,False,0.9141431
+1971,I have been charged twice,openai,எனக்கு இரண்டு தடவை charge பண்ணிட்டாங்க,tamil,0.8235294117647058,False,0.88464934
+1979,I had a duplicate card and got charged twice. How do I resolve this?,openai,duplicate card இருந்ததால் இரண்டு தடவை charge பண்ணிட்டாங்க. இதை எப்படி சரி பண்ணுறது?,tamil,0.7323943661971831,False,0.8567591
+2019,What is the source of my money?,openai,என்னோட பணத்துக்கு source என்ன?,tamil,0.7692307692307693,False,0.86964536
+2059,How many days does a transfer from the US take?,openai,US-லிருந்து transfer வர எத்தனை நாட்கள் ஆகும்?,tamil,0.7368421052631579,False,0.91892606
+2099,I think my card payment had been return,openai,என்னோட card payment return ஆயிருச்சுன்னு நினைக்கிறேன்,tamil,0.6458333333333334,False,0.90204984
+2138,I want to choose a different PIN.,openai,வேற PIN-ஐ choose பண்ணணும்.,tamil,0.5714285714285714,False,0.817351
+2139,I would like to change my pin.,openai,என்னோட PIN-ஐ மாற்றணும்.,tamil,0.8421052631578947,False,0.70192194
+2144,How do I change my PIN?,openai,என்னோட PIN-ஐ எப்படி மாற்றுறது?,tamil,0.88,False,0.9407778
+2170,Why can't I transfer to a beneficiary?,openai,beneficiary-க்கு ஏன் transfer பண்ண முடியல?,tamil,0.4722222222222222,False,0.85769475
+2172,What's the deal with no cryptocurrency on your app?,openai,உங்க app-ல cryptocurrency ஏன் இல்ல?,tamil,0.41379310344827586,False,0.80661017
+2179,The money would not transfer to a beneficiary.,openai,beneficiary-க்கு பணம் transfer ஆக மாட்டேங்குது.,tamil,0.5365853658536586,False,0.8664695
+2204,I had to pay in order to do a transfer,openai,transfer பண்ணுவதற்காக நான் பணம் pay பண்ண வேண்டியிருந்தது,tamil,0.78,False,0.91687816
+2219,I'm not sure why I was charged an extra fee for transferring funds.,openai,funds transfer பண்ணியதுக்கு extra fee ஏன் charge பண்ணினாங்கன்னு தெரியல.,tamil,0.5645161290322581,False,0.84499747
+2240,Will salary be received through this?,openai,இதன் மூலம் salary receive பண்ண முடியுமா?,tamil,0.6176470588235294,False,0.8333211
+2259,How can my friend send me money?,openai,என்னோட friend எனக்கு எப்படி பணம் அனுப்பலாம்?,tamil,0.8421052631578947,False,0.88995814
+2299,Why would a transfer fail?,openai,transfer ஏன் fail ஆகும்?,tamil,0.4,False,0.793289
+2330,I NEED TO KNOW HOW TO TRANSFER MONEY INTO MY BANK ACCOUNT. PLEASE HELP,openai,என்னோட bank account-க்கு எப்படி பணம் transfer பண்ணுறதுன்னு தெரிஞ்சாகணும். PLEASE HELP,tamil,0.6081081081081081,False,0.8234944
+2339,How can I transfer money from an outside bank?,openai,வேறொரு bank-லிருந்து எப்படி பணம் transfer பண்ணுறது?,tamil,0.7272727272727273,False,0.7922687
+2347,How do I send my account money through transfer?,openai,என்னோட account-ல இருக்கிற பணத்தை transfer மூலம் எப்படி அனுப்புறது?,tamil,0.7368421052631579,False,0.92715836
+2350,I want to transfer from accounts in order to Top up. What are the steps necessary.,openai,accounts-லிருந்து transfer பண்ணி top-up செய்யணும். அதுக்கு என்ன steps?,tamil,0.559322033898305,False,0.7681948
+2379,How do I find the verification code for my top-up card?,openai,என்னோட top-up card-க்கான verification code-ஐ எப்படி கண்டுபிடிக்குறது?,tamil,0.576271186440678,False,0.92402786
+2419,May I have another card?,openai,இன்னொரு card எடுக்கலாமா?,tamil,0.8095238095238095,False,0.9020783
+2459,"I want to top up using cash, where can I do that?",openai,"cash use பண்ணி top-up பண்ணணும், அதை எங்கே பண்ணலாம்?",tamil,0.7073170731707317,False,0.84973335
+2463,How can I top up with cash?,openai,cash-ல எப்படி top-up பண்ணுறது?,tamil,0.625,False,0.815007
+2489,Is there a charge for physical cards,openai,physical cards-க்கு charge இருக்கா?,tamil,0.36666666666666664,False,0.89450026
+2499,Is a non-electronic card available as well,openai,electronic இல்லாத card-ம் கிடைக்குமா?,tamil,0.5625,False,0.79218686
+2539,How can I fix a problem where my virtual card is rejected?,openai,என்னோட virtual card reject ஆகுற பிரச்சினையை எப்படி சரி பண்ணுறது?,tamil,0.6909090909090909,False,0.915153
+2555,Tell me why my virtual disposable card won't work.,openai,என்னோட virtual disposable card ஏன் work ஆகலன்னு சொல்லுங்க.,tamil,0.5,False,0.8950206
+2571,Is there a fee for exchanging cash?,openai,cash exchange பண்ண fee இருக்கா?,tamil,0.4230769230769231,False,0.9217896
+2579,Can I make a withdraw if I am out of country from with out any fees at an ATM?,openai,நான் நாட்டுக்கு வெளியே இருக்கும்போது ATM-ல எந்த fee-யும் இல்லாமல் withdrawal பண்ண முடியுமா?,tamil,0.7948717948717948,False,0.84671915
+2613,how secure is a disposable virtual card,openai,disposable virtual card எவ்வளவு secure?,tamil,0.20588235294117646,False,0.9276961
+2618,May I get a disposable virtual card as well?,openai,எனக்கும் disposable virtual card ஒன்று கிடைக்குமா?,tamil,0.5227272727272727,False,0.8760998
+2619,Can i get a single use virtual card,openai,single-use virtual card எடுக்கலாமா?,tamil,0.3333333333333333,False,0.90632546
+2659,I topped up but the app did not accept it.,openai,"top-up பண்ணினேன், ஆனா app அதை accept பண்ணல.",tamil,0.5882352941176471,False,0.8951436
+2699,My bank transfer is still not showing up in my account.,openai,என்னோட bank transfer இன்னும் account-ல காட்டல.,tamil,0.5128205128205128,False,0.9048147
+2710,"I made a bank transfer a couple of hours ago from my local bank account.  It hasn't appeared, can you check to make sure it went through?",openai,"கொஞ்ச மணி நேரத்துக்கு முன்னாடி என்னோட local bank account-லிருந்து bank transfer பண்ணினேன். இன்னும் வந்துசேரல, அது சரியாக go through ஆயிருக்கான்னு check பண்ண முடியுமா?",tamil,0.704225352112676,False,0.85068786
+2733,I have a strange cash withdrawal in my statement,openai,என்னோட statement-ல ஒரு strange cash withdrawal இருக்கு,tamil,0.3617021276595745,False,0.8936527
+2739,"It looks like someone else withdrew cash from my account, can you help?",openai,"வேற யாரோ என்னோட account-லிருந்து cash எடுத்திருக்காங்க போல இருக்கு, உதவ முடியுமா?",tamil,0.8405797101449275,False,0.88657546
+2749,What do I do if I notice a strange withdrawl in my statement?,openai,என்னோட statement-ல strange withdrawal ஒன்று தெரிஞ்சா என்ன பண்ணணும்?,tamil,0.5517241379310345,False,0.8253471
+2773,Does it cost extra to exchange currencies?,openai,currencies exchange பண்ண extra charge இருக்கா?,tamil,0.275,False,0.907889
+2779,"If I want to exchange currency, will there be extras?",openai,currency exchange பண்ணினா extra charges ஏதாவது இருக்குமா?,tamil,0.44,False,0.78331524
+2803,Any hidden fees associated with the international card if money is added?,openai,international card-க்கு பணம் add பண்ணும்போது hidden fees ஏதாவது இருக்கா?,tamil,0.5161290322580645,False,0.8671541
+2819,Will I be charged if I use foreign bank card for top up?,openai,foreign bank card-ஐ use பண்ணி top-up பண்ணினா charge பண்ணுவீங்களா?,tamil,0.46296296296296297,False,0.8376495
+2858,I tried activating my bill of fare and it didn't workplace,openai,"என்னோட card activate பண்ண try பண்ணினேன், ஆனா work ஆகல",tamil,0.5681818181818182,False,0.732821
+2859,"I just got my card and want to use it, how do I activate my card?",openai,"இப்போதான் card கிடைச்சிருக்கு, அதை use பண்ணணும். card-ஐ எப்படி activate பண்ணுறது?",tamil,0.7205882352941176,False,0.80558884
+2860,I have a new card and I want to activate it,openai,"என்னிடம் புதுசா card இருக்கு, அதை activate பண்ணணும்",tamil,0.7272727272727273,False,0.9122646
+2899,"I've notice I was charged for withdrawing cash, can you explain why?",openai,"cash withdraw பண்ணினதுக்கு charge பண்ணியிருக்காங்க, ஏன் என்று explain பண்ண முடியுமா?",tamil,0.6575342465753424,False,0.7935257
+2939,"I will need to get a new card soon, how do I order?",openai,"எனக்கு சீக்கிரம் புதுசா card எடுக்கணும், அதை எப்படி order பண்ணுறது?",tamil,0.8421052631578947,False,0.915671
+2979,My top up is not working in Apple Pay.,openai,Apple Pay-ல என்னோட top-up work ஆகல.,tamil,0.37037037037037035,False,0.8684492
+3019,What are the steps to verify my identity?,openai,என்னோட identity-ஐ verify பண்ண என்ன steps?,tamil,0.4411764705882353,False,0.951667
+3051,Where do I need to live to get support?,openai,support கிடைக்க நான் எந்த நாட்டில் வசிக்கணும்?,tamil,0.825,False,0.79550856
+3059,Can I get a card even if I live outside Sri Lanka?,openai,நான் Sri Lanka-க்கு வெளியே வசித்தாலும் card எடுக்க முடியுமா?,tamil,0.7647058823529411,False,0.84471375
+14,I am still waiting for my card after 1 week.  Is this ok?,gptoss,"ஒரு வாரமாக காத்திருக்கிறேன், கார்டு இன்னும் வரவில்லை. இது சரியா?",tamil,1.0,False,0.7470958
+19,My card still hasn't arrived after 2 weeks. Is it lost?,gptoss,என் கார்டு இன்னும் 2 வாரங்களுக்குப் பிறகமும் வரவில்லை. அது இழந்துவிட்டதா?,tamil,1.0,False,0.9331779
+45,"I received my new card, but I don't see it in the app anywhere.  What do I do?",gptoss,"எனக்கு புதிய கார்டு கிடைத்தது, ஆனால் ஆப்பில் எங்கும் தெரியவில்லை. என்ன செய்ய வேண்டும்?",tamil,1.0,False,0.8292321
+52,How do I link one your card if I have one already?,gptoss,எப்படி நான் ஏற்கனே ஒரு card ஐ link செய்யலாம்?,tamil,0.7837837837837838,False,0.773728
+53,How do I add a card to the app?,gptoss,எப்படி கார்டை ஆப்பில் சேர்ப்பது?,tamil,1.0,False,0.9243796
+59,"I found my card, can I add it to the app?",gptoss,"என் card கண்டுபிடித்தேன், அதை app-ல் add செய்யலாமா?",tamil,0.7619047619047619,False,0.8741773
+65,how do I link an already existing card?,gptoss,இ already existing card-ஐ எப்படி link செய்வது?,tamil,0.39473684210526316,False,0.9274643
+99,Where do you get your exchange rates from?,gptoss,நீங்கள் எங்கிருந்து உங்கள் exchange rates-ஐ பெறுகிறீர்கள்?,tamil,0.7450980392156863,False,0.9148458
+139,I purchased an item and the exchange rate I was given was incorrect.,gptoss,"நான் ஒரு பொருளை வாங்கினேன், எனக்கு கொடுக்கப்பட்ட எக்சேஞ்ச் ரேட் தவறாக இருந்தது.",tamil,1.0,False,0.85282344
+156,How can I check the exchange rate applied to my transaction?,gptoss,என் பரிவர்த்தனத்திற்கு பயன்படுத்தப்பட்ட எக்சேஞ்ச் ரேட் எப்படி பார்க்கலாம்?,tamil,1.0,False,0.82458913
+179,What would be the reason there's an extra fee on my statement?,gptoss,என் statement-ல் ஏன் extra fee இருக்கிறது?,tamil,0.5142857142857142,False,0.8057235
+199,Can you please check why I am having this extra fee on my statement.,gptoss,தயவு செய்து என் statement-ல் ஏன் இந்த extra fee இருக்கிறது என்று பார்க்க முடியுமா?,tamil,0.7536231884057971,False,0.8185568
+208,Why is my withdrawal still pending?,gptoss,என் withdrawal ஏன் இன்னும் pending இருக்கிறது?,tamil,0.575,False,0.9258206
+219,"Hey, my card was declined at an ATM in the city centre theatre. My account says the transaction is pending, though. I didn't get the money, though, so what does that mean?",gptoss,"ஹே, என் card declined ஆனது city centre theatre-இல் உள்ள ATM-ல். என் account-ல் transaction pending என்று காட்டுகிறது. ஆனால் money கிடைக்கவில்லை, அதனால் என்ன அர்த்தம்?",tamil,0.5474452554744526,False,0.9022627
+257,"When considering currency holdings and exchanges, what fiat currencies are supported?",gptoss,"நாணய வைத்திருக்கும் மற்றும் பரிமாற்றும் போது, எந்த fiat நாணயங்கள் ஆதரிக்கப்படுகின்றன?",tamil,0.9466666666666667,False,0.8066888
+259,Can I hold money in other currencies?,gptoss,மற்ற currencies-ல் பணம் வைத்திருக்கலாமா?,tamil,0.7142857142857143,False,0.9074928
+273,Can I hold money in multiple currencies?,gptoss,பல நாணயங்களில் பணத்தை வைத்திருக்கலாமா?,tamil,1.0,False,0.8953066
+296,I need it delivered on a certain date.,gptoss,நான் அதை ஒரு குறிப்பிட்ட தேதியில் டெலிவர் செய்ய வேண்டும்.,tamil,1.0,False,0.89661956
+298,How long does it take to get my card? Can I choose when to receive it?,gptoss,என் கார்டு எவ்வளவு நேரம் ஆகும்? அதை எப்போது பெறுவது என்று நான் தேர்வு செய்யலாமா?,tamil,1.0,False,0.8504759
+299,How long will it take for the card to arrive?,gptoss,கார்டு வர எவ்வளவு நேரம் ஆகும்?,tamil,1.0,False,0.89772904
+304,When will the card arrive?,gptoss,கார்டு எப்போது வரும்?,tamil,1.0,False,0.91684616
+306,When are cards delivered?,gptoss,cards எப்போது டெலிவர் செய்யப்படும்?,tamil,0.8387096774193549,False,0.91068476
+330,"Where can I find the ""auto-top"" feature?",gptoss,'auto-top' feature எங்கே கிடைக்கும்?,tamil,0.5172413793103449,False,0.89248335
+339,How do I make sure I don't run out of money on my card while traveling?,gptoss,"என் கார்டில் பணம் போதாமலிருக்க, பயணிக்கும் போது எப்படி உறுதி செய்வது?",tamil,1.0,False,0.86617047
+379,How can I resolve a problem where my card won't go through at all?,gptoss,"என் card முழுமையாக go through ஆகாமலே இருக்குது, அதை எப்படி resolve செய்யலாம்?",tamil,0.6923076923076923,False,0.8043122
+403,How do I change LKR to USD?,gptoss,LKR-ஐ USD-ஆக எப்படி மாற்றுவது?,tamil,0.75,False,0.9504772
+418,Can I change to another currency?,gptoss,மற்றொரு நாணயத்திற்கு மாற்ற முடியுமா?,tamil,1.0,False,0.9136435
+419,"I need USD not LKR, how do I change it?",gptoss,"USD வேண்டும, LKR அல்ல, எப்படி மாற்றுவது?",tamil,0.8125,False,0.91713876
+459,I need help with a lost card,gptoss,எனக்கு இழந்த cardக்கு உதவி தேவை,tamil,0.8518518518518519,False,0.9320594
+484,How old do we have to be?,gptoss,எவ்வளவு வயது இருக்கணும்?,tamil,1.0,False,0.7069576
+499,If my kids wanted to use your service how old would they have to be?,gptoss,"என் குழந்தைகள் உங்கள் சேவையை பயன்படுத்த விரும்பினால், அவர்கள் எத்தனை வயது இருக்கணும்?",tamil,1.0,False,0.90054756
+534,What do I do if the bank machine won't accept my PIN attempts anymore?,gptoss,ATM என் PIN முயற்சிகளை ஏற்காதா? நான் என்ன செய்யணும்?,tamil,0.8604651162790697,False,0.76660347
+539,I'v exhausted all the of times I can try my PIN,gptoss,என் PIN முயற்சிகளை எல்லாம் முடித்துவிட்டேன்,tamil,0.9230769230769231,False,0.7715182
+579,Can you help my fix my contactless?,gptoss,என் contactless ஐ சரி செய்ய உதவுமா?,tamil,0.6206896551724138,False,0.89689904
+619,Will topping up by transfer lead to a charge on my account?,gptoss,Transfer மூலம் top-up செய்தால் என் account இல் charge வரும்?,tamil,0.48,False,0.8744945
+628,Will I be charged for a SEPA transfer?,gptoss,SEPA transfer க்கு charge வருமா?,tamil,0.3333333333333333,False,0.9156023
+659,"I topped up by card a while ago and it's still pending, surely it should be done by now?",gptoss,"நான் card மூலம் top-up செய்தேன், இன்னும் pending தான், இப்போ முடிந்திருக்கணும்?",tamil,0.7575757575757576,False,0.8006031
+661,top up did not complete,gptoss,top-up முடிவில்லை,tamil,0.6666666666666666,False,0.82956755
+699,Can I cancel a transfer if is already processed?,gptoss,Transfer ஏற்கனே processed ஆனா cancel செய்யலாமா?,tamil,0.43902439024390244,False,0.8767338
+736,Tell me if there are any top-up limits?,gptoss,top-up க்கு limit இருக்கிறதா?,tamil,0.5833333333333334,False,0.6799599
+739,Can I top-up as much as I want?,gptoss,என்னும் top-up செய்யலாமா?,tamil,0.7619047619047619,False,0.66378057
+746,Do you have a top-up limit?,gptoss,top-up limit இருக்கிறதா?,tamil,0.5,False,0.9210075
+765,The amount of cash I received was incorrect,gptoss,நான் பெற்ற cash அளவு தவறு,tamil,0.8095238095238095,False,0.89074856
+779,"I tried to get Rs 100,000 but I just got Rs 20,000",gptoss,"Rs 100,000 பெற முயற்சித்தேன், ஆனால் Rs 20,000 தான் கிடைத்தது.",tamil,0.8947368421052632,False,0.8759204
+792,I didn't receive all the cash I asked for,gptoss,நான் கேட்ட cash எல்லாம் கிடைக்கவில்லை,tamil,0.8787878787878788,False,0.9169431
+801,I was charged a fee after using my card and I shouldn't have been.,gptoss,"என் card பயன்படுத்திய பின் fee charged ஆனது, நான் charge ஆகக்கூடாது.",tamil,0.6491228070175439,False,0.85434043
+819,Why would I be charged a fee for card payment?,gptoss,card payment க்கு fee ஏன் charge ஆகும்?,tamil,0.375,False,0.8279237
+859,I sent money.  They haven't received it.,gptoss,"நான் money அனுப்பினேன், அவர்கள் பெறவில்லை.",tamil,0.8611111111111112,False,0.8893404
+864,Where is the transaction I made to a friend?,gptoss,நான் friend க்கு அனுப்பிய transaction எங்கே?,tamil,0.5526315789473685,False,0.85232484
+899,How can I use American Express to add money to my account?,gptoss,American Express மூலம் money add செய்ய account இல் எப்படி?,tamil,0.3877551020408163,False,0.88323456
+923,Is there an option to have a virtual card?,gptoss,virtual card option இருக்கிறதா?,tamil,0.37037037037037035,False,0.9402541
+935,Is this where I order a virtual card?,gptoss,இங்க virtual card order செய்யலாமா?,tamil,0.4482758620689655,False,0.8604727
+939,Where can I order a virtual card?,gptoss,எங்கே virtual card order செய்யலாம்?,tamil,0.4666666666666667,False,0.918597
+979,"I am traveling to Germany, Will I be able to use my card there?",gptoss,"நான் Germany செல்லுறேன், அங்க card பயன்படுத்தலாமா?",tamil,0.7441860465116279,False,0.82514334
+1019,I went to top up and it is no longer there.  Was it sent back?,gptoss,"நான் top-up சென்றேன், அது இப்போ இல்லை. திரும்பி அனுப்பினார்களா?",tamil,0.9038461538461539,False,0.81806386
+1027,The app reverted my action when I topped up.,gptoss,app top-up செய்தபோது action revert செய்தது,tamil,0.4444444444444444,False,0.75916445
+1031,has my top-up has been cancelled,gptoss,என் top-up cancel ஆனதா?,tamil,0.3888888888888889,False,0.8362871
+1059,"I Submitted a cheque couple days ago, nothing happened to my account yet.Would you please check What could be the possible issue?",gptoss,"நான் cheque சில நாட்களுக்கு முன் submit செய்தேன், account இல் எதுவும் இல்லை. என்ன issue இருக்கணும்?",tamil,0.7108433734939759,False,0.80977494
+1099,Payment i did not do,gptoss,நான் payment செய்யவில்லை,tamil,0.6818181818181818,False,0.8732325
+1106,I'm not familiar with a card payment.,gptoss,card payment பற்றி தெரியவில்லை,tamil,0.5925925925925926,False,0.75694203
+1119,In my statement there is a payment that is I do not recognize,gptoss,"என் statement-ல் ஒரு payment உள்ளது, அதை நான் அறியவில்லை",tamil,0.6595744680851063,False,0.8616637
+1139,How can I modify my details?,gptoss,என் விவரங்களை எப்படி மாற்றலாம்?,tamil,1.0,False,0.9349991
+1179,Do I need to verify my identity to use my account?,gptoss,என் account-ஐ use செய்ய identity verify செய்ய வேண்டுமா?,tamil,0.4782608695652174,False,0.89154315
+1219,I can not get the app to know it is me.,gptoss,எனக்கு ஆப் எனது என்று அறிய வில்லை.,tamil,1.0,False,0.64605695
+1227,How do I show this stupid system that this is really my identity?,gptoss,இந்த முட்டாள் சிஸ்டத்திற்கு என் உண்மையான அடையாளம் என்பதை எப்படி காட்டுவது?,tamil,1.0,False,0.8463402
+1259,what is the process for setting up a pin,gptoss,PIN அமைப்பதற்கான செயல்முறை என்ன?,tamil,0.8928571428571429,False,0.82117033
+1274,I can not find my card pin.,gptoss,என் கார்டின் PIN ஐ கண்டுபிடிக்க முடியவில்லை.,tamil,0.9210526315789473,False,0.81004596
+1276,Why can't I find my PIN?,gptoss,என் PIN ஐ ஏன் கண்டுபிடிக்க முடியவில்லை?,tamil,0.9090909090909091,False,0.9135335
+1299,Am I able to choose my card?,gptoss,என் card ஐ நான் தேர்வு செய்யலாமா?,tamil,0.8518518518518519,False,0.89029986
+1304,Do I get to choose between Visa and Mastercard?,gptoss,Visa மற்றும் Mastercard இடையே தேர்வு செய்யலாமா?,tamil,0.6585365853658537,False,0.90403455
+1332,how can i top up?,gptoss,எப்படி நான் top up செய்யலாம்?,tamil,0.7916666666666666,False,0.9294162
+1339,Will my friend be able to top off my account?,gptoss,என் நண்பர் என் account-ஐ top-up செய்ய முடியுமா?,tamil,0.6842105263157895,False,0.8261301
+1371,How many card payments can I use on a disposable card?,gptoss,ஒரு disposable card-ல் எத்தனை card payments பயன்படுத்த முடியும்?,tamil,0.5272727272727272,False,0.8856412
+1379,I have to have several disposable cards per day.,gptoss,நான் தினமும் பல disposable கார்ட்களை வைத்திருக்க வேண்டும்.,tamil,0.803921568627451,False,0.85692847
+1395,Do you know what the restriction of the disposable cards are?,gptoss,டிஸ்போசபிள் கார்ட்களின் கட்டுப்பாடுகள் என்ன என்பதை நீங்கள் அறிந்திருக்கிறீர்களா?,tamil,1.0,False,0.82945836
+1396,What are the limits for disposable virtual cards?,gptoss,Disposable virtual cards-களின் வரம்புகள் என்ன?,tamil,0.45,False,0.8994006
+1419,"I see random purchases to my account, was it hacked?",gptoss,"என் கணக்கில் சீரற்ற வாங்குதல்கள் தெரிகிறது, ஹேக் ஆனதா?",tamil,1.0,False,0.8558048
+1446,Which ATM's accept my card?,gptoss,எந்த ATM-கள் என் கார்டை ஏற்கின்றன?,tamil,0.8928571428571429,False,0.90360105
+1448,Where are the locations of ATMs that accept this card?,gptoss,இந்த கார்டை ஏற்கும் ATM-களின் இடங்கள் எங்கே?,tamil,0.918918918918919,False,0.9186344
+1474,At which ATMs can I use this card?,gptoss,எந்த ATM-களில் இந்த கார்டை பயன்படுத்தலாம்?,tamil,0.9166666666666666,False,0.9081784
+1499,"A couple weeks ago some money was deducted from my account by some seller that I don't remember. I'm pretty sure I didn't do that, but is it possible to trace back who that is just to make sure?",gptoss,"சில வாரங்களுக்கு முன் என் account-இல் இருந்து சில பணம் seller-இல் இருந்து கழிக்கப்பட்டது, அது யார் என்று நினைவில்லை. நான் அதை செய்ததில்லை என்று நிச்சயம், ஆனால் அது யார் என்று trace செய்ய முடியுமா?",tamil,0.8902439024390244,False,0.84088206
+1539,I have forgotten my passcode to access my app,gptoss,என் ஆப்பை அணுக passcode மறந்துவிட்டேன்,tamil,0.7647058823529411,False,0.939187
+1579,Why did the ATM machine fail to give me a cash withdrawal?,gptoss,ATM இயந்திரம் எனக்கு cash withdrawal ஏன் தோல்வி ஆனது?,tamil,0.6222222222222222,False,0.8402188
+1610,I made this payment days ago so why hasn't it gone through yet?,gptoss,"நான் இந்த பணத்தை சில நாட்களுக்கு முன் செலுத்தினேன், ஏன் அது இன்னும் போக்லை?",tamil,1.0,False,0.89352953
+1616,What is a pending payment?,gptoss,Pending payment என்ன?,tamil,0.2222222222222222,False,0.9238069
+1619,My card payment is pending.,gptoss,என் கார்டு கட்டணம் pending ஆகி இருக்குது.,tamil,0.8,False,0.90214956
+1626,"I was double charged, and the second charge is showing as ""pending"". How long will it be before I get my money back once the second charge has been refunded?",gptoss,"எனக்கு இருமுறை கட்டணம் வசூலிக்கப்பட்டது, இரண்டாவது கட்டணம் 'pending' எனக் காட்டுகிறது. இரண்டாவது கட்டணம் refund ஆன பிறகு, என் பணத்தை திரும்ப பெற எவ்வளவு நேரம் ஆகும்?",tamil,0.9064748201438849,False,0.8809483
+1659,"lost phone, can i still access account?",gptoss,"போன் இழந்தா, account-ஐ இன்னும் அணுக முடியுமா?",tamil,0.8108108108108109,False,0.9212
+1685,I need a refund on an item I have not received.  Am I able to simply cancel the payment?  I don't know how to do this.,gptoss,எனக்கு இன்னும் கிடைக்காத பொருளுக்கு refund வேண்டும்.  நான் payment ஐ cancel செய்யலாமா?  எப்படிச் செய்வது எனக்கு தெரியவில்லை,tamil,0.819047619047619,False,0.8355426
+1699,I bought something but now I would like a refund. How do I do that?,gptoss,"நான் ஏதோ வாங்கினேன், ஆனால் இப்போ ரீஃபண்ட் வேண்டும். எப்படி செய்வது?",tamil,1.0,False,0.9016765
+1739,When I try and to buy something using my card it keeps getting declined.,gptoss,"என் கார்டை பயன்படுத்தி ஏதாவது வாங்க முயற்சிக்கும்போது, அது தொடர்ந்து declined ஆகி போகுது.",tamil,0.8961038961038961,False,0.90304124
+1779,"i was supposed to get a refund but my balance hasn't changed, why not?",gptoss,"ரீபண்ட் வருவதாக இருந்தது, ஆனால் என் balance மாறவில்லை, ஏன்?",tamil,0.8571428571428571,False,0.82797015
+1819,Why are you declining my payment? Everything was fine.,gptoss,என் payment ஏன் declined ஆகுது? எல்லாம சரிதான்.,tamil,0.6153846153846154,False,0.81747156
+1859,When will the transfer go through?,gptoss,Transfer எப்போது go through ஆகும்?,tamil,0.41379310344827586,False,0.9458757
+1899,How do I get rid of my account ASAP?,gptoss,என் account ஐ ASAP நீக்க எப்படி?,tamil,0.5769230769230769,False,0.86811304
+1911,How do I delete my account?,gptoss,என் account ஐ delete எப்படி?,tamil,0.43478260869565216,False,0.92546284
+1934,My ATM got stuck and I'm not sure what to do.,gptoss,"ATM stuck ஆகி போயிட்டது, என்ன செய்யணும் எனக்கு தெரியல.",tamil,0.8222222222222222,False,0.8211025
+1939,ATM still has my card,gptoss,ATM இன்னும் என் கார்டை வைத்திருக்குது.,tamil,0.9090909090909091,False,0.8793093
+1971,I have been charged twice,gptoss,எனக்கு இருமுறை charge ஆனது.,tamil,0.7391304347826086,False,0.8281504
+1979,I had a duplicate card and got charged twice. How do I resolve this?,gptoss,"Duplicate card இருந்தது, இருமுறை charge ஆனது. எப்படி resolve செய்வது?",tamil,0.5517241379310345,False,0.87334937
+2019,What is the source of my money?,gptoss,என் பணத்தின் source என்ன?,tamil,0.7142857142857143,False,0.8215295
+2059,How many days does a transfer from the US take?,gptoss,US லிருந்து transfer எத்தனை நாட்கள் ஆகும்?,tamil,0.7222222222222222,False,0.9218067
+2099,I think my card payment had been return,gptoss,என் கார்டு payment return ஆகி போனது போல.,tamil,0.6060606060606061,False,0.78994495
+2138,I want to choose a different PIN.,gptoss,வேறு PIN தேர்வு செய்யணும்.,tamil,0.8636363636363636,False,0.8203568
+2139,I would like to change my pin.,gptoss,PIN மாற்றணும்.,tamil,0.75,False,0.6093921
+2144,How do I change my PIN?,gptoss,PIN எப்படி மாற்றுவது?,tamil,0.8333333333333334,False,0.9176502
+2170,Why can't I transfer to a beneficiary?,gptoss,Beneficiary க்கு transfer ஏன் முடியல?,tamil,0.40625,False,0.8291715
+2172,What's the deal with no cryptocurrency on your app?,gptoss,App ல் cryptocurrency இல்லாதது ஏன்?,tamil,0.43333333333333335,False,0.7883018
+2179,The money would not transfer to a beneficiary.,gptoss,பணம் beneficiary க்கு transfer ஆகாதது.,tamil,0.42424242424242425,False,0.86060226
+2204,I had to pay in order to do a transfer,gptoss,Transfer செய்ய order இல் pay செய்ய வேண்டியிருந்தது.,tamil,0.6363636363636364,False,0.7617352
+2219,I'm not sure why I was charged an extra fee for transferring funds.,gptoss,Fund transfer இல் extra fee ஏன் charged ஆனது எனக்கு தெரியல.,tamil,0.4489795918367347,False,0.82780486
+2240,Will salary be received through this?,gptoss,Salary இந்த வழி receive ஆகுமா?,tamil,0.48,False,0.8798329
+2259,How can my friend send me money?,gptoss,என் நண்பன் எனக்கு money எப்படி send செய்வான்?,tamil,0.7631578947368421,False,0.87429106
+2299,Why would a transfer fail?,gptoss,Transfer ஏன் fail ஆகும்?,tamil,0.4,False,0.78032804
+2330,I NEED TO KNOW HOW TO TRANSFER MONEY INTO MY BANK ACCOUNT. PLEASE HELP,gptoss,என் bank account ல் money transfer எப்படி செய்வது எனக்கு தெரிஞ் வேண்டும். உதவி.,tamil,0.6363636363636364,False,0.76466095
+2339,How can I transfer money from an outside bank?,gptoss,வெளி bank லிருந்து money transfer எப்படி செய்வது?,tamil,0.5952380952380952,False,0.893032
+2347,How do I send my account money through transfer?,gptoss,என் account money transfer மூலம் எப்படி send செய்வது?,tamil,0.4666666666666667,False,0.92397755
+2350,I want to transfer from accounts in order to Top up. What are the steps necessary.,gptoss,Accounts லிருந்து Top up செய்ய transfer செய்ய வேண்டும். தேவையான steps என்ன?,tamil,0.5873015873015873,False,0.81739485
+2379,How do I find the verification code for my top-up card?,gptoss,Top-up card இன் verification code எப்படி கண்டுபிடிப்பது?,tamil,0.4791666666666667,False,0.878397
+2419,May I have another card?,gptoss,மற்றொரு card கிடைக்குமா?,tamil,0.8095238095238095,False,0.86751115
+2459,"I want to top up using cash, where can I do that?",gptoss,"நான் cash-ஐ பயன்படுத்தி top-up செய்ய விரும்புகிறேன், எங்கே செய்யலாம்?",tamil,0.8448275862068966,False,0.8859601
+2463,How can I top up with cash?,gptoss,cash-ஐ கொண்டு top-up எப்படி செய்வது?,tamil,0.6896551724137931,False,0.8434211
+2489,Is there a charge for physical cards,gptoss,physical card-க்கு கட்டணம் இருக்கிறதா?,tamil,0.6363636363636364,False,0.8297318
+2499,Is a non-electronic card available as well,gptoss,non-electronic card-யும் கிடைக்கிறதா?,tamil,0.46875,False,0.8273039
+2539,How can I fix a problem where my virtual card is rejected?,gptoss,என் virtual card reject ஆகி இருந்தால் எப்படி சரி செய்வது?,tamil,0.6458333333333334,False,0.8291874
+2555,Tell me why my virtual disposable card won't work.,gptoss,என் virtual disposable card ஏன் வேலை செய்யவில்லை சொல்லு.,tamil,0.5625,False,0.89430773
+2571,Is there a fee for exchanging cash?,gptoss,cash-ஐ மாற்றும்போது கட்டணம் இருக்கிறதா?,tamil,0.8823529411764706,False,0.8199892
+2579,Can I make a withdraw if I am out of country from with out any fees at an ATM?,gptoss,நான் வெளிநாட்டில் இருந்தால் ATM-ல் withdraw செய்யும்போது கட்டணம் இல்லாமல் செய்யலாமா?,tamil,0.8513513513513513,False,0.8624443
+2613,how secure is a disposable virtual card,gptoss,disposable virtual card எவ்வளவு பாதுகாப்பு?,tamil,0.4473684210526316,False,0.8858576
+2618,May I get a disposable virtual card as well?,gptoss,disposable virtual card-யும் கிடைக்குமா?,tamil,0.4,False,0.8501146
+2619,Can i get a single use virtual card,gptoss,single use virtual card-ஐ பெறலாமா?,tamil,0.2857142857142857,False,0.92456436
+2659,I topped up but the app did not accept it.,gptoss,"நான் top-up செய்தேன், ஆனால் app ஏற்கவில்லை.",tamil,0.7714285714285715,False,0.8705586
+2699,My bank transfer is still not showing up in my account.,gptoss,என் bank transfer account-ல் இன்னும் தெரியவில்லை.,tamil,0.5476190476190477,False,0.8461193
+2710,"I made a bank transfer a couple of hours ago from my local bank account.  It hasn't appeared, can you check to make sure it went through?",gptoss,"என் local bank account-லிருந்து சில மணி நேரம் முன் bank transfer செய்தேன். அது தோன்றவில்லை, சரி பார்த்து சொல்லு.",tamil,0.6989247311827957,False,0.831358
+2733,I have a strange cash withdrawal in my statement,gptoss,என் statement-ல் ஒரு விசித்திர cash withdrawal இருக்குது.,tamil,0.5306122448979592,False,0.83419967
+2739,"It looks like someone else withdrew cash from my account, can you help?",gptoss,"என் account-லிருந்து யாரோ cash withdraw செய்தது போல இருக்குது, உதவி செய்யலாமா?",tamil,0.7121212121212122,False,0.85047626
+2749,What do I do if I notice a strange withdrawl in my statement?,gptoss,statement-ல் விசித்திர withdrawl பார்த்தால் என்ன செய்வது?,tamil,0.64,False,0.8044533
+2773,Does it cost extra to exchange currencies?,gptoss,currencies மாற்றும்போது extra கட்டணம் இருக்கிறதா?,tamil,0.6590909090909091,False,0.8691158
+2779,"If I want to exchange currency, will there be extras?",gptoss,currency மாற்றினால் extra கட்டணம் வருமா?,tamil,0.6285714285714286,False,0.7597699
+2803,Any hidden fees associated with the international card if money is added?,gptoss,international card-க்கு money add செய்தால் hidden fees இருக்கிறதா?,tamil,0.38596491228070173,False,0.8739612
+2819,Will I be charged if I use foreign bank card for top up?,gptoss,foreign bank card-ஐ top-up-க்கு பயன்படுத்தினால் கட்டணம் வருமா?,tamil,0.6153846153846154,False,0.8754797
+2858,I tried activating my bill of fare and it didn't workplace,gptoss,"என் bill of fare activate செய்ய முயற்சித்தேன், வேலை செய்யவில்லை.",tamil,0.6666666666666666,False,0.79235727
+2859,"I just got my card and want to use it, how do I activate my card?",gptoss,"என் card-ஐ just பெற்றேன், பயன்படுத்த விரும்புகிறேன், எப்படி activate செய்வது?",tamil,0.7538461538461538,False,0.8794566
+2860,I have a new card and I want to activate it,gptoss,என் new card-ஐ activate செய்ய வேண்டும்.,tamil,0.53125,False,0.7199562
+2899,"I've notice I was charged for withdrawing cash, can you explain why?",gptoss,"withdraw cash-க்கு கட்டணம் வந்தது, ஏன் என்று சொல்லு.",tamil,0.7209302325581395,False,0.6783101
+2939,"I will need to get a new card soon, how do I order?",gptoss,"புதிய card-ஐ விரைவில் பெற வேண்டும், எப்படி order செய்வது?",tamil,0.8085106382978723,False,0.8867432
+2979,My top up is not working in Apple Pay.,gptoss,என் top-up Apple Pay-ல் வேலை செய்யவில்லை.,tamil,0.6060606060606061,False,0.8834099
+3019,What are the steps to verify my identity?,gptoss,என் identity verify செய்ய steps என்ன?,tamil,0.3870967741935484,False,0.94008553
+3051,Where do I need to live to get support?,gptoss,எங்கே வாழ வேண்டும் support பெற?,tamil,0.7307692307692307,False,0.88370895
+3059,Can I get a card even if I live outside Sri Lanka?,gptoss,Sri Lanka-க்கு வெளியே வாழினாலும் card பெறலாமா?,tamil,0.6923076923076923,False,0.89674634

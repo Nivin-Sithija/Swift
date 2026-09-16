@@ -1,0 +1,4 @@
+task,model,dev_headline,metric,iters,fit_s
+intent,svd200-histgb,0.36192770962255416,macro_f1,28,19.7
+sentiment,svd200-histgb,0.32517482517482516,negative_f1,184,2.4
+priority,svd200-histgb,0.834018129591671,macro_f1,200,7.1

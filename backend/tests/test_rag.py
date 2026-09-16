@@ -206,6 +206,21 @@ def test_retrieval_metrics() -> None:
     assert 0 < ndcg_at_k(["a", "b"], {"b"}, 2) < 1
 
 
+def test_ndcg_stays_bounded_when_chunks_repeat_a_source() -> None:
+    """Chunk-level retrieval returns several chunks per source, so the same id repeats.
+
+    Counting each occurrence made DCG exceed the ideal: ndcg@5 of ["a","a","a","b","c"]
+    against {"a"} returned 2.13 on a metric defined to be bounded in [0, 1].
+    """
+    assert ndcg_at_k(["a", "a", "a", "b", "c"], {"a"}, 5) == 1.0
+    assert ndcg_at_k(["a", "a", "b", "c", "d"], {"a"}, 5) == 1.0
+    # A repeat must not buy rank either: "b" is still first seen at rank 3, not rank 1.
+    assert ndcg_at_k(["a", "a", "b"], {"b"}, 3) < ndcg_at_k(["a", "b"], {"b"}, 3)
+    # Every input, duplicated or not, lands in range.
+    for retrieved in (["a", "a"], ["a", "b", "a"], ["b", "b", "b"], []):
+        assert 0.0 <= ndcg_at_k(retrieved, {"a", "b"}, 5) <= 1.0
+
+
 class EmptyRows:
     def mappings(self) -> "EmptyRows":
         return self

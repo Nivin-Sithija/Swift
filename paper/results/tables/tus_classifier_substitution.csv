@@ -1,0 +1,4 @@
+# same score, same weights, priority+sentiment posteriors swapped. rho=1.05 seeds=200 weights=0.8/0.1/0.1 alpha=16 split=e7b5934392cd label_version=v8
+model,high_mean_wait,high_p50_wait,high_p95_wait,high_p99_wait,high_max_wait,gold_high_missed,gold_high_n,buried_below_0.1,missed_high_mean_sevhat
+labse,1.9833989099913938,1.1143198187010341,5.316878457910032,13.27334774623397,362.13511228717607,165,1460,68,0.2735885669687184
+tfidf-logreg,1.8049985697598618,1.1024804920335782,5.420242801715152,12.046514099999204,97.91904520212302,193,1460,8,0.4071956702855372

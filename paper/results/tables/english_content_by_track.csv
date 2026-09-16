@@ -1,0 +1,14 @@
+# English content per track, test split, measured in word tokens.
+# english_token_pct = tokens that are also words of the BANKING77 source.
+# On romanized tracks every token is Latin by construction, so read
+# english_token_pct rather than latin_token_pct there; it is a slight
+# over-count, since a transliterated native word can collide with an
+# English string. latin_types is diagnostic: tracks rendering the same
+# tickets at the same length should need comparable vocabularies.
+# generated_by=english_content_by_track.py
+track,tokens_per_ticket,latin_token_pct,english_token_pct,latin_types,n_tickets
+english,10.97,99.7,99.6,1422,3079
+sinhala,9.6,23.6,23.3,578,3079
+singlish,9.6,99.9,29.3,1446,3079
+tamil,8.7,1.8,1.8,65,3079
+tamilish,8.74,99.7,15.4,4138,3079
