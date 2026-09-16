@@ -1,5 +1,13 @@
 # Encoder experiments — findings, results & decisions
 
+> **Sentiment numbers below predate the 2026-08-19 v8 relabel** (711/13,077 labels changed; priority
+> untouched, so §5 and its numbers still stand). LaBSE sentiment moved 0.5664 → **0.7138** test
+> Negative-F1 under v8, classical moved 0.4572/0.4640 → **0.6663**, and the label ceiling they're
+> read against moved from 0.5769 to **0.7812** human agreement. §6's *shape* of findings (LaBSE
+> wins, retention ordering, no per-language/LoRA/TwHIN-BERT win) is unaffected — only the sentiment
+> point estimates are dated. Current cross-model table:
+> [`v8_relabel_slm_results.md`](v8_relabel_slm_results.md).
+
 Frozen split `e7b5934392cd` (train 42,500 / dev 7,490 / test 15,395, 5 languages).
 Headline metrics: **sentiment = Negative-F1**, **priority = macro-F1** (never accuracy — 95.5% of
 tickets are Neutral). Encoders fine-tuned on Kaggle T4 GPUs via `ml/kaggle/runner.py`; classical

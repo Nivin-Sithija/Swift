@@ -1,4 +1,5 @@
-task,metric,v5_vs_human,ci_low,ci_high,agreement,cohen_kappa
-sentiment,negative_f1,0.5769,0.4,0.7273,0.956,0.5546
-priority,macro_f1,0.7722,0.7263,0.8147,0.804,0.6446
-category,macro_f1,1.0,1.0,1.0,1.0,1.0
+task,metric,prompt_version,v_vs_human,ci_low,ci_high,agreement,cohen_kappa,note
+sentiment,negative_f1,v5,0.5769,0.4,0.7273,0.956,0.5546,superseded on 2026-08-19 by the v8 relabel; kept for history
+sentiment,negative_f1,v8,0.7812,0.6545,0.8824,0.972,0.7663,current -- shipped datasets carry these labels (711/13077 rows changed from v5)
+priority,macro_f1,v5,0.7722,0.7263,0.8147,0.804,0.6446,current -- priority was never touched by the v8 relabel
+category,macro_f1,v5,1.0,1.0,1.0,1.0,1.0,current -- inherited from BANKING77, not model-generated

@@ -1,0 +1,42 @@
+# per-loanword retention, same sample generated_by=register_metrics.py
+system,language,loanword,opportunities,kept,retention
+swift (this corpus),sinhala,card,47,13,0.2765957446808511
+swift (this corpus),sinhala,account,16,16,1.0
+swift (this corpus),sinhala,pin,8,8,1.0
+swift (this corpus),sinhala,atm,6,6,1.0
+swift (this corpus),sinhala,top-up,5,5,1.0
+swift (this corpus),sinhala,top up,8,8,1.0
+swift (this corpus),sinhala,app,8,0,0.0
+swift (this corpus),sinhala,balance,1,1,1.0
+swift (this corpus),sinhala,statement,5,5,1.0
+swift (this corpus),sinhala,transaction,3,0,0.0
+swift (this corpus),sinhala,transfer,15,15,1.0
+swift (this corpus),sinhala,bank,6,6,1.0
+swift (this corpus),sinhala,cheque,1,1,1.0
+swift (this corpus),sinhala,refund,3,3,1.0
+swift (this corpus),sinhala,payment,10,10,1.0
+swift (this corpus),sinhala,fee,6,0,0.0
+swift (this corpus),sinhala,rate,2,0,0.0
+swift (this corpus),sinhala,limit,1,1,1.0
+swift (this corpus),sinhala,verify,2,2,1.0
+swift (this corpus),sinhala,exchange,5,2,0.4
+swift (this corpus),tamil,card,47,0,0.0
+swift (this corpus),tamil,account,16,0,0.0
+swift (this corpus),tamil,pin,8,8,1.0
+swift (this corpus),tamil,atm,6,1,0.16666666666666666
+swift (this corpus),tamil,top-up,5,0,0.0
+swift (this corpus),tamil,top up,8,1,0.125
+swift (this corpus),tamil,app,8,0,0.0
+swift (this corpus),tamil,balance,1,0,0.0
+swift (this corpus),tamil,statement,5,2,0.4
+swift (this corpus),tamil,transaction,3,0,0.0
+swift (this corpus),tamil,transfer,15,0,0.0
+swift (this corpus),tamil,bank,6,0,0.0
+swift (this corpus),tamil,cheque,1,0,0.0
+swift (this corpus),tamil,refund,3,0,0.0
+swift (this corpus),tamil,payment,10,0,0.0
+swift (this corpus),tamil,fee,6,0,0.0
+swift (this corpus),tamil,rate,2,0,0.0
+swift (this corpus),tamil,limit,1,0,0.0
+swift (this corpus),tamil,verify,2,0,0.0
+swift (this corpus),tamil,exchange,5,0,0.0
