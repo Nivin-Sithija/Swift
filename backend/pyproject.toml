@@ -44,6 +44,16 @@ rag-local = [
   "FlagEmbedding>=1.3,<2",
   "flashrank>=0.2,<1",
 ]
+
+# Transformer runtime for app/inference/services.py. tests/conftest.py imports that
+# module unconditionally, so this extra is required for the suite to collect at all --
+# it is not optional in practice, despite living here.
+inference = [
+  # 2.6 is the first release with cp313 wheels; the repo's local interpreter is 3.13
+  # while CI is 3.12 and the image is 3.11.
+  "torch>=2.6,<3",
+  "transformers>=4.46,<5",
+]
 dev = [
   "httpx>=0.28,<1",
   # schemathesis 4.x requires pytest>=9, which in turn needs pytest-asyncio>=1.0.

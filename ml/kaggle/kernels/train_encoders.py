@@ -189,6 +189,7 @@ for name in models:
         run = te.run(
             task=TASK,                                    # noqa: F821
             model=name,
+            train_langs=["english", "sinhala", "tamil"],
             arm="class_weight",
             portion=EVAL_PORTION,
             fit_portion=FIT_PORTION,

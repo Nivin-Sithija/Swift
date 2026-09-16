@@ -1,0 +1,9 @@
+text_en,test_id,test_sentiment,test_priority,train_ids
+How do I unblock my PIN?,554,Neutral,Medium,1722
+"
+
+What businesses accept this card?",976,Neutral,Low,3103
+Where can I use my card?,977,Neutral,Low,3116
+"There are a few transaction that I don't recognize, I think someone managed to get my card details and use it.",1432,Neutral,High,4476
+At which ATMs can I use this card?,1474,Neutral,Low,4576
+Which cash machines will allow me to change my PIN?,2149,Neutral,Low,6984

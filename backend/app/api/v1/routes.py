@@ -5,11 +5,9 @@ from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Annotated, Any
 
-import pytesseract
 from fastapi import APIRouter, Cookie, File, HTTPException, Query, UploadFile
 from fastapi import Response as HttpResponse
 from fastapi.responses import FileResponse
-from PIL import Image
 from sqlalchemy import delete, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
@@ -35,6 +33,8 @@ from app.domain.enums import (
     UserRole,
 )
 from app.domain.policies import can_transition, requires_manual_review
+from app.inference.masking import redact_pii
+from app.inference.ocr import OcrError, extract_text
 from app.inference.services import classify, detect_language, response_template
 from app.models.entities import (
     Attachment,
@@ -664,22 +664,24 @@ async def upload_attachment(
 
     if file.content_type in ("image/png", "image/jpeg"):
         try:
-            # Run Tesseract OCR on the uploaded image
-            ocr_text = pytesseract.image_to_string(Image.open(path), lang="eng+tam+sin").strip()
-            if ocr_text:
-                ticket.original_text += f"\n\n[OCR Extracted Text]:\n{ocr_text}"
+            # Run the configured OCR engine on the uploaded image
+            ocr = await extract_text(path)
+            if ocr.text:
+                masked_text = redact_pii(ocr.text)
+                ticket.original_text += f"\n\n[OCR Extracted Text (Masked)]:\n{masked_text}"
 
                 # Delete old predictions and generate new ones via the SVM router
                 await db.execute(delete(Prediction).where(Prediction.ticket_id == ticket.id))
                 await process_ticket_record(db, ticket, is_ocr=True)
+                scored = f" at {ocr.confidence:.2f} confidence" if ocr.confidence else ""
                 event(
                     ticket,
                     user,
                     "ocr_processed",
-                    "OCR extracted text and updated predictions",
+                    f"{ocr.engine} extracted text{scored} and updated predictions",
                     True,
                 )
-        except Exception as e:
+        except (OcrError, OSError) as e:
             # If OCR fails, log the event but don't break the attachment upload
             event(ticket, user, "ocr_failed", f"OCR failed: {str(e)}", True)
 
@@ -1118,3 +1120,41 @@ async def admin_update_settings(
         audit(db, admin, "system_setting_changed", "system_setting", key, "value updated")
     await db.commit()
     return await admin_settings(admin, db)
+
+
+@router.post("/ocr/test-masking")
+async def test_ocr_masking(
+    file: Annotated[UploadFile, File(...)],
+    engine: str = Query("tesseract", description="OCR engine: 'tesseract' or 'google_vision'")
+) -> dict:
+    """
+    Test endpoint for OCR and PII masking. 
+    Allows you to upload an image and see both the raw OCR text and the masked text.
+    """
+    if file.content_type not in ("image/png", "image/jpeg"):
+        raise HTTPException(400, "Only PNG and JPEG images are supported")
+        
+    path = Path("storage") / "temp" / f"{uuid.uuid4()}{Path(file.filename or '.jpg').suffix}"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    
+    try:
+        data = await file.read()
+        path.write_bytes(data)
+        
+        # 1. Run the specified OCR engine
+        ocr = await extract_text(path, engine=engine)
+        
+        # 2. Mask the text
+        masked_text = redact_pii(ocr.text) if ocr.text else ""
+        
+        return {
+            "engine_used": ocr.engine,
+            "raw_text": ocr.text or "",
+            "masked_text": masked_text,
+            "confidence": ocr.confidence
+        }
+    except OcrError as e:
+        raise HTTPException(422, f"OCR Error: {str(e)}")
+    finally:
+        if path.exists():
+            path.unlink()
