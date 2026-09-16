@@ -8,6 +8,7 @@ import asyncio
 import base64
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 import httpx
 import pytesseract
@@ -93,7 +94,7 @@ async def google_vision_ocr(path: Path | str) -> OcrResult:
     )
 
 
-def _page_confidence(annotation: dict) -> float | None:
+def _page_confidence(annotation: dict[str, Any]) -> float | None:
     scores = [
         float(page["confidence"])
         for page in annotation.get("pages", [])

@@ -1122,23 +1122,31 @@ async def admin_update_settings(
     return await admin_settings(admin, db)
 
 
-@router.post("/ocr/test-masking")
+# Operator tooling for comparing OCR engines on a sample image, not part of the
+# published contract in docs/api/api_contract.yaml -- hence include_in_schema=False.
+# It runs the same billed Google Vision path as the real upload route, so it is
+# gated on an administrator rather than left open like a local debug hook.
+@router.post("/ocr/test-masking", include_in_schema=False)
 async def test_ocr_masking(
+    _admin: AdministratorUser,
     file: Annotated[UploadFile, File(...)],
     engine: str = Query("tesseract", description="OCR engine: 'tesseract' or 'google_vision'")
-) -> dict:
+) -> dict[str, Any]:
     """
-    Test endpoint for OCR and PII masking. 
+    Test endpoint for OCR and PII masking.
     Allows you to upload an image and see both the raw OCR text and the masked text.
     """
     if file.content_type not in ("image/png", "image/jpeg"):
         raise HTTPException(400, "Only PNG and JPEG images are supported")
-        
+
     path = Path("storage") / "temp" / f"{uuid.uuid4()}{Path(file.filename or '.jpg').suffix}"
     path.parent.mkdir(parents=True, exist_ok=True)
-    
+
     try:
         data = await file.read()
+        # Mirrors the attachment route's ceiling; this one also reads fully into memory.
+        if len(data) > settings.max_upload_bytes:
+            raise HTTPException(413, "Attachment too large")
         path.write_bytes(data)
         
         # 1. Run the specified OCR engine
@@ -1154,7 +1162,7 @@ async def test_ocr_masking(
             "confidence": ocr.confidence
         }
     except OcrError as e:
-        raise HTTPException(422, f"OCR Error: {str(e)}")
+        raise HTTPException(422, f"OCR Error: {str(e)}") from e
     finally:
         if path.exists():
             path.unlink()
