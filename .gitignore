@@ -68,8 +68,11 @@ ml/kaggle/.output_*/
 # and the findings notebooks). Keeps the results commit lean.
 ml/reports/history_*.csv
 # `runner.fetch` drops kernel posterior CSVs flat into ml/reports/. The canonical
-# copies are filed under paper/results/posteriors/; these are byte-identical
-# duplicates and 16 MB each.
+# copies are filed under paper/results/posteriors/; these are usually byte-identical
+# duplicates and 16 MB each. NOT always -- a fetched file can be the only copy of a
+# run, and the canonical twin may sit under a different name (`*_seed43.csv`) or in
+# a subdir (`dev_trainonly/`). Before deleting one, `cmp` it against every candidate
+# in paper/results/posteriors/**; if nothing matches, move it there instead.
 ml/reports/posteriors_*.csv
 ml/reports/per_language_*.csv
 ml/reports/encoder_summary.csv

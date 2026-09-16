@@ -1,0 +1,9 @@
+language,system,n,missing,labse_cosine,script_fidelity
+sinhala,gemini,150,0,0.8799,0.749
+sinhala,gptoss,150,1,0.8347,0.6654
+sinhala,openai,150,0,0.8806,0.6454
+sinhala,swift,150,0,0.8833,0.7106
+tamil,gemini,150,0,0.7754,0.9712
+tamil,gptoss,150,0,0.8558,0.7077
+tamil,openai,150,0,0.8623,0.6446
+tamil,swift,150,0,0.8532,0.988

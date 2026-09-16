@@ -1,0 +1,27 @@
+\section{Introduction}
+\label{sec:intro}
+
+A \sout{retail bank} customer support desk must decide \af{should be the next ticket to attend}which waiting ticket an agent opens next. High severity issues such as payment fraud require immediate intervention under strict response windows, \af{no need to mention in minutes}often 30 minutes or less, whereas routine balance inquiries tolerate delays of several hours. When customer requests arrive faster than staff can process them, a backlog forms. In this operating environment, the dispatch order in which tickets are assigned to agents directly determines whether service level agreements (SLAs) are upheld or violated.
+
+Published work on customer support prioritization addresses \af{dont use words like half of the problem}only half of this operational decision by stopping at static classification. Existing methods predict static labels such as category or severity tier and evaluate performance by accuracy on held-out benchmarks. However, a set of predicted labels does not specify a dispatch order. In common practice, desks default to First Come First Served (FCFS) or group tickets by \af{add citation if it is from the paper. next part doesnt make sense}discrete argmax predictions and serve within groups by arrival order.
+
+\af{you are talking about three probles. In the beginning say there are 3 of three problems why classification based techniques lacks.For each probelm add citations. So far i can see only one}Converting classifier outputs into an operational queue reveals challenges that static benchmarks 
+hide. One is customer starvation under static triage\af{citation}. When helpdesks order tickets solely by 
+static predicted categories, newly arriving urgent inquiries repeatedly overtake older requests. 
+As a result, routine inquiries remain delayed in the backlog and breach service level agreements 
+unless elapsed waiting time is dynamically incorporated. Second is loss of predictive uncertainty. 
+Discrete argmax binning collapses a confident High priority prediction (0.99 posterior probability) 
+and an uncertain 0.51 versus 0.49 near tie into the same tier, after which the queue serves them 
+in arrival order. Under noisy classification, optimal scheduling requires ordering by continuous 
+posterior indices rather than discrete categories \cite{argon2009priority}.
+
+
+A third challenge is linguistic. In multilingual banking environments, customer messages span English, Sinhala, and Tamil, alongside informal Romanized scripts (Singlish and Tanglish). Existing public ticket datasets do not evaluate across these transliterated linguistic tracks, nor do they carry the joint priority and sentiment labels required to train an operational dispatch system.
+
+Under this operational setting, we examine two research questions:
+
+\textbf{RQ1} How do multilingual sentence encoders, cross-lingual masked transformers, and generative models compare across Romanized South Asian scripts under severe class imbalance? \af{not clear. is it empirically evaluate exisistng multilingual pre-trained models accuracy for .....? Dont bring class imbalance here. RQ should be specific and measureable}
+
+\textbf{RQ2} How can a dynamic urgency score be formulated from continuous classifier probability distributions \af{dont think the waiting time is a consideration. It is external factor. Frame problem as to dynamically decide urgency based on .....what?}and elapsed waiting time to resolve inter-label dependencies and prevent queue starvation?
+
+Our contributions are twofold. First, a \textbf{multilingual model benchmark study} spanning classical TF--IDF models, sentence encoders, masked encoders, and instruction-tuned decoders over five parallel linguistic tracks\af{what are tracks? Dataset?}. Second, an \textbf{information-theoretic posterior combination and dynamic urgency scoring framework} that merges multi-head\af{what is this?} intent, sentiment, and priority distributions via logarithmic opinion pooling \sout{(reducing log loss by 27.4\% and resolving collinearity) and} to produce a \sout{translates} continuous posteriors \af{reflecting the}\sout{into} time-dependent urgency scores.

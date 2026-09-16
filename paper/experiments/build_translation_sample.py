@@ -142,6 +142,7 @@ def main() -> None:
         body = PROMPT_HEADER.format(target=target, short=short, n=len(sample)) + rows + "\n"
 
         (OUT / f"prompt_openai_{lang}.md").write_text(body)
+        (OUT / f"prompt_gemini_{lang}.md").write_text(body)
         (OUT / f"prompt_gptoss_{lang}.md").write_text(body)
 
     pd.DataFrame({"id": sample["id"], "translation": ""}).to_csv(

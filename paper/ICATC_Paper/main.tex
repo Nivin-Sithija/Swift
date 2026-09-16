@@ -1,0 +1,83 @@
+%==============================================================================
+%  ICATC 2026 submission -- multilingual classification of bank support
+%  tickets: intent, sentiment and priority, plus posterior combination.
+%
+
+%==============================================================================
+
+\documentclass[conference,a4paper]{IEEEtran}
+
+% IEEE requires Times. IEEEtran requests it as `ptm', which pdfLaTeX resolves
+% from the standard PostScript fonts. Under a Unicode engine (XeTeX/LuaTeX) that
+% request silently falls back to Latin Modern, so we load Times explicitly and
+% the document then typesets in Times under every engine. newtxmath also puts
+% the maths in Times, which matching the body text requires.
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+\newcommand\af[1]{\textbf{\textcolor{red}{AF: #1}}}
+\graphicspath{{figures/}}
+
+% Double-blind review. Keep true for the CMT review submission.
+\newif\ifblind
+\blindtrue
+
+% Draft markers. Set false to measure the real page count.
+\newif\ifdraftmode
+\draftmodefalse
+\ifdraftmode
+  \newcommand{\gap}[1]{\textcolor{BrickRed}{\textbf{[GAP: #1]}}}
+  \newcommand{\note}[1]{\textcolor{RoyalBlue}{\textbf{[NOTE: #1]}}}
+\else
+  \newcommand{\gap}[1]{}
+  \newcommand{\note}[1]{}
+\fi
+
+\newcommand{\negf}{Negative-F\textsubscript{1}}
+\newcommand{\macrof}{macro-F\textsubscript{1}}
+
+\begin{document}
+
+\title{Classification and Order Prediction of Financial\\Support Tickets Across Sinhala, Tamil,\\and Romanized Scripts}
+
+\ifblind
+  \author{\IEEEauthorblockN{Anonymous Submission}}
+\else
+  \author{\IEEEauthorblockN{Author One, Author Two, Author Three}
+  \IEEEauthorblockA{Department, Institution\\City, Sri Lanka\\
+  \texttt{author@institution.lk}}}
+\fi
+
+\maketitle
+
+\input{sections/00_abstract}
+
+\begin{IEEEkeywords}
+multi-label classification, Sinhala, Tamil, romanized text,
+transliteration, queue scheduling, multilingual NLP
+\end{IEEEkeywords}
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_corpus}
+\input{sections/04_classifiers}
+\input{sections/05_combination}
+\input{sections/06_scoring}
+\input{sections/08_discussion}
+\input{sections/09_conclusion}
+
+\input{sections/10_acknowledgment}
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+\end{document}
