@@ -6,11 +6,14 @@ from pathlib import Path
 
 import httpx
 import joblib
+import torch
+from transformers import pipeline
 
 from app.core.config import get_settings
 from app.domain.enums import LanguageForm, Priority, Sentiment
 
 _svm_pipeline = None
+_labse_pipeline = None
 settings = get_settings()
 
 
@@ -50,7 +53,7 @@ def detect_language(text: str) -> Result:
 
 
 async def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Result]:
-    global _svm_pipeline
+    global _svm_pipeline, _labse_pipeline
 
     ml_dir = Path("/app/ml")
     if not ml_dir.exists():
