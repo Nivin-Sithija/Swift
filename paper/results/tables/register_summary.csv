@@ -1,0 +1,4 @@
+# English banking-loanword retention and Latin-script fraction, 150-row translation sample. Higher retention = closer to the code-mixed register Sri Lankan bank customers actually write. NOT a quality metric. generated_by=register_metrics.py
+system,language,loanword_retention,latin_char_fraction,n_rows
+swift (this corpus),sinhala,0.6455696202531646,0.35287083007326925,150
+swift (this corpus),tamil,0.0759493670886076,0.018333718800576188,150

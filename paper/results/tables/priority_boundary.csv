@@ -1,0 +1,10 @@
+y_true,y_pred,n,distance,kind,pct_of_errors
+Low,Low,7914,0,correct,
+Low,Medium,407,1,adjacent,23.58
+Low,High,119,2,extreme,6.89
+Medium,Low,879,1,adjacent,50.93
+Medium,Medium,4515,0,correct,
+Medium,High,101,1,adjacent,5.85
+High,Low,121,2,extreme,7.01
+High,Medium,99,1,adjacent,5.74
+High,High,1240,0,correct,

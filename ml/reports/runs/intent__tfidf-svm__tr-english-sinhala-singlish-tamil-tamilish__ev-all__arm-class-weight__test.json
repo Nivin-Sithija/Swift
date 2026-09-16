@@ -1,0 +1,27 @@
+{
+  "run_id": "intent__tfidf-svm__tr-english-sinhala-singlish-tamil-tamilish__ev-all__arm-class-weight",
+  "task": "intent",
+  "model": "tfidf-svm",
+  "train_langs": [
+    "english",
+    "sinhala",
+    "singlish",
+    "tamil",
+    "tamilish"
+  ],
+  "eval_lang": "all",
+  "arm": "class_weight",
+  "eval_portion": "test",
+  "split_sha": "e7b5934392cd",
+  "author": "claude-v8-frozen-split-intent-final-test",
+  "recorded_utc": "2026-08-20T01:34:02+00:00",
+  "python": "3.12.13",
+  "accuracy": 0.8302695680415719,
+  "macro_f1": 0.8306712643532769,
+  "macro_precision": 0.8407587742519692,
+  "macro_recall": 0.8303030303030302,
+  "weighted_f1": 0.8306534100159911,
+  "n": 15395,
+  "headline_metric": "macro_f1",
+  "headline": 0.8306712643532769
+}
