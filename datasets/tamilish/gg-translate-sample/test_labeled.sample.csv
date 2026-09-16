@@ -1,0 +1,21 @@
+id,text,category,sentiment,priority
+0,enathu attaiyai nan evvaru kantarivathu?,card_arrival,Neutral,Low
+40,enathu kartu en payanpattil kattappatathu?,card_linking,Neutral,Low
+80,unkal marru vikithankalai nan therinthu kolla ventum.,exchange_rate,Neutral,Low
+120,nan etho oru velinattu nanayaththil vankinen anal payanpatuththappatta vikitham thavaranathu,card_payment_wrong_exchange_rate,Negative,Medium
+160,enathu arikkaiyil 10 rupay ullathu.,extra_charge_on_statement,Neutral,Medium
+200,enathu thirumpap peruthal innum niluvaiyil ullathu.  en?,pending_cash_withdrawal,Neutral,Low
+240,"enathu nithiyai vaiththirukkumaru nan korinal, ninkal enna nanayankalaip payanpatuththukirirkal?",fiat_currency_support,Neutral,Low
+280,enakku ippothu enathu attai thevai!,card_delivery_estimate,Neutral,Low
+320,"payanam cheyyumpothu, ​​kurippitta neraththil kartaith thanaka tap-ap cheyyalama?",automatic_top_up,Positive,Low
+360,"nan enathu kartai palamurai muyarchiththen, athu velai cheyyavillai.",card_not_working,Neutral,Medium
+400,nan ithanutan nanayankalai marralama?,exchange_via_app,Neutral,Low
+440,inru enathu lakkaril irunthu enathu panappai utpata jim pai muzhuvathum thirutappattathu. enathu panappaiyil ulla anaiththum poyvittathu - kartaip payanpatuththa mutiyathapati athai evvaru thatuppathu?,lost_or_stolen_card,Neutral,High
+480,enakkana kanakkaip pera enakku evvalavu vayathu irukka ventum,age_limit,Neutral,Low
+520,enathu PIN ai evvaru thirappathu?,pin_blocked,Neutral,High
+560,enathu puthiya kartil thotarpu illatha kattanankal iyakkappattullatha?,contactless_not_working,Neutral,Medium
+600,itamarrankalai erka evvalavu kattanam vithikkirirkal,top_up_by_bank_transfer_charge,Neutral,Medium
+640,"puthiya vatikkaiyalar marrum erivayu nirappum inru, athu velai cheyyavillai, vishayam niluvaiyil ullathu arai mani neram kattukirathu!",pending_top_up,Neutral,Low
+680,"inru kalai oru parivarththanai cheythen, athai marra virumpukiren.",cancel_transfer,Neutral,Medium
+720,en mel varampai kuraikka mutiyuma?,top_up_limits,Positive,Low
+760,"ithu etiemmil ulla chikkala allathu enathu kanakkil ullatha enru enakkuth theriyavillai, anal nan ippothu irukkum etiemmil irunthu ru.30,000 etukka muyarchiththen, athu enakku ru.10,000 mattume kotuththathu. ithu oru kolara allathu chariyaka enna natakkirathu?",wrong_amount_of_cash_received,Neutral,Medium

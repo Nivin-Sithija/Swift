@@ -1,0 +1,148 @@
+{
+  "sha": "01305cdeb24d",
+  "seed": 20260907,
+  "drawn_on": "ticket_id, so all five language renderings share a split",
+  "source": "datasets/*/test_labeled.csv (official BANKING77 test ids)",
+  "counts": {
+    "tickets": 66,
+    "probes": 330,
+    "dev_tickets": 33,
+    "holdout_tickets": 33,
+    "answerable_probes": 210,
+    "unanswerable_probes": 120
+  },
+  "label_provenance": {
+    "age_limit": {
+      "sources": [
+        "SRC-ACC-001"
+      ],
+      "why": "Eligibility states: resident of Sri Lanka over 18 years of age."
+    },
+    "card_payment_not_recognised": {
+      "sources": [
+        "SRC-CARD-001"
+      ],
+      "why": "Dispute policy covers unauthorised transactions and the resolution procedure."
+    },
+    "card_swallowed": {
+      "sources": [
+        "SRC-CARD-001"
+      ],
+      "why": "Card Centre contact and card blocking/replacement procedure applies."
+    },
+    "cash_withdrawal_not_recognised": {
+      "sources": [
+        "SRC-CARD-001"
+      ],
+      "why": "Same unauthorised-transaction dispute path as card payments."
+    },
+    "compromised_card": {
+      "sources": [
+        "SRC-CARD-001",
+        "SRC-FRAUD-001"
+      ],
+      "why": "Dispute policy covers unauthorised use and liability; CBSL page covers not sharing PINs/OTPs and reporting suspicious activity."
+    },
+    "lost_or_stolen_card": {
+      "sources": [
+        "SRC-CARD-001"
+      ],
+      "why": "Dispute policy: cardholder must immediately call the Card Centre, agent blocks the card, replacement dispatched within 5 working days."
+    },
+    "transfer_fee_charged": {
+      "sources": [
+        "SRC-TRF-001"
+      ],
+      "why": "Card-to-card page states a Rs 100 transaction fee for CRM cash deposits."
+    }
+  },
+  "unanswerable_intents": [
+    "automatic_top_up",
+    "top_up_by_card_charge",
+    "top_up_limits",
+    "get_disposable_virtual_card",
+    "getting_virtual_card",
+    "virtual_card_not_working",
+    "apple_pay_or_google_pay",
+    "fiat_currency_support",
+    "exchange_via_app",
+    "verify_source_of_funds",
+    "country_support",
+    "disposable_card_limits"
+  ],
+  "caveats": [
+    "Labels are authored from the corpus text, not human-verified; spot-check before quoting recall as ground truth.",
+    "Thresholds are explored on dev only. Holdout is scored once and reported.",
+    "The five language arms are translations of one ticket set, so language comparisons must use paired statistics."
+  ],
+  "dev_ticket_ids": [
+    "1090",
+    "1102",
+    "1112",
+    "1401",
+    "1406",
+    "1424",
+    "1943",
+    "1956",
+    "2000",
+    "2005",
+    "2221",
+    "2234",
+    "2524",
+    "2548",
+    "2617",
+    "2722",
+    "2723",
+    "274",
+    "2743",
+    "2823",
+    "2977",
+    "3068",
+    "338",
+    "413",
+    "420",
+    "445",
+    "477",
+    "492",
+    "495",
+    "506",
+    "725",
+    "742",
+    "942"
+  ],
+  "holdout_ticket_ids": [
+    "1087",
+    "1094",
+    "1096",
+    "1371",
+    "1374",
+    "1407",
+    "1411",
+    "1425",
+    "1920",
+    "1935",
+    "1938",
+    "1953",
+    "2202",
+    "2210",
+    "2214",
+    "2220",
+    "240",
+    "2633",
+    "2720",
+    "2727",
+    "2758",
+    "2807",
+    "2991",
+    "3065",
+    "326",
+    "446",
+    "453",
+    "456",
+    "475",
+    "493",
+    "494",
+    "508",
+    "953"
+  ]
+}

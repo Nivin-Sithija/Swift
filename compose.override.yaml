@@ -1,0 +1,16 @@
+# Local override for the RAG error-analysis workstream.
+#
+# compose.yaml publishes postgres on 5432, but this machine already runs a native
+# PostgreSQL on that port with different credentials, so the container would either
+# fail to bind or host tooling would silently talk to the wrong server. Publishing on
+# 5433 keeps both reachable and unambiguous.
+#
+# Docker Compose merges this file automatically; nothing in compose.yaml is edited.
+# Host-side tooling (alembic, swift-ingest-kb, swift-eval-rag, the analysis harness)
+# must then use:
+#   SWIFT_DATABASE_URL=postgresql+asyncpg://swift:swift@localhost:5433/swift
+# The api/worker services are unaffected -- they reach postgres over the compose
+# network on 5432 and never use the published port.
+services:
+  postgres:
+    ports: ["5433:5432"]
