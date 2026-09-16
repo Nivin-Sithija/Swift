@@ -6,8 +6,6 @@ from pathlib import Path
 
 import httpx
 import joblib
-import torch
-from transformers import pipeline
 
 from app.core.config import get_settings
 from app.domain.enums import LanguageForm, Priority, Sentiment

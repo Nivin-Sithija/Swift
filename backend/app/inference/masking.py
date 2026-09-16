@@ -1,5 +1,6 @@
 import re
 
+
 def redact_pii(text: str) -> str:
     """
     Redacts sensitive Personal Identifiable Information (PII) from text.
