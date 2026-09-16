@@ -4,6 +4,11 @@
 > report.** The headline 0.6395 is the maximum of 168 draws from a noisy
 > distribution; cross-validation puts the honest figure at **0.5525 ± 0.044**.
 > The priority findings are unaffected — its classes are large enough to measure.
+>
+> **Also stale as of the 2026-08-19 v8 relabel**: 91 of 1,498 dev-split sentiment
+> labels changed under v8, so every sentiment number below (already under its own
+> §6 correction) is doubly dated. Priority is untouched by v8. Current test-set
+> numbers on the v8 labels: [`v8_relabel_slm_results.md`](v8_relabel_slm_results.md).
 
 Dev set, split sha `e7b5934392cd` (8,500 / 1,498 / 3,079). 336 evaluations per
 pair of tasks: 3 regimes × 5 languages × 4 models × 3 class-balancing arms.
