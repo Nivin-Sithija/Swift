@@ -1,0 +1,150 @@
+\section{Multilingual Ticket Classification}
+\label{sec:classifiers}
+
+\subsection{Tokenizer Inductive Filtering}
+
+\begin{table}[!htbp]
+\caption{Tokenizer subword fertility (tokens per word) and vocabulary size.}
+\label{tab:tokenizer_fertility}
+\centering
+\small
+\setlength{\tabcolsep}{2.8pt}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Model & Vocab & English & Sinhala & Singlish & Tamil & Tanglish \\
+\midrule
+LaBSE & 501k & 1.18 & 1.37 & 1.62 & 1.86 & 2.00 \\
+Gemma 3 & 262k & 1.18 & 2.24 & 1.86 & 2.20 & 2.21 \\
+SinLlama & 139k & 1.16 & \textbf{1.28} & 2.00 & 11.46 & 2.34 \\
+Llama 3.2 & 128k & 1.16 & 7.39 & 2.00 & 11.46 & 2.34 \\
+Qwen 3 & 152k & 1.16 & 5.97 & 2.02 & 9.22 & 2.35 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Prior to fine-tuning, we screen candidate tokenizers for subword fragmentation across 2{,}000 sampled tickets per language track (Table~\ref{tab:tokenizer_fertility}). Parameter scale does not compensate for severe subword fragmentation: Western BPE tokenizers (Llama 3.2 and Qwen 3) shred native Indic text into 6 to 11 subwords per word, inflating sequence lengths and degrading attention efficiency. While specialized vocabulary extension in SinLlama \cite{aravinda2025sinllama} achieves high compression on native Sinhala (1.28 tokens per word), its lack of Dravidian vocabulary causes Tamil fertility to collapse to 11.46, preventing trilingual deployment. The magnitude of these penalties is consistent with survey figures of 8.83 to 12.86 subword tokens per word for Sinhala against roughly one for English \cite{desilva2019sinhalasurvey}. In contrast, Gemma 3 provides balanced fertility across all five tracks (1.18 to 2.24) with zero control character loss.
+
+\subsection{Operational Evaluation Metrics}
+
+Standard classification accuracy is deeply misleading under severe class imbalance. In our banking corpus, customer sentiment exhibits severe class skew with 93.7\% Neutral and only 6.3\% Negative tickets (6.33\% on the test split, 195 of 3{,}079 tickets). A naive majority class baseline predicting always Neutral achieves 93.7\% accuracy while scoring exactly 0.0000 \negf{}, failing to detect every dissatisfied customer. In our empirical class-balancing experiments, the unweighted empirical risk baseline posted the highest raw accuracy (0.9281) but the lowest \negf{} (0.3171), demonstrating that accuracy actively penalizes models that attempt to learn minority escalation signals. Consequently, we discard accuracy and adopt \negf{} as the headline evaluation metric for sentiment.
+
+For operational priority, tickets follow an inverse severity distribution (53.5\% Low, 36.6\% Medium, and 9.8\% High). We report macro-averaged $F_1$ across all three tiers so that performance on the critical High priority escalation tier is weighted equally with the dominant Low priority class (majority class baseline scores 0.2361 \macrof{}). For intent, we evaluate 77 category macro-averaged $F_1$ across all transaction intents to ensure uniform assessment across both frequent and rare query types.
+
+\subsection{Classical Baseline Benchmark}
+
+\begin{table}[!htbp]
+\caption{Classical TF--IDF baselines. Bal.: class-balancing arm selected on
+dev (-- none, CW class weight, ROS oversampling). Best per column in bold.}
+\label{tab:classical_baselines}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.6pt}
+\begin{tabular}{@{}llrrrrrr@{}}
+\toprule
+Model & Bal. & English & Sinhala & Singlish & Tamil & Tanglish & Pooled \\
+\midrule
+\multicolumn{8}{l}{\textit{Intent (\macrof{}, 77 classes)}} \\
+Linear SVM & -- & \textbf{0.9180} & \textbf{0.8666} & \textbf{0.8793} & \textbf{0.8528} & \textbf{0.6127} & \textbf{0.8308} \\
+Logistic Regression & -- & 0.9096 & 0.8595 & 0.8751 & 0.8302 & 0.5854 & 0.8189 \\
+SGD (mod.\ Huber) & -- & 0.9079 & 0.8489 & 0.8646 & 0.8305 & 0.5669 & 0.8115 \\
+Complement NB & -- & 0.7772 & 0.6732 & 0.7194 & 0.7234 & 0.4925 & 0.6792 \\
+\midrule
+\multicolumn{8}{l}{\textit{Sentiment (\negf{})}} \\
+Linear SVM & CW & \textbf{0.7198} & \textbf{0.6412} & \textbf{0.6633} & \textbf{0.7249} & \textbf{0.5722} & \textbf{0.6653} \\
+Logistic Regression & ROS & 0.6995 & 0.6256 & 0.6545 & 0.6776 & 0.5074 & 0.6383 \\
+SGD (mod.\ Huber) & ROS & 0.6842 & 0.5954 & 0.6218 & 0.6608 & 0.4577 & 0.6092 \\
+Complement NB & ROS & 0.5139 & 0.5083 & 0.5302 & 0.5239 & 0.3738 & 0.4968 \\
+\midrule
+\multicolumn{8}{l}{\textit{Priority (\macrof{})}} \\
+Linear SVM & CW & \textbf{0.9050} & \textbf{0.8848} & \textbf{0.8918} & \textbf{0.8854} & 0.7984 & \textbf{0.8734} \\
+Logistic Regression & ROS & 0.8987 & 0.8810 & 0.8889 & 0.8849 & \textbf{0.7985} & 0.8706 \\
+SGD (mod.\ Huber) & ROS & 0.8953 & 0.8802 & 0.8831 & 0.8853 & 0.7805 & 0.8659 \\
+Complement NB & CW & 0.8643 & 0.8479 & 0.8540 & 0.8653 & 0.7782 & 0.8422 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+We evaluate four classical classifiers over a shared TF--IDF feature union of word 1--2 grams and character 3--5 grams, the latter carrying most of the signal on the romanized tracks, where no spelling standard exists. Linear SVM establishes the strongest classical baseline, taking the best score in 17 of the 18 task-by-track cells; Logistic Regression edges it only on Tanglish priority (0.7985 vs.\ 0.7984), and trails it by 1.2 points on pooled intent. The margin between the two linear margin based models and the SGD linear model is small, but Complement Naive Bayes falls well behind on both imbalanced targets, losing 15.2 points of pooled intent \macrof{} and 16.9 points of pooled \negf{} to the SVM, confirming that its closed-form class priors cannot substitute for discriminative training on the minority escalation classes. Tanglish is the weakest track for every model and every task, a pattern the encoder benchmark below only partly closes.
+
+\subsection{Multilingual Encoder Benchmark}
+
+\begin{table}[!htbp]
+\caption{Multilingual encoder benchmark, per track and pooled. Best per column
+within each task in bold.}
+\label{tab:encoder_benchmark}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Model & English & Sinhala & Singlish & Tamil & Tanglish & Pooled \\
+\midrule
+\multicolumn{7}{l}{\textit{Intent} (\macrof{}, 77 classes)} \\
+Linear SVM & 0.9180 & 0.8666 & 0.8793 & 0.8528 & 0.6127 & 0.8308 \\
+LaBSE      & \textbf{0.9412} & \textbf{0.9319} & \textbf{0.9034} & \textbf{0.9329} & 0.6928 & \textbf{0.8835} \\
+XLM-R base & 0.9402 & 0.9244 & 0.8987 & 0.9151 & 0.7067 & 0.8801 \\
+mmBERT     & 0.9374 & 0.9123 & 0.9013 & 0.9147 & 0.6566 & 0.8680 \\
+MuRIL base & 0.9226 & 0.7224 & 0.8888 & 0.9080 & \textbf{0.7824} & 0.8467 \\
+\midrule
+\multicolumn{7}{l}{\textit{Sentiment} (\negf{})} \\
+Linear SVM & 0.7198 & 0.6412 & 0.6633 & 0.7249 & 0.5722 & 0.6653 \\
+LaBSE      & \textbf{0.8032} & \textbf{0.7234} & 0.6757 & \textbf{0.7606} & 0.5948 & \textbf{0.7138} \\
+XLM-R base & 0.7838 & 0.7215 & 0.6361 & 0.7473 & 0.5981 & 0.7007 \\
+mmBERT     & 0.7723 & 0.6766 & \textbf{0.6905} & 0.7386 & 0.6159 & 0.7000 \\
+MuRIL base & 0.7967 & 0.5577 & 0.6463 & 0.7465 & \textbf{0.6235} & 0.6790 \\
+\midrule
+\multicolumn{7}{l}{\textit{Priority} (\macrof{})} \\
+Linear SVM & 0.9050 & 0.8848 & \textbf{0.8918} & 0.8854 & 0.7984 & 0.8734 \\
+LaBSE      & \textbf{0.9229} & \textbf{0.9179} & 0.8817 & \textbf{0.9130} & 0.8142 & \textbf{0.8901} \\
+MuRIL base & 0.9095 & 0.8072 & 0.8861 & 0.9120 & \textbf{0.8412} & 0.8717 \\
+\bottomrule
+\end{tabular}
+\end{table}
+As shown in Table~\ref{tab:encoder_benchmark}, fine-tuned LaBSE takes the best pooled score on all three tasks among the encoders, with margins of +8.01 \af{specify units}points on both Tamil and Tanglish intent over the SVM. XLM-R base is the closest competitor, within 0.34 points pooled and 0.10 points on English intent. MuRIL trails on pooled intent (0.8467), but the pooled column conceals two facts: its deficit is concentrated in a single cell, Sinhala intent at 0.7224, where Sinhala script falls outside its vocabulary, and it takes the best Tanglish score on all three tasks, leading LaBSE by 8.96 points on Tanglish intent. XLM-R base and mmBERT were scored on priority pooled only, at 0.8872 and 0.8887. \af{add discussion for the reason}
+
+\subsection{Generative Decoder and SLM Benchmark}
+
+\begin{table}[!htbp]
+\caption{Gemma 3 decoder benchmark. Lower panel: pooled 1B configurations;
+270M was not scored on sentiment or priority. Best per column in bold.}
+\label{tab:decoder_benchmark}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Model & English & Sinhala & Singlish & Tamil & Tanglish & Pooled \\
+\midrule
+\multicolumn{7}{l}{\textit{Intent, per track} (\macrof{})} \\
+Gemma 3 1B   & \textbf{0.9358} & \textbf{0.9221} & \textbf{0.8962} & \textbf{0.9110} & \textbf{0.6281} & \textbf{0.8635} \\
+Gemma 3 270M & 0.9288 & 0.8874 & 0.8706 & 0.8907 & 0.6041 & 0.8414 \\
+\bottomrule
+\end{tabular}
+
+\vspace{4pt}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Gemma 3 1B configuration (pooled) & Intent & Sentiment & Priority \\
+\midrule
+Per-task heads    & 0.8635 & \textbf{0.7126} & 0.8898 \\
+One shared head   & \textbf{0.8673} & 0.7048 & \textbf{0.8904} \\
+Three shared heads & 0.8616 & 0.7042 & 0.8895 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+We adapt Gemma 3 across 1B and 270M parameter scales using parameter-efficient LoRA  (Table~\ref{tab:decoder_benchmark}), examining three core questions:
+
+\textbf{LoRA Projection Coverage.} Expanding LoRA coverage from attention projections alone ($q, v$) to all seven linear projections ($q, k, v, o, \mathrm{gate}, \mathrm{up}, \mathrm{down}$) produced the largest gain in the decoder study (+2.70 points on 1B, +4.56 points on 270M validation), indicating that the apparent cross-script deficit under partial LoRA was a parameter coverage artifact.
+
+\textbf{Parameter Scaling and Minority Collapse.} The 270M model gives up 2.21 points of pooled intent \macrof{} to the 1B model (0.8414 against 0.8635), but collapses far harder on the minority target: on development data it reaches 0.5611 \negf{} against the 1B model's 0.7098, a 14.87 point gap. Compressed capacity degrades disproportionately under severe label skew.
+
+\textbf{Joint Multi-Task Architecture.} A single Gemma 3 1B backbone equipped with a shared classification head guided by task prefix prompts achieves 0.8673 on intent, 0.7048 on sentiment, and 0.8904 on priority on the frozen test set, matching single-task encoders on priority with 0\% cross-task misrouting.
+
+\subsection{Representation Probing Diagnostics}
+
+To isolate representation transfer we probed frozen backbones with a linear
+classifier. Pretrained LaBSE scored 0.8015 on priority and 0.7822 on intent,
+substantially below the classical TF--IDF baseline (0.8734 and 0.8308), which
+demonstrates that frozen representations cannot be served without supervised
+fine-tuning.

@@ -1,0 +1,16 @@
+{
+  "split": "e7b5934392cd",
+  "label_version": "v8",
+  "max_length": 128,
+  "files": [
+    "sentiment__labse__test.csv",
+    "priority__labse__test.csv",
+    "sentiment__tfidf-logreg__test.csv",
+    "priority__tfidf-logreg__test.csv",
+    "intent__tfidf-logreg__test.csv",
+    "sentiment__tfidf-logreg__dev.csv",
+    "priority__tfidf-logreg__dev.csv",
+    "intent__tfidf-logreg__dev.csv",
+    "intent_criticality.csv"
+  ]
+}

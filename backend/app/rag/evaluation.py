@@ -14,8 +14,21 @@ def reciprocal_rank(retrieved: list[str], relevant: set[str]) -> float:
 
 
 def ndcg_at_k(retrieved: list[str], relevant: set[str], k: int) -> float:
-    dcg = sum(1 / math.log2(rank + 1) for rank, item in enumerate(retrieved[:k], 1) if item in relevant)
+    # Each relevant item earns gain once, at its best rank. `retrieved` is chunk-level and
+    # several chunks routinely resolve to the same source id, so counting every occurrence let
+    # DCG exceed the ideal -- ndcg@5(["a","a","a","b","c"], {"a"}) returned 2.13 on a metric
+    # defined to be bounded in [0, 1]. The ideal is built from distinct items, so the DCG has
+    # to be too.
+    seen: set[str] = set()
+    dcg = 0.0
+    for rank, item in enumerate(retrieved[:k], 1):
+        if item in relevant and item not in seen:
+            seen.add(item)
+            dcg += 1 / math.log2(rank + 1)
     ideal = sum(1 / math.log2(rank + 1) for rank in range(1, min(k, len(relevant)) + 1))
+    # No relevant items defined: nothing was retrievable, so this scores as vacuously perfect
+    # (matching `recall_at_k`). It is free credit in the mean -- keep such queries out of the
+    # evaluation set rather than relying on this branch.
     return dcg / ideal if ideal else 1.0
 
 

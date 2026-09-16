@@ -1,0 +1,3 @@
+# TUS weights fitted on dev, applied unchanged to test. split=e7b5934392cd label_version=v8 sla_high=30.0 sla_med=120.0 sla_low=480.0 agents=5 service_mean=8.0min tickets_per_rep=1000 generated_by=run_system_eval.py
+w_priority,w_sentiment,w_intent,alpha
+0.8,0.1,0.1,16.0

@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+message: >-
+  If you use the Swift corpus or models, cite this work. Citing BANKING77 alone is not
+  sufficient attribution: BANKING77 supplies the English text and the intent labels, which
+  is 20% of the rows and one of the three label columns. The four other language tracks,
+  the sentiment and priority label columns, and the frozen split are this project's.
+title: >-
+  Swift: A Multilingual Support-Ticket Triage Corpus and Baselines for Sinhala, Tamil and
+  English, Including Romanized Code-Mixed Text
+type: dataset
+authors:
+  # Names confirmed. TWO THINGS ARE STILL ASSUMPTIONS, both flagged rather than decided:
+  #  - ORDER: repository owner first.
+  #  - WHICH NAME IS THE FAMILY NAME. Written here as Seneviratne / Sutharsan / Shaheed.
+  #    Sri Lankan Tamil and Muslim naming does not always put the family name last, so if
+  #    "Ruththiragayan" or "Shazan" is the family name, swap the fields — otherwise
+  #    citations will render "Sutharsan, R." and "Shaheed, S." incorrectly. The BibTeX on
+  #    the cards encodes the same assumption (BibTeX reads the last token as the surname).
+  - family-names: Seneviratne
+    given-names: Sithija
+  - family-names: Sutharsan
+    given-names: Ruththiragayan
+  - family-names: Shaheed
+    given-names: Shazan
+year: 2026
+license: CC-BY-4.0
+url: https://huggingface.co/Swift-Support
+repository-artifact: https://huggingface.co/datasets/Swift-Support/swift-support-tickets-1.0
+keywords:
+  - support-ticket triage
+  - Sinhala
+  - Tamil
+  - code-mixed
+  - romanized text
+  - intent classification
+  - low-resource NLP
+references:
+  - type: conference-paper
+    title: Efficient Intent Detection with Dual Sentence Encoders
+    authors:
+      - family-names: Casanueva
+        given-names: Iñigo
+      - family-names: Temčinas
+        given-names: Tadas
+      - family-names: Gerz
+        given-names: Daniela
+      - family-names: Henderson
+        given-names: Matthew
+      - family-names: Vulić
+        given-names: Ivan
+    collection-title: >-
+      Proceedings of the 2nd Workshop on Natural Language Processing for Conversational AI
+    start: 38
+    end: 45
+    year: 2020
+    doi: 10.18653/v1/2020.nlp4convai-1.5
+    notes: BANKING77 — source of the English text and the 77-way intent labels.
