@@ -1,5 +1,6 @@
 """Merge the supervisor role into administrator."""
 
+import sqlalchemy as sa
 from alembic import op
 
 revision = "0003_merge_roles"
@@ -9,7 +10,15 @@ depends_on = None
 
 
 def upgrade() -> None:
-    op.execute("UPDATE users SET role = 'administrator' WHERE role = 'supervisor'")
+    bind = op.get_bind()
+    has_supervisor = bind.execute(
+        sa.text(
+            "SELECT 1 FROM pg_enum e JOIN pg_type t ON t.oid = e.enumtypid "
+            "WHERE t.typname = 'userrole' AND e.enumlabel = 'supervisor'"
+        )
+    ).first()
+    if has_supervisor:
+        op.execute("UPDATE users SET role = 'administrator' WHERE role = 'supervisor'")
     op.execute("ALTER TYPE userrole RENAME TO userrole_old")
     op.execute("CREATE TYPE userrole AS ENUM ('customer', 'agent', 'administrator')")
     op.execute(

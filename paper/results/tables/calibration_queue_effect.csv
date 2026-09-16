@@ -1,0 +1,4 @@
+# SENSITIVITY ANALYSIS, not a held-out result: temperature cross-fitted on test halves by ticket id parity, because the saved LaBSE checkpoints were fit on train+dev and have no clean dev. rho=1.05, 200 seeds. temps={'priority': (1.940859278866148, 1.9127926864227232), 'sentiment': (1.9592592135418676, 1.8191720181102202)}. generated_by=calibration.py
+system,high_mean_wait,spread_across_tracks,tamilish_minus_english,wait_english,wait_singlish,wait_sinhala,wait_tamil,wait_tamilish
+LaBSE uncalibrated,1.9760323641844202,0.49851800794236456,0.49851800794236456,1.7406648851237267,2.1102255466327966,1.9836939987860047,1.756940524049065,2.2391828930660913
+LaBSE temperature-scaled,2.3216305237033263,0.7925889684635055,0.7213220289232074,1.873244742469722,2.6658337109332275,2.3481976817551624,2.126949578844735,2.5945667713929295

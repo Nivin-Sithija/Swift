@@ -1,0 +1,50 @@
+\section{Discrete Event Queue Simulation and Evaluation}
+\label{sec:evaluation}
+
+\subsection{Simulation Protocol and Baselines}
+
+To evaluate dispatch policies under competitive load, we simulate a multi server helpdesk parameterized as an $M/G/5$ service system. Ticket arrivals follow a Poisson process, and service durations follow a log normal distribution ($\mu = 8.0$ minutes, log scale $\sigma = 0.75$). We evaluate 200 replications of 1{,}000 tickets drawn from the frozen test split across nominal ($\rho = 0.85$), near capacity ($\rho = 0.95$), and peak load ($\rho = 1.05$), with response deadlines $D_{\mathrm{High}} = 30$, $D_{\mathrm{Med}} = 120$, and $D_{\mathrm{Low}} = 480$ minutes.
+
+The proposed score is benchmarked against five policies receiving identical posteriors: \emph{First Come First Served (FCFS)}; \emph{Static Tier (Argmax)} (breaking ties by arrival order); \emph{Accumulating Priority Queue (APQ)} \cite{stanford2014accumulating}; \emph{Earliest Due Date (EDD)} \cite{jackson1955scheduling}; \emph{Generalized $c\mu$} \cite{vanmieghem1995generalized}; and severity greedy \emph{$c\mu$ (Highest Severity First, HSF)} \cite{cox1961queues} ($c_k = 1/D_k$). A \emph{Classifier Oracle} executes static tier scheduling using gold labels. Policy quality is measured by attainment:
+$\mathrm{Attainment} = (\mathbb{E}[W_{\mathrm{FCFS}}] - \mathbb{E}[W_{\mathrm{Policy}}]) / (\mathbb{E}[W_{\mathrm{FCFS}}] - \mathbb{E}[W_{\mathrm{Oracle}}])$.
+
+\subsection{Queue Performance and Attainment Results}
+
+\begin{table}[!tb]
+\caption{Policy Performance at Peak Load ($\rho = 1.05$, 200 Replications). Waits in Minutes; Response Window for Low Priority is 480 Minutes.}
+\label{tab:policies}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Policy & High Wait & Low p95 & Rel.\ Tard.\ & Breach \\
+\midrule
+First Come First Served       & 52.46 & 100.4 & 0.1005 & 0.0897 \\
+Accumulating priority \cite{stanford2014accumulating} & 9.34 & 152.3 & 0.0071 & 0.0098 \\
+Static tier (argmax)          &  6.70 & 165.1 & 0.0199 & 0.0186 \\
+Earliest due date \cite{jackson1955scheduling} & 4.78 & 174.1 & 0.0119 & 0.0118 \\
+Generalized $c\mu$ \cite{vanmieghem1995generalized} & 3.29 & 192.8 & \textbf{0.0034} & \textbf{0.0048} \\
+$c\mu$, highest severity first \cite{cox1961queues} & \textbf{1.77} & 537.3 & 0.0249 & 0.0350 \\
+\midrule
+\textbf{Ticket Urgency Score} & 1.97 & 372.6 & 0.0061 & 0.0162 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{figure}[!tb]
+\centering
+\includegraphics[width=0.78\columnwidth]{attainment.pdf}
+\caption{Attainment ratio of Ticket Urgency Score relative to perfect classifier oracle across traffic intensities ($\rho \in \{0.85, 0.95, 1.05\}$). The system recovers 97.1 to 99.0\% of oracle waiting time reduction.}
+\label{fig:attainment}
+\end{figure}
+
+Table~\ref{tab:policies} summarizes queue dynamics at peak load ($\rho = 1.05$). Under FCFS, urgent tickets wait 52.46 minutes, violating their 30 minute SLA. Greedy $c\mu$ curtails urgent wait to 1.77 minutes but starves routine tickets: Low 95th percentile wait surges to 537.3 minutes, breaching the 480 minute SLA. In contrast, the Ticket Urgency Score achieves 1.97 minutes urgent wait (conceding only 0.20 minutes to greedy $c\mu$) while keeping Low p95 wait to 372.6 minutes (well within SLA) and cutting total breaches by more than half (1.62\% versus 3.50\%). As shown in Fig.~\ref{fig:attainment}, TUS tracks the theoretical oracle across traffic intensities, reaching attainment ratios of 0.971 at $\rho = 0.85$, 0.985 at $\rho = 0.95$, and 0.990 at $\rho = 1.05$ (95\% CI: 0.988 to 0.992).
+
+\subsection{Diagnostic Traps and Reliability Analysis}
+
+\textbf{The Rank Correlation Trap.} Evaluating dispatch systems by list level rank correlation against ground truth is deceptive. Kendall's $\tau_b$ ranks static argmax highest among candidates (0.822 versus 0.686 for TUS). Yet, static argmax exhibits poor head of queue precision: among the first ten tickets dispatched, five are non urgent (against a 9.5\% base rate). Because $\tau_b$ averages pairwise concordances across the entire queue, it rewards coarse tier sorting while masking head of queue misordering. TUS places urgent tickets into all ten top positions.
+
+\textbf{Buried Urgent Tickets.} Replacing LaBSE with the classical TF IDF model (1.94 points lower priority \macrof{}) reveals that queue tails are governed by error confidence rather than average error rate. Mean urgent wait remains comparable (1.98 versus 1.80 minutes). However, maximum urgent wait under LaBSE reaches 362 minutes versus 98 minutes under TF IDF. While LaBSE misclassifies fewer urgent tickets (165 versus 193), 68 errors receive predicted priority below 0.1 (versus 8 for TF IDF). Confidently misclassified urgent tickets sink to the bottom of the queue and starve, demonstrating that downstream queue safety requires monitoring overconfident tail omissions.
