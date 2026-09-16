@@ -128,7 +128,7 @@ id,text_en,text,category,sentiment,priority
 126,"I bought something, but the exchange rate looks wrong.","நான் ஏதோ வாங்கினேன், ஆனால் மாற்று விகிதம் தவறாகத் தெரிகிறது.",card_payment_wrong_exchange_rate,Neutral,Medium
 127,The rate applied to my foreign purchase was incorrect,எனது வெளிநாட்டு கொள்வனவுக்குப் பயன்படுத்தப்பட்ட விகிதம் தவறானது.,card_payment_wrong_exchange_rate,Neutral,Medium
 128,I bought something in a foreign currency but the rate applied is wrong!,"நான் ஒரு வெளிநாட்டு நாணயத்தில் ஏதோ வாங்கினேன், ஆனால் பயன்படுத்தப்பட்ட விகிதம் தவறானது!",card_payment_wrong_exchange_rate,Neutral,Medium
-129,My exchange went wrong. I swapped LKR for USD and was charged too much.,"எனது நாணய மாற்று தவறாகிவிட்டது. நான் எல்.கே.ஆர் (LKR) ஐ யு.எஸ்.டி (USD) ஆக மாற்றினேன், எனக்கு அதிக கட்டணம் வசூலிக்கப்பட்டது.",card_payment_wrong_exchange_rate,Neutral,Medium
+129,My exchange went wrong. I swapped LKR for USD and was charged too much.,"எனது நாணய மாற்று தவறாகிவிட்டது. நான் எல்.கே.ஆர் ஐ யு.எஸ்.டி ஆக மாற்றினேன், எனக்கு அதிக கட்டணம் வசூலிக்கப்பட்டது.",card_payment_wrong_exchange_rate,Neutral,Medium
 130,You did not apply the correct exchange rate for an item that I bought.,நான் வாங்கிய ஒரு பொருளுக்கு நீங்கள் சரியான மாற்று விகிதத்தைப் பயன்படுத்தவில்லை.,card_payment_wrong_exchange_rate,Neutral,Medium
 131,The rate of exchange for my card payment is incorrect,எனது அட்டை கட்டணத்திற்கான மாற்று விகிதம் தவறானது.,card_payment_wrong_exchange_rate,Neutral,Medium
 132,The rate for a currency exchange was wrong when I bought something.,நான் ஏதோ வாங்கியபோது நாணய மாற்று விகிதம் தவறாக இருந்தது.,card_payment_wrong_exchange_rate,Neutral,Medium
@@ -147,7 +147,7 @@ id,text_en,text,category,sentiment,priority
 145,The exchange rate seems off on this transaction,இந்த பரிவர்த்தனையில் மாற்று விகிதம் தவறாகத் தெரிகிறது.,card_payment_wrong_exchange_rate,Neutral,Medium
 146,"The exchange rate given to me wasn't correct, after i purchased an item","நான் ஒரு பொருளை வாங்கிய பிறகு, எனக்கு வழங்கப்பட்ட மாற்று விகிதம் சரியாக இருக்கவில்லை.",card_payment_wrong_exchange_rate,Neutral,Medium
 147,"Hi, I don't think your exchange rate is right. I need you to check the official interbank exchange please.","வணக்கம், உங்கள் மாற்று விகிதம் சரியானது என்று நான் நினைக்கவில்லை. தயவுசெய்து உத்தியோகபூர்வ வங்கிகளுக்கு இடையிலான மாற்று விகிதத்தை சரிபார்க்கவும்.",card_payment_wrong_exchange_rate,Neutral,Medium
-148,I'm pretty sure something went wrong with my exchange. I changed LKR to USD and was charged way too much!,"எனது நாணய மாற்றத்தில் ஏதோ தவறு நடந்துள்ளது என்பதில் நான் உறுதியாக இருக்கிறேன். நான் எல்.கே.ஆர் (LKR) ஐ யு.எஸ்.டி (USD) ஆக மாற்றினேன், எனக்கு மிக அதிக கட்டணம் வசூலிக்கப்பட்டது!",card_payment_wrong_exchange_rate,Neutral,Medium
+148,I'm pretty sure something went wrong with my exchange. I changed LKR to USD and was charged way too much!,"எனது நாணய மாற்றத்தில் ஏதோ தவறு நடந்துள்ளது என்பதில் நான் உறுதியாக இருக்கிறேன். நான் எல்.கே.ஆர் ஐ யு.எஸ்.டி ஆக மாற்றினேன், எனக்கு மிக அதிக கட்டணம் வசூலிக்கப்பட்டது!",card_payment_wrong_exchange_rate,Neutral,Medium
 149,I wasn't applied the correct exchange rate for an item I bought,நான் வாங்கிய ஒரு பொருளுக்கு எனக்கு சரியான மாற்று விகிதம் பயன்படுத்தப்படவில்லை.,card_payment_wrong_exchange_rate,Neutral,Medium
 150,the conversion value for my card payments is incorrect.,எனது அட்டை கொடுப்பனவுகளுக்கான மாற்று மதிப்பு தவறானது.,card_payment_wrong_exchange_rate,Neutral,Medium
 151,The wrong exchange rate was used when I bought something with a foriegn currency.,நான் வெளிநாட்டு நாணயத்தில் ஏதோ ஒன்றை வாங்கியபோது தவறான மாற்று விகிதம் பயன்படுத்தப்பட்டுள்ளது.,card_payment_wrong_exchange_rate,Neutral,Medium
@@ -191,7 +191,7 @@ id,text_en,text,category,sentiment,priority
 189,"I am a new customer, and I happened to look at my app and there is a charge I am not familiar with.  Could you tell me why the extra charge is there?","நான் ஒரு புதிய வாடிக்கையாளர், எனது செயலியைப் பார்த்தபோது எனக்குத் தெரியாத ஒரு கட்டணம் அறவிடப்பட்டிருக்கிறது. அந்த மேலதிக கட்டணம் ஏன் அங்கு இருக்கிறது என்று எனக்குச் சொல்ல முடியுமா?",extra_charge_on_statement,Neutral,Medium
 190,For some reason my account's been charged an extra Rs 10.,ஏதோ ஒரு காரணத்தினால் எனது கணக்கில் மேலதிகமாக 10 ரூபாய் அறவிடப்பட்டுள்ளது.,extra_charge_on_statement,Neutral,Medium
 191,There is a transaction for Rs 10 and I don't know why it was charged.,"10 ரூபாய்க்கான ஒரு பரிவர்த்தனை உள்ளது, அது ஏன் அறவிடப்பட்டது என்று எனக்குத் தெரியவில்லை.",extra_charge_on_statement,Neutral,Medium
-192,"Can you help me with a weird charge?  It's a Rs 10 charge that never goes away from the statement view on the app I'm using.  It's not described as anything but ""Pending"", and that status has never changed during the last two days.","ஒரு விசித்திரமான கட்டணம் தொடர்பாக எனக்கு உதவ முடியுமா? நான் பயன்படுத்தும் செயலியில் உள்ள ஸ்டேட்மென்ட் பக்கத்தில் இருந்து மறையாத ஒரு 10 ரூபாய் கட்டணம் அது. அது ""Pending"" என்பதைத் தவிர வேறு எதனாலும் விவரிக்கப்படவில்லை, கடந்த இரண்டு நாட்களாக அந்த நிலை மாறவே இல்லை.",extra_charge_on_statement,Neutral,Medium
+192,"Can you help me with a weird charge?  It's a Rs 10 charge that never goes away from the statement view on the app I'm using.  It's not described as anything but ""Pending"", and that status has never changed during the last two days.","ஒரு விசித்திரமான கட்டணம் தொடர்பாக எனக்கு உதவ முடியுமா? நான் பயன்படுத்தும் செயலியில் உள்ள ஸ்டேட்மென்ட் பக்கத்தில் இருந்து மறையாத ஒரு 10 ரூபாய் கட்டணம் அது. அது ""நிலுவையில்"" என்பதைத் தவிர வேறு எதனாலும் விவரிக்கப்படவில்லை, கடந்த இரண்டு நாட்களாக அந்த நிலை மாறவே இல்லை.",extra_charge_on_statement,Neutral,Medium
 193,What is the purpose of the extra fee that is showing up on my statement?,எனது ஸ்டேட்மென்டில் காட்டப்படும் மேலதிக கட்டணத்தின் நோக்கம் என்ன?,extra_charge_on_statement,Neutral,Medium
 194,"Rs 10 extra has been charged on my statement, why is that?","எனது ஸ்டேட்மென்டில் மேலதிகமாக 10 ரூபாய் அறவிடப்பட்டுள்ளது, அது ஏன்?",extra_charge_on_statement,Neutral,Medium
 195,What is the extra  €1 fee in my statement,எனது ஸ்டேட்மென்டில் உள்ள மேலதிக 1 யூரோ கட்டணம் என்ன?,extra_charge_on_statement,Neutral,Medium
@@ -274,10 +274,10 @@ id,text_en,text,category,sentiment,priority
 272,Do you work with all fiat currencies?,நீங்கள் அனைத்து ஃபியட் நாணயங்களையும் கையாளுகிறீர்களா?,fiat_currency_support,Neutral,Low
 273,Can I hold money in multiple currencies?,நான் பல நாணயங்களில் பணத்தை வைத்திருக்க முடியுமா?,fiat_currency_support,Neutral,Low
 274,How man currencies can I hold?,நான் எத்தனை நாணயங்களை வைத்திருக்க முடியும்?,fiat_currency_support,Neutral,Low
-275,Besides USD what other currencies can I have?,அமெரிக்க டாலர் (USD) தவிர வேறு என்ன நாணயங்களை நான் வைத்திருக்க முடியும்?,fiat_currency_support,Neutral,Low
-276,How do I accept exchanges to EU?,ஐரோப்பிய ஒன்றியத்திற்கு (EU) பரிமாற்றங்களை நான் எவ்வாறு ஏற்றுக்கொள்வது?,fiat_currency_support,Neutral,Low
+275,Besides USD what other currencies can I have?,அமெரிக்க டாலர் தவிர வேறு என்ன நாணயங்களை நான் வைத்திருக்க முடியும்?,fiat_currency_support,Neutral,Low
+276,How do I accept exchanges to EU?,ஐரோப்பிய ஒன்றியத்திற்கு பரிமாற்றங்களை நான் எவ்வாறு ஏற்றுக்கொள்வது?,fiat_currency_support,Neutral,Low
 277,What kind of fiat currency can I used for holding and exchange?,பணத்தை வைத்திருப்பதற்கும் பரிமாற்றுவதற்கும் நான் எந்த வகையான ஃபியட் நாணயத்தைப் பயன்படுத்தலாம்?,fiat_currency_support,Neutral,Low
-278,Do you support the exchange of EUR from my currency.,எனது நாணயத்திலிருந்து யூரோ (EUR) பரிமாற்றத்தை நீங்கள் ஆதரிக்கிறீர்களா?,fiat_currency_support,Neutral,Low
+278,Do you support the exchange of EUR from my currency.,எனது நாணயத்திலிருந்து யூரோ பரிமாற்றத்தை நீங்கள் ஆதரிக்கிறீர்களா?,fiat_currency_support,Neutral,Low
 279,What countries can I travel to and have access to their currencies?,நான் எந்த நாடுகளுக்குப் பயணம் செய்து அங்குள்ள நாணயங்களைப் பயன்படுத்த முடியும்?,fiat_currency_support,Neutral,Low
 280,I need my card now!,எனக்கு இப்போது எனது அட்டை தேவை!,card_delivery_estimate,Neutral,Low
 281,my card was not in the mail again can you advise?,"எனது அட்டை மீண்டும் தபாலில் வரவில்லை, நீங்கள் ஆலோசனை கூற முடியுமா?",card_delivery_estimate,Neutral,Medium
@@ -285,14 +285,14 @@ id,text_en,text,category,sentiment,priority
 283,How long will it take to get to me?,அது என்னை வந்தடைய எவ்வளவு காலம் எடுக்கும்?,card_delivery_estimate,Neutral,Low
 284,I'm just wondering when my card will get here.,எனது அட்டை எப்போது இங்கு வரும் என்று நான் யோசித்துக் கொண்டிருக்கிறேன்.,card_delivery_estimate,Neutral,Low
 285,Can you get me my card fast?,எனது அட்டையை எனக்கு விரைவாகப் பெற்றுத்தர முடியுமா?,card_delivery_estimate,Neutral,Low
-286,How long will it take to deliver something to US?,அமெரிக்காவிற்கு (US) எதையாவது விநியோகிக்க எவ்வளவு காலம் எடுக்கும்?,card_delivery_estimate,Neutral,Low
+286,How long will it take to deliver something to US?,அமெரிக்காவிற்கு எதையாவது விநியோகிக்க எவ்வளவு காலம் எடுக்கும்?,card_delivery_estimate,Neutral,Low
 287,"I live in the US, how long will it take for delivery?","நான் அமெரிக்காவில் வசிக்கிறேன், விநியோகிக்க எவ்வளவு காலம் எடுக்கும்?",card_delivery_estimate,Neutral,Low
 288,When can I expect my card to be delivered to the US?,எனது அட்டை அமெரிக்காவிற்கு எப்போது விநியோகிக்கப்படும் என்று நான் எதிர்பார்க்கலாம்?,card_delivery_estimate,Neutral,Low
 289,I need my card quickly,எனக்கு எனது அட்டை விரைவாகத் தேவைப்படுகிறது,card_delivery_estimate,Neutral,Low
 290,Does delivery to the US take long?,அமெரிக்காவிற்கான விநியோகத்திற்கு நீண்ட நேரம் எடுக்குமா?,card_delivery_estimate,Neutral,Low
 291,How long will it take to arrive?,அது வந்து சேர எவ்வளவு காலம் எடுக்கும்?,card_delivery_estimate,Neutral,Low
 292,Can I have my card delivered on a specific day?,எனது அட்டையை ஒரு குறிப்பிட்ட நாளில் விநியோகிக்க முடியுமா?,card_delivery_estimate,Neutral,Low
-293,What is the difference between standard and express delivery?,சாதாரண (standard) மற்றும் விரைவு (express) விநியோகத்திற்கு இடையே உள்ள வேறுபாடு என்ன?,card_delivery_estimate,Neutral,Low
+293,What is the difference between standard and express delivery?,சாதாரண மற்றும் விரைவு விநியோகத்திற்கு இடையே உள்ள வேறுபாடு என்ன?,card_delivery_estimate,Neutral,Low
 294,Can it be delivered by a specific date?,அதை ஒரு குறிப்பிட்ட தேதிக்குள் விநியோகிக்க முடியுமா?,card_delivery_estimate,Neutral,Low
 295,May I choose when it's delivered?,அது எப்போது விநியோகிக்கப்பட வேண்டும் என்பதை நான் தேர்வு செய்யலாமா?,card_delivery_estimate,Neutral,Low
 296,I need it delivered on a certain date.,எனக்கு அது ஒரு குறிப்பிட்ட தேதியில் விநியோகிக்கப்பட வேண்டும்.,card_delivery_estimate,Neutral,Low
@@ -329,36 +329,36 @@ id,text_en,text,category,sentiment,priority
 327,"I read about the auto-top up function, but can't find it in the app.","ஆட்டோ டாப்-அப் செயல்பாடு பற்றி படித்தேன், ஆனால் அதை செயலியில் கண்டுபிடிக்க முடியவில்லை.",automatic_top_up,Neutral,Low
 328,Can I have it add money at certain time intervals when I travel?,நான் பயணம் செய்யும் போது குறிப்பிட்ட நேர இடைவெளியில் பணத்தைச் சேர்க்க முடியுமா?,automatic_top_up,Neutral,Low
 329,"I'm going to be away for awhile, can I have it add money automatically in certain intervals?","நான் சிறிது காலம் வெளியில் செல்லவிருக்கிறேன், குறிப்பிட்ட இடைவெளியில் தானாகவே பணத்தைச் சேர்க்க முடியுமா?",automatic_top_up,Neutral,Low
-330,"Where can I find the ""auto-top"" feature?","""auto-top"" வசதியை நான் எங்கே காணலாம்?",automatic_top_up,Neutral,Low
-331,"I just activated auto top-up, but it is not letting me enable it. Why not?","நான் இப்போதுதான் auto top-up ஐச் செயற்படுத்தினேன், ஆனால் அதை இயக்க அது அனுமதிக்கவில்லை. ஏன் அப்படி?",automatic_top_up,Neutral,Low
-332,Is there an auto top-up option?,auto top-up தெரிவு ஏதும் இருக்கிறதா?,automatic_top_up,Neutral,Low
-333,where is theft-top option?,"""theft-top"" தெரிவு எங்கே இருக்கிறது?",automatic_top_up,Neutral,Low
-334,Are there limits on auto top-up?,auto top-up இற்கு ஏதேனும் எல்லைகள் இருக்கின்றனவா?,automatic_top_up,Neutral,Low
-335,can you assist me with the auto top up ?,auto top up செய்வதற்கு எனக்கு உதவ முடியுமா?,automatic_top_up,Neutral,Low
-336,Do you have any limit on the auto top-up?,auto top-up இற்கு உங்களிடம் ஏதேனும் எல்லை இருக்கிறதா?,automatic_top_up,Neutral,Low
-337,Why are there limits on auto top-up?,auto top-up இற்கு ஏன் எல்லைகள் விதிக்கப்பட்டுள்ளன?,automatic_top_up,Neutral,Low
-338,How can I top up automatically?,நான் எவ்வாறு தானியங்கி முறையில் top up செய்வது?,automatic_top_up,Neutral,Low
+330,"Where can I find the ""auto-top"" feature?","""தானியங்கி மீள்நிரப்பு"" வசதியை நான் எங்கே காணலாம்?",automatic_top_up,Neutral,Low
+331,"I just activated auto top-up, but it is not letting me enable it. Why not?","நான் இப்போதுதான் தானியங்கி மீள்நிரப்பைச் செயற்படுத்தினேன், ஆனால் அதை இயக்க அது அனுமதிக்கவில்லை. ஏன் அப்படி?",automatic_top_up,Neutral,Low
+332,Is there an auto top-up option?,தானியங்கி மீள்நிரப்புத் தெரிவு ஏதும் இருக்கிறதா?,automatic_top_up,Neutral,Low
+333,where is theft-top option?,தானியங்கி மீள்நிரப்புத் தெரிவு எங்கே இருக்கிறது?,automatic_top_up,Neutral,Low
+334,Are there limits on auto top-up?,தானியங்கி மீள்நிரப்புக்கு ஏதேனும் எல்லைகள் இருக்கின்றனவா?,automatic_top_up,Neutral,Low
+335,can you assist me with the auto top up ?,தானியங்கி மீள்நிரப்பு செய்வதற்கு எனக்கு உதவ முடியுமா?,automatic_top_up,Neutral,Low
+336,Do you have any limit on the auto top-up?,தானியங்கி மீள்நிரப்புக்கு உங்களிடம் ஏதேனும் எல்லை இருக்கிறதா?,automatic_top_up,Neutral,Low
+337,Why are there limits on auto top-up?,தானியங்கி மீள்நிரப்புக்கு ஏன் எல்லைகள் விதிக்கப்பட்டுள்ளன?,automatic_top_up,Neutral,Low
+338,How can I top up automatically?,நான் எவ்வாறு தானியங்கி முறையில் மீள்நிரப்புவது?,automatic_top_up,Neutral,Low
 339,How do I make sure I don't run out of money on my card while traveling?,நான் பயணம் செய்யும்போது எனது அட்டையில் பணம் தீர்ந்துபோகாமல் இருப்பதை எவ்வாறு உறுதிப்படுத்துவது?,automatic_top_up,Neutral,Low
-340,What's the limit on automatic top-up?,automatic top-up இற்கான எல்லை என்ன?,automatic_top_up,Neutral,Low
-341,"If I will be traveling, is there a way to auto top-up my card on certain days?","நான் பயணம் செய்யும்போது, குறிப்பிட்ட நாட்களில் எனது அட்டையை auto top-up செய்ய ஏதேனும் வழி இருக்கிறதா?",automatic_top_up,Neutral,Low
-342,Where is the auto top-up option?,auto top-up தெரிவு எங்கே இருக்கிறது?,automatic_top_up,Neutral,Low
-343,Can I have a auto top-up when my account is short?,எனது கணக்கில் பணம் குறையும் போது auto top-up செய்ய முடியுமா?,automatic_top_up,Neutral,Low
-344,Do you have an auto top-up option?,உங்களிடம் auto top-up தெரிவு இருக்கிறதா?,automatic_top_up,Neutral,Low
+340,What's the limit on automatic top-up?,தானியங்கி மீள்நிரப்புக்கான எல்லை என்ன?,automatic_top_up,Neutral,Low
+341,"If I will be traveling, is there a way to auto top-up my card on certain days?","நான் பயணம் செய்யும்போது, குறிப்பிட்ட நாட்களில் எனது அட்டையை தானியங்கி மீள்நிரப்பு செய்ய ஏதேனும் வழி இருக்கிறதா?",automatic_top_up,Neutral,Low
+342,Where is the auto top-up option?,தானியங்கி மீள்நிரப்புத் தெரிவு எங்கே இருக்கிறது?,automatic_top_up,Neutral,Low
+343,Can I have a auto top-up when my account is short?,எனது கணக்கில் பணம் குறையும் போது தானியங்கி மீள்நிரப்பு செய்ய முடியுமா?,automatic_top_up,Neutral,Low
+344,Do you have an auto top-up option?,உங்களிடம் தானியங்கி மீள்நிரப்புத் தெரிவு இருக்கிறதா?,automatic_top_up,Neutral,Low
 345,Can I space out how often money is transferred along my travels?,எனது பயணங்களின் போது எவ்வளவு இடைவெளியில் பணம் மாற்றப்பட வேண்டும் என்பதை நான் தீர்மானிக்க முடியுமா?,automatic_top_up,Neutral,Low
-346,Will it automatically top-up money if there isn't a lot left?,போதிய பணம் இல்லாதபோது அது தானாகவே பணத்தை top-up செய்யுமா?,automatic_top_up,Neutral,Low
+346,Will it automatically top-up money if there isn't a lot left?,போதிய பணம் இல்லாதபோது அது தானாகவே பணத்தை மீள்நிரப்புமா?,automatic_top_up,Neutral,Low
 347,Can I have it add money automatically in certain intervals?,குறிப்பிட்ட கால இடைவெளிகளில் தானாகவே பணத்தைச் சேர்க்கும்படி செய்ய முடியுமா?,automatic_top_up,Neutral,Low
-348,Can I set up an automatic top-up for travel.,பயணத்திற்காக automatic top-up ஒன்றை நான் அமைக்க முடியுமா?,automatic_top_up,Neutral,Low
-349,I've tried looking for the auto-top up option on your website and I can't seem to find it. Can you help me?,"உங்கள் இணையதளத்தில் auto-top up தெரிவைத் தேடிப் பார்த்தேன், ஆனால் என்னால் அதைக் கண்டுபிடிக்க முடியவில்லை. எனக்கு உதவ முடியுமா?",automatic_top_up,Neutral,Low
-350,how do I top up my money automatically,எனது பணத்தை நான் எவ்வாறு தானாகவே top up செய்வது?,automatic_top_up,Neutral,Low
-351,Can I be topped up once I hit a certain balance?,எனது கணக்கு இருப்பு ஒரு குறிப்பிட்ட அளவை எட்டியதும் top-up செய்யப்பட முடியுமா?,automatic_top_up,Neutral,Low
-352,Will it automatically top-up if there isn't much money left?,அதிக பணம் மீதம் இல்லாதபோது அது தானாகவே top-up செய்யுமா?,automatic_top_up,Neutral,Low
-353,Is there any way to Auto top-up?,Auto top-up செய்ய ஏதேனும் வழி இருக்கிறதா?,automatic_top_up,Neutral,Low
-354,Can you explain where I can find the auto-top option?,auto-top தெரிவை நான் எங்கே காணலாம் என்று விளக்க முடியுமா?,automatic_top_up,Neutral,Low
-355,What is the auto top up function and where can I find that at?,"auto top up தொழிற்பாடு என்றால் என்ன, அதை நான் எங்கே காணலாம்?",automatic_top_up,Neutral,Low
-356,Is there a way to top-up automatically?,தானாகவே top-up செய்ய ஏதேனும் வழி இருக்கிறதா?,automatic_top_up,Neutral,Low
-357,"Is there a top-up feature, if there isn't a lot of money left?",அதிக பணம் மீதம் இல்லாதபோது பயன்படுத்தக்கூடிய top-up வசதி ஏதும் இருக்கிறதா?,automatic_top_up,Neutral,Low
-358,What is the highest limit for Auto Top?,Auto Top இற்கான அதிகபட்ச எல்லை என்ன?,automatic_top_up,Neutral,Low
-359,How do I enable auto-top up?,auto-top up ஐ நான் எவ்வாறு இயக்குவது?,automatic_top_up,Neutral,Low
+348,Can I set up an automatic top-up for travel.,பயணத்திற்காக தானியங்கி மீள்நிரப்பு ஒன்றை நான் அமைக்க முடியுமா?,automatic_top_up,Neutral,Low
+349,I've tried looking for the auto-top up option on your website and I can't seem to find it. Can you help me?,"உங்கள் இணையதளத்தில் தானியங்கி மீள்நிரப்புத் தெரிவைத் தேடிப் பார்த்தேன், ஆனால் என்னால் அதைக் கண்டுபிடிக்க முடியவில்லை. எனக்கு உதவ முடியுமா?",automatic_top_up,Neutral,Low
+350,how do I top up my money automatically,எனது பணத்தை நான் எவ்வாறு தானாகவே மீள்நிரப்புவது?,automatic_top_up,Neutral,Low
+351,Can I be topped up once I hit a certain balance?,எனது கணக்கு இருப்பு ஒரு குறிப்பிட்ட அளவை எட்டியதும் மீள்நிரப்பப்பட முடியுமா?,automatic_top_up,Neutral,Low
+352,Will it automatically top-up if there isn't much money left?,அதிக பணம் மீதம் இல்லாதபோது அது தானாகவே மீள்நிரப்புமா?,automatic_top_up,Neutral,Low
+353,Is there any way to Auto top-up?,தானியங்கி மீள்நிரப்பு செய்ய ஏதேனும் வழி இருக்கிறதா?,automatic_top_up,Neutral,Low
+354,Can you explain where I can find the auto-top option?,தானியங்கி மீள்நிரப்புத் தெரிவை நான் எங்கே காணலாம் என்று விளக்க முடியுமா?,automatic_top_up,Neutral,Low
+355,What is the auto top up function and where can I find that at?,"தானியங்கி மீள்நிரப்பு தொழிற்பாடு என்றால் என்ன, அதை நான் எங்கே காணலாம்?",automatic_top_up,Neutral,Low
+356,Is there a way to top-up automatically?,தானாகவே மீள்நிரப்ப ஏதேனும் வழி இருக்கிறதா?,automatic_top_up,Neutral,Low
+357,"Is there a top-up feature, if there isn't a lot of money left?",அதிக பணம் மீதம் இல்லாதபோது பயன்படுத்தக்கூடிய மீள்நிரப்பு வசதி ஏதும் இருக்கிறதா?,automatic_top_up,Neutral,Low
+358,What is the highest limit for Auto Top?,தானியங்கி மீள்நிரப்புக்கான அதிகபட்ச எல்லை என்ன?,automatic_top_up,Neutral,Low
+359,How do I enable auto-top up?,தானியங்கி மீள்நிரப்பை நான் எவ்வாறு இயக்குவது?,automatic_top_up,Neutral,Low
 360,I've tried my card a bunch of times and it never worked.,"நான் என் கார்டை பல முறை முயற்சி செய்து பார்த்தேன், ஆனால் அது ஒருபோதும் வேலை செய்யவில்லை.",card_not_working,Neutral,Medium
 361,I can't get my card to work.,என்னால் என் கார்டை வேலை செய்ய வைக்க முடியவில்லை.,card_not_working,Neutral,Medium
 362,My card appears to be broken how can I fix it?,"என் கார்டு பழுதடைந்தது போல் தெரிகிறது, அதை நான் எப்படி சரி செய்வது?",card_not_working,Neutral,Medium
@@ -402,41 +402,41 @@ id,text_en,text,category,sentiment,priority
 400,May I exchange currencies with this?,இதன் மூலம் நான் நாணயங்களை மாற்றிக்கொள்ளலாமா?,exchange_via_app,Neutral,Low
 401,Tell me how I can exchange between different currency.,வெவ்வேறு நாணயங்களுக்கு இடையில் நான் எவ்வாறு பரிமாற்றம் செய்வது என்று கூறுங்கள்.,exchange_via_app,Neutral,Low
 402,Can I change from one currency to another?,நான் ஒரு நாணயத்திலிருந்து மற்றொரு நாணயத்திற்கு மாற்ற முடியுமா?,exchange_via_app,Neutral,Low
-403,How do I change LKR to USD?,நான் எவ்வாறு எல்.கே.ஆர் (LKR) ஐ யு.எஸ்.டி (USD) ஆக மாற்றுவது?,exchange_via_app,Neutral,Low
+403,How do I change LKR to USD?,நான் எவ்வாறு எல்.கே.ஆர் ஐ யு.எஸ்.டி ஆக மாற்றுவது?,exchange_via_app,Neutral,Low
 404,Will this app exchange currencies?,இந்தச் செயலி நாணயங்களை மாற்றித் தருமா?,exchange_via_app,Neutral,Low
 405,How do I convert currencies with the app?,இந்தச் செயலியைப் பயன்படுத்தி நான் எவ்வாறு நாணயங்களை மாற்றுவது?,exchange_via_app,Neutral,Low
 406,How are currencies exchanged?,நாணயங்கள் எவ்வாறு பரிமாறப்படுகின்றன?,exchange_via_app,Neutral,Low
 407,Can I exchange currencies with this app?,இந்தச் செயலி மூலம் நான் நாணயங்களை மாற்றிக்கொள்ள முடியுமா?,exchange_via_app,Neutral,Low
 408,How do I make an exchange from one currency to another?,ஒரு நாணயத்திலிருந்து மற்றொரு நாணயத்திற்கு நான் எவ்வாறு பரிமாற்றம் செய்வது?,exchange_via_app,Neutral,Low
-409,How do I interconvert between USD and LKR?,யு.எஸ்.டி (USD) மற்றும் எல்.கே.ஆர் (LKR) ஆகியவற்றுக்கு இடையே நான் எவ்வாறு மாற்றுவது?,exchange_via_app,Neutral,Low
+409,How do I interconvert between USD and LKR?,யு.எஸ்.டி மற்றும் எல்.கே.ஆர் ஆகியவற்றுக்கு இடையே நான் எவ்வாறு மாற்றுவது?,exchange_via_app,Neutral,Low
 410,What all currencies can be exchanged?,என்னென்ன நாணயங்களை மாற்றிக்கொள்ள முடியும்?,exchange_via_app,Neutral,Low
-411,What is the best way to exchange currency between USD and LKR using your app?,உங்கள் செயலியைப் பயன்படுத்தி யு.எஸ்.டி (USD) மற்றும் எல்.கே.ஆர் (LKR) இடையே நாணயங்களை மாற்றுவதற்கான சிறந்த வழி எது?,exchange_via_app,Neutral,Low
-412,If I wanted to make a change from LKR to USD what is the process?,"நான் எல்.கே.ஆர் (LKR) இலிருந்து யு.எஸ்.டி (USD) க்கு மாற்ற விரும்பினால், அதற்கான நடைமுறை என்ன?",exchange_via_app,Neutral,Low
+411,What is the best way to exchange currency between USD and LKR using your app?,உங்கள் செயலியைப் பயன்படுத்தி யு.எஸ்.டி மற்றும் எல்.கே.ஆர் இடையே நாணயங்களை மாற்றுவதற்கான சிறந்த வழி எது?,exchange_via_app,Neutral,Low
+412,If I wanted to make a change from LKR to USD what is the process?,"நான் எல்.கே.ஆர் இலிருந்து யு.எஸ்.டி க்கு மாற்ற விரும்பினால், அதற்கான நடைமுறை என்ன?",exchange_via_app,Neutral,Low
 413,Can I get some money exchanged?,நான் கொஞ்சம் பணத்தை மாற்றிக்கொள்ள முடியுமா?,exchange_via_app,Neutral,Low
 414,Is it possible to change to another currency?,மற்றொரு நாணயத்திற்கு மாற்ற முடியுமா?,exchange_via_app,Neutral,Low
-415,How do I exchange my LKR to USD?,எனது எல்.கே.ஆர் (LKR) ஐ யு.எஸ்.டி (USD) ஆக நான் எவ்வாறு மாற்றுவது?,exchange_via_app,Neutral,Low
+415,How do I exchange my LKR to USD?,எனது எல்.கே.ஆர் ஐ யு.எஸ்.டி ஆக நான் எவ்வாறு மாற்றுவது?,exchange_via_app,Neutral,Low
 416,How would I use my money in a different country?,வேறு ஒரு நாட்டில் எனது பணத்தை நான் எவ்வாறு பயன்படுத்துவது?,exchange_via_app,Neutral,Low
 417,"If I receive foreign currencies, am I able to exchange them on the app?","எனக்கு வெளிநாட்டு நாணயங்கள் கிடைத்தால், அவற்றை இந்தச் செயலியில் மாற்ற முடியுமா?",exchange_via_app,Neutral,Low
 418,Can I change to another currency?,நான் மற்றொரு நாணயத்திற்கு மாற்ற முடியுமா?,exchange_via_app,Neutral,Low
-419,"I need USD not LKR, how do I change it?","எனக்கு யு.எஸ்.டி (USD) தான் தேவை, எல்.கே.ஆர் (LKR) அல்ல, அதை நான் எவ்வாறு மாற்றுவது?",exchange_via_app,Neutral,Low
+419,"I need USD not LKR, how do I change it?","எனக்கு யு.எஸ்.டி தான் தேவை, எல்.கே.ஆர் அல்ல, அதை நான் எவ்வாறு மாற்றுவது?",exchange_via_app,Neutral,Low
 420,What is the best way to exchange currency?,நாணயமாற்று செய்வதற்கு மிகச் சிறந்த வழி எது?,exchange_via_app,Neutral,Low
-421,If I need LKR instead of USD what do I do?,எனக்கு USD க்குப் பதிலாக LKR தேவைப்பட்டால் நான் என்ன செய்ய வேண்டும்?,exchange_via_app,Neutral,Low
+421,If I need LKR instead of USD what do I do?,எனக்கு அமெரிக்க டொலருக்குப் பதிலாக இலங்கை ரூபா தேவைப்பட்டால் நான் என்ன செய்ய வேண்டும்?,exchange_via_app,Neutral,Low
 422,I was wondering whether exchanging currencies can be done on this app.,இந்த செயலியில் நாணயமாற்று செய்ய முடியுமா என்று நான் யோசித்துக் கொண்டிருந்தேன்.,exchange_via_app,Neutral,Low
-423,"I might need USD instead of LKR, how to change?","எனக்கு LKR க்குப் பதிலாக USD தேவைப்படலாம், அதை எப்படி மாற்றுவது?",exchange_via_app,Neutral,Low
+423,"I might need USD instead of LKR, how to change?","எனக்கு இலங்கை ரூபாவுக்குப் பதிலாக அமெரிக்க டொலர் தேவைப்படலாம், அதை எப்படி மாற்றுவது?",exchange_via_app,Neutral,Low
 424,How do I go through the process of currency exchange?,நாணயமாற்று செயல்முறையை நான் எவ்வாறு மேற்கொள்வது?,exchange_via_app,Neutral,Low
 425,Change currency,நாணயத்தை மாற்றவும்,exchange_via_app,Neutral,Low
 426,Can am I able to exchange currencies?,என்னால் நாணயங்களை மாற்ற முடியுமா?,exchange_via_app,Neutral,Low
-427,Where do I go to change LKR?,LKR ஐ மாற்றுவதற்கு நான் எங்கே செல்ல வேண்டும்?,exchange_via_app,Neutral,Low
+427,Where do I go to change LKR?,இலங்கை ரூபாவை மாற்றுவதற்கு நான் எங்கே செல்ல வேண்டும்?,exchange_via_app,Neutral,Low
 428,What currency's can i exchange for?,நான் எந்தெந்த நாணயங்களுக்கு மாற்றிக் கொள்ள முடியும்?,exchange_via_app,Neutral,Low
 429,What currencies will this app exchange?,இந்த செயலி எந்தெந்த நாணயங்களை மாற்றும்?,exchange_via_app,Neutral,Low
 430,Can this app help me exchange currencies?,நாணயங்களை மாற்றுவதற்கு இந்த செயலி எனக்கு உதவுமா?,exchange_via_app,Neutral,Low
 431,I would like to exchange some currency.,நான் சில நாணயங்களை மாற்ற விரும்புகிறேன்.,exchange_via_app,Neutral,Low
-432,Can I exchange between LKR and USD on the app?,இந்த செயலியில் LKR மற்றும் USD க்கு இடையில் நாணயமாற்று செய்ய முடியுமா?,exchange_via_app,Neutral,Low
+432,Can I exchange between LKR and USD on the app?,இந்த செயலியில் இலங்கை ரூபா மற்றும் அமெரிக்க டொலருக்கு இடையில் நாணயமாற்று செய்ய முடியுமா?,exchange_via_app,Neutral,Low
 433,Is there currency exchange on this app?,இந்த செயலியில் நாணயமாற்று வசதி உள்ளதா?,exchange_via_app,Neutral,Low
-434,Can I change my currency from USD to EUR?,எனது நாணயத்தை USD இலிருந்து EUR ஆக மாற்ற முடியுமா?,exchange_via_app,Neutral,Low
-435,"I think I want USD and not LKR, can you help?","எனக்கு LKR வேண்டாம் USD தான் வேண்டும் என்று நினைக்கிறேன், உதவ முடியுமா?",exchange_via_app,Neutral,Low
+434,Can I change my currency from USD to EUR?,எனது நாணயத்தை அமெரிக்க டொலரிலிருந்து யூரோவாக மாற்ற முடியுமா?,exchange_via_app,Neutral,Low
+435,"I think I want USD and not LKR, can you help?","எனக்கு இலங்கை ரூபா வேண்டாம் அமெரிக்க டொலர் தான் வேண்டும் என்று நினைக்கிறேன், உதவ முடியுமா?",exchange_via_app,Neutral,Low
 436,How do I exchange currency?,நான் எவ்வாறு நாணயமாற்று செய்வது?,exchange_via_app,Neutral,Low
-437,Can I use this app to change USD into euros?,USD ஐ யூரோவாக மாற்ற இந்த செயலியைப் பயன்படுத்தலாமா?,exchange_via_app,Neutral,Low
+437,Can I use this app to change USD into euros?,அமெரிக்க டொலரை யூரோவாக மாற்ற இந்த செயலியைப் பயன்படுத்தலாமா?,exchange_via_app,Neutral,Low
 438,Can I exchange currencies with my account?,எனது கணக்கைப் பயன்படுத்தி நாணயங்களை மாற்ற முடியுமா?,exchange_via_app,Neutral,Low
 439,I would like to exchange currencies,நான் நாணயங்களை மாற்ற விரும்புகிறேன்,exchange_via_app,Neutral,Low
 440,"My entire gym bag, including my wallet, was stolen out of my locker today. Everything in my wallet is gone - how do I block the card to make it can't be used?",இன்று எனது லாக்கரிலிருந்து எனது பணப்பை உட்பட எனது முழு உடற்பயிற்சி பையும் திருடப்பட்டுவிட்டது. எனது பணப்பையில் இருந்த அனைத்தும் போய்விட்டன - கார்டைப் பயன்படுத்த முடியாதவாறு அதை எவ்வாறு முடக்குவது?,lost_or_stolen_card,Neutral,High
@@ -519,57 +519,57 @@ id,text_en,text,category,sentiment,priority
 517,How young can someone be in order to open an account?,கணக்கொன்றைத் திறப்பதற்கு ஆகக்குறைந்தது என்ன வயது இருக்க வேண்டும்?,age_limit,Neutral,Low
 518,What is the youngest someone can be to open an account?,கணக்கொன்றைத் திறக்கக்கூடிய மிகக் குறைந்த வயது என்ன?,age_limit,Neutral,Low
 519,How old does one have to be to have an account with the bank?,வங்கியில் கணக்கொன்றை வைத்திருப்பதற்கு ஒருவருக்கு எத்தனை வயது இருக்க வேண்டும்?,age_limit,Neutral,Low
-520,How do I get my PIN unlocked?,எனது PIN இலக்கத்தின் முடக்கத்தை நான் எவ்வாறு நீக்குவது?,pin_blocked,Neutral,Medium
-521,Where can I view my PIN?,எனது PIN இலக்கத்தை நான் எங்கே பார்க்க முடியும்?,pin_blocked,Neutral,Low
-522,Will you reinstate my PIN?,எனது PIN இலக்கத்தை மீண்டும் இயங்கச் செய்வீர்களா?,pin_blocked,Neutral,Medium
-523,I accidentally blocked my PIN. How do I reset it?,நான் தவறுதலாக எனது PIN இலக்கத்தை முடக்கிவிட்டேன். அதை எவ்வாறு மீளமைப்பது?,pin_blocked,Neutral,Medium
-524,How do I unblock my pin after entering it wrong too many times?,பல முறை பிழையாக உள்ளிட்டதால் முடக்கபட்ட எனது PIN இலக்கத்தை எவ்வாறு விடுவிப்பது?,pin_blocked,Neutral,Medium
-525,I used the wrong ping too many times and now the account is blocked.  How do I unblock?,நான் பல முறை பிழையான PIN ஐப் பயன்படுத்தியதால் இப்போது கணக்கு முடக்கப்பட்டுள்ளது. அதை எவ்வாறு விடுவிப்பது?,pin_blocked,Neutral,Medium
+520,How do I get my PIN unlocked?,எனது பின் இலக்கத்தின் முடக்கத்தை நான் எவ்வாறு நீக்குவது?,pin_blocked,Neutral,Medium
+521,Where can I view my PIN?,எனது பின் இலக்கத்தை நான் எங்கே பார்க்க முடியும்?,pin_blocked,Neutral,Low
+522,Will you reinstate my PIN?,எனது பின் இலக்கத்தை மீண்டும் இயங்கச் செய்வீர்களா?,pin_blocked,Neutral,Medium
+523,I accidentally blocked my PIN. How do I reset it?,நான் தவறுதலாக எனது பின் இலக்கத்தை முடக்கிவிட்டேன். அதை எவ்வாறு மீளமைப்பது?,pin_blocked,Neutral,Medium
+524,How do I unblock my pin after entering it wrong too many times?,பல முறை பிழையாக உள்ளிட்டதால் முடக்கபட்ட எனது பின் இலக்கத்தை எவ்வாறு விடுவிப்பது?,pin_blocked,Neutral,Medium
+525,I used the wrong ping too many times and now the account is blocked.  How do I unblock?,நான் பல முறை பிழையான பின் இலக்கத்தைப் பயன்படுத்தியதால் இப்போது கணக்கு முடக்கப்பட்டுள்ளது. அதை எவ்வாறு விடுவிப்பது?,pin_blocked,Neutral,Medium
 526,I need help because I drunken blocked my card?,"மதுபோதையில் எனது அட்டையை முடக்கிவிட்டேன், எனக்கு உதவி தேவை?",pin_blocked,Neutral,Medium
-527,"How do I reset my PIN, I can't seem to use my card?","எனது அட்டையைப் பயன்படுத்த முடியாமல் உள்ளது, எனது PIN இலக்கத்தை எவ்வாறு மீளமைப்பது?",pin_blocked,Neutral,Medium
-528,"When I put the wrong pin too much, I got blocked, so can you help me unblock my pin","நான் பல முறை பிழையான PIN ஐ உள்ளிட்டதால் முடக்கப்பட்டுவிட்டேன், எனது PIN இன் முடக்கத்தை நீக்க உதவ முடியுமா?",pin_blocked,Neutral,Medium
-529,"My pin was blocked, how do I make it so I can use it?","எனது PIN முடக்கப்பட்டுள்ளது, அதை மீண்டும் பயன்படுத்தக்கூடியதாக எவ்வாறு மாற்றுவது?",pin_blocked,Neutral,Medium
-530,How many tries do I have to enter my pin before I'm blocked?,"எனது PIN முடக்கப்படுவதற்கு முன்னர், அதை உள்ளிடுவதற்கு எனக்கு எத்தனை வாய்ப்புகள் உள்ளன?",pin_blocked,Neutral,Low
-531,What should I do if I've tried to enter my PIN too often?,எனது PIN ஐப் பல முறை உள்ளிட முயற்சி செய்திருந்தால் நான் என்ன செய்ய வேண்டும்?,pin_blocked,Neutral,Low
-532,I have exceeded the number of times I can try my PIN,எனது PIN ஐ முயற்சிப்பதற்கான வரம்பை நான் தாண்டிவிட்டேன்,pin_blocked,Neutral,Medium
-533,How can I unblock a blocked pin number for my account?,எனது கணக்கிற்காக முடக்கப்பட்ட PIN இலக்கத்தின் முடக்கத்தை நான் எவ்வாறு நீக்குவது?,pin_blocked,Neutral,Medium
-534,What do I do if the bank machine won't accept my PIN attempts anymore?,வங்கியின் ஏடிஎம் இயந்திரம் எனது PIN முயற்சிகளை இனிமேல் ஏற்காவிட்டால் நான் என்ன செய்வது?,pin_blocked,Neutral,Medium
-535,Can you unlock my pin? I think I entered the wrong pin too many times.,எனது PIN இன் முடக்கத்தை நீக்க முடியுமா? நான் பல முறை பிழையான PIN ஐ உள்ளிட்டேன் என நினைக்கிறேன்.,pin_blocked,Neutral,Medium
-536,How do I deal with a blocked PIN?,முடக்கப்பட்ட PIN இலக்கத்தை நான் எவ்வாறு கையாள்வது?,pin_blocked,Neutral,Medium
-537,"I attempted to use my card while I was intoxicated, and I failed to input my PIN, and the machine kept my card. How soon can I have it back?","நான் போதையில் இருந்தபோது எனது அட்டையைப் பயன்படுத்த முயன்றேன், எனது PIN ஐச் சரியாக உள்ளிடத் தவறியதால் இயந்திரம் எனது அட்டையை வைத்துக் கொண்டது. அதை நான் எவ்வளவு சீக்கிரம் திரும்பப் பெற முடியும்?",pin_blocked,Neutral,Medium
+527,"How do I reset my PIN, I can't seem to use my card?","எனது அட்டையைப் பயன்படுத்த முடியாமல் உள்ளது, எனது பின் இலக்கத்தை எவ்வாறு மீளமைப்பது?",pin_blocked,Neutral,Medium
+528,"When I put the wrong pin too much, I got blocked, so can you help me unblock my pin","நான் பல முறை பிழையான பின் இலக்கத்தை உள்ளிட்டதால் முடக்கப்பட்டுவிட்டேன், எனது பின் இலக்கத்தின் முடக்கத்தை நீக்க உதவ முடியுமா?",pin_blocked,Neutral,Medium
+529,"My pin was blocked, how do I make it so I can use it?","எனது பின் முடக்கப்பட்டுள்ளது, அதை மீண்டும் பயன்படுத்தக்கூடியதாக எவ்வாறு மாற்றுவது?",pin_blocked,Neutral,Medium
+530,How many tries do I have to enter my pin before I'm blocked?,"எனது பின் முடக்கப்படுவதற்கு முன்னர், அதை உள்ளிடுவதற்கு எனக்கு எத்தனை வாய்ப்புகள் உள்ளன?",pin_blocked,Neutral,Low
+531,What should I do if I've tried to enter my PIN too often?,எனது பின் இலக்கத்தைப் பல முறை உள்ளிட முயற்சி செய்திருந்தால் நான் என்ன செய்ய வேண்டும்?,pin_blocked,Neutral,Low
+532,I have exceeded the number of times I can try my PIN,எனது பின் இலக்கத்தை முயற்சிப்பதற்கான வரம்பை நான் தாண்டிவிட்டேன்,pin_blocked,Neutral,Medium
+533,How can I unblock a blocked pin number for my account?,எனது கணக்கிற்காக முடக்கப்பட்ட பின் இலக்கத்தின் முடக்கத்தை நான் எவ்வாறு நீக்குவது?,pin_blocked,Neutral,Medium
+534,What do I do if the bank machine won't accept my PIN attempts anymore?,வங்கியின் ஏடிஎம் இயந்திரம் எனது பின் முயற்சிகளை இனிமேல் ஏற்காவிட்டால் நான் என்ன செய்வது?,pin_blocked,Neutral,Medium
+535,Can you unlock my pin? I think I entered the wrong pin too many times.,எனது பின் இலக்கத்தின் முடக்கத்தை நீக்க முடியுமா? நான் பல முறை பிழையான பின் இலக்கத்தை உள்ளிட்டேன் என நினைக்கிறேன்.,pin_blocked,Neutral,Medium
+536,How do I deal with a blocked PIN?,முடக்கப்பட்ட பின் இலக்கத்தை நான் எவ்வாறு கையாள்வது?,pin_blocked,Neutral,Medium
+537,"I attempted to use my card while I was intoxicated, and I failed to input my PIN, and the machine kept my card. How soon can I have it back?","நான் போதையில் இருந்தபோது எனது அட்டையைப் பயன்படுத்த முயன்றேன், எனது பின் இலக்கத்தைச் சரியாக உள்ளிடத் தவறியதால் இயந்திரம் எனது அட்டையை வைத்துக் கொண்டது. அதை நான் எவ்வளவு சீக்கிரம் திரும்பப் பெற முடியும்?",pin_blocked,Neutral,Medium
 538,Can I unblock my card using the app?,செயலி மூலமாக எனது அட்டையின் முடக்கத்தை நீக்க முடியுமா?,pin_blocked,Neutral,Medium
-539,I'v exhausted all the of times I can try my PIN,எனது PIN ஐ முயற்சிப்பதற்கான அனைத்து வாய்ப்புகளையும் நான் பயன்படுத்தி முடித்துவிட்டேன்,pin_blocked,Neutral,Medium
-540,How can I unlock my pin from too many tries?,பல முறை தவறாக முயற்சித்ததால் எனது பின் (PIN) இலக்கத்தை எவ்வாறு அன்லாக் (unlock) செய்வது?,pin_blocked,Neutral,Medium
-541,Help! I forgot my PIN and have been locked out of using my card.,"உதவி செய்யுங்கள்! எனது பின் (PIN) இலக்கத்தை நான் மறந்துவிட்டேன், எனது கார்டைப் பயன்படுத்த முடியாதவாறு லொக் (lock) செய்யப்பட்டுள்ளது.",pin_blocked,Neutral,High
-542,"My account is blocked, how do I log in now","எனது கணக்கு முடக்கப்பட்டுள்ளது (blocked), நான் இப்போது எவ்வாறு லொகின் (log in) செய்வது?",pin_blocked,Neutral,Medium
-543,Why did I get blocked?,நான் ஏன் முடக்கப்பட்டேன் (blocked)?,pin_blocked,Neutral,Medium
-544,Are you able to unblock my pin?,எனது பின் (PIN) இலக்கத்தை உங்களால் அன்ப்ளொக் (unblock) செய்ய முடியுமா?,pin_blocked,Neutral,Medium
-545,Can you assist me with unblocking my PIN? I put it in wrong too many times.,எனது பின் (PIN) இலக்கத்தை அன்ப்ளொக் (unblock) செய்ய எனக்கு உதவ முடியுமா? நான் பல முறை தவறாக உள்ளிட்டுவிட்டேன்.,pin_blocked,Neutral,Medium
-546,I entered the wrong pin too many times and now I am blocked.  Help me unblock!,நான் பல முறை தவறான பின் (PIN) இலக்கத்தை உள்ளிட்டதால் இப்போது முடக்கப்பட்டுள்ளேன். அன்ப்ளொக் (unblock) செய்ய உதவுங்கள்!,pin_blocked,Neutral,Medium
-547,"My pins seems to be blocked, can you unblock it please","எனது பின் (PIN) முடக்கப்பட்டுள்ளது போல் தெரிகிறது, தயவுசெய்து அதை அன்ப்ளொக் (unblock) செய்ய முடியுமா?",pin_blocked,Neutral,Medium
-548,Can you unblock my pin after too many wrong pin attempts?,பல முறை தவறான பின் (PIN) முயற்சிகளுக்குப் பிறகு எனது பின்னை அன்ப்ளொக் (unblock) செய்ய முடியுமா?,pin_blocked,Neutral,Medium
-549,What can you do to unblock my pin?,எனது பின் (PIN) இலக்கத்தை அன்ப்ளொக் (unblock) செய்ய நீங்கள் என்ன செய்ய முடியும்?,pin_blocked,Neutral,Medium
-550,"My PIN is blocked, what do I do?","எனது பின் (PIN) முடக்கப்பட்டுள்ளது, நான் என்ன செய்ய வேண்டும்?",pin_blocked,Neutral,Medium
-551,Can I reactivate my PIN?,எனது பின் (PIN) இலக்கத்தை நான் மீண்டும் செயல்படுத்த (reactivate) முடியுமா?,pin_blocked,Neutral,Medium
-552,How do I reset my PIN?,எனது பின் (PIN) இலக்கத்தை எவ்வாறு ரீசெட் (reset) செய்வது?,pin_blocked,Neutral,Medium
-553,Can I unblock my pin?,எனது பின் (PIN) இலக்கத்தை நான் அன்ப்ளொக் (unblock) செய்ய முடியுமா?,pin_blocked,Neutral,Medium
-554,How do I unblock my PIN?,எனது பின் (PIN) இலக்கத்தை எவ்வாறு அன்ப்ளொக் (unblock) செய்வது?,pin_blocked,Neutral,Medium
-555,"My card's frozen, what can I do?","எனது கார்டு முடக்கப்பட்டுள்ளது (frozen), நான் என்ன செய்ய முடியும்?",pin_blocked,Neutral,Medium
-556,How can I unlock the pin?,பின் (PIN) இலக்கத்தை எவ்வாறு அன்லாக் (unlock) செய்வது?,pin_blocked,Neutral,Medium
-557,"Since my pin is blocked, would you help me unblock it?","எனது பின் (PIN) முடக்கப்பட்டுள்ளதால், அதை அன்ப்ளொக் (unblock) செய்ய எனக்கு உதவுவீர்களா?",pin_blocked,Neutral,Medium
-558,My PIN is not working and I need assistance.,"எனது பின் (PIN) வேலை செய்யவில்லை, எனக்கு உதவி தேவைப்படுகிறது.",pin_blocked,Neutral,Medium
+539,I'v exhausted all the of times I can try my PIN,எனது பின் இலக்கத்தை முயற்சிப்பதற்கான அனைத்து வாய்ப்புகளையும் நான் பயன்படுத்தி முடித்துவிட்டேன்,pin_blocked,Neutral,Medium
+540,How can I unlock my pin from too many tries?,பல முறை தவறாக முயற்சித்ததால் எனது பின் இலக்கத்தை எவ்வாறு அன்லாக் செய்வது?,pin_blocked,Neutral,Medium
+541,Help! I forgot my PIN and have been locked out of using my card.,"உதவி செய்யுங்கள்! எனது பின் இலக்கத்தை நான் மறந்துவிட்டேன், எனது கார்டைப் பயன்படுத்த முடியாதவாறு லொக் செய்யப்பட்டுள்ளது.",pin_blocked,Neutral,High
+542,"My account is blocked, how do I log in now","எனது கணக்கு முடக்கப்பட்டுள்ளது, நான் இப்போது எவ்வாறு லொகின் செய்வது?",pin_blocked,Neutral,Medium
+543,Why did I get blocked?,நான் ஏன் முடக்கப்பட்டேன்?,pin_blocked,Neutral,Medium
+544,Are you able to unblock my pin?,எனது பின் இலக்கத்தை உங்களால் அன்ப்ளொக் செய்ய முடியுமா?,pin_blocked,Neutral,Medium
+545,Can you assist me with unblocking my PIN? I put it in wrong too many times.,எனது பின் இலக்கத்தை அன்ப்ளொக் செய்ய எனக்கு உதவ முடியுமா? நான் பல முறை தவறாக உள்ளிட்டுவிட்டேன்.,pin_blocked,Neutral,Medium
+546,I entered the wrong pin too many times and now I am blocked.  Help me unblock!,நான் பல முறை தவறான பின் இலக்கத்தை உள்ளிட்டதால் இப்போது முடக்கப்பட்டுள்ளேன். அன்ப்ளொக் செய்ய உதவுங்கள்!,pin_blocked,Neutral,Medium
+547,"My pins seems to be blocked, can you unblock it please","எனது பின் முடக்கப்பட்டுள்ளது போல் தெரிகிறது, தயவுசெய்து அதை அன்ப்ளொக் செய்ய முடியுமா?",pin_blocked,Neutral,Medium
+548,Can you unblock my pin after too many wrong pin attempts?,பல முறை தவறான பின் முயற்சிகளுக்குப் பிறகு எனது பின்னை அன்ப்ளொக் செய்ய முடியுமா?,pin_blocked,Neutral,Medium
+549,What can you do to unblock my pin?,எனது பின் இலக்கத்தை அன்ப்ளொக் செய்ய நீங்கள் என்ன செய்ய முடியும்?,pin_blocked,Neutral,Medium
+550,"My PIN is blocked, what do I do?","எனது பின் முடக்கப்பட்டுள்ளது, நான் என்ன செய்ய வேண்டும்?",pin_blocked,Neutral,Medium
+551,Can I reactivate my PIN?,எனது பின் இலக்கத்தை நான் மீண்டும் செயல்படுத்த முடியுமா?,pin_blocked,Neutral,Medium
+552,How do I reset my PIN?,எனது பின் இலக்கத்தை எவ்வாறு ரீசெட் செய்வது?,pin_blocked,Neutral,Medium
+553,Can I unblock my pin?,எனது பின் இலக்கத்தை நான் அன்ப்ளொக் செய்ய முடியுமா?,pin_blocked,Neutral,Medium
+554,How do I unblock my PIN?,எனது பின் இலக்கத்தை எவ்வாறு அன்ப்ளொக் செய்வது?,pin_blocked,Neutral,Medium
+555,"My card's frozen, what can I do?","எனது கார்டு முடக்கப்பட்டுள்ளது, நான் என்ன செய்ய முடியும்?",pin_blocked,Neutral,Medium
+556,How can I unlock the pin?,பின் இலக்கத்தை எவ்வாறு அன்லாக் செய்வது?,pin_blocked,Neutral,Medium
+557,"Since my pin is blocked, would you help me unblock it?","எனது பின் முடக்கப்பட்டுள்ளதால், அதை அன்ப்ளொக் செய்ய எனக்கு உதவுவீர்களா?",pin_blocked,Neutral,Medium
+558,My PIN is not working and I need assistance.,"எனது பின் வேலை செய்யவில்லை, எனக்கு உதவி தேவைப்படுகிறது.",pin_blocked,Neutral,Medium
 559,"
-Where can I get my PIN unblocked?",எனது பின் (PIN) இலக்கத்தை நான் எங்கே அன்ப்ளொக் (unblock) செய்ய முடியும்?,pin_blocked,Neutral,Medium
-560,Are contactless payments enabled on my new card?,எனது புதிய கார்டில் காண்டாக்ட்லெஸ் (contactless) கொடுப்பனவுகள் செயல்படுத்தப்பட்டுள்ளதா?,contactless_not_working,Neutral,Low
-561,My contanctless has stopped working,எனது காண்டாக்ட்லெஸ் (contactless) வேலை செய்வதை நிறுத்திவிட்டது.,contactless_not_working,Neutral,Medium
+Where can I get my PIN unblocked?",எனது பின் இலக்கத்தை நான் எங்கே அன்ப்ளொக் செய்ய முடியும்?,pin_blocked,Neutral,Medium
+560,Are contactless payments enabled on my new card?,எனது புதிய கார்டில் காண்டாக்ட்லெஸ் கொடுப்பனவுகள் செயல்படுத்தப்பட்டுள்ளதா?,contactless_not_working,Neutral,Low
+561,My contanctless has stopped working,எனது காண்டாக்ட்லெஸ் வேலை செய்வதை நிறுத்திவிட்டது.,contactless_not_working,Neutral,Medium
 562,what is required documents for new card process ?,புதிய கார்டு நடைமுறைக்குத் தேவையான ஆவணங்கள் யாவை?,contactless_not_working,Neutral,Low
-563,"I don't know what's wrong, my contactless stopped working. Tried it in a few different places today and it didn't work in any of them.","என்ன பிரச்சினை என்று தெரியவில்லை, எனது காண்டாக்ட்லெஸ் (contactless) வேலை செய்யவில்லை. இன்று சில வெவ்வேறு இடங்களில் முயற்சித்துப் பார்த்தேன், எங்குமே அது வேலை செய்யவில்லை.",contactless_not_working,Neutral,Medium
-564,How do I get the contactless feature to work for my card?,எனது கார்டில் காண்டாக்ட்லெஸ் (contactless) வசதியை எவ்வாறு வேலை செய்ய வைப்பது?,contactless_not_working,Neutral,Low
-565,I tried to pay contactless at the bus today and it didn't work. Any ideas why?,"இன்று பஸ்ஸில் காண்டாக்ட்லெஸ் (contactless) மூலம் பணம் செலுத்த முயன்றேன், ஆனால் அது வேலை செய்யவில்லை. ஏன் என்று ஏதேனும் தெரியுமா?",contactless_not_working,Neutral,Medium
-566,I've been unable to pay contactless with my card for over a week now. Is there a way to fix this issue?,ஒரு வாரத்திற்கும் மேலாக எனது கார்டு மூலம் காண்டாக்ட்லெஸ் (contactless) முறையில் பணம் செலுத்த முடியாமல் உள்ளது. இந்த பிரச்சினையை சரிசெய்ய ஏதேனும் வழி உள்ளதா?,contactless_not_working,Neutral,Medium
-567,Do you know why my contactless won't work?,எனது காண்டாக்ட்லெஸ் (contactless) ஏன் வேலை செய்யவில்லை என்று உங்களுக்குத் தெரியுமா?,contactless_not_working,Neutral,Medium
-568,My contactless payments have not been completed successfully.,எனது காண்டாக்ட்லெஸ் (contactless) கொடுப்பனவுகள் வெற்றிகரமாக நிறைவடையவில்லை.,contactless_not_working,Neutral,Medium
-569,Do I need to replace my card if it didn't work when I tried to pay contactless at the shop today?,"இன்று கடையில் காண்டாக்ட்லெஸ் (contactless) முறையில் பணம் செலுத்த முயன்றபோது அது வேலை செய்யவில்லை என்றால், நான் எனது கார்டை மாற்ற வேண்டுமா?",contactless_not_working,Neutral,Medium
+563,"I don't know what's wrong, my contactless stopped working. Tried it in a few different places today and it didn't work in any of them.","என்ன பிரச்சினை என்று தெரியவில்லை, எனது காண்டாக்ட்லெஸ் வேலை செய்யவில்லை. இன்று சில வெவ்வேறு இடங்களில் முயற்சித்துப் பார்த்தேன், எங்குமே அது வேலை செய்யவில்லை.",contactless_not_working,Neutral,Medium
+564,How do I get the contactless feature to work for my card?,எனது கார்டில் காண்டாக்ட்லெஸ் வசதியை எவ்வாறு வேலை செய்ய வைப்பது?,contactless_not_working,Neutral,Low
+565,I tried to pay contactless at the bus today and it didn't work. Any ideas why?,"இன்று பஸ்ஸில் காண்டாக்ட்லெஸ் மூலம் பணம் செலுத்த முயன்றேன், ஆனால் அது வேலை செய்யவில்லை. ஏன் என்று ஏதேனும் தெரியுமா?",contactless_not_working,Neutral,Medium
+566,I've been unable to pay contactless with my card for over a week now. Is there a way to fix this issue?,ஒரு வாரத்திற்கும் மேலாக எனது கார்டு மூலம் காண்டாக்ட்லெஸ் முறையில் பணம் செலுத்த முடியாமல் உள்ளது. இந்த பிரச்சினையை சரிசெய்ய ஏதேனும் வழி உள்ளதா?,contactless_not_working,Neutral,Medium
+567,Do you know why my contactless won't work?,எனது காண்டாக்ட்லெஸ் ஏன் வேலை செய்யவில்லை என்று உங்களுக்குத் தெரியுமா?,contactless_not_working,Neutral,Medium
+568,My contactless payments have not been completed successfully.,எனது காண்டாக்ட்லெஸ் கொடுப்பனவுகள் வெற்றிகரமாக நிறைவடையவில்லை.,contactless_not_working,Neutral,Medium
+569,Do I need to replace my card if it didn't work when I tried to pay contactless at the shop today?,"இன்று கடையில் காண்டாக்ட்லெஸ் முறையில் பணம் செலுத்த முயன்றபோது அது வேலை செய்யவில்லை என்றால், நான் எனது கார்டை மாற்ற வேண்டுமா?",contactless_not_working,Neutral,Medium
 570,For some reason my contactless has stopped working. I don't know what the problem is. What can I do?,ஏதோ ஒரு காரணத்தால் எனது காண்டாக்ட்லெஸ் வேலை செய்யவில்லை. என்ன பிரச்சினை என்று எனக்குத் தெரியவில்லை. நான் என்ன செய்ய வேண்டும்?,contactless_not_working,Neutral,Medium
 571,"I couldn't use my contactless this morning, it wasn't accepted.","இன்று காலை எனது காண்டாக்ட்லெஸ்ஸை என்னால் பயன்படுத்த முடியவில்லை, அது ஏற்றுக்கொள்ளப்படவில்லை.",contactless_not_working,Neutral,Medium
 572,Contactless isn't working for me,எனக்கு காண்டாக்ட்லெஸ் வேலை செய்யவில்லை.,contactless_not_working,Neutral,Medium
@@ -583,7 +583,7 @@ Where can I get my PIN unblocked?",எனது பின் (PIN) இலக்�
 580,For some reason my contactless won't work for me.,ஏதோ ஒரு காரணத்தால் எனது காண்டாக்ட்லெஸ் எனக்கு வேலை செய்யவில்லை.,contactless_not_working,Neutral,Medium
 581,I'm unable to use contactless payments for purchases.,கொள்வனவுகளுக்கு என்னால் காண்டாக்ட்லெஸ் கொடுப்பனவுகளைப் பயன்படுத்த முடியவில்லை.,contactless_not_working,Neutral,Medium
 582,"When I tried to pay for my bus ride, the contactless payment wouldn't work. How can I prevent this in the future?","எனது பஸ் பயணத்திற்கு பணம் செலுத்த முயன்றபோது, காண்டாக்ட்லெஸ் கொடுப்பனவு வேலை செய்யவில்லை. எதிர்காலத்தில் இதை நான் எவ்வாறு தவிர்ப்பது?",contactless_not_working,Neutral,Medium
-583,The NFC payment wouldn't work on the bus today. Help?,இன்று பஸ்ஸில் NFC கொடுப்பனவு வேலை செய்யவில்லை. உதவ முடியுமா?,contactless_not_working,Neutral,Medium
+583,The NFC payment wouldn't work on the bus today. Help?,இன்று பஸ்ஸில் என்எஃப்சி கொடுப்பனவு வேலை செய்யவில்லை. உதவ முடியுமா?,contactless_not_working,Neutral,Medium
 584,"I wanted to use my card contactless but it doesn't seem to be working, what could be the problem?","எனது கார்டை காண்டாக்ட்லெஸ்ஸாகப் பயன்படுத்த விரும்பினேன், ஆனால் அது வேலை செய்யவில்லை போல் தெரிகிறது, என்ன பிரச்சினையாக இருக்கலாம்?",contactless_not_working,Neutral,Medium
 585,How do I make contactless work,காண்டாக்ட்லெஸ்ஸை எவ்வாறு வேலை செய்ய வைப்பது?,contactless_not_working,Neutral,Low
 586,what is the charges for new card?,புதிய கார்டுக்கான கட்டணம் என்ன?,contactless_not_working,Neutral,Low
@@ -604,42 +604,42 @@ Where can I get my PIN unblocked?",எனது பின் (PIN) இலக்�
 601,I would like to make a transfer. How much does it cost?,நான் ஒரு பரிமாற்றம் செய்ய விரும்புகிறேன். அதற்கு எவ்வளவு செலவாகும்?,top_up_by_bank_transfer_charge,Neutral,Medium
 602,"I need to make a transfer, what will the fee be?","நான் ஒரு பரிமாற்றம் செய்ய வேண்டும், அதற்கான கட்டணம் என்னவாக இருக்கும்?",top_up_by_bank_transfer_charge,Neutral,Medium
 603,If I make a top-up are there charges applied?,நான் டாப்-அப் செய்தால் ஏதேனும் கட்டணங்கள் விதிக்கப்படுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
-604,Can I also transfer with SWIFT?,என்னால் SWIFT மூலமாகவும் பரிமாற்றம் செய்ய முடியுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
-605,Are SWIFT transfers accepted?,SWIFT பரிமாற்றங்கள் ஏற்றுக்கொள்ளப்படுகிறதா?,top_up_by_bank_transfer_charge,Neutral,Medium
-606,I would like to refill my account using SWIFT.,நான் SWIFT ஐப் பயன்படுத்தி எனது கணக்கை நிரப்ப விரும்புகிறேன்.,top_up_by_bank_transfer_charge,Neutral,Medium
+604,Can I also transfer with SWIFT?,என்னால் ஸ்விஃப்ட் மூலமாகவும் பரிமாற்றம் செய்ய முடியுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
+605,Are SWIFT transfers accepted?,ஸ்விஃப்ட் பரிமாற்றங்கள் ஏற்றுக்கொள்ளப்படுகிறதா?,top_up_by_bank_transfer_charge,Neutral,Medium
+606,I would like to refill my account using SWIFT.,நான் ஸ்விஃப்டைப் பயன்படுத்தி எனது கணக்கை நிரப்ப விரும்புகிறேன்.,top_up_by_bank_transfer_charge,Neutral,Medium
 607,Do I have to pay for topping up by transfer?,பரிமாற்றம் மூலம் டாப்-அப் செய்வதற்கு நான் பணம் செலுத்த வேண்டுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
 608,Are there any sort of fees involved for top of transfers?,டாப்-அப் பரிமாற்றங்களுக்கு ஏதேனும் கட்டணங்கள் உள்ளதா?,top_up_by_bank_transfer_charge,Neutral,Medium
-609,Is it possible to get a transfer from SWIFT?,SWIFT இலிருந்து ஒரு பரிமாற்றத்தைப் பெற முடியுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
+609,Is it possible to get a transfer from SWIFT?,ஸ்விஃப்டிலிருந்து ஒரு பரிமாற்றத்தைப் பெற முடியுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
 610,Do I have to pay any fees in order to receive money?,பணத்தைப் பெறுவதற்கு நான் ஏதேனும் கட்டணம் செலுத்த வேண்டுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
 611,How much am I charged to receive money?,பணத்தைப் பெறுவதற்கு எனக்கு எவ்வளவு கட்டணம் விதிக்கப்படும்?,top_up_by_bank_transfer_charge,Neutral,Medium
-612,Will you deal with SWIFT transfers?,நீங்கள் SWIFT பரிமாற்றங்களை மேற்கொள்கிறீர்களா?,top_up_by_bank_transfer_charge,Neutral,Medium
+612,Will you deal with SWIFT transfers?,நீங்கள் ஸ்விஃப்ட் பரிமாற்றங்களை மேற்கொள்கிறீர்களா?,top_up_by_bank_transfer_charge,Neutral,Medium
 613,Will there be any charges for money received?,பெறப்பட்ட பணத்திற்கு ஏதேனும் கட்டணங்கள் இருக்குமா?,top_up_by_bank_transfer_charge,Neutral,Medium
 614,Will a transfer incur a fee?,ஒரு பரிமாற்றத்திற்கு கட்டணம் வசூலிக்கப்படுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
-615,Are there charges for receiving a SEPA transfer?,SEPA பரிமாற்றத்தைப் பெறுவதற்கு கட்டணங்கள் ஏதேனும் உள்ளதா?,top_up_by_bank_transfer_charge,Neutral,Medium
+615,Are there charges for receiving a SEPA transfer?,செபா பரிமாற்றத்தைப் பெறுவதற்கு கட்டணங்கள் ஏதேனும் உள்ளதா?,top_up_by_bank_transfer_charge,Neutral,Medium
 616,If I transfer money from my bank to top-up my account will I be charged?,எனது கணக்கை டாப்-அப் செய்ய எனது வங்கியிலிருந்து பணத்தை மாற்றினால் எனக்கு கட்டணம் விதிக்கப்படுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
 617,Will I be charged if someone needs to send me money?,யாராவது எனக்கு பணம் அனுப்ப வேண்டுமானால் எனக்கு கட்டணம் விதிக்கப்படுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
 618,What are the fees for top-ups?,டாப்-அப்களுக்கான கட்டணங்கள் என்ன?,top_up_by_bank_transfer_charge,Neutral,Medium
 619,Will topping up by transfer lead to a charge on my account?,பரிமாற்றம் மூலம் டாப்-அப் செய்வது எனது கணக்கில் கட்டணத்தை ஏற்படுத்துமா?,top_up_by_bank_transfer_charge,Neutral,Medium
 620,What are the charges for receiving money?,பணத்தைப் பெறுவதற்கான கட்டணங்கள் என்ன?,top_up_by_bank_transfer_charge,Neutral,Medium
 621,What is the fee to receive money?,பணத்தைப் பெறுவதற்கான கட்டணம் எவ்வளவு?,top_up_by_bank_transfer_charge,Neutral,Medium
-622,How much am I charged for a SEPA transfer?,SEPA பரிமாற்றத்திற்கு எனக்கு எவ்வளவு கட்டணம் விதிக்கப்படும்?,top_up_by_bank_transfer_charge,Neutral,Medium
-623,How much is the fee for a SEPA transfer?,SEPA பரிமாற்றத்திற்கான கட்டணம் எவ்வளவு?,top_up_by_bank_transfer_charge,Neutral,Medium
-624,What'll it charge me for a SEPA transfer?,SEPA பரிமாற்றத்திற்கு எனக்கு என்ன கட்டணம் விதிக்கப்படும்?,top_up_by_bank_transfer_charge,Neutral,Medium
+622,How much am I charged for a SEPA transfer?,செபா பரிமாற்றத்திற்கு எனக்கு எவ்வளவு கட்டணம் விதிக்கப்படும்?,top_up_by_bank_transfer_charge,Neutral,Medium
+623,How much is the fee for a SEPA transfer?,செபா பரிமாற்றத்திற்கான கட்டணம் எவ்வளவு?,top_up_by_bank_transfer_charge,Neutral,Medium
+624,What'll it charge me for a SEPA transfer?,செபா பரிமாற்றத்திற்கு எனக்கு என்ன கட்டணம் விதிக்கப்படும்?,top_up_by_bank_transfer_charge,Neutral,Medium
 625,Is there a charge for topping up by transfer?,பரிமாற்றம் மூலம் டாப்-அப் செய்வதற்கு கட்டணம் ஏதேனும் உள்ளதா?,top_up_by_bank_transfer_charge,Neutral,Medium
-626,Do you do SWIFT transfers?,நீங்கள் SWIFT பரிமாற்றங்களைச் செய்கிறீர்களா?,top_up_by_bank_transfer_charge,Neutral,Low
+626,Do you do SWIFT transfers?,நீங்கள் ஸ்விஃப்ட் பரிமாற்றங்களைச் செய்கிறீர்களா?,top_up_by_bank_transfer_charge,Neutral,Low
 627,Should I expect to be charged for topping up by transfer?,பரிமாற்றம் மூலம் டாப்-அப் செய்வதற்கு கட்டணம் வசூலிக்கப்படும் என்று நான் எதிர்பார்க்க வேண்டுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
-628,Will I be charged for a SEPA transfer?,SEPA பரிமாற்றத்திற்கு எனக்கு கட்டணம் விதிக்கப்படுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
+628,Will I be charged for a SEPA transfer?,செபா பரிமாற்றத்திற்கு எனக்கு கட்டணம் விதிக்கப்படுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
 629,is there a fee for a transfer? if so how much will it be?,பரிமாற்றத்திற்கு கட்டணம் ஏதேனும் உள்ளதா? அப்படியாயின் அது எவ்வளவு இருக்கும்?,top_up_by_bank_transfer_charge,Neutral,Medium
-630,Please tell me about SWIFT transfers at this bank.,தயவுசெய்து இந்த வங்கியில் உள்ள SWIFT பரிமாற்றங்கள் பற்றி எனக்குச் சொல்லுங்கள்.,top_up_by_bank_transfer_charge,Neutral,Low
+630,Please tell me about SWIFT transfers at this bank.,தயவுசெய்து இந்த வங்கியில் உள்ள ஸ்விஃப்ட் பரிமாற்றங்கள் பற்றி எனக்குச் சொல்லுங்கள்.,top_up_by_bank_transfer_charge,Neutral,Low
 631,Is there a fee for transfer top-up?,பரிமாற்ற டாப்-அப்பிற்கு ஏதேனும் கட்டணம் உண்டா?,top_up_by_bank_transfer_charge,Neutral,Medium
 632,Can you tell me what the transfer policy is?,பரிமாற்றக் கொள்கை என்னவென்று எனக்குச் சொல்ல முடியுமா?,top_up_by_bank_transfer_charge,Neutral,Low
-633,Is a SWIFT transfer okay?,SWIFT பரிமாற்றம் பரவாயில்லையா?,top_up_by_bank_transfer_charge,Neutral,Low
-634,Will I be charged a fee if I receive a SEPA transfer,நான் ஒரு SEPA பரிமாற்றத்தைப் பெற்றால் எனக்குக் கட்டணம் விதிக்கப்படுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
+633,Is a SWIFT transfer okay?,ஸ்விஃப்ட் பரிமாற்றம் பரவாயில்லையா?,top_up_by_bank_transfer_charge,Neutral,Low
+634,Will I be charged a fee if I receive a SEPA transfer,நான் ஒரு செபா பரிமாற்றத்தைப் பெற்றால் எனக்குக் கட்டணம் விதிக்கப்படுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
 635,"When topping up by transfer, will I be charged?","பரிமாற்றம் மூலம் டாப்-அப் செய்யும்போது, எனக்குக் கட்டணம் விதிக்கப்படுமா?",top_up_by_bank_transfer_charge,Neutral,Medium
 636,What us the fee to transfer money from my bank?,எனது வங்கியிலிருந்து பணத்தை மாற்றுவதற்கான கட்டணம் என்ன?,top_up_by_bank_transfer_charge,Neutral,Medium
 637,Do I get charged if i am getting money?,எனக்குப் பணம் வரும்போது கட்டணம் வசூலிக்கப்படுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
 638,Can you tell me the total cost of a transfer?,ஒரு பரிமாற்றத்திற்கான மொத்தச் செலவை எனக்குச் சொல்ல முடியுமா?,top_up_by_bank_transfer_charge,Neutral,Medium
-639,can i do a transfer with swift,நான் SWIFT மூலம் பரிமாற்றம் செய்யலாமா?,top_up_by_bank_transfer_charge,Neutral,Low
+639,can i do a transfer with swift,நான் ஸ்விஃப்ட் மூலம் பரிமாற்றம் செய்யலாமா?,top_up_by_bank_transfer_charge,Neutral,Low
 640,"new customer and filling gas today, it's not working, the thing shows pending half an hour!","நான் ஒரு புதிய வாடிக்கையாளர், இன்று எரிபொருள் நிரப்புகிறேன், அது வேலை செய்யவில்லை, அரை மணி நேரமாக நிலுவையில் என்று காட்டுகிறது!",pending_top_up,Negative,Medium
 641,My card was topped this morning but I can't see the funds. Why didn't it complete?,"இன்று காலை எனது கார்டு டாப்-அப் செய்யப்பட்டது, ஆனால் என்னால் பணத்தைக் காண முடியவில்லை. அது ஏன் பூர்த்தியாகவில்லை?",pending_top_up,Neutral,Medium
 642,What would lead to my top up still pending?,எனது டாப்-அப் இன்னும் நிலுவையில் இருப்பதற்கு என்ன காரணம் இருக்கக்கூடும்?,pending_top_up,Neutral,Medium
@@ -858,7 +858,7 @@ Where can I get my PIN unblocked?",எனது பின் (PIN) இலக்�
 855,The receipient doesn't see my money transfer.,பெறுநருக்கு எனது பணப்பரிமாற்றம் காட்டவில்லை.,transfer_not_received_by_recipient,Neutral,Medium
 856,"I transferred the rent payment for my new place a couple days ago but the landlord says it's not there yet, despite showing up as done on my side. I checked the account number I sent it to and it's definitely correct. Can you please verify if the transaction really went through or not?","எனது புதிய இடத்திற்கான வாடகைப் பணத்தை இரண்டு நாட்களுக்கு முன்பு அனுப்பினேன், ஆனால் எனது பக்கத்தில் அது முடிவடைந்ததாகக் காட்டினாலும், வீட்டு உரிமையாளர் அது இன்னும் வரவில்லை என்று கூறுகிறார். நான் அனுப்பிய கணக்கு எண்ணைச் சரிபார்த்தேன், அது நிச்சயமாகச் சரியானதுதான். தயவுசெய்து அந்தப் பரிமாற்றம் உண்மையில் நடந்துவிட்டதா இல்லையா என்பதை உறுதிப்படுத்த முடியுமா?",transfer_not_received_by_recipient,Neutral,Medium
 857,I need to find out why my transfer didn't get there.,எனது பரிமாற்றம் ஏன் அங்கு போய்ச் சேரவில்லை என்பதை நான் கண்டறிய வேண்டும்.,transfer_not_received_by_recipient,Neutral,Medium
-858,"I've just moved address from a place in Durham to a place in Walton-On-The-Naze.  I have a new landlord at my new house and they haven't got my payment but I know I sent it on time, can you check they got it please?","நான் இப்போதுதான் Durham இலிருந்து Walton-On-The-Naze இலுள்ள ஒரு இடத்திற்கு முகவரியை மாற்றியுள்ளேன். எனது புதிய வீட்டில் ஒரு புதிய வீட்டு உரிமையாளர் இருக்கிறார், அவருக்கு எனது கொடுப்பனவு கிடைக்கவில்லை, ஆனால் நான் அதைச் சரியான நேரத்திற்கு அனுப்பினேன் என்று எனக்குத் தெரியும், தயவுசெய்து அவர்களுக்கு அது கிடைத்துவிட்டதா என்று சரிபார்க்க முடியுமா?",transfer_not_received_by_recipient,Neutral,Medium
+858,"I've just moved address from a place in Durham to a place in Walton-On-The-Naze.  I have a new landlord at my new house and they haven't got my payment but I know I sent it on time, can you check they got it please?","நான் இப்போதுதான் டர்ஹாமிலிருந்து வோல்டன்-ஆன்-தி-நேஸிலுள்ள ஒரு இடத்திற்கு முகவரியை மாற்றியுள்ளேன். எனது புதிய வீட்டில் ஒரு புதிய வீட்டு உரிமையாளர் இருக்கிறார், அவருக்கு எனது கொடுப்பனவு கிடைக்கவில்லை, ஆனால் நான் அதைச் சரியான நேரத்திற்கு அனுப்பினேன் என்று எனக்குத் தெரியும், தயவுசெய்து அவர்களுக்கு அது கிடைத்துவிட்டதா என்று சரிபார்க்க முடியுமா?",transfer_not_received_by_recipient,Neutral,Medium
 859,I sent money.  They haven't received it.,நான் பணம் அனுப்பினேன். அவர்களுக்கு அது கிடைக்கவில்லை.,transfer_not_received_by_recipient,Neutral,Medium
 860,"Hey, I need some help figuring out way my transfer is not complete yet. My Landlord hasn't got the money yet.She should have received it by now.","ஹலோ, எனது பரிமாற்றம் ஏன் இன்னும் நிறைவடையவில்லை என்பதைக் கண்டறிய எனக்குச் சில உதவிகள் தேவை. எனது வீட்டு உரிமையாளருக்கு இன்னும் பணம் கிடைக்கவில்லை. இந்நேரம் அவளுக்கு அது கிடைத்திருக்க வேண்டும்.",transfer_not_received_by_recipient,Neutral,Medium
 861,"The day before yesterday, I performed a transfer which was within this country. It still hasn't gone through. Can you check on that? The account number is definitely correct, as I've checked and double checked.","நேற்று முன்தினம், நான் இந்த நாட்டுக்குள்ளான ஒரு பரிமாற்றத்தைச் செய்தேன். அது இன்னும் நிறைவடையவில்லை. அதைச் சரிபார்க்க முடியுமா? நான் பலமுறை சரிபார்த்ததால் கணக்கு எண் நிச்சயமாகச் சரியானதுதான்.",transfer_not_received_by_recipient,Neutral,Medium
@@ -963,7 +963,7 @@ Where can I get my PIN unblocked?",எனது பின் (PIN) இலக்�
 960,Will my card be accepted all over the world?,எனது அட்டை உலகம் முழுவதும் ஏற்றுக்கொள்ளப்படுமா?,card_acceptance,Neutral,Low
 961,Who accepts this card?,இந்த அட்டையை யாரெல்லாம் ஏற்றுக்கொள்வார்கள்?,card_acceptance,Neutral,Low
 962,Can I use my card for payment all over the world?,உலகம் முழுவதும் பணம் செலுத்துவதற்கு எனது அட்டையைப் பயன்படுத்த முடியுமா?,card_acceptance,Neutral,Low
-963,It will be fine to use at any establishment that accepts Mastercard.,மாஸ்டர்கார்டை (Mastercard) ஏற்றுக்கொள்ளும் எந்தவொரு நிறுவனத்திலும் இதைப் பயன்படுத்துவது பிரச்சினையாக இருக்காது.,card_acceptance,Neutral,Low
+963,It will be fine to use at any establishment that accepts Mastercard.,மாஸ்டர்கார்டை ஏற்றுக்கொள்ளும் எந்தவொரு நிறுவனத்திலும் இதைப் பயன்படுத்துவது பிரச்சினையாக இருக்காது.,card_acceptance,Neutral,Low
 964,Where can the card be used?,இந்த அட்டையை எங்கே பயன்படுத்தலாம்?,card_acceptance,Neutral,Low
 965,Can my card be used everywhere?,எனது அட்டையை எல்லா இடங்களிலும் பயன்படுத்த முடியுமா?,card_acceptance,Neutral,Low
 966,Are there any limits on where I can use my card?,எனது அட்டையை நான் எங்கு பயன்படுத்தலாம் என்பதில் ஏதேனும் கட்டுப்பாடுகள் உள்ளனவா?,card_acceptance,Neutral,Low
@@ -982,14 +982,14 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 977,Where can I use my card?,எனது அட்டையை நான் எங்கே பயன்படுத்தலாம்?,card_acceptance,Neutral,Low
 978,Which outlets accept my card?,எந்த விற்பனை நிலையங்கள் எனது அட்டையை ஏற்றுக்கொள்கின்றன?,card_acceptance,Neutral,Low
 979,"I am traveling to Germany, Will I be able to use my card there?","நான் ஜெர்மனிக்கு பயணம் செய்கிறேன், அங்கே எனது அட்டையைப் பயன்படுத்த முடியுமா?",card_acceptance,Neutral,Low
-980,What stores will take my credit card as payment?,எந்தக் கடைகள் எனது கடன் அட்டையை (credit card) கொடுப்பனவாக ஏற்றுக்கொள்ளும்?,card_acceptance,Neutral,Low
+980,What stores will take my credit card as payment?,எந்தக் கடைகள் எனது கடன் அட்டையை கொடுப்பனவாக ஏற்றுக்கொள்ளும்?,card_acceptance,Neutral,Low
 981,Is there any place I cannot use my card?,எனது அட்டையைப் பயன்படுத்த முடியாத இடங்கள் ஏதேனும் உண்டா?,card_acceptance,Neutral,Low
 982,Will I be able to use my card anywhere?,என்னால் எனது அட்டையை எங்கு வேண்டுமானாலும் பயன்படுத்த முடியுமா?,card_acceptance,Neutral,Low
 983,Is my card usable anywhere?,எனது அட்டையை எங்கு வேண்டுமானாலும் பயன்படுத்தலாமா?,card_acceptance,Neutral,Low
 984,Is it acceptable to use my card anywhere?,எனது அட்டையை எங்கு வேண்டுமானாலும் பயன்படுத்துவது ஏற்றுக்கொள்ளத்தக்கதா?,card_acceptance,Neutral,Low
 985,Can I use my card everywhere?,எனது அட்டையை எல்லா இடங்களிலும் பயன்படுத்த முடியுமா?,card_acceptance,Neutral,Low
 986,Where is my card accepted?,எனது அட்டை எங்கு ஏற்றுக்கொள்ளப்படுகிறது?,card_acceptance,Neutral,Low
-987,Where can I pay with my debit or credit card?,எனது பற்று அட்டை (debit card) அல்லது கடன் அட்டை (credit card) மூலம் நான் எங்கே பணம் செலுத்தலாம்?,card_acceptance,Neutral,Low
+987,Where can I pay with my debit or credit card?,எனது பற்று அட்டை அல்லது கடன் அட்டை மூலம் நான் எங்கே பணம் செலுத்தலாம்?,card_acceptance,Neutral,Low
 988,Where should my card work?,எனது அட்டை எங்கு வேலை செய்ய வேண்டும்?,card_acceptance,Neutral,Low
 989,areas card is accpeted,அட்டை ஏற்றுக்கொள்ளப்படும் பகுதிகள்,card_acceptance,Neutral,Low
 990,places i can use the card,நான் கார்டைப் பயன்படுத்தக்கூடிய இடங்கள்,card_acceptance,Neutral,Low
@@ -1242,56 +1242,56 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 1237,Why can't I verify my identity?,என்னால் ஏன் எனது அடையாளத்தை உறுதிப்படுத்த முடியாது?,unable_to_verify_identity,Neutral,Low
 1238,Why can't I verify my id?,என்னால் ஏன் எனது அடையாள அட்டையை உறுதிப்படுத்த முடியாது?,unable_to_verify_identity,Neutral,Low
 1239,for some reason I am having a problem with verifying my identity.,ஏதோ ஒரு காரணத்தினால் எனது அடையாளத்தை உறுதிப்படுத்துவதில் எனக்கு ஒரு பிரச்சினை ஏற்படுகிறது.,unable_to_verify_identity,Neutral,Low
-1240,What do I do with my card PIN?,எனது அட்டைப் பின் (PIN) இலக்கத்தை நான் என்ன செய்ய வேண்டும்?,get_physical_card,Neutral,Low
-1241,Is the PIN delivered separately?,பின் (PIN) இலக்கம் தனியாக அனுப்பப்படுகிறதா?,get_physical_card,Neutral,Low
-1242,I do not have my pin,என்னிடம் எனது பின் (PIN) இலக்கம் இல்லை.,get_physical_card,Neutral,Low
-1243,Are PIN separately?,பின் (PIN) இலக்கங்கள் தனியாகவா வருகின்றன?,get_physical_card,Neutral,Low
-1244,I cannot seem to find my PIN. Where is it?,எனது பின் (PIN) இலக்கத்தை என்னால் கண்டுபிடிக்க முடியவில்லை. அது எங்கே இருக்கிறது?,get_physical_card,Neutral,Low
-1245,How do I set-up my PIN for the new card?,புதிய அட்டைக்கான எனது பின் (PIN) இலக்கத்தை நான் எவ்வாறு அமைப்பது?,get_physical_card,Neutral,Low
-1246,How do I find my card PIN?,எனது அட்டைப் பின் (PIN) இலக்கத்தை நான் எவ்வாறு கண்டறிவது?,get_physical_card,Neutral,Low
-1247,is my card PIN saved in the app,எனது அட்டைப் பின் (PIN) இலக்கம் செயலியில் சேமிக்கப்பட்டுள்ளதா?,get_physical_card,Neutral,Low
-1248,I don't know where to look to find my PIN.,எனது பின் (PIN) இலக்கத்தைக் கண்டறிய எங்கு பார்ப்பது என்று எனக்குத் தெரியவில்லை.,get_physical_card,Neutral,Low
-1249,where in the app can i find out about my new pin,செயலியில் எங்கே எனது புதிய பின் (PIN) இலக்கத்தைப் பற்றி நான் அறியலாம்?,get_physical_card,Neutral,Low
-1250,Where in the app can I find my PIN?,செயலியில் எங்கே எனது பின் (PIN) இலக்கத்தைக் கண்டறியலாம்?,get_physical_card,Neutral,Low
-1251,I just got my new card but am not sure how to check its PIN.,"நான் இப்போதுதான் எனது புதிய அட்டையைப் பெற்றேன், ஆனால் அதன் பின் (PIN) இலக்கத்தை எவ்வாறு சரிபார்ப்பது என்று எனக்குத் தெரியவில்லை.",get_physical_card,Neutral,Low
-1252,do i need a pin,எனக்கு ஒரு பின் (PIN) இலக்கம் தேவையா?,get_physical_card,Neutral,Low
-1253,"If I need a PIN for my card, where is it located?","எனது அட்டைக்கு ஒரு பின் (PIN) இலக்கம் தேவைப்பட்டால், அது எங்கே இருக்கும்?",get_physical_card,Neutral,Low
-1254,what is my card PIN,எனது அட்டைப் பின் (PIN) இலக்கம் என்ன?,get_physical_card,Neutral,Low
-1255,And what about the Card's PIN?,அட்டையின் பின் (PIN) இலக்கம் பற்றி என்ன?,get_physical_card,Neutral,Low
-1256,About this card PIN?,இந்த அட்டைப் பின் (PIN) இலக்கம் பற்றி?,get_physical_card,Neutral,Low
-1257,I received my card but not my PIN.,"நான் எனது அட்டையைப் பெற்றேன், ஆனால் எனது பின் (PIN) இலக்கத்தைப் பெறவில்லை.",get_physical_card,Neutral,Low
-1258,Why can't I see my PIN?,என்னால் ஏன் எனது பின் (PIN) இலக்கத்தைப் பார்க்க முடியாது?,get_physical_card,Neutral,Low
-1259,what is the process for setting up a pin,பின் (PIN) இலக்கத்தை அமைப்பதற்கான வழிமுறை என்ன?,get_physical_card,Neutral,Low
-1260,Does my PIN come with my card?,எனது பின் (PIN) இலக்கம் எனது அட்டையுடன் வருகிறதா?,get_physical_card,Neutral,Low
-1261,Where can I find the card PIN?,அட்டையின் பின் (PIN) இலக்கத்தை நான் எங்கே காணலாம்?,get_physical_card,Neutral,Low
-1262,Why isn't my PIN available yet?,எனது பின் (PIN) இலக்கம் இன்னும் ஏன் கிடைக்கவில்லை?,get_physical_card,Neutral,Low
-1263,Is my PIN located on my account somewhere?,எனது பின் (PIN) இலக்கம் எனது கணக்கில் எங்காவது உள்ளதா?,get_physical_card,Neutral,Low
-1264,"Please help in finding my card PIN, thank you!","எனது அட்டையின் பின் (PIN) இலக்கத்தைக் கண்டறிய தயவுசெய்து உதவுங்கள், நன்றி!",get_physical_card,Neutral,Low
-1265,Where is my PIN number located?,எனது பின் (PIN) இலக்கம் எங்கே உள்ளது?,get_physical_card,Neutral,Low
-1266,I still don't have my pin.,எனக்கு இன்னும் எனது பின் (PIN) இலக்கம் கிடைக்கவில்லை.,get_physical_card,Neutral,Low
-1267,So what about the card PIN?,அப்படியென்றால் அட்டையின் பின் (PIN) இலக்கம் பற்றி என்ன?,get_physical_card,Neutral,Low
-1268,I cannot locate the card PIN.,என்னால் அட்டையின் பின் (PIN) இலக்கத்தைக் கண்டறிய முடியவில்லை.,get_physical_card,Neutral,Low
-1269,I need my PIN,எனக்கு எனது பின் (PIN) இலக்கம் தேவை.,get_physical_card,Neutral,Low
-1270,Where can I find my PIN?,எனது பின் (PIN) இலக்கத்தை நான் எங்கே காணலாம்?,get_physical_card,Neutral,Low
-1271,When do I receive my PIN,எனது பின் (PIN) இலக்கத்தை நான் எப்போது பெறுவேன்?,get_physical_card,Neutral,Low
-1272,Help me find my card pin!,எனது அட்டையின் பின் (PIN) இலக்கத்தைக் கண்டறிய எனக்கு உதவுங்கள்!,get_physical_card,Neutral,Low
-1273,Is PIN delivered separately?,பின் (PIN) இலக்கம் தனியாக விநியோகிக்கப்படுகிறதா?,get_physical_card,Neutral,Low
-1274,I can not find my card pin.,எனது அட்டையின் பின் (PIN) இலக்கத்தை என்னால் கண்டறிய முடியவில்லை.,get_physical_card,Neutral,Low
-1275,What do I need to do for a PIN?,பின் (PIN) இலக்கத்தைப் பெற நான் என்ன செய்ய வேண்டும்?,get_physical_card,Neutral,Low
-1276,Why can't I find my PIN?,எனது பின் (PIN) இலக்கத்தை என்னால் ஏன் கண்டறிய முடியவில்லை?,get_physical_card,Neutral,Low
-1277,Where is the card PIN?,அட்டையின் பின் (PIN) இலக்கம் எங்கே உள்ளது?,get_physical_card,Neutral,Low
-1278,What is my card's PIN?,எனது அட்டையின் பின் (PIN) இலக்கம் என்ன?,get_physical_card,Neutral,Low
-1279,where can user find pin?,பயனர் பின் (PIN) இலக்கத்தை எங்கே காணலாம்?,get_physical_card,Neutral,Low
-1280,I like to Mastercard rather than Visa.,விசா (Visa) அட்டையை விட எனக்கு மாஸ்டர்கார்ட் (Mastercard) அட்டையே பிடிக்கும்.,visa_or_mastercard,Neutral,Low
-1281,Do I qualify for a visa card?,நான் விசா (Visa) அட்டைக்கு தகுதியானவரா?,visa_or_mastercard,Neutral,Low
-1282,How do I get a visa card?,நான் எவ்வாறு விசா (Visa) அட்டையைப் பெறுவது?,visa_or_mastercard,Neutral,Low
-1283,Do you guys accept Visa or Mastercard?,நீங்கள் விசா (Visa) அல்லது மாஸ்டர்கார்ட் (Mastercard) அட்டைகளை ஏற்றுக்கொள்கிறீர்களா?,visa_or_mastercard,Neutral,Low
-1284,Are both Visa and Mastercard accepted?,விசா (Visa) மற்றும் மாஸ்டர்கார்ட் (Mastercard) ஆகிய இரண்டும் ஏற்றுக்கொள்ளப்படுமா?,visa_or_mastercard,Neutral,Low
-1285,Do you guys accept mastercard or visa?,நீங்கள் மாஸ்டர்கார்ட் (Mastercard) அல்லது விசா (Visa) அட்டைகளை ஏற்றுக்கொள்கிறீர்களா?,visa_or_mastercard,Neutral,Low
-1286,Are both Visa and Mastercard offered?,விசா (Visa) மற்றும் மாஸ்டர்கார்ட் (Mastercard) ஆகிய இரண்டும் வழங்கப்படுகின்றனவா?,visa_or_mastercard,Neutral,Low
-1287,Can you give me a visa?,எனக்கு ஒரு விசா (Visa) அட்டை தர முடியுமா?,visa_or_mastercard,Neutral,Low
-1288,How to decide if I get a Visa or Mastercard?,எனக்கு விசா (Visa) அல்லது மாஸ்டர்கார்ட் (Mastercard) அட்டை கிடைக்குமா என்பதை எவ்வாறு தீர்மானிப்பது?,visa_or_mastercard,Neutral,Low
-1289,Can I get a mastercard?,எனக்கு ஒரு மாஸ்டர்கார்ட் (Mastercard) அட்டை கிடைக்கலாமா?,visa_or_mastercard,Neutral,Low
+1240,What do I do with my card PIN?,எனது அட்டைப் பின் இலக்கத்தை நான் என்ன செய்ய வேண்டும்?,get_physical_card,Neutral,Low
+1241,Is the PIN delivered separately?,பின் இலக்கம் தனியாக அனுப்பப்படுகிறதா?,get_physical_card,Neutral,Low
+1242,I do not have my pin,என்னிடம் எனது பின் இலக்கம் இல்லை.,get_physical_card,Neutral,Low
+1243,Are PIN separately?,பின் இலக்கங்கள் தனியாகவா வருகின்றன?,get_physical_card,Neutral,Low
+1244,I cannot seem to find my PIN. Where is it?,எனது பின் இலக்கத்தை என்னால் கண்டுபிடிக்க முடியவில்லை. அது எங்கே இருக்கிறது?,get_physical_card,Neutral,Low
+1245,How do I set-up my PIN for the new card?,புதிய அட்டைக்கான எனது பின் இலக்கத்தை நான் எவ்வாறு அமைப்பது?,get_physical_card,Neutral,Low
+1246,How do I find my card PIN?,எனது அட்டைப் பின் இலக்கத்தை நான் எவ்வாறு கண்டறிவது?,get_physical_card,Neutral,Low
+1247,is my card PIN saved in the app,எனது அட்டைப் பின் இலக்கம் செயலியில் சேமிக்கப்பட்டுள்ளதா?,get_physical_card,Neutral,Low
+1248,I don't know where to look to find my PIN.,எனது பின் இலக்கத்தைக் கண்டறிய எங்கு பார்ப்பது என்று எனக்குத் தெரியவில்லை.,get_physical_card,Neutral,Low
+1249,where in the app can i find out about my new pin,செயலியில் எங்கே எனது புதிய பின் இலக்கத்தைப் பற்றி நான் அறியலாம்?,get_physical_card,Neutral,Low
+1250,Where in the app can I find my PIN?,செயலியில் எங்கே எனது பின் இலக்கத்தைக் கண்டறியலாம்?,get_physical_card,Neutral,Low
+1251,I just got my new card but am not sure how to check its PIN.,"நான் இப்போதுதான் எனது புதிய அட்டையைப் பெற்றேன், ஆனால் அதன் பின் இலக்கத்தை எவ்வாறு சரிபார்ப்பது என்று எனக்குத் தெரியவில்லை.",get_physical_card,Neutral,Low
+1252,do i need a pin,எனக்கு ஒரு பின் இலக்கம் தேவையா?,get_physical_card,Neutral,Low
+1253,"If I need a PIN for my card, where is it located?","எனது அட்டைக்கு ஒரு பின் இலக்கம் தேவைப்பட்டால், அது எங்கே இருக்கும்?",get_physical_card,Neutral,Low
+1254,what is my card PIN,எனது அட்டைப் பின் இலக்கம் என்ன?,get_physical_card,Neutral,Low
+1255,And what about the Card's PIN?,அட்டையின் பின் இலக்கம் பற்றி என்ன?,get_physical_card,Neutral,Low
+1256,About this card PIN?,இந்த அட்டைப் பின் இலக்கம் பற்றி?,get_physical_card,Neutral,Low
+1257,I received my card but not my PIN.,"நான் எனது அட்டையைப் பெற்றேன், ஆனால் எனது பின் இலக்கத்தைப் பெறவில்லை.",get_physical_card,Neutral,Low
+1258,Why can't I see my PIN?,என்னால் ஏன் எனது பின் இலக்கத்தைப் பார்க்க முடியாது?,get_physical_card,Neutral,Low
+1259,what is the process for setting up a pin,பின் இலக்கத்தை அமைப்பதற்கான வழிமுறை என்ன?,get_physical_card,Neutral,Low
+1260,Does my PIN come with my card?,எனது பின் இலக்கம் எனது அட்டையுடன் வருகிறதா?,get_physical_card,Neutral,Low
+1261,Where can I find the card PIN?,அட்டையின் பின் இலக்கத்தை நான் எங்கே காணலாம்?,get_physical_card,Neutral,Low
+1262,Why isn't my PIN available yet?,எனது பின் இலக்கம் இன்னும் ஏன் கிடைக்கவில்லை?,get_physical_card,Neutral,Low
+1263,Is my PIN located on my account somewhere?,எனது பின் இலக்கம் எனது கணக்கில் எங்காவது உள்ளதா?,get_physical_card,Neutral,Low
+1264,"Please help in finding my card PIN, thank you!","எனது அட்டையின் பின் இலக்கத்தைக் கண்டறிய தயவுசெய்து உதவுங்கள், நன்றி!",get_physical_card,Neutral,Low
+1265,Where is my PIN number located?,எனது பின் இலக்கம் எங்கே உள்ளது?,get_physical_card,Neutral,Low
+1266,I still don't have my pin.,எனக்கு இன்னும் எனது பின் இலக்கம் கிடைக்கவில்லை.,get_physical_card,Neutral,Low
+1267,So what about the card PIN?,அப்படியென்றால் அட்டையின் பின் இலக்கம் பற்றி என்ன?,get_physical_card,Neutral,Low
+1268,I cannot locate the card PIN.,என்னால் அட்டையின் பின் இலக்கத்தைக் கண்டறிய முடியவில்லை.,get_physical_card,Neutral,Low
+1269,I need my PIN,எனக்கு எனது பின் இலக்கம் தேவை.,get_physical_card,Neutral,Low
+1270,Where can I find my PIN?,எனது பின் இலக்கத்தை நான் எங்கே காணலாம்?,get_physical_card,Neutral,Low
+1271,When do I receive my PIN,எனது பின் இலக்கத்தை நான் எப்போது பெறுவேன்?,get_physical_card,Neutral,Low
+1272,Help me find my card pin!,எனது அட்டையின் பின் இலக்கத்தைக் கண்டறிய எனக்கு உதவுங்கள்!,get_physical_card,Neutral,Low
+1273,Is PIN delivered separately?,பின் இலக்கம் தனியாக விநியோகிக்கப்படுகிறதா?,get_physical_card,Neutral,Low
+1274,I can not find my card pin.,எனது அட்டையின் பின் இலக்கத்தை என்னால் கண்டறிய முடியவில்லை.,get_physical_card,Neutral,Low
+1275,What do I need to do for a PIN?,பின் இலக்கத்தைப் பெற நான் என்ன செய்ய வேண்டும்?,get_physical_card,Neutral,Low
+1276,Why can't I find my PIN?,எனது பின் இலக்கத்தை என்னால் ஏன் கண்டறிய முடியவில்லை?,get_physical_card,Neutral,Low
+1277,Where is the card PIN?,அட்டையின் பின் இலக்கம் எங்கே உள்ளது?,get_physical_card,Neutral,Low
+1278,What is my card's PIN?,எனது அட்டையின் பின் இலக்கம் என்ன?,get_physical_card,Neutral,Low
+1279,where can user find pin?,பயனர் பின் இலக்கத்தை எங்கே காணலாம்?,get_physical_card,Neutral,Low
+1280,I like to Mastercard rather than Visa.,விசா அட்டையை விட எனக்கு மாஸ்டர்கார்ட் அட்டையே பிடிக்கும்.,visa_or_mastercard,Neutral,Low
+1281,Do I qualify for a visa card?,நான் விசா அட்டைக்கு தகுதியானவரா?,visa_or_mastercard,Neutral,Low
+1282,How do I get a visa card?,நான் எவ்வாறு விசா அட்டையைப் பெறுவது?,visa_or_mastercard,Neutral,Low
+1283,Do you guys accept Visa or Mastercard?,நீங்கள் விசா அல்லது மாஸ்டர்கார்ட் அட்டைகளை ஏற்றுக்கொள்கிறீர்களா?,visa_or_mastercard,Neutral,Low
+1284,Are both Visa and Mastercard accepted?,விசா மற்றும் மாஸ்டர்கார்ட் ஆகிய இரண்டும் ஏற்றுக்கொள்ளப்படுமா?,visa_or_mastercard,Neutral,Low
+1285,Do you guys accept mastercard or visa?,நீங்கள் மாஸ்டர்கார்ட் அல்லது விசா அட்டைகளை ஏற்றுக்கொள்கிறீர்களா?,visa_or_mastercard,Neutral,Low
+1286,Are both Visa and Mastercard offered?,விசா மற்றும் மாஸ்டர்கார்ட் ஆகிய இரண்டும் வழங்கப்படுகின்றனவா?,visa_or_mastercard,Neutral,Low
+1287,Can you give me a visa?,எனக்கு ஒரு விசா அட்டை தர முடியுமா?,visa_or_mastercard,Neutral,Low
+1288,How to decide if I get a Visa or Mastercard?,எனக்கு விசா அல்லது மாஸ்டர்கார்ட் அட்டை கிடைக்குமா என்பதை எவ்வாறு தீர்மானிப்பது?,visa_or_mastercard,Neutral,Low
+1289,Can I get a mastercard?,எனக்கு ஒரு மாஸ்டர்கார்ட் அட்டை கிடைக்கலாமா?,visa_or_mastercard,Neutral,Low
 1290,What steps must I follow to get a Visa credit card?,ஒரு விசா கடன் அட்டையைப் பெறுவதற்கு நான் என்ன வழிமுறைகளைப் பின்பற்ற வேண்டும்?,visa_or_mastercard,Neutral,Low
 1291,I'd rather get a Mastercard,நான் மாஸ்டர்கார்ட் ஒன்றைப் பெறவே விரும்புகிறேன்.,visa_or_mastercard,Neutral,Low
 1292,Do I get a choice between Visa and Mastercard?,விசா மற்றும் மாஸ்டர்கார்ட் ஆகியவற்றிற்கு இடையே எனக்குத் தெரிவு செய்ய வாய்ப்பு கிடைக்குமா?,visa_or_mastercard,Neutral,Low
@@ -1501,13 +1501,13 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 1497,There is a suspicious direct debit payment.,சந்தேகத்திற்கிடமான நேரடிப் பற்றுச் செலுத்துகை ஒன்று உள்ளது.,direct_debit_payment_not_recognised,Neutral,High
 1498,There is a transaction from my account that I don't recognize can you trace back the information so I can make sure it's something I did or not?,"எனது கணக்கில் இருந்து எனக்கு அடையாளம் தெரியாத ஒரு பரிவர்த்தனை நடந்துள்ளது, அது நான் செய்ததுதானா இல்லையா என்பதை உறுதிப்படுத்திக் கொள்ள அதன் தகவல்களைக் கண்டறிந்து தர முடியுமா?",direct_debit_payment_not_recognised,Neutral,High
 1499,"A couple weeks ago some money was deducted from my account by some seller that I don't remember. I'm pretty sure I didn't do that, but is it possible to trace back who that is just to make sure?","சில வாரங்களுக்கு முன்பு எனக்கு நினைவில் இல்லாத ஒரு விற்பனையாளரால் எனது கணக்கில் இருந்து சிறிது பணம் கழிக்கப்பட்டது. நான் அதைச் செய்யவில்லை என்பதில் எனக்கு உறுதியாகத் தெரியும், ஆனால் அது யார் என்பதை உறுதிப்படுத்திக் கொள்ள அதைக் கண்டறிய முடியுமா?",direct_debit_payment_not_recognised,Neutral,High
-1500,I found a charge for a direct debit that was not made by me.,நான் செய்யாத ஒரு நேரடிப் பற்றுக்கான (direct debit) கட்டணத்தைக் கண்டறிந்துள்ளேன்.,direct_debit_payment_not_recognised,Neutral,High
+1500,I found a charge for a direct debit that was not made by me.,நான் செய்யாத ஒரு நேரடிப் பற்றுக்கான கட்டணத்தைக் கண்டறிந்துள்ளேன்.,direct_debit_payment_not_recognised,Neutral,High
 1501,"I am seeing a weird payment showing up that I know I did not make, how can I get it cancelled?","நான் செய்யவில்லை என்று எனக்குத் தெரிந்த ஒரு விசித்திரமான கொடுப்பனவு காட்டப்படுவதை நான் காண்கிறேன், அதை நான் எவ்வாறு ரத்து செய்வது?",direct_debit_payment_not_recognised,Neutral,High
 1502,This Direct Debit payment may not be right.,இந்த நேரடிப் பற்றுக் கொடுப்பனவு தவறாக இருக்கலாம்.,direct_debit_payment_not_recognised,Neutral,High
 1503,why does the app show a direct debit payment that I did not authorize,நான் அங்கீகரிக்காத ஒரு நேரடிப் பற்றுக் கொடுப்பனவை செயலி ஏன் காட்டுகிறது?,direct_debit_payment_not_recognised,Neutral,High
 1504,Can I dispute a payment even if I notice it several weeks after it was made?,"ஒரு கொடுப்பனவு செய்யப்பட்டு பல வாரங்களுக்குப் பிறகு நான் அதைக் கவனித்தாலும், அது குறித்து என்னால் முறையீடு செய்ய முடியுமா?",direct_debit_payment_not_recognised,Neutral,High
 1505,It seems there is an incorrect listing of a direct debit payment on my app that I did not make,நான் செய்யாத ஒரு நேரடிப் பற்றுக் கொடுப்பனவு எனது செயலியில் தவறாகப் பட்டியலிடப்பட்டிருப்பது போல் தெரிகிறது.,direct_debit_payment_not_recognised,Neutral,High
-1506,I don't think I made this charge on my debit statement.,எனது பற்றறிக்கையில் (debit statement) உள்ள இந்தக் கட்டணத்தை நான் செலுத்தினேன் என்று நான் நினைக்கவில்லை.,direct_debit_payment_not_recognised,Neutral,High
+1506,I don't think I made this charge on my debit statement.,எனது பற்றறிக்கையில் உள்ள இந்தக் கட்டணத்தை நான் செலுத்தினேன் என்று நான் நினைக்கவில்லை.,direct_debit_payment_not_recognised,Neutral,High
 1507,I have a direct debit charge that I do not recognize,எனக்குத் தெரியாத ஒரு நேரடிப் பற்றுக் கட்டணம் எனது கணக்கில் உள்ளது.,direct_debit_payment_not_recognised,Neutral,High
 1508,I didn't make this direct debit transaction,இந்த நேரடிப் பற்றுப் பரிவர்த்தனையை நான் செய்யவில்லை.,direct_debit_payment_not_recognised,Neutral,High
 1509,There's a direct debit on my account that I didn't authorize,எனது கணக்கில் நான் அங்கீகரிக்காத ஒரு நேரடிப் பற்று உள்ளது.,direct_debit_payment_not_recognised,Neutral,High
@@ -1515,22 +1515,22 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 1511,I don't recognize a debit payment that was made and would like to find out about the payment.,"செய்யப்பட்ட ஒரு பற்றுக் கொடுப்பனவை என்னால் அடையாளம் காண முடியவில்லை, அக்கொடுப்பனவைப் பற்றி நான் அறிய விரும்புகிறேன்.",direct_debit_payment_not_recognised,Neutral,High
 1512,I am concerned about the security in my account and would like to make a dispute.,"எனது கணக்கின் பாதுகாப்பு குறித்து நான் கவலைப்படுகிறேன், அத்துடன் இது தொடர்பாக ஒரு முறையீட்டைச் செய்ய விரும்புகிறேன்.",direct_debit_payment_not_recognised,Neutral,High
 1513,Why is there a direct debit I didn't make showing in the app?,நான் செய்யாத ஒரு நேரடிப் பற்று ஏன் செயலியில் காட்டப்படுகிறது?,direct_debit_payment_not_recognised,Neutral,High
-1514,There is a direct debit I do not recognise in my statement,எனது கணக்கறிக்கையில் (statement) எனக்குத் தெரியாத ஒரு நேரடிப் பற்று உள்ளது.,direct_debit_payment_not_recognised,Neutral,High
+1514,There is a direct debit I do not recognise in my statement,எனது கணக்கறிக்கையில் எனக்குத் தெரியாத ஒரு நேரடிப் பற்று உள்ளது.,direct_debit_payment_not_recognised,Neutral,High
 1515,"I have a direct debit transaction I have not set up, but would like to .","நான் அமைக்காத ஒரு நேரடிப் பற்றுப் பரிவர்த்தனை உள்ளது, ஆனால் அதை நான் அமைக்க விரும்புகிறேன்.",direct_debit_payment_not_recognised,Neutral,High
 1516,Someone has taken my money and I don't know who,"யாரோ எனது பணத்தை எடுத்துள்ளார்கள், அது யார் என்று எனக்குத் தெரியவில்லை.",direct_debit_payment_not_recognised,Negative,High
 1517,I was charged on my account that shouldn't be there.,எனது கணக்கில் இருக்கக் கூடாத ஒரு கட்டணம் வசூலிக்கப்பட்டுள்ளது.,direct_debit_payment_not_recognised,Neutral,High
 1518,There's a direct debit I wish to dispute,நான் முறையீடு செய்ய விரும்பும் ஒரு நேரடிப் பற்று உள்ளது.,direct_debit_payment_not_recognised,Neutral,High
 1519,Why was my account deducted from a seller when I didn't approve of it?,"நான் அங்கீகரிக்காதபோது, ஒரு விற்பனையாளரால் எனது கணக்கிலிருந்து பணம் ஏன் கழிக்கப்பட்டது?",direct_debit_payment_not_recognised,Neutral,High
-1520,What do I do if I forget my passcode?  Because I did.,எனது கடவுக்குறியீட்டை (passcode) நான் மறந்துவிட்டால் நான் என்ன செய்வது? ஏனெனில் நான் அதை மறந்துவிட்டேன்.,passcode_forgotten,Neutral,Medium
-1521,I can't find my password,எனது கடவுச்சொல்லை (password) என்னால் கண்டுபிடிக்க முடியவில்லை.,passcode_forgotten,Neutral,Medium
-1522,How do I retrieve my passcode?,எனது கடவுக்குறியீட்டை (passcode) நான் எவ்வாறு மீட்டெடுப்பது?,passcode_forgotten,Neutral,Medium
-1523,My passcode doesn't seem to be working,எனது கடவுக்குறியீடு (passcode) வேலை செய்யவில்லை போல் தெரிகிறது.,passcode_forgotten,Neutral,Medium
-1524,I lost my password,நான் எனது கடவுச்சொல்லை (password) இழந்துவிட்டேன்.,passcode_forgotten,Neutral,Medium
-1525,My password isn't being accepted and I need to reset it.,"எனது கடவுச்சொல் (password) ஏற்றுக்கொள்ளப்படவில்லை, நான் அதை மீண்டும் அமைக்க வேண்டும்.",passcode_forgotten,Neutral,Medium
-1526,Something is wrong with my password.,எனது கடவுச்சொல்லில் (password) ஏதோ தவறு உள்ளது.,passcode_forgotten,Neutral,Medium
-1527,Something is wrong with my passcode,எனது கடவுக்குறியீட்டில் (passcode) ஏதோ தவறு உள்ளது.,passcode_forgotten,Neutral,Medium
-1528,"How do I reset a forgotten passcode, please?","தயவுசெய்து கூறவும், மறந்த கடவுக்குறியீட்டை (passcode) நான் எவ்வாறு மீண்டும் அமைப்பது?",passcode_forgotten,Neutral,Medium
-1529,I can't recall my passcode and need to reset it.,"எனது கடவுக்குறியீட்டை (passcode) என்னால் நினைவுகூர முடியவில்லை, நான் அதை மீண்டும் அமைக்க வேண்டும்.",passcode_forgotten,Neutral,Medium
+1520,What do I do if I forget my passcode?  Because I did.,எனது கடவுக்குறியீட்டை நான் மறந்துவிட்டால் நான் என்ன செய்வது? ஏனெனில் நான் அதை மறந்துவிட்டேன்.,passcode_forgotten,Neutral,Medium
+1521,I can't find my password,எனது கடவுச்சொல்லை என்னால் கண்டுபிடிக்க முடியவில்லை.,passcode_forgotten,Neutral,Medium
+1522,How do I retrieve my passcode?,எனது கடவுக்குறியீட்டை நான் எவ்வாறு மீட்டெடுப்பது?,passcode_forgotten,Neutral,Medium
+1523,My passcode doesn't seem to be working,எனது கடவுக்குறியீடு வேலை செய்யவில்லை போல் தெரிகிறது.,passcode_forgotten,Neutral,Medium
+1524,I lost my password,நான் எனது கடவுச்சொல்லை இழந்துவிட்டேன்.,passcode_forgotten,Neutral,Medium
+1525,My password isn't being accepted and I need to reset it.,"எனது கடவுச்சொல் ஏற்றுக்கொள்ளப்படவில்லை, நான் அதை மீண்டும் அமைக்க வேண்டும்.",passcode_forgotten,Neutral,Medium
+1526,Something is wrong with my password.,எனது கடவுச்சொல்லில் ஏதோ தவறு உள்ளது.,passcode_forgotten,Neutral,Medium
+1527,Something is wrong with my passcode,எனது கடவுக்குறியீட்டில் ஏதோ தவறு உள்ளது.,passcode_forgotten,Neutral,Medium
+1528,"How do I reset a forgotten passcode, please?","தயவுசெய்து கூறவும், மறந்த கடவுக்குறியீட்டை நான் எவ்வாறு மீண்டும் அமைப்பது?",passcode_forgotten,Neutral,Medium
+1529,I can't recall my passcode and need to reset it.,"எனது கடவுக்குறியீட்டை என்னால் நினைவுகூர முடியவில்லை, நான் அதை மீண்டும் அமைக்க வேண்டும்.",passcode_forgotten,Neutral,Medium
 1530,Can I be given a new passcode?,எனக்கு ஒரு புதிய கடவுச்சொல் தரப்பட முடியுமா?,passcode_forgotten,Neutral,Medium
 1531,I do not know my passcode.,எனக்கு எனது கடவுச்சொல் தெரியாது.,passcode_forgotten,Neutral,Medium
 1532,I don't remember my code to get into the app.,செயலிக்குள் நுழைவதற்கான எனது குறியீடு எனக்கு நினைவில் இல்லை.,passcode_forgotten,Neutral,Medium
@@ -1561,36 +1561,36 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 1557,I don't have my access code for the app.,செயலிக்கான எனது அணுகல் குறியீடு என்னிடம் இல்லை.,passcode_forgotten,Neutral,Medium
 1558,Can you tell me what to do to reset my passcode?,எனது கடவுச்சொல்லை மீளமைக்க என்ன செய்ய வேண்டும் என்று எனக்குச் சொல்ல முடியுமா?,passcode_forgotten,Neutral,Medium
 1559,What is the code I need to get into the app?,செயலிக்குள் நுழைவதற்கு எனக்குத் தேவையான குறியீடு எது?,passcode_forgotten,Neutral,Medium
-1560,Can you tell me why you won't let me get my own money out of the money machine? I know I used the right PIN.,ஏடிஎம் (ATM) இயந்திரத்திலிருந்து எனது சொந்தப் பணத்தை எடுக்க நீங்கள் ஏன் அனுமதிக்கவில்லை என்று எனக்குச் சொல்ல முடியுமா? நான் சரியான பின் (PIN) இலக்கத்தைப் பயன்படுத்தினேன் என்று எனக்குத் தெரியும்.,declined_cash_withdrawal,Neutral,Medium
+1560,Can you tell me why you won't let me get my own money out of the money machine? I know I used the right PIN.,ஏடிஎம் இயந்திரத்திலிருந்து எனது சொந்தப் பணத்தை எடுக்க நீங்கள் ஏன் அனுமதிக்கவில்லை என்று எனக்குச் சொல்ல முடியுமா? நான் சரியான பின் இலக்கத்தைப் பயன்படுத்தினேன் என்று எனக்குத் தெரியும்.,declined_cash_withdrawal,Neutral,Medium
 1561,My withdrawal was cancelled.,எனது பணம் எடுத்தல் ரத்து செய்யப்பட்டது.,declined_cash_withdrawal,Neutral,Medium
-1562,This is very frustrating. I can't get my card to work on any ATM I try and I've tried 3 of them so far. What's going on? Can you please fix this issue immediately?,"இது மிகவும் ஏமாற்றமளிக்கிறது. நான் முயற்சிக்கும் எந்த ஏடிஎம்மிலும் (ATM) எனது கார்டைப் பயன்படுத்த முடியவில்லை, இதுவரை நான் 3 ஏடிஎம்களில் முயற்சி செய்துவிட்டேன். என்ன நடக்கிறது? தயவுசெய்து இந்தச் சிக்கலை உடனடியாகச் சரிசெய்ய முடியுமா?",declined_cash_withdrawal,Negative,High
-1563,The ATM did not allow me to withdraw,ஏடிஎம் (ATM) என்னை பணம் எடுக்க அனுமதிக்கவில்லை.,declined_cash_withdrawal,Neutral,Medium
-1564,Why was my ATM transaction cancelled?,எனது ஏடிஎம் (ATM) பரிவர்த்தனை ஏன் ரத்து செய்யப்பட்டது?,declined_cash_withdrawal,Neutral,Medium
-1565,The ATM keeps declining my card. I tried at a couple different ATMs. Can you tell me if there's a problem with my account?,ஏடிஎம் (ATM) எனது கார்டை தொடர்ந்து நிராகரித்து வருகிறது. நான் இரண்டு வெவ்வேறு ஏடிஎம்களில் முயற்சி செய்தேன். எனது கணக்கில் ஏதேனும் பிரச்சினை உள்ளதா என்று எனக்குச் சொல்ல முடியுமா?,declined_cash_withdrawal,Neutral,Medium
-1566,I was at the ATM trying to made a withdraw and I was declined.,நான் ஏடிஎம்மில் (ATM) பணம் எடுக்க முயன்றபோது நிராகரிக்கப்பட்டேன்.,declined_cash_withdrawal,Neutral,Medium
-1567,The ATM didn't let me get any cash,ஏடிஎம் (ATM) எனக்கு பணம் எடுக்க அனுமதிக்கவில்லை.,declined_cash_withdrawal,Neutral,Medium
+1562,This is very frustrating. I can't get my card to work on any ATM I try and I've tried 3 of them so far. What's going on? Can you please fix this issue immediately?,"இது மிகவும் ஏமாற்றமளிக்கிறது. நான் முயற்சிக்கும் எந்த ஏடிஎம்மிலும் எனது கார்டைப் பயன்படுத்த முடியவில்லை, இதுவரை நான் 3 ஏடிஎம்களில் முயற்சி செய்துவிட்டேன். என்ன நடக்கிறது? தயவுசெய்து இந்தச் சிக்கலை உடனடியாகச் சரிசெய்ய முடியுமா?",declined_cash_withdrawal,Negative,High
+1563,The ATM did not allow me to withdraw,ஏடிஎம் என்னை பணம் எடுக்க அனுமதிக்கவில்லை.,declined_cash_withdrawal,Neutral,Medium
+1564,Why was my ATM transaction cancelled?,எனது ஏடிஎம் பரிவர்த்தனை ஏன் ரத்து செய்யப்பட்டது?,declined_cash_withdrawal,Neutral,Medium
+1565,The ATM keeps declining my card. I tried at a couple different ATMs. Can you tell me if there's a problem with my account?,ஏடிஎம் எனது கார்டை தொடர்ந்து நிராகரித்து வருகிறது. நான் இரண்டு வெவ்வேறு ஏடிஎம்களில் முயற்சி செய்தேன். எனது கணக்கில் ஏதேனும் பிரச்சினை உள்ளதா என்று எனக்குச் சொல்ல முடியுமா?,declined_cash_withdrawal,Neutral,Medium
+1566,I was at the ATM trying to made a withdraw and I was declined.,நான் ஏடிஎம்மில் பணம் எடுக்க முயன்றபோது நிராகரிக்கப்பட்டேன்.,declined_cash_withdrawal,Neutral,Medium
+1567,The ATM didn't let me get any cash,ஏடிஎம் எனக்கு பணம் எடுக்க அனுமதிக்கவில்லை.,declined_cash_withdrawal,Neutral,Medium
 1568,I want to know why I have been unable to withdrawn funds.,என்னால் ஏன் பணத்தை எடுக்க முடியவில்லை என்பதை நான் அறிய விரும்புகிறேன்.,declined_cash_withdrawal,Neutral,Medium
-1569,"I need your help to check my account, please! My card keeps being declined at the ATM, and I've already tried two different ones!","தயவுசெய்து எனது கணக்கைச் சரிபார்க்க உங்கள் உதவி தேவை! ஏடிஎம்மில் (ATM) எனது கார்டு தொடர்ந்து நிராகரிக்கப்படுகிறது, நான் ஏற்கனவே இரண்டு வெவ்வேறு ஏடிஎம்களில் முயற்சி செய்துவிட்டேன்!",declined_cash_withdrawal,Neutral,Medium
+1569,"I need your help to check my account, please! My card keeps being declined at the ATM, and I've already tried two different ones!","தயவுசெய்து எனது கணக்கைச் சரிபார்க்க உங்கள் உதவி தேவை! ஏடிஎம்மில் எனது கார்டு தொடர்ந்து நிராகரிக்கப்படுகிறது, நான் ஏற்கனவே இரண்டு வெவ்வேறு ஏடிஎம்களில் முயற்சி செய்துவிட்டேன்!",declined_cash_withdrawal,Neutral,Medium
 1570,"Hi, My card withdrawal was declined this morning. It was working fine till yesterday. Please check and inform me.","வணக்கம், இன்று காலை எனது கார்டு மூலம் பணம் எடுத்தல் நிராகரிக்கப்பட்டது. நேற்று வரை அது நன்றாக வேலை செய்தது. தயவுசெய்து சரிபார்த்து எனக்குத் தெரிவிக்கவும்.",declined_cash_withdrawal,Neutral,Medium
-1571,"Hi, I was trying to use my card but it was declining by ATM. I have cross checked with two different ATMs but i was facing the same issue. Could you please check my account.","வணக்கம், நான் எனது கார்டைப் பயன்படுத்த முயன்றேன், ஆனால் ஏடிஎம் (ATM) அதை நிராகரித்தது. நான் இரண்டு வெவ்வேறு ஏடிஎம்களில் சரிபார்த்தேன், ஆனால் அதே பிரச்சினையை எதிர்கொண்டேன். தயவுசெய்து எனது கணக்கைச் சரிபார்க்க முடியுமா?",declined_cash_withdrawal,Neutral,Medium
+1571,"Hi, I was trying to use my card but it was declining by ATM. I have cross checked with two different ATMs but i was facing the same issue. Could you please check my account.","வணக்கம், நான் எனது கார்டைப் பயன்படுத்த முயன்றேன், ஆனால் ஏடிஎம் அதை நிராகரித்தது. நான் இரண்டு வெவ்வேறு ஏடிஎம்களில் சரிபார்த்தேன், ஆனால் அதே பிரச்சினையை எதிர்கொண்டேன். தயவுசெய்து எனது கணக்கைச் சரிபார்க்க முடியுமா?",declined_cash_withdrawal,Neutral,Medium
 1572,I tried to make a cash withdrawal and it was declined. Why did this happen?,"நான் பணம் எடுக்க முயன்றேன், ஆனால் அது நிராகரிக்கப்பட்டது. இது ஏன் நடந்தது?",declined_cash_withdrawal,Neutral,Medium
-1573,I can't get money out of the ATM,என்னால் ஏடிஎம்மில் (ATM) இருந்து பணம் எடுக்க முடியவில்லை.,declined_cash_withdrawal,Neutral,Medium
-1574,The ATM is declining my card. I tried at two different ATMs. Can you tell me if there's anything wrong with my account?,ஏடிஎம் (ATM) எனது கார்டை நிராகரிக்கிறது. நான் இரண்டு வெவ்வேறு ஏடிஎம்களில் முயற்சி செய்தேன். எனது கணக்கில் ஏதேனும் தவறு உள்ளதா என்று எனக்குச் சொல்ல முடியுமா?,declined_cash_withdrawal,Neutral,Medium
+1573,I can't get money out of the ATM,என்னால் ஏடிஎம்மில் இருந்து பணம் எடுக்க முடியவில்லை.,declined_cash_withdrawal,Neutral,Medium
+1574,The ATM is declining my card. I tried at two different ATMs. Can you tell me if there's anything wrong with my account?,ஏடிஎம் எனது கார்டை நிராகரிக்கிறது. நான் இரண்டு வெவ்வேறு ஏடிஎம்களில் முயற்சி செய்தேன். எனது கணக்கில் ஏதேனும் தவறு உள்ளதா என்று எனக்குச் சொல்ல முடியுமா?,declined_cash_withdrawal,Neutral,Medium
 1575,The withdrawal was declined I am unsure as to why this happened?,"பணம் எடுத்தல் நிராகரிக்கப்பட்டது, இது ஏன் நடந்தது என்று எனக்குத் தெரியவில்லை?",declined_cash_withdrawal,Neutral,Medium
 1576,I was declined when I tried to get cash.,நான் பணம் எடுக்க முயன்றபோது நிராகரிக்கப்பட்டேன்.,declined_cash_withdrawal,Neutral,Medium
-1577,Why was I declined at the ATM today when I was trying to make a withdraw?,இன்று நான் ஏடிஎம்மில் (ATM) பணம் எடுக்க முயன்றபோது ஏன் நிராகரிக்கப்பட்டேன்?,declined_cash_withdrawal,Neutral,Medium
-1578,What are some reasons that would cause ATM machines to decline my card? It has happened to me multiple times!,ஏடிஎம் (ATM) இயந்திரங்கள் எனது கார்டை நிராகரிக்க என்ன காரணங்கள் இருக்கலாம்? இது எனக்கு பல முறை நடந்துள்ளது!,declined_cash_withdrawal,Neutral,Medium
-1579,Why did the ATM machine fail to give me a cash withdrawal?,ஏடிஎம் (ATM) இயந்திரம் எனக்கு ஏன் பணம் தரத் தவறியது?,declined_cash_withdrawal,Neutral,Medium
-1580,My ATM transaction was unsuccessful.,எனது ஏடிஎம் (ATM) பரிவர்த்தனை தோல்வியடைந்தது.,declined_cash_withdrawal,Neutral,Medium
+1577,Why was I declined at the ATM today when I was trying to make a withdraw?,இன்று நான் ஏடிஎம்மில் பணம் எடுக்க முயன்றபோது ஏன் நிராகரிக்கப்பட்டேன்?,declined_cash_withdrawal,Neutral,Medium
+1578,What are some reasons that would cause ATM machines to decline my card? It has happened to me multiple times!,ஏடிஎம் இயந்திரங்கள் எனது கார்டை நிராகரிக்க என்ன காரணங்கள் இருக்கலாம்? இது எனக்கு பல முறை நடந்துள்ளது!,declined_cash_withdrawal,Neutral,Medium
+1579,Why did the ATM machine fail to give me a cash withdrawal?,ஏடிஎம் இயந்திரம் எனக்கு ஏன் பணம் தரத் தவறியது?,declined_cash_withdrawal,Neutral,Medium
+1580,My ATM transaction was unsuccessful.,எனது ஏடிஎம் பரிவர்த்தனை தோல்வியடைந்தது.,declined_cash_withdrawal,Neutral,Medium
 1581,I attempted to get cash but was declined.,"நான் பணம் எடுக்க முயன்றேன், ஆனால் நிராகரிக்கப்பட்டது.",declined_cash_withdrawal,Neutral,Medium
 1582,I tried to withdraw money but I was declined!,"நான் பணம் எடுக்க முயன்றேன், ஆனால் நான் நிராகரிக்கப்பட்டேன்!",declined_cash_withdrawal,Neutral,Medium
-1583,How come I can't take money out of the ATM?,என்னால் எப்படி ஏடிஎம்மில் (ATM) இருந்து பணம் எடுக்க முடியாமல் போகும்?,declined_cash_withdrawal,Neutral,Medium
-1584,The ATM keeps declining my card. I tried at two different ATMs. Can you tell me if there's an issue with my account?,ஏடிஎம் (ATM) எனது கார்டை தொடர்ந்து நிராகரித்து வருகிறது. நான் இரண்டு வெவ்வேறு ஏடிஎம்களில் முயற்சி செய்தேன். எனது கணக்கில் ஏதேனும் பிரச்சினை உள்ளதா என்று எனக்குச் சொல்ல முடியுமா?,declined_cash_withdrawal,Neutral,Medium
+1583,How come I can't take money out of the ATM?,என்னால் எப்படி ஏடிஎம்மில் இருந்து பணம் எடுக்க முடியாமல் போகும்?,declined_cash_withdrawal,Neutral,Medium
+1584,The ATM keeps declining my card. I tried at two different ATMs. Can you tell me if there's an issue with my account?,ஏடிஎம் எனது கார்டை தொடர்ந்து நிராகரித்து வருகிறது. நான் இரண்டு வெவ்வேறு ஏடிஎம்களில் முயற்சி செய்தேன். எனது கணக்கில் ஏதேனும் பிரச்சினை உள்ளதா என்று எனக்குச் சொல்ல முடியுமா?,declined_cash_withdrawal,Neutral,Medium
 1585,Why was my cash withdrawal declined?,எனது பணம் எடுத்தல் ஏன் நிராகரிக்கப்பட்டது?,declined_cash_withdrawal,Neutral,Medium
 1586,Why could I not get cash?,என்னால் ஏன் பணம் பெற முடியவில்லை?,declined_cash_withdrawal,Neutral,Medium
-1587,why couldn't I get cash in the ATM?,ஏடிஎம்மில் (ATM) என்னால் ஏன் பணம் பெற முடியவில்லை?,declined_cash_withdrawal,Neutral,Medium
+1587,why couldn't I get cash in the ATM?,ஏடிஎம்மில் என்னால் ஏன் பணம் பெற முடியவில்லை?,declined_cash_withdrawal,Neutral,Medium
 1588,Why can't I get cash?,என்னால் ஏன் பணம் பெற முடியாது?,declined_cash_withdrawal,Neutral,Medium
-1589,Why didn't the ATM give me my money?,ஏடிஎம் (ATM) ஏன் எனக்கு எனது பணத்தைத் தரவில்லை?,declined_cash_withdrawal,Neutral,Medium
+1589,Why didn't the ATM give me my money?,ஏடிஎம் ஏன் எனக்கு எனது பணத்தைத் தரவில்லை?,declined_cash_withdrawal,Neutral,Medium
 1590,i tried to withdraw money from an atm and i was declined on front of my friends. Why did this happen?,"நான் ஒரு ஏடிஎம்மில் இருந்து பணம் எடுக்க முயன்றேன், ஆனால் எனது நண்பர்களுக்கு முன்னால் அது நிராகரிக்கப்பட்டது. இது ஏன் நடந்தது?",declined_cash_withdrawal,Neutral,Medium
 1591,The ATM isn't giving out any money.,ஏடிஎம் பணம் எதுவும் தரவில்லை.,declined_cash_withdrawal,Neutral,Medium
 1592,Why was I declined getting cash?,நான் பணம் எடுப்பது ஏன் நிராகரிக்கப்பட்டது?,declined_cash_withdrawal,Neutral,Medium
@@ -1759,7 +1759,7 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 1755,I tried to buy something online yesterday but it wouldn't stop saying declined. Tried again today but same thing happened. What's Broken?,"நான் நேற்று இணையத்தில் ஏதோ வாங்க முயன்றேன், ஆனால் அது தொடர்ந்து நிராகரிக்கப்பட்டது என்றே காட்டியது. இன்றும் முயன்றேன், ஆனால் அதேதான் நடந்தது. என்ன பிரச்சினை?",declined_transfer,Negative,Medium
 1756,My card is being declined online. Could you tell me what might be broken or wrong with the account?,எனது அட்டை இணையத்தில் நிராகரிக்கப்படுகிறது. கணக்கில் என்ன பிரச்சினை அல்லது தவறு என்று கூற முடியுமா?,declined_transfer,Neutral,Medium
 1757,Are there any restrictions causing my transfer to be declined?,எனது பணப்பரிமாற்றம் நிராகரிக்கப்படுவதற்கு ஏதேனும் கட்டுப்பாடுகள் காரணமா?,declined_transfer,Neutral,Medium
-1758,"I was attempting to purchase a golf club off eBay yesterday, but my credit card was declined. I tried multiple times, and again this morning. Can you check into my card please?","நான் நேற்று eBay இல் ஒரு கோல்ஃப் கிளப் வாங்க முயன்றேன், ஆனால் எனது கடன் அட்டை நிராகரிக்கப்பட்டது. நான் பலமுறை முயன்றேன், இன்று காலையும் முயன்றேன். தயவுசெய்து எனது அட்டையைச் சரிபார்க்க முடியுமா?",declined_transfer,Negative,Medium
+1758,"I was attempting to purchase a golf club off eBay yesterday, but my credit card was declined. I tried multiple times, and again this morning. Can you check into my card please?","நான் நேற்று ஈபேயில் ஒரு கோல்ஃப் கிளப் வாங்க முயன்றேன், ஆனால் எனது கடன் அட்டை நிராகரிக்கப்பட்டது. நான் பலமுறை முயன்றேன், இன்று காலையும் முயன்றேன். தயவுசெய்து எனது அட்டையைச் சரிபார்க்க முடியுமா?",declined_transfer,Negative,Medium
 1759,"I think my transfer was declined, but why?","எனது பணப்பரிமாற்றம் நிராகரிக்கப்பட்டுவிட்டது என்று நினைக்கிறேன், ஆனால் ஏன்?",declined_transfer,Neutral,Medium
 1760,The refund isn't showing up on my account.,எனது கணக்கில் திரும்பப் பெறப்பட்ட பணம் காட்டவில்லை.,Refund_not_showing_up,Neutral,Medium
 1761,My refund is missing from my statement.,எனது கணக்கு அறிக்கையில் திரும்பப் பெறப்பட்ட பணம் விடுபட்டுள்ளது.,Refund_not_showing_up,Neutral,Medium
@@ -1871,7 +1871,7 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 1867,Someone transferred money to me and it doesn't show,"யாரோ எனக்குப் பணம் அனுப்பியுள்ளனர், ஆனால் அது கணக்கில் காட்டவில்லை.",pending_transfer,Neutral,Low
 1868,How long does a transfer take to be confirmed?,ஒரு பணப்பரிமாற்றம் உறுதிப்படுத்தப்படுவதற்கு எவ்வளவு நேரம் எடுக்கும்?,pending_transfer,Neutral,Low
 1869,I made a transfer 12 hours ago. Why is it still listed as pending?,நான் 12 மணித்தியாலங்களுக்கு முன்பு ஒரு பணப்பரிமாற்றம் செய்தேன். அது ஏன் இன்னும் நிலுவையில் உள்ளதாகக் காட்டப்படுகிறது?,pending_transfer,Neutral,Low
-1870,"Why does my transfer say ""pending""?","எனது பணப்பரிமாற்றம் ஏன் ""pending"" (நிலுவையில்) என்று காட்டுகிறது?",pending_transfer,Neutral,Low
+1870,"Why does my transfer say ""pending""?","எனது பணப்பரிமாற்றம் ஏன் ""நிலுவையில்"" என்று காட்டுகிறது?",pending_transfer,Neutral,Low
 1871,How long can I expect a transfer to pend for?,ஒரு பணப்பரிமாற்றம் எவ்வளவு காலம் நிலுவையில் இருக்கும் என்று நான் எதிர்பார்க்கலாம்?,pending_transfer,Neutral,Low
 1872,For how long will my transfer be pending?,எனது பணப்பரிமாற்றம் எவ்வளவு காலத்திற்கு நிலுவையில் இருக்கும்?,pending_transfer,Neutral,Low
 1873,Transferring money in 2018 to another country shouldn't take this long. My transfer has been pending for too long. I verified my account details are correct.,2018 இல் வேறொரு நாட்டிற்குப் பணம் அனுப்புவதற்கு இவ்வளவு காலம் எடுக்கக்கூடாது. எனது பணப்பரிமாற்றம் மிக நீண்ட காலமாக நிலுவையில் உள்ளது. எனது கணக்கு விபரங்கள் சரியானவை என்பதை நான் சரிபார்த்துவிட்டேன்.,pending_transfer,Negative,Low
@@ -1994,7 +1994,7 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 1990,I see that I have been charged multiple times for the same transaction.,ஒரே கொடுக்கல்வாங்கலுக்கு என்னிடம் பல தடவைகள் பணம் அறவிடப்பட்டிருப்பதை நான் காண்கிறேன்.,transaction_charged_twice,Neutral,Medium
 1991,I was double charged,என்னிடம் இரண்டு முறை கட்டணம் அறவிடப்பட்டுள்ளது.,transaction_charged_twice,Neutral,Medium
 1992,I have multiple charges on the same transaction.,ஒரே கொடுக்கல்வாங்கலில் எனக்கு பல கட்டணங்கள் அறவிடப்பட்டுள்ளன.,transaction_charged_twice,Neutral,Medium
-1993,"Looks like my card payment was duplicated. I went to pay at the store earlier, got declined once,second time it works. App still stays pending for one of the payments. Can you please remove one of them as it's wrong and clearly was declined?","எனது அட்டை மூலமான கொடுப்பனவு இரண்டு முறை செய்யப்பட்டுள்ளது போல் தெரிகிறது. நான் முன்னர் கடையில் பணம் செலுத்தச் சென்றபோது, ஒரு முறை நிராகரிக்கப்பட்டு, இரண்டாவது முறை வேலை செய்தது. ஆனால் செயலி இன்னும் ஒரு கொடுப்பனவை நிலுவையில் (pending) காட்டுகிறது. அது தவறானது மற்றும் நிராகரிக்கப்பட்டது என்பதால் தயவுசெய்து அதை நீக்க முடியுமா?",transaction_charged_twice,Neutral,Medium
+1993,"Looks like my card payment was duplicated. I went to pay at the store earlier, got declined once,second time it works. App still stays pending for one of the payments. Can you please remove one of them as it's wrong and clearly was declined?","எனது அட்டை மூலமான கொடுப்பனவு இரண்டு முறை செய்யப்பட்டுள்ளது போல் தெரிகிறது. நான் முன்னர் கடையில் பணம் செலுத்தச் சென்றபோது, ஒரு முறை நிராகரிக்கப்பட்டு, இரண்டாவது முறை வேலை செய்தது. ஆனால் செயலி இன்னும் ஒரு கொடுப்பனவை நிலுவையில் காட்டுகிறது. அது தவறானது மற்றும் நிராகரிக்கப்பட்டது என்பதால் தயவுசெய்து அதை நீக்க முடியுமா?",transaction_charged_twice,Neutral,Medium
 1994,I have a transaction that shows several times,எனக்கு ஒரு கொடுக்கல்வாங்கல் பல முறை காட்டுகிறது.,transaction_charged_twice,Neutral,Medium
 1995,I recently got charged twice from a restaurant that I was at this week and I would like for one of those payments to be removed from my account.,"இந்த வாரம் நான் சென்ற ஒரு உணவகத்தில் இருந்து எனக்கு இரண்டு முறை கட்டணம் அறவிடப்பட்டுள்ளது, அந்த கொடுப்பனவுகளில் ஒன்றை எனது கணக்கிலிருந்து நீக்க விரும்புகிறேன்.",transaction_charged_twice,Neutral,Medium
 1996,There is more than one of the same transaction on my account.,எனது கணக்கில் ஒரே கொடுக்கல்வாங்கல் ஒன்றுக்கு மேற்பட்ட தடவைகள் உள்ளது.,transaction_charged_twice,Neutral,Medium
@@ -2121,46 +2121,46 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 2117,Someone stopped my payment,யாரோ எனது கொடுப்பனவை நிறுத்திவிட்டார்கள்.,reverted_card_payment?,Neutral,Low
 2118,"If my card payment is cancelled, what should I do?","எனது அட்டை மூலமான கொடுப்பனவு இரத்துச் செய்யப்பட்டால், நான் என்ன செய்ய வேண்டும்?",reverted_card_payment?,Neutral,Low
 2119,Why has payment been returned?,கொடுப்பனவு ஏன் திரும்பப் பெறப்பட்டுள்ளது?,reverted_card_payment?,Neutral,Low
-2120,What kind of cash machines would allow me to change my PIN?,எந்த வகையான ஏடிஎம் இயந்திரங்கள் எனது பின் (PIN) இலக்கத்தை மாற்ற அனுமதிக்கும்?,change_pin,Neutral,Low
-2121,Where do I change my PIN?,எனது பின் (PIN) இலக்கத்தை நான் எங்கே மாற்றுவது?,change_pin,Neutral,Low
-2122,Is the bank the only place I can change my PIN>,எனது பின் (PIN) இலக்கத்தை மாற்றக்கூடிய ஒரே இடம் வங்கி மட்டும்தானா?,change_pin,Neutral,Low
-2123,"If I am overseas, how do I change my pin?","நான் வெளிநாட்டில் இருந்தால், எனது பின் (PIN) இலக்கத்தை எவ்வாறு மாற்றுவது?",change_pin,Neutral,Low
-2124,Can i change my PIN at the ATM?,ஏடிஎம் (ATM) இயந்திரத்தில் எனது பின் (PIN) இலக்கத்தை மாற்ற முடியுமா?,change_pin,Neutral,Low
-2125,How might  I change my PIN?,எனது பின் (PIN) இலக்கத்தை நான் எவ்வாறு மாற்றலாம்?,change_pin,Neutral,Low
-2126,I would like to change my PIN but I am not currently in the country.,"நான் எனது பின் (PIN) இலக்கத்தை மாற்ற விரும்புகிறேன், ஆனால் நான் தற்போது நாட்டில் இல்லை.",change_pin,Neutral,Low
-2127,I would like to change my card PIN.,எனது அட்டையின் பின் (PIN) இலக்கத்தை மாற்ற விரும்புகிறேன்.,change_pin,Neutral,Low
-2128,I want to set a new PIN,நான் ஒரு புதிய பின் (PIN) இலக்கத்தை அமைக்க விரும்புகிறேன்.,change_pin,Neutral,Low
-2129,"I desperately need to change my PIN, but I'm overseas on vacation right now. How can I do this?","எனது பின் (PIN) இலக்கத்தை அவசரமாக மாற்ற வேண்டும், ஆனால் நான் இப்போது விடுமுறையில் வெளிநாட்டில் இருக்கிறேன். இதை நான் எவ்வாறு செய்வது?",change_pin,Negative,Low
-2130,I need a new Pin how do I go about that?,"எனக்கு ஒரு புதிய பின் (PIN) இலக்கம் தேவை, அதற்கு நான் என்ன செய்ய வேண்டும்?",change_pin,Neutral,Low
-2131,Is there a location near me that i can change my PIN?,எனது பின் (PIN) இலக்கத்தை மாற்றுவதற்கு எனக்கு அருகில் ஏதேனும் இடம் இருக்கிறதா?,change_pin,Neutral,Low
-2132,In what ATM can I change my pin?,எந்த ஏடிஎம் (ATM) இயந்திரத்தில் எனது பின் (PIN) இலக்கத்தை மாற்றலாம்?,change_pin,Neutral,Low
-2133,I'd like to make a new PIN selection.,நான் ஒரு புதிய பின் (PIN) இலக்கத்தைத் தெரிவு செய்ய விரும்புகிறேன்.,change_pin,Neutral,Low
-2134,How do I set a new pin?,ஒரு புதிய பின் (PIN) இலக்கத்தை எவ்வாறு அமைப்பது?,change_pin,Neutral,Low
-2135,How do I update my PIN to a new number?,எனது பின் (PIN) இலக்கத்தை ஒரு புதிய எண்ணுக்கு எவ்வாறு புதுப்பிப்பது?,change_pin,Neutral,Low
-2136,How can I change my Tholepin ?,எனது பின் (PIN) இலக்கத்தை நான் எவ்வாறு மாற்றலாம்?,change_pin,Neutral,Low
-2137,My new pin needs to be set.,எனது புதிய பின் (PIN) இலக்கம் அமைக்கப்பட வேண்டும்.,change_pin,Neutral,Low
-2138,I want to choose a different PIN.,நான் வேறு ஒரு பின் (PIN) இலக்கத்தைத் தெரிவு செய்ய விரும்புகிறேன்.,change_pin,Neutral,Low
-2139,I would like to change my pin.,நான் எனது பின் (PIN) இலக்கத்தை மாற்ற விரும்புகிறேன்.,change_pin,Neutral,Low
-2140,Am I able to change my PIN at any cash machines?,ஏதேனும் ஏடிஎம் (ATM) இயந்திரங்களில் எனது பின் (PIN) இலக்கத்தை மாற்ற முடியுமா?,change_pin,Neutral,Low
-2141,I am travelling for two more weeks but really need to change my PIN asap. What do I do?,"நான் இன்னும் இரண்டு வாரங்களுக்குப் பயணத்தில் இருப்பேன், ஆனால் எனது பின் (PIN) இலக்கத்தை உடனடியாக மாற்ற வேண்டும். நான் என்ன செய்வது?",change_pin,Neutral,High
-2142,I need to change my PIN. Can I do that at a cash machine?,நான் எனது பின் (PIN) இலக்கத்தை மாற்ற வேண்டும். அதை ஒரு ஏடிஎம் (ATM) இயந்திரத்தில் செய்ய முடியுமா?,change_pin,Neutral,Low
-2143,Do cash machines let me change my pin?,ஏடிஎம் (ATM) இயந்திரங்கள் எனது பின் (PIN) இலக்கத்தை மாற்ற அனுமதிக்குமா?,change_pin,Neutral,Low
-2144,How do I change my PIN?,எனது பின் (PIN) இலக்கத்தை நான் எவ்வாறு மாற்றுவது?,change_pin,Neutral,Low
-2145,I need to change my PIN.,நான் எனது பின் (PIN) இலக்கத்தை மாற்ற வேண்டும்.,change_pin,Neutral,Low
-2146,May I receive a different card pin,நான் வேறு ஒரு அட்டை பின் (PIN) இலக்கத்தைப் பெறலாமா?,change_pin,Neutral,Low
-2147,What do I need to do to change my PIN?,எனது பின் (PIN) இலக்கத்தை மாற்றுவதற்கு நான் என்ன செய்ய வேண்டும்?,change_pin,Neutral,Low
-2148,Help me set up a new PIN?,ஒரு புதிய பின் (PIN) இலக்கத்தை அமைக்க எனக்கு உதவுங்கள்?,change_pin,Neutral,Low
-2149,Which cash machines will allow me to change my PIN?,எந்த ஏடிஎம் (ATM) இயந்திரங்கள் எனது பின் (PIN) இலக்கத்தை மாற்ற அனுமதிக்கும்?,change_pin,Neutral,Low
-2150,"I am in Austria right now. I need to change my PIN ASAP, so can I still do this from here?","நான் இப்போது ஆஸ்திரியாவில் இருக்கிறேன். எனது PIN இலக்கத்தை எவ்வளவு சீக்கிரம் முடியுமோ அவ்வளவு சீக்கிரம் மாற்ற வேண்டும், எனவே நான் இன்னும் இங்கிருந்தே இதைச் செய்ய முடியுமா?",change_pin,Neutral,High
-2151,Where can I find instructions to change my PIN?,எனது PIN இலக்கத்தை மாற்றுவதற்கான வழிமுறைகளை நான் எங்கே காணலாம்?,change_pin,Neutral,Low
-2152,I need to change my pin but I am on the road.,"நான் பயணத்தில் இருக்கிறேன், ஆனால் எனது PIN இலக்கத்தை மாற்ற வேண்டும்.",change_pin,Neutral,Low
-2153,How do I update the PIN on my account?,எனது கணக்கின் PIN இலக்கத்தை நான் எவ்வாறு புதுப்பிப்பது?,change_pin,Neutral,Low
-2154,I need a new PIN.,எனக்கு ஒரு புதிய PIN தேவை.,change_pin,Neutral,Low
-2155,Show me how to change my pin?,எனது PIN இலக்கத்தை எவ்வாறு மாற்றுவது என்று எனக்குக் காட்டுங்கள்?,change_pin,Neutral,Low
-2156,Please tell me which cash machines will allow me to change my pin.,தயவுசெய்து எந்த ஏடிஎம் (ATM) இயந்திரங்கள் எனது PIN இலக்கத்தை மாற்ற அனுமதிக்கும் என்று கூறுங்கள்.,change_pin,Neutral,Low
-2157,What steps do I need to take to change my card PIN?,எனது அட்டை PIN இலக்கத்தை மாற்ற நான் என்ன படிகளைப் பின்பற்ற வேண்டும்?,change_pin,Neutral,Low
-2158,How to change the PIN on my card?,எனது அட்டையின் PIN இலக்கத்தை எவ்வாறு மாற்றுவது?,change_pin,Neutral,Low
-2159,How can I change the PIN?  Do I have to go to a real bank?,நான் எவ்வாறு PIN இலக்கத்தை மாற்றலாம்? நான் ஒரு நேரடி வங்கிக்குச் செல்ல வேண்டுமா?,change_pin,Neutral,Low
+2120,What kind of cash machines would allow me to change my PIN?,எந்த வகையான ஏடிஎம் இயந்திரங்கள் எனது பின் இலக்கத்தை மாற்ற அனுமதிக்கும்?,change_pin,Neutral,Low
+2121,Where do I change my PIN?,எனது பின் இலக்கத்தை நான் எங்கே மாற்றுவது?,change_pin,Neutral,Low
+2122,Is the bank the only place I can change my PIN>,எனது பின் இலக்கத்தை மாற்றக்கூடிய ஒரே இடம் வங்கி மட்டும்தானா?,change_pin,Neutral,Low
+2123,"If I am overseas, how do I change my pin?","நான் வெளிநாட்டில் இருந்தால், எனது பின் இலக்கத்தை எவ்வாறு மாற்றுவது?",change_pin,Neutral,Low
+2124,Can i change my PIN at the ATM?,ஏடிஎம் இயந்திரத்தில் எனது பின் இலக்கத்தை மாற்ற முடியுமா?,change_pin,Neutral,Low
+2125,How might  I change my PIN?,எனது பின் இலக்கத்தை நான் எவ்வாறு மாற்றலாம்?,change_pin,Neutral,Low
+2126,I would like to change my PIN but I am not currently in the country.,"நான் எனது பின் இலக்கத்தை மாற்ற விரும்புகிறேன், ஆனால் நான் தற்போது நாட்டில் இல்லை.",change_pin,Neutral,Low
+2127,I would like to change my card PIN.,எனது அட்டையின் பின் இலக்கத்தை மாற்ற விரும்புகிறேன்.,change_pin,Neutral,Low
+2128,I want to set a new PIN,நான் ஒரு புதிய பின் இலக்கத்தை அமைக்க விரும்புகிறேன்.,change_pin,Neutral,Low
+2129,"I desperately need to change my PIN, but I'm overseas on vacation right now. How can I do this?","எனது பின் இலக்கத்தை அவசரமாக மாற்ற வேண்டும், ஆனால் நான் இப்போது விடுமுறையில் வெளிநாட்டில் இருக்கிறேன். இதை நான் எவ்வாறு செய்வது?",change_pin,Negative,Low
+2130,I need a new Pin how do I go about that?,"எனக்கு ஒரு புதிய பின் இலக்கம் தேவை, அதற்கு நான் என்ன செய்ய வேண்டும்?",change_pin,Neutral,Low
+2131,Is there a location near me that i can change my PIN?,எனது பின் இலக்கத்தை மாற்றுவதற்கு எனக்கு அருகில் ஏதேனும் இடம் இருக்கிறதா?,change_pin,Neutral,Low
+2132,In what ATM can I change my pin?,எந்த ஏடிஎம் இயந்திரத்தில் எனது பின் இலக்கத்தை மாற்றலாம்?,change_pin,Neutral,Low
+2133,I'd like to make a new PIN selection.,நான் ஒரு புதிய பின் இலக்கத்தைத் தெரிவு செய்ய விரும்புகிறேன்.,change_pin,Neutral,Low
+2134,How do I set a new pin?,ஒரு புதிய பின் இலக்கத்தை எவ்வாறு அமைப்பது?,change_pin,Neutral,Low
+2135,How do I update my PIN to a new number?,எனது பின் இலக்கத்தை ஒரு புதிய எண்ணுக்கு எவ்வாறு புதுப்பிப்பது?,change_pin,Neutral,Low
+2136,How can I change my Tholepin ?,எனது பின் இலக்கத்தை நான் எவ்வாறு மாற்றலாம்?,change_pin,Neutral,Low
+2137,My new pin needs to be set.,எனது புதிய பின் இலக்கம் அமைக்கப்பட வேண்டும்.,change_pin,Neutral,Low
+2138,I want to choose a different PIN.,நான் வேறு ஒரு பின் இலக்கத்தைத் தெரிவு செய்ய விரும்புகிறேன்.,change_pin,Neutral,Low
+2139,I would like to change my pin.,நான் எனது பின் இலக்கத்தை மாற்ற விரும்புகிறேன்.,change_pin,Neutral,Low
+2140,Am I able to change my PIN at any cash machines?,ஏதேனும் ஏடிஎம் இயந்திரங்களில் எனது பின் இலக்கத்தை மாற்ற முடியுமா?,change_pin,Neutral,Low
+2141,I am travelling for two more weeks but really need to change my PIN asap. What do I do?,"நான் இன்னும் இரண்டு வாரங்களுக்குப் பயணத்தில் இருப்பேன், ஆனால் எனது பின் இலக்கத்தை உடனடியாக மாற்ற வேண்டும். நான் என்ன செய்வது?",change_pin,Neutral,High
+2142,I need to change my PIN. Can I do that at a cash machine?,நான் எனது பின் இலக்கத்தை மாற்ற வேண்டும். அதை ஒரு ஏடிஎம் இயந்திரத்தில் செய்ய முடியுமா?,change_pin,Neutral,Low
+2143,Do cash machines let me change my pin?,ஏடிஎம் இயந்திரங்கள் எனது பின் இலக்கத்தை மாற்ற அனுமதிக்குமா?,change_pin,Neutral,Low
+2144,How do I change my PIN?,எனது பின் இலக்கத்தை நான் எவ்வாறு மாற்றுவது?,change_pin,Neutral,Low
+2145,I need to change my PIN.,நான் எனது பின் இலக்கத்தை மாற்ற வேண்டும்.,change_pin,Neutral,Low
+2146,May I receive a different card pin,நான் வேறு ஒரு அட்டை பின் இலக்கத்தைப் பெறலாமா?,change_pin,Neutral,Low
+2147,What do I need to do to change my PIN?,எனது பின் இலக்கத்தை மாற்றுவதற்கு நான் என்ன செய்ய வேண்டும்?,change_pin,Neutral,Low
+2148,Help me set up a new PIN?,ஒரு புதிய பின் இலக்கத்தை அமைக்க எனக்கு உதவுங்கள்?,change_pin,Neutral,Low
+2149,Which cash machines will allow me to change my PIN?,எந்த ஏடிஎம் இயந்திரங்கள் எனது பின் இலக்கத்தை மாற்ற அனுமதிக்கும்?,change_pin,Neutral,Low
+2150,"I am in Austria right now. I need to change my PIN ASAP, so can I still do this from here?","நான் இப்போது ஆஸ்திரியாவில் இருக்கிறேன். எனது பின் இலக்கத்தை எவ்வளவு சீக்கிரம் முடியுமோ அவ்வளவு சீக்கிரம் மாற்ற வேண்டும், எனவே நான் இன்னும் இங்கிருந்தே இதைச் செய்ய முடியுமா?",change_pin,Neutral,High
+2151,Where can I find instructions to change my PIN?,எனது பின் இலக்கத்தை மாற்றுவதற்கான வழிமுறைகளை நான் எங்கே காணலாம்?,change_pin,Neutral,Low
+2152,I need to change my pin but I am on the road.,"நான் பயணத்தில் இருக்கிறேன், ஆனால் எனது பின் இலக்கத்தை மாற்ற வேண்டும்.",change_pin,Neutral,Low
+2153,How do I update the PIN on my account?,எனது கணக்கின் பின் இலக்கத்தை நான் எவ்வாறு புதுப்பிப்பது?,change_pin,Neutral,Low
+2154,I need a new PIN.,எனக்கு ஒரு புதிய பின் தேவை.,change_pin,Neutral,Low
+2155,Show me how to change my pin?,எனது பின் இலக்கத்தை எவ்வாறு மாற்றுவது என்று எனக்குக் காட்டுங்கள்?,change_pin,Neutral,Low
+2156,Please tell me which cash machines will allow me to change my pin.,தயவுசெய்து எந்த ஏடிஎம் இயந்திரங்கள் எனது பின் இலக்கத்தை மாற்ற அனுமதிக்கும் என்று கூறுங்கள்.,change_pin,Neutral,Low
+2157,What steps do I need to take to change my card PIN?,எனது அட்டை பின் இலக்கத்தை மாற்ற நான் என்ன படிகளைப் பின்பற்ற வேண்டும்?,change_pin,Neutral,Low
+2158,How to change the PIN on my card?,எனது அட்டையின் பின் இலக்கத்தை எவ்வாறு மாற்றுவது?,change_pin,Neutral,Low
+2159,How can I change the PIN?  Do I have to go to a real bank?,நான் எவ்வாறு பின் இலக்கத்தை மாற்றலாம்? நான் ஒரு நேரடி வங்கிக்குச் செல்ல வேண்டுமா?,change_pin,Neutral,Low
 2160,I've tried numerous times to submit a transfer of funds. Why isn't it going through?,நான் பலமுறை பணப் பரிமாற்றம் செய்ய முயற்சித்தேன். அது ஏன் இன்னும் நிறைவேறவில்லை?,beneficiary_not_allowed,Neutral,Medium
 2161,I've transferred money before without issue but now I am encountering an error stating that it isn't possible. Why is that?,"நான் இதற்கு முன்பு எந்தப் பிரச்சினையும் இல்லாமல் பணம் பரிமாற்றம் செய்துள்ளேன், ஆனால் இப்போது அது சாத்தியமில்லை என்று ஒரு பிழைச் செய்தி வருகிறது. அது ஏன்?",beneficiary_not_allowed,Neutral,Medium
 2162,I am not able to do a transfer to an account,என்னால் ஒரு கணக்கிற்குப் பணப் பரிமாற்றம் செய்ய முடியாமல் உள்ளது,beneficiary_not_allowed,Neutral,Medium
@@ -2171,7 +2171,7 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 2167,Why did I get a message saying that my transfer is not possible?  I have done this before no problem.  Please fix.,எனது பணப் பரிமாற்றம் சாத்தியமில்லை என்று எனக்கு ஏன் செய்தி வந்தது? நான் இதற்கு முன்பு எந்தப் பிரச்சினையும் இல்லாமல் இதைச் செய்துள்ளேன். தயவுசெய்து இதைச் சரிசெய்யவும்.,beneficiary_not_allowed,Neutral,Medium
 2168,"Hey I want to buy some crypto but the app doesn't allow me to! What's the issue, I really want to exchange this","ஹே, நான் கொஞ்சம் கிரிப்டோ வாங்க விரும்புகிறேன், ஆனால் செயலி என்னை அனுமதிக்கவில்லை! என்ன பிரச்சினை, நான் இதை நிச்சயமாகப் பரிமாற்றம் செய்ய விரும்புகிறேன்",beneficiary_not_allowed,Neutral,Medium
 2169,I tried to transfer money but it said it wasn't possible? I've done this before and it worked why isn't it working now?,"நான் பணம் அனுப்ப முயன்றேன், ஆனால் அது சாத்தியமில்லை என்று காட்டியது? நான் இதற்கு முன்பு இதைச் செய்தபோது வேலை செய்தது, இப்போது ஏன் வேலை செய்யவில்லை?",beneficiary_not_allowed,Neutral,Medium
-2170,Why can't I transfer to a beneficiary?,பயனாளருக்கு (beneficiary) என்னால் ஏன் பணப் பரிமாற்றம் செய்ய முடியாது?,beneficiary_not_allowed,Neutral,Low
+2170,Why can't I transfer to a beneficiary?,பயனாளருக்கு என்னால் ஏன் பணப் பரிமாற்றம் செய்ய முடியாது?,beneficiary_not_allowed,Neutral,Low
 2171,I am having problems transferring to a beneficiary.,பயனாளருக்குப் பணப் பரிமாற்றம் செய்வதில் எனக்குப் பிரச்சினைகள் உள்ளன.,beneficiary_not_allowed,Neutral,Medium
 2172,What's the deal with no cryptocurrency on your app?,உங்கள் செயலியில் கிரிப்டோகரன்சி இல்லாததற்குக் காரணம் என்ன?,beneficiary_not_allowed,Neutral,Low
 2173,Why isn't my transfer not going through? I keep getting an error message.,எனது பணப் பரிமாற்றம் ஏன் நிறைவேறவில்லை? எனக்குத் தொடர்ந்து ஒரு பிழைச் செய்தி வந்துகொண்டே இருக்கிறது.,beneficiary_not_allowed,Neutral,Medium
@@ -2247,15 +2247,15 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 2243,Can I get my salary through this?,இதன் மூலம் எனது சம்பளத்தைப் பெற முடியுமா?,receiving_money,Neutral,Low
 2244,How can someone send me money?,ஒருவர் எனக்கு எவ்வாறு பணம் அனுப்பலாம்?,receiving_money,Neutral,Low
 2245,Is there a problem with receiving my salary in USD?,எனது சம்பளத்தை இலங்கை ரூபாயில் பெறுவதில் ஏதேனும் பிரச்சினை உள்ளதா?,receiving_money,Neutral,Low
-2246,Do I need to choose LKR to get my salary deposited properly?,எனது சம்பளம் சரியாக டெபாசிட் செய்யப்படுவதற்கு நான் LKR ஐத் தேர்ந்தெடுக்க வேண்டுமா?,receiving_money,Neutral,Low
-2247,"I get paid in LKR. Should I configure this and if so, where?","எனக்கு LKR இல் சம்பளம் வழங்கப்படுகிறது. நான் இதை உள்ளமைக்க வேண்டுமா, அப்படியாயின் எங்கே செய்ய வேண்டும்?",receiving_money,Neutral,Low
+2246,Do I need to choose LKR to get my salary deposited properly?,எனது சம்பளம் சரியாக டெபாசிட் செய்யப்படுவதற்கு நான் இலங்கை ரூபாவைத் தேர்ந்தெடுக்க வேண்டுமா?,receiving_money,Neutral,Low
+2247,"I get paid in LKR. Should I configure this and if so, where?","எனக்கு இலங்கை ரூபாவில் சம்பளம் வழங்கப்படுகிறது. நான் இதை உள்ளமைக்க வேண்டுமா, அப்படியாயின் எங்கே செய்ய வேண்டும்?",receiving_money,Neutral,Low
 2248,Is it possible for me to get money out in a different currency?,என்னால் வேறு நாணயத்தில் பணத்தைப் பெற முடியுமா?,receiving_money,Neutral,Low
 2249,Can I use this to receive my salary?,எனது சம்பளத்தைப் பெற நான் இதைப் பயன்படுத்தலாமா?,receiving_money,Neutral,Low
-2250,My salary is received in the form of LKR. Do I need to do anything specific to configure this?,எனது சம்பளம் LKR வடிவில் பெறப்படுகிறது. இதை உள்ளமைக்க நான் ஏதேனும் குறிப்பிட்ட காரியங்களைச் செய்ய வேண்டுமா?,receiving_money,Neutral,Low
+2250,My salary is received in the form of LKR. Do I need to do anything specific to configure this?,எனது சம்பளம் இலங்கை ரூபா வடிவில் பெறப்படுகிறது. இதை உள்ளமைக்க நான் ஏதேனும் குறிப்பிட்ட காரியங்களைச் செய்ய வேண்டுமா?,receiving_money,Neutral,Low
 2251,How do people send me money?,மக்கள் எனக்கு எவ்வாறு பணம் அனுப்புகிறார்கள்?,receiving_money,Neutral,Low
-2252,Is LKR a supported currency?,LKR ஆதரிக்கப்படும் ஒரு நாணயமா?,receiving_money,Neutral,Low
-2253,Do I need to establish I am paid in LKR before a transfer?,பணமாற்றத்திற்கு முன் எனக்கு LKR இல் சம்பளம் வழங்கப்படுகிறது என்பதை நான் உறுதிப்படுத்த வேண்டுமா?,receiving_money,Neutral,Low
-2254,"Salary in LKR has been received, does it need to be configured elsewhere?","LKR இல் சம்பளம் பெறப்பட்டுள்ளது, அதை வேறு எங்கும் உள்ளமைக்க வேண்டுமா?",receiving_money,Neutral,Low
+2252,Is LKR a supported currency?,இலங்கை ரூபா ஆதரிக்கப்படும் ஒரு நாணயமா?,receiving_money,Neutral,Low
+2253,Do I need to establish I am paid in LKR before a transfer?,பணமாற்றத்திற்கு முன் எனக்கு இலங்கை ரூபாவில் சம்பளம் வழங்கப்படுகிறது என்பதை நான் உறுதிப்படுத்த வேண்டுமா?,receiving_money,Neutral,Low
+2254,"Salary in LKR has been received, does it need to be configured elsewhere?","இலங்கை ரூபாவில் சம்பளம் பெறப்பட்டுள்ளது, அதை வேறு எங்கும் உள்ளமைக்க வேண்டுமா?",receiving_money,Neutral,Low
 2255,How do i get my salary in the account?,எனது சம்பளத்தை கணக்கில் எவ்வாறு பெறுவது?,receiving_money,Neutral,Low
 2256,What are the ways for others to transfer me money?,மற்றவர்கள் எனக்கு பணம் அனுப்புவதற்கான வழிகள் யாவை?,receiving_money,Neutral,Low
 2257,What different ways are there for someone to send me money?,ஒருவர் எனக்கு பணம் அனுப்ப என்னென்ன வெவ்வேறு வழிகள் உள்ளன?,receiving_money,Neutral,Low
@@ -2263,8 +2263,8 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 2259,How can my friend send me money?,எனது நண்பர் எனக்கு எவ்வாறு பணம் அனுப்பலாம்?,receiving_money,Neutral,Low
 2260,Can I directly transfer my salary onto here?,எனது சம்பளத்தை நேரடியாக இங்கு மாற்ற முடியுமா?,receiving_money,Neutral,Low
 2261,Can this be used to receive my salary?,எனது சம்பளத்தைப் பெற இதைப் பயன்படுத்த முடியுமா?,receiving_money,Neutral,Low
-2262,Is it possible to deposit money in LKR?,LKR இல் பணம் டெபாசிட் செய்ய முடியுமா?,receiving_money,Neutral,Low
-2263,I received my salary in LKR. How do I change this to my currency?,எனது சம்பளத்தை நான் LKR இல் பெற்றேன். இதை எனது நாணயத்திற்கு எவ்வாறு மாற்றுவது?,receiving_money,Neutral,Low
+2262,Is it possible to deposit money in LKR?,இலங்கை ரூபாவில் பணம் டெபாசிட் செய்ய முடியுமா?,receiving_money,Neutral,Low
+2263,I received my salary in LKR. How do I change this to my currency?,எனது சம்பளத்தை நான் இலங்கை ரூபாவில் பெற்றேன். இதை எனது நாணயத்திற்கு எவ்வாறு மாற்றுவது?,receiving_money,Neutral,Low
 2264,How can my friend transfer money to me?,எனது நண்பர் எனக்கு எவ்வாறு பணம் அனுப்ப முடியும்?,receiving_money,Neutral,Low
 2265,Can my friends send me money?,எனது நண்பர்கள் எனக்கு பணம் அனுப்ப முடியுமா?,receiving_money,Neutral,Low
 2266,How do I deposit my paycheck to this account?,எனது சம்பளக் காசோலையை இந்த கணக்கில் எவ்வாறு டெபாசிட் செய்வது?,receiving_money,Neutral,Low
@@ -2272,13 +2272,13 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 2268,Can i deposit my salary to this account?,எனது சம்பளத்தை இந்தக் கணக்கில் டெபாசிட் செய்ய முடியுமா?,receiving_money,Neutral,Low
 2269,How do I get my salary through this account?,இந்தக் கணக்கின் மூலம் எனது சம்பளத்தை எவ்வாறு பெறுவது?,receiving_money,Neutral,Low
 2270,What if I need my salary in a different currency?,எனது சம்பளம் வேறு நாணயத்தில் தேவைப்பட்டால் நான் என்ன செய்வது?,receiving_money,Neutral,Low
-2271,I receive my salary in LKR. Do I need to configure this somehwere?,நான் எனது சம்பளத்தை LKR இல் பெறுகிறேன். இதை நான் எங்காவது ஒழுங்கமைக்க வேண்டுமா?,receiving_money,Neutral,Low
+2271,I receive my salary in LKR. Do I need to configure this somehwere?,நான் எனது சம்பளத்தை இலங்கை ரூபாவில் பெறுகிறேன். இதை நான் எங்காவது ஒழுங்கமைக்க வேண்டுமா?,receiving_money,Neutral,Low
 2272,Do you know if I can use this for my salary?,இதை எனது சம்பளத்திற்குப் பயன்படுத்த முடியுமா என்று உங்களுக்குத் தெரியுமா?,receiving_money,Neutral,Low
 2273,How do I get my paycheck through this?,இதன் மூலம் எனது சம்பளப் பணத்தை நான் எவ்வாறு பெறுவது?,receiving_money,Neutral,Low
 2274,can I transfer my salary if it's in a different currency?,எனது சம்பளம் வேறு நாணயத்தில் இருந்தால் அதை நான் மாற்ற முடியுமா?,receiving_money,Neutral,Low
 2275,Can I get paid in a different currency?,எனக்கு வேறு நாணயத்தில் சம்பளம் பெற முடியுமா?,receiving_money,Neutral,Low
 2276,Is my salary eligible for this?,எனது சம்பளம் இதற்குத் தகுதியானதா?,receiving_money,Neutral,Low
-2277,My salary is in LKR; how can I note this in the app?,எனது சம்பளம் LKR இல் உள்ளது; இதை செயலியில் நான் எவ்வாறு குறிப்பிடுவது?,receiving_money,Neutral,Low
+2277,My salary is in LKR; how can I note this in the app?,எனது சம்பளம் இலங்கை ரூபாவில் உள்ளது; இதை செயலியில் நான் எவ்வாறு குறிப்பிடுவது?,receiving_money,Neutral,Low
 2278,Can I get paid in another currency?,எனக்கு வேறொரு நாணயத்தில் சம்பளம் பெற முடியுமா?,receiving_money,Neutral,Low
 2279,Can I get my paycheck through here?,எனது சம்பளப் பணத்தை இதன் மூலம் பெற முடியுமா?,receiving_money,Neutral,Low
 2280,dont understand why transfer failed,பணமாற்றம் ஏன் தோல்வியடைந்தது என்று புரியவில்லை,failed_transfer,Neutral,Medium
@@ -2351,9 +2351,9 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 2347,How do I send my account money through transfer?,பரிமாற்றம் மூலம் எனது கணக்கிற்கு பணத்தை எவ்வாறு அனுப்புவது?,transfer_into_account,Neutral,Low
 2348,How do I do an international transfer?,நான் ஒரு சர்வதேச பணப் பரிமாற்றத்தை எவ்வாறு செய்வது?,transfer_into_account,Neutral,Low
 2349,Are there ways to transfer money into my account?,எனது கணக்கிற்கு பணத்தை மாற்றுவதற்கு வழிகள் உள்ளனவா?,transfer_into_account,Neutral,Low
-2350,I want to transfer from accounts in order to Top up. What are the steps necessary.,எனது கணக்கை மீள்நிரப்புவதற்கு (Top up) கணக்குகளிலிருந்து பணத்தை மாற்ற விரும்புகிறேன். அதற்கு என்னென்ன வழிமுறைகள் தேவை?,transfer_into_account,Neutral,Low
+2350,I want to transfer from accounts in order to Top up. What are the steps necessary.,எனது கணக்கை மீள்நிரப்புவதற்கு கணக்குகளிலிருந்து பணத்தை மாற்ற விரும்புகிறேன். அதற்கு என்னென்ன வழிமுறைகள் தேவை?,transfer_into_account,Neutral,Low
 2351,How does a transfer work?,பணமாற்றம் எவ்வாறு செயற்படுகிறது?,transfer_into_account,Neutral,Low
-2352,"I would like use the bank transfer, but I don't understand the process, can you please explain, topping up?","நான் வங்கிப் பணமாற்றத்தைப் பயன்படுத்த விரும்புகிறேன், ஆனால் அதன் செயல்முறை எனக்குப் புரியவில்லை, மீள்நிரப்புவது (topping up) பற்றி தயவுசெய்து விளக்க முடியுமா?",transfer_into_account,Neutral,Low
+2352,"I would like use the bank transfer, but I don't understand the process, can you please explain, topping up?","நான் வங்கிப் பணமாற்றத்தைப் பயன்படுத்த விரும்புகிறேன், ஆனால் அதன் செயல்முறை எனக்குப் புரியவில்லை, மீள்நிரப்புவது பற்றி தயவுசெய்து விளக்க முடியுமா?",transfer_into_account,Neutral,Low
 2353,I want to use bank transfer for topping up my account. How is it handled?,எனது கணக்கை மீள்நிரப்புவதற்கு வங்கிப் பணமாற்றத்தைப் பயன்படுத்த விரும்புகிறேன். அது எவ்வாறு கையாளப்படுகிறது?,transfer_into_account,Neutral,Low
 2354,I checked my account today and it said I was out of money. How do I transfer money into my account?,"இன்று எனது கணக்கைச் சரிபார்த்தேன், அதில் பணம் இல்லை என்று காட்டியது. எனது கணக்கிற்கு பணத்தை எவ்வாறு மாற்றுவது?",transfer_into_account,Neutral,Low
 2355,How can I transfer money to my account?,எனது கணக்கிற்கு நான் எவ்வாறு பணத்தை மாற்றலாம்?,transfer_into_account,Neutral,Low
@@ -2361,9 +2361,9 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 2357,I'm trying to transfer money into my account.,நான் எனது கணக்கிற்கு பணத்தை மாற்ற முயற்சிக்கிறேன்.,transfer_into_account,Neutral,Low
 2358,I would like to transfer money from my other bank account into this one.,எனது மற்றைய வங்கிக் கணக்கிலிருந்து இந்தக் கணக்கிற்கு பணத்தை மாற்ற விரும்புகிறேன்.,transfer_into_account,Neutral,Low
 2359,Can I use a bank transfer to refill my account?,எனது கணக்கை மீள்நிரப்புவதற்கு நான் வங்கிப் பணமாற்றத்தைப் பயன்படுத்தலாமா?,transfer_into_account,Neutral,Low
-2360,What all is needed to verify the top-up card?,மீள்நிரப்பு அட்டையை (top-up card) உறுதிப்படுத்துவதற்கு என்னென்ன தேவை?,verify_top_up,Neutral,Low
+2360,What all is needed to verify the top-up card?,மீள்நிரப்பு அட்டையை உறுதிப்படுத்துவதற்கு என்னென்ன தேவை?,verify_top_up,Neutral,Low
 2361,It wants me to verify the top up. Why?,மீள்நிரப்பலை உறுதிப்படுத்துமாறு அது கேட்கிறது. ஏன்?,verify_top_up,Neutral,Low
-2362,Where can I find the top-up verification code?,மீள்நிரப்பல் உறுதிப்படுத்தல் குறியீட்டை (top-up verification code) நான் எங்கே கண்டறியலாம்?,verify_top_up,Neutral,Low
+2362,Where can I find the top-up verification code?,மீள்நிரப்பல் உறுதிப்படுத்தல் குறியீட்டை நான் எங்கே கண்டறியலாம்?,verify_top_up,Neutral,Low
 2363,Why do I have to verify the top-up that I started?,நான் ஆரம்பித்த மீள்நிரப்பலை நான் ஏன் உறுதிப்படுத்த வேண்டும்?,verify_top_up,Neutral,Low
 2364,Can you give me information about verification code?,உறுதிப்படுத்தல் குறியீடு பற்றிய தகவல்களை எனக்கு வழங்க முடியுமா?,verify_top_up,Neutral,Low
 2365,What are the benefits to verifying the top-up?,மீள்நிரப்பலை உறுதிப்படுத்துவதால் என்ன நன்மைகள் உள்ளன?,verify_top_up,Neutral,Low
@@ -2515,27 +2515,27 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 2511,Where do you deliver cards by mail?,தபால் மூலம் அட்டைகளை எங்கு விநியோகிக்கிறீர்கள்?,order_physical_card,Neutral,Low
 2512,How can I get a real-life card of my own?,எனது சொந்த நிஜமான அட்டையை நான் எவ்வாறு பெற்றுக்கொள்வது?,order_physical_card,Neutral,Low
 2513,Where will I find my card?,எனது அட்டையை நான் எங்கே கண்டறியலாம்?,order_physical_card,Neutral,Low
-2514,"If I want a physical card, do I have to pay anything?","எனக்கு ஒரு பருப்பொருள் அட்டை (physical card) தேவையென்றால், நான் ஏதேனும் செலுத்த வேண்டுமா?",order_physical_card,Neutral,Low
+2514,"If I want a physical card, do I have to pay anything?","எனக்கு ஒரு பருப்பொருள் அட்டை தேவையென்றால், நான் ஏதேனும் செலுத்த வேண்டுமா?",order_physical_card,Neutral,Low
 2515,Where can cards be delivered?,அட்டைகளை எங்கு விநியோகிக்க முடியும்?,order_physical_card,Neutral,Low
-2516,I need a physical card.,எனக்கு ஒரு பருப்பொருள் அட்டை (physical card) தேவை.,order_physical_card,Neutral,Low
-2517,What are the fees for a physical card?,பருப்பொருள் அட்டைக்கான (physical card) கட்டணங்கள் என்ன?,order_physical_card,Neutral,Low
+2516,I need a physical card.,எனக்கு ஒரு பருப்பொருள் அட்டை தேவை.,order_physical_card,Neutral,Low
+2517,What are the fees for a physical card?,பருப்பொருள் அட்டைக்கான கட்டணங்கள் என்ன?,order_physical_card,Neutral,Low
 2518,How do I get an actual card?,நான் எவ்வாறு ஒரு உண்மையான அட்டையைப் பெறுவது?,order_physical_card,Neutral,Low
 2519,Can I get a real card?,எனக்கு ஒரு நிஜமான அட்டை கிடைக்க முடியுமா?,order_physical_card,Neutral,Low
-2520,Why is my disposable virtual card being denied?,எனது ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டை (disposable virtual card) ஏன் நிராகரிக்கப்படுகிறது?,virtual_card_not_working,Neutral,Medium
+2520,Why is my disposable virtual card being denied?,எனது ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டை ஏன் நிராகரிக்கப்படுகிறது?,virtual_card_not_working,Neutral,Medium
 2521,My disposable virtual card doesn't seem to work,எனது ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டை வேலை செய்யவில்லை போல் தெரிகிறது.,virtual_card_not_working,Neutral,Medium
 2522,My disposable virtual card is broken.,எனது ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டை பழுதடைந்துள்ளது.,virtual_card_not_working,Neutral,Medium
-2523,My non-physical card will not work,எனது பருப்பொருள் அல்லாத அட்டை (non-physical card) வேலை செய்யாது.,virtual_card_not_working,Neutral,Medium
+2523,My non-physical card will not work,எனது பருப்பொருள் அல்லாத அட்டை வேலை செய்யாது.,virtual_card_not_working,Neutral,Medium
 2524,Why did the disposable virtual card which I used to pay a gym subscription get denied?,உடற்பயிற்சி நிலைய சந்தா செலுத்த நான் பயன்படுத்திய ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டை ஏன் நிராகரிக்கப்பட்டது?,virtual_card_not_working,Neutral,Medium
-2525,Why is my virtual card is being declined?,எனது மெய்நிகர் அட்டை (virtual card) ஏன் நிராகரிக்கப்படுகிறது?,virtual_card_not_working,Neutral,Medium
+2525,Why is my virtual card is being declined?,எனது மெய்நிகர் அட்டை ஏன் நிராகரிக்கப்படுகிறது?,virtual_card_not_working,Neutral,Medium
 2526,Are there restrictions for my disposable card since it does not seem to be working?,எனது ஒருமுறை பயன்படுத்தக்கூடிய அட்டை வேலை செய்யாததால் அதற்கு ஏதேனும் கட்டுப்பாடுகள் உள்ளதா?,virtual_card_not_working,Neutral,Medium
 2527,I cannot get my virtual card to work.,எனது மெய்நிகர் அட்டையை என்னால் வேலை செய்ய வைக்க முடியவில்லை.,virtual_card_not_working,Neutral,Medium
 2528,I was at the store earlier and my virtual card didn't work. What's the solution for this problem?,நான் சற்று முன்னர் கடையில் இருந்தபோது எனது மெய்நிகர் அட்டை வேலை செய்யவில்லை. இந்த பிரச்சனைக்கான தீர்வு என்ன?,virtual_card_not_working,Neutral,Medium
 2529,My disposable virtual card will not work,எனது ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டை வேலை செய்யாது.,virtual_card_not_working,Neutral,Medium
 2530,I cannot use my disposable virtual card.,எனது ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டையை என்னால் பயன்படுத்த முடியாது.,virtual_card_not_working,Neutral,Medium
 2531,Can I make multiple online transactions with my virtual card?,எனது மெய்நிகர் அட்டை மூலம் நான் பல இணையவழி பரிவர்த்தனைகளை செய்ய முடியுமா?,virtual_card_not_working,Neutral,Low
-2532,Why was my virtual card declined when attempting to setup automatic billing?,தானியங்கி கட்டணம் செலுத்துதலை (automatic billing) அமைக்க முயன்றபோது எனது மெய்நிகர் அட்டை ஏன் நிராகரிக்கப்பட்டது?,virtual_card_not_working,Neutral,Medium
+2532,Why was my virtual card declined when attempting to setup automatic billing?,தானியங்கி கட்டணம் செலுத்துதலை அமைக்க முயன்றபோது எனது மெய்நிகர் அட்டை ஏன் நிராகரிக்கப்பட்டது?,virtual_card_not_working,Neutral,Medium
 2533,Why doesn't my disposable virtual card work?,எனது ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டை ஏன் வேலை செய்யவில்லை?,virtual_card_not_working,Neutral,Medium
-2534,Why can't I use my virtual card for subscription services?,சந்தா சேவைகளுக்கு (subscription services) எனது மெய்நிகர் அட்டையை ஏன் பயன்படுத்த முடியாது?,virtual_card_not_working,Neutral,Medium
+2534,Why can't I use my virtual card for subscription services?,சந்தா சேவைகளுக்கு எனது மெய்நிகர் அட்டையை ஏன் பயன்படுத்த முடியாது?,virtual_card_not_working,Neutral,Medium
 2535,Why isn't my virtual card working?,எனது மெய்நிகர் அட்டை ஏன் வேலை செய்யவில்லை?,virtual_card_not_working,Neutral,Medium
 2536,I cannot make transactions with my virtual card.,எனது மெய்நிகர் அட்டை மூலம் என்னால் பரிவர்த்தனைகளை செய்ய முடியாது.,virtual_card_not_working,Neutral,Medium
 2537,"For some reason, the virtual card won't work for me.","ஏதோ ஒரு காரணத்தினால், மெய்நிகர் அட்டை எனக்கு வேலை செய்யவில்லை.",virtual_card_not_working,Neutral,Medium
@@ -2548,7 +2548,7 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 2544,My card is just not working at this time.,எனது அட்டை இந்த நேரத்தில் வேலை செய்யவில்லை.,virtual_card_not_working,Neutral,Medium
 2545,My disposable card seems not to be working am I doing something wrong?,"எனது ஒருமுறை பயன்படுத்தக்கூடிய அட்டை வேலை செய்யவில்லை போல் தெரிகிறது, நான் ஏதேனும் தவறு செய்கிறேனா?",virtual_card_not_working,Neutral,Medium
 2546,My payments from my virtual card keep getting rejected.,எனது மெய்நிகர் அட்டை மூலமான கொடுப்பனவுகள் தொடர்ந்து நிராகரிக்கப்படுகின்றன.,virtual_card_not_working,Neutral,Medium
-2547,My disposable virtual card is not working when I try to use it at a point of sale transaction. What do I do now?,விற்பனை புள்ளி (point of sale) பரிவர்த்தனையில் பயன்படுத்த முயலும்போது எனது ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டை வேலை செய்யவில்லை. நான் இப்போது என்ன செய்வது?,virtual_card_not_working,Neutral,Medium
+2547,My disposable virtual card is not working when I try to use it at a point of sale transaction. What do I do now?,விற்பனை புள்ளி பரிவர்த்தனையில் பயன்படுத்த முயலும்போது எனது ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டை வேலை செய்யவில்லை. நான் இப்போது என்ன செய்வது?,virtual_card_not_working,Neutral,Medium
 2548,My transaction was just declined when I was using my disposable virtual card. What can I do?,எனது ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டையைப் பயன்படுத்தியபோது எனது பரிவர்த்தனை இப்போதுதான் நிராகரிக்கப்பட்டது. நான் என்ன செய்ய முடியும்?,virtual_card_not_working,Neutral,Medium
 2549,My disposable virtual card is not working,எனது ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டை வேலை செய்யவில்லை.,virtual_card_not_working,Neutral,Medium
 2550,How do I get my disposable virtual card to work?,எனது ஒருமுறை பயன்படுத்தும் வேர்ச்சுவல் கார்டை எவ்வாறு வேலை செய்ய வைப்பது?,virtual_card_not_working,Neutral,Medium
@@ -2722,35 +2722,35 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 2718,My account balance has not gone up even though I just transferred money into it,"நான் எனது கணக்கிற்கு பணத்தை மாற்றியிருந்தும், எனது கணக்கு மீதி இன்னும் அதிகரிக்கவில்லை.",balance_not_updated_after_bank_transfer,Neutral,Medium
 2719,When will I see my new balance after making my bank transfer?,வங்கிப் பரிமாற்றத்தை செய்த பிறகு எனது புதிய கணக்கு மீதியை நான் எப்போது பார்க்க முடியும்?,balance_not_updated_after_bank_transfer,Neutral,Medium
 2720,Think someone has took money out with my card. What shall I do?,யாரோ எனது அட்டையைப் பயன்படுத்தி பணம் எடுத்திருக்கிறார்கள் என்று நினைக்கிறேன். நான் என்ன செய்ய வேண்டும்?,cash_withdrawal_not_recognised,Neutral,High
-2721,There is a withdrawal that isn't mind in the app.,செயலியில் (app) என்னுடையது அல்லாத ஒரு பணம் எடுத்தல் காட்டுகிறது.,cash_withdrawal_not_recognised,Neutral,High
+2721,There is a withdrawal that isn't mind in the app.,செயலியில் என்னுடையது அல்லாத ஒரு பணம் எடுத்தல் காட்டுகிறது.,cash_withdrawal_not_recognised,Neutral,High
 2722,I just lost my wallet and I see that they are already withdrawing money from my account. How can I stop this?,"நான் இப்போதுதான் எனது பணப்பையைத் தொலைத்தேன், அதற்குள் அவர்கள் எனது கணக்கிலிருந்து பணம் எடுப்பதை நான் காண்கிறேன். இதை நான் எப்படி நிறுத்துவது?",cash_withdrawal_not_recognised,Neutral,High
-2723,"I didn't get cash from an ATM, but the app says I did","நான் ஏடிஎம் (ATM) இலிருந்து பணம் எடுக்கவில்லை, ஆனால் நான் எடுத்ததாக செயலி (app) கூறுகிறது.",cash_withdrawal_not_recognised,Neutral,High
-2724,My app shows some cash I didn't get.,நான் பெறாத சில பணப் பரிவர்த்தனைகளை எனது செயலி (app) காட்டுகிறது.,cash_withdrawal_not_recognised,Neutral,High
-2725,Why is there a random withdrawal in my app?,எனது செயலியில் (app) ஏன் சம்பந்தமில்லாத ஒரு பணம் எடுத்தல் காட்டுகிறது?,cash_withdrawal_not_recognised,Neutral,High
+2723,"I didn't get cash from an ATM, but the app says I did","நான் ஏடிஎம்மிலிருந்து பணம் எடுக்கவில்லை, ஆனால் நான் எடுத்ததாக செயலி கூறுகிறது.",cash_withdrawal_not_recognised,Neutral,High
+2724,My app shows some cash I didn't get.,நான் பெறாத சில பணப் பரிவர்த்தனைகளை எனது செயலி காட்டுகிறது.,cash_withdrawal_not_recognised,Neutral,High
+2725,Why is there a random withdrawal in my app?,எனது செயலியில் ஏன் சம்பந்தமில்லாத ஒரு பணம் எடுத்தல் காட்டுகிறது?,cash_withdrawal_not_recognised,Neutral,High
 2726,There is a suspicious cash withdraw on the account.,கணக்கில் சந்தேகத்திற்கிடமான முறையில் பணம் எடுக்கப்பட்டுள்ளது.,cash_withdrawal_not_recognised,Neutral,High
-2727,"I didn't get cash from an ATM, but according to the app a transaction was made when i didn't make it.","நான் ஏடிஎம் (ATM) இலிருந்து பணம் எடுக்கவில்லை, ஆனால் செயலியின் (app) படி நான் செய்யாத ஒரு பரிவர்த்தனை செய்யப்பட்டுள்ளது.",cash_withdrawal_not_recognised,Neutral,High
-2728,The app said I withdrew cash at an ATM and I didn't,"நான் ஏடிஎம் (ATM) இல் பணம் எடுத்ததாக செயலி (app) கூறுகிறது, ஆனால் நான் எடுக்கவில்லை.",cash_withdrawal_not_recognised,Neutral,High
-2729,My app says that I received cash from an ATM and I didn't.,"நான் ஏடிஎம் (ATM) இலிருந்து பணம் பெற்றதாக எனது செயலி (app) கூறுகிறது, ஆனால் நான் பெறவில்லை.",cash_withdrawal_not_recognised,Neutral,High
-2730,"How do I freeze my bank card, as there has been a strange withdrawal?","ஒரு விசித்திரமான பணம் எடுத்தல் நடந்துள்ளதால், எனது வங்கி அட்டையை நான் எவ்வாறு முடக்குவது (freeze)?",cash_withdrawal_not_recognised,Neutral,High
+2727,"I didn't get cash from an ATM, but according to the app a transaction was made when i didn't make it.","நான் ஏடிஎம்மிலிருந்து பணம் எடுக்கவில்லை, ஆனால் செயலியின் படி நான் செய்யாத ஒரு பரிவர்த்தனை செய்யப்பட்டுள்ளது.",cash_withdrawal_not_recognised,Neutral,High
+2728,The app said I withdrew cash at an ATM and I didn't,"நான் ஏடிஎம்மில் பணம் எடுத்ததாக செயலி கூறுகிறது, ஆனால் நான் எடுக்கவில்லை.",cash_withdrawal_not_recognised,Neutral,High
+2729,My app says that I received cash from an ATM and I didn't.,"நான் ஏடிஎம்மிலிருந்து பணம் பெற்றதாக எனது செயலி கூறுகிறது, ஆனால் நான் பெறவில்லை.",cash_withdrawal_not_recognised,Neutral,High
+2730,"How do I freeze my bank card, as there has been a strange withdrawal?","ஒரு விசித்திரமான பணம் எடுத்தல் நடந்துள்ளதால், எனது வங்கி அட்டையை நான் எவ்வாறு முடக்குவது?",cash_withdrawal_not_recognised,Neutral,High
 2731,I see a cash withdrawal that I did not perform.,நான் செய்யாத ஒரு பணப் பரிவர்த்தனையை (பணம் எடுத்தலை) நான் காண்கிறேன்.,cash_withdrawal_not_recognised,Neutral,High
-2732,I checked the app and saw an extra cash withdrawal that I didn't authorize,"நான் செயலியைச் (app) சரிபார்த்தபோது, நான் அனுமதிக்காத ஒரு கூடுதல் பணம் எடுத்தலைக் கண்டேன்.",cash_withdrawal_not_recognised,Neutral,High
-2733,I have a strange cash withdrawal in my statement,எனது கணக்கு அறிக்கையில் (statement) ஒரு விசித்திரமான பணம் எடுத்தல் உள்ளது.,cash_withdrawal_not_recognised,Neutral,High
-2734,There's a cash withdraw on my statement that I didn't make.,எனது கணக்கு அறிக்கையில் (statement) நான் செய்யாத ஒரு பணம் எடுத்தல் உள்ளது.,cash_withdrawal_not_recognised,Neutral,High
+2732,I checked the app and saw an extra cash withdrawal that I didn't authorize,"நான் செயலியைச் சரிபார்த்தபோது, நான் அனுமதிக்காத ஒரு கூடுதல் பணம் எடுத்தலைக் கண்டேன்.",cash_withdrawal_not_recognised,Neutral,High
+2733,I have a strange cash withdrawal in my statement,எனது கணக்கு அறிக்கையில் ஒரு விசித்திரமான பணம் எடுத்தல் உள்ளது.,cash_withdrawal_not_recognised,Neutral,High
+2734,There's a cash withdraw on my statement that I didn't make.,எனது கணக்கு அறிக்கையில் நான் செய்யாத ஒரு பணம் எடுத்தல் உள்ளது.,cash_withdrawal_not_recognised,Neutral,High
 2735,i think someone is using my card to withdraw money. Someone stole my wallet. What can I do? it is urgent.,யாரோ எனது அட்டையைப் பயன்படுத்தி பணம் எடுக்கிறார்கள் என்று நினைக்கிறேன். யாரோ எனது பணப்பையைத் திருடிவிட்டார்கள். நான் என்ன செய்ய வேண்டும்? இது அவசரமானது.,cash_withdrawal_not_recognised,Neutral,High
-2736,I am seeing in the App a some cash withdrawal that its not mine,செயலியில் (app) என்னுடையது அல்லாத சில பணம் எடுத்தல்களை நான் காண்கிறேன்.,cash_withdrawal_not_recognised,Neutral,High
+2736,I am seeing in the App a some cash withdrawal that its not mine,செயலியில் என்னுடையது அல்லாத சில பணம் எடுத்தல்களை நான் காண்கிறேன்.,cash_withdrawal_not_recognised,Neutral,High
 2737,My account has a weird withdrawal.,எனது கணக்கில் ஒரு விசித்திரமான பணம் எடுத்தல் நடந்துள்ளது.,cash_withdrawal_not_recognised,Neutral,High
-2738,I'm unsure of a withdrawl in my statement.,எனது கணக்கு அறிக்கையில் (statement) உள்ள ஒரு பணம் எடுத்தல் குறித்து எனக்கு உறுதியாகத் தெரியவில்லை.,cash_withdrawal_not_recognised,Neutral,High
+2738,I'm unsure of a withdrawl in my statement.,எனது கணக்கு அறிக்கையில் உள்ள ஒரு பணம் எடுத்தல் குறித்து எனக்கு உறுதியாகத் தெரியவில்லை.,cash_withdrawal_not_recognised,Neutral,High
 2739,"It looks like someone else withdrew cash from my account, can you help?","வேறு யாரோ எனது கணக்கிலிருந்து பணம் எடுத்தது போல் தெரிகிறது, உதவ முடியுமா?",cash_withdrawal_not_recognised,Neutral,High
 2740,I think I see a withdraw I did not make.,நான் செய்யாத ஒரு பணம் எடுத்தலை நான் காண்கிறேன் என்று நினைக்கிறேன்.,cash_withdrawal_not_recognised,Neutral,High
-2741,Some cash is showing up in my app that I did not get.,நான் பெறாத சில பணப் பரிவர்த்தனைகள் எனது செயலியில் (app) காட்டுகின்றன.,cash_withdrawal_not_recognised,Neutral,High
+2741,Some cash is showing up in my app that I did not get.,நான் பெறாத சில பணப் பரிவர்த்தனைகள் எனது செயலியில் காட்டுகின்றன.,cash_withdrawal_not_recognised,Neutral,High
 2742,"There is an unauthorized cash withdrawal from my account for Rs 500,000.  I definitely didn't make this withdrawal.  I need your help.","எனது கணக்கிலிருந்து 500,000 ரூபாய் அனுமதியின்றி எடுக்கப்பட்டுள்ளது. நான் நிச்சயமாக இந்த பணம் எடுத்தலைச் செய்யவில்லை. எனக்கு உங்கள் உதவி தேவை.",cash_withdrawal_not_recognised,Neutral,High
-2743,The app is showing an ATM withdrawl that I didn't make.,நான் செய்யாத ஒரு ஏடிஎம் (ATM) பணம் எடுத்தலை செயலி (app) காட்டுகிறது.,cash_withdrawal_not_recognised,Neutral,High
+2743,The app is showing an ATM withdrawl that I didn't make.,நான் செய்யாத ஒரு ஏடிஎம் பணம் எடுத்தலை செயலி காட்டுகிறது.,cash_withdrawal_not_recognised,Neutral,High
 2744,There is a odd withdrawal on my account.,எனது கணக்கில் ஒரு விசித்திரமான பணம் எடுத்தல் உள்ளது.,cash_withdrawal_not_recognised,Neutral,High
 2745,I need to cancel my card that got stolen a little while ago. Someone has already taken some money out and I don't want them to take anymore. Can you please do that?,"சிறிது நேரத்திற்கு முன்னர் திருடப்பட்ட எனது அட்டையை நான் ரத்து செய்ய வேண்டும். யாரோ ஏற்கனவே சில பணத்தை எடுத்துவிட்டார்கள், அவர்கள் மேலும் எடுப்பதை நான் விரும்பவில்லை. தயவுசெய்து அதைச் செய்ய முடியுமா?",cash_withdrawal_not_recognised,Neutral,High
 2746,How do I cancel my card? There are charges on my account that I didn't make.,எனது அட்டையை நான் எவ்வாறு ரத்து செய்வது? எனது கணக்கில் நான் செய்யாத சில கட்டணங்கள் விதிக்கப்பட்டுள்ளன.,cash_withdrawal_not_recognised,Neutral,High
-2747,"There is an error, the app says I made an ATM withdrawal and I didn't.","ஒரு தவறு நடந்துள்ளது, நான் ஏடிஎம் (ATM) இல் பணம் எடுத்ததாக செயலி (app) கூறுகிறது, ஆனால் நான் எடுக்கவில்லை.",cash_withdrawal_not_recognised,Neutral,High
+2747,"There is an error, the app says I made an ATM withdrawal and I didn't.","ஒரு தவறு நடந்துள்ளது, நான் ஏடிஎம்மில் பணம் எடுத்ததாக செயலி கூறுகிறது, ஆனால் நான் எடுக்கவில்லை.",cash_withdrawal_not_recognised,Neutral,High
 2748,"Can anyone help me, I lost my wallet and they've started withdrawing from my account.","யாராவது எனக்கு உதவ முடியுமா, நான் எனது பணப்பையைத் தொலைத்துவிட்டேன், அவர்கள் எனது கணக்கிலிருந்து பணம் எடுக்கத் தொடங்கிவிட்டார்கள்.",cash_withdrawal_not_recognised,Neutral,High
-2749,What do I do if I notice a strange withdrawl in my statement?,எனது கணக்கு அறிக்கையில் (statement) ஒரு விசித்திரமான பணம் எடுத்தலைக் கண்டால் நான் என்ன செய்ய வேண்டும்?,cash_withdrawal_not_recognised,Neutral,Low
+2749,What do I do if I notice a strange withdrawl in my statement?,எனது கணக்கு அறிக்கையில் ஒரு விசித்திரமான பணம் எடுத்தலைக் கண்டால் நான் என்ன செய்ய வேண்டும்?,cash_withdrawal_not_recognised,Neutral,Low
 2750,I don't recognise a cash withdrawal,ஒரு பணம் எடுத்தல் பரிவர்த்தனையை என்னால் அடையாளம் காண முடியவில்லை.,cash_withdrawal_not_recognised,Neutral,High
 2751,Help!  My wallet was stolen and someone is taking money out.  I need this money!  What can I do?,"உதவி செய்யுங்கோ! எனது பணப்பை திருடப்பட்டுவிட்டது, யாரோ பணம் எடுத்துக்கொண்டிருக்கிறார்கள். எனக்கு இந்த பணம் தேவை! நான் என்ன செய்ய வேண்டும்?",cash_withdrawal_not_recognised,Negative,High
 2752,There is a cash withdrawal transaction that I am unsure of.,எனக்கு சந்தேகமாக இருக்கும் ஒரு பணம் எடுத்தல் பரிவர்த்தனை உள்ளது.,cash_withdrawal_not_recognised,Neutral,High
@@ -2961,46 +2961,46 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 2957,"If my card is about to expire, do I need to order a new one?","எனது அட்டை காலாவதியாகப் போகிறது என்றால், நான் புதிய ஒன்றை ஓடர் செய்ய வேண்டுமா?",card_about_to_expire,Neutral,Low
 2958,My card is about to expire. How do I get a new one?,எனது அட்டை காலாவதியாகப் போகிறது. நான் எவ்வாறு புதிய ஒன்றை பெறுவது?,card_about_to_expire,Neutral,Low
 2959,I need to know the cost and when I will receive a new card to replace an old one.,பழைய அட்டைக்கு பதிலாக புதிய அட்டை பெறுவதற்கான செலவு மற்றும் அதை நான் எப்போது பெற்றுக்கொள்வேன் என்பதை நான் அறிய வேண்டும்.,card_about_to_expire,Neutral,Low
-2960,Is the top up feature available on the Apple Watch?,Apple Watch இல் டொப்-அப் (top up) செய்யும் வசதி உள்ளதா?,apple_pay_or_google_pay,Neutral,Low
-2961,Can I use the system Google Pay for top-ups?,டொப்-அப் செய்வதற்கு நான் Google Pay முறையைப் பயன்படுத்தலாமா?,apple_pay_or_google_pay,Neutral,Low
-2962,My top-up for Google Pay isn't working,எனது Google Pay டொப்-அப் வேலை செய்யவில்லை,apple_pay_or_google_pay,Neutral,Medium
-2963,Can I add money with Apple Pay?,Apple Pay மூலம் நான் பணம் சேர்க்க முடியுமா?,apple_pay_or_google_pay,Neutral,Low
-2964,Can I use my Apple Watch to to top up?,டொப்-அப் செய்ய எனது Apple Watch ஐப் பயன்படுத்தலாமா?,apple_pay_or_google_pay,Neutral,Low
-2965,Does Apple Pay give the option to top up?,Apple Pay இல் டொப்-அப் செய்வதற்கான தெரிவு உள்ளதா?,apple_pay_or_google_pay,Neutral,Low
-2966,Top up on my Google Pay isn't working.,எனது Google Pay இல் டொப்-அப் வேலை செய்யவில்லை.,apple_pay_or_google_pay,Neutral,Medium
-2967,Is it possible to top up with Apple Pay?,Apple Pay மூலம் டொப்-அப் செய்ய முடியுமா?,apple_pay_or_google_pay,Neutral,Low
-2968,do i have to setup apple pay to use it,Apple Pay ஐப் பயன்படுத்துவதற்கு நான் அதை செட்டப் செய்ய வேண்டுமா?,apple_pay_or_google_pay,Neutral,Low
-2969,Can I use Apple Pay to top up?,டொப்-அப் செய்ய நான் Apple Pay ஐப் பயன்படுத்தலாமா?,apple_pay_or_google_pay,Neutral,Low
-2970,How can I top up my Google Pay?,எனது Google Pay ஐ நான் எவ்வாறு டொப்-அப் செய்வது?,apple_pay_or_google_pay,Neutral,Low
-2971,Does Google Play have an app to Top up?,டொப்-அப் செய்வதற்கு Google Play இல் செயலி (app) உள்ளதா?,apple_pay_or_google_pay,Neutral,Low
-2972,"I received my American Express card, but I am having problems making it work with Apple pay.  Can you help me with this problem?","எனது American Express அட்டையைப் பெற்றுக்கொண்டேன், ஆனால் அதை Apple Pay உடன் இணைத்து பயன்படுத்துவதில் சிக்கல் உள்ளது. இந்தச் சிக்கலைத் தீர்க்க எனக்கு உதவ முடியுமா?",apple_pay_or_google_pay,Neutral,Medium
-2973,is apple pay eligible for top up,Apple Pay டொப்-அப் செய்வதற்கு தகுதியானதா?,apple_pay_or_google_pay,Neutral,Low
-2974,Why can't I use my American Express with Apple Pay to top up my account?,எனது கணக்கை டொப்-அப் செய்ய Apple Pay உடன் எனது American Express ஐ ஏன் பயன்படுத்த முடியாது?,apple_pay_or_google_pay,Neutral,Medium
-2975,how do i add money with my apple watch,எனது Apple Watch மூலம் நான் எவ்வாறு பணம் சேர்ப்பது?,apple_pay_or_google_pay,Neutral,Low
-2976,"If I want to top up, can I use Apple Pay?","நான் டொப்-அப் செய்ய விரும்பினால், Apple Pay ஐப் பயன்படுத்தலாமா?",apple_pay_or_google_pay,Neutral,Low
-2977,can i top up with apple pay,நான் Apple Pay மூலம் டொப்-அப் செய்ய முடியுமா?,apple_pay_or_google_pay,Neutral,Low
-2978,"My American express is experiencing a problem with apple play with top up, can you fix it?","எனது American Express அட்டையை Apple Pay இல் டொப்-அப் செய்யும்போது சிக்கல் ஏற்படுகிறது, உங்களால் இதைச் சரிசெய்ய முடியுமா?",apple_pay_or_google_pay,Neutral,Medium
-2979,My top up is not working in Apple Pay.,Apple Pay இல் எனது டொப்-அப் வேலை செய்யவில்லை.,apple_pay_or_google_pay,Neutral,Medium
-2980,Is Apple Pay a possible top up option?,Apple Pay ஒரு டொப்-அப் தெரிவாக இருக்க முடியுமா?,apple_pay_or_google_pay,Neutral,Low
-2981,I don't know how to top up my Google pay.,எனது Google Pay ஐ எவ்வாறு டொப்-அப் செய்வது என்று எனக்குத் தெரியவில்லை.,apple_pay_or_google_pay,Neutral,Low
-2982,Can I top up from my Apple Watch?,எனது Apple Watch இலிருந்து நான் டொப்-அப் செய்ய முடியுமா?,apple_pay_or_google_pay,Neutral,Low
-2983,Can I use my American Express stored in Apple Pay to top up?,டொப்-அப் செய்ய Apple Pay இல் சேமிக்கப்பட்டுள்ள எனது American Express ஐப் பயன்படுத்தலாமா?,apple_pay_or_google_pay,Neutral,Low
-2984,is apple pay costly?,Apple Pay அதிக செலவுடையதா?,apple_pay_or_google_pay,Neutral,Low
-2985,How can I top up with Google Pay?,Google Pay மூலம் நான் எவ்வாறு டொப்-அப் செய்வது?,apple_pay_or_google_pay,Neutral,Low
-2986,I can't top up my account using my American Express with Apple Pay.,Apple Pay உடன் எனது American Express ஐப் பயன்படுத்தி எனது கணக்கை டொப்-அப் செய்ய முடியவில்லை.,apple_pay_or_google_pay,Neutral,Medium
-2987,"I got my American Express in Apple Pay, why is top up not working?","எனது American Express ஐ Apple Pay இல் இணைத்துள்ளேன், ஏன் டொப்-அப் வேலை செய்யவில்லை?",apple_pay_or_google_pay,Neutral,Medium
-2988,I got my American Express in Apple Bay but top up is not working,எனது American Express ஐ Apple Pay இல் இணைத்துள்ளேன் ஆனால் டொப்-அப் வேலை செய்யவில்லை,apple_pay_or_google_pay,Neutral,Medium
-2989,How do I top up? Can I use my apple watch?,நான் எவ்வாறு டொப்-அப் செய்வது? எனது Apple Watch ஐப் பயன்படுத்தலாமா?,apple_pay_or_google_pay,Neutral,Low
-2990,Is it possible to use Apple Pay to put money in my account?,எனது கணக்கில் பணம் போடுவதற்கு Apple Pay ஐப் பயன்படுத்த முடியுமா?,apple_pay_or_google_pay,Neutral,Low
-2991,"My American Express is in my Apple Pay and the top up is failing, why?","எனது American Express கார்ட் Apple Pay இல் உள்ளது, ஆனால் டொப்-அப் தோல்வியடைகிறது, ஏன்?",apple_pay_or_google_pay,Neutral,Medium
-2992,How can I top-ff my account using my Apple Watch?,எனது Apple Watch ஐப் பயன்படுத்தி எனது கணக்கை எவ்வாறு டொப்-அப் செய்வது?,apple_pay_or_google_pay,Neutral,Low
-2993,can google pay be used to make a top-up,டொப்-அப் செய்வதற்கு Google Pay ஐப் பயன்படுத்த முடியுமா?,apple_pay_or_google_pay,Neutral,Low
-2994,How do I get the Top Up feature on my apple watch working?,எனது Apple Watch இல் டொப்-அப் வசதியை எவ்வாறு வேலை செய்ய வைப்பது?,apple_pay_or_google_pay,Neutral,Low
-2995,How do I troubleshoot Google pay top up?,Google Pay டொப்-அப் பிரச்சினையை நான் எவ்வாறு சரிசெய்வது?,apple_pay_or_google_pay,Neutral,Low
-2996,How do I top up with Apple Pay?,Apple Pay மூலம் நான் எவ்வாறு டொப்-அப் செய்வது?,apple_pay_or_google_pay,Neutral,Low
-2997,Why isn't my top up working using my saved American Express in ApplePay?,ApplePay இல் சேமிக்கப்பட்டுள்ள எனது American Express ஐப் பயன்படுத்தி ஏன் டொப்-அப் செய்ய முடியாமல் உள்ளது?,apple_pay_or_google_pay,Neutral,Medium
-2998,How do I use the top up app with my apple watch?,எனது Apple Watch உடன் டொப்-அப் செயலியை எவ்வாறு பயன்படுத்துவது?,apple_pay_or_google_pay,Neutral,Low
-2999,"Google pay and top up, I want it, can I get it?","Google Pay மற்றும் டொப்-அப், எனக்கு அது வேண்டும், அதை நான் பெற முடியுமா?",apple_pay_or_google_pay,Neutral,Low
+2960,Is the top up feature available on the Apple Watch?,ஆப்பிள் வாட்சில் டொப்-அப் செய்யும் வசதி உள்ளதா?,apple_pay_or_google_pay,Neutral,Low
+2961,Can I use the system Google Pay for top-ups?,டொப்-அப் செய்வதற்கு நான் கூகுள் பே முறையைப் பயன்படுத்தலாமா?,apple_pay_or_google_pay,Neutral,Low
+2962,My top-up for Google Pay isn't working,எனது கூகுள் பே டொப்-அப் வேலை செய்யவில்லை,apple_pay_or_google_pay,Neutral,Medium
+2963,Can I add money with Apple Pay?,ஆப்பிள் பே மூலம் நான் பணம் சேர்க்க முடியுமா?,apple_pay_or_google_pay,Neutral,Low
+2964,Can I use my Apple Watch to to top up?,டொப்-அப் செய்ய எனது ஆப்பிள் வாட்சைப் பயன்படுத்தலாமா?,apple_pay_or_google_pay,Neutral,Low
+2965,Does Apple Pay give the option to top up?,ஆப்பிள் பேயில் டொப்-அப் செய்வதற்கான தெரிவு உள்ளதா?,apple_pay_or_google_pay,Neutral,Low
+2966,Top up on my Google Pay isn't working.,எனது கூகுள் பேயில் டொப்-அப் வேலை செய்யவில்லை.,apple_pay_or_google_pay,Neutral,Medium
+2967,Is it possible to top up with Apple Pay?,ஆப்பிள் பே மூலம் டொப்-அப் செய்ய முடியுமா?,apple_pay_or_google_pay,Neutral,Low
+2968,do i have to setup apple pay to use it,ஆப்பிள் பேயைப் பயன்படுத்துவதற்கு நான் அதை செட்டப் செய்ய வேண்டுமா?,apple_pay_or_google_pay,Neutral,Low
+2969,Can I use Apple Pay to top up?,டொப்-அப் செய்ய நான் ஆப்பிள் பேயைப் பயன்படுத்தலாமா?,apple_pay_or_google_pay,Neutral,Low
+2970,How can I top up my Google Pay?,எனது கூகுள் பேயை நான் எவ்வாறு டொப்-அப் செய்வது?,apple_pay_or_google_pay,Neutral,Low
+2971,Does Google Play have an app to Top up?,டொப்-அப் செய்வதற்கு கூகுள் ப்ளேயில் செயலி உள்ளதா?,apple_pay_or_google_pay,Neutral,Low
+2972,"I received my American Express card, but I am having problems making it work with Apple pay.  Can you help me with this problem?","எனது அமெரிக்கன் எக்ஸ்பிரஸ் அட்டையைப் பெற்றுக்கொண்டேன், ஆனால் அதை ஆப்பிள் பேயுடன் இணைத்து பயன்படுத்துவதில் சிக்கல் உள்ளது. இந்தச் சிக்கலைத் தீர்க்க எனக்கு உதவ முடியுமா?",apple_pay_or_google_pay,Neutral,Medium
+2973,is apple pay eligible for top up,ஆப்பிள் பே டொப்-அப் செய்வதற்கு தகுதியானதா?,apple_pay_or_google_pay,Neutral,Low
+2974,Why can't I use my American Express with Apple Pay to top up my account?,எனது கணக்கை டொப்-அப் செய்ய ஆப்பிள் பேயுடன் எனது அமெரிக்கன் எக்ஸ்பிரஸை ஏன் பயன்படுத்த முடியாது?,apple_pay_or_google_pay,Neutral,Medium
+2975,how do i add money with my apple watch,எனது ஆப்பிள் வாட்ச் மூலம் நான் எவ்வாறு பணம் சேர்ப்பது?,apple_pay_or_google_pay,Neutral,Low
+2976,"If I want to top up, can I use Apple Pay?","நான் டொப்-அப் செய்ய விரும்பினால், ஆப்பிள் பேயைப் பயன்படுத்தலாமா?",apple_pay_or_google_pay,Neutral,Low
+2977,can i top up with apple pay,நான் ஆப்பிள் பே மூலம் டொப்-அப் செய்ய முடியுமா?,apple_pay_or_google_pay,Neutral,Low
+2978,"My American express is experiencing a problem with apple play with top up, can you fix it?","எனது அமெரிக்கன் எக்ஸ்பிரஸ் அட்டையை ஆப்பிள் பேயில் டொப்-அப் செய்யும்போது சிக்கல் ஏற்படுகிறது, உங்களால் இதைச் சரிசெய்ய முடியுமா?",apple_pay_or_google_pay,Neutral,Medium
+2979,My top up is not working in Apple Pay.,ஆப்பிள் பேயில் எனது டொப்-அப் வேலை செய்யவில்லை.,apple_pay_or_google_pay,Neutral,Medium
+2980,Is Apple Pay a possible top up option?,ஆப்பிள் பே ஒரு டொப்-அப் தெரிவாக இருக்க முடியுமா?,apple_pay_or_google_pay,Neutral,Low
+2981,I don't know how to top up my Google pay.,எனது கூகுள் பேயை எவ்வாறு டொப்-அப் செய்வது என்று எனக்குத் தெரியவில்லை.,apple_pay_or_google_pay,Neutral,Low
+2982,Can I top up from my Apple Watch?,எனது ஆப்பிள் வாட்சிலிருந்து நான் டொப்-அப் செய்ய முடியுமா?,apple_pay_or_google_pay,Neutral,Low
+2983,Can I use my American Express stored in Apple Pay to top up?,டொப்-அப் செய்ய ஆப்பிள் பேயில் சேமிக்கப்பட்டுள்ள எனது அமெரிக்கன் எக்ஸ்பிரஸைப் பயன்படுத்தலாமா?,apple_pay_or_google_pay,Neutral,Low
+2984,is apple pay costly?,ஆப்பிள் பே அதிக செலவுடையதா?,apple_pay_or_google_pay,Neutral,Low
+2985,How can I top up with Google Pay?,கூகுள் பே மூலம் நான் எவ்வாறு டொப்-அப் செய்வது?,apple_pay_or_google_pay,Neutral,Low
+2986,I can't top up my account using my American Express with Apple Pay.,ஆப்பிள் பேயுடன் எனது அமெரிக்கன் எக்ஸ்பிரஸைப் பயன்படுத்தி எனது கணக்கை டொப்-அப் செய்ய முடியவில்லை.,apple_pay_or_google_pay,Neutral,Medium
+2987,"I got my American Express in Apple Pay, why is top up not working?","எனது அமெரிக்கன் எக்ஸ்பிரஸை ஆப்பிள் பேயில் இணைத்துள்ளேன், ஏன் டொப்-அப் வேலை செய்யவில்லை?",apple_pay_or_google_pay,Neutral,Medium
+2988,I got my American Express in Apple Bay but top up is not working,எனது அமெரிக்கன் எக்ஸ்பிரஸை ஆப்பிள் பேயில் இணைத்துள்ளேன் ஆனால் டொப்-அப் வேலை செய்யவில்லை,apple_pay_or_google_pay,Neutral,Medium
+2989,How do I top up? Can I use my apple watch?,நான் எவ்வாறு டொப்-அப் செய்வது? எனது ஆப்பிள் வாட்சைப் பயன்படுத்தலாமா?,apple_pay_or_google_pay,Neutral,Low
+2990,Is it possible to use Apple Pay to put money in my account?,எனது கணக்கில் பணம் போடுவதற்கு ஆப்பிள் பேயைப் பயன்படுத்த முடியுமா?,apple_pay_or_google_pay,Neutral,Low
+2991,"My American Express is in my Apple Pay and the top up is failing, why?","எனது அமெரிக்கன் எக்ஸ்பிரஸ் கார்ட் ஆப்பிள் பேயில் உள்ளது, ஆனால் டொப்-அப் தோல்வியடைகிறது, ஏன்?",apple_pay_or_google_pay,Neutral,Medium
+2992,How can I top-ff my account using my Apple Watch?,எனது ஆப்பிள் வாட்சைப் பயன்படுத்தி எனது கணக்கை எவ்வாறு டொப்-அப் செய்வது?,apple_pay_or_google_pay,Neutral,Low
+2993,can google pay be used to make a top-up,டொப்-அப் செய்வதற்கு கூகுள் பேயைப் பயன்படுத்த முடியுமா?,apple_pay_or_google_pay,Neutral,Low
+2994,How do I get the Top Up feature on my apple watch working?,எனது ஆப்பிள் வாட்சில் டொப்-அப் வசதியை எவ்வாறு வேலை செய்ய வைப்பது?,apple_pay_or_google_pay,Neutral,Low
+2995,How do I troubleshoot Google pay top up?,கூகுள் பே டொப்-அப் பிரச்சினையை நான் எவ்வாறு சரிசெய்வது?,apple_pay_or_google_pay,Neutral,Low
+2996,How do I top up with Apple Pay?,ஆப்பிள் பே மூலம் நான் எவ்வாறு டொப்-அப் செய்வது?,apple_pay_or_google_pay,Neutral,Low
+2997,Why isn't my top up working using my saved American Express in ApplePay?,ஆப்பிள் பேயில் சேமிக்கப்பட்டுள்ள எனது அமெரிக்கன் எக்ஸ்பிரஸைப் பயன்படுத்தி ஏன் டொப்-அப் செய்ய முடியாமல் உள்ளது?,apple_pay_or_google_pay,Neutral,Medium
+2998,How do I use the top up app with my apple watch?,எனது ஆப்பிள் வாட்சுடன் டொப்-அப் செயலியை எவ்வாறு பயன்படுத்துவது?,apple_pay_or_google_pay,Neutral,Low
+2999,"Google pay and top up, I want it, can I get it?","கூகுள் பே மற்றும் டொப்-அப், எனக்கு அது வேண்டும், அதை நான் பெற முடியுமா?",apple_pay_or_google_pay,Neutral,Low
 3000,What can I use to verify my identify?,எனது அடையாளத்தை உறுதிப்படுத்த நான் எதைப் பயன்படுத்தலாம்?,verify_my_identity,Neutral,Low
 3001,What do you need to verify my identity?,எனது அடையாளத்தை உறுதிப்படுத்த உங்களுக்கு என்ன தேவை?,verify_my_identity,Neutral,Low
 3002,"I need to verify my identity, but how do I do that?","நான் எனது அடையாளத்தை உறுதிப்படுத்த வேண்டும், ஆனால் அதை எவ்வாறு செய்வது?",verify_my_identity,Neutral,Low
@@ -3073,7 +3073,7 @@ What businesses accept this card?",எந்தெந்த வியாபா�
 3069,In what countries do you do business?,நீங்கள் எந்தெந்த நாடுகளில் வணிகம் செய்கிறீர்கள்?,country_support,Neutral,Low
 3070,I don't live in Sri Lanka.  Can I still get a card?,நான் இலங்கையில் வசிக்கவில்லை. இருந்தாலும் எனக்கு ஒரு கார்ட் பெற முடியுமா?,country_support,Neutral,Low
 3071,Where do you support?,நீங்கள் எங்கு சேவை வழங்குகிறீர்கள்?,country_support,Neutral,Low
-3072,Am I able to get a card in EU?,ஐரோப்பிய ஒன்றியத்தில் (EU) எனக்கு ஒரு கார்ட் பெற முடியுமா?,country_support,Neutral,Low
+3072,Am I able to get a card in EU?,ஐரோப்பிய ஒன்றியத்தில் எனக்கு ஒரு கார்ட் பெற முடியுமா?,country_support,Neutral,Low
 3073,What countries do you currently do business in?,தற்போது நீங்கள் எந்த நாடுகளில் வணிகம் செய்கிறீர்கள்?,country_support,Neutral,Low
 3074,"I'm not in Sri Lanka, can I get a card?","நான் இலங்கையில் இல்லை, எனக்கு ஒரு கார்ட் பெற முடியுமா?",country_support,Neutral,Low
 3075,"If i'm not in Sri Lanka, can I still get a card?","நான் இலங்கையில் இல்லாவிட்டால், எனக்கு இன்னும் ஒரு கார்ட் பெற முடியுமா?",country_support,Neutral,Low

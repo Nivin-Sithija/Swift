@@ -1,3 +1,20 @@
+
+MODELS = 'labse'
+TASK = 'sentiment'
+EPOCHS = 3
+BATCH_SIZE = 32
+LR = None
+LORA = False
+LORA_R = 8
+LORA_ALPHA = 16
+LORA_TARGETS = 'attn'
+SMOKE = False
+FIT_PORTION = 'train'
+EVAL_PORTION = 'dev'
+SAVE_MODELS = False
+EXPECTED_PAYLOAD_SHA = '5a6dc71e604f'
+DATASET_DIR = '/kaggle/input/swift-payload'
+
 """Kernel body: fine-tune the encoder roster on Kaggle's T4s.
 
 `runner.py` prepends the configuration constants (MODELS, TASK, EPOCHS, BATCH_SIZE, SMOKE,
