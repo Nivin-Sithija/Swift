@@ -1,0 +1,4 @@
+model,Sinhala_labse_cosine,Sinhala_script_fidelity,Tamil_labse_cosine,Tamil_script_fidelity
+Gemini 3.6 Flash,0.8799,0.749,0.7754,0.9712
+GPT-4.1,0.8806,0.6454,0.8623,0.6446
+GPT-OSS-20B,0.8347,0.6654,0.8558,0.7077

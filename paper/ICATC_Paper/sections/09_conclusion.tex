@@ -1,0 +1,29 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper contributed a five-track multilingual support ticket corpus carrying
+intent, sentiment, and priority labels, a cross-script benchmark of four model
+families on all three targets, and a measurement of the statistical dependence
+between the targets.
+
+Fine-tuned LaBSE gives the best pooled intent \macrof{} (0.8835 against 0.8308
+for the strongest classical baseline), a margin significant under both paired
+bootstrap and McNemar tests. On sentiment and priority the four encoders, the
+three Gemma 3 1B configurations and the classical SVM fall inside one another's
+intervals --- pooled \negf{} spans 0.679 to 0.714 and pooled priority 0.872 to
+0.890, with the best priority score belonging to a decoder. So we claim no
+architectural advantage on those targets. The dominant source of variation is
+script rather than architecture: romanized Tanglish costs every model 14 to 32
+points of intent \macrof{} relative to English, and MuRIL, which ranks last on
+pooled intent, has both the smallest romanization gap and the best absolute
+Tanglish score on all three tasks. Measuring inter-label mutual information
+showed that intent explains 76.9\% of priority entropy, and an equal-weight
+logarithmic pool of the direct priority head and an intent-conditioned chain
+cuts log loss by 27.4\% where a linear mixture of the same estimates is
+collinear by construction.
+
+Every score is bounded by a measured rather than assumed annotation ceiling
+(0.7931 \negf{} at $\kappa = 0.780$ against human gold). The urgency score of
+Section~\ref{sec:score} is specified, not validated: measuring it against
+established dispatch policies under load, and closing the romanization gap, are
+the natural next steps.

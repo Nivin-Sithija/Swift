@@ -1,0 +1,40 @@
+\section{Information Theoretic Posterior Combination}
+\label{sec:combination}
+
+\subsection{Quantifying Inter Label Dependence}
+
+Predicting intent, sentiment, and priority via independent output heads overlooks their joint statistical structure. Evaluating mutual information on training data ($n = 9{,}998$ tickets, in nats) reveals strong asymmetric coupling: prior entropy $H(\mathrm{prio}) = 0.9333$; $I(\mathrm{int}; \mathrm{prio}) = 0.7178$ (resolving 76.9\% of priority entropy); $I(\mathrm{sent}; \mathrm{prio}) = 0.0172$ (1.8\%); and $I(\mathrm{sent}; \mathrm{prio}\mid \mathrm{int}) = 0.0149$ (86.6\% survives conditioning). Thus, intent provides a dominant, overlapping signal for priority, while sentiment acts as a sparse, non-redundant orthogonal adjustment. Fitting linear mixtures of the form $w_P P(\mathrm{prio}) + w_I P(\mathrm{int})$ induces collinearity, as weights sum redundant estimates of the same underlying event.
+
+\subsection{Candidate Combination Rules and Evaluation}
+
+We benchmark five probabilistic combination mechanisms on the frozen test split: (i)~\emph{Marginal}: direct priority head $P_{\mathrm{head}}(\mathrm{prio}\mid x)$; (ii)~\emph{Stacked Generalization}: a multinomial logistic meta learner \cite{wolpert1992stacked}; (iii)~\emph{Intent Chain}: a classifier chain \cite{dembczynski2010pcc} marginalizing over intent, $P_{\mathrm{chain}}(k\mid x) = \sum_{i=1}^{77} P(\mathrm{int}{=}i\mid x)\, P(\mathrm{prio}{=}k\mid \mathrm{int}{=}i)$, where contingency $P(\mathrm{prio}\mid \mathrm{int})$ is estimated on training gold labels; (iv)~\emph{Full Chain}: conditioning priority jointly on intent and sentiment; and (v)~\emph{Log Pool}: the normalized geometric mean of the direct priority head and the intent chain:
+\begin{equation}
+P_{\mathrm{pool}}(k\mid x) \propto \bigl(P_{\mathrm{head}}(\mathrm{prio}{=}k\mid x)\, P_{\mathrm{chain}}(k\mid x)\bigr)^{1/2}
+\label{eq:logpool}
+\end{equation}
+Logarithmic opinion pooling aggregates dependent experts sharing background information without linear double counting.
+
+\begin{table}[!tb]
+\caption{Priority combination rules on the frozen test split.}
+\label{tab:combination}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Combination Rule & Log Loss & \macrof{} \\
+\midrule
+Marginal (priority head alone)    & 0.3697 & 0.8901 \\
+Stacked generalization \cite{wolpert1992stacked} & 0.3333 & 0.8914 \\
+Intent chain \cite{dembczynski2010pcc} & 0.3160 & 0.8742 \\
+Full chain (intent + sentiment)   & 0.3111 & 0.8749 \\
+\textbf{Log pool (head $\times$ intent chain)} & \textbf{0.2683} & \textbf{0.8983} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Selection is governed by multiclass log loss (cross entropy) to ensure calibrated continuous posteriors for downstream queue scheduling (Table~\ref{tab:combination}). Equal weight log pooling attains the lowest log loss (0.2683) and highest \macrof{} (0.8983), reducing log loss by 27.4\% over the standalone priority head (0.3697) and effectively resolving label collinearity.
+
+\subsection{The Calibration Trap in Operational Ordering}
+
+On development data, fine-tuned LaBSE exhibits an Expected Calibration Error (ECE) of 0.0658. Post hoc temperature scaling \cite{guo2017calibration} reduces ECE to 0.0192. However, examining temperature scaled posteriors for operational ranking reveals a critical trade off: temperature scaling pulls logits toward uniform entropy, compressing the dynamic range that differentiates urgent incidents from routine inquiries. While post hoc calibration optimizes population level probability reliability, it diminishes score separation across distinct priority tiers. Because dispatch ordering relies on ranking separation rather than population level marginal calibration, we emit uncalibrated pooled posteriors.

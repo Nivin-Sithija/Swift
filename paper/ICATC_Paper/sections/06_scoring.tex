@@ -1,0 +1,20 @@
+\section{Dynamic Urgency Scoring and Dispatch}
+\label{sec:score}
+
+\subsection{Formulation of the Ticket Urgency Score}
+
+The dynamic queue ordering mechanism translates continuous posteriors and elapsed waiting time into an operational priority scalar. For waiting ticket $t$ evaluated at dispatch time $\tau$, the Ticket Urgency Score $U(t, \tau)$ couples intrinsic severity $S(t)$ with multiplicative aging:
+\begin{align}
+U(t,\tau) &= S(t)\,\bigl(1 + \alpha\, a(t,\tau)\bigr), \quad a(t,\tau) = \frac{\tau - \mathrm{arrival}(t)}{D_k} \label{eq:tus}\\
+S(t) &= w_P\,\hat{\mathbb{E}}[\mathrm{sev}\mid t] + w_S\,\hat{P}(\mathrm{Neg}\mid t) + w_I\,\kappa(\hat{\imath}(t)) \label{eq:severity}
+\end{align}
+subject to simplex weights $w_P, w_S, w_I \ge 0$, $\sum_j w_j = 1$, aging coefficient $\alpha \ge 0$, and class response deadline $D_k$.
+
+Equation~\eqref{eq:tus} integrates three principles:
+(i)~\textbf{Continuous Expected Severity}: Rather than discrete argmax assignment, expected severity $\hat{\mathbb{E}}[\mathrm{sev}\mid t] = \sum_k \hat{p}_k(t)\,\mathrm{sev}_k$ over $\mathrm{sev} = (0, 0.5, 1.0)$ smoothly separates confident Low tickets ($S \approx 0$) from borderline 0.51/0.49 ties ($S \approx 0.25$), preventing premature dispatch of uncertain items.
+(ii)~\textbf{Empirical Intent Criticality Prior}: The prior $\kappa(i) = \hat{P}(\mathrm{High}\mid \mathrm{int}=i)$ measures historical escalation risk on training data. Critical intents (e.g., lost or compromised card, where $\kappa \approx 1.0$) guarantee high urgency even when customer wording appears calm.
+(iii)~\textbf{Multiplicative Relative Aging}: Normalizing wait time by class SLA $D_k \in \{30, 120, 480\}$ minutes ensures aging scales with intrinsic severity. Long waiting Low tickets accelerate as $a(t, \tau) \to 1$, eventually overtaking fresh Medium inquiries to structurally eliminate starvation. A discrete form of this idea appears in \cite{deshmukh2020priority}, where a citizen complaint waiting past a fixed threshold is promoted one tier; Eq.~\eqref{eq:tus} replaces that single step with a continuous accrual normalized by the class deadline.
+
+\subsection{Parameter Fitting and Signal Ablation}
+
+Grid search on the development set over the 3 simplex (0.05 resolution) and exponential $\alpha$ yields optimal weights $w = (0.80, 0.10, 0.10)$ and $\alpha = 16$. The optimization landscape is stable: 71 of 231 simplex points lie within 5\% of optimal holding cost across $w_P \in [0.10, 0.90]$, reflecting the strong informational overlap between intent and priority identified in Section~\ref{sec:combination}. Component ablation on development gold sets confirms that grounding priority in the empirical intent prior $\kappa(i)$ shields critical accounts from false-negative omissions, while the sentiment adjustment $w_S$ selectively elevates frustrated customers within their priority tier without destabilizing overall queue ordering.

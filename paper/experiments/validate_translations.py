@@ -25,7 +25,7 @@ EVAL = REPO / "paper" / "translation_eval"
 SAMPLES = EVAL / "samples"
 SYSTEMS = EVAL / "systems"
 
-SYSTEM_NAMES = ("openai", "gptoss", "google")
+SYSTEM_NAMES = ("gemini", "openai", "gptoss", "google")
 # A Sinhala translation must be in Sinhala. The cheapest reliable check is the
 # Unicode block of the letters actually present.
 SCRIPT_RANGE = {"sinhala": (0x0D80, 0x0DFF), "tamil": (0x0B80, 0x0BFF)}
@@ -33,31 +33,39 @@ SCRIPT_RANGE = {"sinhala": (0x0D80, 0x0DFF), "tamil": (0x0B80, 0x0BFF)}
 
 def script_fraction(text: str, lang: str) -> float:
     lo, hi = SCRIPT_RANGE[lang]
-    letters = [c for c in str(text) if c.isalpha()]
-    if not letters:
+    # Sinhala/Tamil vowel signs and the virama are combining marks (Unicode
+    # category M), not letters (L). str.isalpha() excludes them, which silently
+    # drops most of a Sinhala/Tamil syllable's diacritics from the count while
+    # every Latin letter in a kept English loanword still counts -- so a
+    # correctly code-mixed sentence ("ohoma card eka" alongside native script)
+    # can register as "under 50% target script" purely from this exclusion,
+    # not because the model answered in English.
+    chars = [c for c in str(text) if unicodedata.category(c)[0] in ("L", "M")]
+    if not chars:
         return 0.0
-    return sum(lo <= ord(c) <= hi for c in letters) / len(letters)
+    return sum(lo <= ord(c) <= hi for c in chars) / len(chars)
 
 
-def check(path: Path, lang: str, expected_ids: set[int]) -> list[str]:
+def check(path: Path, lang: str, expected_ids: set[int]) -> tuple[list[str], list[str]]:
     problems: list[str] = []
+    notes: list[str] = []
     raw = path.read_text()
     if raw.lstrip().startswith("```"):
         problems.append("file starts with a code fence -- strip it")
     try:
         df = pd.read_csv(path)
     except Exception as exc:                                     # noqa: BLE001
-        return [f"will not parse as CSV: {exc}"]
+        return [f"will not parse as CSV: {exc}"], []
 
     if list(df.columns[:2]) != ["id", "translation"]:
         problems.append(f"columns are {list(df.columns)}, expected ['id','translation']")
-        return problems
+        return problems, notes
 
     df = df.dropna(subset=["id"])
     try:
         got = set(df["id"].astype(int))
     except ValueError:
-        return problems + ["the id column is not integral -- ids were renumbered or lost"]
+        return problems + ["the id column is not integral -- ids were renumbered or lost"], notes
 
     missing, extra = expected_ids - got, got - expected_ids
     if missing:
@@ -71,18 +79,28 @@ def check(path: Path, lang: str, expected_ids: set[int]) -> list[str]:
     if blank.any():
         problems.append(f"{int(blank.sum())} blank translation(s)")
 
-    # Wrong-script rows: the usual cause is the model answering in English, or
-    # transliterating instead of translating.
+    # Wrong-script rows. This corpus deliberately keeps banking loanwords in
+    # English (rule 3 of the prompt), so a short, correct, heavily code-mixed
+    # sentence -- "disposable virtual cards වල limits මොනවද?" -- can
+    # legitimately fall under 50% target-script characters; observed minimum
+    # across every genuinely correct row collected so far is ~19%. Below that,
+    # a row is very likely a real failure (answered fully in English, or
+    # transliterated instead of translated) rather than normal code-mixing, so
+    # only the low tail is a rejection; the code-mixed middle is a note.
     frac = df.loc[~blank, "translation"].map(lambda t: script_fraction(t, lang))
-    wrong = frac[frac < 0.5]
-    if len(wrong):
-        ids = df.loc[wrong.index, "id"].tolist()[:5]
-        problems.append(f"{len(wrong)} row(s) under 50% {lang} script, e.g. ids {ids} "
+    likely_failed = frac[frac < 0.15]
+    code_mixed = frac[(frac >= 0.15) & (frac < 0.5)]
+    if len(likely_failed):
+        ids = df.loc[likely_failed.index, "id"].tolist()[:5]
+        problems.append(f"{len(likely_failed)} row(s) under 15% {lang} script, e.g. ids {ids} "
                         f"-- answered in English or transliterated?")
+    if len(code_mixed):
+        notes.append(f"{len(code_mixed)} row(s) 15-50% {lang} script -- likely normal "
+                      f"loanword code-mixing, not a failure; spot-check if unsure")
 
     # A translation that is byte-identical to the English source is a copy, not a
     # translation, and it will quietly inflate any similarity metric.
-    return problems
+    return problems, notes
 
 
 def main() -> int:
@@ -98,7 +116,7 @@ def main() -> int:
                 print(f"  {system:7} {lang:8} -- not collected yet")
                 continue
             found += 1
-            problems = check(path, lang, expected)
+            problems, notes = check(path, lang, expected)
             if problems:
                 failed += 1
                 print(f"  {system:7} {lang:8} REJECTED")
@@ -106,6 +124,8 @@ def main() -> int:
                     print(f"      - {p}")
             else:
                 print(f"  {system:7} {lang:8} OK ({len(expected)} rows)")
+            for n in notes:
+                print(f"      note: {n}")
 
     print(f"\n{found} file(s) present, {failed} rejected")
     if found == 0:
