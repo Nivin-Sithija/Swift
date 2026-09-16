@@ -1126,7 +1126,7 @@ async def admin_update_settings(
 async def test_ocr_masking(
     file: Annotated[UploadFile, File(...)],
     engine: str = Query("tesseract", description="OCR engine: 'tesseract' or 'google_vision'")
-) -> dict:
+) -> dict[str, Any]:
     """
     Test endpoint for OCR and PII masking. 
     Allows you to upload an image and see both the raw OCR text and the masked text.
@@ -1154,7 +1154,7 @@ async def test_ocr_masking(
             "confidence": ocr.confidence
         }
     except OcrError as e:
-        raise HTTPException(422, f"OCR Error: {str(e)}")
+        raise HTTPException(422, f"OCR Error: {str(e)}") from e
     finally:
         if path.exists():
             path.unlink()
