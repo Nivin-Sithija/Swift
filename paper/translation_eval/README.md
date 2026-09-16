@@ -2,14 +2,22 @@
 
 ## What you paste
 
-Four files in `samples/`, each self-contained and ready to paste whole:
+Six files in `samples/`, each self-contained and ready to paste whole:
 
 | file | give to |
 |---|---|
 | `prompt_openai_sinhala.md` | the OpenAI model |
 | `prompt_openai_tamil.md` | the OpenAI model |
+| `prompt_gemini_sinhala.md` | Gemini |
+| `prompt_gemini_tamil.md` | Gemini |
 | `prompt_gptoss_sinhala.md` | local GPT-OSS |
 | `prompt_gptoss_tamil.md` | local GPT-OSS |
+
+`prompt_gemini_*.md` and `prompt_openai_*.md` are byte-identical (the instructions name no
+model), copied under separate names only so the saved system output and the manifest entry
+line up one-to-one. GPT-OSS is collected the same way mechanically, by
+`paper/experiments/fetch_gptoss_translations.py` calling local Ollama with the same prompt file
+instead of a human pasting it.
 
 Each holds the instructions plus all 150 English rows. **None of them contains our Sinhala
 or Tamil** — verified, 0 Sinhala characters in the Sinhala prompt. If the model saw our
@@ -19,8 +27,9 @@ Save what comes back **verbatim** as:
 
 ```
 systems/openai_sinhala.csv     systems/openai_tamil.csv
+systems/gemini_sinhala.csv     systems/gemini_tamil.csv
 systems/gptoss_sinhala.csv     systems/gptoss_tamil.csv
-systems/google_sinhala.csv     systems/google_tamil.csv
+systems/google_sinhala.csv     systems/google_tamil.csv   (optional — see below)
 ```
 
 Two columns, `id,translation`. Then run the validator — silent row loss is the normal
@@ -30,13 +39,17 @@ failure mode of pasting 150 rows through a chat window:
 .venv312/bin/python paper/experiments/validate_translations.py
 ```
 
-**Record the exact model name and the date** for each system. The paper has to name them.
+**Record the exact model name and the date** for each system — `fetch_gptoss_translations.py`
+does this automatically in `systems/MANIFEST.md`; do the same by hand for OpenAI and Gemini.
+The paper has to name them.
 
-## Google Translate
+## Google Translate (optional fourth system)
 
-`paper/experiments/fetch_google_translations.py` will produce the two Google files if you
-have a Cloud Translation key (`GOOGLE_TRANSLATE_API_KEY` in `backend/.env`). Without a key,
-paste through the web UI in batches and save in the same format.
+Not currently part of this round (OpenAI, Gemini and GPT-OSS are the three systems compared).
+`paper/experiments/fetch_google_translations.py` would produce the two Google files if you have
+a Cloud Translation key (`GOOGLE_TRANSLATE_API_KEY` in `backend/.env`) and want to add an
+off-the-shelf MT baseline later — `score_translations.py` and `validate_translations.py` already
+recognise `google_{sinhala,tamil}.csv` if it shows up, no code change needed.
 
 ---
 

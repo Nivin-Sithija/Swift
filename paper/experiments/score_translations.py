@@ -42,16 +42,21 @@ SAMPLES, SYSTEMS = TE / "samples", TE / "systems"
 OUT = REPO / "paper" / "results" / "tables"
 
 LANGS = ["sinhala", "tamil"]
-EXTERNAL = ["google", "openai", "gptoss"]
+EXTERNAL = ["gemini", "openai", "gptoss", "google"]
 BLOCKS = {"sinhala": [(0x0D80, 0x0DFF)], "tamil": [(0x0B80, 0x0BFF)]}
 
 
 def script_fraction(text: str, lang: str) -> float:
     ranges = BLOCKS[lang]
-    letters = [c for c in str(text) if unicodedata.category(c).startswith("L")]
-    if not letters:
+    # Include combining marks (category M), not just letters (L): Sinhala/Tamil
+    # vowel signs and the virama are marks, so isalpha()/category-L-only checks
+    # drop most of a native syllable's diacritics while every Latin letter in a
+    # kept English loanword still counts -- undercounting exactly the code-mixed
+    # register (banking loanwords kept in English) this corpus targets.
+    chars = [c for c in str(text) if unicodedata.category(c)[0] in ("L", "M")]
+    if not chars:
         return 0.0
-    return sum(any(lo <= ord(c) <= hi for lo, hi in ranges) for c in letters) / len(letters)
+    return sum(any(lo <= ord(c) <= hi for lo, hi in ranges) for c in chars) / len(chars)
 
 
 def collect(lang: str) -> pd.DataFrame:
