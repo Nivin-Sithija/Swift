@@ -1,0 +1,4 @@
+task,compared,n,headline,ci_low,ci_high,agreement,cohen_kappa,note
+sentiment,shipped labels vs human gold,500,0.7931,0.6667,0.8956,0.976,0.7804,the labels models actually train on -- this is the ceiling to quote
+priority,shipped labels vs human gold,500,0.7722,0.7258,0.815,0.804,0.6446,the labels models actually train on -- this is the ceiling to quote
+sentiment,prompt v8 raw output vs human gold,500,0.7812,0.6557,0.8842,0.972,0.7663,superseded: differs from shipped on 8/500 rows

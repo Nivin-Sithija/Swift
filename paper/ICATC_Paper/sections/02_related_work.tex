@@ -1,0 +1,51 @@
+\section{Related Work}
+\label{sec:related}
+
+\textbf{Support ticket classification and prioritization.}
+Prior work frames ticket handling as single-target text classification,
+including bank complaint categorization \cite{arya2026bank}. Closest to this
+work, Deshmukh and Shiravale \cite{deshmukh2020priority} derive priority from
+sentiment intensity and promote a complaint once it has waited past a fixed
+threshold, which Section~\ref{sec:score} generalizes to a continuous accrual.
+Static labels do not specify an order of service: desks default to First Come
+First Served (FCFS) or to discrete priority classes, and discrete binning
+discards the uncertainty continuous dispatch needs.
+
+\textbf{Multilingual representations and transliterated scripts.}
+Expanding BANKING77 \cite{casanueva2020banking77} into low-resource settings
+requires representations robust to script variation: cross-lingual masked
+encoders \cite{conneau2020xlmr,marone2025mmbert}, Indic-vocabulary encoders
+\cite{khanuja2021muril}, sentence encoders \cite{feng2022labse}, and
+instruction-tuned decoders \cite{gemmateam2025gemma3}. The Sinhala literature,
+surveyed in \cite{desilva2019sinhalasurvey}, reports two patterns our benchmark
+tests jointly. Architecture matters little on minority targets: adapter variants
+of XLM-R move code-mixed sentiment macro-F\textsubscript{1} by only one to two
+points \cite{rathnayake2022adapter}. Task-specific fine-tuning, by contrast,
+dominates prompting --- on banking reviews \cite{senevirathna2025multilingual},
+on native Sinhala \cite{aravinda2025sinllama}, and on Sinhala news comments
+\cite{bandaranayake2025sinhala}.
+
+\textbf{Romanized South Asian text.}
+Informal romanization introduces script sensitivity and non-standard orthography
+\cite{rajapakse2026script,sumanathilaka2022romanized}
+that subword tokenizers handle poorly, and word-level language identification in
+Latin-script Sinhala-English is context-dependent, with a CRF over character
+$n$-grams beating every neural model at small data scale
+\cite{smith2020codemixed}. One alternative is to reverse-transliterate into
+native script before inference \cite{perera2025indonlp,sumanathilaka2026swabhasha}.
+We model the romanized tracks directly, which makes our Tanglish figures a floor
+rather than a ceiling.
+
+\textbf{Annotation by prompting.}
+Prompted annotation addresses label scarcity, but its errors propagate into
+every downstream comparison \cite{northcutt2021labelerrors}. We therefore treat
+our labels as silver and measure their ceiling against human gold.
+
+\textbf{Dispatch under uncertainty.}
+The $c\mu$ rule \cite{cox1961queues} minimizes holding cost under linear delay
+penalties, while delay-dependent disciplines \cite{kleinrock1964delay} and the
+accumulating priority queue \cite{stanford2014accumulating} let priority accrue
+with waiting time to prevent starvation. Argon and Ziya
+\cite{argon2009priority} prove that under noisy classification, ordering by a
+continuous posterior index rather than a discrete argmax class minimizes
+expected long-run holding cost.
