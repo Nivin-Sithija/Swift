@@ -32,7 +32,7 @@ def test_weak_customer_text_defers_to_a_stronger_attachment() -> None:
 def test_agreement_keeps_the_text_label_with_the_stronger_confidence() -> None:
     text = Result("failed_transfer", 0.40, TEXT_MODEL)
     ocr = Result("failed_transfer", 0.75, OCR_MODEL)
-    assert fuse_intent(text, ocr) == Result("failed_transfer", 0.75, TEXT_MODEL)
+    assert fuse_intent(text, ocr) == Result("failed_transfer", 0.75, f"{TEXT_MODEL}+{OCR_MODEL}")
 
 
 def test_weak_attachment_does_not_replace_weak_text() -> None:
@@ -131,3 +131,53 @@ async def test_attachment_decides_when_the_customer_text_is_weak(
     after = (await client.get(f"/tickets/{ticket}", headers=auth_headers(agent))).json()
     assert after["category"]["value"] == "failed_transfer"
     assert after["category"]["model_version"] == OCR_MODEL
+
+
+def _counting_classifier(monkeypatch, first: Result) -> list[str]:
+    """Stub LaBSE: the first call returns `first`, later calls a confident text result."""
+    from app.api.v1 import routes
+
+    calls: list[str] = []
+
+    async def _classify(text: str):
+        calls.append(text)
+        intent = first if len(calls) == 1 else Result("lost_or_stolen_card", 0.95, TEXT_MODEL)
+        return (
+            intent,
+            Result("medium", 0.80, "test-stub-priority"),
+            Result("neutral", 0.80, "test-stub-sentiment"),
+        )
+
+    monkeypatch.setattr(routes, "classify", _classify)
+    monkeypatch.setattr(routes.settings, "intent_model_id", TEXT_MODEL)
+    return calls
+
+
+async def test_upload_reuses_the_stored_labse_prediction(
+    client, customer, agent, new_ticket, auth_headers, monkeypatch
+):
+    calls = _counting_classifier(monkeypatch, Result("lost_or_stolen_card", 0.95, TEXT_MODEL))
+    ticket = await new_ticket(customer)
+
+    _stub_ocr(monkeypatch, "Transfer failed")
+    await _upload(client, ticket, auth_headers(customer))
+
+    assert len(calls) == 1, "upload called LaBSE again for text it already classified"
+    after = (await client.get(f"/tickets/{ticket}", headers=auth_headers(agent))).json()
+    assert after["category"]["value"] == "lost_or_stolen_card"
+
+
+async def test_upload_retries_labse_after_a_submission_timeout(
+    client, customer, agent, new_ticket, auth_headers, monkeypatch
+):
+    timeout = Result("unknown", 0.0, "huggingface-space-timeout")
+    calls = _counting_classifier(monkeypatch, timeout)
+    ticket = await new_ticket(customer)
+
+    _stub_ocr(monkeypatch, "Transfer failed")
+    await _upload(client, ticket, auth_headers(customer))
+
+    assert len(calls) == 2
+    after = (await client.get(f"/tickets/{ticket}", headers=auth_headers(agent))).json()
+    assert after["category"]["value"] == "lost_or_stolen_card"
+    assert after["category"]["model_version"] == TEXT_MODEL
