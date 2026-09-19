@@ -1,0 +1,12 @@
+{
+  "model": "tfidf_linear_svm_all.joblib",
+  "formula": "sigmoid(w_top * top_score + w_margin * (top_score - runner_up_score) + bias)",
+  "w_top": 0.9018167231234314,
+  "w_margin": 2.4996366136049906,
+  "bias": -0.3787768104354948,
+  "fit_rows": 7695,
+  "held_out_rows": 7700,
+  "held_out_accuracy": 0.8245,
+  "held_out_ece": 0.0106,
+  "source": "ml/scripts/calibrate_svm_confidence.py"
+}

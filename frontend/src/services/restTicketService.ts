@@ -51,6 +51,7 @@ type ApiTicket = Record<string, unknown> & {
     size: number;
     type: string;
     download_url: string;
+    ocr_text?: string | null;
   }>;
   events: Array<{
     id: string;
@@ -158,7 +159,11 @@ function mapTicket(t: ApiTicket): Ticket {
           url: url(`/attachments/${attachment.id}/download`),
         }
       : undefined,
-    imageEvidence: attachment ? { status: "processing" } : { status: "none" },
+    imageEvidence: !attachment
+      ? { status: "none" }
+      : attachment.ocr_text
+        ? { status: "processed", ocrText: attachment.ocr_text }
+        : { status: "processing" },
     events: t.events.map((e) => ({
       id: e.id,
       label: e.label,
