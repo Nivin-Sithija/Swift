@@ -30,9 +30,12 @@ class Settings(BaseSettings):
     rag_embedding_provider: str = "local"
     huggingface_token: str | None = None
     intent_model_id: str = "Swift-Support/labse-intent-1.0"
-    intent_space_url: str = "https://ruththra-labse-intent-demo.hf.space"
+    sentiment_model_id: str = "Swift-Support/labse-sentiment-1.0"
+    priority_model_id: str = "Swift-Support/labse-priority-1.0"
+    # One Space serves all three models: intent, sentiment and priority.
+    intent_space_url: str = "https://shazan18-swift-support-demo.hf.space"
     intent_request_timeout_seconds: float = 60.0
-    ticket_submission_inference_timeout_seconds: float = Field(default=2.0, gt=0)
+    ticket_submission_inference_timeout_seconds: float = Field(default=5.0, gt=0)
     ocr_engine: str = "tesseract"
     google_vision_api_key: str | None = None
     ocr_request_timeout_seconds: float = 20.0

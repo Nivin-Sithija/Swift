@@ -40,7 +40,9 @@ export function ImageEvidencePanel({ ticket }: { ticket: Ticket }) {
             <div className="ocr-box">
               <div className="row spread">
                 <strong>OCR-extracted text</strong>
-                <span>{ticket.imageEvidence.confidence}% confidence</span>
+                {ticket.imageEvidence.confidence !== undefined && (
+                  <span>{ticket.imageEvidence.confidence}% confidence</span>
+                )}
               </div>
               <pre>{ticket.imageEvidence.ocrText}</pre>
             </div>
