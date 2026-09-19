@@ -181,3 +181,12 @@ async def test_upload_retries_labse_after_a_submission_timeout(
     after = (await client.get(f"/tickets/{ticket}", headers=auth_headers(agent))).json()
     assert after["category"]["value"] == "lost_or_stolen_card"
     assert after["category"]["model_version"] == TEXT_MODEL
+
+
+def test_attachment_rules_raise_priority_but_never_lower_it() -> None:
+    model_high = Result("high", 0.95, "Swift-Support/labse-priority-1.0")
+    rule_medium = Result("medium", 0.68, "development-rules-priority-1.0")
+    rule_critical = Result("critical", 0.68, "development-rules-priority-1.0")
+
+    assert services.more_severe(model_high, rule_medium, services.PRIORITY_ORDER) == model_high
+    assert services.more_severe(model_high, rule_critical, services.PRIORITY_ORDER) == rule_critical
