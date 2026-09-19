@@ -32,7 +32,7 @@ class Settings(BaseSettings):
     intent_model_id: str = "Swift-Support/labse-intent-1.0"
     intent_space_url: str = "https://ruththra-labse-intent-demo.hf.space"
     intent_request_timeout_seconds: float = 60.0
-    ticket_submission_inference_timeout_seconds: float = Field(default=2.0, gt=0)
+    ticket_submission_inference_timeout_seconds: float = Field(default=5.0, gt=0)
     ocr_engine: str = "tesseract"
     google_vision_api_key: str | None = None
     ocr_request_timeout_seconds: float = 20.0

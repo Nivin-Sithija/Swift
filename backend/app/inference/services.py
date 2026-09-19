@@ -143,10 +143,11 @@ def fuse_intent(text_intent: Result, ocr_intent: Result | None) -> Result:
         return text_intent
     if ocr_intent.value == text_intent.value:
         # Two independent sources agree: keep the label, take the stronger evidence.
+        # The combined version keeps this from being reused as a text-only prediction.
         return Result(
             text_intent.value,
             max(text_intent.confidence, ocr_intent.confidence),
-            text_intent.model_version,
+            f"{text_intent.model_version}+{ocr_intent.model_version}",
         )
     if ocr_intent.confidence > text_intent.confidence:
         return ocr_intent
