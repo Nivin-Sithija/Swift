@@ -46,7 +46,6 @@ class TicketCreate(BaseModel):
     subject: str = Field(min_length=5, max_length=150)
     message: str = Field(min_length=15, max_length=5000)
     preferred_response_language: InterfaceLanguage = InterfaceLanguage.english
-    is_ocr: bool = False
 
 
 class PredictionOut(BaseModel):
@@ -79,6 +78,7 @@ class AttachmentOut(BaseModel):
     size: int
     type: str
     download_url: str
+    ocr_text: str | None = None
 
 
 class ResponseOut(BaseModel):

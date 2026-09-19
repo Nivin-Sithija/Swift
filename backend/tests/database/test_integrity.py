@@ -165,7 +165,7 @@ async def test_ticket_creation_is_atomic_when_classification_fails(
     """If the classifier raises, the request must not leave a half-built ticket."""
     from app.api.v1 import routes
 
-    async def _boom(text: str, is_ocr: bool = False):
+    async def _boom(text: str):
         raise RuntimeError("inference backend exploded")
 
     monkeypatch.setattr(routes, "classify", _boom)

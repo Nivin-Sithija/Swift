@@ -99,7 +99,7 @@ async def test_unhandled_errors_return_a_request_id_not_a_stack_trace(
     """An operator needs the id to find the trace; the customer must not get internals."""
     from app.api.v1 import routes
 
-    async def _boom(text: str, is_ocr: bool = False):
+    async def _boom(text: str):
         raise RuntimeError("database credentials: swift/swift@postgres")
 
     monkeypatch.setattr(routes, "classify", _boom)
