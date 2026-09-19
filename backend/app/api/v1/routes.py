@@ -8,7 +8,7 @@ from typing import Annotated, Any
 from fastapi import APIRouter, Cookie, File, HTTPException, Query, UploadFile
 from fastapi import Response as HttpResponse
 from fastapi.responses import FileResponse
-from sqlalchemy import delete, func, or_, select
+from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from sqlalchemy.orm.interfaces import ORMOption
@@ -35,7 +35,18 @@ from app.domain.enums import (
 from app.domain.policies import can_transition, requires_manual_review
 from app.inference.masking import redact_pii
 from app.inference.ocr import OcrError, extract_text
-from app.inference.services import classify, detect_language, response_template
+from app.inference.services import (
+    PRIORITY_ORDER,
+    SENTIMENT_ORDER,
+    Result,
+    classify,
+    classify_ocr_intent,
+    classify_priority_and_sentiment,
+    detect_language,
+    fuse_intent,
+    more_severe,
+    response_template,
+)
 from app.models.entities import (
     Attachment,
     AuditLog,
@@ -166,6 +177,7 @@ def ticket_out(ticket: Ticket, *, staff_view: bool) -> TicketOut:
                 size=a.size,
                 type=a.mime_type,
                 download_url=f"/api/v1/attachments/{a.id}/download",
+                ocr_text=a.ocr_text,
             )
             for a in ticket.attachments
         ],
@@ -435,16 +447,16 @@ async def create_ticket(payload: TicketCreate, user: CurrentUser, db: Db) -> Tic
     event(ticket, user, "ticket_created", "Ticket received securely", True)
     db.add(ticket)
     await db.flush()
-    await process_ticket_record(db, ticket, payload.is_ocr)
+    await process_ticket_record(db, ticket)
     await db.commit()
     return ticket_out(await get_ticket(db, public_id, user), staff_view=False)
 
 
-async def process_ticket_record(db: AsyncSession, ticket: Ticket, is_ocr: bool = False) -> None:
+async def process_ticket_record(db: AsyncSession, ticket: Ticket) -> None:
     job = ProcessingJob(ticket_id=ticket.id, job_type="ticket_analysis", status=JobStatus.running)
     db.add(job)
     language = detect_language(ticket.original_text)
-    intent, priority, sentiment = await classify(ticket.original_text, is_ocr)
+    intent, priority, sentiment = await classify(ticket.original_text)
     for task, result in (
         (PredictionTask.language, language),
         (PredictionTask.category, intent),
@@ -479,6 +491,73 @@ async def process_ticket_record(db: AsyncSession, ticket: Ticket, is_ocr: bool =
     )
     event(ticket, None, "processing_completed", "Advisory predictions prepared", True)
     job.status, job.completed_at = JobStatus.succeeded, utcnow()
+
+
+async def apply_attachment_text(ticket: Ticket, ocr_texts: list[str]) -> None:
+    """Update the advisory predictions with text read from the ticket's attachments.
+
+    The customer's own words keep their LaBSE intent unless that prediction is weak;
+    see fuse_intent. Predictions a staff member has already reviewed are never changed.
+    """
+    attachment_text = "\n\n".join(ocr_texts)
+    by_task = {p.task: p for p in ticket.predictions}
+    stored = by_task.get(PredictionTask.category)
+    rule_priority, rule_sentiment = classify_priority_and_sentiment(attachment_text)
+    if stored is not None and stored.model_version == settings.intent_model_id:
+        # The customer's text has not changed since LaBSE classified it; reuse those
+        # predictions instead of a second slow call. Fallback or combined results
+        # are re-requested.
+        def saved(task: PredictionTask, fallback: Result) -> Result:
+            p = by_task.get(task)
+            return Result(p.value, p.confidence, p.model_version) if p else fallback
+
+        text_intent = Result(stored.value, stored.confidence, stored.model_version)
+        text_priority = saved(PredictionTask.priority, rule_priority)
+        text_sentiment = saved(PredictionTask.sentiment, rule_sentiment)
+    else:
+        text_intent, text_priority, text_sentiment = await classify(ticket.original_text)
+    intent = fuse_intent(text_intent, classify_ocr_intent(attachment_text))
+    # No model reads the attachment for priority or sentiment, so the keyword rules
+    # do: a screenshot that says "Transaction failed" can raise them, never lower them.
+    priority = more_severe(text_priority, rule_priority, PRIORITY_ORDER)
+    sentiment = more_severe(text_sentiment, rule_sentiment, SENTIMENT_ORDER)
+
+    for task, result in (
+        (PredictionTask.category, intent),
+        (PredictionTask.priority, priority),
+        (PredictionTask.sentiment, sentiment),
+    ):
+        prediction = by_task.get(task)
+        if prediction is None:
+            prediction = Prediction(ticket_id=ticket.id, task=task)
+            ticket.predictions.append(prediction)
+            by_task[task] = prediction
+        elif prediction.reviewed_value is not None:
+            continue
+        prediction.value = result.value
+        prediction.confidence = result.confidence
+        prediction.model_version = result.model_version
+        prediction.predicted_at = utcnow()
+
+    def effective(task: PredictionTask, fallback: Result) -> tuple[str, float]:
+        prediction = by_task[task]
+        if prediction.reviewed_value is not None:
+            # A staff decision is final; it must not trip a low-confidence review.
+            return prediction.reviewed_value, 1.0
+        return fallback.value, fallback.confidence
+
+    category_value, category_confidence = effective(PredictionTask.category, intent)
+    priority_value, priority_confidence = effective(PredictionTask.priority, priority)
+    sentiment_value, sentiment_confidence = effective(PredictionTask.sentiment, sentiment)
+    ticket.priority = Priority(priority_value)
+    ticket.sentiment = Sentiment(sentiment_value)
+    # New evidence can raise the review flag but never clears one already raised.
+    ticket.manual_review_required = ticket.manual_review_required or requires_manual_review(
+        confidence_values=[category_confidence, priority_confidence, sentiment_confidence],
+        priority=ticket.priority,
+        sentiment=ticket.sentiment,
+        category=category_value,
+    )
 
 
 @router.get("/tickets", response_model=TicketList)
@@ -611,7 +690,12 @@ async def review_prediction(
         payload.reason,
         user.id,
     )
-    ticket = await db.get(Ticket, prediction.ticket_id)
+    # event() appends to ticket.events; an async session cannot lazy-load it.
+    ticket = await db.scalar(
+        select(Ticket)
+        .where(Ticket.id == prediction.ticket_id)
+        .options(selectinload(Ticket.events))
+    )
     if not ticket:
         raise HTTPException(404, "Ticket not found")
     if prediction.task == PredictionTask.priority:
@@ -667,12 +751,9 @@ async def upload_attachment(
             # Run the configured OCR engine on the uploaded image
             ocr = await extract_text(path)
             if ocr.text:
-                masked_text = redact_pii(ocr.text)
-                ticket.original_text += f"\n\n[OCR Extracted Text (Masked)]:\n{masked_text}"
-
-                # Delete old predictions and generate new ones via the SVM router
-                await db.execute(delete(Prediction).where(Prediction.ticket_id == ticket.id))
-                await process_ticket_record(db, ticket, is_ocr=True)
+                attachment.ocr_text = redact_pii(ocr.text)
+                earlier = [a.ocr_text for a in ticket.attachments if a.ocr_text]
+                await apply_attachment_text(ticket, [*earlier, attachment.ocr_text])
                 scored = f" at {ocr.confidence:.2f} confidence" if ocr.confidence else ""
                 event(
                     ticket,
@@ -692,6 +773,7 @@ async def upload_attachment(
         size=attachment.size,
         type=attachment.mime_type,
         download_url=f"/api/v1/attachments/{attachment.id}/download",
+        ocr_text=attachment.ocr_text,
     )
 
 

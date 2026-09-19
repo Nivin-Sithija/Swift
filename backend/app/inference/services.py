@@ -3,16 +3,23 @@ import json
 import re
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 import httpx
 import joblib
+import numpy as np
 
 from app.core.config import get_settings
 from app.domain.enums import LanguageForm, Priority, Sentiment
 
 _svm_pipeline = None
-_labse_pipeline = None
+_svm_calibration: dict[str, float] | None = None
 settings = get_settings()
+
+OCR_INTENT_MODEL_VERSION = "svm-ocr-intent-1.0"
+# Below this, the LaBSE prediction on the customer's own words is weak enough that the
+# attachment text is allowed to decide. It matches the manual-review confidence floor.
+TEXT_INTENT_CONFIDENCE_FLOOR = 0.60
 
 
 @dataclass(frozen=True)
@@ -50,34 +57,38 @@ def detect_language(text: str) -> Result:
     return Result(value.value, 0.90 if value != LanguageForm.unknown else 0.30, "unicode-rules-1.0")
 
 
-async def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Result]:
-    global _svm_pipeline, _labse_pipeline
-
-    ml_dir = Path("/app/ml")
-    if not ml_dir.exists():
-        ml_dir = Path(__file__).resolve().parents[3] / "ml"
-    
-    # 1. Intent Classification Router
-    if is_ocr:
-        # Route OCR text to SVM
-        if _svm_pipeline is None:
-            svm_path = ml_dir / "models" / "tfidf_linear_svm_all.joblib"
-            _svm_pipeline = joblib.load(svm_path)
-            
-        pred = _svm_pipeline.predict([text])[0]
-        intent_result = Result(pred, 0.85, "svm-intent-1.0")
+async def classify(text: str) -> tuple[Result, Result, Result]:
+    # Intent, sentiment and priority come from the LaBSE models on the customer's own
+    # words. Attachment text is classified separately (classify_ocr_intent) and
+    # combined with fuse_intent.
+    try:
+        predictions = await asyncio.wait_for(
+            classify_with_space(text),
+            timeout=settings.ticket_submission_inference_timeout_seconds,
+        )
+    except TimeoutError:
+        # A cold or unavailable external model must not hold the customer's
+        # ticket submission open. Low confidence routes this for review.
+        predictions = None
+        failure = "huggingface-space-timeout"
     else:
-        try:
-            intent_result = await asyncio.wait_for(
-                classify_intent_with_space(text),
-                timeout=settings.ticket_submission_inference_timeout_seconds,
-            )
-        except TimeoutError:
-            # A cold or unavailable external model must not hold the customer's
-            # ticket submission open. Low confidence routes this for review.
-            intent_result = Result("unknown", 0.0, "huggingface-space-timeout")
+        failure = "huggingface-space-unavailable"
 
-    # 2. Priority & Sentiment (Keeping mocked for now)
+    rule_priority, rule_sentiment = classify_priority_and_sentiment(text)
+    if predictions is None:
+        return Result("unknown", 0.0, failure), rule_priority, rule_sentiment
+
+    intent, sentiment, priority = predictions
+    if rule_priority.value == Priority.critical:
+        # The priority model has no "critical" class; fraud and theft words still
+        # escalate a ticket beyond what the model can say.
+        priority = rule_priority
+    return intent, priority, sentiment
+
+
+def classify_priority_and_sentiment(text: str) -> tuple[Result, Result]:
+    # Keyword rules: the fallback when the Space is unavailable, the only reader of
+    # attachment text, and the only source of "critical" priority.
     lowered = text.lower()
     critical = any(
         x in lowered for x in ("fraud", "stolen", "not recognise", "unauthorised", "unauthorized")
@@ -86,7 +97,6 @@ async def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Res
         x in lowered for x in ("failed", "deduct", "missing", "blocked", "නැහැ", "தோல்வி")
     )
     return (
-        intent_result,
         Result(
             (
                 Priority.critical if critical else Priority.high if negative else Priority.medium
@@ -102,8 +112,88 @@ async def classify(text: str, is_ocr: bool = False) -> tuple[Result, Result, Res
     )
 
 
-async def classify_intent_with_space(text: str) -> Result:
-    """Call the public Gradio API hosted by the configured Hugging Face Space."""
+def _ml_dir() -> Path:
+    ml_dir = Path("/app/ml")
+    if not ml_dir.exists():
+        ml_dir = Path(__file__).resolve().parents[3] / "ml"
+    return ml_dir
+
+
+def classify_ocr_intent(text: str) -> Result:
+    """Classify attachment (OCR) text with the local TF-IDF SVM.
+
+    On screenshot text the SVM matches LaBSE (ml/reports/intent_accuracy_by_ocr_engine.md)
+    and runs locally. LinearSVC scores are margins, so the confidence comes from the
+    calibration fitted by ml/scripts/calibrate_svm_confidence.py.
+    """
+    global _svm_pipeline, _svm_calibration
+
+    if _svm_pipeline is None or _svm_calibration is None:
+        models = _ml_dir() / "models"
+        _svm_pipeline = joblib.load(models / "tfidf_linear_svm_all.joblib")
+        _svm_calibration = json.loads(
+            (models / "tfidf_linear_svm_all.calibration.json").read_text(encoding="utf-8")
+        )
+
+    scores = _svm_pipeline.decision_function([text])[0]
+    top, runner_up = np.sort(scores)[::-1][:2]
+    logit = (
+        _svm_calibration["w_top"] * top
+        + _svm_calibration["w_margin"] * (top - runner_up)
+        + _svm_calibration["bias"]
+    )
+    confidence = float(1 / (1 + np.exp(-logit)))
+    label = str(_svm_pipeline.classes_[int(np.argmax(scores))])
+    return Result(label, confidence, OCR_INTENT_MODEL_VERSION)
+
+
+def fuse_intent(text_intent: Result, ocr_intent: Result | None) -> Result:
+    """Combine the customer-text prediction with the attachment-text prediction.
+
+    The customer's own words stay the primary signal. Attachment text decides only
+    when the text prediction is weak (e.g. a message that only says "see attached").
+    """
+    if ocr_intent is None or text_intent.confidence >= TEXT_INTENT_CONFIDENCE_FLOOR:
+        return text_intent
+    if ocr_intent.value == text_intent.value:
+        # Two independent sources agree: keep the label, take the stronger evidence.
+        # The combined version keeps this from being reused as a text-only prediction.
+        return Result(
+            text_intent.value,
+            max(text_intent.confidence, ocr_intent.confidence),
+            f"{text_intent.model_version}+{ocr_intent.model_version}",
+        )
+    if ocr_intent.confidence > text_intent.confidence:
+        return ocr_intent
+    return text_intent
+
+
+PRIORITY_ORDER = [p.value for p in (Priority.low, Priority.medium, Priority.high, Priority.critical)]
+SENTIMENT_ORDER = [s.value for s in (Sentiment.positive, Sentiment.neutral, Sentiment.negative)]
+
+
+def more_severe(current: Result, candidate: Result, order: list[str]) -> Result:
+    """Return the more severe of two results; ties keep the current one."""
+    return candidate if order.index(candidate.value) > order.index(current.value) else current
+
+
+def _label_result(output: dict[str, Any], model_version: str, allowed: set[str] | None = None) -> Result:
+    """Read one gr.Label output: {"label": ..., "confidences": [{label, confidence}]}."""
+    label = str(output["label"])
+    confidence = {item["label"]: item["confidence"] for item in output["confidences"]}[label]
+    if allowed is not None:
+        label = label.lower()
+        if label not in allowed:
+            raise ValueError(f"Unexpected label from the Space: {label}")
+    return Result(label, float(confidence), model_version)
+
+
+async def classify_with_space(text: str) -> tuple[Result, Result, Result] | None:
+    """Call the Gradio API of the configured Hugging Face Space.
+
+    The Space returns three gr.Label outputs: intent, sentiment, priority.
+    Returns None when the Space cannot be reached or answers in another shape.
+    """
     base_url = settings.intent_space_url.rstrip("/")
     headers = {}
     if settings.huggingface_token:
@@ -132,20 +222,15 @@ async def classify_intent_with_space(text: str) -> Result:
         ]
         if not data_lines:
             raise ValueError("Hugging Face Space returned no prediction data")
-        data_line = data_lines[-1]
-        result = json.loads(data_line)[0]
-        confidence_by_label = {
-            item["label"]: item["confidence"] for item in result["confidences"]
-        }
-        confidence = confidence_by_label[result["label"]]
-        return Result(
-            str(result["label"]),
-            float(confidence),
-            settings.intent_model_id,
+        intent, sentiment, priority = json.loads(data_lines[-1])
+        return (
+            _label_result(intent, settings.intent_model_id),
+            _label_result(sentiment, settings.sentiment_model_id, set(SENTIMENT_ORDER)),
+            _label_result(priority, settings.priority_model_id, set(PRIORITY_ORDER)),
         )
     except (httpx.HTTPError, KeyError, TypeError, ValueError, json.JSONDecodeError):
         # External inference must not prevent a customer from creating a ticket.
-        return Result("unknown", 0.0, "huggingface-space-unavailable")
+        return None
 
 
 def response_template(language: str) -> str:

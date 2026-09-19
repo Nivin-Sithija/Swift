@@ -169,6 +169,9 @@ class Attachment(Base):
     size: Mapped[int] = mapped_column(Integer)
     file_hash: Mapped[str] = mapped_column(String(64))
     validation_status: Mapped[str] = mapped_column(String(30), default="valid")
+    # PII-masked OCR text. Kept apart from Ticket.original_text so the customer's own
+    # words are never rewritten and can still be classified on their own.
+    ocr_text: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
 
