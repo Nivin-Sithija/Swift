@@ -74,7 +74,7 @@ def stub_classifier(monkeypatch) -> None:
     """
     from app.api.v1 import routes
 
-    async def _classify(text: str, is_ocr: bool = False):
+    async def _classify(text: str):
         return (
             Result("card_payment", 0.91, "test-stub-intent"),
             Result("medium", 0.80, "test-stub-priority"),

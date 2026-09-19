@@ -8,7 +8,7 @@ from PIL import Image
 # Add backend directory to path so we can import the router
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from app.inference.services import classify
+from app.inference.services import classify_ocr_intent
 
 
 async def run_ocr_test(image_path: str):
@@ -36,11 +36,8 @@ async def run_ocr_test(image_path: str):
         
         # 2. Run Classification if text was found
         if extracted_text:
-            print("[2/2] Running SVM Classifier (is_ocr=True)...")
-            category, priority, sentiment = await classify(
-                text=extracted_text,
-                is_ocr=True
-            )
+            print("[2/2] Running SVM Classifier on the attachment text...")
+            category = classify_ocr_intent(extracted_text)
             
             print(f"Predicted Category: {category.value}")
             print(f"Confidence Score:   {category.confidence:.2f}")
