@@ -36,12 +36,15 @@ from app.domain.policies import can_transition, requires_manual_review
 from app.inference.masking import redact_pii
 from app.inference.ocr import OcrError, extract_text
 from app.inference.services import (
+    PRIORITY_ORDER,
+    SENTIMENT_ORDER,
     Result,
     classify,
     classify_ocr_intent,
     classify_priority_and_sentiment,
     detect_language,
     fuse_intent,
+    more_severe,
     response_template,
 )
 from app.models.entities import (
@@ -499,18 +502,25 @@ async def apply_attachment_text(ticket: Ticket, ocr_texts: list[str]) -> None:
     attachment_text = "\n\n".join(ocr_texts)
     by_task = {p.task: p for p in ticket.predictions}
     stored = by_task.get(PredictionTask.category)
+    rule_priority, rule_sentiment = classify_priority_and_sentiment(attachment_text)
     if stored is not None and stored.model_version == settings.intent_model_id:
-        # The customer's text has not changed since LaBSE classified it; reuse that
-        # instead of a second slow call. Fallback or combined results are re-requested.
+        # The customer's text has not changed since LaBSE classified it; reuse those
+        # predictions instead of a second slow call. Fallback or combined results
+        # are re-requested.
+        def saved(task: PredictionTask, fallback: Result) -> Result:
+            p = by_task.get(task)
+            return Result(p.value, p.confidence, p.model_version) if p else fallback
+
         text_intent = Result(stored.value, stored.confidence, stored.model_version)
+        text_priority = saved(PredictionTask.priority, rule_priority)
+        text_sentiment = saved(PredictionTask.sentiment, rule_sentiment)
     else:
-        text_intent, _, _ = await classify(ticket.original_text)
+        text_intent, text_priority, text_sentiment = await classify(ticket.original_text)
     intent = fuse_intent(text_intent, classify_ocr_intent(attachment_text))
-    # The keyword rules also read the attachment: a screenshot that says
-    # "Transaction failed" is real evidence for priority and sentiment.
-    priority, sentiment = classify_priority_and_sentiment(
-        f"{ticket.original_text}\n\n{attachment_text}"
-    )
+    # No model reads the attachment for priority or sentiment, so the keyword rules
+    # do: a screenshot that says "Transaction failed" can raise them, never lower them.
+    priority = more_severe(text_priority, rule_priority, PRIORITY_ORDER)
+    sentiment = more_severe(text_sentiment, rule_sentiment, SENTIMENT_ORDER)
 
     for task, result in (
         (PredictionTask.category, intent),
