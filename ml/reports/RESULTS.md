@@ -1,1747 +1,1963 @@
-# Swift — Master Results Report
+# Swift — authoritative consolidated results
 
-Every experiment run on the trilingual banking-ticket classifiers, with scores, in one place.
-Compiled 2026-08-02 from the artifacts in `ml/reports/` (CSV/JSON), the notebooks in
-`notebooks/modeling/`, and the topic reports listed in §12. Last extended **2026-09-04** with the
-Google Cloud Vision OCR benchmark (§17.7) and the end-to-end engine-vs-router measurement (§17.8);
-previously **2026-08-12** with the intent transformer
-benchmark (§16) and the OCR engine ablation (§17).
+**Current verification overlay: 20 September 2026.** This is the sole master results file.
+The artifact audit validated **1,168 run JSONs**, all on frozen split `e7b5934392cd`
+(8,500 train / 1,498 dev / 3,079 test). All ten language/split datasets now pass schema,
+ID, source-text, and cross-language label alignment.
 
-**This file summarises; it does not replace.** Where a number here is contested or was later
-retracted, §11 says so and points at the source report.
+Current recomputed headline results over 15,395 pooled rows are: intent LaBSE macro-F1
+**0.883424** (accuracy 0.882949), sentiment LaBSE Negative-F1 **0.713819** (accuracy
+0.965833), and priority TF-IDF/SVM macro-F1 **0.873358** (accuracy 0.887886). Tamilish
+remains the principal subgroup risk: intent LaBSE error **29.4901%** and priority TF-IDF
+error **16.1416%**. Intent prediction artifacts were trained before the single corrected
+source row; the provenance is retained even though its aggregate effect is negligible.
 
----
-
-## 0. How to read every number in this report
-
-| Task | Column | Headline metric | Why not accuracy |
-|---|---|---|---|
-| **intent** | `intent` (was `category`) | macro-F1 over 77 classes | balanced 77-way, accuracy ≈ macro-F1 |
-| **sentiment** | `sentiment` | **Negative-F1** | 95.5% of tickets are Neutral — always-Neutral scores 95.5% accuracy and 0.000 Negative-F1 |
-| **priority** | `priority` | **macro-F1** (Low/Medium/High) | 53/37/10 split; macro keeps `High` visible |
-
-Two further rules the project enforces:
-
-1. **Rank on the confidence interval, not the point estimate.** Dev holds only **68 unique Negative
-   tickets**, so the sentiment CI is ≈ ±0.08. Ties inside one interval are ties.
-2. **Dev ranks, test confirms — once.** Winners are refit on train+dev and scored a single time on
-   the held-out test set.
-
-### Dataset & splits
-
-| Item | Value |
-|---|---|
-| Source | BANKING77 (Casanueva et al., 2020), 77 intents |
-| Language tracks | `english`, `sinhala`, `singlish` (romanized Sinhala), `tamil`, `tamilish` (romanized Tamil) |
-| Schema (all 10 CSVs) | `id, text_en, text, intent, sentiment, priority` |
-| Rows per language | 9,998 train / 3,079 test (65,385 total across 5 tracks + originals) |
-| Frozen split sha | `e7b5934392cd` — **8,500 / 1,498 / 3,079 tickets** = 42,500 / 7,490 / 15,395 rows |
-| Split drawn on | `id`, once, then fanned to all 5 languages (never per-language — that would leak a ticket's English copy into train while its Sinhala twin sits in dev) |
-| Cross-split leakage | **0 source IDs** appear in both train and test (65,385 rows audited) |
-| Test = 3,079 not 3,080 | `atm_support` has 39 official test samples, not 40 |
-| Label provenance | `intent` = genuine BANKING77 ground truth. `sentiment`/`priority` = **LLM-derived** (prompt v5) — a classifier trained on them learns to reproduce v5, not truth. See §8. |
-
-Class prevalence:
-
-| Portion | Tickets | Negative | Negative % | Low % | Medium % | High % |
-|---|---:|---:|---:|---:|---:|---:|
-| dev | 1,498 | 68 | 4.54% | 52.74 | 37.12 | 10.15 |
-| test | 3,079 | 101 | 3.28% | 54.82 | 35.69 | 9.48 |
-
-*(Test's lower Negative rate accounts for ~0.059 of the sentiment dev→test drop — see §5.5.)*
+The detailed tables below were progressively consolidated from run JSONs and report CSVs;
+each section records its own label version, split, and date. Blank cells (`—`) mean no
+artifact exists for that exact configuration, not zero.
 
 ---
 
-## 1. Experiment index — what was run, and the verdict
+## 0. Four things that make cells non-comparable
 
-| # | Experiment | Task | Status | Verdict |
-|---|---|---|---|---|
-| 1 | Tokenizer benchmark, 3 tokenizers × 15,000 samples | — | done | `max_length=128` = 100% coverage; mBERT fails Sinhala (60.3% UNK) |
-| 2 | Tokenizer fertility, 7 encoders × 2,000 rows/lang | — | done | MuRIL & mBERT disqualified (61–65% Sinhala UNK); fertility ≠ accuracy |
-| 3 | Classical TF-IDF baselines, 12 models × 6 tracks | intent | done | LinearSVC best; 90.98% en → 61.05% tamilish |
-| 4 | TF-IDF feature ablation (word / char / both) | intent | done | char n-grams critical; Tamil word-only −10.45pp |
-| 5 | Mono vs combined (`all`) training | intent | done | Combined helps Sinhala **+3.35pp**, Singlish +1.34pp |
-| 6 | Bootstrap CIs, 1,000 resamples | intent | done | All tracks ±1.0–1.5pp |
-| 7 | Sentiment/priority bake-off, 336 evals | sent + prio | done | `multi` ≥ `mono`; class balancing > model choice |
-| 8 | Regime study (mono / multi / zeroshot-en) | sent + prio | done | zero-shot collapses (0.085 Negative-F1) |
-| 9 | 5-fold CV correction of the bake-off | sentiment | done | Headline 0.6395 → honest **0.5525 ± 0.044** |
-| 10 | Final test evaluation, classical | sent + prio | done | sentiment **0.4572**, priority **0.8722** |
-| 11 | Threshold tuning transfer test | sentiment | done | **Retracted** — −0.005 on test |
-| 12 | Label-ceiling measurement vs human gold 500 | sent + prio | done | sentiment 0.5769, priority 0.7722 |
-| 13 | Indic word-tokenizer defect + fix | all | done+fixed | 40.1% Sinhala / 69.3% Tamil characters were being discarded |
-| 14 | Encoder screen, 5 candidates × 800 rows | sentiment | done | mmBERT won; fertility ranking predicted ~the reverse |
-| 15 | Encoder bake-off, full data (Kaggle T4) | sentiment | done | **LaBSE 0.566 test** beats classical 0.464 |
-| 16 | Encoder bake-off, full data | priority | done | **LaBSE 0.890 test** beats classical 0.872 |
-| 17 | Per-language specialisation (dilution test) | sentiment | done | No mono model beats multilingual LaBSE |
-| 18 | LoRA adapters (peft), mono + multi | sentiment | done | Loses 0.2–0.3 everywhere at these hyperparameters |
-| 19 | Lexicon correction (Senevirathna et al.) | sentiment | done | **Null result** — CV selected α = 0 |
-| 20 | Prompt versions v1 / v4 / v5 vs gold 500 | labels | done | v5 frozen; priority on 4 recalibrated categories 4% → 92% |
-| 21 | Prompt v6 relabel pilot | labels | pilot | Holdout Negative-F1 **0.4615 → 0.6875** |
-| 22 | Strategy A — reverse transliteration | sentiment | **built, not run** | Would be circular: our Singlish is rule-generated |
-| 23 | Code-switch augmentation | sentiment | **built, not run** | Blocked on human-typed romanized data |
-| 24 | Adapters unfrozen (Rathnayake T3) | sentiment | **built, needs peft** | Checks a documented near-null |
-| 25 | SLM tokenizer screen, 5 candidates × 2,000 rows/lang | — | done | Only Gemma 3 survives; Qwen/Llama at 4–6× LaBSE fertility on Si/Ta (§14.1) |
-| 26 | LoRA target coverage, Q/V vs all 7 projections | intent | done | **+2.70pp (1b), +4.56pp (270m)** — reverses the "encoders win everywhere" reading (§14.2) |
-| 27 | Gemma 3 + LoRA vs encoders, 3 tasks | all | done | **Ties on all three, wins none.** Keep LaBSE (§14.3, §14.8) |
-| 28 | Model size 1b vs 270m | all | done | 270M knee replicates; sentiment collapses −0.082 (§14.5) |
-| 29 | Intent encoder bake-off (LaBSE, mmBERT) | intent | done | mmBERT 0.9280 / LaBSE 0.9224 dev — **first encoder result on intent**; no test run yet |
-| 30 | Linear probing, 7 frozen backbones × 3 tasks × 2 poolings | all | done | Retention **intent > priority > sentiment for every backbone**; frozen serving rejected; TwHIN-BERT most script-agnostic (§15) |
-| 31 | Intent transformer benchmark, 4 architectures on the **official** split | intent | done | **LaBSE 88.54% test macro-F1** on `all`, +5.36pp over classical; LaBSE clears all six §3.5 gates, XLM-R five of six (§16) |
-| 32 | OCR engine ablation — EasyOCR vs language-routed Tesseract, 2,000 images | ocr | done | Tesseract halves native-script CER on clean images; **loses on blur and low-res** (§17) |
-| 33 | OpenCV pre-processing ablation (binarize / deskew / grayscale) | ocr | done | **Every variant made CER worse.** Feed Tesseract raw RGB (§17.3) |
-| 34 | OCR engine benchmark — Google Cloud Vision vs Tesseract, 2,000 images | ocr | done | **Vision 15.71% CER vs 37.21%** and flat under degradation; ties on clean, wins blur/low-res by 28–55pp (§17.7) |
-| 35 | End-to-end: both OCR engines × both routers, self-agreement and true-label accuracy | ocr | done | SVM on Vision text reproduces the typed-text decision on **99.50%** of images vs Tesseract's 81.70%; **accuracy is at the perfect-text ceiling**, and the ceiling itself (~78%) is a taxonomy failure, not an OCR one (§17.8) |
+Read these before comparing any two numbers in this file.
 
----
+**(a) Two different splits.** Most of this project uses the **frozen swiftbench split**
+`e7b5934392cd` — 8,500 train / 1,498 dev / 3,079 test per language track (42,500 / 7,490 / 15,395
+pooled), drawn once on ticket `id` and fanned out to all five languages. The intent transformer
+benchmark in §5 instead uses the **official BANKING77 split** (9,998 train / 3,079 test, no dev).
+**Numbers from the two splits cannot be tabled against each other**, and the official-split runs
+carry no split-sha stamp and no `runs/*.json` record.
 
-## 2. Headline results — the numbers to quote
+**(b) Two different sentiment label sets.** The v8 relabel (2026-08-19) changed 711 of 13,077
+sentiment labels. Any sentiment number recorded before that date scores against **v5** labels and
+is **not comparable** to a v8 number — the test set went from 505 to 975 Negatives, which moves the
+metric on its own. Every sentiment table below is split by label version. Intent and priority were
+untouched by v8.
 
-| Task | Champion | Config | Test score | 95% CI | Beats | Label ceiling |
-|---|---|---|---:|---|---|---|
-| **intent** | **LaBSE** (fine-tuned, multilingual) | 5 ep, lr 3e-5 cosine, 15% warmup, ls 0.05, eff. bs 32, `all` | **88.54%** macro-F1 | — | classical 83.18% (+5.36) | 1.00 (BANKING77 ground truth) |
-| **sentiment** | **LaBSE** (fine-tuned, multilingual) | 3 ep, lr 2e-5, bs 32, class_weight | **0.5664** Neg-F1 | — | classical 0.4572 (+0.109) | 0.5769 [0.40, 0.73] |
-| **priority** | **LaBSE** (fine-tuned, multilingual) | same | **0.8900** macro-F1 | — | classical 0.8722 (+0.018) | **0.7722** |
+**(c) Dev is not test, and some checkpoints saw dev.** Models fit on `train+dev` (all §1 test rows)
+have dev inside their training data and **must not** be scored on dev — doing so reads as a
+breakthrough (`labse-ft-priority` probed 0.9645 against its own 0.9168). Dev tables in §3–§4 are
+fit on `train` only.
 
-**Challenged and held (2026-08-08).** A small decoder LM — Gemma 3 1B with LoRA over all attention
-and MLP projections — was run against these champions on all three tasks. It **ties on all three and
-wins none**: sentiment 0.6428 vs LaBSE 0.6334 (⅛ of the CI), priority 0.9165 vs 0.9168, intent
-0.9243 vs 0.9224 inside a three-way tie with mmBERT's 0.9280. All dev, no test runs. The champions
-above are unchanged. See **§14**.
+**(d) Two test numbers below had their epoch chosen on the test set — not, as first stated,
+all of them.** Added 2026-09-08, corrected the same day.
+`train_encoder.run()` and both `train_multitask` training functions selected the best epoch by
+scoring `eval_df` — which on a test run **is the test set**. Where that mattered the reported
+figure is a maximum over `epochs` draws rather than a held-out estimate.
 
-**Intent's champion changed on 2026-08-12.** A 4-way transformer benchmark (XLM-R, LaBSE, IndicBERT,
-MuRIL) fine-tuned on the **official** BANKING77 split scored **LaBSE at 88.54% macro-F1 on test**,
-clearing the §3.5 promotion gate on all six tracks and retiring the classical LinearSVC. Three
-things to carry with that number:
+**It only mattered where selection had something to choose.** Where the argmax epoch *is* the
+final epoch, "max over `epochs` draws" and "the last draw" are the same draw and the bias is
+exactly zero. Counted by `paper/experiments/build_results_tables.py`:
 
-- It comes from the **official split** (9,998 train / 3,079 test per track, `ml/scripts/train_transformer.py`),
-  the same split §3 measures classical on — so the promotion comparison is like-for-like. It is
-  **not** the frozen swiftbench split `e7b5934392cd`, so it does not sit in one table with the dev
-  figures in §14.3 or §15.1.
-- **The frozen-split intent test run is still owed** (§10 item 2). mmBERT 0.9280 / LaBSE 0.9224 /
-  gemma-3-1b 0.9243 remain dev-only there. Two workstreams now have intent transformer numbers on
-  two different splits, and neither has been run against the other's.
-- **LaBSE takes all six gates; XLM-R takes five** — it misses english by 0.10pp, which both source
-  reports record as a pass (§11 item 8). And every LaBSE−XLM-R per-track gap is inside the noise
-  band, so treat the two as tied on architecture and separated only by the pooled track (§16.3).
-
-See **§16**.
-
-**Probed and held (2026-08-09).** Linear probing froze all seven backbones and fitted a logistic
-regression on their pooled vectors. LaBSE wins the *frozen* probe on all three tasks too — its lead
-predates any training on our data. The champions above are unchanged, and two cheaper alternatives
-were measured and closed: frozen-backbone serving loses to the classical model, and a backbone
-fine-tuned for one task carries nothing for the others. See **§15**.
-
-> **Quote the priority ceiling alongside the priority score.** 0.8900 is agreement with the *v5
-> labeling rule*. That rule agrees with human annotation at only **0.7722** (κ=0.64), so 0.7722 is
-> the real operational ceiling. Reporting "89% priority accuracy" overstates what a human would call
-> correct.
-
----
-
-## 3. Intent (77-way) — classical baselines
-
-### 3.1 Official baseline benchmark
-
-Source: [`baseline_summary.csv`](baseline_summary.csv). Trained on the full 9,998-row train split,
-scored on the official 3,079-row test split. Features: word TF-IDF (1,2) + char TF-IDF (3,5),
-`sublinear_tf=True`, 250k max features.
-
-| Track | Test n | **LinearSVC** Acc | **LinearSVC** Macro-F1 | LogReg Acc | LogReg Macro-F1 | Winner |
-|---|---:|---:|---:|---:|---:|---|
-| `english` | 3,079 | **90.97%** | **90.98%** | 90.48% | 90.48% | SVM |
-| `singlish` | 3,079 | **86.55%** | **86.49%** | 86.20% | 86.07% | SVM |
-| `tamil` | 3,079 | **86.85%** | **86.35%** | 85.00% | 84.22% | SVM |
-| `sinhala` | 3,079 | 83.60% | 82.75% | **83.63%** | **83.08%** | LogReg |
-| `tamilish` | 3,079 | **62.23%** | **61.05%** | 60.54% | 59.05% | SVM |
-| `all` (combined) | 15,395 | **83.14%** | **83.18%** | 82.10% | 82.16% | SVM |
-
-Training cost: 6–13 s per monolingual model, 53–58 s for `all`. scikit-learn 1.9.0 / Python 3.13.7.
-
-### 3.2 Statistical reliability — 1,000-resample bootstrap CIs
-
-| Track | Model | Macro-F1 mean | CI low | CI high | Width |
-|---|---|---:|---:|---:|---:|
-| `english` | LinearSVC | 90.89% | 89.84% | 91.91% | 2.07 |
-| `english` | LogReg | 90.34% | 89.31% | 91.40% | 2.09 |
-| `singlish` | LinearSVC | 86.32% | 85.17% | 87.52% | 2.35 |
-| `singlish` | LogReg | 85.92% | 84.83% | 87.08% | 2.25 |
-| `tamil` | LinearSVC | 86.22% | 85.15% | 87.37% | 2.22 |
-| `tamil` | LogReg | 84.05% | 82.86% | 85.22% | 2.36 |
-| `sinhala` | LinearSVC | 82.60% | 81.37% | 83.85% | 2.48 |
-| `sinhala` | LogReg | 82.92% | 81.71% | 84.19% | 2.48 |
-| `tamilish` | LinearSVC | 60.81% | 59.39% | 62.36% | 2.97 |
-| `tamilish` | LogReg | 58.76% | 57.23% | 60.26% | 3.03 |
-| `all` | LinearSVC | 83.14% | 82.55% | 83.72% | 1.17 |
-| `all` | LogReg | 82.13% | 81.54% | 82.69% | 1.15 |
-
-**Sinhala LinearSVC vs LogReg is a tie** (CIs overlap almost entirely). Everywhere else SVM's lead
-is real except within-track noise.
-
-### 3.3 Feature ablation — character n-grams are load-bearing
-
-Macro-F1 delta vs the combined word + char pipeline ([`feature_ablation_results.csv`](feature_ablation_results.csv)):
-
-| Track | Word (1,2) only | Char (3,5) only | Word + Char | Word-only penalty |
-|---|---:|---:|---:|---:|
-| `english` | 89.43% | 90.71% | **90.98%** | −1.55 |
-| `sinhala` | 78.58% | 82.13% | **82.75%** | −4.17 |
-| `singlish` | 84.56% | 85.07% | **86.49%** | −1.93 |
-| `tamil` | 75.90% | 85.90% | **86.35%** | **−10.45** |
-| `tamilish` | 57.75% | 59.86% | **61.05%** | −3.30 |
-| `all` | 79.64% | 82.82% | **83.18%** | −3.54 |
-
-Character n-grams alone come within 0.3–1.4pp of the full pipeline on every track. Tamil's −10.45pp
-word-only collapse is partly the tokenizer defect of §7.4 — see that section.
-
-### 3.4 Monolingual vs combined training — positive cross-lingual transfer
-
-One unified LinearSVC over all five tracks, evaluated per language ([`combined_model_by_language.csv`](combined_model_by_language.csv)):
-
-| Eval language | Monolingual Macro-F1 | Combined (`all`) Macro-F1 | Δ | Impact |
-|---|---:|---:|---:|---|
-| `sinhala` | 82.75% | **86.10%** | **+3.35** | Improves |
-| `singlish` | 86.49% | **87.83%** | **+1.34** | Improves |
-| `english` | 90.98% | **91.76%** | +0.78 | Improves |
-| `tamilish` | 61.05% | 61.21% | +0.16 | Neutral |
-| `tamil` | 86.35% | 86.35% | −0.00 | Neutral |
-
-Cross-script training helps and never hurts. Combined with §5.1 (`multi` ≥ `mono` on sentiment and
-priority too), **one multilingual model is the deployment answer for all three tasks** — it costs
-nothing in accuracy and removes four models from the serving path.
-
-### 3.5 Promotion gates for transformers (+3.00pp absolute)
-
-| Track | Best classical Macro-F1 | Promotion threshold |
-|---|---:|---:|
-| `english` | 90.98% | **93.98%** |
-| `singlish` | 86.49% | **89.49%** |
-| `tamil` | 86.35% | **89.35%** |
-| `sinhala` | 83.08% | **86.08%** |
-| `tamilish` | 61.05% | **64.05%** |
-| `all` | 83.18% | **86.18%** |
-
-**Cleared on 2026-08-12 — by LaBSE, on all six.** Margins run from +0.15pp (english) to +6.87pp
-(sinhala). **XLM-R sweeps five of six and misses english by 0.10pp** (93.88% against the 93.98%
-gate); both source reports mark that cell promoted anyway — see §11 item 8. Full tables in **§16**.
-
-### 3.6 Tamilish error analysis — why 61%
-
-| Confusion pair | Errors |
+| | records |
 |---|---:|
-| `unable_to_verify_identity` → `verify_my_identity` | 27 |
-| `exchange_rate` → `card_payment_wrong_exchange_rate` | 27 |
-| `top_up_reverted` → `top_up_failed` | 26 |
-| `why_verify_identity` → `verify_my_identity` | 26 |
-| `pin_blocked` → `get_physical_card` | 19 |
-| `disposable_card_limits` → `get_disposable_virtual_card` | 19 |
+| classical + probe (no epoch loop at all) | 24 — clean by construction |
+| unstamped test records where `best_epoch == epochs` | **15 — selection inert, bias exactly zero** |
+| unstamped test records where `best_epoch < epochs` | **2 — genuinely biased** |
 
-Root cause: unstandardized romanization (`card` / `kaadu`, `account` / `akount` / `akkount`) that
-static TF-IDF cannot map to a shared concept, layered on top of genuinely fine-grained intent pairs.
-Singlish does not have this problem (86.49%) because it preserves English loanword spelling
-consistently.
+The two genuinely biased records are `sinbert-large` (best epoch 2 of 3) and `sinhalaberto`
+(best epoch 1 of 3), both sentiment, both minor models — **not** the headline systems.
 
-Dataset quality after `fix_tamilish.py` standardization (test split): FORMAL rows 766 → **14**
-(−98.2%), formal pronouns 1,053 → **0**, mean Code-Mixing Index 8.9 → **12.6**.
+This was confirmed empirically, not just argued: the `labse` sentiment test cell
+(`best_epoch` 3 of 3) was re-run under the patched code and came back **bit-identical to 17
+significant figures** (§15). §1.2's headline comparison is therefore sound as printed, and the
+gap **can** be quoted — the earlier instruction not to is withdrawn.
 
----
+The caveat that survives: inertness is a property of the *run*, not of the code. At a larger
+epoch budget these same cells would not be inert — §14 shows `labse` peaking at epoch 3 of 6 on
+dev — so any future run must use the patched path rather than rely on this.
 
-## 4. Priority — baselines, bake-off, encoders, final test
+Fixed 2026-09-08: dev runs may still pick their best epoch, test runs report their final epoch,
+and every record now stamps `epoch_selection` (`best-on-dev` / `final-epoch`). Records without
+that stamp predate the fix and are judged by `best_epoch` vs `epochs` as above.
 
-### 4.1 The bar and the ceiling (dev)
-
-| Reference | Macro-F1 | What it is |
-|---|---:|---|
-| `majority` (always Low) | 0.2302 | floor |
-| `intent-chained` (predict intent → look up priority) | **0.9040** | **the honest bar** |
-| `intent-lookup-oracle` (gold intent → lookup) | 0.9147 | **ceiling, not a target** — gold intent doesn't exist at serving time |
-
-### 4.2 Direct text→priority beats the chained bar in every language (dev)
-
-| Language | `intent-chained` bar | Direct best | Oracle | Beats bar by | Gap to oracle |
-|---|---:|---:|---:|---:|---:|
-| `english` | 0.8931 | 0.8999 | 0.9147 | +0.0068 | 0.0148 |
-| `singlish` | 0.9040 | 0.9115 | 0.9147 | +0.0074 | 0.0032 |
-| `sinhala` | 0.9011 | 0.9079 | 0.9147 | +0.0068 | 0.0068 |
-| `tamil` | 0.8921 | **0.9119** | 0.9147 | **+0.0198** | 0.0028 |
-| `tamilish` | 0.8945 | 0.9074 | 0.9147 | +0.0129 | 0.0073 |
-
-→ Priority gets **its own head** and stops inheriting the intent classifier's errors.
-
-### 4.3 Class-balancing arms — nearly indistinguishable
-
-Priority macro-F1 averaged over all runs: `none` / `class_weight` / `ros` = **0.7905 – 0.7962**.
-A 53/37/10 split is mild enough that balancing barely moves it.
-
-### 4.4 Encoder bake-off, pooled dev
-
-| Model | Dev macro-F1 | vs classical dev (0.9028) |
-|---|---:|---:|
-| **labse** | **0.9168** | +0.014 |
-| xlmr-base | 0.9162 | +0.013 |
-| mmbert | 0.9148 | +0.012 |
-| twhin-bert | 0.8907 | −0.012 |
-| canine-c | 0.8786 | −0.024 |
-| *tfidf-svm (classical)* | *0.9028* | — |
-| sinhalaberto (Sinhala-only) | 0.5573 | unfair on pooled eval |
-| sinbert-large (Sinhala-only) | 0.4939 | unfair on pooled eval |
-
-### 4.5 Final test — fit on train+dev (49,990 rows), scored once
-
-| Model | Test macro-F1 | Accuracy | Weighted-F1 | F1 Low | F1 Medium | F1 High | vs classical 0.8722 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| **labse** | **0.8900** | 0.9007 | 0.9002 | 0.9206 | 0.8760 | 0.8735 | **+0.018** |
-| mmbert | 0.8887 | 0.9012 | 0.9005 | 0.9231 | 0.8741 | 0.8691 | +0.017 |
-| xlmr-base | 0.8872 | 0.8992 | 0.8988 | 0.9202 | 0.8742 | 0.8673 | +0.015 |
-| tfidf-svm / class_weight | 0.8722 | — | — | — | — | — | — |
-| tfidf-logreg / class_weight | 0.8683 | — | — | — | — | — | −0.004 |
-
-Classical CI is [0.8605, **0.8831**] — **labse and mmbert clear its upper bound**, a real if modest
-win. twhin-bert and canine-c sit below the classical bar.
-
-### 4.6 Priority per language, on test
-
-| Model | english | sinhala | singlish | tamil | tamilish |
-|---|---:|---:|---:|---:|---:|
-| **labse** | 0.9229 | 0.9179 | 0.8814 | 0.9130 | **0.8142** |
-| mmbert | **0.9269** | 0.9086 | 0.8950 | 0.9014 | 0.8094 |
-| xlmr-base | 0.9234 | 0.9116 | 0.8780 | 0.8990 | **0.8229** |
-| tfidf-svm (classical) | 0.9032 | 0.8745 | 0.8915 | 0.8905 | **0.7994** |
-
-**Tamilish is the weak track on every model** — a 9–11 point gap that no other language shows. The
-encoders narrow it (0.7994 → 0.8229) but do not close it.
-
-### 4.7 Training cost (Kaggle T4, fp16)
-
-| Model | HF name | Train s | Rows/s | Max len |
-|---|---|---:|---:|---:|
-| xlmr-base | `FacebookAI/xlm-roberta-base` | 933 | 160.7 | 128 |
-| labse | `sentence-transformers/LaBSE` | 1,310 | 114.5 | 128 |
-| mmbert | `jhu-clsp/mmBERT-base` | 1,607 | 93.3 | 160 |
-
-LaBSE learning curve (test macro-F1 by epoch): 0.8753 → 0.8862 → **0.8900**.
+**Metrics**: intent = macro-F1 (77 classes) · sentiment = **Negative-F1** (never accuracy — ~94%
+Neutral) · priority = macro-F1 (~55/36/9% Low/Medium/High).
 
 ---
 
-## 5. Sentiment — the hardest task in the project
+## 1. Headline — test set, pooled (frozen split `e7b5934392cd`)
 
-### 5.1 Regime study — `multi` wins, zero-shot collapses (dev)
+Fit on `train+dev` (49,990 rows), scored **once** on test (15,395 rows). This is the decision table.
 
-| Regime | Sentiment mean / best Neg-F1 | Priority mean / best macro-F1 |
-|---|---|---|
-| `mono` (train on eval language) | 0.4773 / 0.6395 | 0.8858 / 0.9115 |
-| **`multi`** (one model, 5 languages) | **0.4985** / 0.6331 | **0.8874** / 0.9119 |
-| `zeroshot-en` (never sees eval language) | 0.0847 / 0.3158 | 0.5625 / 0.7579 |
+### 1.1 Intent — macro-F1
+| model | family | headline | recorded |
+|---|---|---:|---|
+| `gemma-3-1b-multitask-sharedhead` | Decoder (joint MT) | **0.8673** | 2026-08-20 |
+| `gemma-3-1b-multitask-shared3head` | Decoder (joint MT) | **0.8616** | 2026-08-20 |
+| `gemma-3-1b` | Decoder (LoRA) | **0.8586** | 2026-08-20 |
+| `tfidf-svm` | Classical | **0.8307** | 2026-08-20 |
+| `labse-ft-priority-probe-mean` | Probe (frozen) | **0.7971** | 2026-08-09 |
+| `labse-ft-priority-probe-cls` | Probe (frozen) | **0.7962** | 2026-08-09 |
+| `labse-probe-mean` | Probe (frozen) | **0.7822** | 2026-08-09 |
+| `labse-probe-cls` | Probe (frozen) | **0.7773** | 2026-08-09 |
+| `labse-ft-sentiment-probe-mean` | Probe (frozen) | **0.7676** | 2026-08-09 |
+| `labse-ft-sentiment-probe-cls` | Probe (frozen) | **0.7594** | 2026-08-09 |
 
-Zero-shot cross-script transfer does not happen for free — the translated training data is doing
-real work, and a sixth language would need its own data, not transfer.
 
-### 5.2 Class balancing matters more than model choice
+> `tfidf-svm` here is the frozen-split classical intent run (0.8307). The classical intent baselines
+> in §5 (83.18% pooled) are the **official**-split figures — different split, close by coincidence.
 
-Averaged over all 168 sentiment runs:
+### 1.2 Sentiment — Negative-F1
 
-| Arm | Accuracy | **Negative-F1** |
-|---|---:|---:|
-| `none` | **0.9281** | 0.3171 |
-| `class_weight` | 0.9252 | **0.4061** |
-| `ros` (random oversampling) | 0.9293 | 0.3949 |
+**Only the six `v8` rows are current and mutually comparable.** The `v5` rows are the same models
+scored against labels this project no longer ships; they are kept because the runs happened, not
+because they can be ranked against the v8 block.
 
-The **highest-accuracy arm is the worst model.** This single table is why the project never reports
-sentiment accuracy. Estimator spread (~0.05) is smaller than arm spread (~0.09).
+| model | family | headline | labels | recorded |
+|---|---|---:|---|---|
+| `labse` | Encoder | **0.7138** | v8 | 2026-08-19 |
+| `gemma-3-1b` | Decoder (LoRA) | **0.7126** | v8 | 2026-08-19 |
+| `gemma-3-1b-multitask-sharedhead` | Decoder (joint MT) | **0.7048** | v8 | 2026-08-20 |
+| `gemma-3-1b-multitask-shared3head` | Decoder (joint MT) | **0.7042** | v8 | 2026-08-20 |
+| `tfidf-svm` | Classical | **0.6663** | v8 | 2026-08-19 |
+| `tfidf-logreg` | Classical | **0.6415** | v8 | 2026-08-19 |
+| `xlmr-base` | Encoder | **0.5396** | v5 | 2026-08-01 |
+| `mmbert` | Encoder | **0.5321** | v5 | 2026-08-01 |
+| `labse-ft-sentiment-probe-mean` | Probe (frozen) | **0.4810** | v5 | 2026-08-09 |
+| `canine-c` | Encoder | **0.4702** | v5 | 2026-08-01 |
+| `labse-ft-sentiment-probe-cls` | Probe (frozen) | **0.4633** | v5 | 2026-08-09 |
+| `labse-ft-priority-probe-mean` | Probe (frozen) | **0.3867** | v5 | 2026-08-09 |
+| `labse-ft-priority-probe-cls` | Probe (frozen) | **0.3828** | v5 | 2026-08-09 |
+| `labse-probe-mean` | Probe (frozen) | **0.3735** | v5 | 2026-08-09 |
+| `labse-probe-cls` | Probe (frozen) | **0.3682** | v5 | 2026-08-09 |
+| `sinhalaberto` | Encoder | **0.1296** | v5 | 2026-08-01 |
+| `sinbert-large` | Encoder | **0.1182** | v5 | 2026-08-01 |
 
-| Estimator | Sentiment mean / max | Priority mean / max |
-|---|---|---|
-| `tfidf-svm` | **0.4082** / 0.6331 | **0.8137** / 0.9119 |
-| `tfidf-logreg` | 0.3566 / **0.6395** | 0.8093 / 0.9068 |
-| `tfidf-cnb` | 0.3744 / 0.5304 | 0.7796 / 0.8739 |
-| `tfidf-sgd` | 0.3517 / 0.5802 | 0.7735 / 0.9074 |
 
-### 5.3 The correction — the bake-off headline was noise
+### 1.3 Priority — macro-F1
 
-| Setup | Negative-F1 |
-|---|---:|
-| Bake-off headline (single dev split, C=1.0, threshold 0.5) | 0.6395 |
-| **5-fold CV over train+dev, tuned C** | **0.5525 ± 0.044** |
-| 5-fold CV, tuned C + tuned threshold | 0.5721 |
+| model | family | headline | recorded |
+|---|---|---:|---|
+| `gemma-3-1b-multitask-sharedhead` | Decoder (joint MT) | **0.8904** | 2026-08-20 |
+| `labse` | Encoder | **0.8900** | 2026-08-07 |
+| `gemma-3-1b` | Decoder (LoRA) | **0.8898** | 2026-08-20 |
+| `gemma-3-1b-multitask-shared3head` | Decoder (joint MT) | **0.8895** | 2026-08-20 |
+| `mmbert` | Encoder | **0.8887** | 2026-08-02 |
+| `xlmr-base` | Encoder | **0.8872** | 2026-08-02 |
+| `labse-ft-priority-probe-cls` | Probe (frozen) | **0.8825** | 2026-08-09 |
+| `labse-ft-priority-probe-mean` | Probe (frozen) | **0.8816** | 2026-08-09 |
+| `tfidf-svm` | Classical | **0.8722** | 2026-08-01 |
+| `tfidf-logreg` | Classical | **0.8683** | 2026-08-01 |
+| `labse-ft-sentiment-probe-mean` | Probe (frozen) | **0.8040** | 2026-08-09 |
+| `labse-probe-mean` | Probe (frozen) | **0.8015** | 2026-08-09 |
+| `labse-probe-cls` | Probe (frozen) | **0.8008** | 2026-08-09 |
+| `labse-ft-sentiment-probe-cls` | Probe (frozen) | **0.7990** | 2026-08-09 |
 
-Bootstrapping the champion by ticket `id`: **0.6395, 95% CI [0.5521, 0.7174], width 0.165** —
-**all 10 of the top 10 configurations fall inside that interval.** Their ordering was noise. Pooling
-languages does not help: the pooled dev set has 340 Negative *rows* but only **68 unique Negative
-tickets** (the other 272 are translations of the same tickets), so any CI over 340 rows is
-dishonestly narrow.
-
-### 5.4 Encoder screen — 800 balanced rows, identical budget
-
-| Model | Params | Neg-F1 | Recall | Precision | Train s |
-|---|---:|---:|---:|---:|---:|
-| **mmbert** | 307M | **0.3268** | 0.888 | 0.200 | 891 |
-| xlmr-base | 278M | 0.2343 | 0.897 | 0.135 | 282 |
-| twhin-bert | 278M | 0.2235 | 0.771 | 0.131 | 544 |
-| indicbert | 278M | 0.2134 | 0.821 | 0.123 | 266 |
-| xlmr-large | 560M | 0.2082 | 0.818 | 0.119 | 1,263 |
-| *tfidf-svm, same 800 rows* | — | *0.2619* CI [0.2106, 0.3125] | — | — | — |
-
-**The candidate with the worst tokenizer fertility won**, and XLM-R large — the largest and most
-expensive — came last. The fertility ranking predicted almost the reverse order (see §7.2).
-
-### 5.5 Full-data encoder bake-off — dev and final test
-
-3 epochs, lr 2e-5, batch 32, `class_weight`. Test = refit on train+dev, scored once.
-
-| Model | Dev Neg-F1 | **Test Neg-F1** | dev→test Δ |
-|---|---:|---:|---:|
-| **labse** | 0.6334 | **0.5664** | −0.067 |
-| mmbert | 0.6203 | 0.5321 | −0.088 |
-| xlmr-base | 0.5012 | 0.5396 | **+0.038** |
-| canine-c | 0.5323 | 0.4702 | −0.062 |
-| *tfidf-svm (classical)* | *0.6144* | *0.4572* | *−0.157* |
-| *tfidf-logreg (classical)* | *0.5933* | *0.4225* | *−0.171* |
-| sinhalaberto (Sinhala-only) | 0.1730 | 0.1296 | — |
-| sinbert-large (Sinhala-only) | 0.1238 | 0.1182 | — |
-
-**The key pattern is in the delta column.** On dev, LaBSE only tied the classical champion within
-the CI. On test — 505 Negatives vs dev's 340, so a tighter interval — the encoders separate cleanly:
-classical dropped 0.157, the subword encoders dropped 0.06–0.09, and **XLM-R actually rose**.
-Encoders generalize better here. LaBSE finishes **+0.109 over classical**.
-
-canine-c (character-level) ≈ classical — the char model does not justify itself.
-
-### 5.6 Classical champion — final test detail
-
-| Model | Arm | C | Dev | **Test** | 95% CI (test) | Neg precision | Neg recall |
-|---|---|---:|---:|---:|---|---:|---:|
-| **tfidf-svm** | class_weight | 0.5 | 0.6144 | **0.4572** | [0.3970, 0.5130] | 0.364 | 0.614 |
-| tfidf-logreg | ros | 3.0 | 0.5933 | 0.4225 | [0.3627, 0.4788] | 0.349 | 0.535 |
-
-**Decomposing the 0.1571 dev→test drop** (resampling test down to dev's Negative rate by dropping
-Neutral tickets, 25 draws → 0.5165 ± 0.0065):
-
-| Component | Value |
-|---|---:|
-| Total dev → test drop | 0.1571 |
-| Attributable to **prevalence** (3.28% vs 4.54% Negative) | 0.0592 |
-| **Genuine generalization loss** | **0.0979** |
-
-Roughly a third is the excusable kind and two thirds is not. The CV estimate of 0.5525 that was
-meant to be the honest figure still came in **0.095 above** what test delivered.
-
-### 5.7 Per-language sentiment, on test (classical)
-
-| Model | english | singlish | sinhala | **tamil** | tamilish |
-|---|---:|---:|---:|---:|---:|
-| tfidf-svm / class_weight | 0.4582 | 0.4615 | 0.4138 | **0.5252** | 0.4229 |
-| tfidf-logreg / ros | 0.4361 | 0.4170 | 0.3843 | 0.5018 | 0.3523 |
-
-### 5.8 Per-language specialisation — does one model dilute?
-
-Multi-trained dev Negative-F1 (per-language cells hold 14–68 Negatives, CI ≈ ±0.1 — read directions,
-not orderings):
-
-| Model | english | sinhala | singlish | tamil | tamilish |
-|---|---:|---:|---:|---:|---:|
-| **labse** | 0.657 | **0.671** | **0.647** | 0.632 | **0.551** |
-| twhin-bert | 0.653 | 0.613 | 0.559 | 0.626 | 0.534 |
-| xlmr-base | 0.584 | 0.487 | 0.489 | 0.485 | 0.469 |
-
-Monolingual vs multilingual LaBSE:
-
-| Language | ft-multi | ft-mono | Δ mono |
-|---|---:|---:|---:|
-| english | 0.657 | 0.667 | +0.010 |
-| sinhala | 0.671 | 0.696 | +0.025 |
-| singlish | 0.647 | 0.630 | **−0.017** |
-| tamil | 0.632 | 0.680 | +0.048 |
-| tamilish | 0.551 | 0.553 | +0.002 |
-
-**LaBSE is best on every language, including the romanized tracks.** No specialised model beat it.
-Monolingual gives a small native-script edge but **loses on Singlish** — romanized text leans on
-cross-lingual transfer. All deltas sit inside noise. → **Do not ship per-language models.**
-
-### 5.9 LoRA adapters — not competitive as a drop-in
-
-| Language | ft-multi | ft-mono | lora-multi | lora-mono |
-|---|---:|---:|---:|---:|
-| english | 0.657 | 0.667 | 0.382 | 0.323 |
-| sinhala | 0.671 | 0.696 | 0.477 | 0.322 |
-| singlish | 0.647 | 0.630 | 0.394 | 0.263 |
-| tamil | 0.632 | 0.680 | 0.424 | 0.322 |
-| tamilish | 0.551 | 0.553 | 0.362 | 0.274 |
-
-LoRA loses **0.2–0.3 everywhere**; per-language LoRA is the worst configuration of all four.
-**Caveat:** LoRA ran at full-FT hyperparameters (lr 2e-5). LoRA conventionally wants ~1e-4 and more
-epochs — this shows "drop-in LoRA at these settings fails," not "LoRA can't work." A fair test needs
-its own sweep. It is fast, though: 308 s multi vs 1,159 s for full fine-tuning.
-
-### 5.10 TwHIN-BERT for code-mixed romanized text
-
-`model-research.md` §5 names TwHIN-BERT as the "process romanized directly" (Strategy B) model.
-**It does not win on romanized here** — LaBSE beats it on singlish 0.647 vs 0.559 (−0.088) and on
-tamilish. It does clearly beat xlm-roberta.
-
-**Caveat:** our Singlish is *rule-generated* from Sinhala and Tamilish is *machine-translated* — an
-optimistic upper bound. TwHIN-BERT's edge would most plausibly appear on **real human-typed**
-code-mixing, which we do not have. → **Revisit with real romanized data.**
 
 ---
 
-## 6. Baselines and floors, at a glance
+## 2. Test set, per language (frozen split, v8 labels)
 
-| Task | Floor | What the floor is | Champion (test) | Headroom used |
-|---|---:|---|---:|---|
-| intent | ~1.3% | random over 77 classes | **88.54%** (`all`, LaBSE) | classical 83.18% is now the floor, not the champion |
-| sentiment | **0.000** | always-Neutral (95.5% accuracy) | 0.5664 | wide headroom remains |
-| priority | 0.2302 | always-Low | 0.8900 | past its 0.7722 label ceiling |
-| priority (fair bar) | 0.9040 | `intent-chained`, dev | 0.9168 dev | +0.013 |
+**This section was rewritten 2026-09-09.** It previously said per-language test coverage was
+thin and carried a single v8 sentiment row. The v8 roster runs each wrote six records (pooled
+plus all five tracks), so coverage is now 8 models on sentiment, 7 on priority, 9 on intent,
+with every track filled. The old §2.3 v5 table is deleted rather than kept as "superseded" —
+v8 rows now exist for the same models, so nothing depends on it.
 
----
+Every cell below is `label_version` v8 on split `e7b5934392cd`. `spread` is best track minus
+worst track *within a model* — the number that says how unevenly a model serves the five
+languages, which pooled accuracy hides entirely.
 
-## 7. Tokenizer studies — four separate investigations
+### 2.1 Priority — macro-F1
 
-### 7.1 Study 1 — 3 tokenizers × 15,000 stratified samples
+| model | family | English | Sinhala | Singlish | Tamil | Tanglish | **pooled** | spread | source |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---|
+| `labse` | encoder | 0.9229 | 0.9179 | 0.8817 | 0.9130 | 0.8142 | **0.8900** | 0.1087 | re-scored |
+| `xlmr-base` | encoder | 0.9234 | 0.9116 | 0.8780 | 0.8990 | 0.8229 | **0.8872** | 0.1005 | re-scored |
+| `tfidf-svm` | classical | 0.9050 | 0.8848 | 0.8918 | 0.8854 | 0.7984 | **0.8734** | 0.1066 | run record |
+| `muril-base` | encoder | 0.9095 | **0.8072** | 0.8861 | 0.9120 | 0.8412 | **0.8717** | 0.1048 | run record |
+| `tfidf-logreg` | classical | 0.8987 | 0.8810 | 0.8889 | 0.8849 | 0.7985 | **0.8706** | 0.1002 | run record |
+| `tfidf-sgd` | classical | 0.8953 | 0.8802 | 0.8831 | 0.8853 | 0.7805 | **0.8659** | 0.1148 | run record |
+| `tfidf-cnb` | classical | 0.8643 | 0.8479 | 0.8540 | 0.8653 | 0.7782 | **0.8422** | 0.0871 | run record |
 
-Fragmentation ratio (tokens per word) and `[UNK]` rate ([`tokenizer_comparison.md`](tokenizer_comparison.md)):
+> **Two provenances in one table, which is why the column is there.** The `run record` rows
+> come from `per_language.csv`, built from the per-track run JSONs. The `re-scored` rows were
+> generated 2026-09-05 by re-scoring saved checkpoints, because those two models were
+> originally scored pooled-only; LaBSE's re-scored pooled reproduces its recorded 0.8900 to
+> +0.00005, which is the check that licenses mixing them. Do not compare a `re-scored` cell
+> against a `run record` cell to three decimal places.
+>
+> **MuRIL's Sinhala is the outlier, and only its Sinhala.** At 0.8072 it sits **7 to 11 points
+> below every other model on that track** — even `tfidf-cnb`, the weakest model in the table,
+> holds 0.8479. Its other four tracks are unremarkable and competitive: English 0.9095 and
+> Tamil 0.9120 are within 1.4 and 0.1 points of the best. MuRIL's pretraining covers 17 Indian
+> languages **including Tamil and excluding Sinhala**, and that is exactly the shape of the
+> damage — the one track its pretraining never saw.
+>
+> This is why pooled accuracy is the wrong summary. MuRIL loses pooled to a bag of character
+> n-grams (0.8717 vs 0.8734) and reads as a mediocre model; it is a competent model with one
+> hole, and the hole is the language the pooled average dilutes to a fifth of its weight.
+>
+> `tfidf-svm` wins **Singlish** outright (0.8918, beating every encoder including LaBSE's
+> 0.8817). Romanized text is where character n-grams stay competitive with subword encoders.
 
-| Tokenizer | english | sinhala | tamil | singlish | tamilish | Sinhala `[UNK]` |
-|---|---:|---:|---:|---:|---:|---:|
-| **xlm_roberta** | 1.25× | 1.45× | 2.17× | 1.94× | 2.14× | **0.0%** |
-| mbert | 1.25× | 1.23× | 3.52× | 2.03× | 2.31× | **60.32%** ✗ |
-| indicbert | 1.17× | 3.60× | 1.56× | 1.87× | 2.02× | 0.60% |
+### 2.2 Sentiment — Negative-F1
 
-**`max_length` decision: 128.** Across all 65,385 rows the maximum tokenized length is **108 tokens**
-— 128 gives **100.0% coverage / 0.0% truncation** on every track while minimising padding. Use
-`DataCollatorWithPadding` for dynamic padding rather than static 128.
+| model | family | English | Sinhala | Singlish | Tamil | Tanglish | **pooled** | spread |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `labse` | encoder | 0.7550 | 0.7139 | 0.6402 | 0.7535 | 0.6185 | **0.7138** | 0.1365 |
+| `xlmr-base` | encoder | 0.7838 | 0.7215 | 0.6361 | 0.7473 | 0.5981 | **0.7007** | 0.1857 |
+| `mmbert` | encoder | 0.7723 | 0.6766 | 0.6905 | 0.7386 | 0.6159 | **0.7000** | 0.1564 |
+| `muril-base` | encoder | 0.7967 | 0.5577 | 0.6463 | 0.7465 | 0.6235 | **0.6790** | 0.2390 |
+| `tfidf-svm` | classical | 0.7198 | 0.6412 | 0.6633 | 0.7249 | 0.5722 | **0.6653** | 0.1527 |
+| `tfidf-logreg` | classical | 0.6995 | 0.6256 | 0.6545 | 0.6776 | 0.5074 | **0.6383** | 0.1921 |
+| `tfidf-sgd` | classical | 0.6842 | 0.5954 | 0.6218 | 0.6608 | 0.4577 | **0.6092** | 0.2265 |
+| `tfidf-cnb` | classical | 0.5139 | 0.5083 | 0.5302 | 0.5239 | 0.3738 | **0.4968** | 0.1564 |
 
-### 7.2 Study 2 — 7 encoders × 2,000 real rows per language
+> The same MuRIL pattern, sharper: **best English of any model (0.7967) and worst Sinhala of
+> any model (0.5577)**, a 0.2390 within-model spread — the widest in the table. It beats
+> LaBSE on English by 4 points and loses to it on Sinhala by 16.
+>
+> The ordering english > tamil > sinhala > singlish > tanglish holds for nearly every model,
+> which tracks **script familiarity, not language family** — the two romanized tracks are the
+> weakest even though their underlying languages are the strongest elsewhere.
 
-| Model | Mean fertility | Sinhala `[UNK]` % | Status |
-|---|---:|---:|---|
-| muril | **1.599** (best) | **64.53** | **disqualified** |
-| xlmr-base / xlmr-large / twhin-bert | 1.791 | 0.00 | shortlisted |
-| indicbert | 2.050 | 0.59 | shortlisted |
-| mbert | 2.069 | **61.35** | **disqualified** |
-| mmbert | 2.525 (worst) | 0.00 | shortlisted |
+### 2.3 Intent — macro-F1
 
-**Ranking on fertility alone would have picked the worst candidate.** MuRIL leads on mean fertility
-precisely *because* it maps two-thirds of Sinhala to `[UNK]` — discarded text is cheap to tokenize.
-**Fertility must always be read next to `[UNK]` rate**, and per §5.4 it has **no predictive value**
-for downstream accuracy among the models that can actually read the script.
+| model | family | English | Sinhala | Singlish | Tamil | Tanglish | **pooled** | spread |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `labse` | encoder | 0.9412 | 0.9319 | 0.9034 | 0.9329 | 0.6928 | **0.8835** | 0.2484 |
+| `xlmr-base` | encoder | 0.9402 | 0.9244 | 0.8987 | 0.9151 | 0.7067 | **0.8801** | 0.2335 |
+| `mmbert` | encoder | 0.9374 | 0.9123 | 0.9013 | 0.9147 | 0.6566 | **0.8680** | 0.2808 |
+| `gemma-3-1b` | decoder | 0.9358 | 0.9221 | 0.8962 | 0.9110 | 0.6281 | **0.8635** | 0.3077 |
+| `tfidf-svm` | classical | 0.9180 | 0.8666 | 0.8793 | 0.8528 | 0.6127 | **0.8308** | 0.3053 |
+| `gemma-3-270m` | decoder | 0.9209 | 0.8805 | 0.8539 | 0.8833 | 0.5909 | **0.8305** | 0.3300 |
+| `tfidf-logreg` | classical | 0.9096 | 0.8595 | 0.8751 | 0.8302 | 0.5854 | **0.8189** | 0.3242 |
+| `tfidf-sgd` | classical | 0.9079 | 0.8489 | 0.8646 | 0.8305 | 0.5669 | **0.8115** | 0.3410 |
+| `tfidf-cnb` | classical | 0.7772 | 0.6732 | 0.7194 | 0.7234 | 0.4925 | **0.6792** | 0.2847 |
 
-Also corrected here: mmBERT's real Sinhala fertility is **3.67**, not the 4.60 an earlier
-four-sentence probe reported, and it is worst on Tamil (3.72) — which that probe never tested.
-
-### 7.3 Study 3 — encoder-roster fertility (tokens/word, 300 dev tickets/language)
-
-| Model | english | sinhala | singlish | tamil | tamilish |
-|---|---:|---:|---:|---:|---:|
-| **LaBSE** | **1.36** | **1.74** | **1.89** | **2.01** | **2.19** |
-| xlmr-base | 1.43 | 1.81 | 2.23 | 2.35 | 2.35 |
-| mmbert | 1.37 | 4.40 | 2.17 | 3.91 | 2.40 |
-| sinhalaberto | 1.41 | 3.40 | 2.16 | 7.15 | 2.63 |
-| sinbert-large | 5.09 | 4.26 | 6.65 | 6.95 | 7.20 |
-| canine-c (chars) | 5.10 | 5.97 | 6.67 | 8.46 | 7.21 |
-
-Two findings from the probe alone, both of which held up in the actual bake-off:
-
-- **LaBSE beats XLM-R on every track** and had never been screened — `model-research.md` §4 listed
-  it only under *Embeddings (RAG)*. It went on to win both tasks.
-- **The monolingual Sinhala checkpoints tokenize Sinhala *worse* than the multilingual ones**
-  (SinBERT-large 4.26, SinhalaBERTo 3.40 vs XLM-R 1.81, LaBSE 1.74) — and they scored 0.12–0.17
-  Negative-F1 pooled.
-
-All six report 0% `[UNK]`, **and that is meaningless** — they are byte-BPE or character models,
-which structurally cannot emit `UNK`. The mBERT/MuRIL disqualification stands; those are WordPiece.
-
-### 7.4 Study 4 — the Indic word-tokenizer defect (found, measured, fixed)
-
-`swiftbench/models.py` used scikit-learn's default `token_pattern=r"(?u)\b\w\w+\b"`. `\w` excludes
-Unicode categories `Mn`/`Mc` — **every Sinhala and Tamil vowel sign**. Silent failure: no error, no
-warning, plausible-looking metrics.
-
-**Character preservation rate on dev** ([`word_tokenizer_preservation.csv`](word_tokenizer_preservation.csv)):
-
-| Language | sklearn default | regex-unicode | **indic-nlp (adopted)** |
-|---|---:|---:|---:|
-| english | 0.9357 | 0.9357 | 0.9357 |
-| singlish | 0.9738 | 0.9738 | 0.9738 |
-| tamilish | 0.9631 | 0.9631 | 0.9631 |
-| **sinhala** | **0.5993** | 0.9681 | **0.9699** |
-| **tamil** | **0.3072** | 0.9745 | **0.9746** |
-
-40.1% of Sinhala and **69.3% of Tamil** characters were being discarded. Words differing only in
-vowel signs collapsed onto one token: `කවුරු හරි මගේ කාඩ් එක පාවිච්චි` → `['කව','හර','මග','එක']`.
-
-**Measured impact of the fix** ([`word_tokenizer_comparison.csv`](word_tokenizer_comparison.csv)):
-
-| Task | Language | Word only: default → indic-nlp | Word + char_wb: default → indic-nlp |
-|---|---|---|---|
-| intent | sinhala | 0.9008 → 0.9170 (**+0.016**) | 0.9253 → 0.9266 (+0.001) |
-| intent | tamil | 0.8100 → 0.8658 (**+0.056**) | 0.9155 → 0.9157 (+0.000) |
-| priority | tamil | 0.8523 → 0.8889 (**+0.037**) | 0.9109 → 0.9028 (−0.008) |
-| priority | sinhala | 0.8984 → 0.9060 (+0.008) | 0.9079 → 0.9088 (+0.001) |
-| sentiment | sinhala | 0.5172 → 0.5696 (**+0.052**) | 0.6395 → 0.6395 (0.000) |
-| sentiment | tamil | 0.5137 → 0.5250 (+0.011) | 0.6013 → 0.6250 (+0.024) |
-| any | english | unchanged | unchanged |
-
-| Features | Mean gain from fix | Max |
-|---|---:|---:|
-| word only | **+0.0200** | +0.0558 (intent, tamil) |
-| word + `char_wb` (production) | +0.0020 | +0.0237 |
-
-**`char_wb` had been silently compensating**, which is why the defect survived for so long — the
-production metric barely moves. Fixed anyway, because it corrupted everything built on word
-features: the mined lexicon in notebook 20 was extracting `කව හර` instead of `කවුරු හරි`.
-
-**Fix:** `swiftbench/tokenize.py`, using `indic_nlp_library` dispatched on script. A plain Unicode
-regex `[\p{L}\p{M}\p{N}]+` was **rejected** — it recovers the vowel signs but splits on **ZWJ
-(U+200D)**, breaking `ට්‍රැක්` ("track") into two fragments (the exact gotcha `research/README.md`
-§3.19.3 flags). Agreement with indic-nlp: Tamil 99.5%, Sinhala 92.4%, every Sinhala disagreement
-being a ZWJ conjunct.
-
-**All test numbers in §4–§5 predate the fix** and are therefore mildly conservative for Sinhala and
-Tamil. The classical sentiment dev baseline moved 0.6144 → 0.6173 after it.
+> Tanglish is the floor for every model without exception, and the gap is enormous: LaBSE
+> scores 0.9412 on English and **0.6928 on Tanglish**. Intent has the widest spreads of the
+> three tasks (0.23–0.34 against sentiment's 0.14–0.24).
+>
+> **Pooled ranking is not per-track ranking.** `tfidf-svm` outranks `gemma-3-270m` pooled
+> (0.8308 vs 0.8305) while losing to it on English, Sinhala and Tamil — it wins only by
+> degrading less on the two romanized tracks. A pooled table alone would not show this.
 
 ---
 
-## 8. Label quality — the constraint that binds sentiment
+## 3. Dev set, per language — multilingual regime (`multi`)
 
-### 8.1 Prompt versions vs the 500-row human gold benchmark
+One model trained on all five tracks, evaluated per track. Fit on `train` (42,500 rows), scored on
+dev (7,490 pooled / 1,498 per track). **This is the richest per-language coverage in the project.**
 
-`sentiment`/`priority` have no upstream ground truth; they are LLM-derived. Prompts were iterated
-against `datasets/english/500_benchmarkset.csv` (Label Studio, human-annotated, independent of
-prompt tuning).
+Fine-tuned encoders and decoders were mostly scored pooled only; the frozen **probes** were scored
+per language, which is why they carry full rows and the fine-tunes do not.
 
-| Version | What changed | Outcome |
-|---|---|---|
-| v1 | Narrative rules, exhaustive emotion word lists, category→priority table built from the original dataset's *own heuristic* labels | Negative-F1 0.622 (P 0.535 / R 0.742) |
-| v4 | Condensed rewrite of v1, same rule content and same category table | Priority barely moved off v1 |
-| **v5 (frozen)** | Recalibrated the category→priority table against what the human annotator *actually did* | Sentiment acc **96.6%**, priority **77.2%**, both-exact **75.0%**; Negative-F1 **0.691** (P 0.792 / R 0.613) |
+### 3.1 Intent — macro-F1
 
-**The priority gap, isolated.** Four categories were hardcoded "High" in v1/v4 because the original
-dataset's heuristic said so 100% of the time. On those 25 gold rows:
-
-| Prompt | Priority accuracy on the 4 recalibrated categories (n=25) |
-|---|---:|
-| v4 | **4.0%** |
-| v5 | **92.0%** |
-
-Recalibrated: `pin_blocked`, `passcode_forgotten`, `card_swallowed` → Medium; `unable_to_verify_identity` → Low.
-
-**v5 residual error:** 17/500 sentiment mismatches (12 Negative→Neutral, 5 Neutral→Negative).
-**v5 full-dataset distribution** (n=10,003): Neutral 9,540 / Negative 463 / **Positive 0** — v5's
-sentiment section is explicitly binary, and the human gold set independently agrees (0 Positive).
-Downstream code must tolerate a zero-count Positive class.
-
-### 8.2 The label ceiling — what the scores actually mean
-
-v5 labels (what everything trains and scores against) vs human annotation on the gold 500
-([`label_ceiling.csv`](label_ceiling.csv)):
-
-| Task | v5 vs human | 95% CI | Agreement | Cohen's κ | Our test score | Reading |
-|---|---:|---|---:|---:|---:|---|
-| intent | 1.0000 | [1.00, 1.00] | 1.000 | 1.00 | 0.8318 | genuine ground truth |
-| sentiment | 0.5769 | [0.40, 0.73] | 0.956 | 0.55 | 0.5664 | **inside the ceiling's own CI** |
-| priority | 0.7722 | [0.73, 0.81] | 0.804 | 0.64 | 0.8900 | **exceeds the ceiling by 12 points** |
-
-This does not *cap* the measured scores — against v5 labels a model could in principle reach 1.0. It
-caps what they **mean**.
-
-- **Priority has learned the v5 labeling rule well.** The rule itself agrees with humans at 0.7722,
-  so that is the operational ceiling no matter what the model scores. Ship it, and state this in any
-  external write-up.
-- **Sentiment sits inside its ceiling's CI**, which is the stronger argument for **relabelling** than
-  for a bigger model.
-
-### 8.3 Prompt v6 relabel — the highest-leverage open item
-
-| Prompt | Split | n | Sentiment Neg-F1 | Neg recall | κ | Priority macro-F1 | κ |
+| model | family | english | sinhala | singlish | tamil | tamilish | **pooled** |
 |---|---|---:|---:|---:|---:|---:|---:|
-| v5 | dev | 250 | 0.6923 | 0.600 | 0.676 | 0.7481 | 0.629 |
-| **v6** | dev | 250 | **0.7429** | **0.867** | **0.724** | 0.7359 | 0.628 |
-| v5 | **holdout** | 250 | 0.4615 | 0.375 | 0.434 | 0.7959 | 0.660 |
-| **v6** | **holdout** | 250 | **0.6875** | **0.688** | **0.666** | 0.7773 | 0.630 |
+| `gemma-3-1b-multitask-sharedhead` | Decoder (joint MT) | — | — | — | — | — | **0.9284** |
+| `mmbert` | Encoder | — | — | — | — | — | **0.9280** |
+| `gemma-3-1b` | Decoder (LoRA) | — | — | — | — | — | **0.9232** |
+| `labse` | Encoder | — | — | — | — | — | **0.9224** |
+| `gemma-3-1b-multitask-shared3head` | Decoder (joint MT) | — | — | — | — | — | **0.9211** |
+| `tfidf-svm` | Classical | — | — | — | — | — | **0.9201** |
+| `tfidf-logreg` | Classical | — | — | — | — | — | **0.9104** |
+| `tfidf-sgd` | Classical | — | — | — | — | — | **0.9050** |
+| `gemma-3-270m` | Decoder (LoRA) | — | — | — | — | — | **0.9038** |
+| `labse-probe-mean` | Probe (frozen) | 0.8780 | 0.8883 | 0.8507 | 0.8533 | 0.8368 | **0.8614** |
+| `labse-probe-cls` | Probe (frozen) | 0.8781 | 0.8925 | 0.8450 | 0.8542 | 0.8254 | **0.8590** |
+| `gemma-3-1b-probe-mean` | Probe (frozen) | 0.8557 | 0.8762 | 0.8362 | 0.8892 | 0.8278 | **0.8570** |
+| `gemma-3-1b-probe-last` | Probe (frozen) | 0.8425 | 0.8675 | 0.8138 | 0.8776 | 0.8009 | **0.8408** |
+| `twhin-bert-probe-mean` | Probe (frozen) | 0.8251 | 0.8482 | 0.8278 | 0.8042 | 0.8194 | **0.8249** |
+| `mmbert-probe-mean` | Probe (frozen) | 0.8481 | 0.8455 | 0.7790 | 0.8590 | 0.7514 | **0.8170** |
+| `xlmr-base-probe-mean` | Probe (frozen) | 0.8359 | 0.8427 | 0.7803 | 0.8338 | 0.7432 | **0.8074** |
+| `mmbert-probe-cls` | Probe (frozen) | 0.8475 | 0.8075 | 0.7879 | 0.8164 | 0.7671 | **0.8054** |
+| `tfidf-cnb` | Classical | — | — | — | — | — | **0.8048** |
+| `gemma-3-270m-probe-mean` | Probe (frozen) | 0.7743 | 0.8199 | 0.8047 | 0.8410 | 0.7535 | **0.7990** |
+| `gemma-3-270m-probe-last` | Probe (frozen) | 0.8071 | 0.8379 | 0.7749 | 0.8057 | 0.7334 | **0.7918** |
+| `xlmr-base-probe-cls` | Probe (frozen) | 0.8474 | 0.8211 | 0.7494 | 0.8234 | 0.7089 | **0.7906** |
+| `twhin-bert-probe-cls` | Probe (frozen) | 0.7885 | 0.8213 | 0.7638 | 0.7724 | 0.7402 | **0.7770** |
+| `canine-c-probe-mean` | Probe (frozen) | 0.5910 | 0.6748 | 0.6848 | 0.6087 | 0.6421 | **0.6410** |
+| `canine-c-probe-cls` | Probe (frozen) | 0.3252 | 0.5448 | 0.5457 | 0.4598 | 0.4851 | **0.4734** |
 
-**v6 lifts holdout Negative-F1 from 0.4615 to 0.6875** — nearly a doubling — at a ~0.02 cost on
-priority. `relabel_v6_staging.csv` is currently **40 pilot rows, train split only**. Rolling v6 out
-is worth more than any modelling change currently on the table.
+
+### 3.2 Sentiment — Negative-F1 · v8 labels
+
+| model | family | english | sinhala | singlish | tamil | tamilish | **pooled** |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `labse` | Encoder | — | — | — | — | — | **0.7331** |
+| `gemma-3-1b` | Decoder (LoRA) | — | — | — | — | — | **0.7098** |
+| `gemma-3-1b-multitask-shared3head` | Decoder (joint MT) | — | — | — | — | — | **0.7046** |
+| `gemma-3-1b-multitask-sharedhead` | Decoder (joint MT) | — | — | — | — | — | **0.6857** |
+| `tfidf-svm` | Classical | 0.6323 | 0.6443 | 0.6486 | 0.6486 | 0.6509 | **—** |
+| `tfidf-logreg` | Classical | 0.6038 | 0.6058 | 0.6010 | 0.6354 | 0.6310 | **—** |
+| `tfidf-sgd` | Classical | 0.5926 | 0.6329 | 0.6012 | 0.6118 | 0.5578 | **—** |
+| `tfidf-cnb` | Classical | 0.4520 | 0.4912 | 0.5541 | 0.4667 | 0.4795 | **—** |
+
+
+### 3.3 Sentiment — Negative-F1 · ⚠️ v5 labels (superseded)
+
+| model | family | english | sinhala | singlish | tamil | tamilish | **pooled** |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `labse` | Encoder | 0.6569 | 0.6713 | 0.6475 | 0.6324 | 0.5512 | **—** |
+| `mmbert` | Encoder | — | — | — | — | — | **0.6203** |
+| `twhin-bert` | Encoder | 0.6533 | 0.6133 | 0.5594 | 0.6259 | 0.5342 | **0.5978** |
+| `tfidf-svm` | Classical | — | — | — | — | — | **0.5954** |
+| `tfidf-logreg` | Classical | — | — | — | — | — | **0.5720** |
+| `gemma-3-270m` | Decoder (LoRA) | — | — | — | — | — | **0.5611** |
+| `canine-c` | Encoder | — | — | — | — | — | **0.5323** |
+| `xlmr-base` | Encoder | 0.5844 | 0.4865 | 0.4889 | 0.4845 | 0.4693 | **0.5012** |
+| `labse-probe-cls` | Probe (frozen) | 0.5463 | 0.5377 | 0.4000 | 0.4907 | 0.4028 | **0.4666** |
+| `labse-probe-mean` | Probe (frozen) | 0.5075 | 0.5140 | 0.4029 | 0.5049 | 0.3929 | **0.4563** |
+| `gemma-3-1b-probe-last` | Probe (frozen) | 0.4500 | 0.4324 | 0.4375 | 0.4552 | 0.4226 | **0.4391** |
+| `mmbert-probe-mean` | Probe (frozen) | 0.5673 | 0.4055 | 0.3849 | 0.4014 | 0.3545 | **0.4137** |
+| `gemma-3-1b-probe-mean` | Probe (frozen) | 0.5417 | 0.4086 | 0.3864 | 0.4188 | 0.3409 | **0.4122** |
+| `labse-lora` | Encoder (LoRA) | 0.3821 | 0.4767 | 0.3944 | 0.4242 | 0.3621 | **—** |
+| `xlmr-base-probe-mean` | Probe (frozen) | 0.4800 | 0.4615 | 0.3793 | 0.4075 | 0.3279 | **0.4068** |
+| `xlmr-base-probe-cls` | Probe (frozen) | 0.4959 | 0.4148 | 0.3668 | 0.3709 | 0.3058 | **0.3849** |
+| `twhin-bert-probe-mean` | Probe (frozen) | 0.4167 | 0.3984 | 0.3612 | 0.3849 | 0.3579 | **0.3828** |
+| `mmbert-probe-cls` | Probe (frozen) | 0.4762 | 0.3610 | 0.3553 | 0.3901 | 0.3273 | **0.3779** |
+| `twhin-bert-probe-cls` | Probe (frozen) | 0.3860 | 0.3851 | 0.3684 | 0.3631 | 0.3354 | **0.3668** |
+| `gemma-3-270m-probe-last` | Probe (frozen) | 0.4094 | 0.3478 | 0.3663 | 0.3193 | 0.3438 | **0.3539** |
+| `gemma-3-270m-probe-mean` | Probe (frozen) | 0.4418 | 0.3046 | 0.3529 | 0.2782 | 0.2941 | **0.3250** |
+| `canine-c-probe-mean` | Probe (frozen) | 0.3174 | 0.3259 | 0.3312 | 0.2866 | 0.3228 | **0.3164** |
+| `canine-c-probe-cls` | Probe (frozen) | 0.2939 | 0.2269 | 0.3274 | 0.2703 | 0.2925 | **0.2807** |
+
+
+### 3.4 Priority — macro-F1
+
+| model | family | english | sinhala | singlish | tamil | tamilish | **pooled** |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `gemma-3-1b-multitask-sharedhead` | Decoder (joint MT) | — | — | — | — | — | **0.9186** |
+| `gemma-3-1b` | Decoder (LoRA) | — | — | — | — | — | **0.9170** |
+| `labse` | Encoder | — | — | — | — | — | **0.9168** |
+| `xlmr-base` | Encoder | — | — | — | — | — | **0.9162** |
+| `gemma-3-1b-multitask-shared3head` | Decoder (joint MT) | — | — | — | — | — | **0.9152** |
+| `mmbert` | Encoder | — | — | — | — | — | **0.9148** |
+| `tfidf-svm` | Classical | 0.8975 | 0.9016 | 0.9089 | 0.9119 | 0.9018 | **—** |
+| `gemma-3-270m` | Decoder (LoRA) | — | — | — | — | — | **0.9040** |
+| `tfidf-sgd` | Classical | 0.8874 | 0.9015 | 0.9070 | 0.8977 | 0.9074 | **—** |
+| `tfidf-logreg` | Classical | 0.8932 | 0.9004 | 0.9015 | 0.8962 | 0.9027 | **—** |
+| `twhin-bert` | Encoder | — | — | — | — | — | **0.8907** |
+| `canine-c` | Encoder | — | — | — | — | — | **0.8786** |
+| `tfidf-cnb` | Classical | 0.8577 | 0.8572 | 0.8636 | 0.8483 | 0.8669 | **—** |
+| `labse-probe-cls` | Probe (frozen) | 0.8576 | 0.8678 | 0.7953 | 0.8462 | 0.7695 | **0.8265** |
+| `labse-probe-mean` | Probe (frozen) | 0.8468 | 0.8630 | 0.7960 | 0.8489 | 0.7724 | **0.8247** |
+| `gemma-3-1b-probe-mean` | Probe (frozen) | 0.8252 | 0.7985 | 0.7935 | 0.7822 | 0.7453 | **0.7887** |
+| `gemma-3-1b-probe-last` | Probe (frozen) | 0.8291 | 0.7873 | 0.7850 | 0.7794 | 0.7530 | **0.7864** |
+| `mmbert-probe-mean` | Probe (frozen) | 0.8233 | 0.7821 | 0.7441 | 0.7947 | 0.7195 | **0.7719** |
+| `mmbert-probe-cls` | Probe (frozen) | 0.8161 | 0.7872 | 0.7381 | 0.7880 | 0.7217 | **0.7694** |
+| `twhin-bert-probe-mean` | Probe (frozen) | 0.7891 | 0.7803 | 0.7686 | 0.7589 | 0.7463 | **0.7685** |
+| `xlmr-base-probe-mean` | Probe (frozen) | 0.7945 | 0.8020 | 0.7367 | 0.7776 | 0.7141 | **0.7643** |
+| `xlmr-base-probe-cls` | Probe (frozen) | 0.8020 | 0.7911 | 0.7254 | 0.7843 | 0.7058 | **0.7609** |
+| `twhin-bert-probe-cls` | Probe (frozen) | 0.7732 | 0.7406 | 0.7237 | 0.7038 | 0.7031 | **0.7283** |
+| `gemma-3-270m-probe-last` | Probe (frozen) | 0.8013 | 0.7069 | 0.7517 | 0.6687 | 0.7041 | **0.7255** |
+| `gemma-3-270m-probe-mean` | Probe (frozen) | 0.7797 | 0.6829 | 0.7493 | 0.6793 | 0.7112 | **0.7190** |
+| `canine-c-probe-mean` | Probe (frozen) | 0.6488 | 0.6780 | 0.6646 | 0.6384 | 0.6529 | **0.6565** |
+| `canine-c-probe-cls` | Probe (frozen) | 0.6005 | 0.6371 | 0.6276 | 0.6178 | 0.6078 | **0.6181** |
+
 
 ---
 
-## 9. Techniques tested
+## 4. Dev set — the other two training regimes
 
-### 9.1 Lexicon correction — null result
+`multi` (§3) is the shipping regime. These two answer different questions.
 
-Senevirathna et al. (2025) report **+10.2pp accuracy / +0.10 F1** on banking Sinhala/Singlish
-sentiment from a lexicon-correction layer. Reproduced here by mining a lexicon from train with
-log-odds + an informative Dirichlet prior, blended as `z(model) + α·z(lexicon)`, α and threshold
-tuned by 5-fold CV *within* train:
+### 4.1 Monolingual (`mono`) — one model per language, trained on that language alone
 
-| α | 0.0 | 0.05 | 0.2 | 0.5 | 1.0 | 1.5 |
-|---|---:|---:|---:|---:|---:|---:|
-| CV Negative-F1 | **0.5554** | 0.5544 | 0.5489 | 0.5106 | 0.4697 | 0.4438 |
+Answers: *does one multilingual model dilute per-language quality?*
 
-**CV selected α = 0.0 — use no lexicon.** On dev, the best non-zero α costs **−0.0075**, and it is
-negative in all five languages:
+**Priority — macro-F1**
 
-| Language | model only | model + lexicon | Δ |
+| model | family | english | sinhala | singlish | tamil | tamilish | **pooled** |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `intent-lookup-oracle` | Classical | 0.9147 | 0.9147 | 0.9147 | 0.9147 | 0.9147 | **—** |
+| `tfidf-svm` | Classical | 0.8999 | 0.9079 | 0.9115 | 0.9109 | 0.9036 | **—** |
+| `tfidf-logreg` | Classical | 0.8997 | 0.9062 | 0.9068 | 0.8966 | 0.8993 | **—** |
+| `intent-chained` | Classical | 0.8931 | 0.9011 | 0.9040 | 0.8921 | 0.8945 | **—** |
+| `tfidf-sgd` | Classical | 0.8724 | 0.8891 | 0.8964 | 0.8884 | 0.8912 | **—** |
+| `tfidf-cnb` | Classical | 0.8622 | 0.8639 | 0.8667 | 0.8536 | 0.8739 | **—** |
+| `sinhalaberto-probe-mean` | Probe (frozen) | — | 0.7856 | — | — | — | **—** |
+| `sinbert-large-probe-mean` | Probe (frozen) | — | 0.7685 | — | — | — | **—** |
+| `sinhalaberto-probe-cls` | Probe (frozen) | — | 0.7657 | — | — | — | **—** |
+| `sinbert-large-probe-cls` | Probe (frozen) | — | 0.7531 | — | — | — | **—** |
+| `majority` | Classical | 0.2302 | 0.2302 | 0.2302 | 0.2302 | 0.2302 | **—** |
+
+
+**Sentiment — Negative-F1 · v8 labels**
+
+| model | family | english | sinhala | singlish | tamil | tamilish | **pooled** |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `tfidf-svm` | Classical | 0.6592 | 0.6301 | 0.6389 | 0.6971 | 0.6265 | **—** |
+| `tfidf-logreg` | Classical | 0.6473 | 0.6075 | 0.6146 | 0.6492 | 0.6176 | **—** |
+| `tfidf-sgd` | Classical | 0.5333 | 0.5638 | 0.5732 | 0.6065 | 0.5478 | **—** |
+| `tfidf-cnb` | Classical | 0.4746 | 0.4891 | 0.4926 | 0.5000 | 0.5198 | **—** |
+
+
+**Sentiment — Negative-F1 · ⚠️ v5 labels (superseded)**
+
+| model | family | english | sinhala | singlish | tamil | tamilish | **pooled** |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `labse` | Encoder | 0.6667 | 0.6963 | 0.6303 | 0.6803 | 0.5526 | **—** |
+| `twhin-bert` | Encoder | 0.6438 | 0.5630 | 0.5373 | 0.5811 | 0.5000 | **—** |
+| `xlmr-base` | Encoder | 0.5752 | 0.5333 | 0.3626 | 0.5436 | 0.3364 | **—** |
+| `sinhalaberto-probe-mean` | Probe (frozen) | — | 0.4646 | — | — | — | **—** |
+| `sinhalaberto-probe-cls` | Probe (frozen) | — | 0.4227 | — | — | — | **—** |
+| `sinbert-large-probe-mean` | Probe (frozen) | — | 0.4145 | — | — | — | **—** |
+| `sinbert-large-probe-cls` | Probe (frozen) | — | 0.3612 | — | — | — | **—** |
+| `labse-lora` | Encoder (LoRA) | 0.3226 | 0.3223 | 0.2629 | 0.3219 | 0.2739 | **—** |
+| `majority` | Classical | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | **—** |
+
+
+> Compare `labse` mono (english 0.6667 / sinhala 0.6963 / tamil 0.6803) against `labse` multi in
+> §3.3 (0.6569 / 0.6713 / 0.6324): monolingual buys a small native-script edge but **loses on
+> Singlish** (0.6303 vs 0.6475) — romanized text leans on cross-lingual transfer. All deltas sit
+> inside the CI. Conclusion on record: **do not ship per-language models.**
+
+### 4.2 Zero-shot from English (`zeroshot-en`) — trained on English only, never sees the target language
+
+Answers: *what would a sixth, unseen language get?* Classical only — no encoder was run zero-shot.
+
+**Priority — macro-F1**
+
+| model | family | english | sinhala | singlish | tamil | tamilish | **pooled** |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `tfidf-logreg` | Classical | — | 0.7141 | 0.7296 | 0.2919 | 0.7302 | **—** |
+| `tfidf-svm` | Classical | — | 0.6966 | 0.7090 | 0.2913 | 0.6985 | **—** |
+| `tfidf-cnb` | Classical | — | 0.6958 | 0.7579 | 0.1743 | 0.7224 | **—** |
+| `tfidf-sgd` | Classical | — | 0.6110 | 0.5441 | 0.2659 | 0.5196 | **—** |
+
+
+**Sentiment — Negative-F1 · v8 labels**
+
+| model | family | english | sinhala | singlish | tamil | tamilish | **pooled** |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `tfidf-cnb` | Classical | — | 0.2494 | 0.2759 | 0.1131 | 0.3125 | **—** |
+| `tfidf-logreg` | Classical | — | 0.1455 | 0.1224 | 0.0000 | 0.1600 | **—** |
+| `tfidf-svm` | Classical | — | 0.1400 | 0.1212 | 0.0449 | 0.1053 | **—** |
+| `tfidf-sgd` | Classical | — | 0.0000 | 0.0000 | 0.0000 | 0.0000 | **—** |
+
+
+> **Zero-shot sentiment collapses** (0.00–0.31) and **Tamil collapses hardest on both tasks**
+> (priority 0.17–0.29 against 0.61–0.76 for the other three). TF-IDF transfers nothing across
+> scripts — expected, since a word/char n-gram model shares almost no features between Latin and
+> Tamil script. The romanized tracks (singlish/tamilish) transfer far better than native script,
+> which is the same Latin-alphabet overlap effect, not genuine language transfer.
+
+### 4.3 Frozen linear probes — how much is in the backbone before any fine-tuning
+
+Backbone frozen, one forward pass, logistic regression on the pooled vector. Full per-language rows
+appear in §3.1/§3.3/§3.4 (rows tagged `Probe (frozen)`). Retention (probe ÷ fine-tune, pooled dev):
+
+| task | best probe (pooled dev) | best fine-tune (pooled dev) | retained |
 |---|---:|---:|---:|
-| english | 0.6259 | 0.6234 | −0.0025 |
-| singlish | 0.6483 | 0.6345 | −0.0138 |
-| sinhala | 0.6207 | 0.6164 | −0.0043 |
-| tamil | 0.6207 | 0.6069 | −0.0138 |
-| tamilish | 0.5714 | 0.5676 | −0.0039 |
+| intent | `labse-probe-mean` 0.8614 | `gemma-3-1b-multitask-sharedhead` 0.9284 | **0.928** |
+| priority | `labse-probe-cls` 0.8265 | `gemma-3-1b-multitask-sharedhead` 0.9186 | **0.900** |
+| sentiment (v5) | `labse-probe-cls` 0.4666 | `mmbert` 0.6203 | **0.752** |
 
-**Why**, predicted in the notebook *before* running: their lexicon was authored **externally**; ours
-is mined from the rows the classifier already trained on, so it carries no information the model has
-not already extracted. The +10.2pp came from the lexicon's *externality*, not from the correction
-mechanism.
+**Retention is ordered intent > priority > sentiment for all seven backbones, no exceptions.**
+Fine-tuning does the most work on exactly the task whose labels agree with humans least.
 
-**The mined terms confirm it.** Top Negative-associated terms are `someone has`, `kavuru hari`
-(*someone*), `romba` (*very*), `poiduchu` (*lost/gone*), `செய்யாத` (*didn't do*) — **topic markers
-for fraud and loss, not polarity words**. Negative sentiment in this dataset is largely a function of
-what the ticket is *about*, which TF-IDF already captures directly.
-
-Testing Senevirathna's actual claim needs a hand-authored banking-polarity lexicon. That is a
-labeling task, and it is the follow-up — not a refutation.
-
-### 9.2 Built but deliberately not run
-
-| Notebook | Status | Expectation on record |
-|---|---|---|
-| `21_technique_strategy_a_transliteration` | built, `SMOKE=True` | **Will score well and mean little** — our Singlish is rule-generated by `singlishify.py`, so reverse-transliteration inverts a function we applied. Singlish dev OOV is **1.18%, identical to English's**. |
-| `22_technique_codeswitch_augmentation` | built, `SMOKE=True` | Includes a `duplicate` control arm so a gain can't be confused with more data. Defends against noise our eval set does not contain. |
-| `23_technique_adapters_unfrozen` | built, needs `peft` | Rathnayake Technique 3. Their own sentiment numbers move only 53→55 across *all* adapter methods — this checks a documented near-null. |
-
-All three, plus the TwHIN-BERT caveat in §5.10, reduce to one root cause: **our romanized text is
-machine-generated and too regular to evaluate romanized techniques on.** The blocking dependency is
-human-typed romanized tickets. The purpose-built `deshanksuman/romanized-sinhala-tokenizer` was also
-**rejected on measurement** (fertility 2.64–3.08; fragments `card` → `c` + `ard`).
+> ⚠️ **No probe was ever run on v8 sentiment labels** — all 282 probe records predate the relabel,
+> so the sentiment retention figure above is a v5 measurement and the whole probe analysis is
+> pinned to superseded labels for that one task. Intent and priority probes are unaffected. Listed
+> in §8.2.
 
 ---
 
-## 10. Open items and known gaps
+## 5. Intent on the **official BANKING77 split** — a separate universe
 
-| # | Item | Why it matters |
-|---|---|---|
-| 1 | **Roll out prompt v6** beyond the 40-row pilot | +0.226 holdout Negative-F1 — larger than any modelling gain measured in this report. §15.2 strengthens this: no frozen encoder carries the Negative label, so the encoder door is now measured shut as well as the training one |
-| 2 | **The frozen-split intent transformers are still dev-only** | Partly closed 2026-08-12: §16 banks a test number (LaBSE 88.54%) but on the *official* split. mmBERT 0.9280 / LaBSE 0.9224 / gemma-3-1b 0.9243 (§14.3) remain unbanked on the frozen split, so the two workstreams' intent models have never been compared |
-| 3 | **Tamilish is the weak track on every task** — priority 0.7994–0.8229, intent 70.57–72.04% after fine-tuning | Only double-digit per-language gap in the project. Transformers narrow it (61.05% → 72.04%) but it stays ~18pp below every other track |
-| 4 | **Human-typed romanized tickets** | Blocks Strategy A, augmentation, TwHIN-BERT, and any romanized-specific claim |
-| 5 | **Fair LoRA sweep** at lr ~1e-4 | §5.9 shows drop-in failure, not that LoRA can't work |
-| 6 | **Single-request latency** never measured | `ms_per_sample` 0.24–0.64 in `encoder_screen_dev.csv` is *batched MPS throughput*, not a valid check against the 100ms serving budget |
-| 7 | **Intent score discrepancy across workstreams** | See §11, item 5 — unresolved |
-| 8 | **Joint multi-task fine-tuning, and LoRA adapters over a shared base**, both untested | §15.3 rules out *freeze-then-add-heads* but says nothing about either of these. §14.8's one-backbone-plus-three-adapters serving argument is still open |
-| 9 | ~~**OCR loses to the EasyOCR baseline on blur and low-resolution**~~ **Settled 2026-09-04 (§17.7)** | §17.2 — language-routed Tesseract wins clean and rotation but is *worse* on blur (+10.8 Sinhala) and low-res (+7.5 Sinhala): the WhatsApp-upload case. Resolved not by the proposed condition-aware fallback but by engine choice — Google Vision is flat across all four conditions (15.20–16.78% CER) and beats Tesseract by 28–55pp on exactly those two. **What remains owed is the switch itself**, `SWIFT_OCR_ENGINE=google_vision` plus a fallback path, neither implemented |
-| 10 | ~~**Downstream accuracy on OCR'd text is measured for Tesseract only**~~ **Closed 2026-09-04 (§17.8)** | Both engines × both routers, on two metrics. SVM on Vision text holds the typed-text routing decision on **99.50%** of images (Tesseract 81.70%) and scores **78.27%** true accuracy against a 78.16% perfect-text ceiling — OCR now costs the router nothing measurable. What the run also showed: the ceiling is the constraint, see item 12 |
-| 11 | **OCR ground truth is synthetic** | 500 generated bank-screenshot images with known `visible_text`, degraded programmatically. Real photos bring perspective, glare, cropping and compression that `ImageFilter.GaussianBlur(1.5)` does not. Same caveat family as item 4 |
-| 12 | **The intent taxonomy, not OCR, is now the ceiling on image tickets** | §17.8C — on *perfect* text the SVM router puts 132/132 `Cash not received` into `passcode_forgotten` and 136/136 `Cash withdrawal failure` into `failed_transfer`. `passcode_forgotten` absorbs 16.6% of all predictions and only 14 of 77 classes are ever emitted. BANKING77 has no intent for the ATM-debited-but-dispensed-nothing case. No OCR improvement can reach this; a domain taxonomy or a mapped label set can |
+⚠️ **These numbers are on a different split from every table above** (9,998 train / 3,079 test per
+track, no dev; `ml/scripts/train_transformer.py`, run on Colab). They carry no split-sha and no
+`runs/*.json` record, so they cannot be compared cell-to-cell with §1–§4. They are here because
+they are the only intent transformer numbers on a held-out set, and the classical row is the
+like-for-like baseline they were gated against.
 
----
+### 5.1 Four-architecture ablation — macro-F1 %
 
-## 11. Corrections and retractions log
-
-Claims that were published in an earlier report and later withdrawn. Each is corrected in place
-above; they are listed here so nothing quietly disappears.
-
-| # | Retracted claim | Where it appeared | What actually happened |
-|---|---|---|---|
-| 1 | Sentiment champion = **0.6395** Negative-F1 | `bakeoff_sentiment_priority.md` §1–§5 | Maximum of 168 draws from a noisy distribution. CV says **0.5525 ± 0.044**; test says **0.4572**. All top-10 configs sat inside one CI. |
-| 2 | Threshold tuning is worth **+0.027** | `06_improve_sentiment.ipynb`, bake-off §6 | On test the tuned threshold made the champion **worse** (0.4572 → 0.4524). The +0.027 was a property of the dev split. Also used a min-max-normalised score, which is fit-specific and does not transfer — use raw `decision_function`. |
-| 3 | "0.55 is what to expect on unseen data" | bake-off §6 | Test came in at 0.4572, **0.095 below**. |
-| 4 | "Don't fine-tune priority — the intent oracle caps it" | bake-off §5 | Conclusion right, reason wrong. The binding constraint is the **label ceiling (0.7722)**, not the oracle. And encoders *did* beat classical on test by 0.018. |
-| 5 | mmBERT Sinhala fertility = 4.60 | bake-off §5 encoder probe | Real figure is **3.67**; the 4.60 came from a four-sentence probe that also never tested Tamil (3.72, its worst). |
-| 6 | Fertility predicts encoder quality | implicit in early screening | **It does not.** §5.4's winner was the worst-fertility candidate. Fertility screens for efficiency and catastrophic `[UNK]` failure only. |
-| 7 | All numbers in reports dated before 2026-08-01 | everywhere | Predate the Indic tokenizer fix (§7.4) and are mildly conservative for Sinhala and Tamil. |
-| 8 | XLM-R "100% promotion sweep, 6/6 tracks" on intent | `final_baseline_report.md` §12, `progress_and_results_summary.md` §8 | **English was a 0.10pp miss**: 93.88% against the 93.98% gate, and the same row reports the gain as `+2.90%` against a `+3.00%` requirement. XLM-R swept **5 of 6**. Corrected in §16.2. LaBSE does sweep all six, so the promotion conclusion survives — the sweep claim for XLM-R does not. |
-| 9 | Tesseract "completely resolved this bottleneck" on degraded images | `ocr_multimodal_ablation_report.md` §3A | True for **clean and rotated** input only. Under blur and low-resolution Tesseract is **worse** than the EasyOCR baseline on Latin (+17.42 / +8.76pp CER) and Sinhala (+10.81 / +7.45pp). Corrected in §17.2. |
-| 10 | Every sentiment number in this report (§5, §8.2, §14, §15) | throughout, sourced from `bakeoff_sentiment_priority.md`, `final_test_results.md`, `ENCODER_FINDINGS.md` | **Stale as of the 2026-08-19 v8 relabel** (711/13,077 sentiment labels changed; priority and intent untouched). Classical test Negative-F1 moved 0.4572 → **0.6663**; LaBSE moved 0.5664 → **0.7138**; the label ceiling they're read against (§8.2) moved from 0.5769 to **0.7812** human agreement. The reasoning in §15.2 that "0.5664 ≈ the 0.5769 ceiling, so the fine-tune already learned the label rule" no longer holds numerically, though the same shape of conclusion (label quality binds, not model capacity) is *strengthened* by v8, not undercut — 0.7812 is a rule worth learning. Current cross-model numbers on the frozen split: [`v8_relabel_slm_results.md`](v8_relabel_slm_results.md). |
-| 10 | The classical SVM is "definitively superior for OCR inputs" | §17.6 | **True on the metric it used, not on accuracy.** §17.6 scores self-agreement, where SVM leads LaBSE 99.50% to 86.15% on Vision text. Scored against the *true* label the two are indistinguishable: **78.27% vs 77.94%** (§17.8B). LaBSE is genuinely less stable under OCR noise, but its instability mostly reshuffles predictions inside categories it already gets wrong. SVM stays the production choice on stability, cost and no-GPU grounds — the accuracy claim is what overstates. |
-
-### Three unresolved inconsistencies, flagged not fixed
-
-**(a) Classical intent baselines differ across three documents.** `baseline_summary.csv` (used
-throughout §3), `baseline_comparison.md`, and `final_baseline_report.md` quote figures for the same
-models that differ by up to ~0.6pp (e.g. LogReg english 90.48 / 90.61 / 90.61; LogReg tamil 84.22 /
-84.78 / —). These are separate runs of the same pipeline, not a metric disagreement. **§3 uses
-`baseline_summary.csv`, the committed CSV artifact.**
-
-**(b) Tamilish intent is reported at both 61% and 89%.** The classical baseline suite measures
-tamilish intent macro-F1 at **61.05%** (official test split, full train). Phase-3 bake-off notes
-record **0.8917** on the swiftbench dev split. That is a 28-point gap on the same task and language.
-The likely explanation is the `fix_tamilish.py` style standardization (§3.6) landing between the two
-measurements, plus test-vs-dev, but **this has not been verified** — do not quote either number for
-tamilish intent without re-running.
-
-*Update 2026-08-08:* three independent transformer runs on the frozen split now put tamilish intent
-dev macro-F1 at **0.9052–0.9146** (LaBSE, mmBERT, gemma-3-1b — §14.4), clustering with the 0.8917
-figure, not the 61.05%. That strengthens the case that 61.05% is the stale measurement, but it does
-**not** resolve the gap: these are dev and transformer, the 61.05% is official-test and classical,
-so the two still differ in two variables at once. Resolving it needs a classical tamilish run on the
-frozen split.
-
-*Update 2026-08-12 — the reading flips.* §16 removes the classical-vs-transformer variable: XLM-R
-scores tamilish **72.04%** and LaBSE **70.57%** on the **official test split**. So on official test,
-a transformer buys +9.5 to +11.0pp over classical's 61.05% — a real gain, and nowhere near 0.90.
-Lining the four measurements up:
-
-| measurement | split | model class | tamilish intent |
-|---|---|---|---:|
-| §3.1 baseline suite | official test | classical | 61.05% |
-| **§16.2 4-way benchmark** | **official test** | **transformer** | **70.57–72.04%** |
-| Phase-3 bake-off notes | frozen dev | classical | 0.8917 |
-| §14.4 | frozen dev | transformer | 0.9052–0.9146 |
-
-Read down the columns: holding the split fixed, model class moves tamilish by ~10pp (official) and
-~2pp (frozen). Holding model class fixed, **the split moves it by ~19–28pp.** The dominant variable
-is therefore **dev-versus-test, not staleness and not the `fix_tamilish.py` pass** — and the frozen
-dev set is drawn from the official *train* portion, which is the mechanism that would produce
-exactly this. `61.05%` and `0.90` are measuring different things, and the honest tamilish figure for
-a shipped model is the official-test one: **72.04%**.
-
-This is now a resolved inconsistency in all but name; what remains owed is the confirming run
-(intent on the frozen split's *test* portion) rather than an explanation.
-
-**(c) Tesseract's clean CER is reported at both ~10-11% and ~15%.** §17.2, from
-`ocr_multimodal_ablation_report.md`, puts language-routed Tesseract on clean images at **9.94%**
-Latin / **11.26%** Sinhala / **10.63%** Tamil. §17.7, computing from the committed
-`ml/OCR/results/ocr_tesseract_optimized_metrics.csv`, gets **15.82% / 15.55% / 14.73%** on the same
-images with the same `jiwer` metric — 4-6pp higher on every script. The per-image CSV behind the
-ablation figures is not committed, so the two cannot be diffed row by row.
-
-The likely explanation is normalisation, not a different Tesseract configuration: re-scoring the
-committed CSV order-insensitively (§17.7) yields **11.81% / 10.69% / 11.62%**, within ~1pp of the
-ablation numbers on all three scripts. That is what one would see if the ablation's scoring were
-less sensitive to token order than the current pipeline's. **This has not been verified**, and the
-difference is smaller than the gap it needs to explain on Latin.
-
-What this does and does not invalidate: **§17.7's comparison is internally consistent** — both
-engines are scored there from per-image result files under one metric, and Vision's 21.5pp lead is
-far outside the 4-6pp discrepancy. But **do not compare a Tesseract number from §17.2 against one
-from §17.7**, and do not quote a single clean-CER figure for Tesseract without naming its source
-file. Resolving it needs the ablation's per-image CSV committed, or `evaluate_tesseract.py` re-run
-end to end.
-
----
-
-## 12. Source map — where each number comes from
-
-### Reports
-
-| Report | Covers |
-|---|---|
-| [`final_baseline_report.md`](final_baseline_report.md) | Intent classical baselines, validation suite, leakage, CIs, promotion gates; **§12–§13** the intent transformer runs and 4-way ablation — the input to §16 |
-| [`baseline_comparison.md`](baseline_comparison.md) | Intent LR vs SVM comparison, saved model bundles |
-| [`tokenizer_comparison.md`](tokenizer_comparison.md) | 3-tokenizer × 15k study, `max_length` decision |
-| [`bakeoff_sentiment_priority.md`](bakeoff_sentiment_priority.md) | Sentiment/priority dev bake-off + §6 and §7 corrections |
-| [`SLM_RESEARCH.md`](SLM_RESEARCH.md) | SLM desk research, model shortlist, experiment plan — the input to §14 |
-| [`slm_tokenizer_fertility.csv`](slm_tokenizer_fertility.csv) | §14.1 fertility/character-preservation screen (`ml/scripts/probe_slm_tokenizers.py`) |
-| [`final_test_results.md`](final_test_results.md) | Classical final test, dev→test decomposition, label ceiling, tokenizer defect, techniques |
-| [`ENCODER_FINDINGS.md`](ENCODER_FINDINGS.md) | Encoder bake-off both tasks, per-language, LoRA, TwHIN-BERT; **§6 linear probing** — the input to §15 |
-| [`probe_dev.csv`](probe_dev.csv) · [`probe_test_finetuned.csv`](probe_test_finetuned.csv) · [`probe_C_sweep.csv`](probe_C_sweep.csv) | §15 probe cells (264 dev, 18 test), and the `C` check |
-| [`progress_and_results_summary.md`](progress_and_results_summary.md) | Phase 1–3 narrative, XLM-R pipeline setup and smoke test; **§8–§9** the XLM-R epoch progression and the 4-way ablation (§16) |
-| [`ocr_multimodal_ablation_report.md`](ocr_multimodal_ablation_report.md) | EasyOCR vs Tesseract CER by script and condition, OpenCV pre-processing ablation — the input to §17 |
-| [`end_to_end_ocr_engines.md`](end_to_end_ocr_engines.md) · [`intent_accuracy_by_ocr_engine.md`](intent_accuracy_by_ocr_engine.md) | §17.8's two arms: router self-agreement per engine, and accuracy against the true label through the hand-built category bridge |
-| [`ocr_google_vision_benchmark.md`](ocr_google_vision_benchmark.md) | Google Cloud Vision vs Tesseract on the same 2,000 images: CER/WER by script and condition, the order-insensitive re-scoring, cost and latency — the input to §17.7 |
-| [`../OCR/results/ocr_google_vision_metrics.csv`](../OCR/results/ocr_google_vision_metrics.csv) · [`../OCR/results/ocr_tesseract_optimized_metrics.csv`](../OCR/results/ocr_tesseract_optimized_metrics.csv) | The two per-image result files §17.7 is computed from (2,000 rows each; join on `image_path`, not `id`) |
-| [`../OCR/README.md`](../OCR/README.md) | How to regenerate the 2,000-image OCR set and rerun the evaluation on Kaggle (§17.4) |
-
-### Notebooks (`notebooks/modeling/`)
-
-| Range | Purpose |
-|---|---|
-| `00`–`02` | Setup checks, sentiment and priority runs |
-| `03`–`06` | Benchmarks, label ceiling, sentiment improvement (source of retraction #2) |
-| `07`–`08` | Encoder bake-off screen, word-tokenizer comparison |
-| `10` | **Final test evaluation (classical)** |
-| `11`–`16` | One notebook per encoder candidate |
-| `17` | **Linear probing** — frozen backbones, retention tables, fine-tuned-vs-pretrained (§15) |
-| `20`–`23` | Techniques: lexicon, Strategy A, augmentation, adapters |
-| `30` | **Leaderboard** — collates `runs/*.json`, enforces the promotion rule |
-| `32`–`35` | Final test classical, final test encoders, per-language findings, priority encoders |
-| `99` | Model selection |
-
-### Key data artifacts
-
-`runs/*.json` (715 run files, each stamped with the split sha — `results.load_all()` drops
-mismatches so a stale run cannot enter a ranking; 282 carry `family: "probe"` and a model name of
-`<backbone>-probe-<pooling>`) · `encoder_summary.csv` · `per_language_*.csv` · `history_*.csv` ·
-`final_test_results.csv` · `label_ceiling.csv` · `prompt_v6_*_scores.csv` · `word_tokenizer_*.csv` ·
-`encoder_tokenizer_fertility.csv` · `technique_lexicon_*.csv` · `probe_*.csv`
-
-The §15 embedding cache lives under `ml/cache/` (1.4 GB, gitignored). It regenerates in one forward
-pass per backbone; every `.npz` carries the `id` array and split sha it was built from, and
-`probe.features()` asserts both, because a stale cache would match labels to the wrong rows and leave
-every metric afterwards looking plausible.
-
-GPU driver: `ml/kaggle/runner.py` (T4 pinned; `--task`, `--fit-portion`, `--eval-portion`), kernels
-in `ml/kaggle/kernels/`. **T4 is Turing: fp16 only, no bf16, no flash-attn-2.**
-
-**§16 runs on a separate path.** `ml/scripts/train_transformer.py --config ml/configs/<name>.json`,
-executed on Colab against the official split — not `swiftbench`, not `runs/*.json`, no split-sha
-stamp. Nine configs are committed under `ml/configs/`. **§17 runs on a third path**: standalone
-scripts in `ml/OCR/`, evaluated in a Kaggle notebook because Tesseract's `sin`/`tam` packs are
-`apt` installs. Neither writes into the `runs/` ledger, which is why neither can be ranked against a
-frozen-split number.
-
----
-
-## 13. Decisions on record
-
-1. **Ship one multilingually fine-tuned LaBSE** for sentiment and priority. Best model on both tasks
-   and every language; clears the classical CI on both.
-2. **Ship fine-tuned LaBSE `all` for intent too** *(changed 2026-08-12, was classical LinearSVC)*.
-   §16 clears all six §3.5 gates at 88.54% test macro-F1. Caveat carried: measured on the official
-   split, so it is not directly comparable to the frozen-split figures in §14 — and if the customer
-   base is heavily Tanglish, §16.3 says XLM-R is the better single model for that track.
-3. **One multilingual model, not five monolingual ones** — true on all three tasks.
-4. **No per-language models, no LoRA, no TwHIN-BERT** — none beat multilingual LaBSE on our data.
-5. **Report Negative-F1 for sentiment and macro-F1 for priority. Never accuracy.**
-6. **Rank on the confidence interval, not the point estimate.** Several dev leads did not survive to
-   test; per-language cells are too small to order reliably.
-7. **Never promote on a tuned-threshold number.**
-8. **Quote the label ceiling next to every sentiment and priority score.**
-9. **Relabel before re-modelling on sentiment** — the model sits inside the ceiling's CI, so label
-   quality is the binding constraint, not model capacity. §15.2 closes the other direction too: no
-   frozen backbone probes sentiment above the classical baseline, so swapping encoders is not a lever
-   either.
-10. **Plain random oversampling, never SMOTE** — three papers plus our own measurement.
-11. **Never average Sinhala and Tamil** — Indo-Aryan vs Dravidian, documented family gap to 13pp.
-12. **Romanized conclusions are unresolved by our data.** Synthetic Singlish/Tamilish cannot
-    evaluate romanized-specific techniques. Real human-typed text is required first.
-13. **Always measure character preservation when tokenizing non-Latin scripts** (§7.4 cost 40–69% of
-    the characters and raised nothing).
-14. **No frozen-backbone serving.** §15.4 — a pretrained LaBSE probe on test loses to the classical
-    champion on both priority and intent. If a transformer ships, it ships fine-tuned.
-15. **Never freeze a task's fine-tuned backbone and hang another task's head off it.** §15.3 — the
-    representation moves toward its own task only (+0.108 on its own, +0.003 on the other).
-16. **Check the optimiser actually converged before reading a probe score.** §15.5 trap 1 — an
-    underfit logistic regression reports a plausible number; `n_iter` is the only thing that says so.
-17. **Route OCR by script: Tesseract `sin`/`tam` for native, EasyOCR for Latin** (§17.2). Halves
-    native-script CER on clean images. The one engine that reads Sinhala is the one that ships for
-    Sinhala.
-18. **Feed Tesseract raw RGB. No OpenCV pre-processing.** §17.3 — binarization, deskewing and
-    grayscaling each made CER worse, because Tesseract's internal Leptonica already does adaptive
-    localised binarization and external manipulation blinds it.
-19. **Never quote a single pooled OCR CER.** §17.2 — the engine ranking *inverts* between clean and
-    blurred input. Report CER by script **and** condition, or the recommendation flips silently.
-
----
-
-## 14. Small language models — Gemma 3 + LoRA vs the encoders
-
-Added 2026-08-08. Desk research and the model shortlist live in
-[`SLM_RESEARCH.md`](SLM_RESEARCH.md); this section is the measured outcome. Appended as §14 rather
-than inserted after §5 because §6–§12 are cross-referenced from `ml/models/README.md`,
-`final_test_results.md` and `bakeoff_sentiment_priority.md`, and renumbering would break them.
-
-**Question.** A fine-tuned encoder (LaBSE, 471M, all weights trained) is the standing champion on
-sentiment and priority. Does a small *decoder* language model with LoRA beat it?
-
-**Protocol.** Identical to the encoder roster: frozen split `e7b5934392cd`, pooled multilingual
-training (all 5 tracks), `arm=class_weight`, evaluated on the 7,490-row dev set. Decoders run
-through the same `swiftbench.train_encoder.run()` loop as the encoders — a causal LM with a
-classification head is the same fit/score problem — so the numbers sit in one table honestly.
-**All SLM numbers are dev. None has been scored on test.**
-
-### 14.1 Tokenizer screen — the gate that cut the shortlist to one family
-
-`ml/scripts/probe_slm_tokenizers.py`, output [`slm_tokenizer_fertility.csv`](slm_tokenizer_fertility.csv).
-2,000 train rows per language, same method as §7.2 (so these are comparable to that CSV, **not** to
-§7.3, which sampled 300 dev tickets and reads systematically higher).
-
-| model | english | singlish | **sinhala** | **tamil** | tamilish | vocab |
+| model | english | sinhala | singlish | tamil | tamilish | **pooled** |
 |---|---:|---:|---:|---:|---:|---:|
-| **LaBSE** (incumbent) | 1.184 | 1.617 | **1.374** | **1.858** | 1.999 | 501k |
-| **Gemma 3** (1b & 270m) | 1.181 | 1.862 | **2.239** | **2.195** | 2.205 | 262k |
-| Qwen3 (0.6b/1.7b/emb-0.6b) | 1.158 | 2.022 | 5.969 | 9.225 | 2.345 | 152k |
-| Llama-3.2-1B | 1.155 | 2.005 | 7.394 | 11.460 | 2.335 | 128k |
-| SinLlama | 1.155 | 2.005 | **1.279** | 11.460 | 2.335 | 133k |
+| `LaBSE` (501k vocab) | **94.13** | **92.95** | **90.65** | **93.27** | 70.57 | **88.54** |
+| `XLM-R base` (250k) | 93.88 | 92.42 | 90.03 | 91.74 | **72.04** | 88.29 |
+| `IndicBERT` (200k) | — | — | — | 89.81 | 61.25 | 76.24 |
+| `MuRIL` (36k) | — | — | — | 66.01 | 57.62 | 62.10 |
+| `Linear SVM` (classical) | 90.98 | 82.75 | 86.49 | 86.35 | 61.05 | 83.18 |
+| `Logistic Regression` (classical) | 90.48 | 83.08 | 86.07 | 84.22 | 59.05 | 82.16 |
 
-- **Gemma 3 was the only SLM family worth GPU time.** Qwen and Llama shred Sinhala and Tamil into
-  6–11 tokens per word — the fragmentation regime the Script Sensitivity paper traces the 312×
-  romanized perplexity gap to. This killed `Qwen3-Embedding-0.6B`, whose MTEB-multilingual ranking
-  is real and irrelevant: that leaderboard contains neither Sinhala nor Tamil.
-- **SinLlama's Sinhala vocabulary extension genuinely works** — 1.279, the only checkpoint here to
-  beat LaBSE on any language. Tamil at 11.460 is untouched Llama-3. A Sinhala specialist, nothing
-  else, and 8B.
-- **Character and combining-mark preservation is 1.0 for every candidate**, and ZWJ (U+200D)
-  survives every round trip. The §7.4 defect was a scikit-learn problem; no HF tokenizer repeats it.
-- **Do not treat fertility as predictive.** §7.2 already warned this and §14.3 confirms it again:
-  mmBERT runs at 3.67 on Sinhala (2.7× LaBSE) and still posts the *best* Sinhala intent cell. The
-  probe is a cheap filter against catastrophic fragmentation, not a quality ranking. A 1.5×-of-LaBSE
-  gate drafted in `SLM_RESEARCH.md` §6 would have wrongly dropped Gemma at 1.63×; it was corrected
-  against mmBERT's own evidence before any run.
+> **LaBSE vs XLM-R is a tie on every track.** Gaps are 0.25–1.53pp; per-track bootstrap 95% CI
+> *widths* are 2.07–2.97pp and no CIs or repeat seeds were run for these. What separates cleanly is
+> transformer vs classical (+3.15 to +10.99pp) and multilingual vs Indic-specialist (+12 to +26pp
+> pooled).
+>
+> **Both Indic specialists fail below the classical baseline pooled** (MuRIL 62.10, IndicBERT 76.24
+> vs classical 83.18) — a specialist vocabulary is not a substitute for multilingual coverage when
+> the input mixes five tracks.
+>
+> `Swift-Support/labse-intent-1.0` on HF publishes the 88.54 figure. It is **not** on the frozen
+> split, so it cannot be tabled next to §1.1's 0.8673.
 
-Gated-repo note: `google/*` and `meta-llama/*` require a licence click a Kaggle kernel cannot
-perform. The `unsloth/` mirrors carry identical vocabularies and weights and are what the registry
-uses. **This is the HuggingFace namespace, not the unsloth library** — no unsloth code is involved;
-fine-tuning is plain `transformers` + `peft`.
+### 5.2 Classical intent — mono vs pooled training (official split, macro-F1 %)
 
-### 14.2 LoRA target coverage — the single largest effect measured in this section
+| model | english | sinhala | singlish | tamil | tamilish | **pooled** |
+|---|---:|---:|---:|---:|---:|---:|
+| `Linear SVM` mono | 90.98 | 82.75 | 86.49 | 86.35 | 61.05 | **83.18** |
+| `Logistic Regression` mono | 90.48 | 83.08 | 86.07 | 84.22 | 59.05 | **82.16** |
 
-The first Gemma runs adapted Q/V only, inheriting the encoder-era target list. Gemma 3 has **seven**
-projections per block (`q,k,v,o,gate,up,down`), so Q/V reaches 2 of 7. arXiv:2606.08051 — the source
-of the r=8 / α=16 / lr 1e-4 recipe — specifies *all attention and MLP projections*. Rerun with
-everything else held constant (intent, dev macro-F1):
+---
 
-| model | Q/V only | all 7 | Δ | trainable params |
-|---|---:|---:|---:|---:|
-| gemma-3-1b | 0.8973 | **0.9243** | **+2.70pp** | 0.08% → 0.66% |
-| gemma-3-270m | 0.8582 | **0.9038** | **+4.56pp** | 0.16% → 0.72% |
+## 6. Label ceilings — what the labels themselves are worth
 
-**This reverses a conclusion.** On the Q/V config the encoders beat Gemma on all five languages, and
-that was reported. With full coverage Gemma passes LaBSE on all five. The romanized deficit that
-looked architectural (singlish −4.3pp, tamilish −5.2pp) was a LoRA-coverage artifact.
+How well the prompt-generated labels agree with a human annotator on the 500-ticket hand-annotated
+gold set. **This is a label-quality read, not a bound on achievable model score.**
 
-It also retires the caveat on §5.9 / experiment 18. That LoRA null result ran at the encoder's
-lr 2e-5 on Q/V only; both were wrong for this method. `lora_targets` is now an explicit parameter
-(`"attn"` | `"all"`) stamped into every run's scores.
+| task | prompt | vs human | 95% CI | agreement | Cohen's κ | status |
+|---|---|---:|---|---:|---:|---|
+| intent (`category`) | — | 1.0000 | [1.00, 1.00] | 100.0% | 1.000 | inherited from BANKING77 — **real ground truth** |
+| priority | v5 | 0.7722 | [0.7263, 0.8147] | 80.4% | 0.644 | **current** — untouched by v8 |
+| sentiment | **v8** | **0.7812** | [0.6545, 0.8824] | 97.2% | 0.766 | **current** — what the datasets ship |
+| sentiment | v5 | 0.5769 | [0.4000, 0.7273] | 95.6% | 0.555 | superseded 2026-08-19 |
 
-### 14.3 Head-to-head — all three tasks, pooled dev
+Read against §1:
 
-Like-for-like only: `regime=multi`, all 5 languages, `n_train=42,500`, `eval_lang=all`,
-`arm=class_weight`. Encoders are full fine-tunes at lr 2e-5 / bs 32; Gemma is LoRA-all at
-lr 1e-4 / bs 16. Both 3 epochs.
+- **Priority (test 0.8904) sits ~0.12 ABOVE its ceiling (0.7722).** The model has learned the v5
+  labelling rule better than the rule agrees with a human. There is no headroom for a bigger model —
+  any further gain is fitting the rule harder, not classifying better.
+- **Sentiment (test 0.7138) sits just BELOW its ceiling (0.7812).** Post-v8 this is a coherent place
+  to be, and unlike priority there is still real headroom.
+- Quoting 0.89 as "priority accuracy" overstates what a human reviewer would call correct.
 
-| task | metric | classical | LaBSE | mmBERT | **gemma-3-1b** | gemma-3-270m |
-|---|---|---:|---:|---:|---:|---:|
-| **intent** | macro-F1 | — | 0.9224 | **0.9280** | 0.9243 | 0.9038 |
-| **priority** | macro-F1 | 0.9028 | **0.9168** | 0.9148 | 0.9165 | 0.9040 |
-| **sentiment** | Negative-F1 | 0.595 | 0.6334 | 0.6203 | **0.6428** | 0.5611 |
+---
 
-**gemma-3-1b matches the encoders on all three tasks while training 0.66% of its weights.** It never
-decisively beats one:
+## 7. Shipped artifacts — what actually exists as weights
 
-- **intent** — the top three span 0.6pp (mmBERT 0.9280, Gemma 0.9243, LaBSE 0.9224). On 7,490 dev
-  rows that ordering is not resolvable. Read as a three-way tie.
-- **priority** — 0.9165 vs LaBSE 0.9168 is a gap of **0.0003**. A tie by any reading. And the
-  priority label ceiling is **0.7722**: every model here scores ~0.14 *above* the point where v5
-  labels stop agreeing with humans, so this ranks fidelity to the v5 rule, not classification.
-- **sentiment** — Gemma's +0.0094 over LaBSE is **one eighth of the CI**. Dev holds 68 unique
-  Negative tickets, giving ≈ ±0.08 (§0 rule 1, §5.3). A tie.
+Scores are worthless without a checkpoint behind them. `swiftbench` scored and discarded by default,
+so most rows above have **no saved model**.
 
-This is what the literature predicted. arXiv:2512.12677 fine-tuned ~20 causal LLMs (270M–20B) and
-got Llama-3.2-3B to F1 0.86 against BERT's 0.854 — **p=0.24, not significant**. Decoders beat
-encoders on classification at 70B (arXiv:2412.08587), not at 1B.
+| task | artifact | test score | where |
+|---|---|---:|---|
+| intent | `tfidf_linear_svm_all.joblib` | 83.18% (official split) | `ml/models/` — in git |
+| intent | LaBSE fine-tune | 88.54% (official split) | [`Swift-Support/labse-intent-1.0`](https://huggingface.co/Swift-Support/labse-intent-1.0) — public |
+| priority | LaBSE fine-tune | **0.8901** | [`Swift-Support/labse-priority-1.0`](https://huggingface.co/Swift-Support/labse-priority-1.0) — public · local `ml/models/encoders/priority_labse/` (gitignored) |
+| sentiment | LaBSE fine-tune (v8) | **0.7138** | re-trained 2026-09-05, upload pending |
+| — | dataset (5 tracks, v8 labels, frozen split) | — | [`Swift-Support/swift-support-tickets-1.0`](https://huggingface.co/datasets/Swift-Support/swift-support-tickets-1.0) — public |
 
-### 14.4 Per-language, intent dev (LoRA-all)
+**No saved checkpoint exists for:** every classical sentiment/priority model (`swiftbench` never
+dumped estimators — serving one needs a refit), every Gemma single-task and joint multi-task
+adapter, and every non-champion encoder (`mmbert`, `xlmr-base`, `canine-c`, `twhin-bert`,
+`sinbert-large`, `sinhalaberto`).
+
+---
+
+## 8. Gaps — what has not been run
+
+Explicit blanks, so the table above is read as incomplete rather than negative.
+
+### 8.1 Per-language test scores (the largest gap)
+
+Only 5 model-rows in the whole project have per-language **test** numbers (§2). Everything else was
+scored pooled only. Missing per-language test for: every encoder except `labse`/`xlmr-base` on
+priority, every decoder and joint multi-task variant on all three tasks, and every sentiment model
+except `labse` on v8 labels.
+
+### 8.2 v8 sentiment re-runs never done
+
+The relabel landed 2026-08-19; only 6 models were re-scored against it. Still on v5 labels and
+therefore unrankable against the current champion:
+
+| what | models | status |
+|---|---|---|
+| encoder test runs | `xlmr-base`, `mmbert`, `canine-c`, `sinbert-large`, `sinhalaberto`, `twhin-bert` | ⬜ not re-run |
+| all frozen probes | 7 backbones × 2 poolings, dev **and** test | ⬜ not re-run (282 records, all v5) |
+| per-language dev | `labse`, `twhin-bert`, `xlmr-base`, `labse-lora` | ⬜ not re-run |
+| per-language test | `tfidf-svm`, `tfidf-logreg` | ⬜ not re-run |
+| per-language test, `labse` | — | ✅ done 2026-09-05 (§2.2) |
+| label ceiling recompute | — | ✅ done 2026-09-05 (0.7812) |
+
+### 8.3 Never measured at all
+
+| gap | detail |
+|---|---|
+| **Intent on the frozen split, per language** | only pooled exists (§1.1); no per-language frozen-split intent number for any model |
+| **LaBSE intent on the frozen split** | `Swift-Support/labse-intent-1.0`'s 88.54% is official-split only; the frozen-split run was attempted 2026-08-20 and **died on CPU** (`cuda False`, killed at the 12 h cap) |
+| **Zero-shot for any neural model** | §4.2 is classical-only; no encoder or decoder was run `zeroshot-en` |
+| **Mono regime for decoders** | no Gemma or joint multi-task run in the `mono` regime |
+| **Confidence intervals on §5** | official-split intent runs are single-seed with no CIs — LaBSE vs XLM-R cannot be separated |
+| **CIs for most frozen-split runs** | only the classical sentiment/priority test runs carry bootstrap CIs (`final_test_results.csv`); no encoder or decoder test run has one |
+| **Repeat seeds** | every number in this file is a **single seed**. No variance estimate exists for any model |
+| **Human-typed romanized text** | Singlish is rule-generated, Tanglish machine-translated — every romanized cell is an optimistic upper bound and no romanized-specific conclusion is safe |
+| **Calibration** | no model here is calibrated; threshold tuning was measured and **failed to transfer** (−0.005 on the champion) |
+
+### 8.4 Known data defects
+
+| defect | scale | status |
+|---|---|---|
+| Ticket `id` 5160 has a different `category` in the `tamilish` track than the other four | 1 of 9,998 | ⬜ open, pre-existing in git |
+| Train/test text overlap: english 6 (0.19%), sinhala 71 (2.31%), singlish 84 (2.73%), tamil 70 (2.31%), tamilish 7 (0.23%) | ≤3.2% of unique test texts | ⬜ documented, id-level splits are clean |
+
+---
+
+## 9. Provenance
+
+- **735 run records**, all stamped split sha `e7b5934392cd`, in `ml/reports/runs/*.json`
+- Per-language test: `ml/reports/per_language_priority_labse_test.csv` (generated 2026-09-05),
+  `per_language_xlmr-base.csv`, `final_test_results.csv`
+- Official-split intent: `RESULTS.md` §16, `baseline_summary.csv`
+- Label ceilings: `label_ceiling.csv`, `prompt_v8_all_scores.csv`, `prompt_v6_holdout_scores.csv`
+- All six Kaggle kernels (`swift-job-{train-encoders,train-encoders-b,multitask,multitask-b,perlang,perlang-lora}`)
+  were checked on 2026-09-05: **every run JSON they hold is already in `ml/reports/runs/`.** Nothing
+  is stranded on Kaggle.
+
+---
+
+## 10. v8 classical re-run — one split, one label set, with intervals
+
+**Added 2026-09-08.** Generated by `ml/scripts/run_v8_classical.py` (336 records) and
+`paper/experiments/build_results_tables.py`. This section exists because §8.1 and §8.2 listed
+per-language test coverage and the v8 re-score as the project's two largest gaps. For the
+classical family both are now closed, and every cell carries a 1,000-resample bootstrap CI.
+
+Validation against previously recorded numbers, to show the harness use is identical:
+`tfidf-svm` intent test **0.8308** (recorded 0.8307) · sentiment **0.6653** (recorded 0.6663) ·
+priority **0.8734** (recorded 0.8722).
+
+Every record written here stamps `label_version`, which no earlier record carried — the absence
+of that field is precisely why v5 and v8 numbers were tabled together for three weeks.
+
+### 10.1 Pooled test, best arm per model — with 95% bootstrap CIs
+
+| task | model | arm | headline | 95% CI |
+|---|---|---|---:|---|
+| intent | `tfidf-svm` | none | **0.8308** | [0.8249, 0.8359] |
+| intent | `tfidf-logreg` | none | 0.8189 | [0.8126, 0.8240] |
+| intent | `tfidf-sgd` | none | 0.8115 | [0.8053, 0.8167] |
+| intent | `tfidf-cnb` | none | 0.6792 | [0.6710, 0.6859] |
+| sentiment | `tfidf-svm` | class_weight | **0.6653** | [0.6411, 0.6889] |
+| sentiment | `tfidf-logreg` | ros | 0.6383 | [0.6144, 0.6630] |
+| sentiment | `tfidf-sgd` | ros | 0.6092 | [0.5817, 0.6377] |
+| sentiment | `tfidf-cnb` | ros | 0.4968 | [0.4735, 0.5202] |
+| priority | `tfidf-svm` | class_weight | **0.8734** | [0.8669, 0.8797] |
+| priority | `tfidf-logreg` | ros | 0.8706 | [0.8638, 0.8771] |
+| priority | `tfidf-sgd` | ros | 0.8659 | [0.8594, 0.8721] |
+| priority | `tfidf-cnb` | class_weight | 0.8422 | [0.8352, 0.8481] |
+
+### 10.2 Per-language test — the gap §8.3 called "never measured at all"
+
+| task | model | english | sinhala | singlish | tamil | tamilish | pooled |
+|---|---|---:|---:|---:|---:|---:|---:|
+| intent | `tfidf-svm` | 0.9180 | 0.8666 | 0.8793 | 0.8528 | **0.6127** | 0.8308 |
+| intent | `tfidf-logreg` | 0.9096 | 0.8595 | 0.8751 | 0.8302 | **0.5854** | 0.8189 |
+| sentiment | `tfidf-svm` | 0.7198 | 0.6412 | 0.6633 | 0.7249 | **0.5722** | 0.6653 |
+| sentiment | `tfidf-logreg` | 0.6995 | 0.6256 | 0.6545 | 0.6776 | **0.5074** | 0.6383 |
+| priority | `tfidf-svm` | 0.9050 | 0.8848 | 0.8918 | 0.8854 | **0.7984** | 0.8734 |
+| priority | `tfidf-logreg` | 0.8987 | 0.8810 | 0.8889 | 0.8849 | **0.7985** | 0.8706 |
+
+Tanglish is the weak track on all three tasks, confirmed on test with per-language numbers for
+the first time. Error rate against English: intent **+28.9pp**, priority **+7.1pp**,
+sentiment **+1.6pp**.
+
+### 10.3 Significance — the first p-values in this project
+
+`paper/experiments/significance.py`, 1,000-resample paired bootstrap plus exact McNemar.
+Two results change how the table above should be read:
+
+- **`tfidf-logreg` and `tfidf-svm` are indistinguishable on priority** — delta −0.0027,
+  CI [−0.0069, +0.0014], p = 0.222. The 0.8734 / 0.8706 ordering is not a result.
+- **On sentiment, `tfidf-sgd` vs `tfidf-svm` gives p(McNemar) = 0.866 but p(bootstrap) = 0.0000.**
+  The two models agree on almost every row's correctness while differing by 0.056 Negative-F1.
+  An accuracy-based significance test would have called this a tie. Report the metric's own test.
+
+### 10.4 Train/test text overlap does not carry any result
+
+`paper/experiments/dedup_ablation.py`. Normalised test text recurring in train+dev:
+english 0.23% · sinhala 2.92% · singlish 3.41% · tamil 3.02% · tanglish 0.32% (stricter than
+§8.4's figures — case- and whitespace-normalised, and against train+dev rather than train).
+
+Removing all 305 affected rows moves the headline by at most **−0.0047** (intent `tfidf-cnb`);
+the champion shifts −0.0029 on intent, −0.0013 on priority, **+0.0007** on sentiment. Every
+delta is far inside its bootstrap CI. §8.4 can be downgraded from a defect to a footnote.
+
+### 10.5 Re-runs in flight
+
+Launched 2026-09-08 on Kaggle T4, payload sha `bc73eb006cfc` (v8 verified: 195 English test
+Negatives). Encoders 6 epochs, decoders 8 — up from the previous roster's 3, which several
+models were still improving at.
+
+| job | models | task | portion | state |
+|---|---|---|---|---|
+| K1 | labse, xlmr-base, mmbert, muril-base, indicbert, twhin-bert | sentiment | dev | running |
+| K2 | same six | intent | dev | running |
+| K3 | same six | priority | dev | queued |
+| K6 | champion + rival | all three | test | after K1–K3 |
+| K7 | gemma-3-1b, gemma-3-270m (LoRA-all, lr 1e-4) | all three | dev+test | queued |
+| K8 | champion + rival, seeds 43–46 | all three | test | after K6 |
+
+Dev runs first because the epoch budget is now a hyperparameter, and dev is the only place it
+can legitimately be chosen (§0d). `muril-base` and `indicbert` are in the harness for the first
+time — their published 62.10% / 76.24% figures come from a different script on the official
+split and have no `runs/*.json` record, so the Indic-specialist claim has never been measurable
+against anything else in this file.
+
+### 10.6 What is still open
+
+Encoders and decoders have **no per-language test coverage and no CIs**. `train_encoder.py` now
+emits per-language records and per-row predictions, so the next Kaggle batch closes it — but
+until that batch runs, §10.1's encoder and decoder rows do not exist and the family comparison
+in §1 remains single-seed, pooled-only, and without intervals.
+
+---
+
+## 11. Label ceiling, recomputed — the number to quote is 0.7931, not 0.7812
+
+**Added 2026-09-08.** Generated by `paper/experiments/label_ceiling.py`.
+
+### 11.1 The join was never verified, and neither id column is a key
+
+The gold benchmark's `id` column matches **1,000** dataset rows (train and test id
+ranges overlap) and its `row_id` matches only **76%** of texts. Neither is a join key. The
+ceiling is now computed on a normalised-text join, verified by the intent column — which
+neither side ever edited, so a correct join must give exactly 1.0 agreement there. It does.
+
+### 11.2 The published ceiling measured the prompt, not the shipped labels
+
+| compared | Negative-F1 | 95% CI | agreement | κ |
+|---|---:|---|---:|---:|
+| **shipped labels vs human gold** | **0.7931** | [0.6667, 0.8956] | 0.976 | 0.7804 |
+| prompt v8 raw output vs human gold | 0.7812 | [0.6557, 0.8842] | 0.972 | 0.7663 |
+| priority, shipped vs human gold | 0.7722 | [0.7258, 0.8150] | 0.804 | 0.6446 |
+
+The recorded 0.7812 scored `prompt_v8_all_labels.csv`'s `sentiment_pred` — the prompt's raw
+output. **The shipped CSVs differ from that output on 8 of the 500 gold rows**, in both
+directions: the rollout dropped two Negatives the prompt and the human both agreed on, and
+added one neither did. Models train on the shipped labels, so 0.7931 is the ceiling their
+scores should be read against.
+
+Provenance is otherwise clean and reproduces the documented figures exactly: shipped labels
+differ from v5 on **711 of 13,077** rows, and from `relabel_v8_staging.csv`'s applied column
+on **0**. Priority is untouched, 0 rows changed. The 8-row gap is between the prompt output
+and the applied labels, not between the staging file and the CSVs.
+
+### 11.3 What this does to the headline claim
+
+Sentiment headroom is slightly **larger** than the project believed, not smaller:
+
+| | score | ceiling | gap |
+|---|---:|---:|---:|
+| classical champion `tfidf-svm` (clean) | 0.6653 | 0.7931 | 0.1278 |
+| `labse` (⚠️ epoch-selected on test, §0d) | 0.7138 | 0.7931 | 0.0793 |
+
+The ceiling's own CI is **[0.6667, 0.8956]** — wide, because the gold set holds only 31
+Negatives. The "labels bind, not model capacity" claim rests on a ceiling estimated from 31
+rows by one annotator. That is the strongest argument for finishing the inter-annotator batch
+before the claim goes in a paper.
+
+---
+
+## 12. Is the per-language deficit significant? Yes — and testing it wrong flips three cells
+
+**Added 2026-09-08.** Generated by `paper/experiments/language_gap.py`.
+
+The Tanglish deficit is the project's largest per-language claim and had never been tested.
+The comparison is **paired**, which makes it far sharper than it looks: the same 3,079 ticket
+ids appear in all five tracks, so English and Tanglish predictions are two labellings of the
+same tickets.
+
+### 12.1 Tanglish, against English on the same tickets
+
+`tfidf-svm`, paired bootstrap on the headline metric, 1,000 resamples:
+
+| task | Δ headline | 95% CI | p |
+|---|---:|---|---:|
+| intent | **−0.3053** | [−0.3234, −0.2907] | 0.000 |
+| priority | **−0.1067** | [−0.1260, −0.0904] | 0.000 |
+| sentiment | **−0.1476** | [−0.2136, −0.0855] | 0.000 |
+
+Tanglish is significantly worse than English on **all 12** model × task combinations, with
+every confidence interval clear of zero. The claim holds, and now has a number behind it.
+
+Across all 48 track-vs-English comparisons, **35 are significant** on the headline metric.
+
+### 12.2 The trap: McNemar tests accuracy, not the metric being reported
+
+Three of the 48 comparisons flip depending on which test is used, all on sentiment:
+
+| model | track | Δ Negative-F1 | p (headline) | p (McNemar) |
+|---|---|---:|---:|---:|
+| `tfidf-cnb` | sinhala | −0.0056 | **0.840** | 0.003 |
+| `tfidf-cnb` | singlish | +0.0163 | **0.364** | 0.001 |
+| `tfidf-cnb` | tamil | +0.0100 | 0.498 | 0.108 |
+
+On the first two, McNemar reports a highly significant difference while the reported metric
+shows nothing. The mechanism is the one already visible pooled (§10.3): these tracks make
+*fewer errors overall* than English while scoring the same or worse on the Negative class.
+McNemar sees the accuracy difference, which is real — and irrelevant, because the paper
+reports Negative-F1.
+
+**A per-language significance table built on McNemar would assert two cross-lingual sentiment
+effects that do not exist in the metric being reported.** Both tests are kept in
+`language_gap.csv` with a `tests_agree` column, because where they disagree the disagreement
+is itself the finding.
+
+---
+
+## 13. Half the Negative signal is reachable without reading the ticket
+
+**Added 2026-09-08.** Generated by `paper/experiments/negative_is_topic.py`.
+
+`RESULTS.md` records that "Negative looks like a topic construct, not polarity" — an
+observation about a mined word list, never tested. It is now a number, and the test needs
+no text at all.
+
+### 13.1 The test
+
+Fit a predictor that sees **only BANKING77's 77-way gold intent label**. Intent carries no
+tone information whatsoever: two tickets with the same intent can be furious or perfectly
+calm. Per-intent Negative rate learned on train+dev, threshold swept on train+dev (never on
+test), applied once to test.
+
+| system | Negative-F1 | precision | recall |
+|---|---:|---:|---:|
+| **intent label only, no text** | **0.3301** | 0.2656 | 0.4359 |
+| `tfidf-svm` on text | 0.6653 | — | — |
+
+**Half of the champion's Negative-F1 — 49.6% of it — is reachable from the topic label alone,
+without reading a single word of the ticket.**
+
+### 13.2 The mechanism, visible in the per-intent rates
+
+| intent | Negative rate |
+|---|---:|
+| `terminate_account` | 0.444 |
+| `declined_transfer` | 0.256 |
+| `failed_transfer` | 0.255 |
+| `declined_card_payment` | 0.229 |
+| `Refund_not_showing_up` | 0.198 |
+
+These are failure and loss topics, not emotional registers. Negatives are concentrated
+accordingly: **the top 10 of 77 intents hold 48.8% of all Negatives**, and 30 intents cover 90%.
+
+### 13.3 What it means for the paper
+
+The claim should be stated as measured, not as folklore: the label is **partly** a topic
+construct — about half — and partly genuine tone the text model reads. That is a more
+defensible and more interesting statement than either extreme.
+
+It also reframes the label-ceiling result (§11). A sentiment label half-predictable from
+topic is one an annotator can disagree with for structural reasons, which is consistent with
+the wide ceiling CI [0.6667, 0.8956] and with the guideline's need to define Negative as tone
+explicitly — the trap written into `paper/annotation/guidelines/annotation_guideline_v1.md`
+before any annotator sees a row.
+
+---
+
+## 14. Encoder roster on v8, frozen split, 6 epochs — dev
+
+**Added 2026-09-08.** Kaggle T4, payload sha `bc73eb006cfc`, fit on `train`, scored on dev,
+best epoch selected on dev (§0d). Six encoders, three of which (`muril-base`, `indicbert`,
+`twhin-bert`) enter the harness here for the first time.
+
+### 14.1 Pooled dev
+
+| model | sentiment Neg-F1 | best ep | intent macro-F1 | best ep |
+|---|---:|---|---:|---|
+| `labse` | **0.7579** | 3/6 | 0.9293 | 5/6 |
+| `mmbert` | 0.6991 | 6/6 | **0.9294** | 6/6 |
+| `indicbert` | 0.6940 | 4/6 | 0.9104 | 6/6 |
+| `xlmr-base` | 0.6869 | 6/6 | 0.9219 | 5/6 |
+| `muril-base` | 0.6547 | 6/6 | 0.8703 | 6/6 |
+| `twhin-bert` | 0.6461 | 5/6 | 0.9082 | 6/6 |
+
+### 14.2 The 3-epoch budget was not neutral
+
+LaBSE peaks at epoch 3. **XLM-R, mmBERT, MuRIL, IndicBERT and TwHIN-BERT were all still
+improving at the budget edge** — five of six select epoch 5 or 6. The previous roster's
+3-epoch budget therefore under-trained most of the field at a setting that happened to suit
+the eventual winner. LaBSE still wins sentiment at 6 epochs, so the conclusion survives; the
+margin it was won by did not.
+
+Intent is still budget-bound at 6 (four of six select epoch 6), so intent numbers here remain
+a lower bound.
+
+### 14.3 Significance — one champion, and one tie
+
+Paired bootstrap, 1,000 resamples, on dev predictions:
+
+| task | pair | Δ | 95% CI | p |
+|---|---|---:|---|---:|
+| intent | `labse` vs `mmbert` | **−0.0001** | [−0.0045, +0.0046] | **0.944** |
+| intent | `labse` vs `xlmr-base` | +0.0074 | [+0.0026, +0.0120] | 0.004 |
+| sentiment | `labse` vs `mmbert` | +0.0587 | [+0.0292, +0.0911] | 0.000 |
+| sentiment | `mmbert` vs `xlmr-base` | +0.0122 | [−0.0185, +0.0429] | 0.442 |
+
+**On intent, LaBSE and mmBERT are indistinguishable** — the difference is one ten-thousandth
+of a point. Both are significantly ahead of everything else. **On sentiment LaBSE wins
+outright**, significantly ahead of all five rivals.
+
+The defensible claim is therefore *"LaBSE is the sentiment champion and ties mmBERT on
+intent"*, not *"LaBSE is the champion"*.
+
+### 14.4 MuRIL's Sinhala collapse, and what causes it
+
+Per-language dev — the coverage gap §8.1 called the project's largest, closed for encoders:
 
 | model | english | sinhala | singlish | tamil | tamilish |
 |---|---:|---:|---:|---:|---:|
-| mmBERT | **0.9366** | **0.9370** | **0.9159** | **0.9367** | **0.9146** |
-| gemma-3-1b | 0.9327 | 0.9359 | 0.9156 | 0.9317 | 0.9061 |
-| LaBSE | 0.9325 | 0.9330 | 0.9112 | 0.9305 | 0.9052 |
+| `labse` (sentiment) | 0.8092 | 0.7811 | 0.7134 | 0.7929 | 0.6835 |
+| `muril-base` (sentiment) | 0.7407 | **0.5070** | 0.6351 | 0.7200 | 0.6452 |
+| `muril-base` (intent) | 0.9003 | **0.7633** | 0.8879 | 0.9009 | 0.9023 |
 
-Gemma beats LaBSE on all five and ties mmBERT on singlish (0.9156 vs 0.9159). mmBERT wins every
-cell despite the worst Sinhala fertility of the three — see §14.1's warning.
+MuRIL loses **23.4 points** on Sinhala sentiment and **13.7** on Sinhala intent, against its
+own English — on both tasks, and on no other language. Joined to the tokenizer screen, the
+mechanism is unambiguous: **MuRIL maps 64.5% of Sinhala characters to `[UNK]`.** Every other
+model in the roster is at 0.0%.
 
-### 14.5 Model size — the 270M knee replicates
+This closes a loop the project had left open. §7.3 concluded "fertility does not predict
+encoder quality" — correct, and now sharpened, because the two tokenizer diagnostics behave
+completely differently:
 
-arXiv:2606.08051 measured −6.58 F1 from 1B → 270M. Ours, LoRA-all:
+| diagnostic | Spearman ρ with per-language deficit |
+|---|---:|
+| fertility (tokens/word) | **−0.035** |
+| `[UNK]` rate | **−0.521** |
 
-| task | 1b | 270m | Δ |
-|---|---:|---:|---:|
-| intent | 0.9243 | 0.9038 | −0.021 |
-| priority | 0.9165 | 0.9040 | −0.013 |
-| sentiment | 0.6428 | 0.5611 | **−0.082** |
+Fertility is a *cost*: mmBERT pays 3.67 tokens per Sinhala word and loses only 3.7 points.
+`[UNK]` is *destruction*: the characters are gone before the first layer and fine-tuning
+cannot recover them. Conflating the two is what produced the earlier null result.
 
-Same direction, and **sentiment is where 270M collapses** — the minority-class task punishes reduced
-capacity hardest. gemma-3-270m is not a viable candidate for this project.
+> **Caveat, and it is a real one.** Only **1 of 20** model × non-English cells has a high
+> `[UNK]` rate, and 18 are tied at exactly 0.0%. The ρ of −0.521 is carried by that single
+> cell, so this is a strong *case study* — the worst cell in the table by 9.9 points, with a
+> mechanism that predicts it — and not a fitted relationship. Establishing the relationship
+> would need more high-`[UNK]` tokenizers in the roster.
 
-### 14.6 Epoch behaviour splits by task
-
-| task | gemma-3-1b best epoch | reading |
-|---|---|---|
-| intent | **3 / 3** | still improving — 6 epochs untested, plausibly more headroom |
-| priority | 2 / 3 | converged, epoch 3 was worse |
-| sentiment | 2 / 3 | converged, epoch 3 was worse |
-
-The "3 epochs may be undertrained" caveat therefore applies to **intent only**. On priority and
-sentiment more epochs would likely hurt.
-
-### 14.7 Integration defects found — all silent-failure class
-
-Recorded because each produced plausible output rather than an error, which is this project's
-recurring failure mode (§7.4, §11).
-
-1. **Gemma 3 checkpoints are stored bfloat16**, and transformers honours the stored dtype. The
-   Kaggle T4 is Turing and has **no bf16**. Dtype is now pinned explicitly: fp32 master weights with
-   fp16 autocast. Loading the backbone in fp16 instead makes the LoRA params fp16 and
-   `GradScaler.unscale_` refuses them outright.
-2. **Decoder sequence classification pools the last non-pad token.** With `config.pad_token_id`
-   unset, every short row in a batch is classified from a padding embedding — no error, plausible
-   metrics.
-3. **The classification head is `score` on causal backbones, `classifier` on encoders.** The wrong
-   name in `modules_to_save` leaves the head frozen at random init.
-4. **Intent's 77-class label space was derived after subsampling** (pre-existing), so any smoke run
-   raised `KeyError` on the first absent intent. Now fixed from the full training frame.
-5. **`runner.py fetch` gated on `config.json`**, but peft writes `adapter_config.json` — every LoRA
-   checkpoint was saved on Kaggle and silently dropped on fetch.
-6. **LoRA saves carry no `id2label`.** Adapters loaded as LABEL_0/LABEL_1 with no way to tell which
-   index is "Negative" — the §11 inversion trap. Every save now writes `label_order.json` with
-   labels, base model, LoRA config and split sha.
-7. **Kaggle attaches the previous dataset version** if a kernel starts before processing finishes —
-   old code, tracebacks against line numbers that no longer exist. A payload content-hash stamp now
-   makes the kernel refuse to run on a mismatch.
-
-### 14.8 Verdict
-
-**Keep the encoders. The SLM ties but does not win, and costs more to run.**
-
-| task | recommendation | why |
-|---|---|---|
-| **sentiment** | **LaBSE** | Gemma's +0.0094 is ⅛ of the CI. LaBSE's 0.5663 test number is already banked; Gemma has none. The binding constraint is labels, not capacity — v6 relabel moved holdout 0.4615 → 0.6875 (§8.3). |
-| **priority** | **LaBSE** | 0.0003 apart. Already 0.14 above the 0.7722 label ceiling — neither model is limited by capacity. |
-| **intent** | **mmBERT or LaBSE**, needs a test run | Three-way tie on dev. **No encoder or SLM has an intent test result** — the only genuinely open champion question of the three. |
-
-Supporting economics: Gemma trains at **~40 rows/s vs LaBSE's ~115** (2.9× slower) at 1B vs 471M
-parameters, and needs a `peft` dependency plus base-model + adapter loading at serve time.
-
-**The one place the SLM shape is genuinely better** is not accuracy: at 0.66% trainable parameters,
-several task adapters share one backbone. Three tasks currently mean three full LaBSE checkpoints;
-they could be one Gemma backbone plus three ~26MB adapters. That is a serving-architecture argument,
-and it should be decided on deployment cost, not on these scores.
-
-**Method, if an SLM is used anyway:** classification head (not instruction tuning — arXiv:2512.12677
-found equal F1 at 8× the trainable parameters, plus label-parsing brittleness); LoRA over **all**
-attention and MLP projections; r=8, α=16 (r=8 measured within 0.20 F1 of r=32); lr 1e-4; 3 epochs
-for intent, 2 for priority and sentiment.
-
-### 14.9 What this does not establish
-
-- **Every SLM number here is dev.** Test remains a one-shot per §0 rule 2, and no Gemma model has
-  earned it on priority or sentiment given the ties.
-- **No confidence intervals were computed for any SLM run.** The ties are argued from the dev CIs
-  measured in §3.2 and §5.3, not from bootstrapping these runs.
-- **Romanized conclusions remain unresolved** (§10). Singlish is rule-generated and Tamilish
-  machine-translated, so Gemma's romanized cells inherit the same caveat as every other model's.
-- **6 epochs on intent is untested**, and §14.6 says that is the one task where it could still move.
-- **No notebook.** Unlike the encoder roster (`11`–`16`), this phase is reproducible only through
-  `ml/kaggle/runner.py`. A `17_slm_gemma3.ipynb` is owed.
 
 ---
 
-## 15. Linear probing — how much was in the backbone before we trained it
+## 15. The first unbiased fine-tuned test number — and an exact reproduction
 
-Run 2026-08-09 on the suggestion of Theekshana (Iron One AI Labs). Every section above measures a
-model *after* fine-tuning. This one freezes the backbone — no gradient reaches it — takes one forward
-pass per row, and fits a logistic regression on the pooled vector. `swiftbench/probe.py`, driven from
-`17_encoder_linear_probe.ipynb`. Extraction is paid once per backbone and reused across all three
-tasks, so the whole roster costs a single pass (~1.4 GB cache under `ml/cache/`, gitignored).
+**Job K6a**, 2026-09-08: `labse`, sentiment, **test**, fitted on `train+dev` (49,990 rows),
+scored once on the 15,395-row pooled test set. 3 epochs — the budget dev selected in §14.
+Run under the patched `train_encoder.run()`, so the reported epoch is the **final** one, not
+the best one on the test set. Record stamps `epoch_selection: final-epoch`.
 
-The number that matters is the **gap to that model's own fine-tune**, not the probe's absolute score.
+### The result
 
-### 15.1 Retention — probe ÷ fine-tune, pooled dev
+| | Negative-F1 | precision | recall | macro-F1 | accuracy |
+|---|---:|---:|---:|---:|---:|
+| labse, sentiment, test | **0.7138** | 0.7601 | 0.6728 | 0.8478 | 0.9658 |
 
-`class_weight`, best pooling per cell, 264 cells across 7 backbones × 3 tasks × 6 language cells.
+### It is bit-identical to the record it was meant to replace
 
-| task | labse | gemma-3-1b | mmbert | xlmr-base | twhin-bert | gemma-3-270m | canine-c |
-|---|---|---|---|---|---|---|---|
-| **probe** intent | **0.8614** | 0.8570 | 0.8170 | 0.8074 | 0.8249 | 0.7990 | 0.6410 |
-| *retained* | *0.934* | *0.927* | *0.880* | — | — | *0.884* | — |
-| **probe** priority | **0.8265** | 0.7887 | 0.7719 | 0.7643 | 0.7685 | 0.7255 | 0.6565 |
-| *retained* | *0.901* | *0.861* | *0.844* | *0.834* | *0.863* | *0.803* | *0.747* |
-| **probe** sentiment | **0.4666** | 0.4391 | 0.4137 | 0.4068 | 0.3828 | 0.3539 | 0.3164 |
-| *retained* | *0.737* | *0.683* | *0.667* | *0.812* | *0.640* | *0.631* | *0.594* |
+The pre-patch record for this cell reads `headline = 0.7138193688792165`.
+The re-run reads `headline = 0.7138193688792165`. Seventeen significant figures, exact.
 
-*(retention blank where no fine-tune exists at this split sha for that model/task.)*
+Two separate things follow, and they should not be conflated.
 
-**Retention is ordered intent > priority > sentiment for every backbone, with no exceptions.**
-Intent is 88–93% linearly decodable from a representation that never saw our data; sentiment is
-59–74%. Fine-tuning does the most work on exactly the task whose labels agree with humans least
-(§8.2: sentiment κ=0.55, priority κ=0.64).
+**(a) The epoch-selection bias on this cell is exactly zero.** Per-epoch, the headline was
+0.6749 → 0.7115 → **0.7138**: monotonically increasing across the whole budget. The best
+epoch *was* the final epoch, so selecting on test had nothing to select — the maximum over
+three draws and the last of three draws are the same draw. The defect was real in mechanism
+and inert in this instance.
 
-**LaBSE wins the frozen probe on all three tasks and retains the most on all three.** The bake-off
-champion (§5.5, §4.4) was already the champion before any training — its advantage is in the
-pretrained representation, not in how it responds to our labels.
+**Generalising it needed a count, not an assumption**, and the count is in §0(d): of the 17
+unstamped test records, **15 have `best_epoch == epochs`** and are inert for exactly the same
+reason, leaving **2 genuinely biased** — `sinbert-large` (best 2 of 3) and `sinhalaberto`
+(best 1 of 3), both sentiment, both minor models. The earlier claim that every fine-tuned test
+number was affected was wrong: it counted records that *ran* the defective code rather than
+records where the defect could change the answer.
 
-### 15.2 What this says about sentiment — and what it does not
+The caveat that does survive: inertness is a property of the run, not the code. §14 shows
+`labse` peaking at epoch 3 of 6 on dev, so at a 6-epoch budget this same cell would *not* have
+been inert.
 
-This was run to test a specific hypothesis: *if the probe lands near the fine-tune, fine-tuning is
-mostly fitting label noise.* **The hypothesis failed.** Sentiment has the largest gap of the three
-tasks, not the smallest. Fine-tuning adds more on sentiment than anywhere else.
+**(b) Training is deterministic to the bit.** Same seed, same config, different Kaggle
+session, nineteen days apart (2026-08-20 and 2026-09-08) — and 17 matching significant
+figures. The two runs are not the same execution: wall-clock training differs (1325.7s vs
+1319.0s), so the hardware and scheduling differed while the arithmetic did not.
+That is a stronger reproducibility statement than the paper currently makes, and it is free:
+it means the seed-variance study (K8) will measure *seed* effect and nothing else, with no
+run-to-run noise floor underneath it.
 
-The correct reading is a three-step chain, and the probe supplies only the first step:
+### What this unblocks
 
-1. **Every frozen backbone probes sentiment below the classical TF-IDF baseline** (0.3164–0.4666
-   against 0.5950 dev). No pretrained representation encodes our Negative label well → **a different
-   off-the-shelf encoder is not the lever.** ← the probe's contribution
-2. **But fine-tuning does help** — LaBSE 0.5664 test vs classical 0.4572 (§5.5). Step 1 alone does
-   not close the question.
-3. **And 0.5664 ≈ the 0.5769 human-vs-v5 agreement** (§8.2) → the fine-tune has already learned the
-   v5 rule about as well as a human reproduces it. ← measured 2026-08-01, independent of the probe
+The headline comparison can now be quoted. It could not be before, because it set a biased
+encoder number against a clean classical one.
 
-Both directions exhausted ⟹ the labels bind. This **reinforces §10 item 1 and decision 9**, but it
-does so by closing the encoder door, not by the mechanism originally hypothesised.
+| system | Negative-F1 (test) | epoch selection |
+|---|---:|---|
+| **labse** (encoder, fine-tuned) | **0.7138** | final-epoch — clean |
+| tfidf-svm (classical champion, v8) | 0.6653 | n/a — no epoch loop |
+| intent label only, no text (§13) | 0.3301 | n/a |
+| **label ceiling** (§11, shipped labels vs human gold) | **0.7931** | n/a |
 
-⚠️ Do not compress this to "the probes are below baseline, therefore the label ceiling is reached."
-The probe says nothing about the ceiling; the ceiling came from 500 hand-annotated rows in §8.
+The encoder is **+0.0485** over the classical champion, and reaches **90.0% of the label
+ceiling**. Both halves of that sentence are now measured on the same split, the same labels
+and the same discipline.
 
-One alternative reading the probe cannot separate: **Negative, as v5 defines it, may be a
-topic-derived construct rather than a polarity signal** — consistent with §9.1, where the mined
-lexicon terms came out as topic markers (`poiduchu`/lost, fraud) rather than polarity words. Noisy
-labels and an awkwardly-*defined* label look identical to a probe. Relabelling is right either way,
-but under this reading v6 should tighten the definition, not just re-annotate more carefully.
+**The gap is significant.** Paired bootstrap over 1,000 resamples of the 15,395 test rows:
+Δ = **+0.0485, 95% CI [+0.0257, +0.0721], p < 0.0001**; exact McNemar p = 1.4e-07. LaBSE also
+beats every other classical system by a wider and equally significant margin (vs `tfidf-logreg`
++0.0755, vs `tfidf-sgd` +0.1046, vs `tfidf-cnb` +0.2171).
 
-### 15.3 What fine-tuning puts into the representation is task-specific
+Per language, from the same fit:
 
-Both saved checkpoints from `ml/models/encoders/` probed against pretrained LaBSE. **Scored on
-test** — they were fit on `train+dev`, so dev is inside their training data (§15.5, trap 3).
+| track | Negative-F1 |
+|---|---:|
+| english | 0.8032 |
+| tamil | 0.7606 |
+| sinhala | 0.7234 |
+| singlish | 0.6757 |
+| tamilish | **0.5948** |
 
-| probe (test) | pretrained labse | labse-ft-sentiment | labse-ft-priority |
-|---|---:|---:|---:|
-| sentiment | 0.3735 | **+0.1075** | +0.0132 |
-| priority | 0.8015 | +0.0025 | **+0.0810** |
-| intent | 0.7822 | −0.0146 | +0.0150 |
+A 20.8-point spread, with Tanglish last — the same ordering §12 found on the classical systems,
+now reproduced by the champion encoder.
 
-The diagonal is everything; the off-diagonal is noise.
+### Checkpoint
 
-**Rules out:** fine-tune one backbone on one task, freeze it, hang the other two tasks' heads off it.
-
-**Does not rule out** — and must not be read as ruling out — **joint** multi-task fine-tuning, or
-**LoRA adapters over a shared frozen base** (§14.8's serving proposal: one backbone plus three
-~26 MB adapters). Both keep a per-task path into the backbone, which is exactly what the probe shows
-is needed. Neither is measured.
-
-How much of each fine-tuned model lives in its head, on test:
-
-| task | ft-probe | full fine-tuned model | head contributes |
-|---|---:|---:|---:|
-| priority | 0.8825 | 0.8900 | **0.0075** |
-| sentiment | 0.4810 | 0.5664 | **0.0854** |
-
-Priority's fine-tuned representation is essentially linearly separable already. Sentiment's is not —
-eleven times more of it sits in the nonlinear head.
-
-### 15.4 Two things measured and closed
-
-**A frozen backbone is not servable here.** Pretrained LaBSE probed on test reaches priority
-**0.8015** and intent **0.7822**, both *below* the classical TF-IDF champion (0.8722, 0.8318). The
-cheap-serving idea — one frozen encoder, three logistic regressions, no fine-tuning, no GPU — loses
-to a model that fits in a joblib. If a transformer ships at all, it has to be fine-tuned.
-
-**TwHIN-BERT was right about romanized text, and the fine-tune hid it.** Native-script minus
-romanized, `(sinhala+tamil)/2 − (singlish+tamilish)/2`, pooled dev:
-
-| backbone | sentiment | priority | intent |
-|---|---:|---:|---:|
-| **twhin-bert** | **0.032** | **0.012** | **0.003** |
-| canine-c | −0.021 | −0.001 | −0.022 |
-| gemma-3-1b | 0.014 | 0.021 | 0.051 |
-| labse | 0.113 | 0.075 | 0.027 |
-| mmbert | 0.034 | 0.057 | 0.087 |
-| xlmr-base | 0.081 | 0.064 | 0.077 |
-
-`model-research.md` §5 named TwHIN-BERT as the code-switch model and §5.10 found it lost. The probe
-says §5.10 was right about the *model* and §5 was right about the *representation*: TwHIN-BERT is the
-most script-agnostic backbone in the roster on all three tasks, with CANINE (character-level) the
-only one near it. They lose on absolute quality, not on script transfer; LaBSE buys its lead on
-native script and gives back the most on romanized.
-
-**This does not change the ship decision** — LaBSE still wins every romanized cell outright — but it
-is the first evidence separating "handles romanized well" from "is good at the task", and it is
-invisible to a fine-tune. Caveat from §10 item 4 unchanged: Singlish is rule-generated and Tamilish
-machine-translated, so every gap here is an optimistic floor.
-
-### 15.5 Integration defects found — all silent-failure class
-
-Same category as §7.4, §11 and §14.7. Each produced a plausible number and raised nothing.
-
-1. **Unit-norm features do not fit at `C=1`.** Row L2-normalisation is required for the cross-model
-   column to mean anything (Gemma's activation scale is nowhere near BERT's, so a fixed `C` would
-   otherwise regularise each backbone differently) — but it makes every feature O(1/√dim), the L2
-   penalty dominates from the first step, and lbfgs hit its gradient tolerance after **4 iterations**.
-   Intent read **0.167** macro-F1. A `StandardScaler` between the normalisation and the regression —
-   same vectors, same `C` — gives **0.807**. `probe.fit()` now reports `n_iter`.
-2. **Gemma's tokenizer pads on the left.** `mask.sum(1) - 1` for last-token pooling indexes into the
-   padding block. Intent read **0.0768** against 0.7990 for the same model's mean pooling — low
-   enough to look like a genuine finding about decoders. Scanning the mask from the right gives
-   **0.7918**, and last-token pooling in fact *beats* mean on sentiment and priority.
-   **`transformers`' own decoder sequence-classification pooling is unaffected** — verified
-   empirically on `Gemma3ForSequenceClassification` (left-padded batched logits match unpadded
-   single-example logits to 1e-5), so §14's Gemma numbers stand.
-3. **The saved checkpoints cannot be scored on dev.** They were fit on `train+dev` (§4.5 protocol),
-   so `labse-ft-priority` probed **0.9645** against its own fine-tune's 0.9168 — memorised rows
-   presenting as a breakthrough. `probe.score()` refuses the combination now; 72 contaminated run
-   records were deleted. `ml/models/README.md` carries the warning.
-4. **Pooling must be per-model.** LaBSE prefers **cls** on sentiment and priority — its dual-encoder
-   objective optimised that position — while every MLM encoder prefers **mean**, by up to 0.048
-   (twhin-bert priority) and 0.168 (canine-c intent). One fixed convention across the roster would
-   have measured where each model stores sentence meaning rather than whether it encodes the task.
-
-`C` was checked once on LaBSE rather than swept per cell: the optimum is 0.01–0.1, and the `C=1.0`
-default costs 0.017 on intent, 0.005 on priority and 0.000 on sentiment (`probe_C_sweep.csv`).
-
-### 15.6 What this does not establish
-
-- **All retention numbers are dev.** Only the §15.3 fine-tuned-checkpoint comparison touched test,
-  and only because `train+dev` fitting left it no uncontaminated alternative.
-- **No confidence intervals.** The retention ordering holds across all seven backbones without
-  exception, which is why it is stated; individual cells are not bootstrapped.
-- **`sinbert-large` and `sinhalaberto` are absent from the tables.** Both are Sinhala-only, so they
-  produce no pooled `all` cell to compare against a pooled fine-tune.
-- **A probe is a linear read-out.** It measures what is *linearly* decodable. A representation could
-  encode sentiment non-linearly and probe poorly; that would still make it a bad frozen-serving
-  candidate, but it is not the same claim as "the information is absent."
+`--save-models` wrote `models/sentiment_labse/` — the project's first saved champion
+checkpoint fitted on `train+dev` under v8 labels, replacing the stale v5-label weights.
+Closes the serving half of task A7 for sentiment; intent and priority still have none.
 
 ---
 
-## 16. Intent transformers — the promotion gates, cleared
+## 16. The encoder's advantage is not spread evenly across scripts
 
-Added 2026-08-12 from `final_baseline_report.md` §12–§13 and `progress_and_results_summary.md`
-§8–§9. This is the workstream that finally answers §3.5, and it is **the only place in this report
-with an intent transformer number on a held-out test set.**
+§15 established the pooled gap: `labse` beats `tfidf-svm` by +0.0485 Negative-F1 on the test
+set. A pooled number says nothing about where a gain lives, and this one is concentrated.
 
-**Read the split line before the scores.** These runs use the **official** BANKING77 split — 9,998
-train / 3,079 test per track, 15,395 pooled — driven by `ml/scripts/train_transformer.py` against
-committed configs in `ml/configs/`, executed on Colab. That is the same split §3 measures classical
-baselines on, so **the promotion-gate comparison is like-for-like**. It is *not* the frozen
-swiftbench split `e7b5934392cd`, so these numbers cannot be tabled next to §14.3 or §15.1, and they
-carry no split-sha stamp and no `runs/*.json` record.
+Paired within each track — same tickets, both systems, 3,079 rows and 195 Negatives per cell:
 
-### 16.1 Protocol
+| track | script | tfidf-svm | labse | encoder gain | 95% CI | p |
+|---|---|---:|---:|---:|---|---:|
+| english | native | 0.7198 | 0.8032 | **+0.0834** | [+0.0383, +0.1327] | <0.001 |
+| sinhala | native | 0.6412 | 0.7234 | **+0.0822** | [+0.0315, +0.1353] | 0.004 |
+| tamil | native | 0.7249 | 0.7606 | +0.0357 | [−0.0098, +0.0839] | 0.144 |
+| singlish | romanized | 0.6633 | 0.6757 | +0.0124 | [−0.0455, +0.0655] | 0.712 |
+| tamilish | romanized | 0.5722 | 0.5948 | +0.0225 | [−0.0440, +0.0825] | 0.490 |
 
-| Item | Value |
-|---|---|
-| Task | 77-class intent, macro-F1 |
-| Train / test | 9,998 / 3,079 per track; `all` = 5 tracks pooled, 15,395 test rows |
-| Sequence length | 128 (the §7.1 decision — 100% coverage, 0% truncation) |
-| Optimiser | lr 3e-5, weight decay 0.01, max grad norm 1.0, effective batch 32 (16 × 2 accum) |
-| Champion schedule | cosine decay, 15% warmup, label smoothing 0.05 |
-| Epochs | 5 (LaBSE, MuRIL, IndicBERT), 6 (`XLMR-ALL-04-OPTIMIZED`) |
-| Selection | `load_best_model_at_end` on macro-F1, per-epoch eval |
-| Seed | 42 (`seed` and `data_seed`); single seed, no repeats |
+**On both romanized tracks the encoder's advantage is indistinguishable from zero.** Every
+point of the pooled +0.0485 is earned on native script. The mechanism is not mysterious:
+LaBSE's pretraining contains Sinhala and Tamil in their own scripts and contains essentially
+no Sinhala or Tamil written in Latin characters, which is exactly what the romanized tracks
+are.
 
-### 16.2 The gate sweep — and where the gain actually came from
+### Tested as a contrast, not by comparing two p-values
 
-XLM-R against the §3.5 gates, by training budget:
+"Significant on sinhala, not significant on singlish" is not evidence that the two gains
+differ — the difference between significant and non-significant is not itself significant.
+The contrast has to be tested directly, which the frozen split makes clean: `sinhala` and
+`singlish` are **the same tickets in the same language**, differing only in script, so a
+difference of differences cannot be a language, topic or sampling effect.
 
-| Track | Best classical | Gate (+3.00) | 3 ep | 5 ep | **6 ep + cosine + ls** | champion vs gate |
-|---|---:|---:|---:|---:|---:|---:|
-| `sinhala` | 83.08% | 86.08% | 91.02% | 92.42% | **92.42%** | +6.34 ✅ |
-| `tamilish` | 61.05% | 64.05% | 64.66% | 71.67% | **72.04%** | +7.99 ✅ |
-| `tamil` | 86.35% | 89.35% | 89.17% ✗ | 89.98% | **91.74%** | +2.39 ✅ |
-| `singlish` | 86.49% | 89.49% | 86.42% ✗ | 89.74% | **90.03%** | +0.54 ✅ |
-| `english` | 90.98% | 93.98% | 92.19% ✗ | 94.00% ✅ | **93.88%** | **−0.10 ✗** |
-| `all` | 83.18% | 86.18% | 85.15% ✗ | 87.80% | **88.29%** | +2.11 ✅ |
+| pair | difference of differences | 95% CI | p | |
+|---|---:|---|---:|---|
+| sinhala − singlish | **+0.0698** | [+0.0140, +0.1283] | **0.012** | significant |
+| tamil − tamilish | +0.0132 | [−0.0664, +0.0882] | 0.762 | not significant |
 
-Three things this table says that the source reports do not:
+**The claim holds for Sinhala and is not established for Tamil.** Romanizing the same Sinhala
+tickets removes about 7 points of the encoder's advantage. The Tamil pair points the same way
+and the test does not support it.
 
-1. **The sweep was bought with epochs, not architecture.** At 3 epochs XLM-R **failed four of the
-   six gates**, including the pooled `all` track. The 3→5 epoch step is worth +2.65pp on `all`; the
-   5→6 step with cosine decay and label smoothing adds +0.49pp. Anyone reading "transformers clear
-   the gates" should read "transformers clear the gates *at 5+ epochs*" — §14.6 found the same thing
-   from the other direction, that intent was the one task still improving at its epoch budget.
-2. **English peaked at 5 epochs and regressed at 6** (94.00 → 93.88). The run labelled "champion" is
-   not the best English model that was trained. The `all` track is what promoted it, and on `all`
-   the extra epoch genuinely helped.
-3. **That regression put english below its gate, and both source reports still marked it promoted.**
-   93.88% against a 93.98% threshold is a **0.10pp miss** — and the gain column in those reports
-   reads `+2.90%` against a stated `+3.00%` requirement, so the failure is visible in the same row
-   that declares "✅ PROMOTED (100% Sweep)". XLM-R swept **five of six**, not six. Logged as §11
-   item 8. This does not change the ship decision: LaBSE clears english at 94.13% (+0.15) and takes
-   all six on its own.
+### The two pairs are not measuring the same thing
 
-### 16.3 4-way architecture ablation — LaBSE and XLM-R tie; the Indic specialists lose
+§corpus stats put the *native* tracks' own Latin-character content at **40.35% for sinhala**
+against **1.26% for tamil**. So the two contrasts have different baselines: sinhala/singlish
+is "heavily code-mixed native script vs fully romanized", while tamil/tamilish is "nearly pure
+Tamil script vs fully romanized". Whether that asymmetry is a property of the two languages or
+an artifact of how the tracks were produced is open — and it is the same open question as the
+"manually verified" claim (Tamil is documented as having had no hand pass). **The two pairs
+must not be presented as two measurements of one effect until that is settled.**
 
-All four architectures, official test macro-F1. MuRIL and IndicBERT were run on the Tamil/Tanglish
-group and pooled `all` only.
+### Why this matters for the paper
 
-| Track | Best classical | MuRIL (36k) | IndicBERT (200k) | XLM-R (250k) | **LaBSE (501k)** | LaBSE − XLM-R |
-|---|---:|---:|---:|---:|---:|---:|
-| `english` | 90.98% | — | — | 93.88% | **94.13%** | +0.25 |
-| `sinhala` | 83.08% | — | — | 92.42% | **92.95%** | +0.53 |
-| `singlish` | 86.49% | — | — | 90.03% | **90.65%** | +0.62 |
-| `tamil` | 86.35% | 66.01% | 89.81% | 91.74% | **93.27%** | +1.53 |
-| `tamilish` | 61.05% | 57.62% | 61.25% | **72.04%** | 70.57% | −1.47 |
-| `all` | 83.18% | 62.10% | 76.24% | 88.29% | **88.54%** | +0.25 |
+It reframes the contribution. "A multilingual encoder beats TF-IDF on a trilingual ticket
+corpus" is a weak, expected result. What the split actually shows is sharper and more useful:
 
-**What is solid:**
+> multilingual pretraining transfers across *languages* it has seen, and does not transfer
+> across *scripts* it has not — and romanized code-mixed text, which is how customers in this
+> setting actually write, is precisely the case it does not cover.
 
-- **LaBSE `all` at 88.54% is the new intent champion**, +5.36pp over classical and +2.36pp over the
-  gate. It is the highest intent score ever measured on a held-out set in this project.
-- **Both Indic specialists fail outright on the pooled track.** MuRIL 62.10% and IndicBERT 76.24%
-  are *below* the 83.18% classical baseline — a specialist vocabulary is not a substitute for
-  multilingual coverage when the input mixes five tracks. MuRIL's 36k WordPiece vocabulary is the
-  same disqualification §7.2 reached from `[UNK]` rate alone (64.53% on Sinhala), now confirmed
-  downstream.
-- **IndicBERT buys nothing on Tanglish** — 61.25% against classical's 61.05%. The romanized track
-  needs web-scale informal pretraining, which is XLM-R's 2.5 TB CommonCrawl and not AI4Bharat's
-  curated Indic corpora.
+The classical baseline loses almost nothing by comparison on romanized input, because
+character n-grams never depended on the script being in a pretraining corpus in the first
+place.
 
-**What is not solid, and is stated more strongly in the source reports than the data supports:**
-
-> `final_baseline_report.md` §13 declares LaBSE the "undisputed champion" per track and XLM-R the
-> winner on Tanglish. **Every LaBSE − XLM-R gap in that table is 0.25–1.53pp.** §3.2's bootstrap puts
-> per-track 95% CI *widths* at 2.07–2.97pp on 3,079 rows and 1.17pp on the 15,395-row `all` track.
-> No CIs were computed for these runs, and each is a single seed. Per §0 rule 1, **LaBSE vs XLM-R is
-> a tie on every track including Tanglish.** What separates cleanly is transformer vs classical
-> (+3.15 to +10.99pp) and both multilingual models vs both Indic specialists (+12 to +26pp on `all`).
-
-So the ship decision is **LaBSE** — it wins or ties everywhere and takes the pooled track — but the
-"route Tanglish to XLM-R" recommendation in §13 of that report is not supported by a 1.47pp gap. If
-Tanglish volume justifies a second model later, that needs its own run with intervals.
-
-### 16.4 What this does not establish
-
-- **Single seed, no confidence intervals.** Everything in §16.3 beyond "transformers beat classical"
-  is within-noise ordering.
-- **No frozen-split run.** These models have never been scored on the swiftbench split, and the
-  §14/§15 models have never been scored on the official test split. The two intent workstreams have
-  no shared measurement (§10 item 2).
-- **No saved checkpoints in `ml/models/`.** Only the configs are committed; reproducing means
-  re-running on Colab.
-- **Intent only.** These architectures were not run on sentiment or priority here — LaBSE's standing
-  on those tasks comes from §4–§5, on the frozen split.
-- **Tanglish remains the weak track**, ~18pp below every other language even after fine-tuning
-  (§10 item 3). §11(b) now reads the 61% / 90% discrepancy as a dev-vs-test artifact.
+Generator: `paper/experiments/encoder_gain_by_script.py`
 
 ---
 
-## 17. OCR — engine selection for the multimodal ingestion path
+## 17. From classifier to queue — the Ticket Urgency Score
 
-Added 2026-08-12 from [`ocr_multimodal_ablation_report.md`](ocr_multimodal_ablation_report.md).
-Scripts and reproduction steps in [`ml/OCR/`](../OCR/README.md). This is the first section of this
-report that does not measure a classifier: image tickets (bank slips, receipts, error screenshots)
-have to become text before §16 can read them, and this measures how well that step works.
+Everything above measures what the models *know*. This section measures what that
+knowledge is worth to a support desk, which is a different question with a different
+answer. Design and full methodology: `paper/SYSTEM_PLAN.md`. Generators:
+`paper/experiments/{save_posteriors,scoring,queue_sim,run_system_eval,calibration}.py`.
 
-### 17.1 Setup
-
-| Item | Value |
-|---|---|
-| Images | **500** synthetic bank-screenshot renders × **4 conditions** = 2,000 evaluations |
-| Conditions | `clean`; `blur` (Gaussian radius 1.5); `rotation` (5°, expanded canvas, white fill); `low-resolution` (30% bilinear downscale → nearest upscale) |
-| Script groups | Latin 333/condition (English, Singlish, Tanglish, romanized Mixed-language), Sinhala 84, Tamil 83 |
-| Ground truth | the generator's own `visible_text` — exact, not transcribed |
-| Metric | **CER** via `jiwer`, lowercased and whitespace-normalised; empty prediction against non-empty truth scores 1.0. WER and per-image latency are also recorded |
-| Baseline engine | EasyOCR, **English/Latin model only**, run over every row |
-| Candidate engine | Tesseract, language-routed: `sin+eng` / `tam+eng` / `eng` on the metadata script column |
-
-The routing was verified rather than assumed: all 1,332 Latin-group rows — including the 332
-"Mixed-language" ones — contain **zero** Sinhala or Tamil codepoints, so no native-script image is
-being handed to the `eng` pack.
-
-### 17.2 EasyOCR vs language-routed Tesseract — the ranking inverts by condition
-
-CER, lower is better. Δ is Tesseract minus EasyOCR; **negative means Tesseract is better**.
-
-| Script | Condition | EasyOCR (Latin model) | Tesseract (routed) | Δ |
-|---|---|---:|---:|---:|
-| **Latin** | clean | 10.14% | **9.94%** | −0.20 |
-| **Latin** | rotation | 52.58% | **30.76%** | **−21.82** |
-| **Latin** | blur | **17.54%** | 34.96% | **+17.42** |
-| **Latin** | low-resolution | **46.58%** | 55.34% | +8.76 |
-| **Sinhala** | clean | 21.81% | **11.26%** | **−10.55** |
-| **Sinhala** | rotation | 58.20% | **33.93%** | **−24.27** |
-| **Sinhala** | blur | **29.11%** | 39.92% | +10.81 |
-| **Sinhala** | low-resolution | **57.07%** | 64.52% | +7.45 |
-| **Tamil** | clean | 26.41% | **10.63%** | **−15.78** |
-| **Tamil** | rotation | 60.28% | **31.97%** | **−28.31** |
-| **Tamil** | blur | **33.57%** | 34.45% | +0.88 |
-| **Tamil** | low-resolution | 60.13% | **58.49%** | −1.64 |
-
-**The decision, and it is the right one:** route native script to Tesseract. On clean input —
-the condition that dominates real uploads — Tesseract cuts Tamil CER by 15.78pp and Sinhala by
-10.55pp, bringing both native scripts to ~11%, level with Latin's 9.94%. Before routing, native
-script was 2–2.6× worse than Latin; after, the script penalty is gone. It also wins rotation by
-22–28pp, almost certainly Leptonica's built-in deskew doing work EasyOCR does not attempt.
-
-**Two caveats the source report does not carry:**
-
-1. **Tesseract is worse under blur and low-resolution** — on Latin by +17.42 and +8.76pp, on Sinhala
-   by +10.81 and +7.45pp. Those are not marginal, and blur plus low-resolution is *precisely* the
-   phone-camera / WhatsApp-forward case the augmentation suite was built to simulate. The report's
-   claim that Tesseract "completely resolved this bottleneck" holds for clean and rotated input only.
-   Logged as §10 item 9; a condition-aware fallback is unmeasured.
-2. **The EasyOCR arm is not an engine comparison at parity.** It ran the English/Latin model over
-   native-script images, so its 21.81% / 26.41% measure an engine reading a script it was not loaded
-   for. What this table establishes is that **language routing is required** — not that Tesseract's
-   recogniser is better than EasyOCR's given equal configuration.
-
-### 17.3 The OpenCV pre-processing ablation — every variant made it worse
-
-An OpenCV pre-processing stage was built to attack the degradation columns, and ablated away again:
-
-| Variant | Effect |
-|---|---|
-| Gaussian blur + Otsu binarization | CER spiked **over 80%** — Indic loops, curves and diacritics bleed together under global thresholding |
-| Auto-deskew + grayscale only | Sinhala `clean` regressed **11.26% → 15.55%** — even the mildest, most obviously-safe transform cost 4.3pp |
-
-**Mechanism:** Tesseract does not want raw pixels. Its internal Leptonica library already performs
-adaptive *localised* binarization and structural analysis tuned for the downstream LSTM. Handing it
-a pre-binarized or pre-deskewed matrix blinds those stages — the work is done twice, worse, and
-irreversibly.
-
-This is the same shape as §7.4 and §14.7: a plausible, well-intentioned pre-processing step that
-silently destroys information and raises nothing. → **decision 18: feed raw RGB.**
-
-### 17.4 Reproduction
-
-The 2,000 augmented images are gitignored; `metadata.csv` (the 500 ground-truth records fanned to
-2,000 rows) is committed. Regenerate and re-evaluate:
-
-```bash
-python ml/OCR/prepare_ocr_dataset.py     # labels.json → augmented images + metadata.csv
-```
-
-Evaluation runs on Kaggle rather than locally because the `sin` and `tam` packs are `apt` installs
-(`tesseract-ocr-sin`, `tesseract-ocr-tam`); `ml/OCR/README.md` carries the notebook cell, including
-the cross-platform zip one-liner that avoids Windows backslash paths breaking on Kaggle's Linux
-filesystem. Then `evaluate_tesseract.py` → `analyze_ocr_results.py`, or `evaluate_ocr.py` for the
-EasyOCR arm.
-
-### 17.5 What this does not establish
-
-- **Synthetic images, exact ground truth.** 500 generated screenshots degraded programmatically.
-  Real photographs add perspective, glare, shadow, cropping and JPEG artifacts that
-  `GaussianBlur(1.5)` and a 5° rotation do not model. Every CER here is an optimistic floor — the
-  same caveat that governs the romanized text tracks (§10 item 4).
-- **No downstream accuracy.** CER is a proxy. Nobody has fed Tesseract output into the §16 intent
-  classifier and measured what the 10–11% clean CER costs in macro-F1. That end-to-end number is
-  the one the pipeline claim actually rests on (§10 item 10).
-- **No latency figures.** `evaluate_tesseract.py` records per-image latency; the report does not
-  quote it. Same gap as §10 item 6 on the text path, and OCR is the slower half of the pipeline.
-- **Sinhala and Tamil hold 84 and 83 images per condition.** Small enough that a few catastrophic
-  failures move the mean several points, and no intervals were computed.
-- **Only two engines.** Google Cloud Vision, Surya, PaddleOCR and TrOCR are untested; the report
-  names Cloud Vision as the obvious next comparison. *(Cloud Vision tested 2026-09-04 — §17.7. Surya,
-  PaddleOCR and TrOCR remain untested.)*
-
-
-### 17.6 End-to-End Downstream Impact
-
-> **Scope note (2026-09-04).** Every figure in this subsection is computed from **Tesseract**
-> output, before Google Vision existed in this project. §17.8 repeats the measurement for both
-> engines and both routers, adds accuracy against the true label, and qualifies the router
-> conclusion below (§11 correction 10). The numbers here are reproduced exactly by
-> `ml/OCR/measure_end_to_end_ocr.py`, so they are correct as far as they go — they are simply
-> the Tesseract column of a larger table.
-
-# End-to-End OCR Impact on Intent Classification
-
-This report isolates the downstream impact of OCR Character Error Rate (CER).
-Since the synthetic dataset uses 15 simplified categories while the classifier outputs 77 BANKING77 intents,
-we use the classifier's prediction on the **clean ground truth text** as the target baseline.
-The F1 score below represents how well the classifier agrees with its own optimal prediction when forced to read noisy OCR text.
-
-| Condition | LaBSE Raw OCR vs Clean | LaBSE+SpellCheck vs Clean | SVM Raw OCR vs Clean |
-|---|---|---|---|
-| `clean` | 49.70% | 31.17% | **94.15%** |
-| `blur` | 39.56% | 30.74% | **45.32%** |
-| `rotation` | 48.29% | 26.58% | **69.30%** |
-| `low-resolution` | 30.05% | 25.47% | **30.36%** |
-| **OVERALL** | 34.18% | 23.42% | **35.37%** |
-
-**Conclusion:** The classical SVM router approach is definitively superior for OCR inputs. Subword tokenizers (LaBSE) degrade heavily on standard OCR noise (dropping to 49.7%), whereas classical TF-IDF (SVM) natively corrects and resists minor misspellings, retaining 94.1% accuracy on clean scans. Furthermore, trilingual spelling correction using SymSpell causes cross-lingual contamination that degrades performance further.
-
-### Why TF-IDF SVM Outperforms LaBSE on OCR
-
-1. **The LaBSE Tokenizer Problem (Too Strict):** LaBSE uses dense subword tokenization trained on perfectly spelled text. When OCR slightly misreads a word (e.g., "account" → "acc0unt"), the tokenizer shatters it into meaningless fragments (e.g., `["acc", "0", "unt"]`). This destroys the sentence's context, causing the model to plummet to 49% accuracy.
-2. **The TF-IDF N-Gram Advantage (Resilient):** TF-IDF uses statistical character n-grams. When it sees "acc0unt", it still extracts overlapping chunks like `"acc"` and `"unt"`. The Linear SVM simply learns that the presence of these overlapping fragments strongly correlates with the intent, completely ignoring the garbled noise in the middle and retaining 94% accuracy.
-
-### 17.7 Google Cloud Vision vs Tesseract — the engine §17.5 said was untested
-
-Added 2026-09-04 from [`ocr_google_vision_benchmark.md`](ocr_google_vision_benchmark.md). Same 2,000
-images, same `jiwer` CER/WER, same lowercase-and-whitespace normalisation, same language routing
-(`sin+eng`/`tam+eng` becomes Vision language hints `si`/`ta`/`en` off the same metadata column).
-Scored with `ml/OCR/evaluate_google_vision.py`, compared with `ml/OCR/compare_ocr_engines.py`.
-This closes the last bullet of §17.5 and settles §10 item 9.
-
-CER, lower is better. Δ is Vision minus Tesseract; **negative means Vision is better**.
-
-| Script | Condition | Tesseract (routed) | Google Vision | Δ |
-|---|---|---:|---:|---:|
-| **Latin** | clean | **15.82%** | 15.61% | −0.21 |
-| **Latin** | rotation | 23.35% | **14.97%** | **−8.38** |
-| **Latin** | blur | 45.40% | **16.62%** | **−28.78** |
-| **Latin** | low-resolution | 60.53% | **14.89%** | **−45.64** |
-| **Sinhala** | clean | **15.55%** | 16.36% | +0.81 |
-| **Sinhala** | rotation | 27.30% | **15.69%** | **−11.61** |
-| **Sinhala** | blur | 51.35% | **17.20%** | **−34.15** |
-| **Sinhala** | low-resolution | 71.99% | **16.64%** | **−55.35** |
-| **Tamil** | clean | **14.73%** | 15.71% | +0.98 |
-| **Tamil** | rotation | 23.98% | **15.03%** | **−8.95** |
-| **Tamil** | blur | 45.30% | **17.00%** | **−28.30** |
-| **Tamil** | low-resolution | 62.23% | **14.98%** | **−47.25** |
-
-Pooled: **Vision 15.71% CER / 11.28% WER, Tesseract 37.21% / 111.22%**, Vision better on **85.9%**
-of individual images, zero ties. Vision failed on **0 of 2,000** calls and returned no empty
-extractions.
-
-**The finding is the slope, not the mean.** On clean input the two engines are indistinguishable —
-three cells inside ±1pp, and Tesseract nominally ahead on both native scripts. Every point of
-Vision's advantage is bought on degraded input, where Tesseract's error triples-to-quadruples and
-Vision's does not move: 15.75% clean to 15.20% low-resolution, against Tesseract's 15.59% to 62.74%.
-Blur and low-resolution are the WhatsApp-forward case the augmentation suite exists to model, and
-they are exactly where §17.2 found Tesseract losing to even the mis-configured EasyOCR arm. That
-gap is now closed by an engine that does not have the weakness at all, rather than by the
-condition-aware fallback §10 item 9 proposed.
-
-**Tesseract's WER above 100% is the downstream story.** It inserts more tokens than the reference
-contains (clean Latin 122.17%, rotation Latin 141.55%) because it hallucinates glyphs out of UI
-chrome — app logos and signal bars come back as stray Indic characters. Vision's WER is 8.90–14.87%
-across every cell. Those phantom tokens do not stay in the OCR layer: they enter `original_text` and
-are fed to the TF-IDF/SVM router §17.6 measures.
-
-#### The reading-order floor — why 15.71% understates Vision
-
-Vision's CER never drops below 11.65% on any of the 2,000 images and its standard deviation is 1.79
-points. That uniformity is not recognition error. Inspection shows the body text transcribed
-verbatim, with the whole residual coming from serialisation order:
+### 17.1 The score
 
 ```
-Ground truth:  12:30 4G Nova Mobile Banking Secure transaction centre WAITING LKR 1,765.35 ...
-Vision output: 12:30 N Nova Mobile Banking Secure transaction centre [] 4G WAITING LKR 1,765.35 ...
+U(t, τ) = S(t) · (1 + α · age(t, τ) / D)
+S(t)    = w_P · Ê[sev|t] + w_S · P̂(Negative|t) + w_I · κ(intent(t))
 ```
 
-Vision emits the status-bar block after the header, where `metadata.csv` puts it first, and renders
-the signal icon as a placeholder glyph. Every synthetic ticket carries the same status bar, so this
-is a near-constant per-image tax. Re-scored order-insensitively (tokens sorted before alignment,
-which removes serialisation order while preserving every substitution, insertion and deletion):
+`Ê[sev|t] = Σ_k p̂_k · sev_k` over `sev = (Low 0, Medium ½, High 1)` — the **posterior,
+not the argmax**. `κ(i) = P̂(High | intent = i)` estimated on train+dev only. Aging is
+multiplicative so a stale Low climbs but still climbs more slowly than a stale High.
 
-| Script | clean | blur | low-resolution | rotation |
+**Weights fitted on dev, applied unchanged to test: `w_P = 0.80, w_S = 0.10,
+w_I = 0.10, α = 16`.** Dev posteriors come from a **train-only TF-IDF** fit; the saved
+LaBSE checkpoints were fit on train+dev and their dev posteriors are memorised.
+
+**The weight surface is flat and the exact vector is not the finding.** 71 of the 231
+simplex points sit within 5% of the optimum, spanning `w_P ∈ [0.10, 0.90]`. What the fit
+establishes is that priority carries most of the score and that no corner of the simplex is
+competitive — not that 0.80 is meaningfully better than 0.70. Reporting the argmin as
+though it were identified would overclaim; the full surface ships as
+`tus_weight_surface.csv`.
+
+Simulation: M/G/5, LogNormal service, mean 8 min; SLA 30 / 120 / 480 min for
+High / Medium / Low; 1,000 tickets per replication; 200 seeds; ρ ∈ {0.85, 0.95, 1.05}.
+Every one of those is a **stated assumption**, not a measurement from a real desk.
+
+### 17.2 The queue result
+
+Mean time-to-first-response for gold-High tickets, and attainment
+`(FIFO − TUS) / (FIFO − oracle)` — which separates "the scoring function is good" from
+"the classifiers are good":
+
+| ρ | FIFO | TUS | oracle | **attainment** | 95% CI |
+|---|---:|---:|---:|---:|---|
+| 0.85 | 5.78 | 1.13 | 0.99 | **0.971** | [0.966, 0.977] |
+| 0.95 | 16.76 | 1.54 | 1.30 | **0.985** | [0.982, 0.987] |
+| 1.05 | 52.46 | 1.98 | 1.47 | **0.990** | [0.988, 0.992] |
+
+TUS captures ~98–99% of the improvement a perfect classifier would deliver. The
+remaining headroom is a tenth of a minute, so **further classifier accuracy cannot
+buy much here** — a conclusion invisible from the F1 tables.
+
+### 17.3 Rank correlation is the wrong metric for a queue
+
+| system | Kendall τ_b | nDCG@10 | P(High)@10 | P(High)@100 |
 |---|---:|---:|---:|---:|
-| **Vision** — Latin | **2.36%** | 4.07% | 5.44% | 1.83% |
-| **Vision** — Sinhala | **2.97%** | 3.99% | 7.78% | 2.47% |
-| **Vision** — Tamil | **2.82%** | 4.74% | 6.12% | 2.40% |
-| **Tesseract** — Latin | 11.81% | 43.32% | 61.61% | 26.60% |
-| **Tesseract** — Sinhala | 10.69% | 50.82% | 73.40% | 31.60% |
-| **Tesseract** — Tamil | 11.62% | 45.10% | 67.95% | 28.31% |
+| predicted tier (argmax) | **0.822** | 0.351 | **0.50** | 0.90 |
+| TUS (LaBSE) | 0.686 | **1.000** | **1.00** | **1.00** |
+| priority posterior only | 0.690 | 1.000 | 1.00 | 0.99 |
+| oracle (gold tier) | 1.000 | 1.000 | 1.00 | 1.00 |
 
-Pooled: **Vision 3.67% vs Tesseract 37.21%**, Vision better on **99.8%** of images. Tesseract's
-figure is *unchanged* under this metric, which is the check that matters: its errors are genuine
-misreads, not ordering. Two consequences. Vision's real character accuracy is ≈96.3%, not ≈84%. And
-because the §17.6 router consumes bag-of-words TF-IDF, the order-insensitive column is the one that
-predicts downstream behaviour — a reordered status bar costs a bag-of-words model nothing.
+**The argmax-tier policy has the highest rank correlation of any system and the worst
+queue head.** τ rewards getting the global ordering right; the tier score is 3-valued
+like the gold label, so it scores well — but within the top tier every ticket ties and
+ordering is arbitrary, so half of the first ten tickets an agent opens are not urgent.
 
-#### Cost, latency, and what this does not establish
+A queue is consumed from the top. Selecting on τ would have picked exactly the wrong
+system. This is the concrete justification for evaluating triage at the queue level
+rather than with a ranking correlation.
 
-| Dimension | Tesseract | Google Vision |
-|---|---|---|
-| Latency / image | 0.435s local CPU | 0.699s network, batched 16/request |
-| Failure rate | n/a (local) | 0 / 2,000 |
-| Dependency | `tesseract-ocr` + `sin`/`tam` apt packs | HTTPS + API key |
-| Cost | free | 1,000 images/month free, then ~$1.50 / 1,000 |
-| Offline | yes | no |
+### 17.4 Script-based service disparity — and that the score largely closes it
 
-The full run cost ~$1.50. The two latency figures are **not comparable** — Vision's is a batched
-round trip amortised over 16 images, Tesseract's is local CPU time; the single-image serving figure
-is unmeasured on both (§10 item 6, same gap as the text path).
+Mean wait for gold-High tickets, **each track minus english**, ρ = 1.05, 200 seeds,
+bootstrap CIs (`paper/results/tables/tus_disparity.csv`):
 
-Carrying forward from §17.5, unchanged by this run: the images are still **synthetic** with exact
-generated ground truth (§10 item 11), Sinhala and Tamil still hold 84 and 83 images per condition
-with no intervals computed, and Surya, PaddleOCR and TrOCR remain untested. New to this run: the
-§17.6 end-to-end numbers were produced from **Tesseract** output, so the SVM router's 94.15% clean /
-35.37% overall agreement is a Tesseract-conditioned result. Re-running it on Vision text is the
-obvious next measurement and is the number that would actually justify the engine switch in product
-terms.
+| policy | singlish | sinhala | tamil | tamilish |
+|---|---:|---:|---:|---:|
+| FIFO | −0.85 [−2.23, +0.50] | −0.22 [−1.60, +1.19] | −0.23 [−1.85, +1.44] | −0.82 [−2.25, +0.59] |
+| **tier** (naive argmax) | **+4.07 [+2.96, +5.21]** | +0.37 [−0.56, +1.30] | −0.01 [−1.07, +1.07] | **+6.99 [+5.76, +8.19]** |
+| **TUS** | **+0.37 [+0.05, +0.68]** | +0.24 [−0.02, +0.49] | +0.02 [−0.21, +0.22] | **+0.50 [+0.26, +0.72]** |
+| oracle (gold control) | −0.02 [−0.09, +0.04] | 0.00 [−0.06, +0.07] | 0.00 [−0.07, +0.07] | −0.01 [−0.07, +0.06] |
 
-**Decision.** Promote Vision to primary (`SWIFT_OCR_ENGINE=google_vision`), keep Tesseract as the
-offline/outage fallback. The engine is selected at runtime in `backend/app/inference/ocr.py`; no
-call-site change is needed. Neither the switch nor the fallback is implemented as of this writing.
+Bold marks intervals excluding zero. Read the table as four nested controls:
 
-**One inconsistency this run exposes:** the Tesseract column above does not match §17.2's. See §11,
-inconsistency (c).
+- **Under FIFO, nothing.** All four contrasts straddle zero. FIFO never reads the ticket,
+  so there is nothing for a script to degrade — the arrival process contributes no gap.
+- **Under the gold-label control, nothing.** Same tickets, same arrival stream, labels not
+  predicted. Any gap in between is therefore **attributable to the model**.
+- **Under the naive deployment, exactly and only the two romanized tracks.** Singlish
+  +4.07 min and Tanglish +6.99 min; the two *native* non-English tracks are
+  indistinguishable from English. This is §16's native-versus-romanized finding expressed
+  in minutes of customer waiting time, and it is a sharper result than §16's, because
+  Sinhala and Tamil come out at zero rather than merely smaller.
+- **TUS cuts both by about an order of magnitude** — singlish +4.07 → +0.37, tamilish
+  +6.99 → +0.50. Paired on the simulation seed it removes **3.70 min [2.57, 4.85]** of the
+  singlish gap and **6.49 min [5.32, 7.77]** of the tamilish one. It does not remove all of
+  it: both residuals still exclude zero.
 
-### 17.8 What each OCR engine costs the intent router
+**The finding does not depend on the unstable track.** §18 shows tamilish carries 60.3% OOV
+against its own train split (versus 20–30% everywhere else) because its romanization is
+non-deterministic, which inflates every tamilish test number. **Singlish carries the result on its own** — +4.07 min under the naive policy,
+with a wholly ordinary OOV profile — and singlish and tamilish behave alike here, which is
+what the script hypothesis predicts and the data-defect hypothesis does not.
 
-Added 2026-09-04. §17.6 measured this for Tesseract only; §17.7 flagged that the engine now
-recommended for production was the untested one. This closes that gap and adds a second metric.
-Scripts: `ml/OCR/measure_end_to_end_ocr.py` (self-agreement, both routers, both engines) and
-`ml/OCR/measure_intent_accuracy.py` (accuracy against the true label). Both re-derive §17.6's
-Tesseract column exactly — 94.15 / 45.32 / 69.30 / 30.36 SVM and 49.70 / 39.56 / 48.29 / 30.05
-LaBSE — so the method is the same one, extended.
+The mechanism is the one the score was designed for: `κ(intent)` is a script-robust prior
+that backstops the priority head where the text is degraded, and the continuous posterior
+avoids the tier collapse that makes the argmax policy discriminate hardest exactly where it
+is least accurate.
 
-#### A. Self-agreement — does the router still reach its own clean-text answer
+**A note on the summary statistic.** An earlier draft reported the max-minus-min *spread*
+across the five tracks. That statistic is upward-biased — it selects the extreme of five
+noisy means — and the proof is that FIFO scores a "spread" of 16.2 minutes while every one
+of its fixed contrasts is indistinguishable from zero. The spread is retained in the table
+as `spread_biased` with that caveat; the contrasts are what the paper reports.
 
-The §17.6 metric. The target is the router's own prediction on clean ground-truth text, because the
-synthetic set carries 15 categories and the routers emit 77 BANKING77 intents. `exact` is plain
-agreement; `F1` is macro-F1 over 77 classes and collapses when a rare intent takes a few hits.
+### 17.5 What the encoder's accuracy advantage buys the queue: nothing measurable
 
-| Router | Condition | Tesseract F1 | Tesseract exact | Vision F1 | Vision exact |
-|---|---|---:|---:|---:|---:|
-| **SVM** | clean | 94.15% | 94.40% | **100.00%** | **100.00%** |
-| **SVM** | blur | 45.32% | 74.80% | **100.00%** | **100.00%** |
-| **SVM** | rotation | 69.30% | 92.80% | **99.85%** | **99.80%** |
-| **SVM** | low-resolution | 30.36% | 64.80% | **86.38%** | **98.20%** |
-| **SVM** | **overall** | **35.37%** | **81.70%** | **87.21%** | **99.50%** |
-| **LaBSE** | clean | 49.70% | 74.00% | 65.47% | 87.80% |
-| **LaBSE** | blur | 39.56% | 70.60% | 62.63% | 84.60% |
-| **LaBSE** | rotation | 48.29% | 70.20% | 73.27% | 91.00% |
-| **LaBSE** | low-resolution | 30.05% | 62.60% | 54.15% | 81.20% |
-| **LaBSE** | **overall** | **34.18%** | **69.35%** | **58.32%** | **86.15%** |
+Same score, same weights, priority and sentiment posteriors swapped
+(ρ = 1.05, 200 seeds):
 
-On the production path — SVM, which is what `is_ocr=True` routes to — **Vision text reproduces the
-typed-text routing decision on 99.50% of images**, against Tesseract's 81.70%. That is 10 flipped
-tickets in 2,000 instead of 366. All 10 sit in the degraded conditions (9 low-resolution, 1
-rotation) and are marginal rather than catastrophic: their mean CER is 17.5% against 15.7% for the
-rest, so they are borderline routing decisions tipped by a word, not garbled text.
+| | LaBSE | TF-IDF |
+|---|---:|---:|
+| priority macro-F1 (test) | **0.8901** | 0.8706 |
+| High mean wait | 1.98 min | **1.80 min** |
+| High median wait | 1.11 | **1.10** |
+| High p95 wait | **5.32** | 5.42 |
+| High p99 wait | 13.27 | **12.05** |
+| **High worst-case wait** | **362.1** | **97.9** |
 
-**One number here is a measured argument for a change we have not made.** LaBSE flips on 12.2% of
-images even on *clean* Vision text that is character-for-character correct. The cause is the
-reading-order artifact of §17.7: Vision emits the status bar after the header, and LaBSE reads
-sequence. TF-IDF is bag-of-words and invariant to it, which is why SVM scores 100.00% on the same
-rows. Dropping status-bar blocks by bounding box — Vision returns per-block geometry that
-`backend/app/inference/ocr.py` currently discards — is therefore worth ~12pp *if* image tickets are
-ever routed to an encoder, and worth nothing on today's SVM path.
+The more accurate model is not the better queue. Through the median and the 95th
+percentile the two are indistinguishable — tenths of a minute, changing sign. They
+separate in the **tail**, where LaBSE's worst-served urgent ticket waits **six hours
+against TF-IDF's ninety-eight minutes**.
 
-#### B. Accuracy against the true label
+The claim is not "TF-IDF wins": it is that **a 2-point macro-F1 advantage buys nothing
+through the body of the queue and costs something in the tail.**
 
-Self-agreement cannot see an error both texts share. This arm scores against `labels.json` through a
-hand-built bridge from the 15 synthetic categories to the BANKING77 intents that mean the same thing
-(`ACCEPTABLE` in `measure_intent_accuracy.py`); a prediction is correct if it lands anywhere in the
-set. The 132 `OTP not received` rows are excluded — no BANKING77 intent expresses "the one-time
-passcode never arrived", so no router can be right on them. 1,868 rows scored.
+The mechanism is in the tail, and it is a metric F1 cannot see:
 
-| Router | ground truth (ceiling) | Tesseract | Google Vision |
+| | gold-High missed | **buried below score 0.1** | missed-High mean Ê[sev] |
 |---|---:|---:|---:|
-| **SVM** | 78.16% | 77.25% | **78.27%** |
-| **LaBSE** | 79.23% | 76.77% | **77.94%** |
+| LaBSE | 165 / 1460 (11.3%) | **68** | 0.274 (p10 = 0.002) |
+| TF-IDF | 193 / 1460 (13.2%) | **8** | 0.407 (p10 = 0.157) |
 
-**Vision costs nothing.** Both routers on Vision text sit within ~1pp of their own perfect-text
-ceiling, and SVM on Vision is level with it in every condition (78.16 / 78.16 / 77.94 / 78.80
-against a flat 78.16 ceiling).
+LaBSE makes **fewer** mistakes and **8.5× more confident** ones. A confidently-missed
+High falls to the bottom of the queue and stays there — which is exactly the six-hour
+worst case above; a hedged miss lands mid-queue and is picked up soon. Macro-F1 counts
+both as one error.
 
-**Tesseract's 77.25% overall is not a real score.** Per condition it reads 73.66 clean, 71.09
-low-resolution — and **86.94 on blur, above the 78.16 perfect-text ceiling** (LaBSE shows the same
-impossibility, 84.80 against 79.23). Corrupting text cannot improve comprehension; what it does is
-destroy tokens that were driving a systematically wrong answer, flipping some rows into the
-acceptable set by luck. Read Tesseract's accuracy column as noise, and the self-agreement table in
-§A as the reliable comparison.
+**Buried urgent tickets — gold-High scored below 0.1 — is a triage-specific error metric
+worth reporting alongside F1.** It is what the queue actually feels.
 
-#### C. The bottleneck has moved out of OCR
+### 17.6 A refuted hypothesis, kept visible
 
-The ceiling is ~78%, and the missing 22% is unrelated to image quality. On **perfect** text the SVM
-router does this:
+Calibration measured per track (`paper/results/tables/calibration.csv`) supported a
+tidy explanation:
 
-| True category | Router's answer on perfect text | Rate |
+| priority, test | LaBSE | TF-IDF |
+|---|---:|---:|
+| macro-F1 | 0.8901 | 0.8706 |
+| ECE | 0.0658 | **0.0180** |
+| over-confidence | +0.066 | −0.017 |
+| ECE on tamilish | **0.1071** | 0.0235 |
+
+LaBSE is the more accurate model, 3.7× the worse calibrated, and worst calibrated
+exactly on the track it is least accurate on — the double penalty predicted in
+`SYSTEM_PLAN` §3 Layer 4. The obvious inference was that calibration causes the queue
+gap and temperature scaling would close it.
+
+**It does not** — and this is now a **held-out result**, not the sensitivity analysis it
+was. A train-only LaBSE run (tracker E6b) supplied clean dev posteriors, so the temperature
+is fitted the way deployment would fit it: on data the model never trained on.
+
+The two estimates agree, which is worth noting because it means the earlier cross-fitted
+figure was not an artifact of touching test: **T = 2.347 / 1.919** (priority / sentiment)
+fitted on clean dev, against 1.93 / 1.89 cross-fitted. Same direction, same magnitude.
+
+Fitting it properly makes the queue **worse than the cross-fitted version did**:
+
+| | ECE (priority) | High mean wait | tamilish − english |
+|---|---:|---:|---:|
+| LaBSE uncalibrated | 0.0658 | **1.98** | **+0.50** |
+| T cross-fitted on test halves | **0.0180** | 2.32 | +0.72 |
+| **T fitted on clean dev (held out)** | — | **2.65** | **+0.97** |
+
+The properly-calibrated system serves urgent tickets **34% more slowly** and nearly
+**doubles** the cross-script disparity.
+
+Softening the distribution compresses `Ê[sev]` toward the middle for *every* ticket,
+which costs discrimination everywhere in exchange for rescuing the confident errors it
+cannot identify. **ECE is agreement between top-1 confidence and accuracy; a queue needs
+posteriors that separate tickets.** Those are not the same objective, and "calibrate
+before you score" — standard advice — was wrong here.
+
+The buried-ticket asymmetry in §17.5 stands as the mechanism; ECE is a symptom of it,
+not the handle on it.
+
+### 17.7 The objective that selected a degenerate system
+
+Recorded because any triage study can walk into it. The first fitting objective was
+absolute tardiness weighted by severity (Low 0.5 / Medium 1.0 / High 1.5). The class
+mix is 55% Low / 36% Medium / 9% High, so **Low carried 0.275 of the objective's mass
+against High's 0.143** — it rewarded not starving Low nearly twice as much as serving
+High. The argmin was `w = (0, 0, 1)`: intent criticality alone, a scorer that cannot
+separate Medium from Low at all (κ ≈ 0.023 for both) and whose top-100 precision on
+gold-High is 0.77 against the fitted system's 1.00.
+
+The fix is to denominate lateness in units of the promise made to that customer —
+relative tardiness, `max(0, wait − d) / d` — so a High 30 minutes late and a Low 480
+minutes late both score 1.0. **Weighting classes by population share rather than by
+urgency inverts what a triage system is for.**
+
+### 17.8 The aging term is a dial, not a fitted constant
+
+| α | High mean wait | Low p95 wait | relative tardiness |
+|---|---:|---:|---:|
+| 0 | 1.78 | 600.7 | 0.031 |
+| 1 | 1.76 | 447.3 | 0.011 |
+| 8 | 1.94 | 382.3 | 0.007 |
+| **16 (fitted)** | 1.97 | 372.6 | 0.006 |
+| 32 | 2.01 | 365.8 | 0.006 |
+| 128 | 2.21 | 361.1 | 0.006 |
+
+A real frontier: without aging the score starves Low tickets for ten hours at the 95th
+percentile. The objective is nearly flat above α ≈ 8 while High wait keeps degrading,
+so the fitted α = 16 sits on a plateau rather than at the grid edge — the grid was
+extended to 128 to confirm that. **α is a policy dial for the desk to set along this
+frontier, not a constant this study should claim to have optimised.**
+
+### 17.9 Where this leaves the paper
+
+| | contribution | status |
 |---|---|---|
-| Cash not received | `passcode_forgotten` | 132/132 wrong |
-| Cash withdrawal failure | `failed_transfer` | 136/136 wrong |
-| Refund pending | `passcode_forgotten` | 68/132 wrong |
-| Wrong exchange rate | `passcode_forgotten` | 68/136 wrong |
+| C1 | five-track corpus, frozen split, measured label ceiling | done |
+| C2 | multilingual pretraining transfers across languages, not scripts; mechanism is `[UNK]`, not fertility | done (§16, §14) |
+| **C3** | **a ticket-ordering system consuming posteriors, and a queue-level evaluation methodology** | **done (§17.1–17.3)** |
+| **C4** | **script-based service disparity, and that the score removes ~85% of it** | **done (§17.4)** |
+| **C5** | **accuracy does not transfer to the queue; confident errors are what the queue feels** | **done (§17.5–17.6)** |
 
-`passcode_forgotten` absorbs **332 of 2,000** predictions (16.6%) and the router emits only **14 of
-its 77 classes** on this data. The pattern is language-independent. This is a label-space failure,
-not a text-quality one: BANKING77 is a UK-fintech taxonomy with no intent for "the ATM debited me
-and dispensed no cash", so there is nowhere correct for the router to put it. §10 item 12.
+C1–C2 are the NLP track; C3–C5 are the use-case track. C4 is the join: the cost of C2
+is not visible until C3 exists to measure it.
 
-#### D. This qualifies §17.6's router conclusion
+### 17.10 The recommended system
 
-§17.6 concludes the classical SVM is "definitively superior for OCR inputs". On its own metric it
-is: 99.50% vs 86.15% self-agreement on Vision text. On **accuracy against the true label the two
-routers are indistinguishable** — 78.27% vs 77.94%, well inside the resolution of the hand-built
-label bridge. Both are true. LaBSE is markedly less *stable* under OCR noise, but its instability
-mostly reshuffles predictions inside categories it was already getting wrong, so accuracy barely
-moves. The SVM remains the right production choice on stability, cost and no-GPU grounds; the
-"definitively superior" phrasing overstates the accuracy evidence. Logged as §11 correction 10.
+What the evidence above actually supports deploying, as against what a benchmark table
+would have suggested.
 
-#### E. What this does not establish
+| decision | recommendation | why |
+|---|---|---|
+| **Consume the posterior, not the argmax** | required | §17.3 — the argmax-tier policy has the best rank correlation and half its first ten tickets are not urgent |
+| **Priority head** | LaBSE **or** TF-IDF | §17.5 — a 2-point macro-F1 advantage buys nothing through the body of the queue. TF-IDF is ~1,000× cheaper to serve. Prefer LaBSE only if the tail matters less than the mean, which is unusual for a desk |
+| **Sentiment head** | **do not deploy a second encoder** | ablation: w_S fits to 0.10 and removing it costs little. §13 already showed half the Negative signal is reachable from intent alone. A 1.9 GB model for a 0.10 weight on a redundant signal is not worth serving |
+| **Intent term κ(i)** | keep — it is 77 floats | script-robust prior that backstops the priority head where the text is degraded; it is a lookup table, not a model |
+| **Aging α** | expose as a dial, default 8–16 | §17.8 — a real frontier. Without aging the score starves Low tickets for ten hours at p95 |
+| **Calibration** | **do not temperature-scale** | §17.6 — it fixed ECE and made the queue worse |
+| **Escalation gating** | never | 0.67 Negative recall. The score is an ordering, not a decision |
+| **Monitor** | buried-urgent count, and wait by language | §17.5 and §17.4 — both are invisible to macro-F1, and both are what the desk and the customer actually feel |
 
-- **The label bridge is hand-built.** Widening or narrowing an `ACCEPTABLE` set moves the numbers,
-  and both routers hit the same ~78% ceiling because both fail the same unmappable categories. The
-  accuracy metric therefore has limited resolution — it cannot separate two routers a point apart.
-  The per-category table is printed with every run so the map stays auditable.
-- **Same synthetic images.** Every caveat in §17.5 and §17.7 still applies; nothing here has met a
-  real photograph.
-- **Neither number is a production accuracy claim.** These measure a router reading OCR text against
-  a 15-category synthetic taxonomy, not the shipped 77-way system on real tickets.
+The uncomfortable summary: **the cheapest classifier in the roster, consumed properly,
+serves this queue as well as the best one.** The scoring function and the aging dial
+matter more than the encoder, and the one thing worth spending on is not a bigger model —
+it is the labels, which cap sentiment at 0.7931 (§11).
+
+**What would change this conclusion.** Attainment is already 0.97–0.99 (§17.2), so the
+gap between the deployed system and a *perfect* classifier is a tenth of a minute at every
+load tested. That is a strong claim resting on assumed arrival and service parameters
+(tracker E10); a real desk running hotter, or with a heavier-tailed service distribution,
+would widen the room a better classifier could occupy. The load sweep is there so that a
+reader with real numbers can find their own row.
+
+---
+
+## 18. Intent on test — the first clean numbers, and a corpus defect they exposed
+
+K6b: `labse`, `mmbert`, `xlmr-base`, 6 epochs, lr 2e-5, batch 32, fp16, seed 42, fitted on
+`train+dev` (49,990 rows), scored once on test (15,395 rows). All three record
+`epoch_selection = final-epoch` with `best_epoch = 6 of 6`, so **the epoch-selection defect
+is inert here by construction** — there was no earlier epoch to select.
+
+### Macro-F1 (%), frozen split `e7b5934392cd`, v8
+
+| model | pooled | english | sinhala | tamil | singlish | **tamilish** |
+|---|---:|---:|---:|---:|---:|---:|
+| **LaBSE** | **88.35** | 94.12 | **93.19** | **93.29** | **90.34** | 69.28 |
+| XLM-R base | 88.01 | 94.02 | 92.44 | 91.51 | 89.87 | **70.67** |
+| mmBERT | 86.80 | 93.74 | 91.23 | 91.47 | 90.13 | 65.66 |
+
+On dev, mmBERT and LaBSE were statistically indistinguishable (Δ = −0.0001, p = 0.944). On
+test the order is **LaBSE > XLM-R > mmBERT**.
+
+### 18.1 The dev tie does not survive on test — and the gap is a script gap
+
+K6b wrote no per-row predictions, so this was initially a point estimate. The checkpoints
+came back, so the predictions were recovered by re-running inference over the same frozen
+test set (`paper/experiments/intent_test_predictions.py`, reproducing both recorded scores
+to within 1e-4). The paired tests are therefore now possible.
+
+**LaBSE − mmBERT, intent test macro-F1:**
+
+| slice | Δ | 95% CI | McNemar |
+|---|---:|---|---|
+| all five tracks | **+0.0155** | [+0.0114, +0.0197] | p = 7.8e-13 |
+| tamilish excluded | **+0.0106** | [+0.0066, +0.0148] | p = 7.1e-07 |
+| english | +0.0037 | [−0.0036, +0.0113] | p = 0.375 — **n.s.** |
+| **sinhala** | **+0.0196** | [+0.0117, +0.0276] | p = 1.8e-06 |
+| **tamil** | **+0.0178** | [+0.0102, +0.0263] | p = 2.8e-05 |
+| singlish | +0.0022 | [−0.0080, +0.0118] | p = 0.742 — **n.s.** |
+| tamilish *(defective track)* | +0.0363 | [+0.0227, +0.0506] | p = 1.7e-07 |
+
+**mmBERT is beaten on test**, and the result survives dropping the defective track. But the
+pooled number hides the shape: **the advantage is confined to the two non-Latin scripts.**
+English and Singlish — both written in Latin characters — show no difference at all. Sinhala
+and Tamil both show ~+0.018 to +0.020.
+
+So LaBSE's edge over mmBERT here is a **script-coverage** edge, consistent with its 501k
+vocabulary, not a general modelling edge. This is a third independent sighting of the
+native/romanized structure in §16 and §17.4, and the first in a contrast between two
+*encoders* rather than between an encoder and a classical baseline.
+
+**A caution on reading the dev-to-test flip.** The dev comparison was fitted on `train`; the
+test comparison on `train+dev`. They are different fits, so "a tie became a win" may be a
+fit-portion effect as much as a generalisation one. What is solid is the test result itself,
+which is a single-shot comparison of two models fitted identically.
+
+**And it corroborates §18.2.** Tamilish is Latin script, so by the pattern above it should
+behave like english and singlish and show *no* gap. It shows the largest gap of any track.
+That is what a degraded input looks like — when the text is broken, model capacity starts to
+matter on a track where it otherwise would not.
+
+For reference, against the classical champion on the same test set: **LaBSE − tfidf-svm =
++0.0526 [+0.0475, +0.0579]**, McNemar p = 3.2e-87.
+
+### 18.2 The tamilish column is not a model result — it is a corpus defect
+
+Tamilish scores 65–71 on test against **91.2–91.7 on dev**, a drop of ~22 points that no
+other track shows (english, sinhala and tamil move by 1–3 points; singlish by 2).
+
+That asymmetry is not a generalisation gap. It is a vocabulary discontinuity between the
+train and test renderings of that one track:
+
+| track | OOV rate, dev vs train | **OOV rate, test vs train** |
+|---|---:|---:|
+| english | 14.8% | 20.3% |
+| singlish | 13.3% | 27.8% |
+| sinhala | 13.7% | 30.2% |
+| tamil | 21.6% | 29.8% |
+| **tamilish** | 22.3% | **60.3%** |
+
+Every track's OOV rate rises from dev to test — dev is carved from the BANKING77 *train*
+file while test is the official *test* file, so some rise is expected. Tamilish rises
+**38 points**, against 6–17 for everything else, and its dev figure (22.3%) is unremarkable
+and in line with tamil's.
+
+**The cause is romanization instability, not a second pipeline.** An earlier draft of this
+section attributed the gap to the test file having been produced by a different process.
+That was wrong, and the vocabulary statistics say so plainly:
+
+| track | train vocabulary | test vocabulary | test types also seen in train |
+|---|---:|---:|---:|
+| singlish | 3,293 | 1,823 | **72.2%** |
+| **tamilish** | **7,250** | 4,744 | **39.7%** |
+
+Both tracks render the same 8,500 training tickets, and tamilish needs **2.2× the vocabulary**
+to do it. That is the signature of a romanization step emitting many spellings for one
+underlying word — not of two different corpora.
+
+The corpus documentation already holds the reason. **Singlish is rule-generated** from the
+Sinhala text, so it is deterministic: one Sinhala word, one Latin spelling, every time.
+**Tanglish is machine-translated**, so the Latin form is produced freely and the same Tamil
+word can surface several ways. One process, applied consistently — the instability is
+intrinsic to the method, not a fault in how it was run.
+
+Corroborating: tamilish test text averages **more characters but fewer words** than tamilish
+train (71.5 chars / 8.74 words vs 68.6 / 9.79) — the same content spelled longer — and
+tamilish is the only track with duplicate test strings (3,034 unique of 3,079). Its 0.23%
+train/test text overlap, the lowest of any track and previously filed under "less leakage,
+good", is the same instability seen from the other side: near-zero overlap because
+near-nothing is spelled the same way twice.
+
+**The consequence for the numbers is unchanged.** A vocabulary that does not transfer
+between splits is a vocabulary the model cannot use, whatever produced it.
+
+**Consequences, stated plainly.**
+
+- The tamilish intent test number measures a train/test transliteration mismatch, not a
+  model's handling of romanized Tamil. It must not be quoted as the latter.
+- The effect is task-dependent: priority on tamilish is 0.8142 macro-F1 against english's
+  0.9229 — a 10.9-point gap, not a collapse. A 3-way task tolerates vocabulary drift that a
+  77-way task does not.
+- **§16 and §17 do not rest on it.** §16's tamil−tamilish difference-in-differences was
+  already not significant (p = 0.762), so the defect did not manufacture a positive result
+  there; and §17.4's disparity is carried by **singlish**, whose OOV profile is normal —
+  see §17.4.
+- This is a **data-side finding, not a modelling one**. The fix is a deterministic
+  romanization step for Tanglish, matching how Singlish is generated (tracker E11). Until
+  then the dataset card must carry it.
+- It predicts something testable, and the prediction holds: any task whose difficulty scales
+  with vocabulary size should degrade on tamilish and not elsewhere. 77-way intent drops 22
+  points dev to test; 3-way priority drops about 1.
+
+---
+
+## 19. Priority on dev — six encoders, and a second sighting of MuRIL's tokenizer
+
+K3: the full encoder roster on priority, 6 epochs, fitted on `train`, scored on `dev`.
+`epoch_selection = best-on-dev`: the recorded figure is the best epoch's dev score, so it is
+a **selection-optimistic estimate of dev performance**. All six models receive identical
+treatment, so the comparison between them is fair; the absolute values are not held-out
+numbers and must not be read as such.
+
+### Macro-F1 (%), priority, dev
+
+| model | pooled | english | sinhala | tamil | singlish | tamilish |
+|---|---:|---:|---:|---:|---:|---:|
+| **LaBSE** | **91.67** | 92.60 | 92.51 | 92.03 | 90.74 | 90.46 |
+| XLM-R base | 91.55 | 92.53 | **92.58** | 91.68 | 90.89 | 90.05 |
+| mmBERT | 91.30 | **92.79** | 91.74 | 91.27 | 91.22 | 89.48 |
+| IndicBERT | 90.88 | 92.53 | 89.28 | 91.98 | **91.37** | 89.22 |
+| TwHIN-BERT | 89.87 | 90.30 | 89.87 | 90.04 | 90.34 | 88.78 |
+| MuRIL | 89.57 | 92.23 | **83.13** | 91.09 | 91.08 | 90.31 |
+
+**The roster is flat.** 2.1 points separate six architectures, and the top three sit inside
+0.4 of each other. Priority is the task where model choice matters least — consistent with
+§17.5, where swapping LaBSE for TF-IDF changed the queue by fractions of a minute.
+
+**MuRIL's Sinhala deficit reappears, with the same signature and a smaller magnitude.** Its
+sinhala score is 83.13 against its own english 92.23 — a 9.1-point hole on exactly one
+track, while its romanized tracks (singlish 91.08, tamilish 90.31) are among the roster's
+best. This is the §14 mechanism seen on a second task: MuRIL maps 64.5% of Sinhala
+characters to `[UNK]`, and no amount of fine-tuning recovers them.
+
+The magnitude is instructive. The same tokenizer destruction costs ~14 points on 77-way
+intent and ~9 on 3-way priority. **A coarser label space tolerates more input destruction**
+— which is the same lesson §18 draws from the opposite direction, where a vocabulary shift
+that costs priority 10.9 points costs intent 24.8.
+
+---
+
+## 20. Register, measured before the comparison is run
+
+The translation comparison (tracker B2) has no external system collected yet. This section
+records the metric and **this corpus's own numbers on it, fixed in advance**, so the
+comparison cannot later be steered toward a favourable conclusion.
+
+### 20.1 Why not chrF or BLEU
+
+Scoring competing systems against *our* translation as the reference measures similarity to
+us. We would score 1.0 by construction and every legitimate paraphrase would be penalised.
+That is the definition of the metric, not a finding. The comparison is therefore
+**reference-free**: COMET-Kiwi QE, LaBSE source–translation cosine, and blind human
+adequacy/fluency ratings, all three systems on identical terms.
+
+### 20.2 The one axis a domain corpus can legitimately claim
+
+The corpus was built with an explicit instruction to **keep English banking loanwords in
+English** — *card*, *account*, *PIN*, *ATM*, *top-up* — because that is what a Sri Lankan
+bank customer types. Generic MT tends to nativise them into formal coinages nobody says
+aloud. So define, over a fixed 31-term lexicon taken from the corpus prompt itself:
+
+```
+retention(system, w) = P(translation contains w in Latin script | source contains w)
+```
+
+Countable, comparable, and able to lose.
+
+### 20.3 The two tracks were not built to the same standard
+
+| track | loanword retention | Latin character fraction |
+|---|---:|---:|
+| **Sinhala** | **0.6456** | **0.3529** |
+| **Tamil** | **0.0759** | 0.0183 |
+
+`paper/results/tables/register_summary.csv`, 150-row sample, 77/77 intents.
+
+The Sinhala track keeps roughly **two-thirds** of English banking terms in English and is
+35% Latin by character. The Tamil track keeps **under eight percent** and is essentially
+pure Tamil script.
+
+**These are not two renderings of one editorial policy.** They are two different policies,
+and only the Sinhala one implements the code-mixing the corpus documentation claims. So:
+
+- For **Sinhala** there is a specific, falsifiable claim available — that this corpus matches
+  the register of Sri Lankan banking support better than generic MT — which the comparison
+  can confirm or refute.
+- For **Tamil** the claim is very likely **false**, and should not be made. At 7.6%
+  retention the Tamil track is formal-register translation, and a frontier model instructed
+  to code-mix would beat it on this metric trivially.
+
+This is a **register decision, not a pipeline difference.** The two tracks came out of the
+same corpus process; what differs is how much English survived translation into each target
+language. Alongside `corpus_stats.py`'s 40.35%-vs-1.26% Latin split and §18.2's romanization
+instability, the consistent picture is that **the Sinhala side preserved the code-mixing the
+documentation describes and the Tamil side did not** — so the documentation's claim holds for
+one track of two, and the paper should say which.
+
+### 20.4 What this study is not allowed to conclude
+
+That this corpus is the best translation, on the grounds that we would like it to be. Raw
+adequacy is where a frontier model most plausibly wins: our Sinhala and Tamil are
+machine-translated and unaudited at scale, and §18.2 shows at least one track has a
+provenance defect. **A comparison whose conclusion is fixed in advance is not evidence**,
+and a reviewer who spots reference-based scoring against our own text will discount every
+other number in the paper.
+
+If we lose, that is publishable and cheap to say: it motivates the v1.1 retranslation that
+§18.2 already requires, and a corpus paper that reports its own resource's weaknesses is
+more credible, not less.
+
+
+---
+
+## 21. Decoders on test — a 270M LoRA decoder ties a bag of character n-grams
+
+A5, first slot. `gemma-3-270m`, LoRA on all seven projections (r=8, α=16), lr 1e-4, batch 32,
+6 epochs, fitted on `train+dev` (49,990 rows), scored once on test (15,395 rows).
+`epoch_selection = final-epoch` with `best_epoch = 6 of 6`, so the epoch-selection defect is
+**inert by construction** — there was no earlier epoch to select.
+
+### 21.1 Intent, test, frozen split `e7b5934392cd`, v8
+
+| family | model | macro-F1 |
+|---|---|---:|
+| encoder | **LaBSE** | **0.8835** |
+| encoder | XLM-R base | 0.8801 |
+| encoder | mmBERT | 0.8680 |
+| classical | tfidf-svm | 0.8308 |
+| **decoder** | **gemma-3-270m** (LoRA-all) | **0.8305** |
+| classical | tfidf-logreg | 0.8189 |
+| classical | tfidf-sgd | 0.8115 |
+| classical | tfidf-cnb | 0.6792 |
+
+**The decoder lands 0.0003 below TF-IDF + linear SVM and 5.3 points below LaBSE.** On a 77-way
+intent task at this corpus size, a 270M-parameter autoregressive model adapted with LoRA buys
+nothing over character n-grams and a linear margin, while a 471M bidirectional encoder
+fine-tuned end-to-end beats both comfortably.
+
+This is the cheap version of the claim the SLM literature invites, and it goes the other way.
+It belongs in the paper as a negative result with the cost attached: the decoder run cost
+2,694 GPU-seconds; `tfidf-svm` fits on a laptop CPU in under a minute for the same score.
+
+### 21.2 `gemma-3-1b` OOM'd and is not yet in this table
+
+The 1B model **failed to train at all** — CUDA OOM 88 seconds in, before the first step, at
+batch 32 × seq 128 with adapters on all seven projections (it asked for 90 MiB with 14.50 GiB
+of the card's 14.56 GiB already committed). Relaunched at **batch 8**.
+
+**Comparability caveat, to be stated wherever both decoders appear:** the retry runs at batch 8
+against `gemma-3-270m`'s batch 32. The two decoders are matched on epochs, lr, LoRA config,
+fit portion and split, but **not on batch size**. Compare each against the encoder and
+classical rosters; do not read a 1b-vs-270m difference as a scale effect until one is re-run.
+
+The pre-v8 `gemma-3-1b` records already in `ml/reports/runs/` (intent test 0.8586, sentiment
+0.7126, priority 0.8898) are **not** substitutes: they carry no `label_version` stamp and were
+produced under the pre-patch epoch-selection path.
+
+### 21.3 Seed sensitivity, measured once
+
+`labse` sentiment test re-run at **seed 43** (seed 42 = the record the paper quotes):
+
+| | epoch 3 | epoch 6 |
+|---|---:|---:|
+| seed 42 (3-epoch run) | **0.7138** | — |
+| seed 43 (6-epoch run) | **0.6980** | 0.6963 |
+
+At matched epoch the spread is **0.0158**, and seed 43's curve is flat from epoch 2 onward, so
+budget is not the driver. Consequences, kept separate because the metrics differ in noisiness:
+
+- §15's labse − tfidf-svm sentiment gap (+0.0485) and §16's DiD (+0.0698) are 3× and 4.4× the
+  spread. Both **survive**.
+- §18.1's labse − mmBERT intent gap (+0.0155) is the same order — **but it is macro-F1 over
+  15,395 rows, while 0.0158 was measured on Negative-F1 over 975 positives.** The two are not
+  interchangeable and the intent result is not refuted by this. It is, however, no longer
+  defensible to present [+0.0114, +0.0197] as total uncertainty.
+
+**Every confidence interval in this report is a within-fit bootstrap interval and excludes
+seed variance.** One repeat is not a variance estimate; the paper must say so rather than
+imply the intervals cover training noise.
+
+---
+
+## 22. Ordering the queue, from the literature only
+
+§17's Ticket Urgency Score was a scoring function we designed. It is withdrawn. Everything
+below is a published rule, applied unchanged, with the result that licenses it. Nothing here
+is fitted to make a number look good; the only estimated objects are the label models, and
+they are estimated on dev and applied once to test.
+
+Artifacts: `paper/experiments/policy_bakeoff.py`, `run_policy_bakeoff.py`,
+tables `bakeoff_label_models.csv`, `bakeoff_policies.csv`, `bakeoff_sample_set.csv`,
+`bakeoff_disagreements.csv`. 200 seeds, M/G/5, LogNormal service (mean 8 min, sigma 0.75).
+
+### 22.1 Why the three labels cannot be three additive terms
+
+Measured on train (english, n = 9,998), in nats:
+
+| quantity | value | as a share |
+|---|---|---|
+| H(priority) | 0.9333 | — |
+| I(intent; priority) | 0.7178 | 76.9% of H(priority) |
+| I(sentiment; priority) | 0.0172 | 1.8% of H(priority) |
+| I(sent; prio \| intent) | 0.0149 | 86.6% of the sentiment-priority association survives conditioning on intent |
+
+Intent nearly determines priority, so an additive score `w_P·(priority head) + w_I·(intent head)`
+adds two estimates of the same quantity and its fitted weight measures collinearity, not
+contribution. That is why §17's weight surface was flat. Sentiment is the mirror image: almost
+no information in absolute terms, but what it has is *not* redundant with intent. Neither fact
+is visible in a simplex weight, which is the argument for a joint model over an additive score.
+
+### 22.2 A defect in the label-model table, and what it changes
+
+The first version of this table called `log_loss(y, P, labels=["Low","Medium","High"])`.
+sklearn binarises `labels` through `LabelBinarizer`, which **sorts** them, and then reads the
+columns of `y_prob` in that sorted order regardless of the order `labels` was written in. Our
+columns are Low, Medium, High; sorted they are High, Low, Medium. Every probability was
+therefore scored against the wrong class. The tell was in the magnitudes — the reported values
+ran 4.7 to 7.2, when a three-class uniform predictor gives ln 3 = 1.0986, so every model was
+being scored as far worse than guessing. Measured directly: **a perfect predictor scores 36.04
+under the old call and 0.0 under the corrected one.**
+
+Corrected, on test:
+
+| label model | log_loss | macro_F1 | score_sd |
+|---|---|---|---|
+| **logpool** (log opinion pool) | **0.2683** | **0.8983** | 0.0086 |
+| chain-full (2-parent chain) | 0.3111 | 0.8749 | 0.0080 |
+| chain-intent (classifier chain) | 0.3160 | 0.8742 | 0.0080 |
+| stacked (Wolpert 1992) | 0.3333 | 0.8914 | 0.0087 |
+| marginal (binary relevance) | 0.3697 | 0.8901 | 0.0088 |
+
+The correction **changed the winner**: `stacked` was reported first and is now fourth;
+`logpool` was fourth and is now first. The one claim that survives unchanged is the one the
+section is actually about — **binary relevance is last**, and modelling label dependence cuts
+log-loss **27%** (0.3697 → 0.2683). The earlier "35%" figure was an artifact of the permutation
+and should not be quoted. Macro-F1 still barely moves (0.874–0.898), so the gain is in
+*calibration*, not in argmax accuracy — which is precisely what a scheduling index consumes.
+
+### 22.3 Each policy wins on the objective its own theorem optimizes
+
+The earlier run ranked policies by `rel_tardiness`, which counts only delay past the SLA. **No
+cited theorem optimizes that.** Cox & Smith (1961) and Argon & Ziya (2009) Thm 3 are stated over
+the *linear* delay cost Σ c_k·w, and Van Mieghem (1995) over a *convex* cost. Both are now
+measured directly (`lin_cost` = mean w/D_k, `conv_cost` = mean (w/D_k)^2). At ρ = 1.05:
+
+| objective | best policy | best value | runner-up family |
+|---|---|---|---|
+| linear (Cox–Smith, A&Z Thm 3) | **cmu-hsf** | 0.121 | edd/gcmu 0.146–0.158 |
+| convex (Van Mieghem) | **gcmu** | 0.064 | apq 0.099, edd 0.111 |
+
+**Each rule wins exactly where its theorem says it should, and loses elsewhere.** cμ/HSF sweeps
+the top five slots on linear cost (0.121–0.125) and is mid-table on convex; Gcμ sweeps convex
+(0.064–0.091) and is mid-table on linear. So the choice between them is **a choice of cost
+model, not an empirical horse race** — the desk decides whether lateness hurts linearly or
+super-linearly, and that decision picks the rule.
+
+**Argon & Ziya Theorem 3 holds, tested on its own metric.** Against the *same* label model,
+the posterior index beats the argmax tier every time on linear cost:
+
+| label model | cmu-hsf | static-tier |
+|---|---|---|
+| marginal | 0.121 | 0.163 |
+| logpool | 0.121 | 0.161 |
+| stacked | 0.123 | 0.168 |
+| chain-full | 0.124 | 0.165 |
+| chain-intent | 0.125 | 0.166 |
+
+The two ranges do not overlap — a 25% cost reduction from consuming the posterior instead of
+its argmax. On `rel_tardiness`, the metric the earlier run used, this comparison is a tie
+(0.021 vs 0.021) and the theorem appears to fail. It does not fail; it was being tested against
+an objective it says nothing about.
+
+**Argon & Ziya §9 on starvation also holds**, though modestly: cμ/HSF leaves Low waiting
+92–93 min, Gcμ 85–86 min.
+
+### 22.4 What actually matters, and what does not
+
+Under linear cost the five label models span 0.121–0.125 — **a 3% spread — while the policy
+spans 0.121 to 0.381 (fcfs), a 3.1× spread.** The ordering rule dominates the label model. Under
+convex cost the label model earns more: gcmu spans 0.064 (logpool) to 0.091 (stacked), a 42%
+spread. So dependence modelling pays only once the cost is convex.
+
+`logpool` is the one model that is best or near-best on all three views — log-loss, macro-F1,
+and convex cost under every policy — which makes it the defensible default.
+
+**At ρ = 0.85 none of this is visible**: lin_cost is 0.019–0.022 across every combination. With
+no queue there is nothing to order. Every claim above is an overload claim.
+
+### 22.5 What is still assumed
+
+The SLA windows D_k (30/120/480 min) are an assumption about the desk, not a measurement —
+tracker E10. Service times are LogNormal(mean 8 min, sigma 0.75), also assumed. The bake-off
+scores against *gold* priority, so it measures the ordering rule and not the classifier;
+the classifier's contribution enters only through the posterior it supplies.
+
+---
+
+## 23. Was the epoch budget enough? An audit, because 23 of 25 runs end on their best epoch
+
+**The flag.** Across the 25 fine-tuned test records, **23 have `best_epoch == epochs`** — the
+best epoch was the last one trained. Taken alone that is the signature of an undertrained
+roster: if training stops while the metric is still rising, every score is a lower bound and
+model comparisons are comparisons of budget.
+
+It is not sufficient evidence on its own, because a *flat* curve also ends on its last epoch.
+So the question is settled from the per-epoch histories in `paper/results/runs/history/`, not
+from `best_epoch`. Verdict: **the budget is adequate for the load-bearing claims, and
+inadequate for two specific things that must therefore not be claimed.**
+
+### 23.1 Where the budget is justified
+
+| run | per-epoch curve | last gain | verdict |
+|---|---|---:|---|
+| labse sentiment (3 ep) | 0.8246 → 0.8467 → 0.8478 | +0.0011 | converged |
+| labse priority (dev, 6 ep) | 0.9027 → 0.9074 → 0.9155 → 0.9152 → 0.9167 → 0.9103 | −0.0064 | **past the peak** |
+
+Sentiment at 3 epochs is converged, not truncated. Priority is the stronger case: the 6-epoch
+dev curve **peaks at epoch 5 and then declines**, and epoch 3 (0.9155) is only 0.0012 below
+that peak. So the 3-epoch priority test budget sits on the plateau. More epochs would not have
+helped and epoch 6 would have hurt.
+
+This also settles a comparison that looked confounded. On sentiment test, **LaBSE ran 3 epochs
+and xlmr-base, mmbert and muril-base ran 6** — an unmatched budget. But it is unmatched *against*
+the winner: LaBSE converged in 3 and still beat three models given twice the budget. The
+mismatch works against the reported result, so it cannot manufacture it.
+
+### 23.2 Where it is not — two things that must not be claimed
+
+**1. Intent is still improving at epoch 6.** Both leaders are climbing when training stops:
+
+| epoch | 1 | 2 | 3 | 4 | 5 | 6 | last gain |
+|---|---|---|---|---|---|---|---:|
+| labse | 0.8273 | 0.8641 | 0.8757 | 0.8794 | 0.8792 | **0.8835** | +0.0043 |
+| mmbert | 0.7962 | 0.8507 | 0.8597 | 0.8643 | 0.8654 | **0.8680** | +0.0025 |
+
+So **every intent number in this report is a lower bound**, and the roster ordering is a
+statement about a 6-epoch budget, not about the models at convergence.
+
+The headline contrast survives this, and it is worth showing why rather than asserting it.
+The LaBSE−mmBERT gap across the last three epochs is **+0.0151, +0.0138, +0.0155** — stable to
+±0.001 while both curves are still rising. The gap is not an artifact of where training
+stopped. §18.1's +0.0155 stands; "LaBSE reaches 0.8835 on intent" should be written as a
+budgeted result, not a converged one.
+
+**2. The three failed models are undertrained, and their scores are not evidence.**
+
+| model | epochs | curve | last gain | reported |
+|---|---|---|---:|---|
+| sinbert-large | 3 | 0.4419 → 0.4632 → 0.4939 | **+0.0306** | 0.1182 |
+| canine-c | 3 | — | **+0.0180** | 0.4702 |
+| sinhalaberto | 3 | — | +0.0051 | 0.1296 |
+
+These are the only runs climbing steeply at cutoff — an order of magnitude faster than the
+converged models. **Their low scores measure the budget, not the model.** Concretely:
+`canine-c` must not be cited as evidence about character-level models. The outline positions
+`clark2022canine` as "the design that cannot have this failure"; that is an argument from
+architecture and it stays, but the 0.4702 number cannot be used to support or refute it.
+
+### 23.3 What this changes
+
+- Intent results are lower bounds; say so once, in §3, and do not restate per number.
+- The LaBSE−mmBERT intent gap is budget-stable and can be claimed as-is.
+- Priority's 3-epoch budget is justified by its own dev curve — state that, since 3 looks thin
+  next to the 6 used elsewhere and a reviewer will ask.
+- Sentiment's budget mismatch runs against the winner and is safe to report plainly.
+- **sinbert-large, sinhalaberto and canine-c must be dropped from every comparative claim**, or
+  rerun to convergence. They are currently reported as if their scores were meaningful.
+
+---
+
+## 24. The "manually verified" claim, reconciled against the per-language results (B5)
+
+**There is no contradiction inside the repository.** README.md and RESULTS.md agree: Sinhala
+was hand-corrected to colloquial code-mixed text, Singlish was rule-generated, **Tamil was
+Gemini-translated with no hand pass**. The conflict is between that and the external
+"translations were manually verified" claim carried in `data_statement.md` as `[CONFIRM]`.
+The repository's own record is the more specific and it is the one to keep.
+
+The open question was whether that asymmetry *matters*. It does, and the per-language test
+results now say exactly where.
+
+### 24.1 The prediction
+
+If Sinhala received a hand pass that made it colloquial and code-mixed (measured: **40.35%
+Latin characters**, against Tamil's **1.26%**), and Tamil is raw MT output, then Tamil is the
+*cleaner, more monolingual* track. It should therefore be **easier** — and not uniformly, but
+specifically on the label that depends on register. Intent is topic classification over 77
+banking categories and should be largely register-invariant; sentiment depends on how
+frustration is colloquially expressed and should not be.
+
+### 24.2 Tamil minus Sinhala, every model with both tracks scored
+
+| task | mean Δ | Tamil higher in | Δ excluding muril-base |
+|---|---:|---:|---:|
+| **sentiment** | **+0.0666** | **8 of 8** | +0.0492 |
+| priority | +0.0163 | 5 of 7 | **+0.0016** |
+| intent | −0.0028 | 4 of 9 | −0.0028 |
+
+**The prediction holds, and cleanly.** Tamil beats Sinhala on sentiment for **every single
+model, without exception**, by about 5 points once MuRIL is set aside. On intent the
+difference vanishes (−0.003, Tamil higher in fewer than half the models). On priority it is
+**+0.0016 excluding MuRIL — two orders of magnitude smaller than the sentiment effect** — and
+the sign is no longer consistent (LaBSE −0.0049, XLM-R −0.0126 both favour Sinhala).
+
+So the effect is not a general "Tamil is easier" advantage. It is **specific to sentiment**,
+which is the register-dependent label, and absent on the two labels that are not.
+
+MuRIL is excluded from the summary column because it is the §2 Sinhala-blind case
+(Δ +0.1888 sentiment, +0.1048 priority) and would otherwise carry the average on its own.
+Its exclusion makes the finding *weaker* and it still holds 7/7 and 4/4.
+
+### 24.3 What this settles, and what it does not
+
+**Settled.** The provenance asymmetry is not a documentation detail — it has a measurable,
+task-specific signature that matches what an un-hand-passed track would produce. The Tamil
+track is easier because it is cleaner, not because Tamil is intrinsically easier than Sinhala.
+
+**Consequences the paper must carry:**
+
+1. **The tamil/tamilish contrast is not a second measurement of the sinhala/singlish effect.**
+   §16's caution was right and this is the evidence for it: the two pairs have different
+   baselines (40.35% vs 1.26% Latin) *and* different provenance. Report the sinhala/singlish
+   DiD as the finding; report tamil/tamilish as a track whose confound is now quantified.
+2. **Sentiment comparisons across sinhala and tamil are confounded** and must not be read as a
+   language effect. Intent comparisons are safe — the audit shows no track advantage there.
+3. `data_statement.md`'s `[CONFIRM]` should be resolved *against* the external claim: state
+   that Tamil received no hand pass, and cite the 1.26% Latin figure as the constraint that
+   makes any "manually verified" claim untenable for that track.
+
+**Not settled, and still needs a human record (tracker B5):** who performed the Sinhala pass,
+how many rows they touched, against what criteria, and what fraction changed. The analysis
+above establishes the *consequence* of the asymmetry; it cannot reconstruct the *process*.
+
+---
+
+## 25. Two runs that were worth the GPU time
+
+### 25.1 A third of the "scaling" gain was batch size
+
+gemma-3-1b's intent test record is at batch 8 (batch 32 OOM'd on a T4) while gemma-3-270m's
+was at batch 32. The 270M model was re-run at batch 8 so the pair differs in **parameter count
+and nothing else** — same 6 epochs, LoRA on all seven projections, r=8, α=16, lr 1e-4,
+fit on train+dev.
+
+| comparison | 1B | 270M | Δ |
+|---|---:|---:|---:|
+| as previously reported (bs 8 vs bs 32) | 0.8635 | 0.8305 | **+0.0330** |
+| **matched (both bs 8)** | 0.8635 | **0.8414** | **+0.0221** |
+
+Dropping the 270M from batch 32 to batch 8 is worth **+0.0109 on its own**. So **a third of the
+apparent scaling benefit was batch size**, not parameters. The corrected effect of a 3.7×
+parameter increase on intent macro-F1 is **+0.022**, and that is the number the paper should
+carry. The archived batch-32 record is kept at
+`ml/reports/runs_archive/gemma-3-270m_intent_bs32/`.
+
+### 25.2 MuRIL's failure is pretraining coverage, and it is now confirmed on all three tasks
+
+With intent complete, MuRIL is scored on every task, and the same track fails every time:
+
+| task | MuRIL Sinhala | best non-MuRIL Sinhala | worst non-MuRIL Sinhala | MuRIL's rank on Sinhala |
+|---|---:|---:|---:|---|
+| intent | **0.7224** | 0.9319 | 0.6732 (`tfidf-cnb`) | 9th of 10 |
+| sentiment | **0.5577** | 0.7215 | 0.5083 (`tfidf-cnb`) | 7th of 8 |
+| priority | **0.8072** | 0.9179 | 0.8479 (`tfidf-cnb`) | **last of 7** |
+
+On all three tasks MuRIL's Sinhala sits at or below the level of `tfidf-cnb`, the weakest model
+in the study — while MuRIL itself ranks mid-table overall. Its other tracks are healthy: intent
+English 0.9226, Tamil 0.9080.
+
+**And the positive half of the mechanism is now visible too.** On intent, MuRIL has the **best
+Tanglish score of any model, 0.7824** — ahead of XLM-R's 0.7067 and LaBSE's 0.6928, a margin of
+0.076 over the next best. That is not a coincidence: **MuRIL pretrains on its 17 Indian
+languages in native script *and* in transliteration.** Tamil is one of those 17, so romanized
+Tamil is inside its pretraining distribution, and it beats every other model there. Sinhala is
+not among the 17 in either script, and it is last or near-last on Sinhala on every task.
+
+So the model that is worst on one track is best on another, and a single fact predicts both:
+
+> **MuRIL is not a weak model. It is a model whose pretraining covers Tamil, romanized Tamil
+> and English, and does not cover Sinhala — and its per-track scores read that coverage back
+> almost exactly.**
+
+This sharpens §5's contribution. "Script, not language" is the observation; **pretraining
+coverage is the mechanism**, and MuRIL is the clean case because its coverage list is public
+and asymmetric across exactly the languages this corpus contains. A pooled leaderboard shows
+none of it — MuRIL's pooled intent 0.8467 sits unremarkably mid-table, averaging together the
+best Tanglish result in the study and a Sinhala score that loses to character n-grams.

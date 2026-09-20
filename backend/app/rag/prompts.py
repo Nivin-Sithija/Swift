@@ -9,6 +9,12 @@ exactly like [E1]. If evidence is insufficient, output exactly INSUFFICIENT_EVID
 Never claim an action was performed. Keep policies separated by institution. Be clear that the
 answer is general policy guidance derived from approved sources, not confirmation of account activity."""
 
+CITATION_FORMAT_REMINDER = """
+Citation format is mandatory: every paragraph and every numbered or bulleted list item
+that contains a factual statement must end with its own evidence marker. Do not put one
+marker only at the end of a list. Example: `1. Identity document. [E1]`.
+"""
+
 
 def build_prompt(
     context: QueryContext,
@@ -27,4 +33,19 @@ def build_prompt(
         f"Required response language: {context.language.value}\nInstitution scope: {context.institution or 'regulator/general only'}\n\n"
         "Evidence:\n" + "\n\n".join(blocks)
     )
-    return SYSTEM_PROMPT, user
+    return SYSTEM_PROMPT + CITATION_FORMAT_REMINDER, user
+
+
+def build_citation_retry_prompt(
+    context: QueryContext,
+    evidence: list[Evidence],
+    previous_answer: str,
+    ticket_context: str | None = None,
+) -> tuple[str, str]:
+    system, user = build_prompt(context, evidence, ticket_context=ticket_context)
+    return (
+        system
+        + "\nYour previous draft failed citation-format validation. Rewrite the complete answer "
+        "using only the same evidence and obey the citation rule exactly.",
+        user + f"\n\nInvalid previous draft:\n{previous_answer}",
+    )

@@ -14,6 +14,40 @@ class ProviderError(RuntimeError):
     pass
 
 
+class OllamaProvider:
+    """OpenAI-independent local generation through Ollama's chat API."""
+
+    name = "ollama"
+
+    def __init__(self, base_url: str, model: str, timeout: float = 120.0) -> None:
+        self.base_url = base_url.rstrip("/")
+        self.model = model
+        self.timeout = timeout
+
+    async def generate(self, *, system: str, user: str) -> str:
+        try:
+            async with httpx.AsyncClient(timeout=self.timeout) as client:
+                response = await client.post(
+                    f"{self.base_url}/api/chat",
+                    json={
+                        "model": self.model,
+                        "stream": False,
+                        "messages": [
+                            {"role": "system", "content": system},
+                            {"role": "user", "content": user},
+                        ],
+                        "options": {"temperature": 0},
+                    },
+                )
+                response.raise_for_status()
+                content = response.json()["message"]["content"]
+                if not isinstance(content, str) or not content.strip():
+                    raise ValueError("empty Ollama response")
+                return content.strip()
+        except (httpx.HTTPError, KeyError, TypeError, ValueError) as exc:
+            raise ProviderError("Ollama generation failed") from exc
+
+
 def _retry_delay(response: httpx.Response, attempt: int, base_delay: float) -> float | None:
     """None means the wait is longer than a customer-facing request should hold — fail over instead."""
     header = response.headers.get("retry-after")
@@ -23,7 +57,8 @@ def _retry_delay(response: httpx.Response, attempt: int, base_delay: float) -> f
         except ValueError:
             requested = base_delay * (2.0**attempt)
         return None if requested > MAX_HONORED_RETRY_AFTER else requested
-    return base_delay * (2.0**attempt) + random.uniform(0, base_delay)
+    # Retry jitter is deliberately non-cryptographic; it is not a secret or security token.
+    return base_delay * (2.0**attempt) + random.uniform(0, base_delay)  # nosec B311
 
 
 async def _post_with_retry(

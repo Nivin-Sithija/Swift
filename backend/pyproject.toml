@@ -25,7 +25,9 @@ dependencies = [
   "redis>=5,<6",
   "dramatiq[redis]>=1.17,<2",
   "joblib>=1.4,<2",
-  "scikit-learn>=1.5,<2",
+  # OCR intent artifacts were serialized with 1.9.0; exact parity avoids unsafe
+  # cross-version unpickling and prediction drift in the serving image.
+  "scikit-learn==1.9.0",
   # >=12.3 clears 25 advisories (PYSEC-2026-2249..3496) in the image decoders that
   # parse customer-uploaded attachments in the OCR path.
   "Pillow>=12.3,<13",
@@ -98,16 +100,14 @@ ignore_no_config = true
 
 [tool.ruff]
 line-length = 100
-target-version = "py311"
+target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
 ignore = ["E501", "E701", "E702"]
 
 [tool.mypy]
-# 3.12 matches the interpreter this is actually checked with. NOTE: backend/Dockerfile
-# ships python:3.11-slim, so type checking and production run different minor versions --
-# align one of them.
+# Python 3.12 is shared by local checks, CI, and the production image.
 python_version = "3.12"
 strict = true
 plugins = ["pydantic.mypy"]

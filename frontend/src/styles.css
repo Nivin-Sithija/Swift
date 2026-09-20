@@ -360,7 +360,7 @@ small {
   border-radius: 7px;
   background: var(--primary);
   color: white;
-  min-height: 42px;
+  min-height: 44px;
   padding: 0.65rem 1rem;
   display: inline-flex;
   align-items: center;
@@ -391,7 +391,7 @@ small {
   border-color: transparent;
 }
 .btn.small {
-  min-height: 34px;
+  min-height: 44px;
   padding: 0.35rem 0.65rem;
   font-size: 0.83rem;
 }
@@ -427,8 +427,8 @@ small {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
 }
 .icon-btn svg {
   width: 18px;
@@ -438,7 +438,8 @@ small {
   border: 0;
   background: none;
   color: var(--primary);
-  padding: 0.3rem;
+  min-height: 44px;
+  padding: 0.5rem;
   font-weight: 700;
   font-size: 0.85rem;
   display: inline-flex;
@@ -634,8 +635,11 @@ small {
   margin: auto 0;
   max-width: 620px;
 }
-.brand-copy h1 {
+.brand-copy .brand-heading {
   font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  font-weight: var(--font-weight-semibold);
   margin: 0.7rem 0 1.3rem;
 }
 .brand-copy p {
@@ -691,6 +695,7 @@ small {
   border: 0;
   background: transparent;
   padding: 0.65rem;
+  min-height: 44px;
   border-radius: 6px;
   font-weight: 700;
   color: var(--muted);
@@ -733,6 +738,8 @@ textarea {
   top: 0.65rem;
   border: 0;
   background: none;
+  width: 44px;
+  height: 44px;
 }
 .password svg {
   width: 19px;

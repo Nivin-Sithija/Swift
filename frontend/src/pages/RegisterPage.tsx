@@ -42,7 +42,7 @@ export function RegisterPage() {
         <Logo />
         <div className="brand-copy">
           <span className="eyebrow">Create your Swift workspace</span>
-          <h1>Secure multilingual support starts here.</h1>
+          <p className="brand-heading">Secure multilingual support starts here.</p>
           <p>Customers can create an account immediately. Support-agent accounts require an organisation registration code.</p>
         </div>
         <div className="trust-list">
@@ -54,7 +54,7 @@ export function RegisterPage() {
         <div className="login-tools"><LanguageSelector /><ThemeSwitcher /></div>
         <div className="login-form-wrap">
           <span className="mobile-logo"><Logo /></span>
-          <h2>Create an account</h2>
+          <h1>Create an account</h1>
           <p>Choose the account type and enter your details.</p>
           <div className="role-tabs" role="tablist" aria-label="Select account type">
             <button type="button" role="tab" aria-selected={role === "customer"} onClick={() => { setRole("customer"); setServerError(""); }}>Customer</button>

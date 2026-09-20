@@ -88,6 +88,36 @@ class HuggingFaceEmbedder:
         return [float(value) for value in values]
 
 
+class OllamaEmbedder:
+    """Local embeddings through Ollama, avoiding hosted inference credentials."""
+
+    def __init__(self, *, base_url: str, model_name: str, timeout: float, dimensions: int) -> None:
+        self.base_url = base_url.rstrip("/")
+        self.model_name = model_name
+        self.timeout = timeout
+        self.dimensions = dimensions
+
+    async def embed_query(self, text: str) -> list[float]:
+        try:
+            async with httpx.AsyncClient(timeout=self.timeout) as client:
+                response = await client.post(
+                    f"{self.base_url}/api/embed",
+                    json={"model": self.model_name, "input": text},
+                )
+                response.raise_for_status()
+                values: Any = response.json()["embeddings"][0]
+        except (httpx.HTTPError, KeyError, IndexError, TypeError) as exc:
+            raise RuntimeError("Ollama embedding request failed") from exc
+        if not isinstance(values, list) or len(values) != self.dimensions:
+            size = len(values) if isinstance(values, list) else 0
+            raise RuntimeError(
+                f"Ollama embedding returned {size} dimensions; expected {self.dimensions}"
+            )
+        if not all(isinstance(value, (int, float)) for value in values):
+            raise RuntimeError("Ollama embedding response was not a numeric vector")
+        return [float(value) for value in values]
+
+
 def build_embedder(
     *,
     provider: str,
@@ -97,6 +127,8 @@ def build_embedder(
     huggingface_token: str | None = None,
     huggingface_provider: str = "hf-inference",
     huggingface_endpoint_url: str | None = None,
+    ollama_base_url: str = "http://127.0.0.1:11434",
+    ollama_embedding_model: str = "bge-m3",
 ) -> Embedder:
     if provider == "local":
         return BGEM3Embedder(model_name)
@@ -106,6 +138,13 @@ def build_embedder(
             model_name=model_name,
             provider=huggingface_provider,
             endpoint_url=huggingface_endpoint_url,
+            timeout=timeout,
+            dimensions=dimensions,
+        )
+    if provider == "ollama":
+        return OllamaEmbedder(
+            base_url=ollama_base_url,
+            model_name=ollama_embedding_model,
             timeout=timeout,
             dimensions=dimensions,
         )

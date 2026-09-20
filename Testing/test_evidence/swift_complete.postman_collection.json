@@ -1,0 +1,93 @@
+{
+  "info": {"name": "Swift API complete business-flow tests", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
+  "variable": [
+    {"key": "baseUrl", "value": "http://127.0.0.1:8000/api/v1"},
+    {"key": "email", "value": ""}, {"key": "password", "value": "SwiftTest9!"},
+    {"key": "accessToken", "value": ""}, {"key": "ticketId", "value": ""}
+  ],
+  "item": [
+    {
+      "name": "Health endpoint", "request": {"method": "GET", "url": "{{baseUrl}}/health"},
+      "event": [{"listen": "test", "script": {"exec": [
+        "pm.test('status is 200', () => pm.response.to.have.status(200));",
+        "pm.test('body reports healthy', () => pm.expect(pm.response.json().status).to.eql('ok'));",
+        "pm.test('security header present', () => pm.expect(pm.response.headers.get('x-content-type-options')).to.eql('nosniff'));",
+        "pm.test('response under 1000 ms', () => pm.expect(pm.response.responseTime).to.be.below(1000));"
+      ]}}]
+    },
+    {
+      "name": "Database readiness", "request": {"method": "GET", "url": "{{baseUrl}}/ready"},
+      "event": [{"listen": "test", "script": {"exec": [
+        "pm.test('status is 200', () => pm.response.to.have.status(200));",
+        "pm.test('database is ready', () => pm.expect(pm.response.json().status).to.eql('ready'));"
+      ]}}]
+    },
+    {
+      "name": "OpenAPI document", "request": {"method": "GET", "url": "http://127.0.0.1:8000/openapi.json"},
+      "event": [{"listen": "test", "script": {"exec": [
+        "pm.test('status is 200', () => pm.response.to.have.status(200));",
+        "pm.test('OpenAPI schema is present', () => pm.expect(pm.response.json()).to.have.property('openapi'));"
+      ]}}]
+    },
+    {
+      "name": "Protected endpoint rejects anonymous caller", "request": {"method": "GET", "url": "{{baseUrl}}/users/me"},
+      "event": [{"listen": "test", "script": {"exec": [
+        "pm.test('status is 401', () => pm.response.to.have.status(401));",
+        "pm.test('error is JSON', () => pm.expect(pm.response.headers.get('content-type')).to.include('application/json'));"
+      ]}}]
+    },
+    {
+      "name": "Invalid registration is rejected",
+      "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"full_name\":\"A\",\"email\":\"not-an-email\",\"password\":\"short\",\"role\":\"customer\"}"}, "url": "{{baseUrl}}/auth/register"},
+      "event": [{"listen": "test", "script": {"exec": [
+        "pm.test('status is 422', () => pm.response.to.have.status(422));",
+        "pm.test('validation detail returned', () => pm.expect(pm.response.json()).to.have.property('detail'));"
+      ]}}]
+    },
+    {
+      "name": "Register customer",
+      "event": [
+        {"listen": "prerequest", "script": {"exec": ["pm.collectionVariables.set('email', `newman-${Date.now()}@example.com`);"]}},
+        {"listen": "test", "script": {"exec": [
+          "pm.test('customer created', () => pm.response.to.have.status(201));",
+          "const body = pm.response.json(); pm.collectionVariables.set('accessToken', body.access_token);",
+          "pm.test('customer role issued', () => pm.expect(body.user.role).to.eql('customer'));"
+        ]}}
+      ],
+      "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"full_name\":\"Newman Customer\",\"email\":\"{{email}}\",\"password\":\"{{password}}\",\"role\":\"customer\",\"preferred_language\":\"english\"}"}, "url": "{{baseUrl}}/auth/register"}
+    },
+    {
+      "name": "Authenticated profile", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/users/me"},
+      "event": [{"listen": "test", "script": {"exec": [
+        "pm.test('profile returned', () => pm.response.to.have.status(200));",
+        "pm.test('email matches session', () => pm.expect(pm.response.json().email).to.eql(pm.collectionVariables.get('email')));"
+      ]}}]
+    },
+    {
+      "name": "Create support ticket",
+      "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}, {"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"subject\":\"Savings account documents\",\"message\":\"What documents are needed for a regular savings account?\",\"preferred_response_language\":\"english\"}"}, "url": "{{baseUrl}}/tickets"},
+      "event": [{"listen": "test", "script": {"exec": [
+        "pm.test('ticket created', () => pm.response.to.have.status(201));",
+        "const body = pm.response.json(); pm.collectionVariables.set('ticketId', body.id);",
+        "pm.test('ticket has predictions', () => pm.expect(body.category).to.be.an('object'));"
+      ]}}]
+    },
+    {
+      "name": "Retrieve owned ticket", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/tickets/{{ticketId}}"},
+      "event": [{"listen": "test", "script": {"exec": [
+        "pm.test('ticket returned', () => pm.response.to.have.status(200));",
+        "pm.test('ownership preserved', () => pm.expect(pm.response.json().id).to.eql(pm.collectionVariables.get('ticketId')));"
+      ]}}]
+    },
+    {
+      "name": "Local RAG assistance",
+      "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}, {"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"message\":\"Which documents should I bring?\"}"}, "url": "{{baseUrl}}/tickets/{{ticketId}}/assistance"},
+      "event": [{"listen": "test", "script": {"exec": [
+        "pm.test('RAG endpoint responds', () => pm.response.to.have.status(200));",
+        "const body = pm.response.json();",
+        "pm.test('route is explicit', () => pm.expect(['rag_draft','human_escalation']).to.include(body.route));",
+        "pm.test('language remains English', () => pm.expect(body.language).to.eql('english'));"
+      ]}}]
+    }
+  ]
+}
