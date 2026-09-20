@@ -5,7 +5,16 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist", "node_modules", "datasets", "notebooks", "synthetic_ticket_dataset"] },
+  {
+    ignores: [
+      "dist",
+      "node_modules",
+      "reports",
+      "datasets",
+      "notebooks",
+      "synthetic_ticket_dataset"
+    ]
+  },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["src/**/*.{ts,tsx}"],

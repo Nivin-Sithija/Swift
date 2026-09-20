@@ -7,7 +7,10 @@ from app.rag.evaluation import summarize
 
 live = pytest.mark.skipif(
     not (os.getenv("SWIFT_DATABASE_URL") or os.getenv("DATABASE_URL"))
-    or not os.getenv("SWIFT_GROQ_API_KEY"),
+    or (
+        os.getenv("SWIFT_RAG_GENERATION_PROVIDER", "groq") != "ollama"
+        and not os.getenv("SWIFT_GROQ_API_KEY")
+    ),
     reason="Needs a database with an ingested knowledge base and a generation provider",
 )
 

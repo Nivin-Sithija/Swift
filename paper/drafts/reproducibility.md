@@ -173,7 +173,7 @@ column already holds v8, and it warns against random re-splitting. Those are all
 
 ### Model card, `labse-intent-1.0`
 
-3. **Does not say which split produced 88.54%.** `results.md` §7 annotates this figure as
+3. **Does not say which split produced 88.54%.** `ml/reports/RESULTS.md` §7 annotates this figure as
    "official split"; the card presents it as pooled macro-F1 across the five tracks, which is
    the *frozen* split's framing. The two are different evaluations and cannot both be right.
    No local `intent__labse__…__test` record exists to settle it — the only local intent/labse

@@ -244,6 +244,7 @@ def build_service(
     disable_embedder: bool = False,
     disable_reranker: bool = False,
     cache_embeddings: bool = False,
+    generation_provider: LLMProvider | None = None,
 ) -> ConsumerRAGService:
     """Assemble the real service from production factories with wrapped components."""
     timer.final_limit = settings.rag_final_limit
@@ -267,4 +268,7 @@ def build_service(
         min_confidence=settings.rag_min_confidence,
         review_max_age_days=settings.rag_review_max_age_days,
     )
-    return ConsumerRAGService(TimedRetriever(retriever, timer), TimedProvider(provider(settings), timer))
+    selected_provider = generation_provider or provider(settings)
+    return ConsumerRAGService(
+        TimedRetriever(retriever, timer), TimedProvider(selected_provider, timer)
+    )

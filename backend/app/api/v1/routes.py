@@ -272,9 +272,9 @@ async def create_customer_ticket_assistance(
         ticket_context=ticket.original_text,
         institution=None,
         category=value(PredictionTask.category),
-        # The initial answer follows the ticket preference. Follow-up chat
-        # replies follow the language/form used in the customer's new message.
-        language=None if question else ticket.response_language.value,
+        # Preserve the customer's explicit ticket preference on every turn. The
+        # romanized-language heuristic is not reliable enough to override it.
+        language=ticket.response_language.value,
         intent=value(PredictionTask.category),
         sentiment=value(PredictionTask.sentiment),
         priority=value(PredictionTask.priority),
@@ -822,7 +822,8 @@ async def approve_response(response_id: uuid.UUID, user: StaffUser, db: Db) -> R
         utcnow(),
     )
     ticket = await db.get(Ticket, response.ticket_id)
-    assert ticket
+    if ticket is None:
+        raise HTTPException(409, "Response is not linked to an existing ticket")
     ticket.status = TicketStatus.response_draft
     event(ticket, user, "response_approved", "Response approved by an authorised agent")
     await db.commit()
@@ -854,7 +855,8 @@ async def send_response(response_id: uuid.UUID, user: StaffUser, db: Db) -> Resp
         raise HTTPException(409, "Only approved responses can be sent")
     response.status, response.sent_at = ResponseStatus.sent, utcnow()
     ticket = await db.get(Ticket, response.ticket_id)
-    assert ticket
+    if ticket is None:
+        raise HTTPException(409, "Response is not linked to an existing ticket")
     ticket.status = TicketStatus.responded
     event(ticket, user, "response_sent", "Reviewed response made customer-visible", True)
     await db.commit()
@@ -1221,7 +1223,11 @@ async def test_ocr_masking(
     if file.content_type not in ("image/png", "image/jpeg"):
         raise HTTPException(400, "Only PNG and JPEG images are supported")
 
-    path = Path("storage") / "temp" / f"{uuid.uuid4()}{Path(file.filename or '.jpg').suffix}"
+    path = (
+        settings.storage_root
+        / "temp"
+        / f"{uuid.uuid4()}{Path(file.filename or '.jpg').suffix}"
+    )
     path.parent.mkdir(parents=True, exist_ok=True)
 
     try:

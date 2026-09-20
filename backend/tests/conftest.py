@@ -92,6 +92,7 @@ async def app(sessionmaker, stub_classifier, tmp_path, monkeypatch):
     # Attachments must land in the test's own tmp_path; the configured default is a
     # real directory that would accumulate files across runs.
     monkeypatch.setattr(routes.settings, "storage_root", tmp_path)
+    fastapi_app.state.rate_limiter.reset_memory()
 
     async def _get_db() -> AsyncIterator[AsyncSession]:
         async with sessionmaker() as session:

@@ -4,7 +4,7 @@ Why this exists
 ---------------
 K6b produced the project's first clean intent test numbers -- LaBSE 88.35, XLM-R
 88.01, mmBERT 86.80 -- but that Kaggle run wrote no per-row prediction files, so
-the ranking was a **point estimate with no test behind it**. `results.md` §18 says
+the ranking was a **point estimate with no test behind it**. `ml/reports/RESULTS.md` §18 says
 so explicitly and declines to call mmBERT beaten.
 
 The checkpoints came back, so the predictions are recoverable without another GPU

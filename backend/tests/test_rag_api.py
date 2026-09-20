@@ -69,7 +69,7 @@ async def test_staff_cannot_call_customer_ticket_assistance() -> None:
 
 
 @pytest.mark.asyncio
-async def test_follow_up_assistance_detects_the_chat_message_language(monkeypatch) -> None:
+async def test_follow_up_assistance_preserves_the_ticket_language(monkeypatch) -> None:
     service = AsyncMock()
     service.assist.return_value = AssistanceResult(
         "rag_draft",
@@ -98,5 +98,5 @@ async def test_follow_up_assistance_detects_the_chat_message_language(monkeypatc
         payload,  # type: ignore[arg-type]
     )
 
-    assert service.assist.await_args.kwargs["language"] is None
+    assert service.assist.await_args.kwargs["language"] == "english"
     assert service.assist.await_args.kwargs["query"] == "என்ன செய்ய வேண்டும்?"
