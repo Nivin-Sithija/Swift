@@ -1,0 +1,219 @@
+lang,split,group,id,text,category,sentiment,priority
+tamil,train,8,1208,தானியங்கி மீள்நிரப்புத் தெரிவை நான் எங்கே காணலாம்?,automatic_top_up,Neutral,Low
+tamil,train,8,1230,தானியங்கி மீள்நிரப்புத் தெரிவை நான் எங்கே காணலாம்?,automatic_top_up,Neutral,Low
+tamil,train,3,3167,எனது டொப்-அப் ஏன் திரும்பப் பெறப்பட்டது?,top_up_reverted,Neutral,Medium
+tamil,train,3,3170,எனது டொப்-அப் ஏன் திரும்பப் பெறப்பட்டது?,top_up_reverted,Neutral,Medium
+tamil,train,2,3178,எனது டாப்-அப் ஏன் திரும்பப் பெறப்பட்டது?,top_up_reverted,Neutral,Low
+tamil,train,2,3194,எனது டாப்-அப் ஏன் திரும்பப் பெறப்பட்டது?,top_up_reverted,Neutral,Low
+tamil,train,4,4013,எனது பின் இலக்கத்தை நான் எவ்வாறு கண்டறிவது?,get_physical_card,Neutral,Low
+tamil,train,4,4033,எனது பின் இலக்கத்தை நான் எவ்வாறு கண்டறிவது?,get_physical_card,Neutral,Low
+tamil,train,6,5022,ஏடிஎம் என்னை பணம் எடுக்க அனுமதிக்கவில்லை.,declined_cash_withdrawal,Neutral,Medium
+tamil,train,6,5046,ஏடிஎம் என்னை பணம் எடுக்க அனுமதிக்கவில்லை.,declined_cash_withdrawal,Neutral,Medium
+tamil,train,9,5551,பணப் பரிமாற்றம் நிராகரிக்கப்பட்டது.,declined_transfer,Neutral,Medium
+tamil,train,9,5561,பணப் பரிமாற்றம் நிராகரிக்கப்பட்டது.,declined_transfer,Neutral,Medium
+tamil,train,1,6098,எனக்கு ஒரு பணப்பரிமாற்றம் நிலுவையில் உள்ளது.,pending_transfer,Neutral,Low
+tamil,train,1,6122,எனக்கு ஒரு பணப்பரிமாற்றம் நிலுவையில் உள்ளது.,pending_transfer,Neutral,Low
+tamil,train,7,6146,கணக்கை நீக்க முடியுமா?,terminate_account,Neutral,High
+tamil,train,7,6230,கணக்கை நீக்க முடியுமா?,terminate_account,Neutral,High
+tamil,train,0,6911,எந்த ஏடிஎம் இயந்திரங்கள் எனது பின் இலக்கத்தை மாற்ற அனுமதிக்கும்?,change_pin,Neutral,Low
+tamil,train,0,6990,எந்த ஏடிஎம் இயந்திரங்கள் எனது பின் இலக்கத்தை மாற்ற அனுமதிக்கும்?,change_pin,Neutral,Low
+tamil,train,5,9212,என் அட்டையைச் செயல்படுத்துவது எப்படி?,activate_my_card,Neutral,Low
+tamil,train,5,9284,என் அட்டையைச் செயல்படுத்துவது எப்படி?,activate_my_card,Neutral,Low
+tamil,test,8,4,எனது அட்டை இன்னும் வந்து சேரவில்லை.,card_arrival,Neutral,Low
+tamil,test,8,30,எனது அட்டை இன்னும் வந்து சேரவில்லை.,card_arrival,Neutral,Low
+tamil,test,26,44,என்னிடம் ஏற்கனவே உள்ள அட்டையை நான் எவ்வாறு இணைப்பது?,card_linking,Neutral,Low
+tamil,test,26,67,என்னிடம் ஏற்கனவே உள்ள அட்டையை நான் எவ்வாறு இணைப்பது?,card_linking,Neutral,Low
+tamil,test,2,99,உங்கள் நாணய மாற்று விகிதங்களை எங்கிருந்து பெறுகிறீர்கள்?,exchange_rate,Neutral,Low
+tamil,test,2,113,உங்கள் நாணய மாற்று விகிதங்களை எங்கிருந்து பெறுகிறீர்கள்?,exchange_rate,Neutral,Low
+tamil,test,36,333,தானியங்கி மீள்நிரப்புத் தெரிவு எங்கே இருக்கிறது?,automatic_top_up,Neutral,Low
+tamil,test,36,342,தானியங்கி மீள்நிரப்புத் தெரிவு எங்கே இருக்கிறது?,automatic_top_up,Neutral,Low
+tamil,test,21,366,என் கார்டு ஏன் வேலை செய்யவில்லை?,card_not_working,Neutral,Medium
+tamil,test,21,375,என் கார்டு ஏன் வேலை செய்யவில்லை?,card_not_working,Neutral,Medium
+tamil,test,23,387,என்னால் என் கார்டைப் பயன்படுத்த முடியாது.,card_not_working,Neutral,Medium
+tamil,test,23,389,என்னால் என் கார்டைப் பயன்படுத்த முடியாது.,card_not_working,Neutral,Medium
+tamil,test,30,490,கணக்கொன்றைத் திறப்பதற்கான குறைந்தபட்ச வயது என்ன?,age_limit,Neutral,Low
+tamil,test,30,502,கணக்கொன்றைத் திறப்பதற்கான குறைந்தபட்ச வயது என்ன?,age_limit,Neutral,Low
+tamil,test,31,515,கணக்கொன்றைத் திறப்பதற்கு எனது பிள்ளைகளுக்கு எத்தனை வயது இருக்க வேண்டும்?,age_limit,Neutral,Low
+tamil,test,31,516,கணக்கொன்றைத் திறப்பதற்கு எனது பிள்ளைகளுக்கு எத்தனை வயது இருக்க வேண்டும்?,age_limit,Neutral,Low
+tamil,test,11,663,எனது டொப்-அப் ஏன் இன்னும் நிலுவையில் உள்ளது?,pending_top_up,Neutral,Low
+tamil,test,11,668,எனது டொப்-அப் ஏன் இன்னும் நிலுவையில் உள்ளது?,pending_top_up,Neutral,Low
+tamil,test,11,675,எனது டொப்-அப் ஏன் இன்னும் நிலுவையில் உள்ளது?,pending_top_up,Neutral,Low
+tamil,test,34,723,டாப்-அப் செய்வதற்கான எல்லை என்ன?,top_up_limits,Neutral,Low
+tamil,test,33,727,டாப்-அப் எல்லை என்ன?,top_up_limits,Neutral,Low
+tamil,test,33,747,டாப்-அப் எல்லை என்ன?,top_up_limits,Neutral,Low
+tamil,test,34,748,டாப்-அப் செய்வதற்கான எல்லை என்ன?,top_up_limits,Neutral,Low
+tamil,test,9,965,எனது அட்டையை எல்லா இடங்களிலும் பயன்படுத்த முடியுமா?,card_acceptance,Neutral,Low
+tamil,test,9,985,எனது அட்டையை எல்லா இடங்களிலும் பயன்படுத்த முடியுமா?,card_acceptance,Neutral,Low
+tamil,test,41,1012,"நான் டொப்-அப் செய்தேன், ஆனால் செயலி அதைத் திரும்பப் பெற்றுவிட்டது.",top_up_reverted,Neutral,Medium
+tamil,test,41,1018,"நான் டொப்-அப் செய்தேன், ஆனால் செயலி அதைத் திரும்பப் பெற்றுவிட்டது.",top_up_reverted,Neutral,Medium
+tamil,test,19,1121,எனது முகவரியை எவ்வாறு மாற்றுவது?,edit_personal_details,Neutral,Low
+tamil,test,20,1139,எனது விபரங்களை நான் எவ்வாறு மாற்றலாம்?,edit_personal_details,Neutral,Low
+tamil,test,20,1144,எனது விபரங்களை நான் எவ்வாறு மாற்றலாம்?,edit_personal_details,Neutral,Low
+tamil,test,47,1147,பெயரை எவ்வாறு மாற்றுவது?,edit_personal_details,Neutral,Low
+tamil,test,47,1150,பெயரை எவ்வாறு மாற்றுவது?,edit_personal_details,Neutral,Low
+tamil,test,19,1158,எனது முகவரியை எவ்வாறு மாற்றுவது?,edit_personal_details,Neutral,Low
+tamil,test,6,1161,எனது அடையாளத்தை உறுதிப்படுத்த நான் விரும்பவில்லை.,why_verify_identity,Neutral,Low
+tamil,test,37,1166,நான் அடையாளச் சோதனையைச் செய்ய வேண்டுமா?,why_verify_identity,Neutral,Low
+tamil,test,37,1169,நான் அடையாளச் சோதனையைச் செய்ய வேண்டுமா?,why_verify_identity,Neutral,Low
+tamil,test,6,1189,எனது அடையாளத்தை உறுதிப்படுத்த நான் விரும்பவில்லை.,why_verify_identity,Neutral,Low
+tamil,test,38,1193,நான் எனது அடையாளத்தை உறுதிப்படுத்த வேண்டுமா?,why_verify_identity,Neutral,Low
+tamil,test,38,1197,நான் எனது அடையாளத்தை உறுதிப்படுத்த வேண்டுமா?,why_verify_identity,Neutral,Low
+tamil,test,22,1200,என்னால் எனது அடையாளத்தை உறுதிப்படுத்த முடியவில்லை.,unable_to_verify_identity,Neutral,Low
+tamil,test,1,1213,இந்தச் செயலி என்னை அடையாளம் காணவில்லை.,unable_to_verify_identity,Neutral,Low
+tamil,test,7,1216,எனது அடையாளத்தை நிரூபிப்பதில் எனக்குப் பிரச்சினை ஏற்படுகிறது.,unable_to_verify_identity,Neutral,Low
+tamil,test,22,1220,என்னால் எனது அடையாளத்தை உறுதிப்படுத்த முடியவில்லை.,unable_to_verify_identity,Neutral,Low
+tamil,test,1,1221,இந்தச் செயலி என்னை அடையாளம் காணவில்லை.,unable_to_verify_identity,Neutral,Low
+tamil,test,7,1229,எனது அடையாளத்தை நிரூபிப்பதில் எனக்குப் பிரச்சினை ஏற்படுகிறது.,unable_to_verify_identity,Neutral,Low
+tamil,test,44,1301,நீங்கள் விசா அல்லது மாஸ்டர்கார்ட் வழங்குகிறீர்களா?,visa_or_mastercard,Neutral,Low
+tamil,test,44,1311,நீங்கள் விசா அல்லது மாஸ்டர்கார்ட் வழங்குகிறீர்களா?,visa_or_mastercard,Neutral,Low
+tamil,test,25,1368,என்னிடம் எத்தனை ஒருமுறை பயன்படுத்தும் அட்டைகள் இருக்க முடியும்?,disposable_card_limits,Neutral,Low
+tamil,test,25,1390,என்னிடம் எத்தனை ஒருமுறை பயன்படுத்தும் அட்டைகள் இருக்க முடியும்?,disposable_card_limits,Neutral,Low
+tamil,test,3,1441,எந்த ஏடிஎம் இயந்திரங்கள் இந்த அட்டையை ஏற்றுக்கொள்ளும்?,atm_support,Neutral,Low
+tamil,test,4,1446,எந்த ஏடிஎம் இயந்திரங்கள் எனது அட்டையை ஏற்றுக்கொள்ளும்?,atm_support,Neutral,Low
+tamil,test,3,1449,எந்த ஏடிஎம் இயந்திரங்கள் இந்த அட்டையை ஏற்றுக்கொள்ளும்?,atm_support,Neutral,Low
+tamil,test,4,1457,எந்த ஏடிஎம் இயந்திரங்கள் எனது அட்டையை ஏற்றுக்கொள்ளும்?,atm_support,Neutral,Low
+tamil,test,39,1545,நான் எனது கடவுச்சொல்லை மறந்துவிட்டேன்.,passcode_forgotten,Neutral,Medium
+tamil,test,39,1547,நான் எனது கடவுச்சொல்லை மறந்துவிட்டேன்.,passcode_forgotten,Neutral,Medium
+tamil,test,28,1565,ஏடிஎம் எனது கார்டை தொடர்ந்து நிராகரித்து வருகிறது. நான் இரண்டு வெவ்வேறு ஏடிஎம்களில் முயற்சி செய்தேன். எனது கணக்கில் ஏதேனும் பிரச்சினை உள்ளதா என்று எனக்குச் சொல்ல முடியுமா?,declined_cash_withdrawal,Neutral,Medium
+tamil,test,28,1584,ஏடிஎம் எனது கார்டை தொடர்ந்து நிராகரித்து வருகிறது. நான் இரண்டு வெவ்வேறு ஏடிஎம்களில் முயற்சி செய்தேன். எனது கணக்கில் ஏதேனும் பிரச்சினை உள்ளதா என்று எனக்குச் சொல்ல முடியுமா?,declined_cash_withdrawal,Neutral,Medium
+tamil,test,43,1608,நிலுவையில் உள்ள கொடுப்பனவு என்றால் என்ன?,pending_card_payment,Neutral,Low
+tamil,test,43,1616,நிலுவையில் உள்ள கொடுப்பனவு என்றால் என்ன?,pending_card_payment,Neutral,Low
+tamil,test,15,1723,எனது பணப் பரிமாற்றம் ஏன் நிராகரிக்கப்பட்டது?,declined_transfer,Neutral,Medium
+tamil,test,14,1725,"எனது பணப் பரிமாற்றங்களை ஏன் தொடர்ந்து நிராகரிக்கிறீர்கள்? இதுவரை அது நன்றாகவே வேலை செய்தது, ஆனால் இப்போது நான் ஏதேனும் வாங்க முயன்றபோது அட்டை நிராகரிக்கப்பட்டது. நான் ஏற்கனவே சில முறை முயற்சி செய்தேன், ஆனால் அதேதான் நடக்கிறது.",declined_transfer,Negative,Medium
+tamil,test,15,1729,எனது பணப் பரிமாற்றம் ஏன் நிராகரிக்கப்பட்டது?,declined_transfer,Neutral,Medium
+tamil,test,15,1732,எனது பணப் பரிமாற்றம் ஏன் நிராகரிக்கப்பட்டது?,declined_transfer,Neutral,Medium
+tamil,test,15,1733,எனது பணப் பரிமாற்றம் ஏன் நிராகரிக்கப்பட்டது?,declined_transfer,Neutral,Medium
+tamil,test,14,1735,"எனது பணப் பரிமாற்றங்களை ஏன் தொடர்ந்து நிராகரிக்கிறீர்கள்? இதுவரை அது நன்றாகவே வேலை செய்தது, ஆனால் இப்போது நான் ஏதேனும் வாங்க முயன்றபோது அட்டை நிராகரிக்கப்பட்டது. நான் ஏற்கனவே சில முறை முயற்சி செய்தேன், ஆனால் அதேதான் நடக்கிறது.",declined_transfer,Negative,Medium
+tamil,test,16,1744,எனது பணப் பரிமாற்றம் நிராகரிக்கப்பட்டது.,declined_transfer,Neutral,Medium
+tamil,test,16,1745,எனது பணப் பரிமாற்றம் நிராகரிக்கப்பட்டது.,declined_transfer,Neutral,Medium
+tamil,test,42,1754,"நான் நேற்று இணையத்தில் ஏதோ வாங்க முயன்றேன், ஆனால் அது தொடர்ந்து நிராகரிக்கப்பட்டது என்றே காட்டியது. இன்றும் முயன்றேன், ஆனால் அதேதான் நடந்தது. என்ன பிரச்சினை?",declined_transfer,Negative,Medium
+tamil,test,42,1755,"நான் நேற்று இணையத்தில் ஏதோ வாங்க முயன்றேன், ஆனால் அது தொடர்ந்து நிராகரிக்கப்பட்டது என்றே காட்டியது. இன்றும் முயன்றேன், ஆனால் அதேதான் நடந்தது. என்ன பிரச்சினை?",declined_transfer,Negative,Medium
+tamil,test,35,1880,தயவுசெய்து எனது கணக்கை நீக்க முடியுமா?,terminate_account,Neutral,High
+tamil,test,40,1887,நான் எனது கணக்கை மூட விரும்புகிறேன்.,terminate_account,Neutral,High
+tamil,test,40,1892,நான் எனது கணக்கை மூட விரும்புகிறேன்.,terminate_account,Neutral,High
+tamil,test,35,1901,தயவுசெய்து எனது கணக்கை நீக்க முடியுமா?,terminate_account,Neutral,High
+tamil,test,27,1938,ஏடிஎம் எனது அட்டையை விழுங்கிவிட்டால் நான் என்ன செய்வது?,card_swallowed,Neutral,Medium
+tamil,test,27,1940,ஏடிஎம் எனது அட்டையை விழுங்கிவிட்டால் நான் என்ன செய்வது?,card_swallowed,Neutral,Medium
+tamil,test,13,2006,எனது நிதி ஆதாரத்தை நான் சரிபார்க்க வேண்டும்.,verify_source_of_funds,Neutral,Low
+tamil,test,13,2023,எனது நிதி ஆதாரத்தை நான் சரிபார்க்க வேண்டும்.,verify_source_of_funds,Neutral,Low
+tamil,test,18,2125,எனது பின் இலக்கத்தை நான் எவ்வாறு மாற்றலாம்?,change_pin,Neutral,Low
+tamil,test,18,2136,எனது பின் இலக்கத்தை நான் எவ்வாறு மாற்றலாம்?,change_pin,Neutral,Low
+tamil,test,17,2285,எனது பணமாற்றம் நிறைவேறவில்லை.,failed_transfer,Neutral,Medium
+tamil,test,24,2286,என்னால் ஏன் பணமாற்றத்தை முடிக்க முடியவில்லை?,failed_transfer,Neutral,Medium
+tamil,test,17,2289,எனது பணமாற்றம் நிறைவேறவில்லை.,failed_transfer,Neutral,Medium
+tamil,test,24,2303,என்னால் ஏன் பணமாற்றத்தை முடிக்க முடியவில்லை?,failed_transfer,Neutral,Medium
+tamil,test,10,2483,எனது அட்டையை நான் எங்கே பெற்றுக்கொள்ளலாம்?,order_physical_card,Neutral,Low
+tamil,test,45,2490,நேரடி அட்டைகளுக்கு நீங்கள் கட்டணம் வசூலிக்கிறீர்களா?,order_physical_card,Neutral,Low
+tamil,test,45,2492,நேரடி அட்டைகளுக்கு நீங்கள் கட்டணம் வசூலிக்கிறீர்களா?,order_physical_card,Neutral,Low
+tamil,test,10,2510,எனது அட்டையை நான் எங்கே பெற்றுக்கொள்ளலாம்?,order_physical_card,Neutral,Low
+tamil,test,29,2617,ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டையை நான் எவ்வாறு பெறுவது?,get_disposable_virtual_card,Neutral,Low
+tamil,test,29,2627,ஒருமுறை பயன்படுத்தக்கூடிய மெய்நிகர் அட்டையை நான் எவ்வாறு பெறுவது?,get_disposable_virtual_card,Neutral,Low
+tamil,test,32,2640,செயலி எனது டொப்-அப்பை நிராகரித்துவிட்டது.,top_up_failed,Neutral,Medium
+tamil,test,12,2646,எனது டொப்-அப் வேலை செய்யவில்லை.,top_up_failed,Neutral,Medium
+tamil,test,12,2651,எனது டொப்-அப் வேலை செய்யவில்லை.,top_up_failed,Neutral,Medium
+tamil,test,32,2660,செயலி எனது டொப்-அப்பை நிராகரித்துவிட்டது.,top_up_failed,Neutral,Medium
+tamil,test,46,2817,பணம் நிரப்புவதற்கு வெளிநாட்டு வங்கி அட்டையைப் பயன்படுத்தினால் எனக்குக் கட்டணம் வசூலிக்கப்படுமா?,top_up_by_card_charge,Neutral,Low
+tamil,test,46,2819,பணம் நிரப்புவதற்கு வெளிநாட்டு வங்கி அட்டையைப் பயன்படுத்தினால் எனக்குக் கட்டணம் வசூலிக்கப்படுமா?,top_up_by_card_charge,Neutral,Low
+tamil,test,0,3009,அடையாளச் சோதனைக்கு ஏதேனும் ஆவணங்கள் தேவையா?,verify_my_identity,Neutral,Low
+tamil,test,5,3018,எனது அடையாளத்தை உறுதிப்படுத்த நான் என்ன செய்ய வேண்டும்?,verify_my_identity,Neutral,Low
+tamil,test,5,3030,எனது அடையாளத்தை உறுதிப்படுத்த நான் என்ன செய்ய வேண்டும்?,verify_my_identity,Neutral,Low
+tamil,test,0,3036,அடையாளச் சோதனைக்கு ஏதேனும் ஆவணங்கள் தேவையா?,verify_my_identity,Neutral,Low
+tamil,test,5,3039,எனது அடையாளத்தை உறுதிப்படுத்த நான் என்ன செய்ய வேண்டும்?,verify_my_identity,Neutral,Low
+tamilish,train,0,1171,Auto top-up policies enna?,automatic_top_up,Neutral,Low
+tamilish,train,0,1211,Auto top-up policies enna?,automatic_top_up,Neutral,Low
+tamilish,train,5,3059,Naan eppadi oru virtual card-ai petrukolvadhu?,getting_virtual_card,Neutral,Low
+tamilish,train,5,3084,Naan eppadi oru virtual card-ai petrukolvadhu?,getting_virtual_card,Neutral,Low
+tamilish,train,2,3493,Enoda statement la enaku theriyatha oru payment iruku.,card_payment_not_recognised,Neutral,High
+tamilish,train,2,3643,Enoda statement la enaku theriyatha oru payment iruku.,card_payment_not_recognised,Neutral,High
+tamilish,train,1,4986,Ennala ATM la irunthu kaasu edukka mudiyala.,declined_cash_withdrawal,Neutral,Medium
+tamilish,train,1,5041,Ennala ATM la irunthu kaasu edukka mudiyala.,declined_cash_withdrawal,Neutral,Medium
+tamilish,train,3,9827,Identity check-ku enna documents venum?,verify_my_identity,Neutral,Low
+tamilish,train,4,9850,Identity verification-ku enna venum?,verify_my_identity,Neutral,Low
+tamilish,train,3,9867,Identity check-ku enna documents venum?,verify_my_identity,Neutral,Low
+tamilish,train,4,9869,Identity verification-ku enna venum?,verify_my_identity,Neutral,Low
+tamilish,test,16,4,Enoda card innum vanthu serala.,card_arrival,Neutral,Low
+tamilish,test,16,30,Enoda card innum vanthu serala.,card_arrival,Neutral,Low
+tamilish,test,40,99,Unga currency maatru vighithangalai engirunthu perugireergal?,exchange_rate,Neutral,Low
+tamilish,test,40,113,Unga currency maatru vighithangalai engirunthu perugireergal?,exchange_rate,Neutral,Low
+tamilish,test,6,366,En card yen velai seiyala?,card_not_working,Neutral,Medium
+tamilish,test,6,375,En card yen velai seiyala?,card_not_working,Neutral,Medium
+tamilish,test,11,387,Ennala en card-ai use panna mudiyala.,card_not_working,Neutral,Medium
+tamilish,test,11,389,Ennala en card-ai use panna mudiyala.,card_not_working,Neutral,Medium
+tamilish,test,23,490,Kanakkondrai thirappatharkana kurainthabatcha vayathu enna?,age_limit,Neutral,Low
+tamilish,test,23,502,Kanakkondrai thirappatharkana kurainthabatcha vayathu enna?,age_limit,Neutral,Low
+tamilish,test,2,515,Account onrai thirappatharku enoda pillaigalukku ethanai vayathu irukka veendum?,age_limit,Neutral,Low
+tamilish,test,2,516,Account onrai thirappatharku enoda pillaigalukku ethanai vayathu irukka veendum?,age_limit,Neutral,Low
+tamilish,test,37,723,Top-up seivatharkana ellai enna?,top_up_limits,Neutral,Low
+tamilish,test,36,727,Top-up ellai enna?,top_up_limits,Neutral,Low
+tamilish,test,36,747,Top-up ellai enna?,top_up_limits,Neutral,Low
+tamilish,test,37,748,Top-up seivatharkana ellai enna?,top_up_limits,Neutral,Low
+tamilish,test,17,965,Enoda card-ai ella idangalilum payanpadutha mudiyuma?,card_acceptance,Neutral,Low
+tamilish,test,17,985,Enoda card-ai ella idangalilum payanpadutha mudiyuma?,card_acceptance,Neutral,Low
+tamilish,test,30,1012,"Naan top-up seythen, aanal app athai thirumba petruvittathu.",top_up_reverted,Neutral,Medium
+tamilish,test,30,1018,"Naan top-up seythen, aanal app athai thirumba petruvittathu.",top_up_reverted,Neutral,Medium
+tamilish,test,7,1098,Enaku oru card payment theriyala.,card_payment_not_recognised,Neutral,High
+tamilish,test,7,1106,Enaku oru card payment theriyala.,card_payment_not_recognised,Neutral,High
+tamilish,test,31,1147,Name-ai eppadi maatruvathu?,edit_personal_details,Neutral,Low
+tamilish,test,31,1150,Name-ai eppadi maatruvathu?,edit_personal_details,Neutral,Low
+tamilish,test,28,1166,Naan identity check-ai seyya veenduma?,why_verify_identity,Neutral,Low
+tamilish,test,28,1169,Naan identity check-ai seyya veenduma?,why_verify_identity,Neutral,Low
+tamilish,test,26,1193,Naan enoda adaiyaalathai urudhipadutha venduma?,why_verify_identity,Neutral,Low
+tamilish,test,26,1197,Naan enoda adaiyaalathai urudhipadutha venduma?,why_verify_identity,Neutral,Low
+tamilish,test,10,1200,Ennal enoda adaiyaalathai uruthipadutha mudiyala.,unable_to_verify_identity,Neutral,Low
+tamilish,test,22,1213,Intha app ennai adaiyaalam kaanavillai.,unable_to_verify_identity,Neutral,Low
+tamilish,test,14,1216,Enoda adaiyaalathai niroobippathil enakku pirachinai yerpadukirathu.,unable_to_verify_identity,Neutral,Low
+tamilish,test,10,1220,Ennal enoda adaiyaalathai uruthipadutha mudiyala.,unable_to_verify_identity,Neutral,Low
+tamilish,test,22,1221,Intha app ennai adaiyaalam kaanavillai.,unable_to_verify_identity,Neutral,Low
+tamilish,test,14,1229,Enoda adaiyaalathai niroobippathil enakku pirachinai yerpadukirathu.,unable_to_verify_identity,Neutral,Low
+tamilish,test,32,1301,Neenga Visa allathu Mastercard vazhangugireergala?,visa_or_mastercard,Neutral,Low
+tamilish,test,32,1311,Neenga Visa allathu Mastercard vazhangugireergala?,visa_or_mastercard,Neutral,Low
+tamilish,test,8,1446,Endha ATM-gal enoda card-ai accept pannum?,atm_support,Neutral,Low
+tamilish,test,8,1457,Endha ATM-gal enoda card-ai accept pannum?,atm_support,Neutral,Low
+tamilish,test,27,1545,Naan enoda password-ai maranthuvittaen.,passcode_forgotten,Neutral,Medium
+tamilish,test,27,1547,Naan enoda password-ai maranthuvittaen.,passcode_forgotten,Neutral,Medium
+tamilish,test,0,1565,ATM enoda card-ai thodarnthu niragarithu varugiradhu. Naan rendu veru veru ATM-galil muyarchi seithen. Enoda account-il yedhadhu prachinai ulladha endru enakku solla mudiyuma?,declined_cash_withdrawal,Neutral,Medium
+tamilish,test,0,1584,ATM enoda card-ai thodarnthu niragarithu varugiradhu. Naan rendu veru veru ATM-galil muyarchi seithen. Enoda account-il yedhadhu prachinai ulladha endru enakku solla mudiyuma?,declined_cash_withdrawal,Neutral,Medium
+tamilish,test,33,1608,Pending-la ulla koduppanavu endral enna?,pending_card_payment,Neutral,Low
+tamilish,test,33,1616,Pending-la ulla koduppanavu endral enna?,pending_card_payment,Neutral,Low
+tamilish,test,21,1723,Enoda transfer yen decline aachchu?,declined_transfer,Neutral,Medium
+tamilish,test,41,1725,"Yen enoda transfer-ai thodarnthu decline panreenga? Ithuvaraikum nalla thaan vela senjuthu, aana ippo naan ethavathu vanga try pannumpothu card decline aayiduchu. Naan rendu moonu thadavai try panniten, aana athe thaan nadakuthu.",declined_transfer,Negative,Medium
+tamilish,test,39,1727,Transfer yen decline aachchu?,declined_transfer,Neutral,Medium
+tamilish,test,21,1729,Enoda transfer yen decline aachchu?,declined_transfer,Neutral,Medium
+tamilish,test,21,1732,Enoda transfer yen decline aachchu?,declined_transfer,Neutral,Medium
+tamilish,test,21,1733,Enoda transfer yen decline aachchu?,declined_transfer,Neutral,Medium
+tamilish,test,41,1735,"Yen enoda transfer-ai thodarnthu decline panreenga? Ithuvaraikum nalla thaan vela senjuthu, aana ippo naan ethavathu vanga try pannumpothu card decline aayiduchu. Naan rendu moonu thadavai try panniten, aana athe thaan nadakuthu.",declined_transfer,Negative,Medium
+tamilish,test,39,1742,Transfer yen decline aachchu?,declined_transfer,Neutral,Medium
+tamilish,test,20,1744,Enoda transfer decline aayiduchu.,declined_transfer,Neutral,Medium
+tamilish,test,20,1745,Enoda transfer decline aayiduchu.,declined_transfer,Neutral,Medium
+tamilish,test,29,1754,"Naan netru inaiyathil yetho vaanga muyandren, aanaal athu thodarnthu niragarikkapattathu endre kaattiyathu. Indrum muyandren, aanaal athethaan nadanthathu. Enna pirachinai?",declined_transfer,Negative,Medium
+tamilish,test,29,1755,"Naan netru inaiyathil yetho vaanga muyandren, aanaal athu thodarnthu niragarikkapattathu endre kaattiyathu. Indrum muyandren, aanaal athethaan nadanthathu. Enna pirachinai?",declined_transfer,Negative,Medium
+tamilish,test,38,1859,Transfer eppo complete aahum?,pending_transfer,Neutral,Low
+tamilish,test,38,1864,Transfer eppo complete aahum?,pending_transfer,Neutral,Low
+tamilish,test,35,1880,Please enoda account-ai neekka mudiyuma?,terminate_account,Neutral,High
+tamilish,test,25,1887,Naan enoda account-ai mooda virumbugiren.,terminate_account,Neutral,High
+tamilish,test,25,1892,Naan enoda account-ai mooda virumbugiren.,terminate_account,Neutral,High
+tamilish,test,35,1901,Please enoda account-ai neekka mudiyuma?,terminate_account,Neutral,High
+tamilish,test,1,1938,ATM enoda card-ai vizhungivittal naan enna seivathu?,card_swallowed,Neutral,Medium
+tamilish,test,1,1940,ATM enoda card-ai vizhungivittal naan enna seivathu?,card_swallowed,Neutral,Medium
+tamilish,test,18,2006,Enoda nithi aathaarathai naan saripaarka vendum.,verify_source_of_funds,Neutral,Low
+tamilish,test,18,2023,Enoda nithi aathaarathai naan saripaarka vendum.,verify_source_of_funds,Neutral,Low
+tamilish,test,13,2125,Enoda PIN ilakkathai naan eppadi maatralaam?,change_pin,Neutral,Low
+tamilish,test,13,2136,Enoda PIN ilakkathai naan eppadi maatralaam?,change_pin,Neutral,Low
+tamilish,test,12,2162,Ennala oru account-ukku transfer seiya mudiyala,beneficiary_not_allowed,Neutral,Medium
+tamilish,test,12,2181,Ennala oru account-ukku transfer seiya mudiyala,beneficiary_not_allowed,Neutral,Medium
+tamilish,test,19,2285,Enoda panamaatram niraivaeravillai.,failed_transfer,Neutral,Medium
+tamilish,test,9,2286,Ennaal yaen panamaatrathai mudikka mudiyala?,failed_transfer,Neutral,Medium
+tamilish,test,19,2289,Enoda panamaatram niraivaeravillai.,failed_transfer,Neutral,Medium
+tamilish,test,9,2303,Ennaal yaen panamaatrathai mudikka mudiyala?,failed_transfer,Neutral,Medium
+tamilish,test,34,2490,Physical card-galukku neenga fee vasoolikkireergala?,order_physical_card,Neutral,Low
+tamilish,test,34,2492,Physical card-galukku neenga fee vasoolikkireergala?,order_physical_card,Neutral,Low
+tamilish,test,4,2640,App enoda top-up-a reject panniduchu.,top_up_failed,Neutral,Medium
+tamilish,test,4,2660,App enoda top-up-a reject panniduchu.,top_up_failed,Neutral,Medium
+tamilish,test,24,2724,Naan edukatha sila cash edutha mathiri enoda app la kaatuthu.,cash_withdrawal_not_recognised,Neutral,High
+tamilish,test,24,2741,Naan edukatha sila cash edutha mathiri enoda app la kaatuthu.,cash_withdrawal_not_recognised,Neutral,High
+tamilish,test,5,2817,Cash nirappuvadharku velinaattu bank card-ai payanpaduthinaal enakku fee vasoolikkappaduma?,top_up_by_card_charge,Neutral,Low
+tamilish,test,5,2819,Cash nirappuvadharku velinaattu bank card-ai payanpaduthinaal enakku fee vasoolikkappaduma?,top_up_by_card_charge,Neutral,Low
+tamilish,test,3,3009,Adaiyaala sothanaikku aethenum aavanangal thevaiya?,verify_my_identity,Neutral,Low
+tamilish,test,15,3030,Enoda adaiyaalathai uruthipadutha naan enna seyya veendum?,verify_my_identity,Neutral,Low
+tamilish,test,3,3036,Adaiyaala sothanaikku aethenum aavanangal thevaiya?,verify_my_identity,Neutral,Low
+tamilish,test,15,3039,Enoda adaiyaalathai uruthipadutha naan enna seyya veendum?,verify_my_identity,Neutral,Low

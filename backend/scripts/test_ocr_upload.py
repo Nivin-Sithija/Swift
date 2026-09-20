@@ -1,6 +1,6 @@
-import sys
-import requests
 import os
+
+import requests
 from PIL import Image, ImageDraw
 
 # ==============================================================================

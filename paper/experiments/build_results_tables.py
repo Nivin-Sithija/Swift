@@ -1,6 +1,6 @@
 """Generate the paper's results tables from the run records.
 
-`results.md` opens by saying its figures were "generated directly from
+`ml/reports/RESULTS.md` opens by saying its figures were "generated directly from
 `ml/reports/runs/*.json` -- no figure here was retyped by hand". There was no
 script. This is that script, and from here the claim is true.
 

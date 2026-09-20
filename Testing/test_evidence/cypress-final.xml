@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="1.647" tests="3" failures="0">
+  <testsuite name="Root Suite" timestamp="2026-09-20T13:39:36" tests="0" file="Testing/test_evidence/cypress/e2e/login.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Swift production frontend" timestamp="2026-09-20T13:39:36" tests="3" time="1.647" failures="0">
+    <testcase name="Swift production frontend renders and validates login at 1280x800" time="1.002" classname="renders and validates login at 1280x800">
+    </testcase>
+    <testcase name="Swift production frontend renders and validates login at 390x844" time="0.433" classname="renders and validates login at 390x844">
+    </testcase>
+    <testcase name="Swift production frontend renders the registration route and switches account roles" time="0.145" classname="renders the registration route and switches account roles">
+    </testcase>
+  </testsuite>
+</testsuites>

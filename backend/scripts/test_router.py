@@ -11,8 +11,7 @@ async def run_tests():
     text = "I lost my credit card yesterday, please help me cancel it"
     
     # 1. Customer text always goes to LaBSE
-    print("
---- Test 1: Customer text (LaBSE) ---")
+    print("\n--- Test 1: Customer text (LaBSE) ---")
     text_intent, _, _ = await classify(text)
     print(f"Predicted Category: {text_intent.value}")
     print(f"Confidence:         {text_intent.confidence:.2f}")
@@ -23,8 +22,7 @@ async def run_tests():
         print("Failed to route to LaBSE!")
         
     # 2. Attachment (OCR) text goes to the local SVM with a calibrated confidence
-    print("
---- Test 2: Attachment text (SVM) ---")
+    print("\n--- Test 2: Attachment text (SVM) ---")
     ocr_intent = classify_ocr_intent(text)
     print(f"Predicted Category: {ocr_intent.value}")
     print(f"Confidence:         {ocr_intent.confidence:.2f}")
@@ -32,8 +30,7 @@ async def run_tests():
 
     # 3. Fusion keeps the customer text unless its prediction is weak
     fused = fuse_intent(text_intent, ocr_intent)
-    print("
---- Test 3: Fused intent ---")
+    print("\n--- Test 3: Fused intent ---")
     print(f"Predicted Category: {fused.value} ({fused.model_version}, {fused.confidence:.2f})")
 
 if __name__ == "__main__":

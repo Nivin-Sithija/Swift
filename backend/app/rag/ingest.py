@@ -60,6 +60,8 @@ async def ingest(manifest: Path, root: Path) -> int:
         huggingface_token=settings.huggingface_token,
         huggingface_provider=settings.huggingface_provider,
         huggingface_endpoint_url=settings.huggingface_endpoint_url,
+        ollama_base_url=settings.ollama_base_url,
+        ollama_embedding_model=settings.ollama_embedding_model,
     )
     rows = list(csv.DictReader(manifest.open(encoding="utf-8")))
     ingested = 0

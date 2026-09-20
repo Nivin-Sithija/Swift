@@ -4,18 +4,24 @@ import httpx
 import numpy as np
 import pytest
 
-from app.rag.citations import build_citations, citations_are_valid
+from app.rag.citations import build_citations, citations_are_valid, normalize_citation_layout
 from app.rag.evaluation import ndcg_at_k, recall_at_k, reciprocal_rank
 from app.rag.guardrails import route_guardrails
 from app.rag.languages import detect_consumer_language, normalize_query
 from app.rag.models import (
     FlashRankReranker,
     HuggingFaceEmbedder,
+    OllamaEmbedder,
     _TokenTypeSessionAdapter,
     build_embedder,
 )
-from app.rag.providers import GroqProvider, ProviderError
-from app.rag.retrieval import PostgresHybridRetriever, evidence_confidence, reciprocal_rank_fusion
+from app.rag.providers import GroqProvider, OllamaProvider, ProviderError
+from app.rag.retrieval import (
+    PostgresHybridRetriever,
+    evidence_confidence,
+    lexical_websearch_query,
+    reciprocal_rank_fusion,
+)
 from app.rag.safety import route_safety
 from app.rag.service import ConsumerRAGService
 from app.rag.types import ConsumerLanguage, Evidence, QueryContext, RetrievalResult
@@ -72,7 +78,7 @@ def test_safety_router_allows_routine_information() -> None:
     [
         ("This is fraud", "medium"),
         ("routine question", "critical"),
-        ("මම නොකළ ගනුදෙනුවක්", "high"),
+        ("How do I report fraud?", "high"),
     ],
 )
 def test_safety_router_allows_guidance_regardless_of_classification(
@@ -86,9 +92,19 @@ def test_safety_router_allows_guidance_regardless_of_classification(
 
 def test_rrf_deduplicates_and_rewards_shared_results() -> None:
     a, b, c = evidence("a"), evidence("b"), evidence("c")
-    fused = reciprocal_rank_fusion([[a, b], [b, c]])
+    lexical_b = Evidence(**{**b.__dict__, "dense_score": 0.0, "lexical_score": 0.7})
+    fused = reciprocal_rank_fusion([[a, b], [lexical_b, c]])
     assert [item.chunk_id for item in fused] == ["b", "a", "c"]
     assert len({item.chunk_id for item in fused}) == 3
+    assert fused[0].dense_score == 0.9
+    assert fused[0].lexical_score == 0.7
+
+
+def test_lexical_query_uses_bound_or_terms_and_keeps_unicode() -> None:
+    assert lexical_websearch_query("regular savings account documents") == (
+        "regular OR savings OR account OR documents"
+    )
+    assert lexical_websearch_query("எனது கணக்கு") == "எனது OR கணக்கு"
 
 
 def test_flashrank_adapter_supplies_required_token_type_ids() -> None:
@@ -114,6 +130,36 @@ async def test_flashrank_does_not_invoke_model_for_empty_candidates() -> None:
 def test_confidence_uses_evidence_quality() -> None:
     assert evidence_confidence([evidence("a")]) >= 0.8
     assert evidence_confidence([]) == 0
+    assert evidence_confidence([evidence("a")], expected_category="accounts") > (
+        evidence_confidence([evidence("a")])
+    )
+
+
+def test_confidence_has_no_zero_to_epsilon_discontinuity() -> None:
+    zero = evidence("zero")
+    zero = Evidence(**{**zero.__dict__, "dense_score": 0.0, "lexical_score": 0.9})
+    epsilon = Evidence(**{**zero.__dict__, "chunk_id": "epsilon", "dense_score": 0.001})
+    assert 0 < evidence_confidence([epsilon]) - evidence_confidence([zero]) < 0.001
+
+
+def test_safety_intent_is_language_independent() -> None:
+    for language, query in (
+        (ConsumerLanguage.english, "Please help"),
+        (ConsumerLanguage.sinhala, "කරුණාකර උදව් කරන්න"),
+        (ConsumerLanguage.tamil, "தயவுசெய்து உதவுங்கள்"),
+        (ConsumerLanguage.singlish, "udaw karanna"),
+        (ConsumerLanguage.tamilish, "udhavi pannunga"),
+    ):
+        context = QueryContext(
+            query, query, language, "Commercial Bank", intent="cancel_transfer"
+        )
+        assert route_safety(context).escalate
+
+
+def test_safety_router_escalates_native_unauthorized_transaction() -> None:
+    query = "මගේ card එකෙන් මම නොකළ ගනුදෙනුවක් තියෙනවා"
+    context = QueryContext(query, query, ConsumerLanguage.sinhala, "Commercial Bank")
+    assert route_safety(context).escalate
 
 
 def test_citations_preserve_source_metadata() -> None:
@@ -124,13 +170,26 @@ def test_citations_preserve_source_metadata() -> None:
     assert citation.source_id == "SRC-1"
     assert citation.chunk_ids == ("a",)
     assert not citations_are_valid("Unsupported claim", [item])
-    assert citations_are_valid("Required documents:\n1. ID\n2. Address proof [E1]", [item])
+    assert not citations_are_valid("Required documents:\n1. ID\n2. Address proof [E1]", [item])
+    assert citations_are_valid("Required documents:\n1. ID [E1]\n2. Address proof [E1]", [item])
     assert not citations_are_valid("Supported claim [E1]\n\nSeparate unsupported claim", [item])
     assert citations_are_valid(
         "General policy guidance from approved sources; this does not confirm "
         "account activity.\n\nThe requirement is listed here. [E1]",
         [item],
     )
+    neighbour = Evidence(**{**item.__dict__, "chunk_id": "neighbor", "is_neighbor": True})
+    assert not citations_are_valid("A neighbouring passage says this. [E2]", [item, neighbour])
+    assert citations_are_valid("**Required documents**\n\n- ID [E1]", [item])
+
+
+def test_citation_layout_normalizer_repeats_only_a_model_selected_marker() -> None:
+    item = evidence("a")
+    answer = "Required documents:\n\n1. ID\n2. Address proof. [E1]"
+    normalized = normalize_citation_layout(answer, [item])
+    assert "1. ID [E1]" in normalized
+    assert citations_are_valid(normalized, [item])
+    assert normalize_citation_layout("Unsupported claim", [item]) == "Unsupported claim"
     assert citations_are_valid(
         "General policy guidance from approved sources; this does not confirm "
         "account activity.\n\nBased on the approved bank policy:\n\n"
@@ -165,6 +224,21 @@ class FakeLLM:
         return "The required documents are in the official source. [E1]"
 
 
+class CitationRepairLLM:
+    name = "fake"
+
+    def __init__(self) -> None:
+        self.calls = 0
+
+    async def generate(self, *, system: str, user: str) -> str:
+        self.calls += 1
+        if self.calls == 1:
+            return "No citation was produced."
+        assert "failed citation-format validation" in system
+        assert "Invalid previous draft" in user
+        return "Required documents:\n\n1. Identity document. [E1]\n2. Address proof. [E1]"
+
+
 @pytest.mark.asyncio
 async def test_low_confidence_refuses_without_calling_generation() -> None:
     service = ConsumerRAGService(FakeRetriever(RetrievalResult([], 0.2)), FakeLLM())
@@ -184,6 +258,17 @@ async def test_grounded_result_is_direct_customer_assistance() -> None:
     assert result.route == "rag_draft"
     assert result.approval_required is False
     assert result.citations[0].source_id == "SRC-1"
+
+
+@pytest.mark.asyncio
+async def test_invalid_citation_layout_gets_one_grounded_repair_attempt() -> None:
+    llm = CitationRepairLLM()
+    service = ConsumerRAGService(FakeRetriever(RetrievalResult([evidence("a")], 0.9)), llm)
+    result = await service.assist(
+        query="What documents are required?", institution="Commercial Bank"
+    )
+    assert result.route == "rag_draft"
+    assert llm.calls == 2
 
 
 @pytest.mark.asyncio
@@ -325,6 +410,48 @@ def test_hosted_embedder_requires_token() -> None:
         build_embedder(
             provider="huggingface", model_name="BAAI/bge-m3", dimensions=1024, timeout=20
         )
+
+
+class FakeOllamaResponse:
+    def __init__(self, payload: dict[str, object]) -> None:
+        self.payload = payload
+
+    def raise_for_status(self) -> None:
+        return None
+
+    def json(self) -> dict[str, object]:
+        return self.payload
+
+
+class FakeOllamaClient:
+    async def __aenter__(self) -> "FakeOllamaClient":
+        return self
+
+    async def __aexit__(self, *_args: object) -> None:
+        return None
+
+    async def post(self, url: str, **kwargs: object) -> FakeOllamaResponse:
+        if url.endswith("/api/embed"):
+            assert kwargs["json"] == {"model": "bge-m3", "input": "hello"}
+            return FakeOllamaResponse({"embeddings": [[0.25, 0.75]]})
+        assert url.endswith("/api/chat")
+        payload = kwargs["json"]
+        assert isinstance(payload, dict) and payload["model"] == "qwen2.5:7b"
+        return FakeOllamaResponse({"message": {"content": "local answer [E1]"}})
+
+
+@pytest.mark.asyncio
+async def test_ollama_embedding_and_generation_adapters(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr("app.rag.models.httpx.AsyncClient", lambda **_kwargs: FakeOllamaClient())
+    monkeypatch.setattr("app.rag.providers.httpx.AsyncClient", lambda **_kwargs: FakeOllamaClient())
+    embedder = OllamaEmbedder(
+        base_url="http://ollama", model_name="bge-m3", timeout=20, dimensions=2
+    )
+    assert await embedder.embed_query("hello") == [0.25, 0.75]
+    provider = OllamaProvider("http://ollama", "qwen2.5:7b")
+    assert await provider.generate(system="system", user="user") == "local answer [E1]"
 
 
 @pytest.mark.parametrize(
