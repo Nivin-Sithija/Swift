@@ -24,7 +24,7 @@ def model_components() -> tuple[Embedder, FlashRankReranker]:
         huggingface_token=settings.huggingface_token,
         huggingface_provider=settings.huggingface_provider,
         huggingface_endpoint_url=settings.huggingface_endpoint_url,
-    ), FlashRankReranker()
+    ), FlashRankReranker(settings.rag_reranker_model)
 
 
 def provider(settings: Settings) -> FallbackProvider:

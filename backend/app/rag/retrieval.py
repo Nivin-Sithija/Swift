@@ -11,6 +11,27 @@ from app.rag.types import Embedder, Evidence, QueryContext, Reranker, RetrievalR
 
 logger = logging.getLogger(__name__)
 
+# Function words that would otherwise match nearly every chunk once search words are
+# OR-ed together. The index uses the 'simple' configuration, which keeps them.
+LEXICAL_STOPWORDS = frozenset(
+    "a an and are be can did do does for from has have how i in is it me my not of on "
+    "or please the this that to was what when where who why will with you your".split()
+)
+# websearch_to_tsquery reads quotes as phrases and a leading "-" as NOT.
+LEXICAL_STRIP = "\"'-.,;:!?()[]{}<>/\\|`~@#$%^&*+=_"
+
+
+def lexical_query(text: str) -> str:
+    """Match chunks containing any meaningful search word, not every word.
+
+    websearch_to_tsquery joins plain words with AND, so a full ticket sentence
+    matched almost nothing. Splitting on whitespace (not regex \\w) keeps Sinhala and Tamil
+    words whole, since their vowel signs are not word characters.
+    """
+    words = [word.strip(LEXICAL_STRIP).lower() for word in text.split()]
+    kept = [word for word in words if len(word) > 2 and word not in LEXICAL_STOPWORDS]
+    return " or ".join(dict.fromkeys(kept)) or text
+
 
 def reciprocal_rank_fusion(
     rankings: list[list[Evidence]], *, k: int = 60, limit: int = 20
@@ -66,7 +87,7 @@ class PostgresHybridRetriever:
             else []
         )
         lexical_rankings = [
-            await self._query("lexical", query, {**params, "query": query})
+            await self._query("lexical", query, {**params, "query": lexical_query(query)})
             for query in query_variants
         ]
         # Ticket classifier labels are finer-grained than knowledge-base categories
@@ -80,7 +101,9 @@ class PostgresHybridRetriever:
                 else []
             )
             lexical_rankings = [
-                await self._query("lexical", query, {**broad_params, "query": query})
+                await self._query(
+                    "lexical", query, {**broad_params, "query": lexical_query(query)}
+                )
                 for query in query_variants
             ]
         fused = reciprocal_rank_fusion([dense, *lexical_rankings], limit=self.candidate_limit)
