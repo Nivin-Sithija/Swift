@@ -42,7 +42,11 @@ class Settings(BaseSettings):
     huggingface_provider: str = "hf-inference"
     huggingface_endpoint_url: str | None = None
     rag_embedding_dimensions: int = 1024
-    rag_candidate_limit: int = 20
+    # FlashRank's default TinyBERT scores full ticket sentences near zero even when
+    # the right section is retrieved; MiniLM-L-12 separates them. It is slower on CPU,
+    # so fewer candidates are reranked.
+    rag_reranker_model: str = "ms-marco-MiniLM-L-12-v2"
+    rag_candidate_limit: int = 10
     rag_final_limit: int = 5
     rag_min_confidence: float = 0.55
     rag_review_max_age_days: int = 365
