@@ -19,6 +19,7 @@ from app.rag.providers import GroqProvider, OllamaProvider, ProviderError
 from app.rag.retrieval import (
     PostgresHybridRetriever,
     evidence_confidence,
+    lexical_query,
     lexical_websearch_query,
     reciprocal_rank_fusion,
 )
@@ -399,7 +400,7 @@ async def test_lexical_retrieval_uses_any_word_query() -> None:
         "savings account documents", "savings account documents", ConsumerLanguage.english, None
     )
     await retriever.retrieve(context)
-    assert db.calls[0]["query"] == "savings or account or documents"
+    assert db.calls[0]["query"] == "savings OR account OR documents"
 
 
 class FakeHFResponse:
