@@ -1,0 +1,85 @@
+
+==============================================================================
+1. STRUCTURAL INTEGRITY
+==============================================================================
+    lang split  rows  unique_ids  id_min  id_max  cols_ok
+ english train  9998        9998       0   10002     True
+ english  test  3079        3079       0    3079     True
+ sinhala train  9998        9998       0   10002     True
+ sinhala  test  3079        3079       0    3079     True
+singlish train  9998        9998       0   10002     True
+singlish  test  3079        3079       0    3079     True
+   tamil train  9998        9998       0   10002     True
+   tamil  test  3079        3079       0    3079     True
+tamilish train  9998        9998       0   10002     True
+tamilish  test  3079        3079       0    3079     True
+
+  id-set alignment across languages (within split):
+    train langs=['english', 'sinhala', 'singlish', 'tamil', 'tamilish'] aligned=True (n=9998)
+    test  langs=['english', 'sinhala', 'singlish', 'tamil', 'tamilish'] aligned=True (n=3079)
+
+==============================================================================
+2. CROSS-LANGUAGE LABEL CONSISTENCY
+==============================================================================
+  label mismatches vs english: 0
+
+==============================================================================
+3. EMPTY FIELDS
+==============================================================================
+  (none)
+
+==============================================================================
+4. UNTRANSLATED ROWS (text == text_en)
+==============================================================================
+  (none)
+
+==============================================================================
+5. WITHIN-SPLIT DUPLICATES
+==============================================================================
+  conflicting-label collisions (one text -> >1 label tuple):
+lang      split
+    tamilish  test     1
+              train    1
+    total collision groups: 1, member rows: 4
+
+  exact duplicates (same text AND same labels — safe to dedup):
+    lang      split
+    tamil     test     100
+              train     20
+    tamilish  test      86
+              train     12
+
+==============================================================================
+6. TRAIN/TEST LEAKAGE (same text_en in both splits)
+==============================================================================
+  test rows whose text_en also appears in train: 6
+
+==============================================================================
+7. CLASS BALANCE (english train)
+==============================================================================
+
+  sentiment  (imbalance 20.6x)
+      Neutral      9536   95.4%
+      Negative      462    4.6%
+
+  priority  (imbalance 5.3x)
+      Low          5313   53.1%
+      Medium       3691   36.9%
+      High          994    9.9%
+
+  category (77-way): 77 classes, min=35 max=187 median=127, < 20 samples: 0 classes
+
+==============================================================================
+8. TEXT LENGTH (chars)
+==============================================================================
+  lang      split  min  median   max
+  english   train   13      47   433
+  english   test    13      45   368
+  sinhala   train   13      48   394
+  sinhala   test    11      47   313
+  singlish  train   15      54   412
+  singlish  test    14      53   341
+  tamil     train   12      62   557
+  tamil     test    18      61   472
+  tamilish  train   12      55   430
+  tamilish  test    18      60   491

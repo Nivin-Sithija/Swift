@@ -18,7 +18,7 @@ from app.core.db import SessionLocal, engine
 from app.rag.dependencies import consumer_rag_service
 from app.rag.evaluation import EvaluationRecord, slice_summary, summarize
 from app.rag.judge import judge_answer
-from app.rag.providers import FallbackProvider, GeminiProvider, GroqProvider
+from app.rag.providers import FallbackProvider, GeminiProvider, GroqProvider, OllamaProvider
 from app.rag.service import ConsumerRAGService, Retriever
 from app.rag.types import Evidence, LLMProvider, QueryContext, RetrievalResult
 
@@ -56,6 +56,12 @@ def _instrumented(
 
 
 def _judge_provider(settings: Settings) -> LLMProvider:
+    if settings.rag_generation_provider == "ollama":
+        return OllamaProvider(
+            settings.ollama_base_url,
+            settings.ollama_generation_model,
+            JUDGE_TIMEOUT_SECONDS,
+        )
     retries = settings.rag_provider_max_retries
     backoff = settings.rag_provider_retry_base_delay_seconds
     primary = GroqProvider(

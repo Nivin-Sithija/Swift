@@ -1,0 +1,166 @@
+{
+  "dataset": {
+    "english_train": {
+      "rows": 9998,
+      "classes": 77,
+      "pass": true,
+      "id_alignment": true,
+      "cross_language_label_alignment": true,
+      "source_text_alignment": true
+    },
+    "sinhala_train": {
+      "rows": 9998,
+      "classes": 77,
+      "pass": true,
+      "id_alignment": true,
+      "cross_language_label_alignment": true,
+      "source_text_alignment": true
+    },
+    "singlish_train": {
+      "rows": 9998,
+      "classes": 77,
+      "pass": true,
+      "id_alignment": true,
+      "cross_language_label_alignment": true,
+      "source_text_alignment": true
+    },
+    "tamil_train": {
+      "rows": 9998,
+      "classes": 77,
+      "pass": true,
+      "id_alignment": true,
+      "cross_language_label_alignment": true,
+      "source_text_alignment": true
+    },
+    "tamilish_train": {
+      "rows": 9998,
+      "classes": 77,
+      "pass": true,
+      "id_alignment": true,
+      "cross_language_label_alignment": true,
+      "source_text_alignment": true
+    },
+    "english_test": {
+      "rows": 3079,
+      "classes": 77,
+      "pass": true,
+      "id_alignment": true,
+      "cross_language_label_alignment": true,
+      "source_text_alignment": true
+    },
+    "sinhala_test": {
+      "rows": 3079,
+      "classes": 77,
+      "pass": true,
+      "id_alignment": true,
+      "cross_language_label_alignment": true,
+      "source_text_alignment": true
+    },
+    "singlish_test": {
+      "rows": 3079,
+      "classes": 77,
+      "pass": true,
+      "id_alignment": true,
+      "cross_language_label_alignment": true,
+      "source_text_alignment": true
+    },
+    "tamil_test": {
+      "rows": 3079,
+      "classes": 77,
+      "pass": true,
+      "id_alignment": true,
+      "cross_language_label_alignment": true,
+      "source_text_alignment": true
+    },
+    "tamilish_test": {
+      "rows": 3079,
+      "classes": 77,
+      "pass": true,
+      "id_alignment": true,
+      "cross_language_label_alignment": true,
+      "source_text_alignment": true
+    }
+  },
+  "split": {
+    "sha": "e7b5934392cd",
+    "counts": {
+      "train": 8500,
+      "dev": 1498,
+      "test": 3079
+    },
+    "train_dev_disjoint": true,
+    "pass": true,
+    "note": "Train/test ids are indexes in different source CSVs; namespace is split-specific."
+  },
+  "artifacts": {
+    "run_json_count": 1168,
+    "split_sha_counts": {
+      "e7b5934392cd": 1168
+    },
+    "malformed_json": [],
+    "pass": true
+  },
+  "metrics": {
+    "intent_labse": {
+      "rows": 15395,
+      "macro_f1": 0.883424,
+      "accuracy": 0.882949,
+      "per_language_error_rate": {
+        "english": 0.058785,
+        "singlish": 0.09646,
+        "sinhala": 0.067879,
+        "tamil": 0.06723,
+        "tamilish": 0.294901
+      }
+    },
+    "intent_tfidf_svm": {
+      "rows": 15395,
+      "macro_f1": 0.83082,
+      "accuracy": 0.830464,
+      "per_language_error_rate": {
+        "english": 0.08217,
+        "singlish": 0.120169,
+        "sinhala": 0.131861,
+        "tamil": 0.142254,
+        "tamilish": 0.371224
+      }
+    },
+    "sentiment_labse": {
+      "rows": 15395,
+      "negative_f1": 0.713819,
+      "accuracy": 0.965833,
+      "per_language_error_rate": {
+        "english": 0.024034,
+        "singlish": 0.038649,
+        "sinhala": 0.033777,
+        "tamil": 0.02923,
+        "tamilish": 0.045145
+      }
+    },
+    "sentiment_tfidf_svm": {
+      "rows": 15395,
+      "negative_f1": 0.665291,
+      "accuracy": 0.957843,
+      "per_language_error_rate": {
+        "english": 0.035401,
+        "singlish": 0.043845,
+        "sinhala": 0.045794,
+        "tamil": 0.034752,
+        "tamilish": 0.050991
+      }
+    },
+    "priority_tfidf_svm": {
+      "rows": 15395,
+      "macro_f1": 0.873358,
+      "accuracy": 0.887886,
+      "per_language_error_rate": {
+        "english": 0.090289,
+        "singlish": 0.097759,
+        "sinhala": 0.104579,
+        "tamil": 0.106528,
+        "tamilish": 0.161416
+      }
+    }
+  },
+  "overall_structural_pass": true
+}
