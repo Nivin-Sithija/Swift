@@ -239,6 +239,16 @@ async def get_ticket(db: AsyncSession, public_id: str, user: User) -> Ticket:
     return ticket
 
 
+async def reloaded(db: AsyncSession, ticket: Ticket, public_id: str, user: User) -> Ticket:
+    """Re-read a ticket after a write that changed a related row.
+
+    The session keeps objects alive after commit (expire_on_commit=False), so a
+    changed queue or agent would still be the old one in the response body.
+    """
+    db.expire(ticket)
+    return await get_ticket(db, public_id, user)
+
+
 @router.get("/health", tags=["Health"])
 async def health() -> dict[str, str]:
     return {"status": "ok", "service": "swift-api"}
@@ -650,6 +660,8 @@ async def assign(ticket_id: str, payload: AssignmentRequest, user: StaffUser, db
     agent = await db.get(User, agent_id)
     if not agent or agent.role not in {UserRole.agent, UserRole.administrator}:
         raise HTTPException(400, "Target user is not an active agent")
+    if not can_transition(ticket.status, TicketStatus.assigned):
+        raise HTTPException(409, f"Cannot transition from {ticket.status} to assigned")
     ticket.assigned_agent_id = agent.id
     if payload.queue_id:
         ticket.queue_id = payload.queue_id
@@ -658,7 +670,7 @@ async def assign(ticket_id: str, payload: AssignmentRequest, user: StaffUser, db
     event(ticket, user, "agent_assigned", f"Assigned to {agent.full_name}", True)
     audit(db, user, "agent_assigned", "ticket", ticket.public_id)
     await db.commit()
-    return ticket_out(await get_ticket(db, ticket_id, user), staff_view=True)
+    return ticket_out(await reloaded(db, ticket, ticket_id, user), staff_view=True)
 
 
 @router.post("/tickets/{ticket_id}/escalate", response_model=TicketOut)
@@ -666,6 +678,8 @@ async def escalate(
     ticket_id: str, payload: EscalationRequest, user: StaffUser, db: Db
 ) -> TicketOut:
     ticket = await get_ticket(db, ticket_id, user)
+    if not can_transition(ticket.status, TicketStatus.escalated):
+        raise HTTPException(409, f"Cannot transition from {ticket.status} to escalated")
     queue = await db.scalar(select(SupportQueue).where(SupportQueue.name == "Fraud & Security"))
     ticket.status = TicketStatus.escalated
     ticket.escalation_reason = payload.reason
@@ -675,7 +689,7 @@ async def escalate(
     event(ticket, user, "escalated", payload.reason, True)
     audit(db, user, "escalated", "ticket", ticket.public_id, payload.reason)
     await db.commit()
-    return ticket_out(await get_ticket(db, ticket_id, user), staff_view=True)
+    return ticket_out(await reloaded(db, ticket, ticket_id, user), staff_view=True)
 
 
 @router.put("/predictions/{prediction_id}/reviews", response_model=PredictionOut)
