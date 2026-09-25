@@ -1,6 +1,6 @@
 ---
 title: "Pahasu Personal Loan Scheme"
-organisation: "People's Bank Sri Lanka"
+organisation: "XYZ Bank"
 source_url: "https://www.peoplesbank.lk/quick-easy-loans-a-c-en/"
 category: "loans"
 retrieval_date: "2026-07-29"

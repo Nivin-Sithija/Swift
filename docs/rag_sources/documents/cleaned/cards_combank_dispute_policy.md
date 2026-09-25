@@ -1,6 +1,6 @@
 ---
 title: "Card Dispute Management Policy"
-organisation: "Commercial Bank of Ceylon PLC"
+organisation: "XYZ Bank"
 source_url: "https://www.combank.lk/info/34"
 category: "cards"
 retrieval_date: "2026-07-29"
@@ -11,9 +11,9 @@ retrieval_date: "2026-07-29"
 
 **Loss / Stolen cards**
 
-- The cardholder must immediately inform the Contact Center of the Card Centre on +94-11-2353353 in the event of a lost/stolen card. The Contact Centre agent will then immediately de-activate/block the card.
+- The cardholder must immediately inform the Contact Center of the Card Centre on +94 11 2353353 in the event of a lost/stolen card. The Contact Centre agent will then immediately de-activate/block the card.
 - The purpose of blocking the card is to prevent further transactions being debited to the card account. The Contact Centre agent will inform the cardholder about the transactions already performed using the lost/stolen card.
-- If the cardholder has access to ComBank Digital – Online Banking facility, he/she can log in to the facility to block the card and also view recent transactions.
+- If the cardholder has access to XYZ Bank Digital – Online Banking facility, he/she can log in to the facility to block the card and also view recent transactions.
 - The cardholder shall be liable for all amounts authorized on the card as a result of any unauthorized use of the card due to loss/theft, until confirmation of the loss/theft of the card has been notified to the Bank. The Bank shall not be liable to provide any refund or reimbursement for the unauthorized transactions that had taken place due to the loss/theft of the card.
 - The cardholder shall not be liable for any card transactions performed after informing the Bank of its loss/theft.
 - In case of credit cards, when reporting a lost/stolen card to the Contact Centre the cardholder may make a verbal request for a replacement card. However, any replacement request made on a later date must be made in writing. The replacement card will be dispatched / delivered within 5 working days direct to the cardholder or to a branch which is convenient to the cardholder.
@@ -25,15 +25,15 @@ retrieval_date: "2026-07-29"
 
 **Online / Internet / E-commerce transactions**
 
-- For the convenience of the cardholders, all credit & debit cards issued by Commercial Bank are activated for Internet/Online transactions. If any cardholder deems this facility unnecessary he/she can deactivate Internet/Online transactions by calling the Contact Centre or by submitting a written request to any Com Bank branch.
+- For the convenience of the cardholders, all credit & debit cards issued by XYZ Bank are activated for Internet/Online transactions. If any cardholder deems this facility unnecessary he/she can deactivate Internet/Online transactions by calling the Contact Centre or by submitting a written request to any XYZ Bank branch.
 - The cardholder is liable for all internet transactions performed through secured sites with or without the knowledge of the cardholder (Example – OTP authenticated transactions)
 - It is the responsibility of the cardholder to read the Terms & Conditions of the subject website/app before performing online transactions. It is important to pay special attention to the section detailing the website’s billing and refund policy. The cardholder is encouraged not to save any card information on any website/app.
 - Please refer the Dispute Resolution Procedure contained in this document for the steps to be taken for resolving unauthorized transactions.
 
-**Dispute resolution procedure adopted by Commercial Bank**
+**Dispute resolution procedure adopted by XYZ Bank**
 
 - Cardholders should always examine the credit card statement or Bank statement and any discrepancy identified there in should be notified the Card Centre within 15 days from the statement date. For a non-statement account, cardholder should regularly update the passbook. Cardholders can also activate the ePassbook facility which is provided by the Bank free of charge. Prepaid cardholders can use the Prepaid Web Inquiry Portal (https://prepaid.commercialbk.com/prepaid/) to examine transactions.
-- If the cardholder informs the Contact Centre verbally, he/she is required to submit a complaint by way of a letter or by an e-mail to comcard@combank.net/ chbk@combank.net within 03 working days. The specimen of the Cardholder Dispute Form can be downloaded from here. **[Click here >>](https://www.combank.lk/info/file/89/card-transaction-dispute-form)**
+- If the cardholder informs the Contact Centre verbally, he/she is required to submit a complaint by way of a letter or by an e-mail to support@xyzbank.example/ cards@xyzbank.example within 03 working days. The specimen of the Cardholder Dispute Form can be downloaded from here. **[Click here >>](https://www.combank.lk/info/file/89/card-transaction-dispute-form)**
 - If necessary, the Bank will contact the cardholder to obtain further information regarding the dispute.
 - Pending completion of the Bank’s investigation, the Bank may credit the cardholder’s credit card account with the disputed amount till the dispute is resolved. However, for debit card transaction disputes the funds will be credited only after the investigation is completed.
 - The investigation may take 30-180 days and after completion of investigations, if the Bank found there is no issue, the Bank will inform the cardholder accordingly and the cardholder’s card account will be debited with the disputed amount (in case a temporary credit was given to the credit cardholder).
@@ -64,7 +64,7 @@ retrieval_date: "2026-07-29"
 - Read the terms and conditions of any website carefully before performing an online transaction, paying special attention to the refund policy, delivery details/policies and any costs associated with warranty, returns and repairs.
 - It is advised to use only websites that the browser recognizes as SECURE. Usually a secure website’s address begins with https:// and has a padlock () symbol in the address bar.
 - Perform online purchases from companies that have a good sale history/reviews and with satisfactory terms and conditions/policies. Do not provide any information which is not relevant to the purchase. Ideally the website should have an option to confirm or decline an order before making the payment.
-- It is advised not to save/link card information to an account maintained with a merchant or with an Android/iOS app. Cardholders who do not wish to use their cards for online transactions can get in touch with the Contact Centre +94 112353353 to deactivate the internet transaction facility on their cards.
+- It is advised not to save/link card information to an account maintained with a merchant or with an Android/iOS app. Cardholders who do not wish to use their cards for online transactions can get in touch with the Contact Centre +94 11 2353353 to deactivate the internet transaction facility on their cards.
 - Cardholders should ensure that SMS alerts are received for all card transactions performed. If this facility in not enabled on a card, please call the Contact Centre to enable this facility free of charge. Cardholders are advised to call the Contact Centre to block/deactivate the card if an SMS alert or a One-Time Password is received for a transaction not performed/attempted by them.
 - It is prudent to save any reference numbers, receipts/invoices provided by the merchant/website that is relevant to the purchase. Always check the credit card statement, merchant provided account statement (such as PayPal), Prepaid Card account or the Bank account to ensure that correct amount has been charged.
 - Cardholders should attempt to resolve any issues related to a purchase by directly contacting the merchant. Usually the merchant’s website provides details on how to communicate in case of any issue. If the merchant does not respond favorably, the cardholder may seek assistance of the Chargeback/Dispute Resolution Unit of the Card Centre.
@@ -72,5 +72,5 @@ retrieval_date: "2026-07-29"
 
 **Contact details**
 
-E-mail: chbk@combank.net
+E-mail: cards@xyzbank.example
 Tel: +94 112 353531

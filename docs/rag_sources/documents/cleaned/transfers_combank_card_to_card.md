@@ -1,6 +1,6 @@
 ---
 title: "Card to Card Fund Transfer Facility"
-organisation: "Commercial Bank of Ceylon PLC"
+organisation: "XYZ Bank"
 source_url: "https://www.combank.lk/personal-banking/cards/card-to-card-fund-transfer-facility"
 category: "transfers"
 retrieval_date: "2026-07-29"
@@ -18,7 +18,7 @@ retrieval_date: "2026-07-29"
 
 ## Features
 
-ComBank Visa and Mastercard Debit and Prepaid cardholders can transfer funds to any locally issued Visa and Mastercard Credit, Debit or Prepaid Card trough ComBank ATMs, CRMs and Q+ Payment App.
+XYZ Bank Visa and Mastercard Debit and Prepaid cardholders can transfer funds to any locally issued Visa and Mastercard Credit, Debit or Prepaid Card trough XYZ Bank ATMs, CRMs and Q+ Payment App.
 
 You only need to type the beneficiary’s card number.
 
@@ -26,7 +26,7 @@ Funds can be transferred only within the same card network of Visa & Mastercard.
 
 Card to Card Fund Transfers are processed through 'Visa Direct' and 'Mastercard Send'.
 
-The fund transfer platforms of card schemes and ComBank Card to Card Fund Transfer system is certified by Visa and Mastercard.
+The fund transfer platforms of card schemes and XYZ Bank Card to Card Fund Transfer system is certified by Visa and Mastercard.
 
 International outward fund transfer transactions are not supported.
 
@@ -34,7 +34,7 @@ International outward fund transfer transactions are not supported.
 
 **Via ATM or CRM**
 
-You are able to transfer money either by debiting Current or Savings account linked to Commercial Bank Debit Card or funds available in Prepaid Card, through ATMs or CRMs or by depositing cash through CRMs to any locally issued Visa or Mastercard Credit, Debit or Prepaid Card.
+You are able to transfer money either by debiting Current or Savings account linked to XYZ Bank Debit Card or funds available in Prepaid Card, through ATMs or CRMs or by depositing cash through CRMs to any locally issued Visa or Mastercard Credit, Debit or Prepaid Card.
 
 Insert a Visa or Mastercard Card to ATM or CRM and input the PIN to initiate this new fund transfer type. After that, please select “Transfer Funds to a Card” option enabled in both CRMs and ATMs and type the recipient’s Card Number (16 digits).
 
@@ -42,7 +42,7 @@ Insert a Visa or Mastercard Card to ATM or CRM and input the PIN to initiate thi
 
 After login to Q+ Payment App, you can type the full card number of any Visa or Mastercard card issued by a domestic Bank and send money instantly.
 
-From card (Sender’s card) – Should be either a ComBank Debit / Prepaid Card.
+From card (Sender’s card) – Should be either a XYZ Bank Debit / Prepaid Card.
 
 To card (Recipient card) – Can be to any Visa Card or Mastercard issued by a domestic Bank including Credit Cards.
 
@@ -52,14 +52,14 @@ Sender and recipient card should be of the same card brand (Visa to Visa & Maste
 
 **From card**
 
-1. Utilizing the funds available in Current or Savings account at Commercial Bank through any ATM or CRM.
-2. Utilizing the funds available in Commercial Bank Prepaid Cards through any ATM or CRM.
+1. Utilizing the funds available in Current or Savings account at XYZ Bank through any ATM or CRM.
+2. Utilizing the funds available in XYZ Bank Prepaid Cards through any ATM or CRM.
 
 **Deposit cash**
 
 1. Depositing cash through any of Bank’s CRMs.
 
-To initiate a ‘Card to Card Fund Transfer’, use a Commercial Bank or any other locally issued Visa or Mastercard Card.
+To initiate a ‘Card to Card Fund Transfer’, use a XYZ Bank or any other locally issued Visa or Mastercard Card.
 
 ## Special note
 
@@ -73,7 +73,7 @@ You can click below link and view the press release issued by Central Bank of Sr
 
 **[Press Release - Central Bank of Sri Lanka >>](https://www.cbsl.gov.lk/sites/default/files/cbslweb_documents/press/pr/press_20221212_e_scams_e.pdf)**
 
-Cardholders, businesses, corporates, government institutions and merchants can contact our Information Centre on +94 11 2353353 or e-mail to **comcard@combank.net** to get more details about P2P (Person to Person) fund transfers and fund disbursements through 'Visa Direct' and 'Mastercard Send' platforms using Card to Card Fund Transfer Facility.
+Cardholders, businesses, corporates, government institutions and merchants can contact our Information Centre on +94 11 2353353 or e-mail to **support@xyzbank.example** to get more details about P2P (Person to Person) fund transfers and fund disbursements through 'Visa Direct' and 'Mastercard Send' platforms using Card to Card Fund Transfer Facility.
 
 A transaction fee of Rs 100/- will be deducted from the deposited amount if cash deposits done through CRMs .
 
@@ -82,7 +82,7 @@ Total deposited amount               -              Rs 1,000/- 
 Transaction fee                              -              Rs 100/- 
 Transferred amount                      -              Rs 900/-
 
-A transaction fee of Rs 30/- will be deducted from the available balance if sender uses a ComBank Debit / Pre-paid Card for the fund transfer.
+A transaction fee of Rs 30/- will be deducted from the available balance if sender uses a XYZ Bank Debit / Pre-paid Card for the fund transfer.
 
 When affecting a 'Card to Card Fund Transfer' by using a card issued by another bank, a balance inquiry will be automatically initiated by the system to authenticate the cardholder. In such instances, an additional balance inquiry fee of Rs 7.50/- may be deducted from the card by the respective issuing bank. However, the balance will not be displayed.
 
