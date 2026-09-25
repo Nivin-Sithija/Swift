@@ -19,6 +19,7 @@ from app.rag.providers import GroqProvider, OllamaProvider, ProviderError
 from app.rag.retrieval import (
     PostgresHybridRetriever,
     evidence_confidence,
+    lexical_query,
     lexical_websearch_query,
     reciprocal_rank_fusion,
 )
@@ -373,6 +374,33 @@ async def test_unknown_category_retries_all_retrieval_without_filter() -> None:
     await retriever.retrieve(context)
     assert len(db.calls) == 4
     assert [call["category"] for call in db.calls] == ["unknown", "unknown", None, None]
+
+
+def test_lexical_query_matches_any_meaningful_word() -> None:
+    # websearch_to_tsquery ANDs plain words, so a full sentence matched nothing.
+    assert lexical_query("I lost my card yesterday, please block it!") == (
+        "lost or card or yesterday or block"
+    )
+
+
+def test_lexical_query_keeps_sinhala_words_whole() -> None:
+    # Sinhala vowel signs are not regex word characters; splitting on them breaks words.
+    assert lexical_query("මගේ කාඩ්පත නැති වුණා") == "මගේ or කාඩ්පත or නැති or වුණා"
+
+
+def test_lexical_query_strips_websearch_operators() -> None:
+    assert lexical_query('-fees "annual"') == "fees or annual"
+
+
+@pytest.mark.asyncio
+async def test_lexical_retrieval_uses_any_word_query() -> None:
+    db = CapturingDB()
+    retriever = PostgresHybridRetriever(db, FailingEmbedder(), FakeReranker())  # type: ignore[arg-type]
+    context = QueryContext(
+        "savings account documents", "savings account documents", ConsumerLanguage.english, None
+    )
+    await retriever.retrieve(context)
+    assert db.calls[0]["query"] == "savings OR account OR documents"
 
 
 class FakeHFResponse:
