@@ -15,19 +15,11 @@ from app.rag.models import (
     _TokenTypeSessionAdapter,
     build_embedder,
 )
-<<<<<<< HEAD
-from app.rag.providers import GroqProvider, ProviderError
-from app.rag.retrieval import (
-    PostgresHybridRetriever,
-    evidence_confidence,
-    lexical_query,
-=======
 from app.rag.providers import GroqProvider, OllamaProvider, ProviderError
 from app.rag.retrieval import (
     PostgresHybridRetriever,
     evidence_confidence,
     lexical_websearch_query,
->>>>>>> main
     reciprocal_rank_fusion,
 )
 from app.rag.safety import route_safety

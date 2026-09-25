@@ -24,13 +24,9 @@ def model_components() -> tuple[Embedder, FlashRankReranker]:
         huggingface_token=settings.huggingface_token,
         huggingface_provider=settings.huggingface_provider,
         huggingface_endpoint_url=settings.huggingface_endpoint_url,
-<<<<<<< HEAD
-    ), FlashRankReranker(settings.rag_reranker_model)
-=======
         ollama_base_url=settings.ollama_base_url,
         ollama_embedding_model=settings.ollama_embedding_model,
     ), FlashRankReranker()
->>>>>>> main
 
 
 def provider(settings: Settings) -> FallbackProvider | OllamaProvider:
