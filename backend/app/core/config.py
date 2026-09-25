@@ -28,6 +28,11 @@ class Settings(BaseSettings):
     gemini_model: str = "gemini-3.6-flash"
     rag_embedding_model: str = "BAAI/bge-m3"
     rag_embedding_provider: str = "local"
+    rag_generation_provider: str = "groq"
+    ollama_base_url: str = "http://127.0.0.1:11434"
+    ollama_generation_model: str = "qwen2.5:7b"
+    ollama_embedding_model: str = "bge-m3"
+    ollama_generation_timeout_seconds: float = Field(default=120.0, gt=0)
     huggingface_token: str | None = None
     intent_model_id: str = "Swift-Support/labse-intent-1.0"
     sentiment_model_id: str = "Swift-Support/labse-sentiment-1.0"
@@ -48,7 +53,7 @@ class Settings(BaseSettings):
     rag_reranker_model: str = "ms-marco-MiniLM-L-12-v2"
     rag_candidate_limit: int = 10
     rag_final_limit: int = 5
-    rag_min_confidence: float = 0.55
+    rag_min_confidence: float = 0.50
     rag_review_max_age_days: int = 365
     rag_request_timeout_seconds: float = 20.0
     rag_provider_max_retries: int = 2

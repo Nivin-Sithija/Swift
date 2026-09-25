@@ -12,10 +12,9 @@ All three run against the real production functions with no database and no prov
                 (an answer citing a neighbour chunk that was never ranked) and false
                 *rejects* (a well-formed answer refused over formatting).
 
-  Confidence    `evidence_confidence` (retrieval.py:172) decides whether evidence is
-                shown at all, via `retrieval = top.dense_score or top.lexical_score or
-                top.fused_score * 30`. `or` is falsy-chaining, not null-coalescing, so a
-                genuine 0.0 dense score silently falls through to the lexical score.
+  Confidence    `evidence_confidence` decides whether evidence is shown. Dense,
+                lexical and normalized-RRF channels are now explicit and continuous;
+                the probes pin the former zero-to-epsilon discontinuity closed.
 """
 
 from __future__ import annotations
@@ -25,6 +24,7 @@ from dataclasses import replace
 from datetime import date
 from pathlib import Path
 
+from app.core.config import get_settings
 from app.rag.citations import citations_are_valid
 from app.rag.ingest import chunk_markdown
 from app.rag.retrieval import evidence_confidence
@@ -156,8 +156,8 @@ def citation_validation() -> dict[str, object]:
 
 
 def confidence_gate() -> dict[str, object]:
-    """Characterise the falsy-chain and the *30 scaling in the retrieval term."""
-    min_confidence = 0.55
+    """Characterise the explicit confidence components and release threshold."""
+    min_confidence = get_settings().rag_min_confidence
 
     def score(dense: float, lexical: float, fused: float, rerank: float) -> float:
         top = replace(BASE, dense_score=dense, lexical_score=lexical, fused_score=fused,
@@ -165,13 +165,11 @@ def confidence_gate() -> dict[str, object]:
         return evidence_confidence([top])
 
     probes = {
-        # A real dense miss (0.0) falls through `or` to the lexical score, so the gate
-        # reads a lexical number as though it were a dense one.
-        "dense_zero_falls_through_to_lexical": {
+        "dense_zero_with_strong_lexical": {
             "dense": 0.0, "lexical": 0.9, "fused": 0.01, "rerank": 0.9,
             "confidence": score(0.0, 0.9, 0.01, 0.9),
         },
-        "dense_zero_and_lexical_zero_uses_fused_x30": {
+        "dense_and_lexical_zero_with_normalized_rrf": {
             "dense": 0.0, "lexical": 0.0, "fused": 0.02, "rerank": 0.9,
             "confidence": score(0.0, 0.0, 0.02, 0.9),
         },
@@ -192,11 +190,9 @@ def confidence_gate() -> dict[str, object]:
         probe["passes_gate"] = probe["confidence"] >= min_confidence
 
     # The discontinuity: dense 0.0 vs dense 0.001, all else equal.
-    fallthrough = probes["dense_zero_falls_through_to_lexical"]["confidence"]
+    fallthrough = probes["dense_zero_with_strong_lexical"]["confidence"]
     tiny = probes["identical_but_dense_is_tiny_not_zero"]["confidence"]
 
-    # Single-item evidence lists always score authority=1.0 and coherence=1.0, so the
-    # floor for any approved single chunk is 0.15 + 0.10 = 0.25 before any relevance.
     floor = evidence_confidence([replace(BASE, dense_score=0.0, lexical_score=0.0,
                                          fused_score=0.0, rerank_score=0.0)])
     return {
@@ -205,8 +201,8 @@ def confidence_gate() -> dict[str, object]:
         "dense_zero_vs_dense_0p001_gap": round(fallthrough - tiny, 4),
         "unconditional_floor_for_one_approved_chunk": floor,
         "note": (
-            "authority and coherence contribute 0.25 unconditionally for a single approved "
-            "chunk, so only 0.75 of the score reflects relevance."
+            "BGE-M3 dense relevance contributes 0.85, normalized RRF 0.10, and the "
+            "English-biased reranker only 0.05; there is no unconditional authority floor."
         ),
     }
 

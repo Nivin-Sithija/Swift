@@ -73,6 +73,25 @@ def apply_label_updates(split: str, updates: dict[str, dict]) -> int:
     return total
 
 
+def apply_source_text_updates(split: str, updates: dict[str, str]) -> int:
+    """Apply canonical ``text_en`` values to every language file by source id."""
+    total = 0
+    for lang in LANGS:
+        if not os.path.exists(path(lang, split)):
+            continue
+        rows = load_rows(lang, split)
+        changed = 0
+        for row in rows:
+            value = updates.get(row["id"])
+            if value is not None and row["text_en"] != value:
+                row["text_en"] = value
+                changed += 1
+        if changed:
+            save_rows(lang, split, rows)
+            total += changed
+    return total
+
+
 # ------------------------------------------------------------------ claude -p
 def call_claude(prompt: str, retries: int = 4, timeout: int = 90):
     """Run one `claude -p` call, parse a JSON array/object from stdout."""

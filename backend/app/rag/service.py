@@ -3,10 +3,10 @@ from typing import Protocol
 
 import logfire
 
-from app.rag.citations import build_citations
+from app.rag.citations import build_citations, normalize_citation_layout
 from app.rag.guardrails import route_guardrails
 from app.rag.languages import detect_consumer_language, normalize_query
-from app.rag.prompts import build_prompt
+from app.rag.prompts import build_citation_retry_prompt, build_prompt
 from app.rag.providers import ProviderError
 from app.rag.safety import route_safety
 from app.rag.types import Citation, LLMProvider, QueryContext, RetrievalResult
@@ -95,7 +95,21 @@ class ConsumerRAGService:
             return self._escalation(
                 context, "generation_provider_unavailable", retrieval.confidence
             )
+        answer = normalize_citation_layout(answer, retrieval.evidence)
         valid, reason = validate_grounding(answer, retrieval.evidence)
+        if not valid and reason == "invalid_or_missing_citations":
+            retry_system, retry_user = build_citation_retry_prompt(
+                context,
+                retrieval.evidence,
+                answer,
+                ticket_context=ticket_context,
+            )
+            try:
+                answer = await self.llm.generate(system=retry_system, user=retry_user)
+            except ProviderError:
+                logfire.warn("rag.citation_retry_failed", provider=self.llm.name)
+            answer = normalize_citation_layout(answer, retrieval.evidence)
+            valid, reason = validate_grounding(answer, retrieval.evidence)
         provider_used = getattr(self.llm, "last_provider", self.llm.name)
         logfire.info(
             "rag.final_route",

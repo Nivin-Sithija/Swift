@@ -1,0 +1,5 @@
+lang,split,group,id,text,text_en,category,sentiment,priority
+tamilish,train,0,2751,Transaction eppo complete aagum?,When will the transaction be done?,transfer_not_received_by_recipient,Neutral,Medium
+tamilish,train,0,5160,Transaction eppo complete aagum?,When will the transaction go through?,pending_card_payment,Neutral,Low
+tamilish,test,0,612,Neenga SWIFT transfers seigireergala?,Will you deal with SWIFT transfers?,top_up_by_bank_transfer_charge,Neutral,Medium
+tamilish,test,0,626,Neenga SWIFT transfers seigireergala?,Do you do SWIFT transfers?,top_up_by_bank_transfer_charge,Neutral,Low

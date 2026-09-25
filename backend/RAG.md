@@ -45,6 +45,20 @@ SWIFT_GEMINI_API_KEY=
 SWIFT_GEMINI_MODEL=gemini-2.5-flash
 ```
 
+For a fully local, credit-free evaluation with Ollama:
+
+```dotenv
+SWIFT_RAG_GENERATION_PROVIDER=ollama
+SWIFT_RAG_EMBEDDING_PROVIDER=ollama
+SWIFT_OLLAMA_BASE_URL=http://127.0.0.1:11434
+SWIFT_OLLAMA_GENERATION_MODEL=qwen2.5:7b
+SWIFT_OLLAMA_EMBEDDING_MODEL=bge-m3
+SWIFT_OLLAMA_GENERATION_TIMEOUT_SECONDS=120
+```
+
+The Ollama embedding model must emit the configured 1,024 dimensions. In Docker,
+use `http://host.docker.internal:11434` as the base URL.
+
 For hosted BGE-M3 embeddings without local PyTorch:
 
 ```dotenv
@@ -62,6 +76,9 @@ using a dedicated endpoint URL. For local BGE-M3 instead, set the provider to `l
 Retrieval tuning is controlled by `SWIFT_RAG_EMBEDDING_MODEL`,
 `SWIFT_RAG_EMBEDDING_DIMENSIONS`, `SWIFT_RAG_CANDIDATE_LIMIT`, `SWIFT_RAG_FINAL_LIMIT`,
 `SWIFT_RAG_MIN_CONFIDENCE`, and `SWIFT_RAG_REVIEW_MAX_AGE_DAYS`.
+The default confidence threshold is 0.50, calibrated on the 165-case multilingual development
+probe set. Dense BGE-M3 relevance is the primary signal; the English-biased compact reranker is a
+small bonus, and exact ticket/knowledge category agreement adds a bounded 0.05.
 
 ## Evaluation
 

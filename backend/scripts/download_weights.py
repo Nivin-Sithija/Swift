@@ -1,6 +1,6 @@
+import os
 import urllib.request
 import zipfile
-import os
 from pathlib import Path
 
 # Provide the public URL to your zipped models here (e.g. AWS S3, Google Drive direct link, or GitHub Release Asset)
