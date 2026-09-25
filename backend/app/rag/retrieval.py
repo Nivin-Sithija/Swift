@@ -99,13 +99,9 @@ class PostgresHybridRetriever:
             else []
         )
         lexical_rankings = [
-<<<<<<< HEAD
-            await self._query("lexical", query, {**params, "query": lexical_query(query)})
-=======
             await self._query(
                 "lexical", query, {**params, "query": lexical_websearch_query(query)}
             )
->>>>>>> main
             for query in query_variants
         ]
         # Ticket classifier labels are finer-grained than knowledge-base categories
@@ -120,11 +116,7 @@ class PostgresHybridRetriever:
             )
             lexical_rankings = [
                 await self._query(
-<<<<<<< HEAD
-                    "lexical", query, {**broad_params, "query": lexical_query(query)}
-=======
                     "lexical", query, {**broad_params, "query": lexical_websearch_query(query)}
->>>>>>> main
                 )
                 for query in query_variants
             ]
