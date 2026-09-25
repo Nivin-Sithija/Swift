@@ -63,6 +63,8 @@ class Outcome:
     stages: dict[str, float] = field(default_factory=dict)
     latency_ms: float = 0.0
     judge: dict[str, float] | None = None
+    answer_for_judge: str | None = None
+    evidence_for_judge: str | None = None
     error: str | None = None
 
 

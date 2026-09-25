@@ -48,7 +48,7 @@ export function LoginPage({ staffOnly = false }: { staffOnly?: boolean }) {
         <Logo />
         <div className="brand-copy">
           <span className="eyebrow">Secure support, thoughtfully routed</span>
-          <h1>Financial support that understands every voice.</h1>
+          <p className="brand-heading">Financial support that understands every voice.</p>
           <p>
             Submit banking support requests in English, සිංහල, தமிழ், or natural
             mixed language. Every AI-assisted response remains under human
@@ -75,7 +75,7 @@ export function LoginPage({ staffOnly = false }: { staffOnly?: boolean }) {
           <span className="mobile-logo">
             <Logo />
           </span>
-          <h2>{staffOnly ? "Staff sign in" : tr("Welcome to Swift")}</h2>
+          <h1>{staffOnly ? "Staff sign in" : tr("Welcome to Swift")}</h1>
           <p>{staffOnly ? "Sign in to your authorised staff workspace." : "Sign in to continue to your secure support workspace."}</p>
           {staffOnly && <div
             className="role-tabs"

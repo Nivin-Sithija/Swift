@@ -1,0 +1,25 @@
+services:
+  api:
+    environment:
+      SWIFT_RAG_GENERATION_PROVIDER: ollama
+      SWIFT_RAG_EMBEDDING_PROVIDER: ollama
+      SWIFT_OLLAMA_BASE_URL: http://host.docker.internal:11434
+      SWIFT_OLLAMA_GENERATION_MODEL: qwen2.5:7b
+      SWIFT_OLLAMA_EMBEDDING_MODEL: bge-m3
+      SWIFT_OLLAMA_GENERATION_TIMEOUT_SECONDS: "120"
+      SWIFT_RAG_MIN_CONFIDENCE: "0.50"
+      SWIFT_RAG_REQUEST_TIMEOUT_SECONDS: "180"
+    extra_hosts:
+      - host.docker.internal:host-gateway
+  worker:
+    environment:
+      SWIFT_RAG_GENERATION_PROVIDER: ollama
+      SWIFT_RAG_EMBEDDING_PROVIDER: ollama
+      SWIFT_OLLAMA_BASE_URL: http://host.docker.internal:11434
+      SWIFT_OLLAMA_GENERATION_MODEL: qwen2.5:7b
+      SWIFT_OLLAMA_EMBEDDING_MODEL: bge-m3
+      SWIFT_OLLAMA_GENERATION_TIMEOUT_SECONDS: "120"
+      SWIFT_RAG_MIN_CONFIDENCE: "0.50"
+      SWIFT_RAG_REQUEST_TIMEOUT_SECONDS: "180"
+    extra_hosts:
+      - host.docker.internal:host-gateway

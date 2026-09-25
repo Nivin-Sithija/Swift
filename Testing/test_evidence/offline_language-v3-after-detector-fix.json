@@ -1,0 +1,428 @@
+{
+  "git_sha": "4cefa60",
+  "generated_at": "2026-09-20T17:13:53+00:00",
+  "diagnostic": "L1a_language_detection",
+  "source": "datasets/*/test_labeled.csv (official BANKING77 test ids)",
+  "paired_tickets": 3079,
+  "total_rows": 15395,
+  "confusion_matrix": {
+    "english": {
+      "english": 3079,
+      "sinhala": 0,
+      "tamil": 0,
+      "singlish": 0,
+      "tamilish": 0,
+      "unknown": 0
+    },
+    "sinhala": {
+      "english": 0,
+      "sinhala": 3079,
+      "tamil": 0,
+      "singlish": 0,
+      "tamilish": 0,
+      "unknown": 0
+    },
+    "tamil": {
+      "english": 0,
+      "sinhala": 0,
+      "tamil": 3079,
+      "singlish": 0,
+      "tamilish": 0,
+      "unknown": 0
+    },
+    "singlish": {
+      "english": 102,
+      "sinhala": 0,
+      "tamil": 0,
+      "singlish": 2976,
+      "tamilish": 1,
+      "unknown": 0
+    },
+    "tamilish": {
+      "english": 293,
+      "sinhala": 0,
+      "tamil": 0,
+      "singlish": 4,
+      "tamilish": 2782,
+      "unknown": 0
+    }
+  },
+  "per_language": {
+    "english": {
+      "n": 3079,
+      "correct": 3079,
+      "accuracy": 1.0,
+      "ci95_low": 1.0,
+      "ci95_high": 1.0,
+      "misread_as": {}
+    },
+    "sinhala": {
+      "n": 3079,
+      "correct": 3079,
+      "accuracy": 1.0,
+      "ci95_low": 1.0,
+      "ci95_high": 1.0,
+      "misread_as": {}
+    },
+    "tamil": {
+      "n": 3079,
+      "correct": 3079,
+      "accuracy": 1.0,
+      "ci95_low": 1.0,
+      "ci95_high": 1.0,
+      "misread_as": {}
+    },
+    "singlish": {
+      "n": 3079,
+      "correct": 2976,
+      "accuracy": 0.9665,
+      "ci95_low": 0.9604,
+      "ci95_high": 0.9727,
+      "misread_as": {
+        "english": 102,
+        "tamilish": 1
+      }
+    },
+    "tamilish": {
+      "n": 3079,
+      "correct": 2782,
+      "accuracy": 0.9035,
+      "ci95_low": 0.8935,
+      "ci95_high": 0.9146,
+      "misread_as": {
+        "english": 293,
+        "singlish": 4
+      }
+    }
+  },
+  "paired_comparisons": {
+    "english_vs_sinhala": {
+      "discordant_favouring_first": 0,
+      "discordant_favouring_second": 0,
+      "mcnemar_exact_p": 1.0
+    },
+    "english_vs_tamil": {
+      "discordant_favouring_first": 0,
+      "discordant_favouring_second": 0,
+      "mcnemar_exact_p": 1.0
+    },
+    "english_vs_singlish": {
+      "discordant_favouring_first": 103,
+      "discordant_favouring_second": 0,
+      "mcnemar_exact_p": 0.0
+    },
+    "english_vs_tamilish": {
+      "discordant_favouring_first": 297,
+      "discordant_favouring_second": 0,
+      "mcnemar_exact_p": 0.0
+    },
+    "sinhala_vs_tamil": {
+      "discordant_favouring_first": 0,
+      "discordant_favouring_second": 0,
+      "mcnemar_exact_p": 1.0
+    },
+    "sinhala_vs_singlish": {
+      "discordant_favouring_first": 103,
+      "discordant_favouring_second": 0,
+      "mcnemar_exact_p": 0.0
+    },
+    "sinhala_vs_tamilish": {
+      "discordant_favouring_first": 297,
+      "discordant_favouring_second": 0,
+      "mcnemar_exact_p": 0.0
+    },
+    "tamil_vs_singlish": {
+      "discordant_favouring_first": 103,
+      "discordant_favouring_second": 0,
+      "mcnemar_exact_p": 0.0
+    },
+    "tamil_vs_tamilish": {
+      "discordant_favouring_first": 297,
+      "discordant_favouring_second": 0,
+      "mcnemar_exact_p": 0.0
+    },
+    "singlish_vs_tamilish": {
+      "discordant_favouring_first": 230,
+      "discordant_favouring_second": 36,
+      "mcnemar_exact_p": 0.0
+    }
+  },
+  "root_cause": {
+    "tamilish_token_coverage": {
+      "enna": {
+        "fires_on_track_pct": 15.72,
+        "fires_on_english_pct": 0.0
+      },
+      "epdi": {
+        "fires_on_track_pct": 0.0,
+        "fires_on_english_pct": 0.0
+      },
+      "panna": {
+        "fires_on_track_pct": 6.85,
+        "fires_on_english_pct": 0.0
+      },
+      "mudiyala": {
+        "fires_on_track_pct": 2.31,
+        "fires_on_english_pct": 0.0
+      },
+      "irukku": {
+        "fires_on_track_pct": 4.71,
+        "fires_on_english_pct": 0.0
+      },
+      "venum": {
+        "fires_on_track_pct": 0.29,
+        "fires_on_english_pct": 0.0
+      },
+      "aayiduchu": {
+        "fires_on_track_pct": 0.65,
+        "fires_on_english_pct": 0.0
+      }
+    },
+    "singlish_token_coverage": {
+      "mage": {
+        "fires_on_track_pct": 46.38,
+        "fires_on_english_pct": 0.0
+      },
+      "kohomada": {
+        "fires_on_track_pct": 11.33,
+        "fires_on_english_pct": 0.0
+      },
+      "karanna": {
+        "fires_on_track_pct": 27.48,
+        "fires_on_english_pct": 0.0
+      },
+      "puluwanda": {
+        "fires_on_track_pct": 0.0,
+        "fires_on_english_pct": 0.0
+      },
+      "naha": {
+        "fires_on_track_pct": 0.1,
+        "fires_on_english_pct": 0.0
+      },
+      "tiyenawa": {
+        "fires_on_track_pct": 0.0,
+        "fires_on_english_pct": 0.0
+      },
+      "eka": {
+        "fires_on_track_pct": 82.75,
+        "fires_on_english_pct": 0.0
+      }
+    },
+    "tamilish_missed_candidates": [
+      {
+        "token": "enoda",
+        "track_pct": 46.9,
+        "english_pct": 0.0
+      },
+      {
+        "token": "naan",
+        "track_pct": 42.58,
+        "english_pct": 0.0
+      },
+      {
+        "token": "enakku",
+        "track_pct": 15.04,
+        "english_pct": 0.0
+      },
+      {
+        "token": "mudiyuma",
+        "track_pct": 12.05,
+        "english_pct": 0.0
+      },
+      {
+        "token": "eppadi",
+        "track_pct": 11.24,
+        "english_pct": 0.0
+      },
+      {
+        "token": "endru",
+        "track_pct": 6.14,
+        "english_pct": 0.0
+      },
+      {
+        "token": "athu",
+        "track_pct": 5.88,
+        "english_pct": 0.0
+      },
+      {
+        "token": "innum",
+        "track_pct": 5.39,
+        "english_pct": 0.0
+      },
+      {
+        "token": "seyya",
+        "track_pct": 4.61,
+        "english_pct": 0.0
+      },
+      {
+        "token": "evvalavu",
+        "track_pct": 4.48,
+        "english_pct": 0.0
+      },
+      {
+        "token": "vendum",
+        "track_pct": 4.48,
+        "english_pct": 0.0
+      },
+      {
+        "token": "seiya",
+        "track_pct": 4.16,
+        "english_pct": 0.0
+      },
+      {
+        "token": "intha",
+        "track_pct": 3.96,
+        "english_pct": 0.0
+      },
+      {
+        "token": "athai",
+        "track_pct": 3.93,
+        "english_pct": 0.0
+      },
+      {
+        "token": "panathai",
+        "track_pct": 3.86,
+        "english_pct": 0.0
+      }
+    ],
+    "singlish_missed_candidates": [
+      {
+        "token": "mama",
+        "track_pct": 23.12,
+        "english_pct": 0.0
+      },
+      {
+        "token": "mata",
+        "track_pct": 21.47,
+        "english_pct": 0.0
+      },
+      {
+        "token": "karanne",
+        "track_pct": 13.41,
+        "english_pct": 0.0
+      },
+      {
+        "token": "kiyala",
+        "track_pct": 11.89,
+        "english_pct": 0.0
+      },
+      {
+        "token": "puluvanda",
+        "track_pct": 10.1,
+        "english_pct": 0.0
+      },
+      {
+        "token": "kala",
+        "track_pct": 8.93,
+        "english_pct": 0.0
+      },
+      {
+        "token": "salli",
+        "track_pct": 8.05,
+        "english_pct": 0.0
+      },
+      {
+        "token": "pavichchi",
+        "track_pct": 7.53,
+        "english_pct": 0.0
+      },
+      {
+        "token": "eken",
+        "track_pct": 6.01,
+        "english_pct": 0.0
+      },
+      {
+        "token": "vada",
+        "track_pct": 5.85,
+        "english_pct": 0.0
+      },
+      {
+        "token": "vuna",
+        "track_pct": 5.85,
+        "english_pct": 0.0
+      },
+      {
+        "token": "mokada",
+        "track_pct": 5.16,
+        "english_pct": 0.0
+      },
+      {
+        "token": "hari",
+        "track_pct": 5.0,
+        "english_pct": 0.0
+      },
+      {
+        "token": "mokakda",
+        "track_pct": 4.97,
+        "english_pct": 0.0
+      },
+      {
+        "token": "karaganna",
+        "track_pct": 4.97,
+        "english_pct": 0.0
+      }
+    ]
+  },
+  "representative_traces": [
+    {
+      "ticket_id": "83",
+      "english_text": "Where do you guys acquire your exchange rate?",
+      "tamilish_text": "Unga maatru rates-ai neenga engirunthu perugireergall?",
+      "tamilish_detected_as": "english"
+    },
+    {
+      "ticket_id": "93",
+      "english_text": "Is it a good time to exchange?",
+      "tamilish_text": "Currencies-ai maatruvatharku ithu nalla nerama?",
+      "tamilish_detected_as": "english"
+    },
+    {
+      "ticket_id": "95",
+      "english_text": "Do you have a list of exchange rates?",
+      "tamilish_text": "Ungalidam currency maatru vighithangalin pattiyal irukka?",
+      "tamilish_detected_as": "english"
+    },
+    {
+      "ticket_id": "98",
+      "english_text": "What currencies is an exchange rate calculated in?",
+      "tamilish_text": "Currency maatru vighitham entha currencies-la kanakkidappaduguthu?",
+      "tamilish_detected_as": "english"
+    },
+    {
+      "ticket_id": "101",
+      "english_text": "What exchange rate do you use?",
+      "tamilish_text": "Neenga entha currency maatru vighithathai payanpaduthugireergal?",
+      "tamilish_detected_as": "english"
+    },
+    {
+      "ticket_id": "103",
+      "english_text": "What do you base your exchange rates on?",
+      "tamilish_text": "Unga currency maatru vighithangalai ethan adippadaiyil theermaanikkireenga?",
+      "tamilish_detected_as": "english"
+    },
+    {
+      "ticket_id": "104",
+      "english_text": "What foreign exchange rate will you use?",
+      "tamilish_text": "Neenga entha velinaattu currency maatru vighithathai payanpaduthuveergal?",
+      "tamilish_detected_as": "english"
+    },
+    {
+      "ticket_id": "122",
+      "english_text": "the card payment exchange rate is wrong",
+      "tamilish_text": "Card fee-kaana maatru rate thavaranaathu.",
+      "tamilish_detected_as": "english"
+    },
+    {
+      "ticket_id": "180",
+      "english_text": "Where did this Rs 10 fee come from?",
+      "tamilish_text": "Indha 10 roobai fee engirundhu vandhadhu?",
+      "tamilish_detected_as": "english"
+    },
+    {
+      "ticket_id": "197",
+      "english_text": "What is the €1 fee for?",
+      "tamilish_text": "Indha 1 euro fee edharkaaga?",
+      "tamilish_detected_as": "english"
+    }
+  ]
+}

@@ -1,10 +1,7 @@
 """Rate limiting and abuse resistance.
 
-The application has no rate limiting of any kind — no middleware, no dependency,
-no Redis token bucket, despite Redis already being a running dependency. Every
-test here is therefore marked `xfail(strict=True)`: it encodes the behaviour the
-endpoint should have, stays green while the gap is known, and starts failing the
-moment someone implements a limiter, which is the signal to delete the marker.
+The application enforces route-specific abuse budgets. Production uses Redis;
+tests and local development use the same semantics with a process-local store.
 
 Priority order if only some get implemented:
   1. /auth/login          — unthrottled credential brute force
@@ -17,10 +14,6 @@ import pytest
 
 pytestmark = pytest.mark.security
 
-GAP = "No rate limiting implemented; see backend/app/main.py (no limiter middleware)."
-
-
-@pytest.mark.xfail(strict=True, reason=GAP)
 async def test_repeated_failed_logins_are_throttled(client, customer):
     """A password guesser must be slowed down before it exhausts the keyspace."""
     statuses = []
@@ -33,7 +26,6 @@ async def test_repeated_failed_logins_are_throttled(client, customer):
     assert 429 in statuses, f"25 failed logins all returned {set(statuses)} — no lockout"
 
 
-@pytest.mark.xfail(strict=True, reason=GAP)
 async def test_account_is_locked_after_sustained_brute_force(client, customer):
     """After lockout the *correct* password must also be refused, or the limiter
     only delays the attacker rather than stopping the attack."""
@@ -48,7 +40,6 @@ async def test_account_is_locked_after_sustained_brute_force(client, customer):
     assert response.status_code == 429
 
 
-@pytest.mark.xfail(strict=True, reason=GAP)
 async def test_registration_is_rate_limited(client):
     statuses = []
     for index in range(25):
@@ -65,7 +56,6 @@ async def test_registration_is_rate_limited(client):
     assert 429 in statuses, "25 accounts created back-to-back with no throttle"
 
 
-@pytest.mark.xfail(strict=True, reason=GAP)
 async def test_ticket_creation_is_rate_limited(client, customer, auth_headers):
     """Each ticket triggers a classification call; unbounded creation is a cost attack."""
     statuses = []
@@ -83,7 +73,6 @@ async def test_ticket_creation_is_rate_limited(client, customer, auth_headers):
     assert 429 in statuses
 
 
-@pytest.mark.xfail(strict=True, reason=GAP)
 async def test_attachment_upload_is_rate_limited(client, customer, new_ticket, auth_headers):
     """max_upload_bytes caps one request at 10 MB but nothing caps requests per minute,
     so a customer can write unbounded data to the attachment volume."""
@@ -102,7 +91,6 @@ async def test_attachment_upload_is_rate_limited(client, customer, new_ticket, a
     assert 429 in statuses
 
 
-@pytest.mark.xfail(strict=True, reason=GAP)
 async def test_assistance_endpoint_is_rate_limited(client, customer, new_ticket, auth_headers):
     """The most expensive route in the system: retrieval, reranking and an LLM
     generation per call, with no per-customer budget."""

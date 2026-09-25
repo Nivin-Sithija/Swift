@@ -57,13 +57,6 @@ def test_no_documented_endpoint_is_missing_from_the_app(app):
     assert not missing, f"documented but not implemented: {sorted(missing)}"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "docs/api/api_contract.yaml predates the admin surface: 9 /admin/* routes plus "
-        "/auth/register are served but undocumented."
-    ),
-)
 def test_contract_covers_the_routes_it_claims_to_cover(app):
     """Drift report. The contract scopes RAG out explicitly, so that route is
     allowed to be absent; everything else it omits is genuine drift."""
@@ -76,10 +69,10 @@ def test_contract_covers_the_routes_it_claims_to_cover(app):
 
 
 def test_contract_drift_has_not_grown(app):
-    """Ratchet: the known drift is 10 routes. New undocumented routes fail here."""
+    """Ratchet: all in-scope routes are documented."""
     out_of_scope = {("post", "/api/v1/tickets/{ticket_id}/assistance")}
     undocumented = app_paths(app) - documented_paths() - out_of_scope
-    assert len(undocumented) <= 10, (
+    assert not undocumented, (
         f"contract drift grew to {len(undocumented)}: {sorted(undocumented)}"
     )
 

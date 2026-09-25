@@ -13,9 +13,8 @@ retrieval, sets the pace. The run is therefore tiered:
                      is not, and provider rate limits dominate the result.
   --mode full        Adds LLM-judge grading on top. Intended for a subset.
 
-The judge is pinned to Gemini via --judge-model, deliberately not the Groq model that
-wrote the answer: RAG.md:66-72 requires the answer model never be its own confidence
-signal, and with a single provider it otherwise would be.
+The judge should be a different model from the answer model. For local Ollama runs,
+qwen2.5 can generate while llama3.1 judges, avoiding paid API calls and self-grading.
 
 Splits: --split dev for anything exploratory. Holdout is scored once, at the end.
 """
@@ -35,7 +34,7 @@ from app.core.db import SessionLocal, engine
 from app.rag.citations import build_citations
 from app.rag.judge import judge_answer
 from app.rag.languages import detect_consumer_language
-from app.rag.providers import GeminiProvider, GroqProvider, ProviderError
+from app.rag.providers import GeminiProvider, GroqProvider, OllamaProvider, ProviderError
 from app.rag.types import LLMProvider
 from evaluation.analysis.reporting import write_report
 from evaluation.analysis.taxonomy import CLASSES, Outcome, classify
@@ -44,6 +43,15 @@ from evaluation.analysis.wrappers import StageTimer, build_service
 REPO_ROOT = Path(__file__).resolve().parents[3]
 PROBES = REPO_ROOT / "docs" / "rag_error_analysis" / "probes.jsonl"
 JUDGE_TIMEOUT_SECONDS = 90.0
+
+
+class RetrievalProbeProvider:
+    """Zero-cost deterministic draft used only to observe routing/retrieval outcomes."""
+
+    name = "retrieval_probe"
+
+    async def generate(self, *, system: str, user: str) -> str:
+        return "Evidence was retrieved. [E1]"
 
 
 def load_probes(split: str | None, limit: int | None, languages: list[str] | None) -> list[dict]:
@@ -68,6 +76,12 @@ def load_probes(split: str | None, limit: int | None, languages: list[str] | Non
 
 def judge_provider(settings: Settings, model: str | None) -> LLMProvider | None:
     """Prefer Gemini so the judge is independent of the Groq answer model."""
+    if settings.rag_generation_provider == "ollama":
+        return OllamaProvider(
+            settings.ollama_base_url,
+            model or settings.ollama_generation_model,
+            JUDGE_TIMEOUT_SECONDS,
+        )
     if settings.gemini_api_key:
         return GeminiProvider(
             settings.gemini_api_key,
@@ -144,30 +158,12 @@ async def run_probe(
     ranked = timer.selected()
     evidence = served
     neighbours = [item.source_id for item in evidence if item.is_neighbor]
-    citations = build_citations(result.draft, evidence) if result.draft else []
+    citations = build_citations(result.draft, evidence) if generate and result.draft else []
     cited_ids = [c.source_id for c in citations]
     neighbour_chunks = {item.chunk_id for item in evidence if item.is_neighbor}
     cited_neighbour = any(
         chunk in neighbour_chunks for citation in citations for chunk in citation.chunk_ids
     )
-
-    judged = None
-    if generate and judge and result.draft:
-        graded = await judge_answer(
-            judge,
-            query=probe["query"],
-            answer=result.draft,
-            evidence_text="\n\n".join(
-                f"[E{index}] {item.text}" for index, item in enumerate(evidence, 1)
-            ),
-        )
-        if graded:
-            judged = {
-                "faithfulness": graded.faithfulness,
-                "relevance": graded.relevance,
-                "citation_correctness": graded.citation_correctness,
-                "unsafe": float(graded.unsafe),
-            }
 
     return Outcome(
         probe=probe,
@@ -194,11 +190,18 @@ async def run_probe(
         detected_language=result.language,
         answer_language=(
             detect_consumer_language(result.draft).value if result.draft else None
-        ),
+        ) if generate else None,
         diagnostics=dict(retrieval.diagnostics) if retrieval else {},
         stages=timer.derived(),
         latency_ms=latency_ms,
-        judge=judged,
+        answer_for_judge=result.draft if generate else None,
+        evidence_for_judge=(
+            "\n\n".join(
+                f"[E{index}] {item.text}" for index, item in enumerate(evidence, 1)
+            )
+            if generate and result.draft
+            else None
+        ),
         error=error,
     )
 
@@ -217,12 +220,37 @@ async def run_configuration(
     outcomes: list[Outcome] = []
     async with SessionLocal() as db:
         service = build_service(
-            db, settings, timer, cache_embeddings=cache_embeddings, **spec.get("build", {})
+            db,
+            settings,
+            timer,
+            cache_embeddings=cache_embeddings,
+            generation_provider=None if generate else RetrievalProbeProvider(),
+            **spec.get("build", {}),
         )
         for index, probe in enumerate(probes, 1):
             outcomes.append(await run_probe(service, probe, timer, judge, generate))
             if index % 25 == 0:
                 print(f"    {name}: {index}/{len(probes)}", flush=True)
+        # Keep the answer model loaded for the whole generation phase, then switch
+        # once to the independent judge. Interleaving two local Ollama models causes
+        # repeated multi-gigabyte model loads and measures model swapping, not RAG.
+        if generate and judge:
+            for outcome in outcomes:
+                if not outcome.answer_for_judge or not outcome.evidence_for_judge:
+                    continue
+                graded = await judge_answer(
+                    judge,
+                    query=outcome.probe["query"],
+                    answer=outcome.answer_for_judge,
+                    evidence_text=outcome.evidence_for_judge,
+                )
+                if graded:
+                    outcome.judge = {
+                        "faithfulness": graded.faithfulness,
+                        "relevance": graded.relevance,
+                        "citation_correctness": graded.citation_correctness,
+                        "unsafe": float(graded.unsafe),
+                    }
     return outcomes
 
 
@@ -324,6 +352,9 @@ async def main_async(args: argparse.Namespace) -> None:
             "groq_model": settings.groq_model,
             "gemini_model": settings.gemini_model,
             "embedding_model": settings.rag_embedding_model,
+            "generation_provider": settings.rag_generation_provider,
+            "ollama_generation_model": settings.ollama_generation_model,
+            "ollama_embedding_model": settings.ollama_embedding_model,
             "candidate_limit": settings.rag_candidate_limit,
             "final_limit": settings.rag_final_limit,
             "min_confidence": settings.rag_min_confidence,
