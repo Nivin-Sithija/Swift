@@ -1,6 +1,6 @@
 ---
 title: "Regular Savings Account"
-organisation: "Commercial Bank of Ceylon PLC"
+organisation: "XYZ Bank"
 source_url: "https://www.combank.lk/personal-banking/savings-accounts/regular-savings-account"
 category: "accounts"
 retrieval_date: "2026-07-29"
@@ -13,12 +13,12 @@ retrieval_date: "2026-07-29"
 - You have the option of choosing a Statement Savings or a Pass Book Savings Account.
 - Your money is freely available for withdrawals or transfers. No prior notice is required. There is no minimum period for deposits.
 - You can also make payments for goods and services using your Debit card, to any merchant with a POS machine connected to Visa, Mastercard, UnionPay & JCB network.
-- You can access your account 24/7 from any part of the country or even from overseas through our automated touch points (Cash deposit, Cheque deposit, Cash deposit & withdrawal, ATM machines) , ComBank Digital, Mobile Banking & ePassbook facilities.
+- You can access your account 24/7 from any part of the country or even from overseas through our automated touch points (Cash deposit, Cheque deposit, Cash deposit & withdrawal, ATM machines) , XYZ Bank Digital, Mobile Banking & ePassbook facilities.
 - You have the option of requesting either a personalised or instant Debit card with higher withdrawal or transaction limits.
 
 ## Facilities
 
-- ComBank Digital - Registration fee and first year annual fee waived off.
+- XYZ Bank Digital - Registration fee and first year annual fee waived off.
 - Mobile Banking facility - Free of charge.
 - Debit Card - Personalized or instant card.
 - SMS alert facility - Registration fee waived off.
@@ -50,7 +50,7 @@ You can open either as an individual account in your name or as a joint account 
 
 Duly complete all documents mentioned above and hand them over to your branch.
 
-You can collect an account mandate from your nearest Commercial Bank branch or download it from our web site.
+You can collect an account mandate from your nearest XYZ Bank branch or download it from our web site.
 
 ## Deposits & withdrawals
 
