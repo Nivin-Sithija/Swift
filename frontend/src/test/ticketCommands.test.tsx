@@ -16,6 +16,8 @@ vi.mock("../services/serviceSelector", () => ({
     getTicket: vi.fn(),
     getAdjacentTicketIds: vi.fn(),
     updateTicket: vi.fn(),
+    undoEscalation: vi.fn(),
+    undoResolution: vi.fn(),
   },
 }));
 vi.mock("../components/agent/AgentPanels", () => ({
@@ -60,19 +62,15 @@ describe("ticket command states", () => {
       ...ticket,
       status: "resolved",
     });
-    await userEvent.click(
-      screen.getByRole("button", { name: "Resolve" }),
-    );
+    await userEvent.click(screen.getByRole("button", { name: "Resolve" }));
     const buttons = screen.getAllByRole("button", {
       name: "Resolve",
     });
     await userEvent.click(buttons[buttons.length - 1]);
     expect(
-      await screen.findByRole("button", { name: "Resolved" }),
-    ).toBeDisabled();
-    expect(
-      screen.getByRole("button", { name: "Close" }),
+      await screen.findByRole("button", { name: "Undo resolution" }),
     ).toBeEnabled();
+    expect(screen.getByRole("button", { name: "Close" })).toBeEnabled();
     expect(screen.getByRole("button", { name: "Escalate" })).toBeDisabled();
   });
   it("keeps Resolve available and shows an error when saving fails", async () => {
@@ -91,5 +89,62 @@ describe("ticket command states", () => {
     expect(
       screen.queryByText("Ticket marked Resolved."),
     ).not.toBeInTheDocument();
+  });
+});
+
+describe("undo ticket actions", () => {
+  it("reopens a resolved ticket after confirmation", async () => {
+    show({ ...ticket, status: "resolved" });
+    vi.mocked(ticketService.undoResolution).mockResolvedValue({
+      ...ticket,
+      status: "reopened",
+    });
+    await userEvent.click(
+      await screen.findByRole("button", { name: "Undo resolution" }),
+    );
+    expect(ticketService.undoResolution).not.toHaveBeenCalled();
+    await userEvent.click(screen.getByRole("button", { name: "Confirm undo" }));
+    expect(
+      await screen.findByText("Resolution undone. Ticket reopened."),
+    ).toBeInTheDocument();
+    expect(ticketService.undoResolution).toHaveBeenCalledWith("SW-1");
+    expect(
+      screen.queryByRole("button", { name: "Undo resolution" }),
+    ).not.toBeInTheDocument();
+  });
+  it("undoes escalation and restores available actions", async () => {
+    show({ ...ticket, status: "escalated" });
+    vi.mocked(ticketService.undoEscalation).mockResolvedValue(ticket);
+    await userEvent.click(
+      await screen.findByRole("button", { name: "Undo escalation" }),
+    );
+    await userEvent.click(screen.getByRole("button", { name: "Confirm undo" }));
+    expect(
+      await screen.findByText(
+        "Escalation undone. Ticket returned to General Support.",
+      ),
+    ).toBeInTheDocument();
+    expect(ticketService.undoEscalation).toHaveBeenCalledWith("SW-1");
+    expect(screen.getByRole("button", { name: "Escalate" })).toBeEnabled();
+    expect(
+      screen.getByRole("button", { name: "Assigned to me" }),
+    ).toBeDisabled();
+  });
+  it("keeps the current state when undo fails and allows retry", async () => {
+    show({ ...ticket, status: "escalated" });
+    vi.mocked(ticketService.undoEscalation).mockRejectedValue(
+      new Error("Could not undo escalation"),
+    );
+    await userEvent.click(
+      await screen.findByRole("button", { name: "Undo escalation" }),
+    );
+    await userEvent.click(screen.getByRole("button", { name: "Confirm undo" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "Could not undo escalation",
+    );
+    expect(screen.getByRole("button", { name: "Confirm undo" })).toBeEnabled();
+    expect(
+      screen.getByRole("button", { name: "Undo escalation" }),
+    ).toBeEnabled();
   });
 });
