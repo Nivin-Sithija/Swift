@@ -8,7 +8,7 @@ import {
   LoaderCircle,
   UserCheck,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { PageHeader } from "../../components/layout/Layouts";
 import { ConfirmationDialog } from "../../components/common/Controls";
@@ -30,11 +30,7 @@ import {
 } from "../../components/tickets/TicketComponents";
 import { ticketService } from "../../services/serviceSelector";
 import type { AdjacentTickets } from "../../services/ticketService";
-import type {
-  Ticket,
-  TicketEvent,
-  TicketStatus,
-} from "../../types";
+import type { Ticket, TicketEvent, TicketStatus } from "../../types";
 import { formatDate } from "../../lib/utils";
 import { useAuth } from "../../app/providers/AuthProvider";
 import {
@@ -42,6 +38,10 @@ import {
   TICKET_PRIORITIES,
   TICKET_SENTIMENTS,
 } from "../../lib/constants";
+import {
+  canAssignTicket,
+  canChangeTicketStatus,
+} from "../../lib/ticketActions";
 export function AgentTicketDetailPage() {
   const { user } = useAuth();
   const currentAgent = user?.name || "Current agent";
@@ -53,11 +53,19 @@ export function AgentTicketDetailPage() {
   const [dialog, setDialog] = useState<"escalate" | "resolve" | "close" | null>(
     null,
   );
+  const [reassigning, setReassigning] = useState(false);
+  const [agents, setAgents] = useState<Array<{ id: string; name: string }>>([]);
+  const [agentId, setAgentId] = useState("");
+  const [actionError, setActionError] = useState("");
+  const busy = useRef(false);
   const [notice, setNotice] = useState("");
   const [saving, setSaving] = useState(false);
   useEffect(() => {
     let active = true;
     setTicket(null);
+    setNotice("");
+    setActionError("");
+    setDialog(null);
     setLoadError(false);
     Promise.all([
       ticketService.getTicket(ticketId || ""),
@@ -85,18 +93,34 @@ export function AgentTicketDetailPage() {
     );
   if (!ticket) return <LoadingSkeleton />;
   const update = async (patch: Partial<Ticket>) => {
+    if (busy.current) return false;
+    busy.current = true;
     setSaving(true);
+    setNotice("");
+    setActionError("");
     try {
       setTicket(await ticketService.updateTicket(ticket.id, patch));
+      return true;
+    } catch (error) {
+      setActionError(
+        error instanceof Error
+          ? error.message
+          : "Could not save changes. Try again.",
+      );
+      return false;
     } finally {
+      busy.current = false;
       setSaving(false);
     }
   };
   const transition = async (status: TicketStatus) => {
-    await update({ status });
-    setDialog(null);
-    setNotice(`Ticket marked ${humanize(status)}.`);
+    if (!canChangeTicketStatus(ticket.status, status)) return;
+    if (await update({ status })) {
+      setDialog(null);
+      setNotice(`Ticket marked ${humanize(status)}.`);
+    }
   };
+  const assignedToMe = ticket.assignedAgent === currentAgent;
   /** Corrections are the project's audit surface — record the agent's reason on the
       ticket's own event trail so it is visible, not silently dropped. */
   const recordCorrection = (field: string, value: string, reason: string) => {
@@ -123,7 +147,7 @@ export function AgentTicketDetailPage() {
           <div className="ticket-nav">
             <button
               className="icon-btn"
-              disabled={!neighbours.previous}
+              disabled={saving || !neighbours.previous}
               onClick={() => navigate(`/agent/tickets/${neighbours.previous}`)}
             >
               <ChevronLeft />
@@ -131,7 +155,7 @@ export function AgentTicketDetailPage() {
             </button>
             <button
               className="icon-btn"
-              disabled={!neighbours.next}
+              disabled={saving || !neighbours.next}
               onClick={() => navigate(`/agent/tickets/${neighbours.next}`)}
             >
               <ChevronRight />
@@ -140,6 +164,11 @@ export function AgentTicketDetailPage() {
           </div>
         }
       />
+      {actionError && (
+        <div className="error-alert" role="alert">
+          {actionError}
+        </div>
+      )}
       {notice && (
         <div className="success-alert">
           <CheckCircle2 />
@@ -155,41 +184,118 @@ export function AgentTicketDetailPage() {
         <div className="command-actions">
           <button
             className="btn secondary small"
-            disabled={saving}
-            onClick={() =>
-              update({ assignedAgent: currentAgent, status: "assigned" })
-            }
+            disabled={saving || assignedToMe || !canAssignTicket(ticket.status)}
+            onClick={async () => {
+              if (await update({ assignedAgent: currentAgent }))
+                setNotice("Ticket assigned to you.");
+            }}
           >
             {saving ? <LoaderCircle className="spin" /> : <UserCheck />}
-            {saving ? "Saving…" : "Assign to me"}
+            {assignedToMe
+              ? "Assigned to me"
+              : saving
+                ? "Saving…"
+                : "Assign to me"}
           </button>
-          <button className="btn secondary small" disabled={saving}>
+          <button
+            className="btn secondary small"
+            disabled={saving || !canAssignTicket(ticket.status)}
+            onClick={async () => {
+              setReassigning(true);
+              setActionError("");
+              try {
+                setAgents(await ticketService.getAssignableAgents());
+              } catch {
+                setActionError("Could not load agents. Please try again.");
+              }
+            }}
+          >
             Reassign
           </button>
           <button
             className="btn warning small"
-            disabled={saving}
+            disabled={
+              saving || !canChangeTicketStatus(ticket.status, "escalated")
+            }
             onClick={() => setDialog("escalate")}
           >
             <AlertTriangle />
-            Escalate
+            {ticket.status === "escalated" ? "Escalated" : "Escalate"}
           </button>
           <button
             className="btn success small"
-            disabled={saving}
+            disabled={
+              saving || !canChangeTicketStatus(ticket.status, "resolved")
+            }
             onClick={() => setDialog("resolve")}
           >
-            Resolve
+            {ticket.status === "resolved" ? "Resolved" : "Resolve"}
+          </button>
+          <button
+            className="btn ghost small"
+            disabled={saving || !canChangeTicketStatus(ticket.status, "closed")}
+            onClick={() => setDialog("close")}
+          >
+            {ticket.status === "closed" ? "Closed" : "Close"}
+          </button>
+        </div>
+      </div>
+      {reassigning && (
+        <section className="card">
+          <label>
+            Assign to agent
+            <select
+              value={agentId}
+              disabled={saving}
+              onChange={(e) => setAgentId(e.target.value)}
+            >
+              <option value="">Select an agent</option>
+              {agents.map((agent) => (
+                <option key={agent.id} value={agent.id} disabled={agent.name === ticket.assignedAgent}>
+                  {agent.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <button
+            className="btn small"
+            disabled={
+              saving || !agentId || (agentId === user?.id && assignedToMe)
+            }
+            onClick={async () => {
+              if (busy.current) return;
+              busy.current = true;
+              setSaving(true);
+              setActionError("");
+              setNotice("");
+              try {
+                setTicket(await ticketService.assignTicket(ticket.id, agentId));
+                setReassigning(false);
+                setAgentId("");
+                setNotice("Ticket reassigned.");
+              } catch (error) {
+                setActionError(
+                  error instanceof Error
+                    ? error.message
+                    : "Could not reassign ticket.",
+                );
+              } finally {
+                busy.current = false;
+                setSaving(false);
+              }
+            }}
+          >
+            {saving ? "Saving…" : "Confirm reassignment"}
           </button>
           <button
             className="btn ghost small"
             disabled={saving}
-            onClick={() => setDialog("close")}
+            onClick={() => setReassigning(false)}
           >
-            Close
+            Cancel
           </button>
-        </div>
-      </div>
+        </section>
+      )}
       <div className="agent-detail-grid">
         <main className="stack">
           <section className="card">
@@ -248,8 +354,12 @@ export function AgentTicketDetailPage() {
           />
           <ResponseEditor
             ticket={ticket}
-            onApproved={(text) => {
-              update({
+            disabled={saving || ["resolved", "closed"].includes(ticket.status)}
+            onSaveDraft={(text, status) =>
+              update({ draft: { ...ticket.draft, text, status } })
+            }
+            onApproved={async (text) => {
+              const ok = await update({
                 approvedResponse: {
                   text,
                   approvedBy: currentAgent,
@@ -257,7 +367,8 @@ export function AgentTicketDetailPage() {
                 },
                 draft: { ...ticket.draft, text, status: "approved" },
               });
-              setNotice("Response approved and made customer-visible.");
+              if (ok) setNotice("Response approved and made customer-visible.");
+              return ok;
             }}
           />
         </main>
@@ -268,6 +379,7 @@ export function AgentTicketDetailPage() {
             <p>Accept or correct each prediction.</p>
           </div>
           <PredictionCard
+            disabled={saving}
             title="Category"
             prediction={ticket.category}
             options={[...TICKET_CATEGORIES]}
@@ -279,6 +391,7 @@ export function AgentTicketDetailPage() {
             }
           />
           <PredictionCard
+            disabled={saving}
             title="Priority"
             prediction={ticket.priority}
             options={TICKET_PRIORITIES}
@@ -295,6 +408,7 @@ export function AgentTicketDetailPage() {
             }
           />
           <PredictionCard
+            disabled={saving}
             title="Sentiment"
             prediction={ticket.sentiment}
             options={TICKET_SENTIMENTS}
@@ -327,10 +441,11 @@ export function AgentTicketDetailPage() {
           title={`${humanize(type)} this ticket?`}
           description={
             type === "escalate"
-              ? "An administrator and specialist queue will be notified."
+              ? "This will escalate the ticket to the specialist queue."
               : `This will change the customer-visible status to ${type}d.`
           }
-          confirmLabel={humanize(type)}
+          confirmLabel={saving ? "Saving…" : humanize(type)}
+          busy={saving}
           danger={type === "close"}
           onCancel={() => setDialog(null)}
           onConfirm={() =>
