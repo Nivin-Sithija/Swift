@@ -82,3 +82,24 @@ async def test_escalation_response_names_the_new_queue(
 
     assert body["assigned_queue"] == "Fraud & Security"
     assert body["escalation_reason"] == "Possible fraud on the account"
+
+async def test_agent_picker_lists_staff_only(client, customer, agent, auth_headers):
+    response = await client.get("/agents", headers=auth_headers(agent))
+    assert response.status_code == 200
+    assert {"id": str(agent.id), "name": agent.full_name} in response.json()
+    assert all(item["id"] != str(customer.id) for item in response.json())
+    assert (await client.get("/agents", headers=auth_headers(customer))).status_code == 403
+
+
+async def test_response_approval_and_send_record_activity(client, customer, agent, new_ticket, auth_headers):
+    ticket_id = await new_ticket(customer)
+    headers = auth_headers(agent)
+    ticket = (await client.get(f"/tickets/{ticket_id}", headers=headers)).json()
+    response_id = ticket["responses"][0]["id"]
+    approved = await client.post(f"/responses/{response_id}/approve", headers=headers)
+    assert approved.status_code == 200, approved.text
+    sent = await client.post(f"/responses/{response_id}/send", headers=headers)
+    assert sent.status_code == 200, sent.text
+    updated = (await client.get(f"/tickets/{ticket_id}", headers=headers)).json()
+    assert updated["status"] == "responded"
+    assert any(event["label"] == "Response Sent" for event in updated["events"])
