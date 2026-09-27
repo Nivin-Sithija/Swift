@@ -701,6 +701,37 @@ async def escalate(
     return ticket_out(await reloaded(db, ticket, ticket_id, user), staff_view=True)
 
 
+@router.post("/tickets/{ticket_id}/undo-escalation", response_model=TicketOut)
+async def undo_escalation(ticket_id: str, user: StaffUser, db: Db) -> TicketOut:
+    ticket = await get_ticket(db, ticket_id, user)
+    if ticket.status != TicketStatus.escalated:
+        raise HTTPException(409, "Only escalated tickets can have their escalation undone")
+    queue = await db.scalar(select(SupportQueue).where(SupportQueue.name == "General Support"))
+    ticket.queue_id = queue.id if queue else None
+    ticket.escalation_reason = None
+    ticket.status = TicketStatus.assigned if ticket.assigned_agent_id else TicketStatus.in_review
+    ticket.version += 1
+    detail = f"Escalation undone; returned to General Support with status {ticket.status.value}"
+    event(ticket, user, "escalation_undone", detail, True)
+    audit(db, user, "escalation_undone", "ticket", ticket.public_id, detail)
+    await db.commit()
+    return ticket_out(await reloaded(db, ticket, ticket_id, user), staff_view=True)
+
+
+@router.post("/tickets/{ticket_id}/undo-resolution", response_model=TicketOut)
+async def undo_resolution(ticket_id: str, user: StaffUser, db: Db) -> TicketOut:
+    ticket = await get_ticket(db, ticket_id, user)
+    if ticket.status != TicketStatus.resolved:
+        raise HTTPException(409, "Only resolved tickets can have their resolution undone")
+    ticket.status = TicketStatus.reopened
+    ticket.version += 1
+    detail = "Resolution undone; ticket reopened for further support"
+    event(ticket, user, "resolution_undone", detail, True)
+    audit(db, user, "resolution_undone", "ticket", ticket.public_id, detail)
+    await db.commit()
+    return ticket_out(await reloaded(db, ticket, ticket_id, user), staff_view=True)
+
+
 @router.put("/predictions/{prediction_id}/reviews", response_model=PredictionOut)
 async def review_prediction(
     prediction_id: uuid.UUID, payload: PredictionReview, user: StaffUser, db: Db

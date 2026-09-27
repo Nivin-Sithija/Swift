@@ -7,6 +7,7 @@ import {
   MessageSquareText,
   LoaderCircle,
   UserCheck,
+  Undo2,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -50,9 +51,14 @@ export function AgentTicketDetailPage() {
   const [ticket, setTicket] = useState<Ticket | null>(null);
   const [neighbours, setNeighbours] = useState<AdjacentTickets>({});
   const [loadError, setLoadError] = useState(false);
-  const [dialog, setDialog] = useState<"escalate" | "resolve" | "close" | null>(
-    null,
-  );
+  const [dialog, setDialog] = useState<
+    | "escalate"
+    | "resolve"
+    | "close"
+    | "undo-escalation"
+    | "undo-resolution"
+    | null
+  >(null);
   const [reassigning, setReassigning] = useState(false);
   const [agents, setAgents] = useState<Array<{ id: string; name: string }>>([]);
   const [agentId, setAgentId] = useState("");
@@ -92,14 +98,14 @@ export function AgentTicketDetailPage() {
       />
     );
   if (!ticket) return <LoadingSkeleton />;
-  const update = async (patch: Partial<Ticket>) => {
+  const save = async (operation: () => Promise<Ticket>) => {
     if (busy.current) return false;
     busy.current = true;
     setSaving(true);
     setNotice("");
     setActionError("");
     try {
-      setTicket(await ticketService.updateTicket(ticket.id, patch));
+      setTicket(await operation());
       return true;
     } catch (error) {
       setActionError(
@@ -111,6 +117,22 @@ export function AgentTicketDetailPage() {
     } finally {
       busy.current = false;
       setSaving(false);
+    }
+  };
+  const update = (patch: Partial<Ticket>) =>
+    save(() => ticketService.updateTicket(ticket.id, patch));
+  const undo = async () => {
+    const escalation = dialog === "undo-escalation";
+    const ok = escalation
+      ? await save(() => ticketService.undoEscalation(ticket.id))
+      : await save(() => ticketService.undoResolution(ticket.id));
+    if (ok) {
+      setDialog(null);
+      setNotice(
+        escalation
+          ? "Escalation undone. Ticket returned to General Support."
+          : "Resolution undone. Ticket reopened.",
+      );
     }
   };
   const transition = async (status: TicketStatus) => {
@@ -184,18 +206,24 @@ export function AgentTicketDetailPage() {
         <div className="command-actions">
           <button
             className="btn secondary small"
-            disabled={saving || assignedToMe || !canAssignTicket(ticket.status)}
+            disabled={
+              saving ||
+              (assignedToMe && ticket.status !== "reopened") ||
+              !canAssignTicket(ticket.status)
+            }
             onClick={async () => {
               if (await update({ assignedAgent: currentAgent }))
                 setNotice("Ticket assigned to you.");
             }}
           >
             {saving ? <LoaderCircle className="spin" /> : <UserCheck />}
-            {assignedToMe
-              ? "Assigned to me"
-              : saving
-                ? "Saving…"
-                : "Assign to me"}
+            {assignedToMe && ticket.status === "reopened"
+              ? "Resume work"
+              : assignedToMe
+                ? "Assigned to me"
+                : saving
+                  ? "Saving…"
+                  : "Assign to me"}
           </button>
           <button
             className="btn secondary small"
@@ -215,21 +243,34 @@ export function AgentTicketDetailPage() {
           <button
             className="btn warning small"
             disabled={
-              saving || !canChangeTicketStatus(ticket.status, "escalated")
+              saving ||
+              (ticket.status !== "escalated" &&
+                !canChangeTicketStatus(ticket.status, "escalated"))
             }
-            onClick={() => setDialog("escalate")}
+            onClick={() =>
+              setDialog(
+                ticket.status === "escalated" ? "undo-escalation" : "escalate",
+              )
+            }
           >
-            <AlertTriangle />
-            {ticket.status === "escalated" ? "Escalated" : "Escalate"}
+            {ticket.status === "escalated" ? <Undo2 /> : <AlertTriangle />}
+            {ticket.status === "escalated" ? "Undo escalation" : "Escalate"}
           </button>
           <button
             className="btn success small"
             disabled={
-              saving || !canChangeTicketStatus(ticket.status, "resolved")
+              saving ||
+              (ticket.status !== "resolved" &&
+                !canChangeTicketStatus(ticket.status, "resolved"))
             }
-            onClick={() => setDialog("resolve")}
+            onClick={() =>
+              setDialog(
+                ticket.status === "resolved" ? "undo-resolution" : "resolve",
+              )
+            }
           >
-            {ticket.status === "resolved" ? "Resolved" : "Resolve"}
+            {ticket.status === "resolved" && <Undo2 />}
+            {ticket.status === "resolved" ? "Undo resolution" : "Resolve"}
           </button>
           <button
             className="btn ghost small"
@@ -251,7 +292,11 @@ export function AgentTicketDetailPage() {
             >
               <option value="">Select an agent</option>
               {agents.map((agent) => (
-                <option key={agent.id} value={agent.id} disabled={agent.name === ticket.assignedAgent}>
+                <option
+                  key={agent.id}
+                  value={agent.id}
+                  disabled={agent.name === ticket.assignedAgent}
+                >
                   {agent.name}
                 </option>
               ))}
@@ -434,6 +479,23 @@ export function AgentTicketDetailPage() {
           </section>
         </aside>
       </div>
+      <ConfirmationDialog
+        open={dialog === "undo-escalation" || dialog === "undo-resolution"}
+        title={
+          dialog === "undo-escalation"
+            ? "Undo ticket escalation?"
+            : "Undo ticket resolution?"
+        }
+        description={
+          dialog === "undo-escalation"
+            ? "Return this ticket to General Support and clear its escalation reason. The assigned agent and activity history will be kept."
+            : "Reopen this ticket so support can continue. Its responses and activity history will be kept."
+        }
+        confirmLabel={saving ? "Saving…" : "Confirm undo"}
+        busy={saving}
+        onCancel={() => setDialog(null)}
+        onConfirm={undo}
+      />
       {(["escalate", "resolve", "close"] as const).map((type) => (
         <ConfirmationDialog
           key={type}

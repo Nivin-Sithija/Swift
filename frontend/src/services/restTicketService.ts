@@ -363,6 +363,20 @@ export const restTicketService: TicketService = {
     }
     return this.getTicket(id);
   },
+  async undoEscalation(id) {
+    return mapTicket(
+      await request<ApiTicket>(`/tickets/${id}/undo-escalation`, {
+        method: "POST",
+      }),
+    );
+  },
+  async undoResolution(id) {
+    return mapTicket(
+      await request<ApiTicket>(`/tickets/${id}/undo-resolution`, {
+        method: "POST",
+      }),
+    );
+  },
   async getAssignableAgents() {
     return request<Array<{ id: string; name: string }>>("/agents");
   },
