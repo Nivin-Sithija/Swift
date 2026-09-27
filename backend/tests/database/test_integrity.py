@@ -342,7 +342,7 @@ def test_no_raw_sql_uses_percent_or_format_interpolation():
     """Broad sweep: an f-string or % on a text() call is the shape of a real injection."""
     offenders = []
     for path in (BACKEND / "app").rglob("*.py"):
-        for line_number, line in enumerate(path.read_text().splitlines(), 1):
+        for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
             # Only an f-string or %-format passed straight to text() is dangerous;
             # a plain string with :bound parameters is the correct pattern.
             if re.search(r"""text\(\s*f["']""", line) or re.search(r"""text\(.*%\s*\(""", line):
