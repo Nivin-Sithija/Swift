@@ -653,12 +653,21 @@ async def set_status(ticket_id: str, payload: StatusUpdate, user: StaffUser, db:
     return ticket_out(await get_ticket(db, ticket_id, user), staff_view=True)
 
 
+@router.get("/agents")
+async def assignable_agents(_user: StaffUser, db: Db) -> list[dict[str, str]]:
+    agents = (await db.scalars(select(User).where(
+        User.role.in_([UserRole.agent, UserRole.administrator]),
+        User.is_active.is_(True),
+    ).order_by(User.full_name))).all()
+    return [{"id": str(agent.id), "name": agent.full_name} for agent in agents]
+
+
 @router.put("/tickets/{ticket_id}/assignment", response_model=TicketOut)
 async def assign(ticket_id: str, payload: AssignmentRequest, user: StaffUser, db: Db) -> TicketOut:
     ticket = await get_ticket(db, ticket_id, user)
     agent_id = payload.agent_id or user.id
     agent = await db.get(User, agent_id)
-    if not agent or agent.role not in {UserRole.agent, UserRole.administrator}:
+    if not agent or not agent.is_active or agent.role not in {UserRole.agent, UserRole.administrator}:
         raise HTTPException(400, "Target user is not an active agent")
     if not can_transition(ticket.status, TicketStatus.assigned):
         raise HTTPException(409, f"Cannot transition from {ticket.status} to assigned")
@@ -688,6 +697,37 @@ async def escalate(
     ticket.version += 1
     event(ticket, user, "escalated", payload.reason, True)
     audit(db, user, "escalated", "ticket", ticket.public_id, payload.reason)
+    await db.commit()
+    return ticket_out(await reloaded(db, ticket, ticket_id, user), staff_view=True)
+
+
+@router.post("/tickets/{ticket_id}/undo-escalation", response_model=TicketOut)
+async def undo_escalation(ticket_id: str, user: StaffUser, db: Db) -> TicketOut:
+    ticket = await get_ticket(db, ticket_id, user)
+    if ticket.status != TicketStatus.escalated:
+        raise HTTPException(409, "Only escalated tickets can have their escalation undone")
+    queue = await db.scalar(select(SupportQueue).where(SupportQueue.name == "General Support"))
+    ticket.queue_id = queue.id if queue else None
+    ticket.escalation_reason = None
+    ticket.status = TicketStatus.assigned if ticket.assigned_agent_id else TicketStatus.in_review
+    ticket.version += 1
+    detail = f"Escalation undone; returned to General Support with status {ticket.status.value}"
+    event(ticket, user, "escalation_undone", detail, True)
+    audit(db, user, "escalation_undone", "ticket", ticket.public_id, detail)
+    await db.commit()
+    return ticket_out(await reloaded(db, ticket, ticket_id, user), staff_view=True)
+
+
+@router.post("/tickets/{ticket_id}/undo-resolution", response_model=TicketOut)
+async def undo_resolution(ticket_id: str, user: StaffUser, db: Db) -> TicketOut:
+    ticket = await get_ticket(db, ticket_id, user)
+    if ticket.status != TicketStatus.resolved:
+        raise HTTPException(409, "Only resolved tickets can have their resolution undone")
+    ticket.status = TicketStatus.reopened
+    ticket.version += 1
+    detail = "Resolution undone; ticket reopened for further support"
+    event(ticket, user, "resolution_undone", detail, True)
+    audit(db, user, "resolution_undone", "ticket", ticket.public_id, detail)
     await db.commit()
     return ticket_out(await reloaded(db, ticket, ticket_id, user), staff_view=True)
 
@@ -835,7 +875,7 @@ async def approve_response(response_id: uuid.UUID, user: StaffUser, db: Db) -> R
         user.id,
         utcnow(),
     )
-    ticket = await db.get(Ticket, response.ticket_id)
+    ticket = await db.scalar(select(Ticket).where(Ticket.id == response.ticket_id).options(selectinload(Ticket.events)))
     if ticket is None:
         raise HTTPException(409, "Response is not linked to an existing ticket")
     ticket.status = TicketStatus.response_draft
@@ -868,7 +908,7 @@ async def send_response(response_id: uuid.UUID, user: StaffUser, db: Db) -> Resp
     if response.status != ResponseStatus.approved:
         raise HTTPException(409, "Only approved responses can be sent")
     response.status, response.sent_at = ResponseStatus.sent, utcnow()
-    ticket = await db.get(Ticket, response.ticket_id)
+    ticket = await db.scalar(select(Ticket).where(Ticket.id == response.ticket_id).options(selectinload(Ticket.events)))
     if ticket is None:
         raise HTTPException(409, "Response is not linked to an existing ticket")
     ticket.status = TicketStatus.responded

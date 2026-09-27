@@ -87,6 +87,7 @@ export function ConfirmationDialog({
   onConfirm,
   onCancel,
   danger = false,
+  busy = false,
 }: {
   open: boolean;
   title: string;
@@ -95,22 +96,23 @@ export function ConfirmationDialog({
   onConfirm: () => void;
   onCancel: () => void;
   danger?: boolean;
+  busy?: boolean;
 }) {
   const titleId = useId();
   // Escape must dismiss a modal; without it the scrim is the only way out.
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) =>
-      event.key === "Escape" && onCancel();
+      event.key === "Escape" && !busy && onCancel();
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open, onCancel]);
+  }, [open, onCancel, busy]);
   if (!open) return null;
   return (
     <div
       className="dialog-backdrop"
       role="presentation"
-      onMouseDown={(e) => e.target === e.currentTarget && onCancel()}
+      onMouseDown={(e) => !busy && e.target === e.currentTarget && onCancel()}
     >
       <div
         className="dialog"
@@ -124,10 +126,11 @@ export function ConfirmationDialog({
         <h2 id={titleId}>{title}</h2>
         <p>{description}</p>
         <div className="dialog-actions">
-          <button className="btn secondary" onClick={onCancel}>
+          <button className="btn secondary" disabled={busy} onClick={onCancel}>
             Cancel
           </button>
           <button
+            disabled={busy}
             autoFocus
             className={cn("btn", danger && "danger")}
             onClick={onConfirm}
