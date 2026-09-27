@@ -23,6 +23,7 @@ type ApiPrediction = {
   predicted_at: string;
 };
 type ApiResponse = {
+  id: string;
   text: string;
   status: string;
   updated_at: string;
@@ -130,7 +131,8 @@ function mapTicket(t: ApiTicket): Ticket {
   const draft =
     [...t.responses]
       .reverse()
-      .find((r) => !["rejected", "sent"].includes(r.status)) || t.responses[0];
+      .find((r) => !["rejected", "sent"].includes(r.status)) ||
+    t.responses.at(-1);
   const attachment = t.attachments[0];
   return {
     id: t.id,
@@ -173,15 +175,14 @@ function mapTicket(t: ApiTicket): Ticket {
     })),
     notes: t.notes,
     draft: {
-      text: draft?.text || "",
+      text: draft?.status === "rejected" ? "" : draft?.text || "",
       language: t.preferred_response_language,
       updatedAt: draft?.updated_at || t.updated_at,
-      status:
-        draft?.status === "approved"
-          ? "approved"
-          : draft?.status === "rejected"
-            ? "rejected"
-            : "draft",
+      status: ["approved", "sent"].includes(draft?.status || "")
+        ? "approved"
+        : draft?.status === "rejected"
+          ? "rejected"
+          : "draft",
     },
     approvedResponse: approved
       ? {
@@ -292,21 +293,100 @@ export const restTicketService: TicketService = {
     return { previous: tickets[index - 1]?.id, next: tickets[index + 1]?.id };
   },
   async updateTicket(id, patch) {
-    if (patch.status)
-      return mapTicket(
-        await request<ApiTicket>(`/tickets/${id}/status`, {
-          method: "PUT",
-          body: JSON.stringify({ status: patch.status }),
-        }),
+    if (patch.assignedAgent) {
+      await request<ApiTicket>(`/tickets/${id}/assignment`, {
+        method: "PUT",
+        body: "{}",
+      });
+    }
+    if (patch.status && !(patch.assignedAgent && patch.status === "assigned")) {
+      await request<ApiTicket>(
+        `/tickets/${id}/${patch.status === "escalated" ? "escalate" : "status"}`,
+        {
+          method: patch.status === "escalated" ? "POST" : "PUT",
+          body: JSON.stringify(
+            patch.status === "escalated"
+              ? {
+                  reason:
+                    patch.escalationReason ||
+                    "Escalated for specialist review by an agent.",
+                }
+              : { status: patch.status },
+          ),
+        },
       );
-    if (patch.assignedAgent)
-      return mapTicket(
-        await request<ApiTicket>(`/tickets/${id}/assignment`, {
-          method: "PUT",
-          body: "{}",
-        }),
-      );
+    }
+    if (
+      patch.draft ||
+      patch.approvedResponse ||
+      patch.category ||
+      patch.priority ||
+      patch.sentiment
+    ) {
+      const current = await request<ApiTicket>(`/tickets/${id}`);
+      for (const field of ["category", "priority", "sentiment"] as const) {
+        if (patch[field])
+          await request(`/predictions/${current[field].id}/reviews`, {
+            method: "PUT",
+            body: JSON.stringify({
+              value: patch[field].value,
+              reason:
+                patch.events?.at(-1)?.detail || "Prediction accepted by agent.",
+            }),
+          });
+      }
+      if (patch.draft || patch.approvedResponse) {
+        const response = [...current.responses]
+          .reverse()
+          .find((r) => r.status !== "sent");
+        if (!response)
+          throw new Error("No editable response draft is available.");
+        if (patch.draft?.status === "rejected") {
+          await request(`/responses/${response.id}/reject`, { method: "POST" });
+        } else {
+          if (response.status !== "approved")
+            await request(`/responses/${response.id}`, {
+              method: "PATCH",
+              body: JSON.stringify({
+                text: patch.approvedResponse?.text ?? patch.draft?.text,
+              }),
+            });
+          if (patch.approvedResponse) {
+            if (response.status !== "approved")
+              await request(`/responses/${response.id}/approve`, {
+                method: "POST",
+              });
+            await request(`/responses/${response.id}/send`, { method: "POST" });
+          }
+        }
+      }
+    }
     return this.getTicket(id);
+  },
+  async undoEscalation(id) {
+    return mapTicket(
+      await request<ApiTicket>(`/tickets/${id}/undo-escalation`, {
+        method: "POST",
+      }),
+    );
+  },
+  async undoResolution(id) {
+    return mapTicket(
+      await request<ApiTicket>(`/tickets/${id}/undo-resolution`, {
+        method: "POST",
+      }),
+    );
+  },
+  async getAssignableAgents() {
+    return request<Array<{ id: string; name: string }>>("/agents");
+  },
+  async assignTicket(id, agentId) {
+    return mapTicket(
+      await request<ApiTicket>(`/tickets/${id}/assignment`, {
+        method: "PUT",
+        body: JSON.stringify({ agent_id: agentId }),
+      }),
+    );
   },
   async addInternalNote(id, text): Promise<InternalNote> {
     const n = await request<{

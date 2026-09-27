@@ -49,11 +49,9 @@ export function ImageEvidencePanel({ ticket }: { ticket: Ticket }) {
           ) : (
             <div className="warning-box">
               <AlertTriangle />
-              OCR processing failed. Review the original image manually.{" "}
-              <button className="btn small secondary">
-                <RefreshCw />
-                Retry
-              </button>
+              {ticket.imageEvidence.status === "processing"
+                ? "OCR text is not available yet. Review the original image manually."
+                : "OCR processing failed. Review the original image manually."}{" "}
             </div>
           )}
         </>
@@ -76,12 +74,14 @@ export function PredictionCard({
   options,
   onSave,
   criticalReason,
+  disabled = false,
 }: {
   title: string;
   prediction: TicketPrediction;
   options: readonly string[];
-  onSave: (value: string, reason: string) => void;
+  onSave: (value: string, reason: string) => Promise<boolean>;
   criticalReason?: string;
+  disabled?: boolean;
 }) {
   const [value, setValue] = useState(prediction.value);
   const [reason, setReason] = useState("");
@@ -113,8 +113,9 @@ export function PredictionCard({
         <small>{formatDate(prediction.predictedAt)}</small>
       </div>
       <label>
-        Correct prediction
+        Change prediction
         <select
+          disabled={disabled}
           value={value}
           onChange={(e) => {
             setValue(e.target.value);
@@ -132,6 +133,7 @@ export function PredictionCard({
         <label>
           Correction reason
           <textarea
+            disabled={disabled}
             value={reason}
             onChange={(e) => setReason(e.target.value)}
             rows={2}
@@ -142,20 +144,24 @@ export function PredictionCard({
       <div className="row">
         <button
           className="btn small secondary"
-          onClick={() => {
+          disabled={disabled || saved}
+          onClick={async () => {
             setValue(prediction.value);
-            setSaved(true);
+            setSaved(
+              await onSave(prediction.value, "Prediction accepted by agent."),
+            );
           }}
         >
           <Check />
-          Accept
+          {saved ? "Accepted" : "Accept"}
         </button>
         <button
           className="btn small"
-          disabled={value === prediction.value || !reason.trim()}
-          onClick={() => {
-            onSave(value, reason);
-            setSaved(true);
+          disabled={
+            disabled || value === prediction.value || reason.trim().length < 3
+          }
+          onClick={async () => {
+            setSaved(await onSave(value, reason));
           }}
         >
           <Save />
@@ -241,9 +247,13 @@ export function InternalNotes({
 export function ResponseEditor({
   ticket,
   onApproved,
+  onSaveDraft,
+  disabled = false,
 }: {
   ticket: Ticket;
-  onApproved: (text: string) => void;
+  onApproved: (text: string) => Promise<boolean>;
+  onSaveDraft: (text: string, status: "draft" | "rejected") => Promise<boolean>;
+  disabled?: boolean;
 }) {
   const [text, setText] = useState(ticket.draft.text);
   const [saved, setSaved] = useState(ticket.draft.text);
@@ -253,6 +263,10 @@ export function ResponseEditor({
     setSaved(ticket.draft.text);
   }, [ticket.draft.text]);
   const dirty = text !== saved;
+  const approved = ticket.draft.status === "approved";
+  const locked = disabled || approved;
+  const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState("");
   return (
     <section className="card response-editor">
       <div className="warning-box prominent">
@@ -275,14 +289,15 @@ export function ResponseEditor({
       <div className="editor-toolbar">
         <label>
           Output language
-          <select>
-            <option>English</option>
-            <option>සිංහල</option>
-            <option>தமிழ்</option>
+          <select disabled value={ticket.draft.language}>
+            <option value="english">English</option>
+            <option value="sinhala">සිංහල</option>
+            <option value="tamil">தமிழ்</option>
           </select>
         </label>
         <button
           className="btn ghost small"
+          disabled={locked}
           onClick={() =>
             setText(
               `Thank you for contacting Swift Support about ${ticket.subject}. We are reviewing the information you provided and will update you through this ticket.`,
@@ -290,16 +305,31 @@ export function ResponseEditor({
           }
         >
           <RefreshCw />
-          Regenerate
+          Use response template
         </button>
         <button
           className="btn ghost small"
-          onClick={() => navigator.clipboard?.writeText(text)}
+          disabled={!text.trim()}
+          onClick={async () => {
+            try {
+              await navigator.clipboard.writeText(text);
+              setCopied(true);
+              setCopyError("");
+            } catch {
+              setCopyError(
+                "Could not copy. Select and copy the text manually.",
+              );
+            }
+          }}
         >
           <Clipboard />
-          Copy
+          {copied ? "Copied" : "Copy"}
         </button>
-        <button className="btn ghost small" onClick={() => setText("")}>
+        <button
+          className="btn ghost small"
+          disabled={locked || !text}
+          onClick={() => setText("")}
+        >
           <Trash2 />
           Clear
         </button>
@@ -307,9 +337,14 @@ export function ResponseEditor({
       <label>
         <span className="sr-only">Response draft</span>
         <textarea
+          disabled={locked}
+          maxLength={5000}
           className="response-textarea"
           value={text}
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e) => {
+            setText(e.target.value);
+            setCopied(false);
+          }}
           rows={10}
         />
       </label>
@@ -321,52 +356,62 @@ export function ResponseEditor({
         </small>
         <small>{text.length}/5,000</small>
       </div>
+      {copyError && <small role="alert">{copyError}</small>}
       <div className="editor-actions">
         <button
           className="btn secondary"
-          disabled={!dirty}
-          onClick={() => setSaved(text)}
+          disabled={locked || !dirty || !text.trim()}
+          onClick={async () => {
+            if (await onSaveDraft(text, "draft")) setSaved(text);
+          }}
         >
           <Save />
-          Save draft
+          {dirty ? "Save draft" : "Draft saved"}
         </button>
         <button
+          disabled={locked || ticket.draft.status === "rejected"}
           className="btn danger-outline"
           onClick={() => setDialog("reject")}
         >
-          Reject draft
+          {ticket.draft.status === "rejected"
+            ? "Draft rejected"
+            : "Reject draft"}
         </button>
         <button
           className="btn success"
-          disabled={!text.trim()}
+          disabled={locked || !text.trim()}
           onClick={() => setDialog("approve")}
         >
           <Send />
-          Approve response
+          {approved ? "Response approved" : "Approve response"}
         </button>
       </div>
       <ConfirmationDialog
+        busy={disabled}
         open={dialog === "approve"}
         title="Approve customer response?"
         description="This will mark the reviewed draft as the final customer-visible response."
         confirmLabel="Approve and send"
         onCancel={() => setDialog(null)}
-        onConfirm={() => {
-          setSaved(text);
-          setDialog(null);
-          onApproved(text);
+        onConfirm={async () => {
+          if (await onApproved(text)) {
+            setSaved(text);
+            setDialog(null);
+          }
         }}
       />
       <ConfirmationDialog
+        busy={disabled}
         open={dialog === "reject"}
         title="Reject AI draft?"
         description="The current generated draft will be cleared. This cannot be undone."
         confirmLabel="Reject draft"
         danger
         onCancel={() => setDialog(null)}
-        onConfirm={() => {
-          setText("");
-          setDialog(null);
+        onConfirm={async () => {
+          if (await onSaveDraft(text, "rejected")) {
+            setDialog(null);
+          }
         }}
       />
     </section>

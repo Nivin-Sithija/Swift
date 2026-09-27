@@ -26,6 +26,11 @@ paths:
     post: {summary: Revoke the current refresh session, responses: {'204': {description: Revoked}}}
   /users/me:
     get: {summary: Current authenticated user, responses: {'200': {description: User}}}
+  /agents:
+    get:
+      summary: List active staff members available for ticket assignment
+      description: Staff-only list of active agents and administrators, ordered by name. Each item contains an id and name.
+      responses: {'200': {description: Assignable staff members}, '401': {description: Authentication required}, '403': {description: Staff access required}}
   /tickets:
     get: {summary: Role-scoped paginated ticket list, responses: {'200': {description: Tickets}}}
     post: {summary: Create and process a customer ticket, responses: {'201': {description: Ticket created}}}
@@ -54,6 +59,24 @@ paths:
       summary: Escalate with an auditable reason
       parameters: [{$ref: '#/components/parameters/TicketId'}]
       responses: {'200': {description: Escalated}}
+  /tickets/{ticket_id}/undo-escalation:
+    post:
+      summary: Undo escalation and return a ticket to General Support
+      description: >-
+        Staff-only action for escalated tickets. Clears the escalation reason,
+        preserves the assigned agent, and sets the status to assigned when an
+        agent exists or in_review otherwise. Records ticket activity and an audit entry.
+      parameters: [{$ref: '#/components/parameters/TicketId'}]
+      responses: {'200': {description: Updated ticket}, '401': {description: Authentication required}, '403': {description: Staff access required}, '404': {description: Ticket not found}, '409': {description: Ticket is not escalated}}
+  /tickets/{ticket_id}/undo-resolution:
+    post:
+      summary: Undo resolution and reopen a ticket
+      description: >-
+        Staff-only action for resolved tickets. Sets the status to reopened,
+        preserves the assigned agent and history, and records ticket activity
+        and an audit entry.
+      parameters: [{$ref: '#/components/parameters/TicketId'}]
+      responses: {'200': {description: Updated ticket}, '401': {description: Authentication required}, '403': {description: Staff access required}, '404': {description: Ticket not found}, '409': {description: Ticket is not resolved}}
   /tickets/{ticket_id}/attachments:
     post:
       summary: Upload a validated PNG, JPEG, or PDF attachment

@@ -1,5 +1,6 @@
 import { AlertTriangle, CheckCircle2, UserRoundPlus } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { PageHeader } from "../../components/layout/Layouts";
 import {
   EmptyState,
@@ -18,6 +19,10 @@ import { EMPTY_FILTERS } from "../../lib/constants";
 import { useLanguage } from "../../app/providers/LanguageProvider";
 import { useAuth } from "../../app/providers/AuthProvider";
 import { loadAgentPreferences } from "../../lib/agentPreferences";
+import {
+  canAssignTicket,
+  canChangeTicketStatus,
+} from "../../lib/ticketActions";
 export function AgentQueuePage({
   mode = "all",
 }: {
@@ -33,8 +38,21 @@ export function AgentQueuePage({
   const [filters, setFilters] = useState(EMPTY_FILTERS);
   const [selected, setSelected] = useState<string[]>([]);
   const [page, setPage] = useState(1);
+  const [bulkSaving, setBulkSaving] = useState(false);
+  const [bulkError, setBulkError] = useState("");
   const [notice, setNotice] = useState("");
-  const [sort, setSort] = useState<TicketSort>("priority");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sort = (searchParams.get("sort") as TicketSort) || "priority";
+  const setSort = (newSort: TicketSort) => {
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        next.set("sort", newSort);
+        return next;
+      },
+      { replace: true },
+    );
+  };
   const load = () => {
     setLoading(true);
     setError(false);
@@ -67,6 +85,52 @@ export function AgentQueuePage({
     [scoped, filters, sort],
   );
   const shown = filtered.slice((page - 1) * pageSize, page * pageSize);
+  const eligible = (action: "assign" | "escalate") =>
+    tickets.filter(
+      (ticket) =>
+        selected.includes(ticket.id) &&
+        (action === "assign"
+          ? canAssignTicket(ticket.status) &&
+            ticket.assignedAgent !== user?.name
+          : canChangeTicketStatus(ticket.status, "escalated")),
+    );
+  const applyBulk = async (action: "assign" | "escalate") => {
+    if (bulkSaving) return;
+    setBulkSaving(true);
+    setNotice("");
+    setBulkError("");
+    const targets = eligible(action);
+    const results = await Promise.allSettled(
+      targets.map((ticket) =>
+        ticketService.updateTicket(
+          ticket.id,
+          action === "assign"
+            ? { assignedAgent: user?.name || "Current agent" }
+            : { status: "escalated" },
+        ),
+      ),
+    );
+    const updated = results.flatMap((result) =>
+      result.status === "fulfilled" ? [result.value] : [],
+    );
+    setTickets((current) =>
+      current.map(
+        (ticket) => updated.find((item) => item.id === ticket.id) || ticket,
+      ),
+    );
+    setSelected((current) =>
+      current.filter((id) => !updated.some((ticket) => ticket.id === id)),
+    );
+    if (updated.length)
+      setNotice(
+        `${updated.length} tickets ${action === "assign" ? "assigned to you" : "escalated"}.`,
+      );
+    if (updated.length < targets.length)
+      setBulkError(
+        "Some tickets could not be updated. They remain selected; please retry.",
+      );
+    setBulkSaving(false);
+  };
   const title =
     mode === "high"
       ? "High-priority review"
@@ -94,6 +158,11 @@ export function AgentQueuePage({
           </select>
         }
       />
+      {bulkError && (
+        <div role="alert" className="error-alert">
+          {bulkError}
+        </div>
+      )}
       {notice && (
         <div className="success-alert">
           <CheckCircle2 />
@@ -101,7 +170,9 @@ export function AgentQueuePage({
           <button onClick={() => setNotice("")}>Dismiss</button>
         </div>
       )}
-      <div className={`card list-card${preferences.compactQueue ? " compact-queue" : ""}`}>
+      <div
+        className={`card list-card${preferences.compactQueue ? " compact-queue" : ""}`}
+      >
         <TicketFilters
           filters={filters}
           onChange={(p) => setFilters((v) => ({ ...v, ...p }))}
@@ -112,22 +183,16 @@ export function AgentQueuePage({
             <strong>{selected.length} selected</strong>
             <button
               className="btn small"
-              onClick={() =>
-                setNotice(
-                  `${selected.length} tickets assigned to ${user?.name || "the current agent"}.`,
-                )
-              }
+              disabled={bulkSaving || eligible("assign").length === 0}
+              onClick={() => applyBulk("assign")}
             >
               <UserRoundPlus />
               {tr("Assign to me")}
             </button>
             <button
               className="btn secondary small"
-              onClick={() =>
-                setNotice(
-                  `${selected.length} tickets marked for escalation review.`,
-                )
-              }
+              disabled={bulkSaving || eligible("escalate").length === 0}
+              onClick={() => applyBulk("escalate")}
             >
               <AlertTriangle />
               {tr("Escalate")}
@@ -138,7 +203,14 @@ export function AgentQueuePage({
           </div>
         )}
         {loading ? (
-          <><div className="desktop-only"><TicketTableSkeleton agent rows={8} /></div><div className="mobile-list"><LoadingSkeleton /></div></>
+          <>
+            <div className="desktop-only">
+              <TicketTableSkeleton agent rows={8} />
+            </div>
+            <div className="mobile-list">
+              <LoadingSkeleton />
+            </div>
+          </>
         ) : error ? (
           <ErrorState retry={load} />
         ) : shown.length === 0 ? (
