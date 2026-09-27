@@ -103,3 +103,58 @@ async def test_response_approval_and_send_record_activity(client, customer, agen
     updated = (await client.get(f"/tickets/{ticket_id}", headers=headers)).json()
     assert updated["status"] == "responded"
     assert any(event["label"] == "Response Sent" for event in updated["events"])
+
+
+async def test_undo_escalation_returns_to_support_and_preserves_agent(
+    client, customer, agent, new_ticket, auth_headers, db
+):
+    db.add_all([SupportQueue(name="General Support"), SupportQueue(name="Fraud & Security")])
+    await db.commit()
+    ticket = await new_ticket(customer)
+    headers = auth_headers(agent)
+    await client.put(f"/tickets/{ticket}/assignment", json={}, headers=headers)
+    await client.post(f"/tickets/{ticket}/escalate", json={"reason": "Specialist review needed"}, headers=headers)
+    response = await client.post(f"/tickets/{ticket}/undo-escalation", headers=headers)
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert body["status"] == "assigned"
+    assert body["assigned_agent"] == agent.full_name
+    assert body["assigned_queue"] == "General Support"
+    assert body["escalation_reason"] is None
+    assert any(e["label"] == "Escalated" for e in body["events"])
+    assert any(e["label"] == "Escalation Undone" for e in body["events"])
+    assert (await client.get(f"/tickets/{ticket}", headers=headers)).json()["status"] == "assigned"
+    assert (await client.post(f"/tickets/{ticket}/undo-escalation", headers=headers)).status_code == 409
+
+
+async def test_undo_unassigned_escalation_returns_to_review(client, customer, agent, new_ticket, auth_headers):
+    ticket = await new_ticket(customer)
+    headers = auth_headers(agent)
+    await client.post(f"/tickets/{ticket}/escalate", json={"reason": "Specialist review needed"}, headers=headers)
+    response = await client.post(f"/tickets/{ticket}/undo-escalation", headers=headers)
+    assert response.status_code == 200, response.text
+    assert response.json()["status"] == "in_review"
+    assert response.json()["assigned_agent"] is None
+
+
+async def test_undo_resolution_reopens_and_retains_history(client, customer, agent, new_ticket, auth_headers):
+    ticket = await new_ticket(customer)
+    headers = auth_headers(agent)
+    await client.put(f"/tickets/{ticket}/assignment", json={}, headers=headers)
+    await client.put(f"/tickets/{ticket}/status", json={"status": "resolved"}, headers=headers)
+    response = await client.post(f"/tickets/{ticket}/undo-resolution", headers=headers)
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert body["status"] == "reopened"
+    assert body["assigned_agent"] == agent.full_name
+    assert any(e["label"] == "Resolution Undone" for e in body["events"])
+    assert (await client.get(f"/tickets/{ticket}", headers=headers)).json()["status"] == "reopened"
+    assert (await client.post(f"/tickets/{ticket}/undo-resolution", headers=headers)).status_code == 409
+
+
+async def test_undo_is_staff_only_and_does_not_reopen_closed_tickets(client, customer, agent, new_ticket, auth_headers):
+    ticket = await new_ticket(customer)
+    await close_ticket(client, ticket, auth_headers(agent))
+    for action in ("undo-resolution", "undo-escalation"):
+        assert (await client.post(f"/tickets/{ticket}/{action}", headers=auth_headers(customer))).status_code == 403
+        assert (await client.post(f"/tickets/{ticket}/{action}", headers=auth_headers(agent))).status_code == 409
