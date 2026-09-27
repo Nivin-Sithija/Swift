@@ -1,5 +1,6 @@
 import { AlertTriangle, CheckCircle2, UserRoundPlus } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { PageHeader } from "../../components/layout/Layouts";
 import {
   EmptyState,
@@ -34,7 +35,18 @@ export function AgentQueuePage({
   const [selected, setSelected] = useState<string[]>([]);
   const [page, setPage] = useState(1);
   const [notice, setNotice] = useState("");
-  const [sort, setSort] = useState<TicketSort>("priority");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sort = (searchParams.get("sort") as TicketSort) || "priority";
+  const setSort = (newSort: TicketSort) => {
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        next.set("sort", newSort);
+        return next;
+      },
+      { replace: true }
+    );
+  };
   const load = () => {
     setLoading(true);
     setError(false);
