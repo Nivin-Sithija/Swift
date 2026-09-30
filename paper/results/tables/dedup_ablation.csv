@@ -1,0 +1,13 @@
+task,model,headline_full,headline_deduped,delta,rows_full,rows_deduped,rows_dropped
+intent,tfidf-cnb,0.6792,0.6745,-0.0047,15395,15090,305
+intent,tfidf-logreg,0.8189,0.8156,-0.0033,15395,15090,305
+intent,tfidf-sgd,0.8115,0.8087,-0.0028,15395,15090,305
+intent,tfidf-svm,0.8308,0.8279,-0.0029,15395,15090,305
+priority,tfidf-cnb,0.8422,0.841,-0.0012,15395,15090,305
+priority,tfidf-logreg,0.8706,0.8693,-0.0013,15395,15090,305
+priority,tfidf-sgd,0.8659,0.8644,-0.0015,15395,15090,305
+priority,tfidf-svm,0.8734,0.872,-0.0013,15395,15090,305
+sentiment,tfidf-cnb,0.4968,0.4986,0.0018,15395,15090,305
+sentiment,tfidf-logreg,0.6383,0.6405,0.0022,15395,15090,305
+sentiment,tfidf-sgd,0.6092,0.6099,0.0007,15395,15090,305
+sentiment,tfidf-svm,0.6653,0.666,0.0007,15395,15090,305

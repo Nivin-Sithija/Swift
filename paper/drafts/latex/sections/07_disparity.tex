@@ -1,0 +1,78 @@
+\section{Script-Based Service Disparity}
+\label{sec:disparity}
+
+This is the finding the system exists to expose. A classification deficit on
+romanized text, which Section~\ref{sec:setting} measures as a
+difference-in-differences of $+0.0698$, is an abstraction. Expressed as waiting
+time it becomes something an operations owner can act on.
+
+Table~\ref{tab:disparity} reports mean wait for gold-High tickets, each
+track minus English, at $\rho = 1.05$ over 200 seeds. Bold marks intervals
+excluding zero.
+
+\begin{table}[!tb]
+\caption{Mean wait for gold-High tickets, each track minus english, minutes,
+$\rho=1.05$, 200 seeds, bootstrap CIs. Read as four nested controls.}
+\label{tab:disparity}
+\centering
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Policy & singlish & sinhala & tamil & tamilish \\
+\midrule
+FIFO           & $-0.85$ & $-0.22$ & $-0.23$ & $-0.82$ \\
+\textbf{Tier}  & \textbf{+4.07} & $+0.37$ & $-0.01$ & \textbf{+6.99} \\
+\textbf{TUS}   & \textbf{+0.37} & $+0.24$ & $+0.02$ & \textbf{+0.50} \\
+Oracle         & $-0.02$ & $0.00$ & $0.00$ & $-0.01$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Under FIFO, nothing.} All four contrasts straddle zero. FIFO never reads
+the ticket, so the arrival process contributes no gap.
+
+\textbf{Under the gold-label control, nothing.} Same tickets, same arrival
+stream, labels not predicted. Any gap appearing between these two rows is
+therefore attributable to the model.
+
+\textbf{Under the naive deployment, exactly and only the two romanized tracks.}
+Singlish $+4.07$ minutes (CI $[2.96, 5.21]$) and Tanglish $+6.99$ (CI
+$[5.76, 8.19]$), while native-script Sinhala and Tamil are indistinguishable from
+English. A customer who writes their urgent problem in Latin-script Tamil waits
+seven minutes longer for a first response than a customer who writes the same
+problem in English. This is sharper than the classification result it derives
+from, because the two native tracks come out at zero rather than merely smaller.
+
+\textbf{The score cuts it by an order of magnitude.} Singlish falls from $+4.07$
+to $+0.37$ and Tanglish from $+6.99$ to $+0.50$. Paired on the simulation seed,
+the score removes $3.70$ minutes (CI $[2.57, 4.85]$) of the Singlish gap and
+$6.49$ (CI $[5.32, 7.77]$) of the Tanglish one. It does not remove all of it, and
+we do not claim otherwise: both residuals still exclude zero.
+Fig.~\ref{fig:disparity} shows the four policies together.
+
+\begin{figure}[!tb]
+\centering
+\includegraphics[width=\columnwidth]{queue_disparity.pdf}
+\caption{Mean wait for urgent tickets by track, relative to English. The gap
+appears only under predicted labels and only on the romanized tracks, and the
+score removes most of it.}
+\label{fig:disparity}
+\end{figure}
+
+\textbf{Why the score helps.} Two mechanisms, both by design. The continuous
+posterior avoids the tier collapse that makes the argmax policy discriminate
+hardest exactly where it is least accurate: a degraded romanized ticket produces
+a hedged posterior, which the argmax flattens into a confident tier and the score
+preserves as a mid-ranking. And $\kappa(\text{intent})$ is a script-robust prior,
+because intent is the most accurate of the three heads, so it backstops the
+priority head where the text is degraded.
+
+\textbf{The finding rests on Singlish alone, by design.} Tanglish is a separate
+translation from the English source rather than a romanization of the Tamil
+track (Section~\ref{sec:setting}), and it carries 60.3\% out-of-vocabulary
+tokens against its own training split, so its $+6.99$ is inflated by input
+degradation as well as by script and we treat it as corroboration rather than
+evidence. Singlish carries the result on its own: $+4.07$ minutes, an ordinary
+out-of-vocabulary profile, and the same content as the Sinhala track that shows
+no gap at all. The controlled comparison and the significant one are the same
+pair.

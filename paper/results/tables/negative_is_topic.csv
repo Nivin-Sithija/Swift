@@ -1,0 +1,4 @@
+system,negative_f1,precision,recall,threshold,note
+intent-label only (no text),0.3301,0.2656,0.4359,0.14,sees only BANKING77's 77-way gold intent; contains no tone information
+tfidf-svm on text,0.6653,,,,"the classical champion, for comparison"
+topic share of the text model,0.4962,,,,fraction of the champion's Negative-F1 reachable from intent alone

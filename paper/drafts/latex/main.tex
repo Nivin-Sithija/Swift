@@ -1,0 +1,104 @@
+%==============================================================================
+%  ICATC 2026 submission -- multilingual support-ticket triage
+%
+%  COMPLIANCE WITH THE CALL
+%  ------------------------
+%  A4 page size ............ \documentclass[conference,a4paper]{IEEEtran}
+%  Length .................. 4-6 pages. Check the page count after every edit.
+%  IEEE article format ..... IEEEtran, the official IEEE conference class.
+%  Double-blind ............ \blindtrue below removes the author block, the
+%                            personal acknowledgment, and every repository name
+%                            and URL. Keep it TRUE for the CMT submission.
+%  AI disclosure ........... Acknowledgment section, per IEEE policy: the system
+%                            is named, the sections are identified, and the
+%                            level of use is stated.
+%  Final format ............ compile to PDF, upload through CMT.
+%
+%  OVERLEAF
+%  --------
+%  Upload this folder as a project. Compiler pdfLaTeX, main document main.tex,
+%  bibliography BibTeX. See README_OVERLEAF.md.
+%
+%  DRAFT MARKERS
+%  -------------
+%  \gap{...} marks evidence that does not exist yet. These print in red and
+%  MUST be resolved or removed before submission -- the call desk-rejects
+%  incomplete manuscripts. Set \draftmodefalse to check the true page count.
+%==============================================================================
+
+\documentclass[conference,a4paper]{IEEEtran}
+
+% IEEE requires Times. IEEEtran requests it as `ptm', which pdfLaTeX resolves
+% from the standard PostScript fonts. Under a Unicode engine (XeTeX/LuaTeX) that
+% request silently falls back to Latin Modern, so we load Times explicitly and
+% the document then typesets in Times under every engine. newtxmath also puts
+% the maths in Times, which matching the body text requires.
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\graphicspath{{figures/}}
+
+% Double-blind review. Flip to \blindfalse only for the camera-ready.
+\newif\ifblind
+\blindtrue
+
+% Draft markers. Set false to measure the real page count.
+\newif\ifdraftmode
+\draftmodetrue
+\ifdraftmode
+  \newcommand{\gap}[1]{\textcolor{BrickRed}{\textbf{[GAP: #1]}}}
+  \newcommand{\note}[1]{\textcolor{RoyalBlue}{\textbf{[NOTE: #1]}}}
+\else
+  \newcommand{\gap}[1]{}
+  \newcommand{\note}[1]{}
+\fi
+
+\newcommand{\negf}{Negative-F\textsubscript{1}}
+\newcommand{\macrof}{macro-F\textsubscript{1}}
+
+\begin{document}
+
+\title{Ordering Multilingual Support Tickets:\\
+A Triage Score, and the Waiting-Time Gap It Closes}
+
+\ifblind
+  \author{\IEEEauthorblockN{Anonymous Submission}}
+\else
+  \author{\IEEEauthorblockN{Author One, Author Two, Author Three}
+  \IEEEauthorblockA{Department, Institution\\City, Sri Lanka\\
+  \texttt{author@institution.lk}}}
+\fi
+
+\maketitle
+
+\input{sections/00_abstract}
+
+\begin{IEEEkeywords}
+support-ticket triage, ticket ordering, queueing, scheduling, service fairness,
+multilingual NLP, code-mixed text, romanization, Sinhala, Tamil
+\end{IEEEkeywords}
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_setting}
+\input{sections/04_score}
+\input{sections/05_evaluation}
+\input{sections/06_ordering}
+\input{sections/07_disparity}
+\input{sections/08_accuracy}
+\input{sections/09_discussion}
+\input{sections/10_conclusion}
+
+\input{sections/11_acknowledgment}
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+\end{document}

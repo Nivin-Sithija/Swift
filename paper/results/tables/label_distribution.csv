@@ -1,0 +1,7 @@
+task,label,tickets,pct
+sentiment,Neutral,12253,93.7
+sentiment,Negative,824,6.3
+priority,Low,7001,53.54
+priority,Medium,4790,36.63
+priority,High,1286,9.83
+intent,77 classes,13077,100.0
