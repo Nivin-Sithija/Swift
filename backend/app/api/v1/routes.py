@@ -3,7 +3,7 @@ import secrets
 import uuid
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
-from typing import Annotated, Any
+from typing import Annotated, Any, Literal
 
 from fastapi import APIRouter, Cookie, File, HTTPException, Query, UploadFile
 from fastapi import Response as HttpResponse
@@ -33,6 +33,7 @@ from app.domain.enums import (
     UserRole,
 )
 from app.domain.policies import can_transition, requires_manual_review
+from app.domain.urgency import ticket_urgency, urgency_sort_key
 from app.inference.masking import redact_pii
 from app.inference.ocr import OcrError, extract_text
 from app.inference.services import (
@@ -142,7 +143,7 @@ def prediction_out(p: Prediction | None) -> PredictionOut | None:
     )
 
 
-def ticket_out(ticket: Ticket, *, staff_view: bool) -> TicketOut:
+def ticket_out(ticket: Ticket, *, staff_view: bool, evaluated_at: datetime | None = None) -> TicketOut:
     by_task = {p.task: p for p in ticket.predictions}
     visible_responses = (
         ticket.responses
@@ -170,6 +171,7 @@ def ticket_out(ticket: Ticket, *, staff_view: bool) -> TicketOut:
         assigned_agent=ticket.assigned_agent.full_name if ticket.assigned_agent else None,
         created_at=ticket.created_at,
         updated_at=ticket.updated_at,
+        urgency=ticket_urgency(ticket, evaluated_at or utcnow()) if staff_view else None,
         attachments=[
             AttachmentOut(
                 id=a.id,
@@ -480,6 +482,7 @@ async def process_ticket_record(db: AsyncSession, ticket: Ticket) -> None:
                 value=result.value,
                 confidence=result.confidence,
                 model_version=result.model_version,
+                probabilities=result.probabilities,
             )
         )
     ticket.language = LanguageForm(language.value)
@@ -519,9 +522,9 @@ async def apply_attachment_text(ticket: Ticket, ocr_texts: list[str]) -> None:
         # are re-requested.
         def saved(task: PredictionTask, fallback: Result) -> Result:
             p = by_task.get(task)
-            return Result(p.value, p.confidence, p.model_version) if p else fallback
+            return Result(p.value, p.confidence, p.model_version, p.probabilities) if p else fallback
 
-        text_intent = Result(stored.value, stored.confidence, stored.model_version)
+        text_intent = Result(stored.value, stored.confidence, stored.model_version, stored.probabilities)
         text_priority = saved(PredictionTask.priority, rule_priority)
         text_sentiment = saved(PredictionTask.sentiment, rule_sentiment)
     else:
@@ -547,6 +550,7 @@ async def apply_attachment_text(ticket: Ticket, ocr_texts: list[str]) -> None:
         prediction.value = result.value
         prediction.confidence = result.confidence
         prediction.model_version = result.model_version
+        prediction.probabilities = result.probabilities
         prediction.predicted_at = utcnow()
 
     def effective(task: PredictionTask, fallback: Result) -> tuple[str, float]:
@@ -579,6 +583,7 @@ async def list_tickets(
     query: str | None = None,
     status: TicketStatus | None = None,
     priority: Priority | None = None,
+    sort: Literal["newest", "urgency"] = "newest",
 ) -> TicketList:
     filters = []
     if user.role == UserRole.customer:
@@ -596,17 +601,34 @@ async def list_tickets(
     if priority:
         filters.append(Ticket.priority == priority)
     total = (await db.scalar(select(func.count(Ticket.id)).where(*filters))) or 0
+    evaluated_at = utcnow()
+    if sort == "urgency" and user.role != UserRole.customer:
+        # Rank the entire matching backlog BEFORE pagination. Only predictions
+        # are needed here; load attachments/events/etc. for the selected page below.
+        candidates = (await db.scalars(
+            select(Ticket).where(*filters).options(selectinload(Ticket.predictions))
+        )).all()
+        ranked = sorted(candidates, key=lambda t: urgency_sort_key(t, ticket_urgency(t, evaluated_at)))
+        page_ids = [t.id for t in ranked[(page - 1) * page_size:page * page_size]]
+        loaded = (await db.scalars(
+            select(Ticket).where(Ticket.id.in_(page_ids)).options(*ticket_options())
+        )).unique().all() if page_ids else []
+        by_id = {t.id: t for t in loaded}
+        return TicketList(
+            items=[ticket_out(by_id[id_], staff_view=True, evaluated_at=evaluated_at) for id_ in page_ids],
+            page=page, page_size=page_size, total=total,
+        )
     stmt = (
         select(Ticket)
         .where(*filters)
         .options(*ticket_options())
-        .order_by(Ticket.created_at.desc())
+        .order_by(Ticket.created_at.desc(), Ticket.public_id)
         .offset((page - 1) * page_size)
         .limit(page_size)
     )
     items = (await db.scalars(stmt)).unique().all()
     return TicketList(
-        items=[ticket_out(t, staff_view=user.role != UserRole.customer) for t in items],
+        items=[ticket_out(t, staff_view=user.role != UserRole.customer, evaluated_at=evaluated_at) for t in items],
         page=page,
         page_size=page_size,
         total=total,

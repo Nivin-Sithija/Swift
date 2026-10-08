@@ -2,6 +2,7 @@ import uuid
 from datetime import UTC, datetime
 
 from sqlalchemy import (
+    JSON,
     Boolean,
     DateTime,
     Enum,
@@ -150,6 +151,7 @@ class Prediction(Base):
     value: Mapped[str] = mapped_column(String(150))
     confidence: Mapped[float] = mapped_column(Float)
     model_version: Mapped[str] = mapped_column(String(150))
+    probabilities: Mapped[dict[str, float] | None] = mapped_column(JSON, nullable=True)
     reviewed_value: Mapped[str | None] = mapped_column(String(150))
     review_reason: Mapped[str | None] = mapped_column(Text)
     reviewed_by: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("users.id"))

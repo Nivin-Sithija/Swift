@@ -65,6 +65,16 @@ type ApiTicket = Record<string, unknown> & {
   responses: ApiResponse[];
   requires_manual_review: boolean;
   escalation_reason?: string;
+  urgency?: {
+    score: number;
+    intrinsic_severity: number;
+    sla_minutes: number;
+    waiting_minutes: number;
+    aging_alpha: number;
+    evaluated_at: string;
+    active: boolean;
+    mode: string;
+  } | null;
 };
 
 let accessToken: string | null = null;
@@ -152,6 +162,16 @@ function mapTicket(t: ApiTicket): Ticket {
     assignedAgent: t.assigned_agent,
     createdAt: t.created_at,
     updatedAt: t.updated_at,
+    urgency: t.urgency ? {
+      score: t.urgency.score,
+      intrinsicSeverity: t.urgency.intrinsic_severity,
+      slaMinutes: t.urgency.sla_minutes,
+      waitingMinutes: t.urgency.waiting_minutes,
+      agingAlpha: t.urgency.aging_alpha,
+      evaluatedAt: t.urgency.evaluated_at,
+      active: t.urgency.active,
+      mode: t.urgency.mode,
+    } : undefined,
     attachment: attachment
       ? {
           id: attachment.id,
@@ -279,10 +299,21 @@ export const restTicketService: TicketService = {
     return mapTicket(created);
   },
   async getTickets() {
-    const data = await request<{ items: ApiTicket[] }>(
-      "/tickets?page_size=100",
-    );
-    return data.items.map(mapTicket);
+    // Load the complete backlog before client-side filtering and live urgency
+    // sorting. A fixed newest-100 window can hide an old urgent ticket entirely.
+    const tickets: Ticket[] = [];
+    let page = 1;
+    let total = Infinity;
+    while (tickets.length < total) {
+      const data = await request<{ items: ApiTicket[]; total: number }>(
+        `/tickets?page_size=100&page=${page}&sort=newest`,
+      );
+      tickets.push(...data.items.map(mapTicket));
+      total = data.total;
+      if (data.items.length === 0) break;
+      page += 1;
+    }
+    return [...new Map(tickets.map((ticket) => [ticket.id, ticket])).values()];
   },
   async getTicket(id) {
     return mapTicket(await request<ApiTicket>(`/tickets/${id}`));
@@ -574,5 +605,15 @@ export const restTicketService: TicketService = {
       approvalRequired: Boolean(result.approval_required),
       provider: result.provider ? String(result.provider) : null,
     } satisfies RagAssistanceResult;
+  },
+  async downloadAttachment(id: string) {
+    const headers = new Headers();
+    if (accessToken) headers.set("Authorization", `Bearer ${accessToken}`);
+    const response = await fetch(url(`/attachments/${id}/download`), {
+      headers,
+    });
+    if (!response.ok) throw new Error("Failed to load attachment");
+    const blob = await response.blob();
+    return URL.createObjectURL(blob);
   },
 };

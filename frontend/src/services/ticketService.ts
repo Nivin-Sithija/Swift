@@ -63,4 +63,5 @@ export interface TicketService {
     ticketId: string,
     message?: string,
   ): Promise<RagAssistanceResult>;
+  downloadAttachment?(id: string): Promise<string>;
 }

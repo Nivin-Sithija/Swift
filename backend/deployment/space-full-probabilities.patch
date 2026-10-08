@@ -1,0 +1,5 @@
+--- a/app.py
++++ b/app.py
+@@ -91 +91 @@
+-        gr.Label(label="Intent", num_top_classes=5),
++        gr.Label(label="Intent", num_top_classes=None),

@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { FilterState, Ticket, TicketEvent } from "../../types";
-import { cn, confidenceBand, formatDate } from "../../lib/utils";
+import { cn, confidenceBand, formatDate, urgencyScore } from "../../lib/utils";
 import {
   SUPPORTED_LANGUAGES,
   TICKET_PRIORITIES,
@@ -40,6 +40,14 @@ export function SentimentBadge({ value }: { value: string }) {
   return (
     <span className={cn("badge sentiment", value)}>{humanize(value)}</span>
   );
+}
+function UrgencyLabel({ ticket, now }: { ticket: Ticket; now?: number }) {
+  if (!ticket.urgency?.active) return null;
+  const fallback = ticket.urgency.mode === "label_fallback";
+  const partial = ticket.urgency.mode === "priority_head";
+  return <small title={`Severity, sentiment, intent and waiting time. Response window: ${ticket.urgency.slaMinutes} minutes.${fallback ? " Full model probabilities unavailable; uses stored labels." : partial ? " Full intent probabilities unavailable; uses the priority model without log pooling." : ""}`}>
+    Urgency {urgencyScore(ticket, now).toFixed(2)}{fallback ? " (estimated)" : partial ? " (partial)" : ""}
+  </small>;
 }
 export function LanguageBadge({ value }: { value: string }) {
   return <span className="badge language">{humanize(value)}</span>;
@@ -160,11 +168,13 @@ export function TicketTable({
   agent = false,
   selected = [],
   onSelect,
+  urgencyNow,
 }: {
   tickets: Ticket[];
   agent?: boolean;
   selected?: string[];
   onSelect?: (id: string) => void;
+  urgencyNow?: number;
 }) {
   const { tr } = useLanguage();
   return (
@@ -248,6 +258,7 @@ export function TicketTable({
               </td>
               <td>
                 <PriorityBadge value={ticket.priority.value} />
+                {agent && <UrgencyLabel ticket={ticket} now={urgencyNow} />}
               </td>
               {agent && (
                 <td>
@@ -324,9 +335,11 @@ export function TicketTableSkeleton({ agent = false, rows = 6 }: { agent?: boole
 export function TicketCards({
   tickets,
   agent = false,
+  urgencyNow,
 }: {
   tickets: Ticket[];
   agent?: boolean;
+  urgencyNow?: number;
 }) {
   const { tr } = useLanguage();
   return (
@@ -343,6 +356,7 @@ export function TicketCards({
             <PriorityBadge value={ticket.priority.value} />
             <LanguageBadge value={ticket.language} />
           </div>
+          {agent && <UrgencyLabel ticket={ticket} now={urgencyNow} />}
           <div className="row spread meta">
             <span>{formatDate(ticket.updatedAt)}</span>
             <Link
