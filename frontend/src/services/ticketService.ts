@@ -37,6 +37,7 @@ export interface TicketService {
   updateTicket(id: string, patch: Partial<Ticket>): Promise<Ticket>;
   undoEscalation(id: string): Promise<Ticket>;
   undoResolution(id: string): Promise<Ticket>;
+  getAttachmentBlob(attachmentId: string): Promise<Blob>;
   getAssignableAgents(): Promise<Array<{ id: string; name: string }>>;
   assignTicket(id: string, agentId: string): Promise<Ticket>;
   addInternalNote(id: string, text: string): Promise<InternalNote>;
