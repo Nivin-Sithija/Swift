@@ -1,0 +1,488 @@
+{
+  "version": "icatc-logpool-v1",
+  "split": "e7b5934392cd",
+  "source_portions": [
+    "train",
+    "dev"
+  ],
+  "source_sha256": {
+    "english": "2e4f2372da2c14639ec8e21f38d35ffe5e7eb7456ef3d4a57de287fd9151c352",
+    "sinhala": "11e60c4851780241602e0bf736729404e824e186a41d91f769c17445a906dfb8",
+    "singlish": "df442461dfddd04675eae810df52cc85743c7c1934a59f15b17c5c16153965f7",
+    "tamil": "0236bd6ea296c65f70bcaf081298e04394b63d651b26d7afef862109cd50e1a3",
+    "tamilish": "42fcbe177819cc63420a3c83c1172e39762b6aec518fa8ef41c90681f8ad49c1"
+  },
+  "rows": 49990,
+  "smoothing": 1.0,
+  "base_priority": {
+    "low": 0.5314062812562512,
+    "medium": 0.36917383476695337,
+    "high": 0.09941988397679535
+  },
+  "priority_given_intent": {
+    "Refund_not_showing_up": {
+      "low": 0.031481388756172936,
+      "medium": 0.9560655657642009,
+      "high": 0.012453045479626135
+    },
+    "activate_my_card": {
+      "low": 0.9680042792478094,
+      "medium": 0.01930800733010924,
+      "high": 0.0126877134220814
+    },
+    "age_limit": {
+      "low": 0.999149557679231,
+      "medium": 0.0006700069596496432,
+      "high": 0.0001804353611194108
+    },
+    "apple_pay_or_google_pay": {
+      "low": 0.7456916105883618,
+      "medium": 0.2541508301660332,
+      "high": 0.00015755924560506394
+    },
+    "atm_support": {
+      "low": 0.9873118475203161,
+      "medium": 0.0008565518208049962,
+      "high": 0.011831600658878874
+    },
+    "automatic_top_up": {
+      "low": 0.999263217423359,
+      "medium": 0.0005804620043505556,
+      "high": 0.00015632057229055874
+    },
+    "balance_not_updated_after_bank_transfer": {
+      "low": 0.1349665961229629,
+      "medium": 0.859076137657438,
+      "high": 0.0059572662195990595
+    },
+    "balance_not_updated_after_cheque_or_cash_deposit": {
+      "low": 0.09992428949366032,
+      "medium": 0.8889284479412438,
+      "high": 0.0111472625650958
+    },
+    "beneficiary_not_allowed": {
+      "low": 0.34639104517446384,
+      "medium": 0.6534816566386261,
+      "high": 0.0001272981869101093
+    },
+    "cancel_transfer": {
+      "low": 0.12154122936546596,
+      "medium": 0.7511058191282022,
+      "high": 0.1273529515063318
+    },
+    "card_about_to_expire": {
+      "low": 0.9992746227264029,
+      "medium": 0.0005714765244070485,
+      "high": 0.00015390074919008567
+    },
+    "card_acceptance": {
+      "low": 0.9984169131123521,
+      "medium": 0.0012472089012397073,
+      "high": 0.0003358779864080924
+    },
+    "card_arrival": {
+      "low": 0.999388258852815,
+      "medium": 0.00048195017593597047,
+      "high": 0.0001297909712490801
+    },
+    "card_delivery_estimate": {
+      "low": 0.8922128454211341,
+      "medium": 0.0006580638765899347,
+      "high": 0.10712909070227593
+    },
+    "card_linking": {
+      "low": 0.9993267331627246,
+      "medium": 0.0005304221763893009,
+      "high": 0.00014284466088620022
+    },
+    "card_not_working": {
+      "low": 0.06390540698067672,
+      "medium": 0.9359157802783578,
+      "high": 0.00017881274096545927
+    },
+    "card_payment_fee_charged": {
+      "low": 0.09137970756544471,
+      "medium": 0.9085140746097937,
+      "high": 0.0001062178247615335
+    },
+    "card_payment_not_recognised": {
+      "low": 0.00657717750446641,
+      "medium": 0.0004389700770118352,
+      "high": 0.9929838524185217
+    },
+    "card_payment_wrong_exchange_rate": {
+      "low": 0.012597375934517046,
+      "medium": 0.9872837007592906,
+      "high": 0.00011892330619233894
+    },
+    "card_swallowed": {
+      "low": 0.0017366218341707557,
+      "medium": 0.9815986073031601,
+      "high": 0.016664770862669265
+    },
+    "cash_withdrawal_charge": {
+      "low": 0.06267653079148561,
+      "medium": 0.9315679162920619,
+      "high": 0.005755552916452364
+    },
+    "cash_withdrawal_not_recognised": {
+      "low": 0.01939002032616261,
+      "medium": 0.012945285686350755,
+      "high": 0.9676646939874867
+    },
+    "change_pin": {
+      "low": 0.9414709674608189,
+      "medium": 0.0006091977471401871,
+      "high": 0.057919834792040915
+    },
+    "compromised_card": {
+      "low": 0.012833889283657194,
+      "medium": 0.0008565518208049962,
+      "high": 0.9863095588955378
+    },
+    "contactless_not_working": {
+      "low": 0.20188299023441053,
+      "medium": 0.7975521240611758,
+      "high": 0.00056488570441361
+    },
+    "country_support": {
+      "low": 0.9992746227264029,
+      "medium": 0.0005714765244070485,
+      "high": 0.00015390074919008567
+    },
+    "declined_card_payment": {
+      "low": 0.013748572168741842,
+      "medium": 0.986121636860009,
+      "high": 0.0001297909712490801
+    },
+    "declined_cash_withdrawal": {
+      "low": 0.0006136331192335465,
+      "medium": 0.993497891264165,
+      "high": 0.00588847561660138
+    },
+    "declined_transfer": {
+      "low": 0.030827937359243624,
+      "medium": 0.9615152760281785,
+      "high": 0.00765678661257777
+    },
+    "direct_debit_payment_not_recognised": {
+      "low": 0.08291043499589051,
+      "medium": 0.0168706628263084,
+      "high": 0.9002189021778011
+    },
+    "disposable_card_limits": {
+      "low": 0.9909759179558685,
+      "medium": 0.008860022829648437,
+      "high": 0.00016405921448316065
+    },
+    "edit_personal_details": {
+      "low": 0.9992267430383768,
+      "medium": 0.0006091977471401871,
+      "high": 0.00016405921448316065
+    },
+    "exchange_charge": {
+      "low": 0.9992267430383768,
+      "medium": 0.0006091977471401871,
+      "high": 0.00016405921448316065
+    },
+    "exchange_rate": {
+      "low": 0.9991647170788882,
+      "medium": 0.0006580638765899347,
+      "high": 0.00017721904452191686
+    },
+    "exchange_via_app": {
+      "low": 0.999207117227168,
+      "medium": 0.0006246596188950142,
+      "high": 0.00016822315393704798
+    },
+    "extra_charge_on_statement": {
+      "low": 0.006696617773917979,
+      "medium": 0.9871297504052868,
+      "high": 0.006173631820795151
+    },
+    "failed_transfer": {
+      "low": 0.0007746447248633399,
+      "medium": 0.977214539117736,
+      "high": 0.022010816157400574
+    },
+    "fiat_currency_support": {
+      "low": 0.9992573792095979,
+      "medium": 0.0005850615447970734,
+      "high": 0.00015755924560506394
+    },
+    "get_disposable_virtual_card": {
+      "low": 0.9990358153935314,
+      "medium": 0.0007596169439649246,
+      "high": 0.00020456766250369414
+    },
+    "get_physical_card": {
+      "low": 0.9897013300965278,
+      "medium": 0.010111438483553585,
+      "high": 0.00018723141991863532
+    },
+    "getting_spare_card": {
+      "low": 0.9915346846459075,
+      "medium": 0.0005714765244070485,
+      "high": 0.00789383882968544
+    },
+    "getting_virtual_card": {
+      "low": 0.9888623345850432,
+      "medium": 0.010935180926205608,
+      "high": 0.0002024844887511107
+    },
+    "lost_or_stolen_card": {
+      "low": 0.049954759808409376,
+      "medium": 0.0008982331746154583,
+      "high": 0.9491470070169752
+    },
+    "lost_or_stolen_phone": {
+      "low": 0.18239505987005983,
+      "medium": 0.025361672994664942,
+      "high": 0.7922432671352753
+    },
+    "order_physical_card": {
+      "low": 0.9992203099521736,
+      "medium": 0.0006142659480315364,
+      "high": 0.00016542409979500059
+    },
+    "passcode_forgotten": {
+      "low": 0.0010102781012476258,
+      "medium": 0.9797893038683781,
+      "high": 0.019200418030374134
+    },
+    "pending_card_payment": {
+      "low": 0.9994113144236888,
+      "medium": 0.00046378622458159973,
+      "high": 0.0001248993517296424
+    },
+    "pending_cash_withdrawal": {
+      "low": 0.7269991707838775,
+      "medium": 0.2658787344060991,
+      "high": 0.007122094810023457
+    },
+    "pending_top_up": {
+      "low": 0.9122404909936411,
+      "medium": 0.054114174041242566,
+      "high": 0.03364533496511635
+    },
+    "pending_transfer": {
+      "low": 0.8509195766278762,
+      "medium": 0.12870333850845742,
+      "high": 0.02037708486366639
+    },
+    "pin_blocked": {
+      "low": 0.09725290066769922,
+      "medium": 0.8938164165232346,
+      "high": 0.008930682809066191
+    },
+    "receiving_money": {
+      "low": 0.9885113577337316,
+      "medium": 0.011279776963796121,
+      "high": 0.00020886530247225915
+    },
+    "request_refund": {
+      "low": 0.23703475919770242,
+      "medium": 0.7037460683626087,
+      "high": 0.05921917243968888
+    },
+    "reverted_card_payment?": {
+      "low": 0.8753491393067696,
+      "medium": 0.08730666728879274,
+      "high": 0.03734419340443771
+    },
+    "supported_cards_and_currencies": {
+      "low": 0.9915346846459075,
+      "medium": 0.008311414604902404,
+      "high": 0.00015390074919008567
+    },
+    "terminate_account": {
+      "low": 0.01946655504853281,
+      "medium": 0.0006823915614915959,
+      "high": 0.9798510533899756
+    },
+    "top_up_by_bank_transfer_charge": {
+      "low": 0.8552723134554968,
+      "medium": 0.14454887380353768,
+      "high": 0.00017881274096545927
+    },
+    "top_up_by_card_charge": {
+      "low": 0.8415611318410793,
+      "medium": 0.15826475277542373,
+      "high": 0.00017411538349701463
+    },
+    "top_up_by_cash_or_cheque": {
+      "low": 0.9816662106501861,
+      "medium": 0.018159673966316906,
+      "high": 0.00017411538349701463
+    },
+    "top_up_failed": {
+      "low": 0.01450606925792872,
+      "medium": 0.9027123606539489,
+      "high": 0.0827815700881223
+    },
+    "top_up_limits": {
+      "low": 0.9990358153935314,
+      "medium": 0.0007596169439649246,
+      "high": 0.00020456766250369414
+    },
+    "top_up_reverted": {
+      "low": 0.3974437842424846,
+      "medium": 0.5887403198834021,
+      "high": 0.013815895874113263
+    },
+    "topping_up_by_card": {
+      "low": 0.6308748183745276,
+      "medium": 0.3689325074317189,
+      "high": 0.00019267419375347937
+    },
+    "transaction_charged_twice": {
+      "low": 0.01202215328910531,
+      "medium": 0.9821565911355786,
+      "high": 0.005821255575315976
+    },
+    "transfer_fee_charged": {
+      "low": 0.0703036077598795,
+      "medium": 0.9295809219915993,
+      "high": 0.00011547024852124895
+    },
+    "transfer_into_account": {
+      "low": 0.9903381736417955,
+      "medium": 0.009486172852945148,
+      "high": 0.00017565350525935574
+    },
+    "transfer_not_received_by_recipient": {
+      "low": 0.04734977369305637,
+      "medium": 0.806506044199494,
+      "high": 0.14614418210744953
+    },
+    "transfer_timing": {
+      "low": 0.8666636603451736,
+      "medium": 0.016176558244566232,
+      "high": 0.1171597814102602
+    },
+    "unable_to_verify_identity": {
+      "low": 0.9990829868517734,
+      "medium": 0.0007224536883893413,
+      "high": 0.00019455945983717292
+    },
+    "verify_my_identity": {
+      "low": 0.9895036588891676,
+      "medium": 0.00070858701490778,
+      "high": 0.00978775409592475
+    },
+    "verify_source_of_funds": {
+      "low": 0.9991720959032797,
+      "medium": 0.0006522505914610484,
+      "high": 0.00017565350525935574
+    },
+    "verify_top_up": {
+      "low": 0.9992573792095979,
+      "medium": 0.0005850615447970734,
+      "high": 0.00015755924560506394
+    },
+    "virtual_card_not_working": {
+      "low": 0.05112333146240899,
+      "medium": 0.9483940477415871,
+      "high": 0.0004826207960038609
+    },
+    "visa_or_mastercard": {
+      "low": 0.999306814025527,
+      "medium": 0.0005461151401878008,
+      "high": 0.00014707083428520024
+    },
+    "why_verify_identity": {
+      "low": 0.9992267430383768,
+      "medium": 0.0006091977471401871,
+      "high": 0.00016405921448316065
+    },
+    "wrong_amount_of_cash_received": {
+      "low": 0.011688575228919256,
+      "medium": 0.9715529121362563,
+      "high": 0.01675851263482441
+    },
+    "wrong_exchange_rate_for_cash_withdrawal": {
+      "low": 0.1477100567172258,
+      "medium": 0.8521681051896653,
+      "high": 0.00012183809310881784
+    }
+  },
+  "criticality": {
+    "Refund_not_showing_up": 0.012345679012345678,
+    "activate_my_card": 0.012578616352201259,
+    "age_limit": 0.0,
+    "apple_pay_or_google_pay": 0.0,
+    "atm_support": 0.011627906976744186,
+    "automatic_top_up": 0.0,
+    "balance_not_updated_after_bank_transfer": 0.005847953216374269,
+    "balance_not_updated_after_cheque_or_cash_deposit": 0.011049723756906077,
+    "beneficiary_not_allowed": 0.0,
+    "cancel_transfer": 0.12738853503184713,
+    "card_about_to_expire": 0.0,
+    "card_acceptance": 0.0,
+    "card_arrival": 0.0,
+    "card_delivery_estimate": 0.10714285714285714,
+    "card_linking": 0.0,
+    "card_not_working": 0.0,
+    "card_payment_fee_charged": 0.0,
+    "card_payment_not_recognised": 0.9940476190476191,
+    "card_payment_wrong_exchange_rate": 0.0,
+    "card_swallowed": 0.01639344262295082,
+    "cash_withdrawal_charge": 0.005649717514124294,
+    "cash_withdrawal_not_recognised": 0.96875,
+    "change_pin": 0.05785123966942149,
+    "compromised_card": 0.9883720930232558,
+    "contactless_not_working": 0.0,
+    "country_support": 0.0,
+    "declined_card_payment": 0.0,
+    "declined_cash_withdrawal": 0.005780346820809248,
+    "declined_transfer": 0.007518796992481203,
+    "direct_debit_payment_not_recognised": 0.9010989010989011,
+    "disposable_card_limits": 0.0,
+    "edit_personal_details": 0.0,
+    "exchange_charge": 0.0,
+    "exchange_rate": 0.0,
+    "exchange_via_app": 0.0,
+    "extra_charge_on_statement": 0.006060606060606061,
+    "failed_transfer": 0.021897810218978103,
+    "fiat_currency_support": 0.0,
+    "get_disposable_virtual_card": 0.0,
+    "get_physical_card": 0.0,
+    "getting_spare_card": 0.007751937984496124,
+    "getting_virtual_card": 0.0,
+    "lost_or_stolen_card": 0.9512195121951219,
+    "lost_or_stolen_phone": 0.7933884297520661,
+    "order_physical_card": 0.0,
+    "passcode_forgotten": 0.01904761904761905,
+    "pending_card_payment": 0.0,
+    "pending_cash_withdrawal": 0.006993006993006993,
+    "pending_top_up": 0.03355704697986577,
+    "pending_transfer": 0.02027027027027027,
+    "pin_blocked": 0.008771929824561403,
+    "receiving_money": 0.0,
+    "request_refund": 0.05917159763313609,
+    "reverted_card_payment?": 0.037267080745341616,
+    "supported_cards_and_currencies": 0.0,
+    "terminate_account": 0.9814814814814815,
+    "top_up_by_bank_transfer_charge": 0.0,
+    "top_up_by_card_charge": 0.0,
+    "top_up_by_cash_or_cheque": 0.0,
+    "top_up_failed": 0.08275862068965517,
+    "top_up_limits": 0.0,
+    "top_up_reverted": 0.0136986301369863,
+    "topping_up_by_card": 0.0,
+    "transaction_charged_twice": 0.005714285714285714,
+    "transfer_fee_charged": 0.0,
+    "transfer_into_account": 0.0,
+    "transfer_not_received_by_recipient": 0.14619883040935672,
+    "transfer_timing": 0.1171875,
+    "unable_to_verify_identity": 0.0,
+    "verify_my_identity": 0.009615384615384616,
+    "verify_source_of_funds": 0.0,
+    "verify_top_up": 0.0,
+    "virtual_card_not_working": 0.0,
+    "visa_or_mastercard": 0.0,
+    "why_verify_identity": 0.0,
+    "wrong_amount_of_cash_received": 0.016666666666666666,
+    "wrong_exchange_rate_for_cash_withdrawal": 0.0
+  }
+}

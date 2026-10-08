@@ -91,6 +91,21 @@ class ResponseOut(BaseModel):
     approved_at: datetime | None = None
 
 
+class UrgencyOut(BaseModel):
+    score: float
+    intrinsic_severity: float
+    expected_severity: float
+    negative_probability: float
+    intent_criticality: float
+    sla_minutes: float
+    waiting_minutes: float
+    aging_alpha: float
+    evaluated_at: datetime
+    active: bool
+    mode: str
+    priority_posterior: dict[str, float]
+
+
 class TicketOut(BaseModel):
     id: str
     internal_id: uuid.UUID
@@ -108,6 +123,7 @@ class TicketOut(BaseModel):
     assigned_agent: str | None
     created_at: datetime
     updated_at: datetime
+    urgency: UrgencyOut | None = None
     attachments: list[AttachmentOut] = []
     events: list[EventOut] = []
     notes: list[NoteOut] = []

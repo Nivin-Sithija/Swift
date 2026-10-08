@@ -47,9 +47,20 @@ export function filterTickets(
   );
 }
 
-export type TicketSort = "priority" | "newest" | "confidence" | "waiting";
+export type TicketSort = "urgency" | "priority" | "newest" | "confidence" | "waiting";
 
-const comparators: Record<TicketSort, (a: Ticket, b: Ticket) => number> = {
+export function urgencyScore(ticket: Ticket, now = Date.now()): number {
+  const urgency = ticket.urgency;
+  if (!urgency || !urgency.active) return 0;
+  const elapsed = Math.max(0, (now - Date.parse(urgency.evaluatedAt)) / 60_000);
+  return urgency.intrinsicSeverity *
+    (1 + urgency.agingAlpha * (urgency.waitingMinutes + elapsed) / urgency.slaMinutes);
+}
+
+export const isTicketSort = (value: string | null): value is TicketSort =>
+  ["urgency", "priority", "newest", "confidence", "waiting"].includes(value || "");
+
+const comparators: Record<Exclude<TicketSort, "urgency">, (a: Ticket, b: Ticket) => number> = {
   priority: (a, b) =>
     priorityRank[b.priority.value as TicketPriority] -
       priorityRank[a.priority.value as TicketPriority] ||
@@ -59,8 +70,12 @@ const comparators: Record<TicketSort, (a: Ticket, b: Ticket) => number> = {
   waiting: (a, b) => +new Date(a.createdAt) - +new Date(b.createdAt),
 };
 
-export const sortTickets = (tickets: Ticket[], sort: TicketSort = "priority") =>
-  [...tickets].sort(comparators[sort]);
+export const sortTickets = (tickets: Ticket[], sort: TicketSort = "urgency", now = Date.now()) =>
+  [...tickets].sort(sort === "urgency" ? (a, b) =>
+    Number(Boolean(b.urgency?.active)) - Number(Boolean(a.urgency?.active)) ||
+    urgencyScore(b, now) - urgencyScore(a, now) ||
+    +new Date(a.createdAt) - +new Date(b.createdAt) || a.id.localeCompare(b.id)
+    : comparators[sort]);
 
 export const delay = (ms = 350) =>
   new Promise((resolve) => setTimeout(resolve, ms));

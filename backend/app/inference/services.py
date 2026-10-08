@@ -1,5 +1,6 @@
 import asyncio
 import json
+import math
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -27,6 +28,7 @@ class Result:
     value: str
     confidence: float
     model_version: str
+    probabilities: dict[str, float] | None = None
 
 
 SINHALA = re.compile(r"[\u0D80-\u0DFF]")
@@ -162,6 +164,8 @@ def fuse_intent(text_intent: Result, ocr_intent: Result | None) -> Result:
             text_intent.value,
             max(text_intent.confidence, ocr_intent.confidence),
             f"{text_intent.model_version}+{ocr_intent.model_version}",
+            # OCR confidence is not a posterior; retain the text distribution.
+            text_intent.probabilities,
         )
     if ocr_intent.confidence > text_intent.confidence:
         return ocr_intent
@@ -177,15 +181,31 @@ def more_severe(current: Result, candidate: Result, order: list[str]) -> Result:
     return candidate if order.index(candidate.value) > order.index(current.value) else current
 
 
-def _label_result(output: dict[str, Any], model_version: str, allowed: set[str] | None = None) -> Result:
+def _label_result(
+    output: dict[str, Any], model_version: str, allowed: set[str] | None = None,
+    *, expected_classes: int | None = None,
+) -> Result:
     """Read one gr.Label output: {"label": ..., "confidences": [{label, confidence}]}."""
     label = str(output["label"])
-    confidence = {item["label"]: item["confidence"] for item in output["confidences"]}[label]
+    values = {str(item["label"]): float(item["confidence"]) for item in output["confidences"]}
+    confidence = values[label]
     if allowed is not None:
         label = label.lower()
         if label not in allowed:
             raise ValueError(f"Unexpected label from the Space: {label}")
-    return Result(label, float(confidence), model_version)
+        values = {k.lower(): v for k, v in values.items()}
+        if not set(values).issubset(allowed):
+            raise ValueError("Unexpected probability label from the Space")
+    if any(not math.isfinite(v) or not 0 <= v <= 1 for v in values.values()):
+        raise ValueError("Invalid probabilities from the Space")
+    # A top-k-only response is usable as a label, but cannot support log pooling.
+    total = sum(values.values())
+    probabilities = (
+        {k: v / total for k, v in values.items()}
+        if math.isclose(total, 1.0, abs_tol=1e-6)
+        and (expected_classes is None or len(values) == expected_classes) else None
+    )
+    return Result(label, confidence, model_version, probabilities)
 
 
 async def classify_with_space(text: str) -> tuple[Result, Result, Result] | None:
@@ -224,9 +244,9 @@ async def classify_with_space(text: str) -> tuple[Result, Result, Result] | None
             raise ValueError("Hugging Face Space returned no prediction data")
         intent, sentiment, priority = json.loads(data_lines[-1])
         return (
-            _label_result(intent, settings.intent_model_id),
-            _label_result(sentiment, settings.sentiment_model_id, set(SENTIMENT_ORDER)),
-            _label_result(priority, settings.priority_model_id, set(PRIORITY_ORDER)),
+            _label_result(intent, settings.intent_model_id, expected_classes=77),
+            _label_result(sentiment, settings.sentiment_model_id, set(SENTIMENT_ORDER), expected_classes=2),
+            _label_result(priority, settings.priority_model_id, set(PRIORITY_ORDER), expected_classes=3),
         )
     except (httpx.HTTPError, KeyError, TypeError, ValueError, json.JSONDecodeError):
         # External inference must not prevent a customer from creating a ticket.

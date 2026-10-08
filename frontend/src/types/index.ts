@@ -96,6 +96,16 @@ export interface Ticket {
   assignedAgent: string | null;
   createdAt: string;
   updatedAt: string;
+  urgency?: {
+    score: number;
+    intrinsicSeverity: number;
+    slaMinutes: number;
+    waitingMinutes: number;
+    agingAlpha: number;
+    evaluatedAt: string;
+    active: boolean;
+    mode: string;
+  };
   attachment?: Attachment;
   imageEvidence: ImageEvidence;
   events: TicketEvent[];

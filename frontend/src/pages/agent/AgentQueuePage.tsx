@@ -12,7 +12,7 @@ import {
   TicketTable,
   TicketTableSkeleton,
 } from "../../components/tickets/TicketComponents";
-import { filterTickets, sortTickets, type TicketSort } from "../../lib/utils";
+import { filterTickets, isTicketSort, sortTickets, type TicketSort } from "../../lib/utils";
 import { ticketService } from "../../services/serviceSelector";
 import type { Ticket } from "../../types";
 import { EMPTY_FILTERS } from "../../lib/constants";
@@ -41,9 +41,16 @@ export function AgentQueuePage({
   const [bulkSaving, setBulkSaving] = useState(false);
   const [bulkError, setBulkError] = useState("");
   const [notice, setNotice] = useState("");
+  const [now, setNow] = useState(Date.now);
+  useEffect(() => {
+    const timer = window.setInterval(() => setNow(Date.now()), 30_000);
+    return () => window.clearInterval(timer);
+  }, []);
   const [searchParams, setSearchParams] = useSearchParams();
-  const sort = (searchParams.get("sort") as TicketSort) || "priority";
+  const requestedSort = searchParams.get("sort");
+  const sort: TicketSort = isTicketSort(requestedSort) ? requestedSort : "urgency";
   const setSort = (newSort: TicketSort) => {
+    setPage(1);
     setSearchParams(
       (prev) => {
         const next = new URLSearchParams(prev);
@@ -81,8 +88,8 @@ export function AgentQueuePage({
     [tickets, mode],
   );
   const filtered = useMemo(
-    () => sortTickets(filterTickets(scoped, filters), sort),
-    [scoped, filters, sort],
+    () => sortTickets(filterTickets(scoped, filters), sort, now),
+    [scoped, filters, sort, now],
   );
   const shown = filtered.slice((page - 1) * pageSize, page * pageSize);
   const eligible = (action: "assign" | "escalate") =>
@@ -144,13 +151,14 @@ export function AgentQueuePage({
       <PageHeader
         eyebrow={tr("Support operations")}
         title={tr(title)}
-        description={`${filtered.length} tickets · advisory predictions require agent judgement`}
+        description={`${filtered.length} tickets · ${sort === "urgency" ? "Urgency combines severity, sentiment, intent and waiting time; updates every 30 seconds." : "Advisory predictions require agent judgement."}`}
         actions={
           <select
             aria-label="Sort tickets"
             value={sort}
             onChange={(e) => setSort(e.target.value as TicketSort)}
           >
+            <option value="urgency">{tr("Dynamic urgency")}</option>
             <option value="priority">{tr("Priority first")}</option>
             <option value="newest">{tr("Newest")}</option>
             <option value="confidence">{tr("Lowest confidence")}</option>
@@ -175,8 +183,8 @@ export function AgentQueuePage({
       >
         <TicketFilters
           filters={filters}
-          onChange={(p) => setFilters((v) => ({ ...v, ...p }))}
-          onClear={() => setFilters(EMPTY_FILTERS)}
+          onChange={(p) => { setPage(1); setFilters((v) => ({ ...v, ...p })); }}
+          onClear={() => { setPage(1); setFilters(EMPTY_FILTERS); }}
         />
         {selected.length > 0 && (
           <div className="bulk-bar">
@@ -220,6 +228,7 @@ export function AgentQueuePage({
             <div className="desktop-only">
               <TicketTable
                 tickets={shown}
+                urgencyNow={now}
                 agent
                 selected={selected}
                 onSelect={(id) =>
@@ -230,7 +239,7 @@ export function AgentQueuePage({
               />
             </div>
             <div className="mobile-list">
-              <TicketCards tickets={shown} agent />
+              <TicketCards tickets={shown} agent urgencyNow={now} />
             </div>
             <div className="table-footer">
               <span>

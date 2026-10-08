@@ -14,9 +14,40 @@ import { useEffect, useState } from "react";
 import type { InternalNote, Ticket, TicketPrediction } from "../../types";
 import { ConfidenceIndicator, humanize } from "../tickets/TicketComponents";
 import { ConfirmationDialog } from "../common/Controls";
+import { ticketService } from "../../services/serviceSelector";
 import { formatDate } from "../../lib/utils";
 
 export function ImageEvidencePanel({ ticket }: { ticket: Ticket }) {
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    let blobUrl = "";
+    if (ticket.attachment) {
+      if (ticketService.downloadAttachment) {
+        ticketService
+          .downloadAttachment(ticket.attachment.id)
+          .then((url) => {
+            if (active) {
+              blobUrl = url;
+              setImageUrl(url);
+            }
+          })
+          .catch((err) => {
+            console.error("Failed to load attachment image", err);
+          });
+      } else if (ticket.attachment.url) {
+        setImageUrl(ticket.attachment.url);
+      }
+    }
+    return () => {
+      active = false;
+      if (blobUrl) {
+        URL.revokeObjectURL(blobUrl);
+      }
+    };
+  }, [ticket.attachment]);
+
   return (
     <section className="card">
       <div className="section-title">
@@ -31,11 +62,15 @@ export function ImageEvidencePanel({ ticket }: { ticket: Ticket }) {
       </div>
       {ticket.attachment ? (
         <>
-          <img
-            className="evidence-image"
-            src={ticket.attachment.url}
-            alt="Uploaded evidence"
-          />
+          {imageUrl ? (
+            <img
+              className="evidence-image"
+              src={imageUrl}
+              alt="Uploaded evidence"
+            />
+          ) : (
+            <div className="empty-inline"><LoaderCircle className="spin" /> Loading image...</div>
+          )}
           {ticket.imageEvidence.status === "processed" ? (
             <div className="ocr-box">
               <div className="row spread">
