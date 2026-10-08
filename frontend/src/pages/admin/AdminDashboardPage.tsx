@@ -52,7 +52,7 @@ export function AdminDashboardPage() {
         ))}
       </div>
       <div className="chart-grid">
-        <section className="card" style={{ gridColumn: "span 2" }}>
+        <section className="card admin-recent-accounts">
           <div className="card-heading">
             <div><span className="eyebrow">Access governance</span><h2>Recently created accounts</h2></div>
             <Link className="link-button" to="/admin/users">View all users</Link>

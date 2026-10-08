@@ -7,8 +7,9 @@ import {
   MessageSquareText,
   LoaderCircle,
   UserCheck,
+  Undo2,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { PageHeader } from "../../components/layout/Layouts";
 import { ConfirmationDialog } from "../../components/common/Controls";
@@ -30,11 +31,7 @@ import {
 } from "../../components/tickets/TicketComponents";
 import { ticketService } from "../../services/serviceSelector";
 import type { AdjacentTickets } from "../../services/ticketService";
-import type {
-  Ticket,
-  TicketEvent,
-  TicketStatus,
-} from "../../types";
+import type { Ticket, TicketEvent, TicketStatus } from "../../types";
 import { formatDate } from "../../lib/utils";
 import { useAuth } from "../../app/providers/AuthProvider";
 import {
@@ -42,6 +39,10 @@ import {
   TICKET_PRIORITIES,
   TICKET_SENTIMENTS,
 } from "../../lib/constants";
+import {
+  canAssignTicket,
+  canChangeTicketStatus,
+} from "../../lib/ticketActions";
 export function AgentTicketDetailPage() {
   const { user } = useAuth();
   const currentAgent = user?.name || "Current agent";
@@ -50,14 +51,27 @@ export function AgentTicketDetailPage() {
   const [ticket, setTicket] = useState<Ticket | null>(null);
   const [neighbours, setNeighbours] = useState<AdjacentTickets>({});
   const [loadError, setLoadError] = useState(false);
-  const [dialog, setDialog] = useState<"escalate" | "resolve" | "close" | null>(
-    null,
-  );
+  const [dialog, setDialog] = useState<
+    | "escalate"
+    | "resolve"
+    | "close"
+    | "undo-escalation"
+    | "undo-resolution"
+    | null
+  >(null);
+  const [reassigning, setReassigning] = useState(false);
+  const [agents, setAgents] = useState<Array<{ id: string; name: string }>>([]);
+  const [agentId, setAgentId] = useState("");
+  const [actionError, setActionError] = useState("");
+  const busy = useRef(false);
   const [notice, setNotice] = useState("");
   const [saving, setSaving] = useState(false);
   useEffect(() => {
     let active = true;
     setTicket(null);
+    setNotice("");
+    setActionError("");
+    setDialog(null);
     setLoadError(false);
     Promise.all([
       ticketService.getTicket(ticketId || ""),
@@ -84,19 +98,51 @@ export function AgentTicketDetailPage() {
       />
     );
   if (!ticket) return <LoadingSkeleton />;
-  const update = async (patch: Partial<Ticket>) => {
+  const save = async (operation: () => Promise<Ticket>) => {
+    if (busy.current) return false;
+    busy.current = true;
     setSaving(true);
+    setNotice("");
+    setActionError("");
     try {
-      setTicket(await ticketService.updateTicket(ticket.id, patch));
+      setTicket(await operation());
+      return true;
+    } catch (error) {
+      setActionError(
+        error instanceof Error
+          ? error.message
+          : "Could not save changes. Try again.",
+      );
+      return false;
     } finally {
+      busy.current = false;
       setSaving(false);
     }
   };
-  const transition = async (status: TicketStatus) => {
-    await update({ status });
-    setDialog(null);
-    setNotice(`Ticket marked ${humanize(status)}.`);
+  const update = (patch: Partial<Ticket>) =>
+    save(() => ticketService.updateTicket(ticket.id, patch));
+  const undo = async () => {
+    const escalation = dialog === "undo-escalation";
+    const ok = escalation
+      ? await save(() => ticketService.undoEscalation(ticket.id))
+      : await save(() => ticketService.undoResolution(ticket.id));
+    if (ok) {
+      setDialog(null);
+      setNotice(
+        escalation
+          ? "Escalation undone. Ticket returned to General Support."
+          : "Resolution undone. Ticket reopened.",
+      );
+    }
   };
+  const transition = async (status: TicketStatus) => {
+    if (!canChangeTicketStatus(ticket.status, status)) return;
+    if (await update({ status })) {
+      setDialog(null);
+      setNotice(`Ticket marked ${humanize(status)}.`);
+    }
+  };
+  const assignedToMe = ticket.assignedAgent === currentAgent;
   /** Corrections are the project's audit surface — record the agent's reason on the
       ticket's own event trail so it is visible, not silently dropped. */
   const recordCorrection = (field: string, value: string, reason: string) => {
@@ -123,7 +169,7 @@ export function AgentTicketDetailPage() {
           <div className="ticket-nav">
             <button
               className="icon-btn"
-              disabled={!neighbours.previous}
+              disabled={saving || !neighbours.previous}
               onClick={() => navigate(`/agent/tickets/${neighbours.previous}`)}
             >
               <ChevronLeft />
@@ -131,7 +177,7 @@ export function AgentTicketDetailPage() {
             </button>
             <button
               className="icon-btn"
-              disabled={!neighbours.next}
+              disabled={saving || !neighbours.next}
               onClick={() => navigate(`/agent/tickets/${neighbours.next}`)}
             >
               <ChevronRight />
@@ -140,6 +186,11 @@ export function AgentTicketDetailPage() {
           </div>
         }
       />
+      {actionError && (
+        <div className="error-alert" role="alert">
+          {actionError}
+        </div>
+      )}
       {notice && (
         <div className="success-alert">
           <CheckCircle2 />
@@ -155,41 +206,141 @@ export function AgentTicketDetailPage() {
         <div className="command-actions">
           <button
             className="btn secondary small"
-            disabled={saving}
-            onClick={() =>
-              update({ assignedAgent: currentAgent, status: "assigned" })
+            disabled={
+              saving ||
+              (assignedToMe && ticket.status !== "reopened") ||
+              !canAssignTicket(ticket.status)
             }
+            onClick={async () => {
+              if (await update({ assignedAgent: currentAgent }))
+                setNotice("Ticket assigned to you.");
+            }}
           >
             {saving ? <LoaderCircle className="spin" /> : <UserCheck />}
-            {saving ? "Saving…" : "Assign to me"}
+            {assignedToMe && ticket.status === "reopened"
+              ? "Resume work"
+              : assignedToMe
+                ? "Assigned to me"
+                : saving
+                  ? "Saving…"
+                  : "Assign to me"}
           </button>
-          <button className="btn secondary small" disabled={saving}>
+          <button
+            className="btn secondary small"
+            disabled={saving || !canAssignTicket(ticket.status)}
+            onClick={async () => {
+              setReassigning(true);
+              setActionError("");
+              try {
+                setAgents(await ticketService.getAssignableAgents());
+              } catch {
+                setActionError("Could not load agents. Please try again.");
+              }
+            }}
+          >
             Reassign
           </button>
           <button
             className="btn warning small"
-            disabled={saving}
-            onClick={() => setDialog("escalate")}
+            disabled={
+              saving ||
+              (ticket.status !== "escalated" &&
+                !canChangeTicketStatus(ticket.status, "escalated"))
+            }
+            onClick={() =>
+              setDialog(
+                ticket.status === "escalated" ? "undo-escalation" : "escalate",
+              )
+            }
           >
-            <AlertTriangle />
-            Escalate
+            {ticket.status === "escalated" ? <Undo2 /> : <AlertTriangle />}
+            {ticket.status === "escalated" ? "Undo escalation" : "Escalate"}
           </button>
           <button
             className="btn success small"
-            disabled={saving}
-            onClick={() => setDialog("resolve")}
+            disabled={
+              saving ||
+              (ticket.status !== "resolved" &&
+                !canChangeTicketStatus(ticket.status, "resolved"))
+            }
+            onClick={() =>
+              setDialog(
+                ticket.status === "resolved" ? "undo-resolution" : "resolve",
+              )
+            }
           >
-            Resolve
+            {ticket.status === "resolved" && <Undo2 />}
+            {ticket.status === "resolved" ? "Undo resolution" : "Resolve"}
+          </button>
+          <button
+            className="btn ghost small"
+            disabled={saving || !canChangeTicketStatus(ticket.status, "closed")}
+            onClick={() => setDialog("close")}
+          >
+            {ticket.status === "closed" ? "Closed" : "Close"}
+          </button>
+        </div>
+      </div>
+      {reassigning && (
+        <section className="card">
+          <label>
+            Assign to agent
+            <select
+              value={agentId}
+              disabled={saving}
+              onChange={(e) => setAgentId(e.target.value)}
+            >
+              <option value="">Select an agent</option>
+              {agents.map((agent) => (
+                <option
+                  key={agent.id}
+                  value={agent.id}
+                  disabled={agent.name === ticket.assignedAgent}
+                >
+                  {agent.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <button
+            className="btn small"
+            disabled={
+              saving || !agentId || (agentId === user?.id && assignedToMe)
+            }
+            onClick={async () => {
+              if (busy.current) return;
+              busy.current = true;
+              setSaving(true);
+              setActionError("");
+              setNotice("");
+              try {
+                setTicket(await ticketService.assignTicket(ticket.id, agentId));
+                setReassigning(false);
+                setAgentId("");
+                setNotice("Ticket reassigned.");
+              } catch (error) {
+                setActionError(
+                  error instanceof Error
+                    ? error.message
+                    : "Could not reassign ticket.",
+                );
+              } finally {
+                busy.current = false;
+                setSaving(false);
+              }
+            }}
+          >
+            {saving ? "Saving…" : "Confirm reassignment"}
           </button>
           <button
             className="btn ghost small"
             disabled={saving}
-            onClick={() => setDialog("close")}
+            onClick={() => setReassigning(false)}
           >
-            Close
+            Cancel
           </button>
-        </div>
-      </div>
+        </section>
+      )}
       <div className="agent-detail-grid">
         <main className="stack">
           <section className="card">
@@ -248,8 +399,12 @@ export function AgentTicketDetailPage() {
           />
           <ResponseEditor
             ticket={ticket}
-            onApproved={(text) => {
-              update({
+            disabled={saving || ["resolved", "closed"].includes(ticket.status)}
+            onSaveDraft={(text, status) =>
+              update({ draft: { ...ticket.draft, text, status } })
+            }
+            onApproved={async (text) => {
+              const ok = await update({
                 approvedResponse: {
                   text,
                   approvedBy: currentAgent,
@@ -257,7 +412,8 @@ export function AgentTicketDetailPage() {
                 },
                 draft: { ...ticket.draft, text, status: "approved" },
               });
-              setNotice("Response approved and made customer-visible.");
+              if (ok) setNotice("Response approved and made customer-visible.");
+              return ok;
             }}
           />
         </main>
@@ -268,6 +424,7 @@ export function AgentTicketDetailPage() {
             <p>Accept or correct each prediction.</p>
           </div>
           <PredictionCard
+            disabled={saving}
             title="Category"
             prediction={ticket.category}
             options={[...TICKET_CATEGORIES]}
@@ -279,6 +436,7 @@ export function AgentTicketDetailPage() {
             }
           />
           <PredictionCard
+            disabled={saving}
             title="Priority"
             prediction={ticket.priority}
             options={TICKET_PRIORITIES}
@@ -295,6 +453,7 @@ export function AgentTicketDetailPage() {
             }
           />
           <PredictionCard
+            disabled={saving}
             title="Sentiment"
             prediction={ticket.sentiment}
             options={TICKET_SENTIMENTS}
@@ -320,6 +479,23 @@ export function AgentTicketDetailPage() {
           </section>
         </aside>
       </div>
+      <ConfirmationDialog
+        open={dialog === "undo-escalation" || dialog === "undo-resolution"}
+        title={
+          dialog === "undo-escalation"
+            ? "Undo ticket escalation?"
+            : "Undo ticket resolution?"
+        }
+        description={
+          dialog === "undo-escalation"
+            ? "Return this ticket to General Support and clear its escalation reason. The assigned agent and activity history will be kept."
+            : "Reopen this ticket so support can continue. Its responses and activity history will be kept."
+        }
+        confirmLabel={saving ? "Saving…" : "Confirm undo"}
+        busy={saving}
+        onCancel={() => setDialog(null)}
+        onConfirm={undo}
+      />
       {(["escalate", "resolve", "close"] as const).map((type) => (
         <ConfirmationDialog
           key={type}
@@ -327,10 +503,11 @@ export function AgentTicketDetailPage() {
           title={`${humanize(type)} this ticket?`}
           description={
             type === "escalate"
-              ? "An administrator and specialist queue will be notified."
+              ? "This will escalate the ticket to the specialist queue."
               : `This will change the customer-visible status to ${type}d.`
           }
-          confirmLabel={humanize(type)}
+          confirmLabel={saving ? "Saving…" : humanize(type)}
+          busy={saving}
           danger={type === "close"}
           onCancel={() => setDialog(null)}
           onConfirm={() =>

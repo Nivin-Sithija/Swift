@@ -1637,9 +1637,13 @@ dd {
 }
 .chart-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1.1fr 0.7fr;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr) minmax(0, 0.7fr);
   gap: 1rem;
   margin-bottom: 1rem;
+}
+.admin-recent-accounts {
+  grid-column: span 2;
+  min-width: 0;
 }
 .card-heading {
   display: flex;
@@ -2146,7 +2150,10 @@ dd {
     margin-bottom: 2rem;
   }
   .chart-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .admin-recent-accounts {
+    grid-column: auto;
   }
   .language-panel {
     grid-column: auto;
