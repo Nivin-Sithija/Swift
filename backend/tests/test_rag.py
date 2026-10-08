@@ -19,10 +19,7 @@ from app.rag.providers import GroqProvider, OllamaProvider, ProviderError
 from app.rag.retrieval import (
     PostgresHybridRetriever,
     evidence_confidence,
-<<<<<<< HEAD
-=======
     lexical_query,
->>>>>>> 3ef48c2927cea36598d5a8db6b9a3124f1df0ba0
     lexical_websearch_query,
     reciprocal_rank_fusion,
 )
