@@ -522,9 +522,9 @@ async def apply_attachment_text(ticket: Ticket, ocr_texts: list[str]) -> None:
         # are re-requested.
         def saved(task: PredictionTask, fallback: Result) -> Result:
             p = by_task.get(task)
-            return Result(p.value, p.confidence, p.model_version, p.probabilities) if p else fallback
+            return Result(p.value, p.confidence, p.model_version) if p else fallback
 
-        text_intent = Result(stored.value, stored.confidence, stored.model_version, stored.probabilities)
+        text_intent = Result(stored.value, stored.confidence, stored.model_version)
         text_priority = saved(PredictionTask.priority, rule_priority)
         text_sentiment = saved(PredictionTask.sentiment, rule_sentiment)
     else:
@@ -550,7 +550,6 @@ async def apply_attachment_text(ticket: Ticket, ocr_texts: list[str]) -> None:
         prediction.value = result.value
         prediction.confidence = result.confidence
         prediction.model_version = result.model_version
-        prediction.probabilities = result.probabilities
         prediction.predicted_at = utcnow()
 
     def effective(task: PredictionTask, fallback: Result) -> tuple[str, float]:

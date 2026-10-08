@@ -41,16 +41,9 @@ export function AgentQueuePage({
   const [bulkSaving, setBulkSaving] = useState(false);
   const [bulkError, setBulkError] = useState("");
   const [notice, setNotice] = useState("");
-  const [now, setNow] = useState(Date.now);
-  useEffect(() => {
-    const timer = window.setInterval(() => setNow(Date.now()), 30_000);
-    return () => window.clearInterval(timer);
-  }, []);
   const [searchParams, setSearchParams] = useSearchParams();
-  const requestedSort = searchParams.get("sort");
-  const sort: TicketSort = isTicketSort(requestedSort) ? requestedSort : "urgency";
+  const sort = (searchParams.get("sort") as TicketSort) || "priority";
   const setSort = (newSort: TicketSort) => {
-    setPage(1);
     setSearchParams(
       (prev) => {
         const next = new URLSearchParams(prev);
