@@ -2,7 +2,7 @@ import uuid
 from typing import Annotated
 
 import jwt
-from fastapi import Depends, HTTPException
+from fastapi import Depends, HTTPException, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -16,12 +16,15 @@ Db = Annotated[AsyncSession, Depends(get_db)]
 
 
 async def current_user(
-    db: Db, credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer)]
+    request: Request,
+    db: Db, 
+    credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer)]
 ) -> User:
-    if not credentials:
+    token = credentials.credentials if credentials else request.query_params.get("access_token")
+    if not token:
         raise HTTPException(401, "Authentication required")
     try:
-        payload = decode_access_token(credentials.credentials)
+        payload = decode_access_token(token)
         user = await db.get(User, uuid.UUID(payload["sub"]))
     except (jwt.InvalidTokenError, ValueError, KeyError) as exc:
         raise HTTPException(401, "Invalid or expired access token") from exc
