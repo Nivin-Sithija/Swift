@@ -13,6 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import type { InternalNote, Ticket, TicketPrediction } from "../../types";
 import { ConfidenceIndicator, humanize } from "../tickets/TicketComponents";
+import { EvidenceImage } from "../tickets/EvidenceImage";
 import { ConfirmationDialog } from "../common/Controls";
 import { formatDate } from "../../lib/utils";
 
@@ -31,9 +32,8 @@ export function ImageEvidencePanel({ ticket }: { ticket: Ticket }) {
       </div>
       {ticket.attachment ? (
         <>
-          <img
-            className="evidence-image"
-            src={ticket.attachment.url}
+          <EvidenceImage
+            attachment={ticket.attachment}
             alt="Uploaded evidence"
           />
           {ticket.imageEvidence.status === "processed" ? (

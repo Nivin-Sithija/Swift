@@ -70,11 +70,12 @@ type ApiTicket = Record<string, unknown> & {
 let accessToken: string | null = null;
 let refreshPromise: Promise<string> | null = null;
 const url = (path: string) => `${getApiBaseUrl()}${path}`;
-async function request<T>(
+/** Authenticated fetch that refreshes an expired access token once, then retries. */
+async function send(
   path: string,
   init: RequestInit = {},
   retry = true,
-): Promise<T> {
+): Promise<Response> {
   const headers = new Headers(init.headers);
   if (!(init.body instanceof FormData))
     headers.set("Content-Type", "application/json");
@@ -99,12 +100,20 @@ async function request<T>(
       });
     try {
       accessToken = await refreshPromise;
-      return request<T>(path, init, false);
     } catch {
       accessToken = null;
       throw new Error("Session expired");
     }
+    return send(path, init, false);
   }
+  return response;
+}
+async function request<T>(
+  path: string,
+  init: RequestInit = {},
+  retry = true,
+): Promise<T> {
+  const response = await send(path, init, retry);
   if (!response.ok) {
     const error = (await response.json().catch(() => null)) as {
       detail?: string;
@@ -376,6 +385,14 @@ export const restTicketService: TicketService = {
         method: "POST",
       }),
     );
+  },
+  async getAttachmentBlob(attachmentId) {
+    // Fetched with the bearer header rather than a plain <img src>: the API
+    // sends CORP same-origin and requires auth, so a cross-origin image tag fails.
+    const response = await send(`/attachments/${attachmentId}/download`);
+    if (!response.ok)
+      throw new Error(`Attachment unavailable (${response.status})`);
+    return response.blob();
   },
   async getAssignableAgents() {
     return request<Array<{ id: string; name: string }>>("/agents");
