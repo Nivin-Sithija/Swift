@@ -11,7 +11,11 @@ depends_on = None
 
 
 def upgrade() -> None:
-    op.add_column("attachments", sa.Column("ocr_text", sa.Text(), nullable=True))
+    # The initial migration creates tables from current model metadata, so
+    # fresh databases already contain this column. Older databases need it added.
+    columns = sa.inspect(op.get_bind()).get_columns("attachments")
+    if not any(column["name"] == "ocr_text" for column in columns):
+        op.add_column("attachments", sa.Column("ocr_text", sa.Text(), nullable=True))
 
 
 def downgrade() -> None:

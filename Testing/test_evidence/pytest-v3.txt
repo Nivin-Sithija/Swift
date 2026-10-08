@@ -1,0 +1,86 @@
+============================= test session starts =============================
+collected 199 items / 1 skipped
+
+tests\database\test_integrity.py ..........................F             [ 13%]
+tests\observability\test_logfire.py .............                        [ 20%]
+tests\security\test_authz.py .............................               [ 34%]
+tests\security\test_input_validation.py ........................         [ 46%]
+tests\security\test_prompt_injection.py ...............................  [ 62%]
+tests\security\test_rate_limiting.py ........                            [ 66%]
+tests\test_attachment_intent.py ...........                              [ 71%]
+tests\test_eval_runner.py F.ss                                           [ 73%]
+tests\test_inference_space.py .....                                      [ 76%]
+tests\test_policies.py ...                                               [ 77%]
+tests\test_rag.py .........................................              [ 98%]
+tests\test_rag_api.py ...                                                [100%]
+
+================================== FAILURES ===================================
+____________ test_no_raw_sql_uses_percent_or_format_interpolation _____________
+
+    def test_no_raw_sql_uses_percent_or_format_interpolation():
+        """Broad sweep: an f-string or % on a text() call is the shape of a real injection."""
+        offenders = []
+        for path in (BACKEND / "app").rglob("*.py"):
+>           for line_number, line in enumerate(path.read_text().splitlines(), 1):
+                                               ^^^^^^^^^^^^^^^^
+
+tests\database\test_integrity.py:345: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\Programs\Python\Python313\Lib\pathlib\_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\Programs\Python\Python313\Lib\pathlib\_abc.py:633: in read_text
+    return f.read()
+           ^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalDecoder object at 0x0000018F5AA58C80>
+input = b'import asyncio\r\nimport json\r\nimport re\r\nfrom dataclasses import dataclass\r\nfrom pathlib import Path\r\nfrom ...that any banking action has been completed.",\r\n    }\r\n    return templates.get(language, templates["english"])\r\n'
+final = True
+
+    def decode(self, input, final=False):
+>       return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       UnicodeDecodeError: 'charmap' codec can't decode byte 0x90 in position 3517: character maps to <undefined>
+
+..\..\..\Programs\Python\Python313\Lib\encodings\cp1252.py:23: UnicodeDecodeError
+____________ test_case_files_declare_every_field_the_runner_reads _____________
+
+    def test_case_files_declare_every_field_the_runner_reads() -> None:
+        from app.rag.eval_runner import GOLDEN_CASES, GUARDRAIL_CASES
+    
+>       for case in load_cases(GOLDEN_CASES):
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_eval_runner.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+app\rag\eval_runner.py:47: in load_cases
+    return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+                                         ^^^^^^^^^^^^^^^^
+..\..\..\Programs\Python\Python313\Lib\pathlib\_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\Programs\Python\Python313\Lib\pathlib\_abc.py:633: in read_text
+    return f.read()
+           ^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalDecoder object at 0x0000018F71CB48C0>
+input = b'{"id":"en-accounts-1","language":"english","category":"accounts","institution":"Commercial Bank of Ceylon PLC","quer...LC","query":"naan panna transfer ah cancel panna venum","expected_route":"human_escalation","relevant_sources":[]}\r\n'
+final = True
+
+    def decode(self, input, final=False):
+>       return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 472: character maps to <undefined>
+
+..\..\..\Programs\Python\Python313\Lib\encodings\cp1252.py:23: UnicodeDecodeError
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.13.7-final-0 _______________
+
+Coverage JSON written to file reports/coverage-v3.json
+=========================== short test summary info ===========================
+SKIPPED [1] tests\contract\test_openapi.py:114: could not import 'schemathesis': No module named 'schemathesis'
+SKIPPED [1] tests\test_eval_runner.py:33: Needs a database with an ingested knowledge base and a generation provider
+SKIPPED [1] tests\test_eval_runner.py:41: Needs a database with an ingested knowledge base and a generation provider
+============= 2 failed, 195 passed, 3 skipped in 70.07s (0:01:10) =============

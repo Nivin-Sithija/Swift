@@ -87,7 +87,7 @@ class ResponseOut(BaseModel):
     language: InterfaceLanguage
     status: str
     updated_at: datetime
-    approved_by: str | None = None
+    approved_by: uuid.UUID | None = None
     approved_at: datetime | None = None
 
 

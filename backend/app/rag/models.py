@@ -152,12 +152,12 @@ def build_embedder(
 
 
 class FlashRankReranker:
-    def __init__(self) -> None:
+    def __init__(self, model_name: str = "ms-marco-MiniLM-L-12-v2") -> None:
         try:
             from flashrank import Ranker
         except ImportError as exc:
             raise RuntimeError("Install Swift with the 'rag' extra to use FlashRank") from exc
-        self._ranker: Any = Ranker()
+        self._ranker: Any = Ranker(model_name=model_name)
         required_inputs = {item.name for item in self._ranker.session.get_inputs()}
         if "token_type_ids" in required_inputs:
             self._ranker.session = _TokenTypeSessionAdapter(self._ranker.session)
