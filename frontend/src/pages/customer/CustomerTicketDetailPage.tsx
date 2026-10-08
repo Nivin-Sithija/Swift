@@ -21,6 +21,7 @@ import {
   TicketTimeline,
   humanize,
 } from "../../components/tickets/TicketComponents";
+import { EvidenceImage } from "../../components/tickets/EvidenceImage";
 import { ticketService } from "../../services/serviceSelector";
 import type { RagAssistanceResult, Ticket } from "../../types";
 import { formatDate } from "../../lib/utils";
@@ -213,9 +214,8 @@ export function CustomerTicketDetailPage() {
                   <h2>Uploaded image</h2>
                 </div>
               </div>
-              <img
-                className="evidence-image"
-                src={ticket.attachment.url}
+              <EvidenceImage
+                attachment={ticket.attachment}
                 alt="Customer uploaded transaction evidence"
               />
               {ticket.imageEvidence.status === "failed" && (
