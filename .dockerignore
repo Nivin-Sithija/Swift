@@ -6,7 +6,6 @@ dist
 notebooks
 research
 docs
-synthetic_ticket_dataset
 
 datasets/*
 !datasets/english/
@@ -24,3 +23,15 @@ venv
 env
 ml/models/encoders
 ml/OCR
+
+# Documentation evidence and local-only state stay out of service images.
+context
+.claude
+.venv*
+**/.venv*
+**/.logfire
+**/.env
+**/.env.*
+**/:memory:.ses
+memory.md
+AGENTS.md

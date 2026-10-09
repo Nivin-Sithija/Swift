@@ -11,8 +11,7 @@ export default tseslint.config(
       "node_modules",
       "reports",
       "datasets",
-      "notebooks",
-      "synthetic_ticket_dataset"
+      "notebooks"
     ]
   },
   {

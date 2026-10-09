@@ -68,7 +68,7 @@ UNMAPPABLE = {category for category, allowed in ACCEPTABLE.items() if not allowe
 
 
 def load_true_categories(ml_dir: Path) -> dict[int, str]:
-    labels_path = ml_dir.parent / "synthetic_ticket_dataset" / "labels.json"
+    labels_path = ml_dir.parent / "datasets" / "synthetic_ticket_dataset" / "labels.json"
     labels = json.loads(labels_path.read_text(encoding="utf-8"))
     # labels.json holds only the clean image; the id ties the 4 conditions back to it.
     return {int(Path(item["image_path"]).stem.split("_")[-1]): item["category"] for item in labels}

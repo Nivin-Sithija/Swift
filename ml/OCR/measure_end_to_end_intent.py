@@ -10,7 +10,7 @@ from symspellpy import SymSpell, Verbosity
 def main():
     root_dir = Path(__file__).parent.resolve()
     ml_dir = root_dir.parent
-    synthetic_dataset_dir = ml_dir.parent / "synthetic_ticket_dataset"
+    synthetic_dataset_dir = ml_dir.parent / "datasets" / "synthetic_ticket_dataset"
     
     ocr_results_path = root_dir / "results" / "ocr_tesseract_optimized_metrics.csv"
     labels_json_path = synthetic_dataset_dir / "labels.json"

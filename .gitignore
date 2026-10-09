@@ -31,6 +31,7 @@ __pycache__/
 .env
 .env.local
 .env.*.local
+Ruthra.pem
 
 # Editor
 .idea/
@@ -38,8 +39,11 @@ __pycache__/
 !.vscode/tasks.json
 !.vscode/extensions.json
 
-# Claude / skills
+# Local AI tooling / skills
 .claude/
+.kilo/
+.codex/
+.cursor/
 skills-main/
 
 # Context / architecture docs (kept local)
@@ -92,7 +96,7 @@ ml/OCR/kaggle_tesseract_dataset.zip
 # ml/models/README.md documents how to obtain and load them.
 ml/models/encoders/
 
-synthetic_ticket_dataset/screenshots/augmented/
+datasets/synthetic_ticket_dataset/screenshots/augmented/
 outputs/
 
 # Ignore large binaries and artifacts
@@ -102,7 +106,7 @@ ml/OCR/screenshots/
 ml/OCR/results/
 
 
-# Test-runner reports (regenerable: see backend/TESTING.md)
+# Test-runner reports (regenerable: see docs/guides/testing.md)
 backend/reports/
 frontend/reports/
 frontend/coverage/
@@ -153,3 +157,26 @@ ml/reports/train_labeled.csv
 
 # Corpus rows reproduced as notebook evidence.
 notebooks/data_preparation/cleaning_report/train_test_leakage.csv
+
+# Local credentials and legacy credential scratch files
+/Gemini key
+/Groq key
+/Hugging Face token
+*.pem
+*.key
+.env.*
+!.env.example
+
+# Regenerable tooling state and office lock files
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.logfire/
+.hypothesis/
+.ipynb_checkpoints/
+:memory:.ses
+~$*
+/memory.md
+
+# Root-level generated Kaggle jobs (use ml/kaggle/runner.py)
+/kaggle_script.py
