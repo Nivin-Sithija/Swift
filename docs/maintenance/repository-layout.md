@@ -24,7 +24,7 @@ Architecture diagram filenames now use underscores instead of spaces; their LaTe
 - Unreferenced root `test_api.py`: an old direct HF-inference probe; the application uses its inference router and retains `backend/scripts/test_router.py`.
 - Earlier master test report Markdown/Word editions, superseded by the retained v3 report.
 - Office lock files, `:memory:.ses` artifacts, macOS metadata, and regenerable Python/lint/type-check caches.
-- Empty root `storage/` directory. Service data and storage configuration remain intact; the tracked `pgvector` submodule entry is retained.
+- Empty root `storage/` directory and unused root `pgvector/` gitlink. The latter was an empty checkout with no `.gitmodules` configuration or code references; removed after explicit user confirmation. Swift continues to use `pgvector/pgvector:pg16` through Compose and the Python `pgvector` dependency.
 
 Ignore rules cover credential scratch files, environment files, local memory, caches, session artifacts, and Office lock files. Local environments and credentials are also excluded from backend Docker build contexts.
 
